@@ -1,13 +1,14 @@
 Package: RGA
 Type: Package
-Description: 
+Title: Interact with Google Analytics using R
+Description: A package for seemless API connection to Google Analytics
 Url: https://bitbucket.org/unikum/rga
 BugReports: https://bitbucket.org/unikum/rga/issues
 Version: 0.1
 Date: 2014-06-03
-Author: Artem Klevtsov <a.a.klevtsov@gmail.com>
-Maintainer: Artem Klevtsov <a.a.klevtsov@gmail.com>
-Description: A package for seemless API connection to Google Analytics
+Authors@R: c( person(given = "Artme", family = "Klevtsov", email =
+    "a.a.klevtsov@gmai.com", role = c("aut", "cre")), person(given = "Philipp",
+    family = "Upravitelev", email = "upravitelev@gmail.com", role = "ctb") )
 License: GPL (>= 2)
 Depends:
     R (>= 2.15.0)
@@ -15,3 +16,11 @@ Imports:
     RCurl,
     jsonlite,
     httr
+Collate:
+    'api-request.R'
+    'mgmt.R'
+    'misc.R'
+    'query.R'
+    'report.R'
+    'rga.R'
+    'token.R'

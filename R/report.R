@@ -1,40 +1,46 @@
+#' @include misc.R
 get_report_url <- function(query) {
     stopifnot(inherits(query, "GAQuery"))
-    if (inherits(query, "ga"))
+    if (inherits(query, "core"))
         url <- "https://www.googleapis.com/analytics/v3/data/ga"
     else if (inherits(query, "mcf"))
         url <- "https://www.googleapis.com/analytics/v3/data/mcf"
     else
         stop("Unknown report type.")
-    query <- as.character(query)
+    query <- compact(query)
+    params <- gsub("\\.", "-", names(query))
+    params <- gsub("profile.id", "ids", params)
+    values <- as.vector(query, mode = "character")
+    values <- curlEscape(values)
+    string <- paste(params, values, sep = "=", collapse = "&")
     return(paste(url, query, sep = "?"))
 }
 
-build_ga <- function(rows, columns) {
-    columns$name <- gsub("ga:", "", columns$name)
+build_core <- function(rows, cols) {
+    cols$name <- gsub("ga:", "", cols$name)
     data.df <- as.data.frame(rows, stringsAsFactors = FALSE)
-    colnames(data.df) <- columns$name
+    colnames(data.df) <- cols$name
     return(data.df)
 }
 
-build_mcf <- function(rows, columns) {
-    columns$name <- gsub("mcf:", "", columns$name)
-    if (any(grepl("MCF_SEQUENCE", columns$dataType))) {
-        primitive.idx <- grep("MCF_SEQUENCE", columns$dataType, invert = TRUE)
-        conversion.idx <- grep("MCF_SEQUENCE", columns$dataType)
+build_mcf <- function(rows, cols) {
+    columns$name <- gsub("mcf:", "", cols$name)
+    if (any(grepl("MCF_SEQUENCE", cols$dataType))) {
+        primitive.idx <- grep("MCF_SEQUENCE", cols$dataType, invert = TRUE)
+        conversion.idx <- grep("MCF_SEQUENCE", cols$dataType)
         primitive <- lapply(lapply(x$rows, "[[", "primitiveValue"), "[", primitive.idx)
         primitive <- do.call(rbind, primitive)
-        colnames(primitive) <- columns$name[primitive.idx]
+        colnames(primitive) <- cols$name[primitive.idx]
         conversion <- lapply(lapply(x$rows, "[[", "conversionPathValue"), "[", conversion.idx)
         conversion <- lapply(conversion, function(x) lapply(x, function(i) apply(i, 1, paste, sep = "", collapse = ":")))
         conversion <- lapply(conversion, function(x) lapply(x, paste, collapse = " > "))
         conversion <- do.call(rbind, lapply(conversion, unlist))
-        colnames(conversion) <- columns$name[conversion.idx]
-        data.df <- data.frame(primitive, conversion, stringsAsFactors = FALSE)[, columns$name]
+        colnames(conversion) <- cols$name[conversion.idx]
+        data.df <- data.frame(primitive, conversion, stringsAsFactors = FALSE)[, cols$name]
     } else {
         data.df <- as.data.frame(do.call(rbind, lapply(x$rows, unlist)), stringsAsFactors = FALSE)
         # insert column names
-        colnames(data.df) <- columns$name
+        colnames(data.df) <- cols$name
     }
     return(data.df)
 }
@@ -53,18 +59,33 @@ convert_datatypes <- function(x, formats, date.format = "%Y-%m-%d") {
     return(x)
 }
 
+#' @title Get Google Anaytics report data
+#'
+#' @param query \code{GAQuery} class object.
+#' @param token \code{Token2.0} class object.
+#' @param date.format date format.
+#' @param messages print information messages.
+#'
+#' @return A data frame with Google Analytics reporting data.
+#'
+#' @include api-request.R
+#'
+#' @export
+#'
 get_report <- function(query, token, date.format = "%Y-%m-%d", messages = FALSE) {
     url <- get_report_url(query)
     data.json <- get_api_request(url, token = token, messages = messages)
     rows <- data.json$rows
-    columns <- data.json$columnHeaders
-    formats <- columns$dataType
+    cols <- data.json$columnHeaders
+    formats <- cols$dataType
     sampled <- data.json$containsSampledData
     if (sampled)
         warning("Data contains sampled data.")
     max.rows <- min(data.json$totalResults, query$max.results)
     total.pages <- ceiling(max.rows / query$max.results)
     if (total.pages > 1L) {
+        if (messages)
+            message("Response contain more then 10000 rows.")
         for (page in 2:total.pages) {
             query$start.index <- query$max.results * (page - 1) + 1
             url <- get_report_url(query)
@@ -75,14 +96,30 @@ get_report <- function(query, token, date.format = "%Y-%m-%d", messages = FALSE)
                 rows <- rbind(rows, data.json$rows)
         }
     }
-    if (inherits(query, "ga"))
-        data.r <- build_ga(rows, columns)
+    if (inherits(query, "core"))
+        data.r <- build_core(rows, cols)
     else if (inherits(query, "mcf"))
-        data.r <- build_mcf(rows, columns)
+        data.r <- build_mcf(rows, cols)
     data.df <- convert_datatypes(data.r, formats, date.format = date.format)
     return(data.df)
 }
 
+#' @title Get the first date with available data
+#'
+#' @param profile.id Google Analytics profile ID.
+#' @param token \code{Token2.0} class object.
+#'
+#' @return date in YYYY-MM-DD format.
+#'
+#' @examples
+#' \dontrun{
+#' first.date <- get_firstdate(profile.id = "myProfileID", token = ga_token)
+#' }
+#'
+#' @include query.R
+#'
+#' @export
+#'
 get_firstdate <- function(profile.id, token) {
     query <- set_query(profile.id, start.date = "2005-01-01",
                        metrics = "ga:sessions", dimensions = "ga:date",

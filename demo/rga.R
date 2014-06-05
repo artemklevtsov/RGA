@@ -1,5 +1,3 @@
-library(httr)
-library(jsonlite)
 library(RGA)
 
 # 1. Set RGA_CONSUMER_ID and RGA_CONSUMER_SECRET environment variables

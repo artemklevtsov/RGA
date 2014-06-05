@@ -1,6 +1,40 @@
+#' @title Set Google Analytics report query
+#'
+#' @description
+#' \code{set_query} provide a query the Core or Multi-Channel Funnels Reporting API for Google Analytics report data.
+#'
+#' @param profile.id Google Analytics profile ID. Can be character (with or without "ga:" prefix) or integer.
+#' @param start.date start date for fetching Analytics data in YYYY-MM-DD format.
+#' @param end.date rnd date for fetching Analytics data in YYYY-MM-DD format.
+#' @param metrics a comma-separated list of Analytics metrics, such as ga:sessions,ga:bounces.
+#' @param dimensions a comma-separated list of Analytics dimensions, such as ga:browser,ga:city.
+#' @param sort a comma-separated list of dimensions or metrics that determine the sort order for Analytics data.
+#' @param filters a comma-separated list of dimension or metric filters to be applied to Analytics data.
+#' @param segment an Analytics segment to be applied to data.
+#' @param start.index an index of the first entity to retrieve.
+#' @param max.results the maximum number of entries to include in this feed.
+#'
+#' @return GAQuery class object.
+#'
+#' @examples
+#' \dontrun{
+#' query <- set_query(profile.id = "ga:00000000")
+#' print(query)
+#' query <- set_query(profile.id = "ga:00000000", start.date = get_firstfate(profile.id = "ga:myProfileID", token = ga_token),
+#'                    end.date = "today", metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = "ga:date")
+#' print(query)
+#' }
+#'
+#' @references
+#' Core Reporting API - Dimensions & Metrics Reference: \url{https://developers.google.com/analytics/devguides/reporting/core/dimsmets}
+#' Multi-Channel Funnels Reporting API - Dimensions & Metrics Reference: \url{https://developers.google.com/analytics/devguides/reporting/mcf/dimsmets/}
+#' Google Analytics Query Explorer 2: \url{https://ga-dev-tools.appspot.com/explorer/}
+#'
+#' @export
+#'
 set_query <- function(profile.id, start.date = Sys.Date() - 8, end.date = Sys.Date() - 1,
                       metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = "ga:date",
-                      sort = NULL, filters = NULL, segment = NULL, fields = NULL, start.index = 1L, max.results = 10000L) {
+                      sort = NULL, filters = NULL, segment = NULL, start.index = 1L, max.results = 10000L) {
     # Checks
     stopifnot(!missing(profile.id))
     stopifnot(!is.null(start.date))
@@ -55,22 +89,14 @@ set_query <- function(profile.id, start.date = Sys.Date() - 8, end.date = Sys.Da
     if (grepl("mcf:", metrics) && grepl("mcf:", dimensions))
         class(query) <- c(class(query), "mcf")
     else if (grepl("ga:", metrics) && grepl("ga:", dimensions))
-        class(query) <- c(class(query), "ga")
+        class(query) <- c(class(query), "core")
     else
         stop("Metrics and dimensions should have same prefix: ga or mcf.")
     return(query)
 }
 
-as.character.GAQuery <- function(x) {
-    x <- compact(x)
-    params <- gsub("\\.", "-", names(x))
-    params <- gsub("profile.id", "ids", params)
-    values <- as.vector(x, mode = "character")
-    values <- curlEscape(values)
-    string <- paste(params, values, sep = "=", collapse = "&")
-    return(string)
-}
-
+#' @include misc.R
+#' @export
 print.GAQuery <- function(x) {
     if (inherits(x, "mcf"))
         x <- c(report.type = "multi-channel funnels", x)
