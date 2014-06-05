@@ -46,7 +46,9 @@ print(query)
 }
 \references{
 Core Reporting API - Dimensions & Metrics Reference: \url{https://developers.google.com/analytics/devguides/reporting/core/dimsmets}
+
 Multi-Channel Funnels Reporting API - Dimensions & Metrics Reference: \url{https://developers.google.com/analytics/devguides/reporting/mcf/dimsmets/}
+
 Google Analytics Query Explorer 2: \url{https://ga-dev-tools.appspot.com/explorer/}
 }
 

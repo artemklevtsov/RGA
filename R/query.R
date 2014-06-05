@@ -27,7 +27,9 @@
 #'
 #' @references
 #' Core Reporting API - Dimensions & Metrics Reference: \url{https://developers.google.com/analytics/devguides/reporting/core/dimsmets}
+#'
 #' Multi-Channel Funnels Reporting API - Dimensions & Metrics Reference: \url{https://developers.google.com/analytics/devguides/reporting/mcf/dimsmets/}
+#'
 #' Google Analytics Query Explorer 2: \url{https://ga-dev-tools.appspot.com/explorer/}
 #'
 #' @export
@@ -85,7 +87,7 @@ set_query <- function(profile.id, start.date = Sys.Date() - 8, end.date = Sys.Da
                   segment = segment,
                   start.index = start.index,
                   max.results = max.results)
-    class(query) <- c("list", "GAQuery")
+    class(query) <- c(class(query), "GAQuery")
     if (grepl("mcf:", metrics) && grepl("mcf:", dimensions))
         class(query) <- c(class(query), "mcf")
     else if (grepl("ga:", metrics) && grepl("ga:", dimensions))
@@ -97,13 +99,14 @@ set_query <- function(profile.id, start.date = Sys.Date() - 8, end.date = Sys.Da
 
 #' @include misc.R
 #' @export
-print.GAQuery <- function(x) {
+print.GAQuery <- function(x, ...) {
     if (inherits(x, "mcf"))
         x <- c(report.type = "multi-channel funnels", x)
-    else if (inherits(x, "ga"))
+    else if (inherits(x, "core"))
         x <- c(report.type = "core", x)
     x <- compact(x)
     cat("<Google Analytics Query>\n")
     cat(paste0("  ", format(paste0(names(x), ": ")), unlist(x), collapse = "\n"))
     cat("\n")
+    invisible(x)
 }
