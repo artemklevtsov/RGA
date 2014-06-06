@@ -28,17 +28,17 @@ build_mcf <- function(rows, cols) {
     if (any(grepl("MCF_SEQUENCE", cols$dataType))) {
         primitive.idx <- grep("MCF_SEQUENCE", cols$dataType, invert = TRUE)
         conversion.idx <- grep("MCF_SEQUENCE", cols$dataType)
-        primitive <- lapply(lapply(x$rows, "[[", "primitiveValue"), "[", primitive.idx)
+        primitive <- lapply(lapply(rows, "[[", "primitiveValue"), "[", primitive.idx)
         primitive <- do.call(rbind, primitive)
         colnames(primitive) <- cols$name[primitive.idx]
-        conversion <- lapply(lapply(x$rows, "[[", "conversionPathValue"), "[", conversion.idx)
+        conversion <- lapply(lapply(rows, "[[", "conversionPathValue"), "[", conversion.idx)
         conversion <- lapply(conversion, function(x) lapply(x, function(i) apply(i, 1, paste, sep = "", collapse = ":")))
         conversion <- lapply(conversion, function(x) lapply(x, paste, collapse = " > "))
         conversion <- do.call(rbind, lapply(conversion, unlist))
         colnames(conversion) <- cols$name[conversion.idx]
         data.df <- data.frame(primitive, conversion, stringsAsFactors = FALSE)[, cols$name]
     } else {
-        data.df <- as.data.frame(do.call(rbind, lapply(x$rows, unlist)), stringsAsFactors = FALSE)
+        data.df <- as.data.frame(do.call(rbind, lapply(rows, unlist)), stringsAsFactors = FALSE)
         # insert column names
         colnames(data.df) <- cols$name
     }
@@ -77,28 +77,29 @@ get_report <- function(query, token, date.format = "%Y-%m-%d", messages = FALSE)
     data.json <- get_api_request(url, token = token, messages = messages)
     cols <- data.json$columnHeaders
     formats <- data.json$columnHeaders$dataType
-    if (data.json$totalResults > 0 && !is.null(data.json$rows))
+    if (data.json$totalResults > 0 && !is.null(data.json$rows)) {
         rows <- data.json$rows
+        max.rows <- min(data.json$totalResults, query$max.results)
+        total.pages <- ceiling(max.rows / query$max.results)
+        if (total.pages > 1L) {
+            if (messages)
+                message("Response contain more then 10000 rows.")
+            for (page in 2:total.pages) {
+                query$start.index <- query$max.results * (page - 1) + 1
+                url <- get_report_url(query)
+                data.json <- get_api_request(url, token = token, messages = messages)
+                if (inherits(rows, "list"))
+                    rows <- append(rows, data.json$rows)
+                else if (inherits(rows, "matrix"))
+                    rows <- rbind(rows, data.json$rows)
+            }
+        }
+    }
     else
-        rows <- matrix(rep_len(0, nrow(cols)), nrow = 1L, ncol = nrow(cols))
+        rows <- matrix(NA, nrow = 1L, ncol = nrow(cols))
     sampled <- data.json$containsSampledData
     if (sampled)
         warning("Data contains sampled data.")
-    max.rows <- min(data.json$totalResults, query$max.results)
-    total.pages <- ceiling(max.rows / query$max.results)
-    if (total.pages > 1L) {
-        if (messages)
-            message("Response contain more then 10000 rows.")
-        for (page in 2:total.pages) {
-            query$start.index <- query$max.results * (page - 1) + 1
-            url <- get_report_url(query)
-            data.json <- get_api_request(url, token = token, messages = messages)
-            if (inherits(rows, "list"))
-                rows <- append(rows, data.json$rows)
-            else if (inherits(rows, "matrix"))
-                rows <- rbind(rows, data.json$rows)
-        }
-    }
     if (inherits(query, "core"))
         data.r <- build_core(rows, cols)
     else if (inherits(query, "mcf"))
