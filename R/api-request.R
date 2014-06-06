@@ -3,10 +3,14 @@
 #' @import httr
 #' @import jsonlite
 get_api_request = function(url, token, messages = FALSE) {
-    stopifnot(!missing(token))
-    stopifnot(inherits(token, "Token2.0"))
     stopifnot(is.character(url) && length(url) == 1L)
     url <- gsub(pattern = "\\+", replacement = "%2B", url)
+    if (!missing(token)) {
+        stopifnot(inherits(token, "Token2.0"))
+        request <- GET(url = url, config = config(token = token))
+    } else {
+        request <- GET(url = url)
+    }
     # Print the URL to the console
     if (messages) {
         message("Sending request to Google Analytics...")
@@ -19,7 +23,6 @@ get_api_request = function(url, token, messages = FALSE) {
                                  package = "RCurl"), ssl.verifypeer = FALSE))
     }
     # Send query to Google Analytics API and capture the JSON reponse
-    request <- GET(url = url, config = config(token = token))
     if (messages)
         message(http_status(request)$message)
     # Convert the JSON response into a R list
