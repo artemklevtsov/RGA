@@ -8,8 +8,8 @@ get_report_url <- function(query) {
     else
         stop("Unknown report type.")
     query <- compact(query)
-    params <- gsub("\\.", "-", names(query))
     params <- gsub("profile.id", "ids", params)
+    params <- gsub("\\.", "-", names(query))
     values <- as.vector(query, mode = "character")
     values <- curlEscape(values)
     string <- paste(params, values, sep = "=", collapse = "&")
@@ -25,7 +25,7 @@ build_core <- function(rows, cols) {
 
 build_mcf <- function(rows, cols) {
     columns$name <- gsub("mcf:", "", cols$name)
-    if (any(grepl("MCF_SEQUENCE", cols$dataType))) {
+    if ("MCF_SEQUENCE" %in% cols$dataType) {
         primitive.idx <- grep("MCF_SEQUENCE", cols$dataType, invert = TRUE)
         conversion.idx <- grep("MCF_SEQUENCE", cols$dataType)
         primitive <- lapply(lapply(rows, "[[", "primitiveValue"), "[", primitive.idx)
