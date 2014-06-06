@@ -2,4 +2,5 @@
 ^\.Rproj\.user$
 ^\.httr-oauth$
 ^\.Renviron$
-^\NEWS\.md$
+^NEWS\.md$
+^README\.ru\.md$
