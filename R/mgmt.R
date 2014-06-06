@@ -15,11 +15,19 @@ get_accounts = function(token, start.index = 1L, max.results = 1000L) {
     query <- paste0("start-index=", start.index, "&max-results=", max.results)
     url <- paste(url, query, sep = "?")
     data.json <- get_api_request(url = url, token = token)
-    data.r <- data.json$items
-    return(data.r[, c("id", "name", "created", "updated")])
+    cols <- c("id", "name", "created", "updated")
+    if (data.json$totalResults > 0 && !is.null(data.json[["items"]])) {
+        data.r <- data.json$items
+        data.r <- data.r[, cols]
+    }
+    else {
+        data.r <- data.frame(matrix(NA, nrow = 1L, ncol = length(cols)))
+        colnames(data.r) <- cols
+    }
+    return(data.r)
 }
 
-#' @title Gets a web property to which the user has access
+#' @title Lists web properties to which the user has access
 #'
 #' @param token \code{Token2.0} class object.
 #' @param account.id account ID to retrieve web properties for. Can either be a specific account ID or "~all", which refers to all the accounts that user has access to.
@@ -38,8 +46,16 @@ get_webproperties = function(token, account.id = "~all", start.index = 1L, max.r
     query <- paste0("start-index=", start.index, "&max-results=", max.results)
     url <- paste(url, query, sep = "?")
     data.json <- get_api_request(url = url, token = token)
-    data.r <- data.json$items
-    return(data.r[, c("id", "name", "websiteUrl", "level", "industryVertical", "created", "updated")])
+    cols <- c("id", "name", "websiteUrl", "level", "industryVertical", "created", "updated")
+    if (data.json$totalResults > 0 && !is.null(data.json[["items"]])) {
+        data.r <- data.json$items
+        data.r <- data.r[, cols]
+    }
+    else {
+        data.r <- data.frame(matrix(NA, nrow = 1L, ncol = length(cols)))
+        colnames(data.r) <- cols
+    }
+    return(data.r)
 }
 
 #' @title Lists views (profiles) to which the user has access
@@ -62,8 +78,16 @@ get_profiles = function(token, account.id = "~all", webproperty.id = "~all", sta
     query <- paste0("start-index=", start.index, "&max-results=", max.results)
     url <- paste(url, query, sep = "?")
     data.json <- get_api_request(url = url, token = token)
-    data.r <- data.json$items
-    return(data.r[, c("id", "accountId", "webPropertyId", "name", "currency", "timezone", "eCommerceTracking", "websiteUrl", "created", "updated")])
+    cols <- c("id", "accountId", "webPropertyId", "name", "currency", "timezone", "eCommerceTracking", "websiteUrl", "created", "updated")
+    if (data.json$totalResults > 0 && !is.null(data.json[["items"]])) {
+        data.r <- data.json$items
+        data.r <- data.r[, cols]
+    }
+    else {
+        data.r <- data.frame(matrix(NA, nrow = 1L, ncol = length(cols)))
+        colnames(data.r) <- cols
+    }
+    return(data.r)
 }
 
 #' @title Lists goals to which the user has access
@@ -87,8 +111,16 @@ get_goals = function(token, account.id = "~all", webproperty.id = "~all", profil
     query <- paste0("start-index=", start.index, "&max-results=", max.results)
     url <- paste(url, query, sep = "?")
     data.json <- get_api_request(url = url, token = token)
-    data.r <- data.json$items
-    return(data.r[, c("id", "accountId", "webPropertyId", "profileId", "name", "value", "active", "type", "created", "updated")])
+    cols <- c("id", "accountId", "webPropertyId", "profileId", "name", "value", "active", "type", "created", "updated")
+    if (data.json$totalResults > 0 && !is.null(data.json[["items"]])) {
+        data.r <- data.json$items
+        data.r <- data.r[, cols]
+    }
+    else {
+        data.r <- data.frame(matrix(NA, nrow = 1L, ncol = length(cols)))
+        colnames(data.r) <- cols
+    }
+    return(data.r)
 }
 
 #' @title Lists segments to which the user has access
@@ -108,6 +140,14 @@ get_segments = function(token, start.index = 1L, max.results = 1000L) {
     query <- paste0("start-index=", start.index, "&max-results=", max.results)
     url <- paste(url, query, sep = "?")
     data.json <- get_api_request(url = url, token = token)
-    data.r <- data.json$items
-    return(data.r[, c("id", "segmentId", "name", "definition", "type")])
+    cols <- c("id", "segmentId", "name", "definition", "type")
+    if (data.json$totalResults > 0 && !is.null(data.json[["items"]])) {
+        data.r <- data.json$items
+        data.r <- data.r[, cols]
+    }
+    else {
+        data.r <- data.frame(matrix(NA, nrow = 1L, ncol = length(cols)))
+        colnames(data.r) <- cols
+    }
+    return(data.r)
 }

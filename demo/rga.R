@@ -9,7 +9,7 @@ ga_token <- get_token()
 get_profiles(token = ga_token)
 
 # 3. Profile ID
-profile.id <- get_profiles(token = ga_token)[1, 2]
+profile.id <- get_profiles(token = ga_token)[1, 1]
 
 # 4. Set query
 query <- set_query(profile.id)

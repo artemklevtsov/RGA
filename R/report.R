@@ -13,7 +13,7 @@ get_report_url <- function(query) {
     values <- as.vector(query, mode = "character")
     values <- curlEscape(values)
     string <- paste(params, values, sep = "=", collapse = "&")
-    return(paste(url, query, sep = "?"))
+    return(paste(url, string, sep = "?"))
 }
 
 build_core <- function(rows, cols) {
@@ -75,9 +75,12 @@ convert_datatypes <- function(x, formats, date.format = "%Y-%m-%d") {
 get_report <- function(query, token, date.format = "%Y-%m-%d", messages = FALSE) {
     url <- get_report_url(query)
     data.json <- get_api_request(url, token = token, messages = messages)
-    rows <- data.json$rows
     cols <- data.json$columnHeaders
-    formats <- cols$dataType
+    formats <- data.json$columnHeaders$dataType
+    if (data.json$totalResults > 0 && !is.null(data.json$rows))
+        rows <- data.json$rows
+    else
+        rows <- matrix(rep_len(0, nrow(cols)), nrow = 1L, ncol = nrow(cols))
     sampled <- data.json$containsSampledData
     if (sampled)
         warning("Data contains sampled data.")
