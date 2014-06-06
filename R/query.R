@@ -1,3 +1,55 @@
+# Fix query fields
+fix_query <- function(query) {
+    stopifnot(inherits(query, "list"))
+    if (!grepl("ga:", query$profile.id))
+        query$profile.id <- paste0("ga:", query$profile.id)
+    if (length(query$metrics) > 1L)
+        query$metrics <- paste(query$metrics, collapse = ",")
+    query$metrics <- gsub("\\s", "", query$metrics)
+    if (length(query$dimensions) > 1L)
+        query$dimensions <- paste(query$dimensions, collapse = ",")
+    query$dimensions <- gsub("\\s", "", query$dimensions)
+    if (!is.null(query$sort) && length(query$sort) > 1L)
+        query$sort <- paste(query$sort, collapse = ",")
+    if (!is.null(query$filters)) {
+        stopifnot(length(query$filters) == 1L)
+        # available operators
+        ops <- c("==", "!=", ">", "<", ">=", "<=", "=@", "!@", "=-", "!-", "\\|\\|", "&&", "OR", "AND")
+        # make pattern for gsub
+        opsw <- paste("(\\ )+(", paste(ops, collapse = "|"), ")(\\ )+", sep = "")
+        # remove whitespaces around operators
+        query$filters <- gsub(opsw, "\\2", query$filters)
+        # replace logical operators
+        query$filters <- gsub("OR|\\|\\|", ",", query$filters)
+        query$filters <- gsub("AND|&&", ";", query$filters)
+    }
+    return(query)
+}
+
+# Check query fields
+check_query <- function(query) {
+    stopifnot(inherits(query, "list"))
+    stopifnot(length(query$metrics) == 1L)
+    stopifnot(length(query$dimensions) == 1L)
+    if (length(strsplit(query$metrics, split = ",")[[1L]]) > 10L)
+        stop("Not allowd more than 10 metrics.")
+    if (length(strsplit(query$dimensions, split = ",")[[1L]]) > 7L)
+        stop("Not allowd more than 7 dimensions.")
+    if (!grepl("ga:|mcf:", query$metrics))
+        stop("Invalid metrics: add 'ga:' or 'mcf:' prefix.")
+    if (!grepl("ga:|mcf:", query$dimensions))
+        stop("Invalid dimensions: add 'ga:' or 'mcf:' prefix.")
+    if (!is.null(query$sort))
+        stopifnot(length(query$sort) == 1L)
+    if (!is.null(query$filters))
+        stopifnot(length(query$filters) == 1L)
+    if (query$max.results > 10000L)
+        stop("Not allowed max.results more then 10000.")
+    if (nchar(query$profile.id) != 11L)
+        stop("Profile ID length must be equal 11 symbols.")
+    return(TRUE)
+}
+
 #' @title Set Google Analytics report query
 #'
 #' @description
@@ -17,13 +69,11 @@
 #' @return GAQuery class object.
 #'
 #' @examples
-#' \dontrun{
 #' query <- set_query(profile.id = "ga:00000000")
 #' print(query)
-#' query <- set_query(profile.id = "ga:00000000", start.date = get_firstfate(profile.id = "ga:myProfileID", token = ga_token),
-#'                    end.date = "today", metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = "ga:date")
+#' query <- set_query(profile.id = "ga:00000000", start.date = "8daysAgo", end.date = "yesterday",
+#'                    metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = "ga:date")
 #' print(query)
-#' }
 #'
 #' @references
 #' Core Reporting API - Dimensions & Metrics Reference: \url{https://developers.google.com/analytics/devguides/reporting/core/dimsmets}
@@ -42,40 +92,7 @@ set_query <- function(profile.id, start.date = Sys.Date() - 8, end.date = Sys.Da
     stopifnot(!is.null(start.date))
     stopifnot(!is.null(end.date))
     stopifnot(!is.null(metrics))
-    stopifnot(length(metrics) == 1L)
-    stopifnot(length(dimensions) == 1L)
-    if (length(strsplit(metrics, split = ",")[[1L]]) > 10L)
-        stop("Not allowd more than 10 metrics.")
-    if (length(strsplit(dimensions, split = ",")[[1L]]) > 7L)
-        stop("Not allowd more than 7 dimensions.")
-    if (!grepl("ga:|mcf:", metrics))
-        stop("Invalid metrics: add 'ga:' or 'mcf:' prefix.")
-    if (!grepl("ga:|mcf:", dimensions))
-        stop("Invalid dimensions: add 'ga:' or 'mcf:' prefix.")
-    if (!is.null(sort))
-        stopifnot(length(sort) == 1L)
-    if (!is.null(filters)) {
-        stopifnot(length(filters) == 1L)
-        # available operators
-        ops <- c("==", "!=", ">", "<", ">=", "<=", "=@", "!@", "=-", "!-", "\\|\\|", "&&", "OR", "AND")
-        # make pattern for gsub
-        opsw <- paste("(\\ )+(", paste(ops, collapse = "|"), ")(\\ )+", sep = "")
-        # remove whitespaces around operators
-        filters <- gsub(opsw, "\\2", filters)
-        # replace logical operators
-        filters <- gsub("OR|\\|\\|", ",", filters)
-        filters <- gsub("AND|&&", ";", filters)
-    }
-    if (max.results > 10000L)
-        stop("Not allowed max.results more then 10000.")
-    # Fix profile ID
-    if (!grepl("ga:", profile.id))
-        profile.id <- paste("ga:", profile.id, sep = "")
-    if (nchar(profile.id) != 11L)
-        stop("Profile ID length must be equal 11 symbols.")
-    # Remove whitespaces
-    metrics <- gsub("\\s", "", metrics)
-    dimensions <- gsub("\\s", "", dimensions)
+
     # Build query
     query <- list(profile.id = profile.id,
                   start.date = as.character(start.date),
@@ -87,6 +104,8 @@ set_query <- function(profile.id, start.date = Sys.Date() - 8, end.date = Sys.Da
                   segment = segment,
                   start.index = start.index,
                   max.results = max.results)
+    query <- fix_query(query)
+    check_query(query)
     class(query) <- c(class(query), "GAQuery")
     if (grepl("mcf:", metrics) && grepl("mcf:", dimensions))
         class(query) <- c(class(query), "mcf")

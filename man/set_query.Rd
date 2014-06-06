@@ -36,13 +36,11 @@ GAQuery class object.
 \code{set_query} provide a query the Core or Multi-Channel Funnels Reporting API for Google Analytics report data.
 }
 \examples{
-\dontrun{
 query <- set_query(profile.id = "ga:00000000")
 print(query)
-query <- set_query(profile.id = "ga:00000000", start.date = get_firstfate(profile.id = "ga:myProfileID", token = ga_token),
-                   end.date = "today", metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = "ga:date")
+query <- set_query(profile.id = "ga:00000000", start.date = "8daysAgo", end.date = "yesterday",
+                   metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = "ga:date")
 print(query)
-}
 }
 \references{
 Core Reporting API - Dimensions & Metrics Reference: \url{https://developers.google.com/analytics/devguides/reporting/core/dimsmets}
