@@ -18,6 +18,7 @@ Imports:
     httr
 Collate:
     'api-request.R'
+    'metadata.R'
     'mgmt.R'
     'misc.R'
     'query.R'
