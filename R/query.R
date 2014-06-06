@@ -69,11 +69,14 @@ check_query <- function(query) {
 #' @return GAQuery class object.
 #'
 #' @examples
-#' query <- set_query(profile.id = "ga:00000000")
-#' print(query)
-#' query <- set_query(profile.id = "ga:00000000", start.date = "8daysAgo", end.date = "yesterday",
-#'                    metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = "ga:date")
-#' print(query)
+#' set_query(profile.id = "ga:00000000")
+#' set_query(profile.id = "ga:00000000", start.date = "8daysAgo", end.date = "yesterday",
+#'           metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = "ga:date")
+#' query <- set_query(profile.id = "ga:00000000", start.date = "31daysAgo", end.date = "yesterday",
+#'                    metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = "ga:source,ga:medium")
+#' query
+#' query$sort <- "-ga:sessions"
+#' query
 #'
 #' @references
 #' Core Reporting API - Dimensions & Metrics Reference: \url{https://developers.google.com/analytics/devguides/reporting/core/dimsmets}
@@ -92,9 +95,8 @@ set_query <- function(profile.id, start.date = Sys.Date() - 8, end.date = Sys.Da
     stopifnot(!is.null(start.date))
     stopifnot(!is.null(end.date))
     stopifnot(!is.null(metrics))
-
     # Build query
-    query <- list(profile.id = profile.id,
+    query <- list(profile.id = as.character(profile.id),
                   start.date = as.character(start.date),
                   end.date = as.character(end.date),
                   metrics = metrics,
@@ -104,7 +106,9 @@ set_query <- function(profile.id, start.date = Sys.Date() - 8, end.date = Sys.Da
                   segment = segment,
                   start.index = start.index,
                   max.results = max.results)
+    # Fix query
     query <- fix_query(query)
+    # Check query fields
     check_query(query)
     class(query) <- c(class(query), "GAQuery")
     if (grepl("mcf:", metrics) && grepl("mcf:", dimensions))
@@ -129,3 +133,19 @@ print.GAQuery <- function(x, ...) {
     cat("\n")
     invisible(x)
 }
+
+#' @export
+`$<-.GAQuery` <- function(x, name, value) {
+    cl <- oldClass(x)
+    class(x) <- NULL
+    if (!name %in% names(x))
+        stop(paste("Field", name, "not found: allowed assign only existing fields."))
+    x[[name]] <- value
+    x <- fix_query(x)
+    check_query(x)
+    class(x) <- cl
+    return(x)
+}
+
+#'@export
+`[[<-.GAQuery` <- `$<-.GAQuery`
