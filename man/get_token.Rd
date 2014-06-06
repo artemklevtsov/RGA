@@ -30,6 +30,8 @@ ga_token <- get_token()
 }
 \references{
 Google Developers Console: \url{https://console.developers.google.com/}
+
+Environment variable: \url{http://en.wikipedia.org/wiki/Environment_variable}
 }
 \seealso{
 Other OAuth: \code{\link[httr]{oauth_app}} \code{\link[httr]{oauth2.0_token}} \code{\link[httr]{Token-class}}
