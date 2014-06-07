@@ -12,8 +12,10 @@ get_profiles(token = ga_token)
 profile.id <- get_profiles(token = ga_token)[1, 1]
 
 # 4. Set query
-query <- set_query(profile.id)
+query <- set_query(profile.id = profile.id)
 print(query)
 
 # 5. Get data
-get_report(query, ga_token)
+get_report(query = query, token = ga_token)
+
+get_report(profile.id = 83639328, token = ga_token)

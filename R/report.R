@@ -8,8 +8,9 @@ get_report_url <- function(query) {
     else
         stop("Unknown report type.")
     query <- compact(query)
+    params <- names(query)
     params <- gsub("profile.id", "ids", params)
-    params <- gsub("\\.", "-", names(query))
+    params <- gsub("\\.", "-", params)
     values <- as.vector(query, mode = "character")
     values <- curlEscape(values)
     string <- paste(params, values, sep = "=", collapse = "&")
@@ -61,18 +62,62 @@ convert_datatypes <- function(x, formats, date.format = "%Y-%m-%d") {
 
 #' @title Get Google Anaytics report data
 #'
-#' @param query \code{GAQuery} class object.
+#' @return A data frame with Google Analytics reporting data.
+#'
+#' @seealso \code{\link{set_query}} \code{\link{get_token}}
+#'
+#' @export
+#'
+get_report <- function(x, ...) {
+    UseMethod("get_report")
+}
+#'
+#' @title Get Google Anaytics report data
+#'
+#' @param profile.id Google Analytics profile ID. Can be character (with or without "ga:" prefix) or integer.
+#' @param start.date start date for fetching Analytics data in YYYY-MM-DD format.
+#' @param end.date rnd date for fetching Analytics data in YYYY-MM-DD format.
+#' @param metrics a comma-separated list of Analytics metrics, such as ga:sessions,ga:bounces.
+#' @param dimensions a comma-separated list of Analytics dimensions, such as ga:browser,ga:city.
+#' @param sort a comma-separated list of dimensions or metrics that determine the sort order for Analytics data.
+#' @param filters a comma-separated list of dimension or metric filters to be applied to Analytics data.
+#' @param segment an Analytics segment to be applied to data.
+#' @param start.index an index of the first entity to retrieve.
+#' @param max.results the maximum number of entries to include in this feed.
 #' @param token \code{Token2.0} class object.
 #' @param date.format date format.
 #' @param messages print information messages.
 #'
-#' @return A data frame with Google Analytics reporting data.
+#' @rdname get_report
 #'
 #' @include api-request.R
 #'
 #' @export
 #'
-get_report <- function(query, token, date.format = "%Y-%m-%d", messages = FALSE) {
+get_report.default <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
+                               metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = "ga:date",
+                               sort = NULL, filters = NULL, segment = NULL, start.index = 1L, max.results = 10000L,
+                               token, date.format = "%Y-%m-%d", messages = FALSE) {
+    query <- set_query(profile.id = profile.id, start.date = start.date, end.date = end.date,
+                       metrics = metrics, dimensions = dimensions, sort = sort, filters = filters,
+                       segment = segment, start.index = start.index, max.results = max.results)
+    return(get_report(query = query, token = token, date.format = date.format, messages = messages))
+}
+#'
+#' @title Get Google Anaytics report data
+#'
+#' @param query \code{GAQuery} class object.
+#' @param token \code{Token2.0} class object.
+#' @param date.format date format.
+#' @param messages print information messages.
+#'
+#' @rdname get_report
+#'
+#' @include api-request.R
+#'
+#' @export
+#'
+get_report.GAQuery <- function(query, token, date.format = "%Y-%m-%d", messages = FALSE) {
     url <- get_report_url(query)
     data.json <- get_api_request(url, token = token, messages = messages)
     cols <- data.json$columnHeaders
