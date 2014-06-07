@@ -74,7 +74,7 @@ RGA_CONSUMER_ID="My_Client_ID"
 RGA_CONSUMER_SECRET="My_Client_secret"
 ```
 
-Переменные среды можно также установить из R-сессии с помощью функции `Sys.setenv`. Например:
+Переменные среды можно также установить непосредственно из R-сессии с помощью функции `Sys.setenv`. Например:
 
 ```R
 Sys.setenv(RGA_CONSUMER_ID = "My_Client_ID", RGA_CONSUMER_SECRET = "My_Client_secret")
@@ -94,8 +94,76 @@ token <- get_token(client.id = "My_Client_ID", client.secret = "My_Client_secret
 
 Отметим, что если были заданны переменные среды `RGA_CONSUMER_ID` и `RGA_CONSUMER_SECRET`, то указанием аргументов `client.id` и `client.secret` при вызове функции `get_token` не требуется.
 
-После выполнения команды будет открыт браузер по умолчанию. Необходимо авторизоваться под своей **учётной записью Google** и подтвердить разршение на доступ к данным Google Analytics.
+После выполнения команды будет открыт браузер по умолчанию. Необходимо авторизоваться под своей **учётной записью Google** и подтвердить разршение на доступ к данным Google Analytics (доступ предоставляется **только для чтения** данных).
 
-Если использовались аргументы по умолчанию и не изменялся параметр `httr_oauth_cache`, то после успешной авторизации в рабочй директории будет создан файл `.httr-oauth` с данными для доступа к Google API, который будет использоваться между сессиями. С помощью аргумента `cache` можно также отменить создание файла (значение `FALSE`) или задать альтернативный путь к файлу хранения.
+Если использовались аргументы по умолчанию и не изменялся параметр `httr_oauth_cache`, то после успешной авторизации в рабочй директории будет создан файл `.httr-oauth` с данными для доступа к Google API, который будет использоваться между сессиями. С помощью аргумента `cache` можно также отменить создание файла (значение `FALSE`) или задать альтернативный путь к файлу хранения (для этого необходимо явно указать путь и имя файла).
 
 Полученная переменная `token` будет использоваться во всех запросах к API Google Analytics.
+
+### Получние доступа к API конфигурации
+
+Для доступа к API конфигурации Google Analytics предусмотрены следующие функции:
+
+* `get_accounts` - получение списка аккаунтов в, к которым пользователь имеет доступ;
+* `get_webproperties` - получение списка ресурсов (Web Properties), к которым пользователь имеет доступ;
+* `get_profiles` - получение списка ресурсов (Web Properties) и представлений (Views, Profiles) сайтов, к которым пользователь имеет доступ;
+* `get_goals` - получение списка целей, к которым пользователь имеет доступ;
+* `get_segments` - получение списка сегментов, к которым пользователь имеет доступ.
+
+Для функций `get_webproperties`, `get_profiles` и `get_goals` можно указать дополнительные опции: для какой аккаунта, ресурса или представление получить информацию (см. страницы помощи к соответствующим функциям). Пример использования функции приведён ниже:
+
+```R
+get_profiles(token = token)
+```
+
+### Получние доступа к метаданным API отчётов
+
+Для получения списка всех показателей (metrics) и измерений (dimensions) пакет `RGA` предоставляет функцию `get_metadata`.
+
+```R
+ga_meta <- get_metadata()
+```
+
+Переменная `ga_meta` имеет класс `data.frame` и содержит следюущие столбцы:
+
+* ids - кодовое название параметра (показателя или измерения) (используется для запросов);
+* type - тип параметра: показатель (METRIC) или измерение (DIMENSION);
+* dataType - тип данных: STRING, INTEGER, PERCENT, TIME, CURRENCY, FLOAT;
+* group - группа параметров (например, User, Session, Traffic Sources);
+* status - статус: актуальный (PUBLIC) или устаревший (DEPRECATED);
+* uiName - имя параметра (не используется для запросов);
+* description - описание параметра.
+* allowedInSegments - может ли параметр использоваться в сегментах;
+* replacedBy - название заменяющего параметра, если параметр объявлен устаревшим;
+* calculation - формула расчёта значения параметра, если параметр вычисляется на основе данных других параметр;
+* minTemplateIndex - если параметр сдержик числовой индекс, минимальный индекс для параметра;
+* maxTemplateIndex - если параметр сдержик числовой индекс, максимальный индекс для параметра;
+* premiumMinTemplateIndex - если параметр сдержик числовой индекс, минимальный индекс для параметра;
+* premiumMaxTemplateIndex - если параметр сдержик числовой индекс, максимальный индекс для параметра;
+
+Несколько примеров использования метаданных Google Analytics API.
+
+Список всех устаревших и заменяющих их параметров:
+
+```R
+subset(ga_meta, status == "DEPRECATED", c(ids, replacedBy))
+```
+
+Список всех параметров из определённой группы:
+
+```R
+subset(ga_meta, group == "Traffic Sources", c(ids, type))
+```
+
+### Получение доступа к API отчётов
+
+Доступ к API очтётов может быть получен двумя способами.
+
+## Ссылки
+
+* [Google Developers Console](https://console.developers.google.com/project);
+* [Management API Reference](https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/)
+* [Core Reporting API Reference Guide](https://developers.google.com/analytics/devguides/reporting/core/v3/reference)
+* [Multi-Channel Funnels Reporting API Reference Guide](https://developers.google.com/analytics/devguides/reporting/mcf/v3/reference)
+* [Metadata API Reference](https://developers.google.com/analytics/devguides/reporting/metadata/v3/reference/)
+* [Configuration and Reporting API Limits and Quotas](https://developers.google.com/analytics/devguides/reporting/metadata/v3/limits-quotas)
