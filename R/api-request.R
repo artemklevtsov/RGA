@@ -27,8 +27,10 @@ get_api_request = function(url, token, messages = FALSE) {
         message(http_status(request)$message)
     # Convert the JSON response into a R list
     data.json <- fromJSON(content(request, as = "text"))
-    if (!is.null(data.json$error$message))
-        stop(paste0(http_status(request)$message, ". Reason: ", data.json$error$message, "."))
+    if (!is.null(data.json$error)) {
+        error.msg <- paste(c(http_status(request)$message, data.json$error$errors$message), collapse = "\n")
+        stop(error.msg)
+    }
     # Return the list containing Google Analytics API response
     return(data.json)
 }
