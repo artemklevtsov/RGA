@@ -68,7 +68,7 @@ convert_datatypes <- function(x, formats, date.format = "%Y-%m-%d") {
 #'
 #' @export
 #'
-get_report <- function(x, ...) {
+get_report <- function(...) {
     UseMethod("get_report")
 }
 #'
@@ -107,9 +107,6 @@ get_report.default <- function(profile.id, start.date = "7daysAgo", end.date = "
 #' @title Get Google Anaytics report data
 #'
 #' @param query \code{GAQuery} class object.
-#' @param token \code{Token2.0} class object.
-#' @param date.format date format.
-#' @param messages print information messages.
 #'
 #' @rdname get_report
 #'
@@ -130,6 +127,8 @@ get_report.GAQuery <- function(query, token, date.format = "%Y-%m-%d", messages 
             if (messages)
                 message("Response contain more then 10000 rows.")
             for (page in 2:total.pages) {
+                if (messages)
+                    message(paste0("Fetching page ", page, " of ", total.pages, "..."))
                 query$start.index <- query$max.results * (page - 1) + 1
                 url <- get_report_url(query)
                 data.json <- get_api_request(url, token = token, messages = messages)

@@ -5,7 +5,7 @@
 \alias{get_report.default}
 \title{Get Google Anaytics report data}
 \usage{
-get_report(x, ...)
+get_report(...)
 
 \method{get_report}{default}(profile.id, start.date = "7daysAgo",
   end.date = "yesterday", metrics = "ga:users,ga:sessions,ga:pageviews",
@@ -44,12 +44,6 @@ get_report(x, ...)
 \item{messages}{print information messages.}
 
 \item{query}{\code{GAQuery} class object.}
-
-\item{token}{\code{Token2.0} class object.}
-
-\item{date.format}{date format.}
-
-\item{messages}{print information messages.}
 }
 \value{
 A data frame with Google Analytics reporting data.
