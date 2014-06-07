@@ -1,18 +1,15 @@
 # Fix query fields
 fix_query <- function(query) {
     stopifnot(inherits(query, "list"))
-    if (!grepl("ga:", query$profile.id))
+    if (!grepl("^ga:", query$profile.id))
         query$profile.id <- paste0("ga:", query$profile.id)
-    if (length(query$metrics) > 1L)
-        query$metrics <- paste(query$metrics, collapse = ",")
-    query$metrics <- gsub("\\s", "", query$metrics)
-    if (length(query$dimensions) > 1L)
-        query$dimensions <- paste(query$dimensions, collapse = ",")
-    query$dimensions <- gsub("\\s", "", query$dimensions)
-    if (!is.null(query$sort) && length(query$sort) > 1L)
-        query$sort <- paste(query$sort, collapse = ",")
-    if (!is.null(query$filters)) {
-        stopifnot(length(query$filters) == 1L)
+    if (!is.null(query$metrics) && query$metrics != "")
+        query$metrics <- gsub("\\s", "", query$metrics)
+    if (!is.null(query$dimensions) && query$dimensions != "")
+        query$dimensions <- gsub("\\s", "", query$dimensions)
+    if (!is.null(query$sort) && query$sort != "")
+        query$sort <- gsub("\\s", "", query$sort)
+    if (!is.null(query$filters) && query$filters != "") {
         # available operators
         ops <- c("==", "!=", ">", "<", ">=", "<=", "=@", "!@", "=-", "!-", "\\|\\|", "&&", "OR", "AND")
         # make pattern for gsub
@@ -24,30 +21,6 @@ fix_query <- function(query) {
         query$filters <- gsub("AND|&&", ";", query$filters)
     }
     return(query)
-}
-
-# Check query fields
-check_query <- function(query) {
-    stopifnot(inherits(query, "list"))
-    stopifnot(length(query$metrics) == 1L)
-    stopifnot(length(query$dimensions) == 1L)
-    if (length(strsplit(query$metrics, split = ",")[[1L]]) > 10L)
-        stop("Not allowd more than 10 metrics.")
-    if (length(strsplit(query$dimensions, split = ",")[[1L]]) > 7L)
-        stop("Not allowd more than 7 dimensions.")
-    if (!grepl("ga:|mcf:", query$metrics))
-        stop("Invalid metrics: add 'ga:' or 'mcf:' prefix.")
-    if (!grepl("ga:|mcf:", query$dimensions))
-        stop("Invalid dimensions: add 'ga:' or 'mcf:' prefix.")
-    if (!is.null(query$sort))
-        stopifnot(length(query$sort) == 1L)
-    if (!is.null(query$filters))
-        stopifnot(length(query$filters) == 1L)
-    if (query$max.results > 10000L)
-        stop("Not allowed max.results more then 10000.")
-    if (nchar(query$profile.id) != 11L)
-        stop("Profile ID length must be equal 11 symbols.")
-    return(TRUE)
 }
 
 #' @title Set Google Analytics report query
@@ -66,16 +39,18 @@ check_query <- function(query) {
 #' @param start.index an index of the first entity to retrieve.
 #' @param max.results the maximum number of entries to include in this feed.
 #'
-#' @return GAQuery class object.
+#' @return \code{GAQuery} class object.
 #'
 #' @examples
 #' set_query(profile.id = "ga:00000000")
-#' set_query(profile.id = "ga:00000000", start.date = "8daysAgo", end.date = "yesterday",
+#' set_query(profile.id = "ga:00000000", start.date = "7daysAgo", end.date = "yesterday",
 #'           metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = "ga:date")
 #' query <- set_query(profile.id = "ga:00000000", start.date = "31daysAgo", end.date = "yesterday",
 #'                    metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = "ga:source,ga:medium")
 #' query
 #' query$sort <- "-ga:sessions"
+#' query
+#' query$sort <- NULL
 #' query
 #'
 #' @references
@@ -87,18 +62,21 @@ check_query <- function(query) {
 #'
 #' @export
 #'
-set_query <- function(profile.id, start.date = Sys.Date() - 8, end.date = Sys.Date() - 1,
+set_query <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
                       metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = "ga:date",
                       sort = NULL, filters = NULL, segment = NULL, start.index = 1L, max.results = 10000L) {
+    profile.id <- as.character(profile.id)
+    start.date <- as.character(start.date)
+    end.date <- as.character(end.date)
     # Checks
-    stopifnot(!missing(profile.id))
-    stopifnot(!is.null(start.date))
-    stopifnot(!is.null(end.date))
-    stopifnot(!is.null(metrics))
+    stopifnot(!missing(profile.id),
+              !is.null(start.date), start.date != "",
+              !is.null(end.date), end.date != "",
+              !is.null(metrics), metrics != "")
     # Build query
-    query <- list(profile.id = as.character(profile.id),
-                  start.date = as.character(start.date),
-                  end.date = as.character(end.date),
+    query <- list(profile.id = profile.id,
+                  start.date = start.date,
+                  end.date = end.date,
                   metrics = metrics,
                   dimensions = dimensions,
                   sort = sort,
@@ -106,10 +84,9 @@ set_query <- function(profile.id, start.date = Sys.Date() - 8, end.date = Sys.Da
                   segment = segment,
                   start.index = start.index,
                   max.results = max.results)
+    stopifnot(any(lapply(query, length) <= 1L))
     # Fix query
     query <- fix_query(query)
-    # Check query fields
-    check_query(query)
     class(query) <- c(class(query), "GAQuery")
     if (grepl("mcf:", metrics) && grepl("mcf:", dimensions))
         class(query) <- c(class(query), "mcf")
@@ -140,12 +117,16 @@ print.GAQuery <- function(x, ...) {
     class(x) <- NULL
     if (!name %in% names(x))
         stop(paste("Field", name, "not found: allowed assign only existing fields."))
+    if (is.null(value))
+        value <- list(NULL)
     x[[name]] <- value
     x <- fix_query(x)
-    check_query(x)
     class(x) <- cl
     return(x)
 }
 
 #'@export
 `[[<-.GAQuery` <- `$<-.GAQuery`
+
+#'@export
+`[<-.GAQuery` <- `$<-.GAQuery`

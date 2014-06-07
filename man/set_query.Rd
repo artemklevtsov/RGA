@@ -3,8 +3,8 @@
 \alias{set_query}
 \title{Set Google Analytics report query}
 \usage{
-set_query(profile.id, start.date = Sys.Date() - 8, end.date = Sys.Date() -
-  1, metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = "ga:date",
+set_query(profile.id, start.date = "7daysAgo", end.date = "yesterday",
+  metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = "ga:date",
   sort = NULL, filters = NULL, segment = NULL, start.index = 1L,
   max.results = 10000L)
 }
@@ -30,19 +30,21 @@ set_query(profile.id, start.date = Sys.Date() - 8, end.date = Sys.Date() -
 \item{max.results}{the maximum number of entries to include in this feed.}
 }
 \value{
-GAQuery class object.
+\code{GAQuery} class object.
 }
 \description{
 \code{set_query} provide a query the Core or Multi-Channel Funnels Reporting API for Google Analytics report data.
 }
 \examples{
 set_query(profile.id = "ga:00000000")
-set_query(profile.id = "ga:00000000", start.date = "8daysAgo", end.date = "yesterday",
+set_query(profile.id = "ga:00000000", start.date = "7daysAgo", end.date = "yesterday",
           metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = "ga:date")
 query <- set_query(profile.id = "ga:00000000", start.date = "31daysAgo", end.date = "yesterday",
                    metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = "ga:source,ga:medium")
 query
 query$sort <- "-ga:sessions"
+query
+query$sort <- NULL
 query
 }
 \references{
