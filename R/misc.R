@@ -1,5 +1,7 @@
 compact <- function(x) {
-    Filter(Negate(is.null), x)
+    x <- x[!sapply(x, is.null)]
+    x <- x[sapply(x, nzchar)]
+    return(x)
 }
 
 # available operators
