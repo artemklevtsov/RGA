@@ -3,23 +3,20 @@
 \alias{get_token}
 \title{Generate an oauth2.0 token}
 \usage{
-get_token(client.id, client.secret, ...)
+get_token(client.id, client.secret, cache = TRUE)
 }
 \arguments{
-\item{client.id}{OAuth client ID.}
+\item{client.id}{OAuth client ID. if client.id is missing, we'll look in the environment variable RGA_CONSUMER_ID.}
 
-\item{client.secret}{OAuth client secret.}
+\item{client.secret}{OAuth client secret. if client.secret is missing, we'll look in the environment variable RGA_CONSUMER_SECRET.}
 
-\item{...}{arguments to be passed to \code{oauth2.0_token}.}
+\item{cache}{A logical value or a string. TRUE means to cache using the default cache file \code{.oauth-httr}, FALSE means don't cache. A string mean use the specified path as the cache file.}
 }
 \value{
-A Token2.0 reference class (RC) object.
+A \code{\link[httr]{Token2.0}} reference class (RC) object.
 }
 \description{
 \code{get_token} is wrapper for \code{link[httr]{oauth2.0_token} function}.
-}
-\details{
-Client ID and client secret also can be set with \code{RGA_CONSUMER_ID} and \code{RGA_CONSUMER_SECRET} environment variables.
 }
 \examples{
 \dontrun{

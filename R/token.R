@@ -3,14 +3,11 @@
 #' @description
 #' \code{get_token} is wrapper for \code{link[httr]{oauth2.0_token} function}.
 #'
-#' @param client.id OAuth client ID.
-#' @param client.secret OAuth client secret.
-#' @param ... arguments to be passed to \code{oauth2.0_token}.
+#' @param client.id OAuth client ID. if client.id is missing, we'll look in the environment variable RGA_CONSUMER_ID.
+#' @param client.secret OAuth client secret. if client.secret is missing, we'll look in the environment variable RGA_CONSUMER_SECRET.
+#' @param cache A logical value or a string. TRUE means to cache using the default cache file \code{.oauth-httr}, FALSE means don't cache. A string mean use the specified path as the cache file.
 #'
-#' @details
-#' Client ID and client secret also can be set with \code{RGA_CONSUMER_ID} and \code{RGA_CONSUMER_SECRET} environment variables.
-#'
-#' @return A Token2.0 reference class (RC) object.
+#' @return A \code{\link[httr]{Token2.0}} reference class (RC) object.
 #'
 #' @references
 #' Google Developers Console: \url{https://console.developers.google.com/}
@@ -33,7 +30,7 @@
 #'
 #' @export
 #'
-get_token <- function(client.id, client.secret, ...) {
+get_token <- function(client.id, client.secret, cache = TRUE) {
     client.id_env <- Sys.getenv(x = "RGA_CONSUMER_ID")
     client.secret_env <- Sys.getenv(x = "RGA_CONSUMER_SECRET")
     if (missing(client.id) || client.id == "") {
@@ -50,6 +47,6 @@ get_token <- function(client.id, client.secret, ...) {
     }
     rga_app <- oauth_app(appname = "rga", key = client.id, secret = client.secret)
     token <- oauth2.0_token(endpoint = oauth_endpoints(name = "google"), app = rga_app,
-                            scope = "https://www.googleapis.com/auth/analytics.readonly", ...)
+                            scope = "https://www.googleapis.com/auth/analytics.readonly", cache = cache)
     return(token)
 }
