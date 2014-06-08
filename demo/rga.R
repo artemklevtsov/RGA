@@ -22,4 +22,4 @@ first.date <- get_firstdate(profile.id = profile.id, token = ga_token)
 # 6.1. Get data with query
 get_report(query = query, token = ga_token)
 # 6.2 Get data directly
-get_report(profile.id = profile.id, start.date = first.date, end.date = "today", token = ga_token)
+get_report(profile.id = profile.id, token = ga_token)
