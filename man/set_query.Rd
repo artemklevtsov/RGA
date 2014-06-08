@@ -40,7 +40,7 @@ set_query(profile.id = "ga:00000000")
 set_query(profile.id = "ga:00000000", start.date = "7daysAgo", end.date = "yesterday",
           metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = "ga:date")
 query <- set_query(profile.id = "ga:00000000", start.date = "31daysAgo", end.date = "yesterday",
-                   metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = "ga:source,ga:medium")
+                   metrics = "ga:sessions,ga:pageviews", dimensions = "ga:source,ga:medium")
 query
 query$sort <- "-ga:sessions"
 query

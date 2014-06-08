@@ -52,7 +52,7 @@ fix_query <- function(query) {
 #' set_query(profile.id = "ga:00000000", start.date = "7daysAgo", end.date = "yesterday",
 #'           metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = "ga:date")
 #' query <- set_query(profile.id = "ga:00000000", start.date = "31daysAgo", end.date = "yesterday",
-#'                    metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = "ga:source,ga:medium")
+#'                    metrics = "ga:sessions,ga:pageviews", dimensions = "ga:source,ga:medium")
 #' query
 #' query$sort <- "-ga:sessions"
 #' query
@@ -79,6 +79,10 @@ set_query <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday
               !is.null(start.date), start.date != "",
               !is.null(end.date), end.date != "",
               !is.null(metrics), metrics != "")
+    if (grepl("ga:", metrics) && grepl("mcf:", metrics))
+        stop("Only one prefix allowed: 'ga:' or 'mcf:'.")
+    if (grepl("ga:", dimensions) && grepl("mcf:", dimensions))
+        stop("Only one prefix allowed: 'ga:' or 'mcf:'.")
     # Build query
     query <- list(profile.id = profile.id,
                   start.date = start.date,
@@ -123,6 +127,7 @@ print.GAQuery <- function(x, ...) {
     class(x) <- NULL
     if (!name %in% names(x))
         stop(paste("Field", name, "not found: allowed assign only existing fields."))
+    # Prevent remove a list element if value is NULL
     if (is.null(value))
         value <- list(NULL)
     x[[name]] <- value
