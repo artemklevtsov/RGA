@@ -46,18 +46,18 @@ build_mcf <- function(rows, cols) {
     return(data.df)
 }
 
-convert_datatypes <- function(x, formats, date.format = "%Y-%m-%d") {
+convert_datatypes <- function(data, formats, date.format) {
     formats[formats %in% c("INTEGER", "PERCENT", "TIME", "CURRENCY", "FLOAT")] <- "numeric"
     formats[formats == "STRING"] <- "character"
     formats[formats == "MCF_SEQUENCE"] <- "character"
-    x[] <- lapply(seq_along(formats), function(i) as(x[[i]], Class = formats[i]))
-    if ("date" %in% colnames(x)) {
-        x$date <- format(as.Date(x$date, "%Y%m%d"), date.format)
+    data[] <- lapply(seq_along(formats), function(i) as(data[[i]], Class = formats[i]))
+    if ("date" %in% colnames(data)) {
+        data$date <- format(as.Date(data$date, "%Y%m%d"), date.format)
     }
-    if ("conversionDate" %in% colnames(x)) {
-        x$conversionDate <- format(as.Date(x$conversionDate, "%Y%m%d"), date.format)
+    if ("conversionDate" %in% colnames(data)) {
+        data$conversionDate <- format(as.Date(data$conversionDate, "%Y%m%d"), date.format)
     }
-    return(x)
+    return(data)
 }
 
 #' @title Get Google Anaytics report data
@@ -68,8 +68,8 @@ convert_datatypes <- function(x, formats, date.format = "%Y-%m-%d") {
 #' @param profile.id Google Analytics profile ID. Can be character (with or without "ga:" prefix) or integer.
 #' @param start.date start date for fetching Analytics data in YYYY-MM-DD format. Also allowed values 'today', 'yesterday', 'ndaysAgo' whene n is number of days.
 #' @param end.date rnd date for fetching Analytics data in YYYY-MM-DD format. Also allowed values 'today', 'yesterday', 'ndaysAgo' whene n is number of days.
-#' @param metrics a comma-separated list of Analytics metrics, such as ga:sessions,ga:bounces.
-#' @param dimensions a comma-separated list of Analytics dimensions, such as ga:browser,ga:city.
+#' @param metrics a comma-separated list of Analytics metrics, such as 'ga:sessions,ga:bounces'.
+#' @param dimensions a comma-separated list of Analytics dimensions, such as 'ga:browser,ga:city'.
 #' @param sort a comma-separated list of dimensions or metrics that determine the sort order for Analytics data.
 #' @param filters a comma-separated list of dimension or metric filters to be applied to Analytics data.
 #' @param segment an Analytics segment to be applied to data.

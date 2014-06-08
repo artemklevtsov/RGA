@@ -11,13 +11,13 @@ set_query(profile.id, start.date = "7daysAgo", end.date = "yesterday",
 \arguments{
 \item{profile.id}{Google Analytics profile ID. Can be character (with or without "ga:" prefix) or integer.}
 
-\item{start.date}{start date for fetching Analytics data in YYYY-MM-DD format.}
+\item{start.date}{start date for fetching Analytics data in YYYY-MM-DD format. Also allowed values 'today', 'yesterday', 'ndaysAgo' whene n is number of days.}
 
-\item{end.date}{rnd date for fetching Analytics data in YYYY-MM-DD format.}
+\item{end.date}{rnd date for fetching Analytics data in YYYY-MM-DD format. Also allowed values 'today', 'yesterday', 'ndaysAgo' whene n is number of days.}
 
-\item{metrics}{a comma-separated list of Analytics metrics, such as ga:sessions,ga:bounces.}
+\item{metrics}{a comma-separated list of Analytics metrics, such as 'ga:sessions,ga:bounces'.}
 
-\item{dimensions}{a comma-separated list of Analytics dimensions, such as ga:browser,ga:city.}
+\item{dimensions}{a comma-separated list of Analytics dimensions, such as 'ga:browser,ga:city'.}
 
 \item{sort}{a comma-separated list of dimensions or metrics that determine the sort order for Analytics data.}
 

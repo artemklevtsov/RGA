@@ -35,10 +35,10 @@ fix_query <- function(query) {
 #' \code{set_query} provide a query the Core or Multi-Channel Funnels Reporting API for Google Analytics report data.
 #'
 #' @param profile.id Google Analytics profile ID. Can be character (with or without "ga:" prefix) or integer.
-#' @param start.date start date for fetching Analytics data in YYYY-MM-DD format.
-#' @param end.date rnd date for fetching Analytics data in YYYY-MM-DD format.
-#' @param metrics a comma-separated list of Analytics metrics, such as ga:sessions,ga:bounces.
-#' @param dimensions a comma-separated list of Analytics dimensions, such as ga:browser,ga:city.
+#' @param start.date start date for fetching Analytics data in YYYY-MM-DD format. Also allowed values 'today', 'yesterday', 'ndaysAgo' whene n is number of days.
+#' @param end.date rnd date for fetching Analytics data in YYYY-MM-DD format. Also allowed values 'today', 'yesterday', 'ndaysAgo' whene n is number of days.
+#' @param metrics a comma-separated list of Analytics metrics, such as 'ga:sessions,ga:bounces'.
+#' @param dimensions a comma-separated list of Analytics dimensions, such as 'ga:browser,ga:city'.
 #' @param sort a comma-separated list of dimensions or metrics that determine the sort order for Analytics data.
 #' @param filters a comma-separated list of dimension or metric filters to be applied to Analytics data.
 #' @param segment an Analytics segment to be applied to data.

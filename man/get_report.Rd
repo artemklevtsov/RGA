@@ -16,9 +16,9 @@ get_report(profile.id, start.date = "7daysAgo", end.date = "yesterday",
 
 \item{end.date}{rnd date for fetching Analytics data in YYYY-MM-DD format. Also allowed values 'today', 'yesterday', 'ndaysAgo' whene n is number of days.}
 
-\item{metrics}{a comma-separated list of Analytics metrics, such as ga:sessions,ga:bounces.}
+\item{metrics}{a comma-separated list of Analytics metrics, such as 'ga:sessions,ga:bounces'.}
 
-\item{dimensions}{a comma-separated list of Analytics dimensions, such as ga:browser,ga:city.}
+\item{dimensions}{a comma-separated list of Analytics dimensions, such as 'ga:browser,ga:city'.}
 
 \item{sort}{a comma-separated list of dimensions or metrics that determine the sort order for Analytics data.}
 
