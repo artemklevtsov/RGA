@@ -1,5 +1,5 @@
 # Fix query fields
-#' @include misc.R
+#' @include utils.R
 fix_query <- function(query) {
     stopifnot(inherits(query, "list"))
     if (!grepl("^ga:", query$profile.id))
@@ -107,7 +107,7 @@ set_query <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday
     return(query)
 }
 
-#' @include misc.R
+#' @include utils.R
 #' @export
 print.GAQuery <- function(x, ...) {
     if (inherits(x, "mcf"))

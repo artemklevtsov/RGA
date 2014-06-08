@@ -1,4 +1,4 @@
-#' @include misc.R
+#' @include utils.R
 get_report_url <- function(query) {
     stopifnot(inherits(query, "GAQuery"))
     if (inherits(query, "core"))

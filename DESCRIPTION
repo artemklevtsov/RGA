@@ -20,7 +20,7 @@ Collate:
     'api-request.R'
     'metadata.R'
     'mgmt.R'
-    'misc.R'
+    'utils.R'
     'query.R'
     'report.R'
     'rga.R'
