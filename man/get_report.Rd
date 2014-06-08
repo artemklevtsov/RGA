@@ -12,9 +12,9 @@ get_report(profile.id, start.date = "7daysAgo", end.date = "yesterday",
 \arguments{
 \item{profile.id}{Google Analytics profile ID. Can be character (with or without "ga:" prefix) or integer.}
 
-\item{start.date}{start date for fetching Analytics data in YYYY-MM-DD format.}
+\item{start.date}{start date for fetching Analytics data in YYYY-MM-DD format. Also allowed values 'today', 'yesterday', 'ndaysAgo' whene n is number of days.}
 
-\item{end.date}{rnd date for fetching Analytics data in YYYY-MM-DD format.}
+\item{end.date}{rnd date for fetching Analytics data in YYYY-MM-DD format. Also allowed values 'today', 'yesterday', 'ndaysAgo' whene n is number of days.}
 
 \item{metrics}{a comma-separated list of Analytics metrics, such as ga:sessions,ga:bounces.}
 
@@ -30,16 +30,16 @@ get_report(profile.id, start.date = "7daysAgo", end.date = "yesterday",
 
 \item{max.results}{the maximum number of entries to include in this feed.}
 
-\item{token}{\code{Token2.0} class object.}
-
 \item{date.format}{date format for output data.}
+
+\item{token}{\code{Token2.0} class object.}
 
 \item{messages}{print information messages.}
 
 \item{query}{\code{GAQuery} class object.}
 }
 \value{
-A data frame with Google Analytics reporting data.
+A data frame with Google Analytics reporting data. Columns are metrics and dimesnions.
 }
 \description{
 \code{get_report} provide a query the Core or Multi-Channel Funnels Reporting API for Google Analytics report data.

@@ -66,8 +66,8 @@ convert_datatypes <- function(x, formats, date.format = "%Y-%m-%d") {
 #' \code{get_report} provide a query the Core or Multi-Channel Funnels Reporting API for Google Analytics report data.
 #'
 #' @param profile.id Google Analytics profile ID. Can be character (with or without "ga:" prefix) or integer.
-#' @param start.date start date for fetching Analytics data in YYYY-MM-DD format.
-#' @param end.date rnd date for fetching Analytics data in YYYY-MM-DD format.
+#' @param start.date start date for fetching Analytics data in YYYY-MM-DD format. Also allowed values 'today', 'yesterday', 'ndaysAgo' whene n is number of days.
+#' @param end.date rnd date for fetching Analytics data in YYYY-MM-DD format. Also allowed values 'today', 'yesterday', 'ndaysAgo' whene n is number of days.
 #' @param metrics a comma-separated list of Analytics metrics, such as ga:sessions,ga:bounces.
 #' @param dimensions a comma-separated list of Analytics dimensions, such as ga:browser,ga:city.
 #' @param sort a comma-separated list of dimensions or metrics that determine the sort order for Analytics data.
@@ -75,12 +75,12 @@ convert_datatypes <- function(x, formats, date.format = "%Y-%m-%d") {
 #' @param segment an Analytics segment to be applied to data.
 #' @param start.index an index of the first entity to retrieve.
 #' @param max.results the maximum number of entries to include in this feed.
-#' @param token \code{Token2.0} class object.
 #' @param date.format date format for output data.
+#' @param token \code{Token2.0} class object.
 #' @param messages print information messages.
 #' @param query \code{GAQuery} class object.
 #'
-#' @return A data frame with Google Analytics reporting data.
+#' @return A data frame with Google Analytics reporting data. Columns are metrics and dimesnions.
 #'
 #' @references
 #' Core Reporting API - Dimensions & Metrics Reference: \url{https://developers.google.com/analytics/devguides/reporting/core/dimsmets}
