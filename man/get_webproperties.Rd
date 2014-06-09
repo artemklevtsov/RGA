@@ -17,6 +17,15 @@ get_webproperties(token, account.id = "~all", start.index = 1L,
 }
 \value{
 A data frame with Google Analytics management data.
+\item{id}{web property ID of the form UA-XXXXX-YY.}
+\item{name}{name of this web property.}
+\item{websiteUrl}{website url for this web property.}
+\item{level}{level for this web property. Acceptable values are: "PREMIUM", "STANDARD".}
+\item{industryVertical}{we propetry industry vertical category.}
+\item{profileCount}{view (Profile) count for this web property.}
+\item{effective}{all the permissions that the user has for this web property.}
+\item{created}{time this web property was created.}
+\item{updated}{time this web property was last modified.}
 }
 \description{
 Lists web properties to which the user has access

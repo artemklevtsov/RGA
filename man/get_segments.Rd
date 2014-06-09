@@ -14,6 +14,13 @@ get_segments(token, start.index = 1L, max.results = 1000L)
 }
 \value{
 A data frame with Google Analytics management data.
+\item{id}{segment ID.}
+\item{segmentId}{segment ID. Can be used with the segment parameter in Data Feed.}
+\item{name}{segment name.}
+\item{definition}{segment definition.}
+\item{type}{type for a segment. Possible values are "BUILT_IN" or "CUSTOM".}
+\item{created}{time the segment was created.}
+\item{updated}{time the segment was last modified.}
 }
 \description{
 Lists segments to which the user has access

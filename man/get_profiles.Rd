@@ -19,6 +19,20 @@ get_profiles(token, account.id = "~all", webproperty.id = "~all",
 }
 \value{
 A data frame with Google Analytics management data.
+\item{id}{view (Profile) ID.}
+\item{accountId}{account ID to which this view (profile) belongs.}
+\item{webPropertyId}{web property ID of the form UA-XXXXX-YY to which this view (profile) belongs.}
+\item{name}{name of this view (profile).}
+\item{currency}{the currency type associated with this view (profile).}
+\item{timezone}{time zone for which this view (profile) has been configured.}
+\item{websiteUrl}{website URL for this view (profile).}
+\item{type}{view (Profile) type. Supported types: WEB or APP.}
+\item{eCommerceTracking}{indicates whether ecommerce tracking is enabled for this view (profile).}
+\item{siteSearchQueryParameters}{the site search query parameters for this view (profile).}
+\item{stripSiteSearchQueryParameters}{site search category parameters for this view (profile).}
+\item{effective}{all the permissions that the user has for this view (profile).}
+\item{created}{time this view (profile) was created.}
+\item{updated}{time this view (profile) was last modified.}
 }
 \description{
 Lists views (profiles) to which the user has access

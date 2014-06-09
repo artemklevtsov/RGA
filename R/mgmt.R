@@ -5,6 +5,11 @@
 #' @param max.results the maximum number of accounts to include in this response.
 #'
 #' @return A data frame with Google Analytics management data.
+#' \item{id}{account ID.}
+#' \item{name}{account name.}
+#' \item{effective}{all the permissions that the user has for this account.}
+#' \item{created}{time the account was created.}
+#' \item{updated}{time the account was last modified.}
 #'
 #' @seealso \code{\link{get_token}}
 #'
@@ -19,12 +24,11 @@ get_accounts = function(token, start.index = 1L, max.results = 1000L) {
     query <- paste0("start-index=", start.index, "&max-results=", max.results)
     url <- paste(url, query, sep = "?")
     data.json <- get_api_request(url = url, token = token)
-    cols <- c("id", "name", "created", "updated")
+    cols <- c("id", "name", "permissions", "created", "updated")
     if (data.json$totalResults > 0 && !is.null(data.json[["items"]])) {
         data.r <- data.json$items
         data.r <- data.r[, cols]
-    }
-    else {
+    } else {
         data.r <- data.frame(matrix(NA, nrow = 1L, ncol = length(cols)))
         colnames(data.r) <- cols
     }
@@ -39,6 +43,15 @@ get_accounts = function(token, start.index = 1L, max.results = 1000L) {
 #' @param max.results the maximum number of accounts to include in this response.
 #'
 #' @return A data frame with Google Analytics management data.
+#' \item{id}{web property ID of the form UA-XXXXX-YY.}
+#' \item{name}{name of this web property.}
+#' \item{websiteUrl}{website url for this web property.}
+#' \item{level}{level for this web property. Acceptable values are: "PREMIUM", "STANDARD".}
+#' \item{industryVertical}{we propetry industry vertical category.}
+#' \item{profileCount}{view (Profile) count for this web property.}
+#' \item{effective}{all the permissions that the user has for this web property.}
+#' \item{created}{time this web property was created.}
+#' \item{updated}{time this web property was last modified.}
 #'
 #' @seealso \code{\link{get_token}}
 #'
@@ -54,7 +67,7 @@ get_webproperties = function(token, account.id = "~all", start.index = 1L, max.r
     query <- paste0("start-index=", start.index, "&max-results=", max.results)
     url <- paste(url, query, sep = "?")
     data.json <- get_api_request(url = url, token = token)
-    cols <- c("id", "name", "websiteUrl", "level", "industryVertical", "created", "updated")
+    cols <- c("id", "name", "websiteUrl", "level", "profileCount", "industryVertical", "permissions", "created", "updated")
     if (data.json$totalResults > 0 && !is.null(data.json[["items"]])) {
         data.r <- data.json$items
         data.r <- data.r[, cols]
@@ -75,6 +88,21 @@ get_webproperties = function(token, account.id = "~all", start.index = 1L, max.r
 #' @param max.results the maximum number of accounts to include in this response.
 #'
 #' @return A data frame with Google Analytics management data.
+#' \item{id}{view (Profile) ID.}
+#' \item{accountId}{account ID to which this view (profile) belongs.}
+#' \item{webPropertyId}{web property ID of the form UA-XXXXX-YY to which this view (profile) belongs.}
+#' \item{name}{name of this view (profile).}
+#' \item{currency}{the currency type associated with this view (profile).}
+#' \item{timezone}{time zone for which this view (profile) has been configured.}
+#' \item{websiteUrl}{website URL for this view (profile).}
+#' \item{type}{view (Profile) type. Supported types: WEB or APP.}
+#' \item{eCommerceTracking}{indicates whether ecommerce tracking is enabled for this view (profile).}
+#' \item{siteSearchQueryParameters}{the site search query parameters for this view (profile).}
+#' \item{stripSiteSearchQueryParameters}{site search category parameters for this view (profile).}
+#' \item{effective}{all the permissions that the user has for this view (profile).}
+#' \item{created}{time this view (profile) was created.}
+#' \item{updated}{time this view (profile) was last modified.}
+#'
 #'
 #' @seealso \code{\link{get_token}}
 #'
@@ -90,7 +118,7 @@ get_profiles = function(token, account.id = "~all", webproperty.id = "~all", sta
     query <- paste0("start-index=", start.index, "&max-results=", max.results)
     url <- paste(url, query, sep = "?")
     data.json <- get_api_request(url = url, token = token)
-    cols <- c("id", "accountId", "webPropertyId", "name", "currency", "timezone", "eCommerceTracking", "websiteUrl", "created", "updated")
+    cols <- c("id", "accountId", "webPropertyId", "name", "currency", "timezone", "websiteUrl", "type", "siteSearchQueryParameters", "siteSearchCategoryParameters", "eCommerceTracking", "permissions", "created", "updated")
     if (data.json$totalResults > 0 && !is.null(data.json[["items"]])) {
         data.r <- data.json$items
         data.r <- data.r[, cols]
@@ -112,6 +140,16 @@ get_profiles = function(token, account.id = "~all", webproperty.id = "~all", sta
 #' @param max.results the maximum number of accounts to include in this response.
 #'
 #' @return A data frame with Google Analytics management data.
+#' \item{id}{goal ID.}
+#' \item{accountId}{account ID to which this goal belongs.}
+#' \item{webPropertyId}{web property ID to which this goal belongs. The web property ID is of the form UA-XXXXX-YY.}
+#' \item{profileId}{view (Profile) ID to which this goal belongs.}
+#' \item{name}{goal name.}
+#' \item{value}{goal value.}
+#' \item{active}{determines whether this goal is active.}
+#' \item{type}{goal type. Acceptable values are: "EVENT", "URL_DESTINATION", "VISIT_NUM_PAGES", "VISIT_TIME_ON_SITE"}
+#' \item{created}{time this goal was created.}
+#' \item{updated}{time this goal was last modified.}
 #'
 #' @seealso \code{\link{get_token}}
 #'
@@ -146,6 +184,13 @@ get_goals = function(token, account.id = "~all", webproperty.id = "~all", profil
 #' @param max.results the maximum number of accounts to include in this response.
 #'
 #' @return A data frame with Google Analytics management data.
+#' \item{id}{segment ID.}
+#' \item{segmentId}{segment ID. Can be used with the segment parameter in Data Feed.}
+#' \item{name}{segment name.}
+#' \item{definition}{segment definition.}
+#' \item{type}{type for a segment. Possible values are "BUILT_IN" or "CUSTOM".}
+#' \item{created}{time the segment was created.}
+#' \item{updated}{time the segment was last modified.}
 #'
 #' @seealso \code{\link{get_token}}
 #'
@@ -160,7 +205,7 @@ get_segments = function(token, start.index = 1L, max.results = 1000L) {
     query <- paste0("start-index=", start.index, "&max-results=", max.results)
     url <- paste(url, query, sep = "?")
     data.json <- get_api_request(url = url, token = token)
-    cols <- c("id", "segmentId", "name", "definition", "type")
+    cols <- c("id", "segmentId", "name", "definition", "type", "created", "updated")
     if (data.json$totalResults > 0 && !is.null(data.json[["items"]])) {
         data.r <- data.json$items
         data.r <- data.r[, cols]
