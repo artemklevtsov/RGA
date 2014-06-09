@@ -111,9 +111,9 @@ set_query <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday
 #' @export
 print.GAQuery <- function(x, ...) {
     if (inherits(x, "mcf"))
-        x$report.type <- "multi-channel funnels"
+        x <- c(report.type = "multi-channel funnels", x)
     else if (inherits(x, "core"))
-        x$report.type <- "core"
+        x <- c(report.type = "core", x)
     x <- compact(x)
     cat("<Google Analytics Query>\n")
     cat(paste0("  ", format(paste0(names(x), ": ")), unlist(x), collapse = "\n"))
