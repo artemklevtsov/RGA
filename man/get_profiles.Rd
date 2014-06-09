@@ -37,6 +37,9 @@ A data frame with Google Analytics management data.
 \description{
 Lists views (profiles) to which the user has access
 }
+\references{
+Views (Profiles): \url{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/profiles}
+}
 \seealso{
 \code{\link{get_token}}
 

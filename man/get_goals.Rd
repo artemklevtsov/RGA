@@ -35,6 +35,9 @@ A data frame with Google Analytics management data.
 \description{
 Lists goals to which the user has access
 }
+\references{
+Goals: \url{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/goals}
+}
 \seealso{
 \code{\link{get_token}}
 

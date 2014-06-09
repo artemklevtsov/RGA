@@ -13,6 +13,9 @@
 #'
 #' @seealso \code{\link{get_token}}
 #'
+#' @references
+#' Accounts: \url{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/accounts}
+#'
 #' @family Management API
 #'
 #' @include api-request.R
@@ -54,6 +57,9 @@ get_accounts = function(token, start.index = 1L, max.results = 1000L) {
 #' \item{updated}{time this web property was last modified.}
 #'
 #' @seealso \code{\link{get_token}}
+#'
+#' @references
+#' Web Properties: \url{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/webproperties}
 #'
 #' @family Management API
 #'
@@ -103,8 +109,10 @@ get_webproperties = function(token, account.id = "~all", start.index = 1L, max.r
 #' \item{created}{time this view (profile) was created.}
 #' \item{updated}{time this view (profile) was last modified.}
 #'
-#'
 #' @seealso \code{\link{get_token}}
+#'
+#' @references
+#' Views (Profiles): \url{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/profiles}
 #'
 #' @family Management API
 #'
@@ -153,6 +161,9 @@ get_profiles = function(token, account.id = "~all", webproperty.id = "~all", sta
 #'
 #' @seealso \code{\link{get_token}}
 #'
+#' @references
+#' Goals: \url{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/goals}
+#'
 #' @family Management API
 #'
 #' @include api-request.R
@@ -193,6 +204,9 @@ get_goals = function(token, account.id = "~all", webproperty.id = "~all", profil
 #' \item{updated}{time the segment was last modified.}
 #'
 #' @seealso \code{\link{get_token}}
+#'
+#' @references
+#' Segments: \url{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/segments}
 #'
 #' @family Management API
 #'

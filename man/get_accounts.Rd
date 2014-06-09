@@ -23,6 +23,9 @@ A data frame with Google Analytics management data.
 \description{
 Lists all accounts to which the user has access
 }
+\references{
+Accounts: \url{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/accounts}
+}
 \seealso{
 \code{\link{get_token}}
 

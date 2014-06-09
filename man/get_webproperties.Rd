@@ -30,6 +30,9 @@ A data frame with Google Analytics management data.
 \description{
 Lists web properties to which the user has access
 }
+\references{
+Web Properties: \url{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/webproperties}
+}
 \seealso{
 \code{\link{get_token}}
 

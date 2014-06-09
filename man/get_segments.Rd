@@ -25,6 +25,9 @@ A data frame with Google Analytics management data.
 \description{
 Lists segments to which the user has access
 }
+\references{
+Segments: \url{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/segments}
+}
 \seealso{
 \code{\link{get_token}}
 
