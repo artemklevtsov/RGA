@@ -42,6 +42,6 @@ get_metadata <- function(report.type = "ga") {
     data.json <- get_api_request(url)
     ids <- data.json$items$id
     attrs <- data.json$items$attributes
-    data.r <- cbind(ids, attrs)
+    data.r <- cbind(ids, attrs, stringsAsFactors = FALSE)
     return(data.r)
 }

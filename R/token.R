@@ -33,14 +33,14 @@
 get_token <- function(client.id, client.secret, cache = TRUE) {
     client.id_env <- Sys.getenv(x = "RGA_CONSUMER_ID")
     client.secret_env <- Sys.getenv(x = "RGA_CONSUMER_SECRET")
-    if (missing(client.id) || client.id == "") {
-        if (client.id_env == "")
+    if (missing(client.id) || !nzchar(client.id)) {
+        if (!nzchar(client.id_env))
             stop("Clinet ID not specified.")
         else
             client.id <- client.id_env
     }
-    if (missing(client.secret) || client.secret == "") {
-        if (client.secret_env == "")
+    if (missing(client.secret) || !nzchar(client.secret)) {
+        if (!nzchar(client.secret_env))
             stop("Clinet secret not specified.")
         else
             client.secret <- client.secret_env
