@@ -3,15 +3,17 @@
 \alias{get_firstdate}
 \title{Get the first date with available data}
 \usage{
-get_firstdate(profile.id, token)
+get_firstdate(profile.id, date.format = "\%Y-\%m-\%d", token)
 }
 \arguments{
 \item{profile.id}{Google Analytics profile ID.}
 
+\item{date.format}{date format for output data.}
+
 \item{token}{\code{Token2.0} class object.}
 }
 \value{
-date in YYYY-MM-DD format.
+Start date of collect of the Google Analytics statistics.
 }
 \description{
 Get the first date with available data
@@ -20,5 +22,8 @@ Get the first date with available data
 \dontrun{
 first.date <- get_firstdate(profile.id = "myProfileID", token = ga_token)
 }
+}
+\seealso{
+\code{\link{get_token}} \code{\link{get_report}}
 }
 

@@ -44,6 +44,22 @@ A data frame with Google Analytics reporting data. Columns are metrics and dimes
 \description{
 \code{get_report} provide a query the Core or Multi-Channel Funnels Reporting API for Google Analytics report data.
 }
+\examples{
+\dontrun{
+    # get token data
+    ga_token <- get_token(client.id = "myID", client.secret = "mySecret")
+    # get reporting data
+    ga_data <- get_report("myProfileID", start.date = "30daysAgo", end.date = "today",
+                          metrics = "ga:sessions", dimensions = "ga:source,ga:medium"
+                          sort = "-ga:sessions", token = ga_token)
+    # same with query
+    ga_query <- set_query("myProfileID", start.date = "30daysAgo", end.date = "today",
+                          metrics = "ga:sessions", dimensions = "ga:source,ga:medium"
+                          sort = "-ga:sessions")
+    query
+    ga_data <- get_report(ga_query, token = ga_token)
+}
+}
 \references{
 Core Reporting API - Dimensions & Metrics Reference: \url{https://developers.google.com/analytics/devguides/reporting/core/dimsmets}
 
@@ -52,6 +68,6 @@ Multi-Channel Funnels Reporting API - Dimensions & Metrics Reference: \url{https
 Google Analytics Query Explorer 2: \url{https://ga-dev-tools.appspot.com/explorer/}
 }
 \seealso{
-\code{\link{get_token}}
+\code{\link{get_token}} \code{\link{set_query}}
 }
 

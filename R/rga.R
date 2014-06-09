@@ -6,11 +6,15 @@
 #' @name RGA
 #' @docType package
 #' @keywords package
-#' @aliases rga RGA RGA-package
+#' @aliases rga RGA-package
 #'
 #' @references
+#' Google Developers Console: \url{https://console.developers.google.com/project}
+#'
 #' The Management API: \url{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/}
+#'
 #' The Core Reporting API: \url{https://developers.google.com/analytics/devguides/reporting/core/v3/reference}
+#'
 #' The Multi-Channel Funnels Reporting API: \url{https://developers.google.com/analytics/devguides/reporting/mcf/v3/reference}
 #'
 NULL

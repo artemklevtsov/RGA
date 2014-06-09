@@ -6,6 +6,10 @@
 #'
 #' @return A data frame with Google Analytics management data.
 #'
+#' @seealso \code{\link{get_token}}
+#'
+#' @family Management API
+#'
 #' @include api-request.R
 #'
 #' @export
@@ -35,6 +39,10 @@ get_accounts = function(token, start.index = 1L, max.results = 1000L) {
 #' @param max.results the maximum number of accounts to include in this response.
 #'
 #' @return A data frame with Google Analytics management data.
+#'
+#' @seealso \code{\link{get_token}}
+#'
+#' @family Management API
 #'
 #' @include api-request.R
 #'
@@ -67,6 +75,10 @@ get_webproperties = function(token, account.id = "~all", start.index = 1L, max.r
 #' @param max.results the maximum number of accounts to include in this response.
 #'
 #' @return A data frame with Google Analytics management data.
+#'
+#' @seealso \code{\link{get_token}}
+#'
+#' @family Management API
 #'
 #' @include api-request.R
 #'
@@ -101,6 +113,10 @@ get_profiles = function(token, account.id = "~all", webproperty.id = "~all", sta
 #'
 #' @return A data frame with Google Analytics management data.
 #'
+#' @seealso \code{\link{get_token}}
+#'
+#' @family Management API
+#'
 #' @include api-request.R
 #'
 #' @export
@@ -130,6 +146,10 @@ get_goals = function(token, account.id = "~all", webproperty.id = "~all", profil
 #' @param max.results the maximum number of accounts to include in this response.
 #'
 #' @return A data frame with Google Analytics management data.
+#'
+#' @seealso \code{\link{get_token}}
+#'
+#' @family Management API
 #'
 #' @include api-request.R
 #'

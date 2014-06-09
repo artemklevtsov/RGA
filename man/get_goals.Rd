@@ -25,4 +25,11 @@ A data frame with Google Analytics management data.
 \description{
 Lists goals to which the user has access
 }
+\seealso{
+\code{\link{get_token}}
+
+Other Management.API: \code{\link{get_accounts}};
+  \code{\link{get_profiles}}; \code{\link{get_segments}};
+  \code{\link{get_webproperties}}
+}
 
