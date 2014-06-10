@@ -25,16 +25,15 @@ build_core <- function(rows, cols) {
 }
 
 build_mcf <- function(rows, cols) {
-    columns$name <- gsub("mcf:", "", cols$name)
+    cols$name <- gsub("mcf:", "", cols$name)
     if ("MCF_SEQUENCE" %in% cols$dataType) {
         primitive.idx <- grep("MCF_SEQUENCE", cols$dataType, invert = TRUE)
         conversion.idx <- grep("MCF_SEQUENCE", cols$dataType)
-        primitive <- lapply(lapply(rows, "[[", "primitiveValue"), "[", primitive.idx)
+        primitive <- lapply(rows, function(x) .subset2(x, "primitiveValue")[primitive.idx])
         primitive <- do.call(rbind, primitive)
         colnames(primitive) <- cols$name[primitive.idx]
-        conversion <- lapply(lapply(rows, "[[", "conversionPathValue"), "[", conversion.idx)
-        conversion <- lapply(conversion, function(x) lapply(x, function(i) apply(i, 1, paste, sep = "", collapse = ":")))
-        conversion <- lapply(conversion, function(x) lapply(x, paste, collapse = " > "))
+        conversion <- lapply(rows, function(x) .subset2(x, "conversionPathValue")[conversion.idx])
+        conversion <- lapply(conversion, function(i) lapply(i, function(x) paste(apply(x, 1, paste, collapse = ":"), collapse = " > ")))
         conversion <- do.call(rbind, lapply(conversion, unlist))
         colnames(conversion) <- cols$name[conversion.idx]
         data.df <- data.frame(primitive, conversion, stringsAsFactors = FALSE)[, cols$name]
