@@ -7,7 +7,6 @@
 #' @return A data frame with Google Analytics management data.
 #' \item{id}{account ID.}
 #' \item{name}{account name.}
-#' \item{effective}{all the permissions that the user has for this account.}
 #' \item{created}{time the account was created.}
 #' \item{updated}{time the account was last modified.}
 #'
@@ -27,10 +26,10 @@ get_accounts = function(token, start.index = 1L, max.results = 1000L) {
     query <- paste0("start-index=", start.index, "&max-results=", max.results)
     url <- paste(url, query, sep = "?")
     data.json <- get_api_request(url = url, token = token)
-    cols <- c("id", "name", "permissions", "created", "updated")
+    cols <- c("id", "name", "created", "updated")
     if (data.json$totalResults > 0 && !is.null(data.json[["items"]])) {
         data.r <- data.json$items
-        data.r <- data.r[, cols]
+        data.r <- data.r[, names(data.json$items) %in% cols]
     } else {
         data.r <- data.frame(matrix(NA, nrow = 1L, ncol = length(cols)))
         colnames(data.r) <- cols
@@ -52,7 +51,6 @@ get_accounts = function(token, start.index = 1L, max.results = 1000L) {
 #' \item{level}{level for this web property. Acceptable values are: "PREMIUM", "STANDARD".}
 #' \item{industryVertical}{we propetry industry vertical category.}
 #' \item{profileCount}{view (Profile) count for this web property.}
-#' \item{effective}{all the permissions that the user has for this web property.}
 #' \item{created}{time this web property was created.}
 #' \item{updated}{time this web property was last modified.}
 #'
@@ -73,10 +71,10 @@ get_webproperties = function(token, account.id = "~all", start.index = 1L, max.r
     query <- paste0("start-index=", start.index, "&max-results=", max.results)
     url <- paste(url, query, sep = "?")
     data.json <- get_api_request(url = url, token = token)
-    cols <- c("id", "name", "websiteUrl", "level", "profileCount", "industryVertical", "permissions", "created", "updated")
+    cols <- c("id", "name", "websiteUrl", "level", "profileCount", "industryVertical", "created", "updated")
     if (data.json$totalResults > 0 && !is.null(data.json[["items"]])) {
         data.r <- data.json$items
-        data.r <- data.r[, cols]
+        data.r <- data.r[, names(data.json$items) %in% cols]
     }
     else {
         data.r <- data.frame(matrix(NA, nrow = 1L, ncol = length(cols)))
@@ -105,7 +103,6 @@ get_webproperties = function(token, account.id = "~all", start.index = 1L, max.r
 #' \item{eCommerceTracking}{indicates whether ecommerce tracking is enabled for this view (profile).}
 #' \item{siteSearchQueryParameters}{the site search query parameters for this view (profile).}
 #' \item{stripSiteSearchQueryParameters}{site search category parameters for this view (profile).}
-#' \item{effective}{all the permissions that the user has for this view (profile).}
 #' \item{created}{time this view (profile) was created.}
 #' \item{updated}{time this view (profile) was last modified.}
 #'
@@ -126,10 +123,10 @@ get_profiles = function(token, account.id = "~all", webproperty.id = "~all", sta
     query <- paste0("start-index=", start.index, "&max-results=", max.results)
     url <- paste(url, query, sep = "?")
     data.json <- get_api_request(url = url, token = token)
-    cols <- c("id", "accountId", "webPropertyId", "name", "currency", "timezone", "websiteUrl", "type", "siteSearchQueryParameters", "siteSearchCategoryParameters", "eCommerceTracking", "permissions", "created", "updated")
+    cols <- c("id", "accountId", "webPropertyId", "name", "currency", "timezone", "websiteUrl", "type", "siteSearchQueryParameters", "siteSearchCategoryParameters", "eCommerceTracking", "created", "updated")
     if (data.json$totalResults > 0 && !is.null(data.json[["items"]])) {
         data.r <- data.json$items
-        data.r <- data.r[, cols]
+        data.r <- data.r[, names(data.json$items) %in% cols]
     }
     else {
         data.r <- data.frame(matrix(NA, nrow = 1L, ncol = length(cols)))
@@ -179,7 +176,7 @@ get_goals = function(token, account.id = "~all", webproperty.id = "~all", profil
     cols <- c("id", "accountId", "webPropertyId", "profileId", "name", "value", "active", "type", "created", "updated")
     if (data.json$totalResults > 0 && !is.null(data.json[["items"]])) {
         data.r <- data.json$items
-        data.r <- data.r[, cols]
+        data.r <- data.r[, names(data.json$items) %in% cols]
     }
     else {
         data.r <- data.frame(matrix(NA, nrow = 1L, ncol = length(cols)))
@@ -222,7 +219,7 @@ get_segments = function(token, start.index = 1L, max.results = 1000L) {
     cols <- c("id", "segmentId", "name", "definition", "type", "created", "updated")
     if (data.json$totalResults > 0 && !is.null(data.json[["items"]])) {
         data.r <- data.json$items
-        data.r <- data.r[, cols]
+        data.r <- data.r[, names(data.json$items) %in% cols]
     }
     else {
         data.r <- data.frame(matrix(NA, nrow = 1L, ncol = length(cols)))

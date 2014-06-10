@@ -16,7 +16,6 @@ get_accounts(token, start.index = 1L, max.results = 1000L)
 A data frame with Google Analytics management data.
 \item{id}{account ID.}
 \item{name}{account name.}
-\item{effective}{all the permissions that the user has for this account.}
 \item{created}{time the account was created.}
 \item{updated}{time the account was last modified.}
 }

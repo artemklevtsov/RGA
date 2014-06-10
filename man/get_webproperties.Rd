@@ -23,7 +23,6 @@ A data frame with Google Analytics management data.
 \item{level}{level for this web property. Acceptable values are: "PREMIUM", "STANDARD".}
 \item{industryVertical}{we propetry industry vertical category.}
 \item{profileCount}{view (Profile) count for this web property.}
-\item{effective}{all the permissions that the user has for this web property.}
 \item{created}{time this web property was created.}
 \item{updated}{time this web property was last modified.}
 }

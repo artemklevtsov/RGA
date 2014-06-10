@@ -30,7 +30,6 @@ A data frame with Google Analytics management data.
 \item{eCommerceTracking}{indicates whether ecommerce tracking is enabled for this view (profile).}
 \item{siteSearchQueryParameters}{the site search query parameters for this view (profile).}
 \item{stripSiteSearchQueryParameters}{site search category parameters for this view (profile).}
-\item{effective}{all the permissions that the user has for this view (profile).}
 \item{created}{time this view (profile) was created.}
 \item{updated}{time this view (profile) was last modified.}
 }
