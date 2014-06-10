@@ -46,20 +46,6 @@ build_mcf <- function(rows, cols) {
     return(data.df)
 }
 
-convert_datatypes <- function(data, formats, date.format) {
-    formats[formats %in% c("INTEGER", "PERCENT", "TIME", "CURRENCY", "FLOAT")] <- "numeric"
-    formats[formats == "STRING"] <- "character"
-    formats[formats == "MCF_SEQUENCE"] <- "character"
-    data[] <- lapply(seq_along(formats), function(i) as(data[[i]], Class = formats[i]))
-    if ("date" %in% colnames(data)) {
-        data$date <- format(as.Date(data$date, "%Y%m%d"), date.format)
-    }
-    if ("conversionDate" %in% colnames(data)) {
-        data$conversionDate <- format(as.Date(data$conversionDate, "%Y%m%d"), date.format)
-    }
-    return(data)
-}
-
 #' @title Get Google Anaytics report data
 #'
 #' @description
@@ -107,7 +93,9 @@ convert_datatypes <- function(data, formats, date.format) {
 #'
 #' @seealso \code{\link{get_token}} \code{\link{set_query}}
 #'
+#' @include query.R
 #' @include api-request.R
+#' @include utils.R
 #'
 #' @export
 #'
@@ -173,8 +161,6 @@ get_report <- function(profile.id, start.date = "7daysAgo", end.date = "yesterda
 #' \dontrun{
 #' first.date <- get_firstdate(profile.id = "myProfileID", token = ga_token)
 #' }
-#'
-#' @include query.R
 #'
 #' @export
 #'

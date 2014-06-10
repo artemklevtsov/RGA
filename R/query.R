@@ -4,27 +4,17 @@ fix_query <- function(query) {
     stopifnot(inherits(query, "list"))
     if (!grepl("^ga:", query$profile.id))
         query$profile.id <- paste0("ga:", query$profile.id)
-    if (!is.null(query$metrics) && query$metrics != "")
+    if (!is.null(query$metrics) && nzchar(query$metrics))
         query$metrics <- gsub("\\s", "", query$metrics)
-    if (!is.null(query$dimensions) && query$dimensions != "")
+    if (!is.null(query$dimensions) && nzchar(query$dimensions))
         query$dimensions <- gsub("\\s", "", query$dimensions)
-    if (!is.null(query$sort) && query$sort != "")
+    if (!is.null(query$sort) && nzchar(query$sort))
         query$sort <- gsub("\\s", "", query$sort)
-    # make pattern for gsub
-    ops.pattern <- paste("(\\ )+(", paste(ga_ops, collapse = "|"), ")(\\ )+", sep = "")
-    if (!is.null(query$filters) && query$filters != "") {
-        # remove whitespaces around operators
-        query$filters <- gsub(ops.pattern, "\\2", query$filters)
-        # replace logical operators
-        query$filters <- gsub("OR|\\|\\|", ",", query$filters)
-        query$filters <- gsub("AND|&&", ";", query$filters)
+    if (!is.null(query$filters) && nzchar(query$filters)) {
+        query$filters <- strip_ops(query$filters)
     }
-    if (!is.null(query$segment) && query$segment != "") {
-        # remove whitespaces around operators
-        query$segment <- gsub(ops.pattern, "\\2", query$segment)
-        # replace logical operators
-        query$segment <- gsub("OR|\\|\\|", ",", query$segment)
-        query$segment <- gsub("AND|&&", ";", query$segment)
+    if (!is.null(query$segment) && nzchar(query$segment)) {
+        query$segment <- strip_ops(query$segment)
     }
     return(query)
 }

@@ -4,7 +4,6 @@
 #' @import jsonlite
 get_api_request = function(url, token, messages = FALSE) {
     stopifnot(is.character(url) && length(url) == 1L)
-    url <- gsub(pattern = "\\+", replacement = "%2B", url)
     if (!missing(token)) {
         stopifnot(inherits(token, "Token2.0"))
         request <- GET(url = url, config = config(token = token))
