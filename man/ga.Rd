@@ -28,7 +28,7 @@ Lists all columns for a Google Analytics core report type.
 }
 \examples{
 # get depricated ids
-subset(ga, subset = status == "DEPRECATED", select = c(ids, replacedBy))
+subset(ga, subset = status == "DEPRECATED", select = c(id, replacedBy))
 # get not depricated metrics from user group
 subset(ga_meta, subset = group == "User" & type == "METRIC" & status != "DEPRECATED", select = id)
 }
