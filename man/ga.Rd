@@ -27,10 +27,10 @@ ga
 Lists all columns for a Google Analytics core report type.
 }
 \examples{
-# get depricated ids
-subset(ga, subset = status == "DEPRECATED", select = c(id, replacedBy))
-# get not depricated metrics from user group
-subset(ga, subset = group == "User" & type == "METRIC" & status != "DEPRECATED", select = id)
+# deprecated parameter was replaced by
+subset(ga, status == "DEPRECATED", c(id, replacedBy))
+# get a not deprecated metrics from user group
+subset(ga, group == "User" & type == "METRIC" & status != "DEPRECATED", id)
 }
 \references{
 Dimensions & Metrics Reference: \url{https://developers.google.com/analytics/devguides/reporting/core/dimsmets}

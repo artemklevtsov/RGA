@@ -30,8 +30,8 @@
 #' @name ga
 #'
 #' @examples
-#' # get depricated ids
-#' subset(ga, subset = status == "DEPRECATED", select = c(id, replacedBy))
-#' # get not depricated metrics from user group
-#' subset(ga, subset = group == "User" & type == "METRIC" & status != "DEPRECATED", select = id)
+#' # deprecated parameter was replaced by
+#' subset(ga, status == "DEPRECATED", c(id, replacedBy))
+#' # get a not deprecated metrics from user group
+#' subset(ga, group == "User" & type == "METRIC" & status != "DEPRECATED", id)
 NULL
