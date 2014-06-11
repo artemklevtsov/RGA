@@ -1,3 +1,15 @@
+# Build data.frame for mgmt
+build_mgmt <- function(data, cols) {
+    if (data$totalResults > 0 && !is.null(data[["items"]])) {
+        data.r <- data[["items"]]
+        data.r <- data.r[, names(data[["items"]]) %in% cols]
+    } else {
+        data.r <- data.frame(matrix(NA, nrow = 1L, ncol = length(cols)))
+        colnames(data.r) <- cols
+    }
+    return(data.r)
+}
+
 #' @title Lists all accounts to which the user has access
 #'
 #' @param token \code{Token2.0} class object.
@@ -25,16 +37,9 @@ get_accounts = function(token, start.index = 1L, max.results = 1000L) {
     url <- "https://www.googleapis.com/analytics/v3/management/accounts"
     query <- paste0("start-index=", start.index, "&max-results=", max.results)
     url <- paste(url, query, sep = "?")
-    data.json <- get_api_request(url = url, token = token)
+    data.json <- api_request(url = url, token = token)
     cols <- c("id", "name", "created", "updated")
-    if (data.json$totalResults > 0 && !is.null(data.json[["items"]])) {
-        data.r <- data.json$items
-        data.r <- data.r[, names(data.json$items) %in% cols]
-    } else {
-        data.r <- data.frame(matrix(NA, nrow = 1L, ncol = length(cols)))
-        colnames(data.r) <- cols
-    }
-    return(data.r)
+    return(build_mgmt(data.json, cols))
 }
 
 #' @title Lists web properties to which the user has access
@@ -70,17 +75,9 @@ get_webproperties = function(token, account.id = "~all", start.index = 1L, max.r
                  account.id, "webproperties", sep = "/")
     query <- paste0("start-index=", start.index, "&max-results=", max.results)
     url <- paste(url, query, sep = "?")
-    data.json <- get_api_request(url = url, token = token)
+    data.json <- api_request(url = url, token = token)
     cols <- c("id", "name", "websiteUrl", "level", "profileCount", "industryVertical", "created", "updated")
-    if (data.json$totalResults > 0 && !is.null(data.json[["items"]])) {
-        data.r <- data.json$items
-        data.r <- data.r[, names(data.json$items) %in% cols]
-    }
-    else {
-        data.r <- data.frame(matrix(NA, nrow = 1L, ncol = length(cols)))
-        colnames(data.r) <- cols
-    }
-    return(data.r)
+    return(build_mgmt(data.json, cols))
 }
 
 #' @title Lists views (profiles) to which the user has access
@@ -122,17 +119,9 @@ get_profiles = function(token, account.id = "~all", webproperty.id = "~all", sta
                  account.id, "webproperties", webproperty.id, "profiles", sep = "/")
     query <- paste0("start-index=", start.index, "&max-results=", max.results)
     url <- paste(url, query, sep = "?")
-    data.json <- get_api_request(url = url, token = token)
+    data.json <- api_request(url = url, token = token)
     cols <- c("id", "accountId", "webPropertyId", "name", "currency", "timezone", "websiteUrl", "type", "siteSearchQueryParameters", "siteSearchCategoryParameters", "eCommerceTracking", "created", "updated")
-    if (data.json$totalResults > 0 && !is.null(data.json[["items"]])) {
-        data.r <- data.json$items
-        data.r <- data.r[, names(data.json$items) %in% cols]
-    }
-    else {
-        data.r <- data.frame(matrix(NA, nrow = 1L, ncol = length(cols)))
-        colnames(data.r) <- cols
-    }
-    return(data.r)
+    return(build_mgmt(data.json, cols))
 }
 
 #' @title Lists goals to which the user has access
@@ -172,17 +161,9 @@ get_goals = function(token, account.id = "~all", webproperty.id = "~all", profil
                  account.id, "webproperties", webproperty.id, "profiles", profile.id, "goals", sep = "/")
     query <- paste0("start-index=", start.index, "&max-results=", max.results)
     url <- paste(url, query, sep = "?")
-    data.json <- get_api_request(url = url, token = token)
+    data.json <- api_request(url = url, token = token)
     cols <- c("id", "accountId", "webPropertyId", "profileId", "name", "value", "active", "type", "created", "updated")
-    if (data.json$totalResults > 0 && !is.null(data.json[["items"]])) {
-        data.r <- data.json$items
-        data.r <- data.r[, names(data.json$items) %in% cols]
-    }
-    else {
-        data.r <- data.frame(matrix(NA, nrow = 1L, ncol = length(cols)))
-        colnames(data.r) <- cols
-    }
-    return(data.r)
+    return(build_mgmt(data.json, cols))
 }
 
 #' @title Lists segments to which the user has access
@@ -215,15 +196,7 @@ get_segments = function(token, start.index = 1L, max.results = 1000L) {
     url <- paste("https://www.googleapis.com/analytics/v3/management/segments", sep = "")
     query <- paste0("start-index=", start.index, "&max-results=", max.results)
     url <- paste(url, query, sep = "?")
-    data.json <- get_api_request(url = url, token = token)
+    data.json <- api_request(url = url, token = token)
     cols <- c("id", "segmentId", "name", "definition", "type", "created", "updated")
-    if (data.json$totalResults > 0 && !is.null(data.json[["items"]])) {
-        data.r <- data.json$items
-        data.r <- data.r[, names(data.json$items) %in% cols]
-    }
-    else {
-        data.r <- data.frame(matrix(NA, nrow = 1L, ncol = length(cols)))
-        colnames(data.r) <- cols
-    }
-    return(data.r)
+    return(build_mgmt(data.json, cols))
 }

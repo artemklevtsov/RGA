@@ -39,7 +39,7 @@
 get_metadata <- function(report.type = "ga") {
     stopifnot(is.character(report.type) && length(report.type) == 1L)
     url <- paste("https://www.googleapis.com/analytics/v3/metadata", report.type, "columns", sep = "/")
-    data.json <- get_api_request(url)
+    data.json <- api_request(url)
     ids <- data.json$items$id
     attrs <- data.json$items$attributes
     data.r <- cbind(ids, attrs, stringsAsFactors = FALSE)

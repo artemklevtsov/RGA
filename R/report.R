@@ -1,3 +1,4 @@
+#' @import RCurl
 #' @include utils.R
 get_report_url <- function(query) {
     stopifnot(inherits(query, "GAQuery"))
@@ -9,40 +10,12 @@ get_report_url <- function(query) {
         stop("Unknown report type.")
     query <- compact(query)
     params <- names(query)
-    params <- gsub("profile.id", "ids", params)
+    params <- gsub("profile\\.id", "ids", params)
     params <- gsub("\\.", "-", params)
     values <- as.vector(query, mode = "character")
     values <- curlEscape(values)
     string <- paste(params, values, sep = "=", collapse = "&")
     return(paste(url, string, sep = "?"))
-}
-
-build_core <- function(rows, cols) {
-    cols$name <- gsub("ga:", "", cols$name)
-    data.df <- as.data.frame(rows, stringsAsFactors = FALSE)
-    colnames(data.df) <- cols$name
-    return(data.df)
-}
-
-build_mcf <- function(rows, cols) {
-    cols$name <- gsub("mcf:", "", cols$name)
-    if ("MCF_SEQUENCE" %in% cols$dataType) {
-        primitive.idx <- grep("MCF_SEQUENCE", cols$dataType, invert = TRUE)
-        conversion.idx <- grep("MCF_SEQUENCE", cols$dataType)
-        primitive <- lapply(rows, function(x) .subset2(x, "primitiveValue")[primitive.idx])
-        primitive <- do.call(rbind, primitive)
-        colnames(primitive) <- cols$name[primitive.idx]
-        conversion <- lapply(rows, function(x) .subset2(x, "conversionPathValue")[conversion.idx])
-        conversion <- lapply(conversion, function(i) lapply(i, function(x) paste(apply(x, 1, paste, collapse = ":"), collapse = " > ")))
-        conversion <- do.call(rbind, lapply(conversion, unlist))
-        colnames(conversion) <- cols$name[conversion.idx]
-        data.df <- data.frame(primitive, conversion, stringsAsFactors = FALSE)[, cols$name]
-    } else {
-        data.df <- as.data.frame(do.call(rbind, lapply(rows, unlist)), stringsAsFactors = FALSE)
-        # insert column names
-        colnames(data.df) <- cols$name
-    }
-    return(data.df)
 }
 
 #' @title Get Google Anaytics report data
@@ -110,7 +83,7 @@ get_report <- function(profile.id, start.date = "7daysAgo", end.date = "yesterda
                            segment = segment, start.index = start.index, max.results = max.results)
     }
     url <- get_report_url(query)
-    data.json <- get_api_request(url, token = token, messages = messages)
+    data.json <- api_request(url, token = token, messages = messages)
     cols <- data.json$columnHeaders
     formats <- data.json$columnHeaders$dataType
     if (data.json$totalResults > 0 && !is.null(data.json$rows)) {
@@ -125,7 +98,7 @@ get_report <- function(profile.id, start.date = "7daysAgo", end.date = "yesterda
                     message(paste0("Fetching page ", page, " of ", total.pages, "..."))
                 query$start.index <- query$max.results * (page - 1) + 1
                 url <- get_report_url(query)
-                data.json <- get_api_request(url, token = token, messages = messages)
+                data.json <- api_request(url, token = token, messages = messages)
                 if (inherits(rows, "list"))
                     rows <- append(rows, data.json$rows)
                 else if (inherits(rows, "matrix"))
