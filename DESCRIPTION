@@ -20,6 +20,7 @@ Imports:
 Collate:
     'api-request.R'
     'ga-data.R'
+    'help-ga.R'
     'mgmt.R'
     'utils.R'
     'query.R'
