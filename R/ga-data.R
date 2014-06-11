@@ -25,7 +25,7 @@
 #' @references
 #' Dimensions & Metrics Reference: \url{https://developers.google.com/analytics/devguides/reporting/core/dimsmets}
 #'
-#' @keywords data
+#' @keywords data datasets
 #' @docType data
 #' @name ga
 #'
@@ -33,5 +33,5 @@
 #' # get depricated ids
 #' subset(ga, subset = status == "DEPRECATED", select = c(id, replacedBy))
 #' # get not depricated metrics from user group
-#' subset(ga_meta, subset = group == "User" & type == "METRIC" & status != "DEPRECATED", select = id)
+#' subset(ga, subset = group == "User" & type == "METRIC" & status != "DEPRECATED", select = id)
 NULL
