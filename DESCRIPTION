@@ -10,6 +10,7 @@ Authors@R: c( person(given = "Artem", family = "Klevtsov", email =
     "a.a.klevtsov@gmai.com", role = c("aut", "cre")), person(given = "Philipp",
     family = "Upravitelev", email = "upravitelev@gmail.com", role = "ctb") )
 License: GPL (>= 2)
+LazyData: true
 Depends:
     R (>= 2.15.0)
 Imports:
@@ -18,7 +19,7 @@ Imports:
     httr (>= 0.3)
 Collate:
     'api-request.R'
-    'metadata.R'
+    'ga-data.R'
     'mgmt.R'
     'utils.R'
     'query.R'
