@@ -4,3 +4,4 @@
 ^\.Renviron$
 ^NEWS\.md$
 ^README\.ru\.md$
+^get-data\.R$
