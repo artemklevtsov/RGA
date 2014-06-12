@@ -119,15 +119,15 @@ get_profiles(token = token)
 
 ### Получние доступа к метаданным API отчётов
 
-Для получения списка всех показателей (metrics) и измерений (dimensions) пакет `RGA` предоставляет функцию `get_metadata`.
+Для получения списка всех показателей (metrics) и измерений (dimensions) пакет `RGA` предоставляет набор данных (dataset) `ga`, который доступен после загрузки пакета. Доступ к к набору данных осущесвтляется аналогично доступу к любому объекту в R - по имени переменной.
 
 ```R
-ga_meta <- get_metadata()
+ga
 ```
 
-Переменная `ga_meta` имеет класс `data.frame` и содержит следюущие столбцы:
+Переменная `ga` содержит следюущие столбцы:
 
-* ids - кодовое название параметра (показателя или измерения) (используется для запросов);
+* id - кодовое название параметра (показателя или измерения) (используется для запросов);
 * type - тип параметра: показатель (METRIC) или измерение (DIMENSION);
 * dataType - тип данных: STRING, INTEGER, PERCENT, TIME, CURRENCY, FLOAT;
 * group - группа параметров (например, User, Session, Traffic Sources);
@@ -147,18 +147,23 @@ ga_meta <- get_metadata()
 Список всех устаревших и заменяющих их параметров:
 
 ```R
-subset(ga_meta, status == "DEPRECATED", c(ids, replacedBy))
+subset(ga, status == "DEPRECATED", c(id, replacedBy))
 ```
 
 Список всех параметров из определённой группы:
 
 ```R
-subset(ga_meta, group == "Traffic Sources", c(ids, type))
+subset(ga, group == "Traffic Sources", c(id, type))
 ```
 
 ### Получение доступа к API отчётов
 
-Доступ к API очтётов может быть получен двумя способами.
+Доступ к API очтётов осуществляется с помощью функции `get_report`. При этом параметры для запроса к Google Analytics можно передавать как напрямую через аргументы функции `get_report`, так и через промежуточный объект `GAQuery`, который создаётся с помощью функции `set_query`. Пример получения данных:
+
+```R
+ga_data <- get_report(profile.id = XXXXXXXX, start.date = "30daysAgo", end.date = "yesterday",
+                      metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = NULL, token = token)
+```
 
 ## Ссылки
 
