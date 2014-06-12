@@ -3,31 +3,38 @@
 \alias{help_ga}
 \title{Getting help Google Analytics metadata}
 \usage{
-help_ga(topic, data = ga, type = c("all", "metric", "dimension"),
-  depricated = FALSE, select = c("id", "uiName", "description"))
+help_ga(topic, exact = TRUE, type = c("all", "metric", "dimension"),
+  depricated = FALSE, select, data = ga)
 }
 \arguments{
 \item{topic}{a name or character string specifying the topic for which help is sought.}
 
-\item{data}{a dataset for search (now available only 'ga').}
+\item{exact}{logical; exact or partial matching.}
 
 \item{type}{parameter type; metrics, dimensions or all.}
 
 \item{depricated}{logical; print depricated parameters or not.}
 
-\item{select}{columns to be returned. "all" return all columns}
+\item{select}{string or number; columns \code{\link{ga}} dataset to be returned.}
+
+\item{data}{a dataset for search (now available only "ga").}
 }
 \value{
-Subset \code{\link{ga}} dataset accordingly search.
+Subset the \code{\link{ga}} dataset accordingly search.
 }
 \description{
 Getting help Google Analytics metadata
 }
 \examples{
-help_ga("visit")
-help_ga("session", type = "metric", select = "id")
+help_ga("visits", select = "short")
+help_ga("session", type = "metric", select = id)
+help_ga(depricated = TRUE, select = c(id, replacedBy))
+# exact matching
+help_ga("vists", select = "short", exact = TRUE)
+# partial matching
+help_ga("vists", select = "short", exact = FALSE)
 }
 \seealso{
-\code{\link{ga}}
+\code{\link{ga}} \code{\link{grep}} \code{\link{agrep}}
 }
 
