@@ -4,39 +4,41 @@
 \title{Get Google Anaytics report data}
 \usage{
 get_report(profile.id, start.date = "7daysAgo", end.date = "yesterday",
-  metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = "ga:date",
+  metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = NULL,
   sort = NULL, filters = NULL, segment = NULL, start.index = 1L,
-  max.results = 10000L, date.format = "\%Y-\%m-\%d", query, token,
-  messages = FALSE)
+  max.results = 10000L, date.format = "\%Y-\%m-\%d", type = c("ga",
+  "mcf"), query, token, messages = FALSE)
 }
 \arguments{
-\item{profile.id}{Google Analytics profile ID. Can be character (with or without "ga:" prefix) or integer.}
+\item{profile.id}{character or numeric. Google Analytics profile ID. Can be character (with or without "ga:" prefix) or integer.}
 
-\item{start.date}{start date for fetching Analytics data in YYYY-MM-DD format. Also allowed values 'today', 'yesterday', 'ndaysAgo' whene n is number of days.}
+\item{start.date}{character. Start date for fetching Analytics data in YYYY-MM-DD format. Also allowed values "today", "yesterday", "ndaysAgo" whene n is number of days.}
 
-\item{end.date}{rnd date for fetching Analytics data in YYYY-MM-DD format. Also allowed values 'today', 'yesterday', 'ndaysAgo' whene n is number of days.}
+\item{end.date}{character. End date for fetching Analytics data in YYYY-MM-DD format. Also allowed values "today", "yesterday", "ndaysAgo" whene n is number of days.}
 
-\item{metrics}{a comma-separated list of Analytics metrics, such as 'ga:sessions,ga:bounces'.}
+\item{metrics}{character. A comma-separated list of Analytics metrics, such as "ga:sessions,ga:bounces".}
 
-\item{dimensions}{a comma-separated list of Analytics dimensions, such as 'ga:browser,ga:city'.}
+\item{dimensions}{character. A comma-separated list of Analytics dimensions, such as "ga:browser,ga:city".}
 
-\item{sort}{a comma-separated list of dimensions or metrics that determine the sort order for Analytics data.}
+\item{sort}{character. A comma-separated list of dimensions or metrics that determine the sort order for Analytics data.}
 
-\item{filters}{a comma-separated list of dimension or metric filters to be applied to Analytics data.}
+\item{filters}{character. A comma-separated list of dimension or metric filters to be applied to Analytics data.}
 
-\item{segment}{an Analytics segment to be applied to data.}
+\item{segment}{character. An Analytics segment to be applied to data.}
 
-\item{start.index}{an index of the first entity to retrieve.}
+\item{start.index}{character. An index of the first entity to retrieve.}
 
-\item{max.results}{the maximum number of entries to include in this feed.}
+\item{max.results}{character. The maximum number of entries to include in this feed.}
 
-\item{date.format}{date format for output data.}
+\item{date.format}{character. A date format for output data.}
 
-\item{token}{\code{Token2.0} class object.}
+\item{type}{character string including report type. "ga" for core report, "mcf" for multi-channel funnels report.}
 
-\item{messages}{print information messages.}
+\item{token}{\code{Token2.0} class object with a valid authorization data.}
 
-\item{query}{\code{GAQuery} class object.}
+\item{messages}{logical. Should print information messages?}
+
+\item{query}{\code{GAQuery} class object including a request parameters.}
 }
 \value{
 A data frame with Google Analytics reporting data. Columns are metrics and dimesnions.

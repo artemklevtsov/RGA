@@ -1,15 +1,3 @@
-# Build data.frame for mgmt
-build_mgmt <- function(data, cols) {
-    if (data$totalResults > 0 && !is.null(data[["items"]])) {
-        data.r <- data[["items"]]
-        data.r <- data.r[, names(data[["items"]]) %in% cols]
-    } else {
-        data.r <- data.frame(matrix(NA, nrow = 1L, ncol = length(cols)))
-        colnames(data.r) <- cols
-    }
-    return(data.r)
-}
-
 #' @title Lists all accounts to which the user has access
 #'
 #' @param token \code{Token2.0} class object.

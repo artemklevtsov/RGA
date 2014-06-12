@@ -4,20 +4,20 @@
 \title{Set Google Analytics report query}
 \usage{
 set_query(profile.id, start.date = "7daysAgo", end.date = "yesterday",
-  metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = "ga:date",
+  metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = NULL,
   sort = NULL, filters = NULL, segment = NULL, start.index = 1L,
   max.results = 10000L)
 }
 \arguments{
 \item{profile.id}{Google Analytics profile ID. Can be character (with or without "ga:" prefix) or integer.}
 
-\item{start.date}{start date for fetching Analytics data in YYYY-MM-DD format. Also allowed values 'today', 'yesterday', 'ndaysAgo' whene n is number of days.}
+\item{start.date}{start date for fetching Analytics data in YYYY-MM-DD format. Also allowed values "today", "yesterday", "ndaysAgo" whene n is number of days.}
 
-\item{end.date}{rnd date for fetching Analytics data in YYYY-MM-DD format. Also allowed values 'today', 'yesterday', 'ndaysAgo' whene n is number of days.}
+\item{end.date}{rnd date for fetching Analytics data in YYYY-MM-DD format. Also allowed values "today", "yesterday", "ndaysAgo" whene n is number of days.}
 
-\item{metrics}{a comma-separated list of Analytics metrics, such as 'ga:sessions,ga:bounces'.}
+\item{metrics}{a comma-separated list of Analytics metrics, such as "ga:sessions,ga:bounces".}
 
-\item{dimensions}{a comma-separated list of Analytics dimensions, such as 'ga:browser,ga:city'.}
+\item{dimensions}{a comma-separated list of Analytics dimensions, such as "ga:browser,ga:city".}
 
 \item{sort}{a comma-separated list of dimensions or metrics that determine the sort order for Analytics data.}
 
@@ -36,7 +36,6 @@ set_query(profile.id, start.date = "7daysAgo", end.date = "yesterday",
 \code{set_query} provide a query the Core or Multi-Channel Funnels Reporting API for Google Analytics report data.
 }
 \examples{
-set_query(profile.id = "ga:00000000")
 set_query(profile.id = "ga:00000000", start.date = "7daysAgo", end.date = "yesterday",
           metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = "ga:date")
 query <- set_query(profile.id = "ga:00000000", start.date = "31daysAgo", end.date = "yesterday",

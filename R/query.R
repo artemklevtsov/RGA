@@ -25,10 +25,10 @@ fix_query <- function(query) {
 #' \code{set_query} provide a query the Core or Multi-Channel Funnels Reporting API for Google Analytics report data.
 #'
 #' @param profile.id Google Analytics profile ID. Can be character (with or without "ga:" prefix) or integer.
-#' @param start.date start date for fetching Analytics data in YYYY-MM-DD format. Also allowed values 'today', 'yesterday', 'ndaysAgo' whene n is number of days.
-#' @param end.date rnd date for fetching Analytics data in YYYY-MM-DD format. Also allowed values 'today', 'yesterday', 'ndaysAgo' whene n is number of days.
-#' @param metrics a comma-separated list of Analytics metrics, such as 'ga:sessions,ga:bounces'.
-#' @param dimensions a comma-separated list of Analytics dimensions, such as 'ga:browser,ga:city'.
+#' @param start.date start date for fetching Analytics data in YYYY-MM-DD format. Also allowed values "today", "yesterday", "ndaysAgo" whene n is number of days.
+#' @param end.date rnd date for fetching Analytics data in YYYY-MM-DD format. Also allowed values "today", "yesterday", "ndaysAgo" whene n is number of days.
+#' @param metrics a comma-separated list of Analytics metrics, such as "ga:sessions,ga:bounces".
+#' @param dimensions a comma-separated list of Analytics dimensions, such as "ga:browser,ga:city".
 #' @param sort a comma-separated list of dimensions or metrics that determine the sort order for Analytics data.
 #' @param filters a comma-separated list of dimension or metric filters to be applied to Analytics data.
 #' @param segment an Analytics segment to be applied to data.
@@ -38,7 +38,6 @@ fix_query <- function(query) {
 #' @return \code{GAQuery} class object.
 #'
 #' @examples
-#' set_query(profile.id = "ga:00000000")
 #' set_query(profile.id = "ga:00000000", start.date = "7daysAgo", end.date = "yesterday",
 #'           metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = "ga:date")
 #' query <- set_query(profile.id = "ga:00000000", start.date = "31daysAgo", end.date = "yesterday",
@@ -59,7 +58,7 @@ fix_query <- function(query) {
 #' @export
 #'
 set_query <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
-                      metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = "ga:date",
+                      metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = NULL,
                       sort = NULL, filters = NULL, segment = NULL, start.index = 1L, max.results = 10000L) {
     profile.id <- as.character(profile.id)
     start.date <- as.character(start.date)
@@ -69,10 +68,6 @@ set_query <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday
               !is.null(start.date), start.date != "",
               !is.null(end.date), end.date != "",
               !is.null(metrics), metrics != "")
-    if (grepl("ga:", metrics) && grepl("mcf:", metrics))
-        stop("Only one prefix allowed: 'ga:' or 'mcf:'.")
-    if (grepl("ga:", dimensions) && grepl("mcf:", dimensions))
-        stop("Only one prefix allowed: 'ga:' or 'mcf:'.")
     # Build query
     query <- list(profile.id = profile.id,
                   start.date = start.date,
@@ -88,22 +83,12 @@ set_query <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday
     # Fix query
     query <- fix_query(query)
     class(query) <- c(class(query), "GAQuery")
-    if (grepl("mcf:", metrics) && grepl("mcf:", dimensions))
-        class(query) <- c(class(query), "mcf")
-    else if (grepl("ga:", metrics) && grepl("ga:", dimensions))
-        class(query) <- c(class(query), "core")
-    else
-        stop("Metrics and dimensions should have same prefix: ga or mcf.")
     return(query)
 }
 
 #' @include utils.R
 #' @export
 print.GAQuery <- function(x, ...) {
-    if (inherits(x, "mcf"))
-        x <- c(report.type = "multi-channel funnels", x)
-    else if (inherits(x, "core"))
-        x <- c(report.type = "core", x)
     x <- compact(x)
     cat("<Google Analytics Query>\n")
     cat(paste0("  ", format(paste0(names(x), ": ")), unlist(x), collapse = "\n"))

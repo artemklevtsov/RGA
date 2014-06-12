@@ -18,7 +18,7 @@ strip_ops <- function(x) {
 }
 
 # Build data.frame for core report
-build_core <- function(rows, cols) {
+build_ga <- function(rows, cols) {
     cols$name <- gsub("ga:", "", cols$name)
     data.df <- as.data.frame(rows, stringsAsFactors = FALSE)
     colnames(data.df) <- cols$name
@@ -45,6 +45,18 @@ build_mcf <- function(rows, cols) {
         colnames(data.df) <- cols$name
     }
     return(data.df)
+}
+
+# Build data.frame for mgmt
+build_mgmt <- function(data, cols) {
+    if (data$totalResults > 0 && !is.null(data[["items"]])) {
+        data.r <- data[["items"]]
+        data.r <- data.r[, names(data[["items"]]) %in% cols]
+    } else {
+        data.r <- data.frame(matrix(NA, nrow = 1L, ncol = length(cols)))
+        colnames(data.r) <- cols
+    }
+    return(data.r)
 }
 
 # Convert data types
