@@ -7,6 +7,20 @@
 #' @param client.secret OAuth client secret. if client.secret is missing, we'll look in the environment variable RGA_CONSUMER_SECRET.
 #' @param cache A logical value or a string. TRUE means to cache using the default cache file \code{.oauth-httr}, FALSE means don't cache. A string mean use the specified path as the cache file.
 #'
+#' @section Getting an OAuth Console Key and Secret:
+#'
+#' To find your project's client ID and client secret, do the following:
+#'
+#' \enumerate{
+#'     \item Go to the \href{https://console.developers.google.com/}{Google Developers Console}.
+#'     \item Select a project (create if needed).
+#'     \item In the sidebar on the left, select \emph{APIs & auth}. In the list of \emph{APIs}, make sure the status is \emph{ON} for the \emph{Analytics API}.
+#'     \item In the sidebar on the left, select \emph{Credentials}.
+#'     \item To set up a service account, select \emph{Create New Client ID}. Select \emph{Installed Application} and \emph{Others} options and then select \emph{Create Client ID}.
+#' }
+#'
+#' You can return to the \href{https://console.developers.google.com/}{Google Developers Console} at any time to view the client ID and client secret on the \emph{Client ID for native application} section on \emph{Credentials} page.
+#'
 #' @return A \code{\link[httr]{Token2.0}} reference class (RC) object.
 #'
 #' @references
