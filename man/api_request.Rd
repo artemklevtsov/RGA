@@ -6,7 +6,7 @@
 api_request(url, token, simplify = TRUE, messages = FALSE)
 }
 \arguments{
-\item{url}{he url of the page to retrieve.}
+\item{url}{the url of the page to retrieve.}
 
 \item{token}{\code{Token2.0} class object.}
 
@@ -23,5 +23,4 @@ Make a Goolge Analytics API request
     data.json <- api_request(url)
 }
 }
-\keyword{internal}
 

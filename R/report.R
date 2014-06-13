@@ -1,5 +1,7 @@
-#' @import RCurl
+# Build report API url
 #' @include utils.R
+#' @import RCurl
+#'
 get_report_url <- function(query, type) {
     stopifnot(inherits(query, "GAQuery"))
     if (type == "ga")

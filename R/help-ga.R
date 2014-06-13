@@ -22,7 +22,7 @@
 #' help_ga("vists", select = "short", exact = FALSE)
 #'
 #' @export
-
+#'
 help_ga <- function(topic, exact = TRUE, type = c("all", "metric", "dimension"),
                     depricated = FALSE, select, data = ga) {
     if (exact)

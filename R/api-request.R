@@ -1,11 +1,9 @@
 #' @title Make a Goolge Analytics API request
 #'
-#' @param url he url of the page to retrieve.
+#' @param url the url of the page to retrieve.
 #' @param token \code{Token2.0} class object.
 #' @param simplify logical; should the result be simplified to a vector, matrix or data.frame.
 #' @param messages logical; print information messages.
-#'
-#' @keywords internal
 #'
 #' @examples
 #' \dontrun{
