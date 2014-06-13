@@ -19,11 +19,13 @@ Imports:
     httr (>= 0.3)
 Collate:
     'api-request.R'
-    'ga-data.R'
-    'help-ga.R'
-    'mgmt.R'
+    'build-df.R'
     'utils.R'
     'query.R'
     'report.R'
+    'firstdate.R'
+    'ga-data.R'
+    'help-ga.R'
+    'mgmt.R'
     'rga.R'
     'token.R'

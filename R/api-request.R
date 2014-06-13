@@ -16,6 +16,7 @@
 #' @import RCurl
 #' @import httr
 #' @import jsonlite
+#'
 api_request = function(url, token, simplify = TRUE, messages = FALSE) {
     stopifnot(is.character(url) && length(url) == 1L)
     if (!missing(token)) {

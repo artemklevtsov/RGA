@@ -1,5 +1,6 @@
 # Fix query fields
 #' @include utils.R
+#'
 fix_query <- function(query) {
     stopifnot(inherits(query, "list"))
     if (!grepl("^ga:", query$profile.id))

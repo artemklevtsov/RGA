@@ -18,6 +18,7 @@
 #' @family Management API
 #'
 #' @include api-request.R
+#' @include build-df.R
 #'
 #' @export
 #'
@@ -55,6 +56,7 @@ get_accounts = function(token, start.index = 1L, max.results = 1000L) {
 #' @family Management API
 #'
 #' @include api-request.R
+#' @include build-df.R
 #'
 #' @export
 #'
@@ -99,6 +101,7 @@ get_webproperties = function(token, account.id = "~all", start.index = 1L, max.r
 #' @family Management API
 #'
 #' @include api-request.R
+#' @include build-df.R
 #'
 #' @export
 #'
@@ -141,6 +144,7 @@ get_profiles = function(token, account.id = "~all", webproperty.id = "~all", sta
 #' @family Management API
 #'
 #' @include api-request.R
+#' @include build-df.R
 #'
 #' @export
 #'
@@ -177,6 +181,7 @@ get_goals = function(token, account.id = "~all", webproperty.id = "~all", profil
 #' @family Management API
 #'
 #' @include api-request.R
+#' @include build-df.R
 #'
 #' @export
 #'
