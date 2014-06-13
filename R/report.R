@@ -93,8 +93,7 @@ get_report <- function(profile.id, start.date = "7daysAgo", end.date = "yesterda
     formats <- data.json$columnHeaders$dataType
     if (data.json$totalResults > 0 && !is.null(data.json$rows)) {
         rows <- data.json$rows
-        max.rows <- min(data.json$totalResults, query$max.results)
-        total.pages <- ceiling(max.rows / query$max.results)
+        total.pages <- ceiling(data.json$totalResults / query$max.results)
         if (total.pages > 1L) {
             if (messages)
                 message("Response contain more then 10000 rows.")
@@ -110,8 +109,7 @@ get_report <- function(profile.id, start.date = "7daysAgo", end.date = "yesterda
                     rows <- rbind(rows, data.json$rows)
             }
         }
-    }
-    else
+    } else
         rows <- matrix(NA, nrow = 1L, ncol = nrow(cols))
     sampled <- data.json$containsSampledData
     if (sampled)
