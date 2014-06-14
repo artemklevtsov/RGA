@@ -48,7 +48,7 @@ Step by step instructions is below.
 1. Create a new project:
     * Open the page https://console.developers.google.com/project;
     * Click on the red button labeled **Create Project** at the top left of the page;
-    * In the pop-up window, enter the name of the project in the PROJECT NAME field;
+    * In the pop-up window, enter the name of the project in the **PROJECT NAME** field;
     * Click on **Create** to confirm the creation of the project.
 2. Activation of the access to the API Google Analytics:
     * Select the project from the project list on page ttps://console.developers.google.com/project;
@@ -57,7 +57,7 @@ Step by step instructions is below.
 3. Creating a new application:
     * In the left sidebar, select **APIs & auth** and **Credentials** subparagraph;
     * On the left side of the page click on the button labeled **Create new Client ID**;
-    * In the pop-up window, select Installed application from the APPLICATION TYPE list and Other from INSTALLED APPLICATION TYPE list.
+    * In the pop-up window, select **Installed application** from the APPLICATION TYPE list and **Other** from INSTALLED APPLICATION TYPE list.
     * Confirm the creation of the application by clicking on the **Create Client ID** button.
 4. Obtaining Client ID and Client secret:
     * Select the project from the project list on page https://console.developers.google.com/project;
