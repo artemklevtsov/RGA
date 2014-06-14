@@ -22,7 +22,8 @@ This is a package for extracting data from Google Analytics into R. The package 
     first.date <- get_firstdate(profile.id, ga_token)
     # get GA report data
     ga_data <- get_report(profile.id, start.date = first.date, end.date = "today",
-                          metrics = "ga:users,ga:sessions", dimensions = "ga:userGender,ga:userAgeBracket")
+                          metrics = "ga:users,ga:sessions",
+                          dimensions = "ga:userGender,ga:userAgeBracket")
 }
 }
 \author{
