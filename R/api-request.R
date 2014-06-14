@@ -11,6 +11,8 @@
 #'     data.json <- api_request(url)
 #' }
 #'
+#' @keywords internal
+#'
 #' @import RCurl
 #' @import httr
 #' @import jsonlite

@@ -5,8 +5,8 @@
 \usage{
 set_query(profile.id, start.date = "7daysAgo", end.date = "yesterday",
   metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = NULL,
-  sort = NULL, filters = NULL, segment = NULL, start.index = 1L,
-  max.results = 10000L)
+  sort = NULL, filters = NULL, segment = NULL, start.index = NULL,
+  max.results = NULL)
 }
 \arguments{
 \item{profile.id}{Google Analytics profile ID. Can be character (with or without "ga:" prefix) or integer.}
@@ -53,4 +53,5 @@ Multi-Channel Funnels Reporting API - Dimensions & Metrics Reference: \url{https
 
 Google Analytics Query Explorer 2: \url{https://ga-dev-tools.appspot.com/explorer/}
 }
+\keyword{internal}
 
