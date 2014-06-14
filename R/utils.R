@@ -9,12 +9,14 @@ compact <- function(x) {
 strip_ops <- function(x) {
     # available operators
     ga_ops <- c("==", "!=", ">", "<", ">=", "<=", "<>", "=@", "!@", "=-", "!-", "\\|\\|", "&&", "OR", "AND")
-    ops_pattern <- paste("(\\ )+(", paste(ga_ops, collapse = "|"), ")(\\ )+", sep = "")
+    # build pattern for replace
+    ops_pattern <- paste("(\\s)+(", paste(ga_ops, collapse = "|"), ")(\\s)+", sep = "")
     # remove whitespaces around operators
     x <- gsub(ops_pattern, "\\2", x)
     # replace logical operators
     x <- gsub("OR|\\|\\|", ",", x)
     x <- gsub("AND|&&", ";", x)
+    return(x)
 }
 
 # Convert data types

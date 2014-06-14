@@ -93,7 +93,7 @@ get_report <- function(profile.id, start.date = "7daysAgo", end.date = "yesterda
     formats <- data.json$columnHeaders$dataType
     if (data.json$totalResults > 0 && !is.null(data.json$rows)) {
         rows <- data.json$rows
-        total.pages <- ceiling(data.json$totalResults / query$max.results)
+        total.pages <- ceiling(data.json$totalResults / data.json$itemsPerPage)
         if (total.pages > 1L) {
             if (messages)
                 message("Response contain more then 10000 rows.")
@@ -101,7 +101,7 @@ get_report <- function(profile.id, start.date = "7daysAgo", end.date = "yesterda
                 if (messages)
                     message(paste0("Fetching page ", page, " of ", total.pages, "..."))
                 query$start.index <- query$max.results * (page - 1) + 1
-                url <- get_report_url(query)
+                url <- get_report_url(query, type = type)
                 data.json <- api_request(url, token = token, messages = messages)
                 if (inherits(rows, "list"))
                     rows <- append(rows, data.json$rows)
