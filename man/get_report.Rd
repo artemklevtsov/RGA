@@ -5,9 +5,9 @@
 \usage{
 get_report(profile.id, start.date = "7daysAgo", end.date = "yesterday",
   metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = NULL,
-  sort = NULL, filters = NULL, segment = NULL, start.index = 1L,
+  sort = NULL, filters = NULL, segment = NULL, start.index = NULL,
   max.results = 10000L, date.format = "\%Y-\%m-\%d", type = c("ga",
-  "mcf"), query, token, messages = FALSE)
+  "mcf"), query, token, batch = FALSE, messages = FALSE)
 }
 \arguments{
 \item{profile.id}{character or numeric. Google Analytics profile ID. Can be character (with or without "ga:" prefix) or integer.}
@@ -37,6 +37,8 @@ get_report(profile.id, start.date = "7daysAgo", end.date = "yesterday",
 \item{token}{\code{Token2.0} class object with a valid authorization data.}
 
 \item{messages}{logical. Should print information messages?}
+
+\item{batch}{logical. Extract data in batches (extracting more observations than 10000).}
 
 \item{query}{\code{GAQuery} class object including a request parameters.}
 }

@@ -23,4 +23,5 @@ Make a Goolge Analytics API request
     data.json <- api_request(url)
 }
 }
+\keyword{internal}
 

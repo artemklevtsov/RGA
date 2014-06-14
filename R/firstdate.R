@@ -18,8 +18,10 @@
 #' @export
 #'
 get_firstdate <- function(profile.id, token, date.format = "%Y-%m-%d") {
-    data.r <- get_report(profile.id = profile.id, start.date = "2005-01-01", end.date = "today",
-                         metrics = "ga:sessions", dimensions = "ga:date", filters = "ga:sessions!=0",
-                         date.format = date.format, max.results = 1L, token = token, messages = FALSE)
+    data.r <- suppressWarnings(
+        get_report(profile.id = profile.id, start.date = "2005-01-01", end.date = "today",
+                   metrics = "ga:sessions", dimensions = "ga:date", filters = "ga:sessions!=0",
+                   date.format = date.format, max.results = 1L, token = token, batch = FALSE, messages = FALSE)
+    )
     return(data.r$date)
 }

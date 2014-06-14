@@ -39,6 +39,7 @@ get_report_url <- function(query, type) {
 #' @param type character string including report type. "ga" for core report, "mcf" for multi-channel funnels report.
 #' @param token \code{Token2.0} class object with a valid authorization data.
 #' @param messages logical. Should print information messages?
+#' @param batch logical. Extract data in batches (extracting more observations than 10000).
 #' @param query \code{GAQuery} class object including a request parameters.
 #'
 #' @return A data frame with Google Analytics reporting data. Columns are metrics and dimesnions.
@@ -77,8 +78,9 @@ get_report_url <- function(query, type) {
 #'
 get_report <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
                        metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = NULL,
-                       sort = NULL, filters = NULL, segment = NULL, start.index = 1L, max.results = 10000L,
-                       date.format = "%Y-%m-%d", type = c("ga", "mcf"), query, token, messages = FALSE) {
+                       sort = NULL, filters = NULL, segment = NULL, start.index = NULL, max.results = 10000L,
+                       date.format = "%Y-%m-%d", type = c("ga", "mcf"), query, token,
+                       batch = FALSE, messages = FALSE) {
     if (!missing(query) && !missing(profile.id))
         stop("Must specify query or additional arguments.")
     if (missing(query) && !missing(profile.id)) {
@@ -94,7 +96,9 @@ get_report <- function(profile.id, start.date = "7daysAgo", end.date = "yesterda
     if (data.json$totalResults > 0 && !is.null(data.json$rows)) {
         rows <- data.json$rows
         total.pages <- ceiling(data.json$totalResults / data.json$itemsPerPage)
-        if (total.pages > 1L) {
+        if (total.pages > 1L && !batch)
+            warning(paste("Only", data.json$itemsPerPage, "observations obtained of", data.json$totalResults, "total (set batch = TRUE to get all observations)."))
+        if (total.pages > 1L && batch) {
             if (messages)
                 message("Response contain more then 10000 rows.")
             for (page in 2:total.pages) {
