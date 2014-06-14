@@ -5,14 +5,14 @@ This package is designed to work with the **API Google Analytics** in **R**.
 Key features:
 
 * Support for OAuth 2.0 authentication;
-* Access to the API configuration (including accounts information, profiles, purposes, segments);
-* Access to the API basic reports and the reports of multichannel sequences;
+* Access to the API management (including accounts information, profiles, goals, segments);
+* Access to the API core reports and the reports of multi-channel funnels;
 * Support of the batch processing of the requests (allows to overcome the restriction on the number of rows returned for a single request).
 * Access to the metadata of the API reports.
 
 ## Installation
 
-Notice: Currently the Package RGA is in development and is not available via a CRAN network
+Notice: Currently the package `RGA` is in development and is not available via a CRAN network
 
 ## Prerequisites:
 
