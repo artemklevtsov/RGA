@@ -97,7 +97,7 @@ get_report <- function(profile.id, start.date = "7daysAgo", end.date = "yesterda
         rows <- data.json$rows
         total.pages <- ceiling(data.json$totalResults / data.json$itemsPerPage)
         if (total.pages > 1L && !batch)
-            warning(paste("Only", data.json$itemsPerPage, "observations obtained of", data.json$totalResults, "total (set batch = TRUE to get all observations)."))
+            warning(paste("Only", data.json$itemsPerPage, "observations out of", data.json$totalResults, "were obtained (set batch = TRUE to get all the results)."))
         if (total.pages > 1L && batch) {
             if (messages)
                 message("Response contain more then 10000 rows.")
