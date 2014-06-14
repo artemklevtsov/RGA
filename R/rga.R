@@ -3,6 +3,9 @@
 #' @description
 #' This is a package for extracting data from Google Analytics into R. The package uses OAuth 2.0 (protocol) to access the Google Analytics API.
 #'
+#' @author
+#' Artem Klevtsov \email{a.a.klevtsov@@gmail.com}
+#'
 #' @name RGA
 #' @docType package
 #' @keywords package
@@ -16,5 +19,22 @@
 #' The Core Reporting API: \url{https://developers.google.com/analytics/devguides/reporting/core/v3/reference}
 #'
 #' The Multi-Channel Funnels Reporting API: \url{https://developers.google.com/analytics/devguides/reporting/mcf/v3/reference}
+#'
+#' @examples
+#' \dontrun{
+#'     # load package
+#'     library(RGA)
+#'     # get access token
+#'     ga_token <- get_token(client.id = "myClientID", client.secret = "myClientSecret", cache = FALSE)
+#'     # get a GA profiles
+#'     ga_profiles <- get_profiles(token = ga_token)
+#'     # choose the profile ID by site URL
+#'     profile.id <- ga_profiles[ga_profiles$websiteUrl == "mySiteURL", "id"]
+#'     # get date when GA tracking began
+#'     first.date <- get_firstdate(profile.id, ga_token)
+#'     # get GA report data
+#'     ga_data <- get_report(profile.id, start.date = first.date, end.date = "today",
+#'                           metrics = "ga:users,ga:sessions", dimensions = "ga:userGender,ga:userAgeBracket")
+#' }
 #'
 NULL
