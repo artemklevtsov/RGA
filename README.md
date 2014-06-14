@@ -12,8 +12,7 @@ Key features:
 
 ## Installation
 
-Notice: Currently the Package RGA is in development and is not available through a network of CRAN.
-
+Notice: Currently the Package RGA is in development and is not available via a CRAN network
 Prerequisites:
 
 * R version should be at least 2.15.0;
