@@ -1,4 +1,6 @@
-This package is designed to work with the API Google Analytics in R.
+**RGA**## Your title here... ##
+
+This package is designed to work with the **API Google Analytics** in **R**.
 
 Key features:
 
@@ -60,8 +62,3 @@ Step by step instructions is below.
 •	     Select the project from the project list on page https://console.developers.google.com/project;
 •	     In the left sidebar, Select APIs & auth and Credentials subparagraph;
 •	     In the table called Client ID for native application, copy the values of the Client ID and Client secret fields.
-
-
-
-
-
