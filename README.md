@@ -48,7 +48,7 @@ Step by step instructions is below.
 1. Create a new project:
     * Open the page https://console.developers.google.com/project;
     * Click on the **Create Project** red button at the top left of the page;
-    * In the pop-up window, enter the name of the project in the **PROJECT NAME** field;
+    * In the pop-up window, enter the name of the project into the **PROJECT NAME** field;
     * Click on **Create** to confirm the creation of the project.
 2. Activation of the access to the API Google Analytics:
     * Select the project from the project list on https://console.developers.google.com/project page;
