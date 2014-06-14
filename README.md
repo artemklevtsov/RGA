@@ -14,7 +14,7 @@ Key features:
 
 Notice: Currently the package `RGA` is in development and is not available via a CRAN network
 
-### Requirements:
+### Requirements
 
 * R version should be at least 2.15.0;
 * Packages `RCurl`, `httr` and `jsonlite`;
@@ -47,19 +47,31 @@ Step by step instructions is below.
 
 1. Create a new project:
     * Open the page https://console.developers.google.com/project;
-    * Click on the red button labeled **Create Project** at the top left of the page;
-    * In the pop-up window, enter the name of the project in the **PROJECT NAME** field;
+    * Click on the **Create Project** red button at the top left of the page;
+    * In the pop-up window, enter the name of the project into the **PROJECT NAME** field;
     * Click on **Create** to confirm the creation of the project.
 2. Activation of the access to the API Google Analytics:
-    * Select the project from the project list on page ttps://console.developers.google.com/project;
+    * Select the project from the project list on https://console.developers.google.com/project page;
     * Select **APIs & auth** in the left sidebar;
-    * In the **APIs** tab, activate **Analytics API**, by clicking on **OFF** button.
+    * In the **APIs** tab, click on the **OFF** button to activate **Analytics API**.
 3. Creating a new application:
-    * In the left sidebar, select **APIs & auth** and **Credentials** subparagraph;
-    * On the left side of the page click on the button labeled **Create new Client ID**;
+    * In the left sidebar, select **APIs & auth** and **Credentials** sub-paragraph;
+    * Click on the **Create new Client ID** button on the left side of the page;
     * In the pop-up window, select **Installed application** from the APPLICATION TYPE list and **Other** from INSTALLED APPLICATION TYPE list.
-    * Confirm the creation of the application by clicking on the **Create Client ID** button.
+    * Click on the **Create Client ID** button to confirm the creation of the application.
 4. Obtaining Client ID and Client secret:
-    * Select the project from the project list on page https://console.developers.google.com/project;
-    * In the left sidebar, select **APIs & auth** and **Credentials** subparagraph;
-    * In the table called **Client ID for native application**, copy the values of the **Client ID** and **Client secret** fields.
+    * Select the project from the project list on the https://console.developers.google.com/project page;
+    * In the left sidebar, select **APIs & auth** and **Credentials** sub-paragraph;
+    * In the **Client ID for native application** table, copy the values of the following fields: **Client ID** and **Client secret**.
+
+## Working with the package
+
+### Obtaining an access token
+
+Authorization and obtaining the access token is necessary before implementing any requests to API. It can be done with the following command:
+
+```R
+token <- get_token(client.id = "My_Client_ID", client.secret = "My_Client_secret")
+```
+
+Note: The values of Client.id and client.secret arguments can be defined via the following variable environments: `RGA_CONSUMER_ID` and `RGA_CONSUMER_SECRET`. In this case, it is not necessary to specify the `client.id` and `client.secret` arguments when calling the `get_token` function.
