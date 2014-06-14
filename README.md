@@ -82,11 +82,8 @@ Setting the variable environments is different for various operating systems, so
 RGA_CONSUMER_ID="My_Client_ID"
 RGA_CONSUMER_SECRET="My_Client_secret"
 
-Environmental variables can also be set directly from R-session using the function. For instance: 
+Environmental variables can also be set directly from R-session using the `Sys.setenv` function. For instance: 
 
 ```R
 Sys.setenv(RGA_CONSUMER_ID = "My_Client_ID", RGA_CONSUMER_SECRET = "My_Client_secret")
 ```
-
-
-
