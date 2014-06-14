@@ -70,6 +70,8 @@ Step by step instructions is below.
 
 Authorization and obtaining the access token is necessary before implementing any requests to API. It can be done with the following command:
 
+```R
 token <- get_token(client.id = "My_Client_ID", client.secret = "My_Client_secret")
+```
 
-Note: The values of Client.id and client.secret arguments can be defined via the following variable environments: RGA_CONSUMER_ID and RGA_CONSUMER_SECRET. In this case, it is not necessary to specify the client.id and client.secret arguments when calling the get_token function.
+Note: The values of Client.id and client.secret arguments can be defined via the following variable environments: `RGA_CONSUMER_ID` and `RGA_CONSUMER_SECRET`. In this case, it is not necessary to specify the `client.id` and `client.secret` arguments when calling the `get_token` function.
