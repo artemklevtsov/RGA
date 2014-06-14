@@ -41,7 +41,7 @@ install_bitbucket(repo = "rga", username = "unikum")
 
 ### Получение ключей для доступа к API Google Analytics
 
-Прежде ем приступить к работе с пакетом `RGA`, необходимо создать новое приложение в [Google Developers Console](https://console.developers.google.com) и получить **Client ID** (идентификатор клиента) и **Client secret** (секретный ключ клиента) для доступа к API Google Analytics.
+Прежде чем приступить к работе с пакетом `RGA`, необходимо создать новое приложение в [Google Developers Console](https://console.developers.google.com) и получить **Client ID** (идентификатор клиента) и **Client secret** (секретный ключ клиента) для доступа к API Google Analytics.
 
 Пошаговая инструкция приведена ниже.
 
