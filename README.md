@@ -14,7 +14,7 @@ Key features:
 
 Notice: Currently the package `RGA` is in development and is not available via a CRAN network
 
-### Requirements:
+### Requirements
 
 * R version should be at least 2.15.0;
 * Packages `RCurl`, `httr` and `jsonlite`;
