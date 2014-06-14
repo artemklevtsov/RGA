@@ -1,4 +1,4 @@
-**RGA**## Your title here... ##
+**RGA**
 
 This package is designed to work with the **API Google Analytics** in **R**.
 
