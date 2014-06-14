@@ -60,7 +60,7 @@ get_token <- function(client.id, client.secret, cache = TRUE) {
             client.secret <- client.secret_env
     }
     rga_app <- oauth_app(appname = "rga", key = client.id, secret = client.secret)
-    token <- oauth2.0_token(endpoint = oauth_endpoints(name = "google"), app = rga_app,
-                            scope = "https://www.googleapis.com/auth/analytics.readonly", cache = cache)
+    token <- oauth2.0_token(endpoint = oauth_endpoints(name = "google"), app = rga_app, cache = cache,
+                            scope = "https://www.googleapis.com/auth/analytics.readonly")
     return(token)
 }

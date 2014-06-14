@@ -1,8 +1,8 @@
 #' @title Get the first date with available data
 #'
 #' @param profile.id Google Analytics profile ID.
-#' @param date.format date format for output data.
 #' @param token \code{Token2.0} class object.
+#' @param date.format date format for output data.
 #'
 #' @return Start date of collect of the Google Analytics statistics.
 #'
@@ -17,8 +17,8 @@
 #'
 #' @export
 #'
-get_firstdate <- function(profile.id, date.format = "%Y-%m-%d", token) {
-    data.r <- get_report(profile.id = profile.id, start.date = "2005-01-01",
+get_firstdate <- function(profile.id, token, date.format = "%Y-%m-%d") {
+    data.r <- get_report(profile.id = profile.id, start.date = "2005-01-01", end.date = "today",
                          metrics = "ga:sessions", dimensions = "ga:date", filters = "ga:sessions!=0",
                          date.format = date.format, max.results = 1L, token = token, messages = FALSE)
     return(data.r$date)
