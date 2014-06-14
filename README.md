@@ -74,9 +74,9 @@ Authorization and obtaining the access token is necessary before implementing an
 token <- get_token(client.id = "My_Client_ID", client.secret = "My_Client_secret")
 ```
 
-Note: The values of Client.id and client.secret arguments can be defined via the following variable environments: `RGA_CONSUMER_ID` and `RGA_CONSUMER_SECRET`. In this case, it is not necessary to specify the `client.id` and `client.secret` arguments when calling the `get_token` function.
+Note: The values of Client.id and client.secret arguments can be defined via the following environment variables: `RGA_CONSUMER_ID` and `RGA_CONSUMER_SECRET`. In this case, it is not necessary to specify the `client.id` and `client.secret` arguments when calling the `get_token` function.
 
-Setting the environment variables is different for various operating systems, so the user should refer to the relevant reference materials (view the list of references at the end of this manual). Also, there is a setup method of the variable environments when running R-sessions using the `.Renviron` files in the user's working or home directory. Contents of the file might look like this:
+Setting the environment variables is different for various operating systems, so the user should refer to the relevant reference materials (view the list of references at the end of this manual). Also, there is a setup method of the environment variables when running R-sessions using the `.Renviron` files in the user's working or home directory. Contents of the file might look like this:
 
 ```txt
 RGA_CONSUMER_ID="My_Client_ID"
