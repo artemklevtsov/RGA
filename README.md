@@ -64,7 +64,7 @@ Step by step instructions is below.
     * In the left sidebar, select **APIs & auth** and **Credentials** sub-paragraph;
     * In the **Client ID for native application** table, copy the values of the following fields: **Client ID** and **Client secret**.
 
-## Work with the package
+## Working with the package
 
 ### Obtaining an access token
 
