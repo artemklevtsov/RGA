@@ -2,13 +2,14 @@
 
 This package is designed to work with the **API Google Analytics** in **R**.
 
-Key features:
+Key **features**:
 
 * Support for OAuth 2.0 authentication;
-* Access to the API management (including accounts information, profiles, goals, segments);
-* Access to the API core reports and the reports of multi-channel funnels;
+* Support Google Analytics APIs:
+    - Access to the Management API (including accounts information, profiles, goals, segments);
+    - Access to the Core Reporting API and the Multi-Channel Funnels Reporting API;
+    - Access to the Metadata API.
 * Support of the batch processing of the requests (allows to overcome the restriction on the number of rows returned for a single request).
-* Access to the metadata of the API reports.
 
 ## Installation
 
@@ -17,7 +18,7 @@ Notice: Currently the package `RGA` is in development and is not available via a
 ### Requirements
 
 * R version should be at least 2.15.0;
-* Packages `RCurl`, `httr` and `jsonlite`;
+* `RCurl`, `httr` and `jsonlite` packages;
 * `devtools` package.
 
 ### Installing the `devtools` package
@@ -108,26 +109,44 @@ Let's review these functions in details.
     - name - account name;
     - created - Date of creating account;
     - updated -  date of last update of account;
-* `get_webproperties` - getting a list of resources (Web Properties), to which the user has access. Return columns:
-    - id - resource ID;
-    - name - resource name;
-    - websiteUrl - web-site URL;
-    - level - level of the resource: standard or premium;;
-    - profileCount - number of profiles (submissions) for the resource;
-    - industryVertical - category / industry, which owns the resource;
-    - created - Date of creating the resource;
-    - updated - date of the last change of the resource;
-* `get_profiles` - getting a list of resources (Web Properties) and submissions (Views, Profiles) sites to which the user has access. Return columns:
+* `get_webproperties` - getting a list of web propertys (Web Properties), to which the user has access. Return columns:
+    - id - web property ID;
+    - name - web property name;
+    - websiteUrl - website URL;
+    - level - level of the web property: standard or premium;;
+    - profileCount - number of profiles (views) for the web property;
+    - industryVertical - category / industry, which owns the web property;
+    - created - Date of creating the web property;
+    - updated - date of the last change of the web property;
+* `get_profiles` - getting a list of web propertys (Web Properties) and views (Profiles) sites to which the user has access. Return columns:
     - id - submission ID;
     - accountId - account ID
-    - webPropertyId - resource ID;
+    - webPropertyId - web property ID;
     - name - submission name;
     - currency - currency;
     - timezone - timezone;
-    - websiteUrl - web-site URL;
-    - type - resource type: web-site or application;
+    - websiteUrl - website URL;
+    - type - web property type: website or application;
     - created - date of creating submission;
     - updated - date of the last update of submission;
     - eCommerceTracking - e-commerce tracking;
     - siteSearchQueryParameters - query parameter to track search the site;
- 
+
+
+## References
+
+* [Google Developers Console](https://console.developers.google.com/project);
+
+### Google Analytics API
+
+* [Management API Reference](https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/)
+* [Core Reporting API Reference Guide](https://developers.google.com/analytics/devguides/reporting/core/v3/reference)
+* [Multi-Channel Funnels Reporting API Reference Guide](https://developers.google.com/analytics/devguides/reporting/mcf/v3/reference)
+* [Metadata API Reference](https://developers.google.com/analytics/devguides/reporting/metadata/v3/reference/)
+* [Configuration and Reporting API Limits and Quotas](https://developers.google.com/analytics/devguides/reporting/metadata/v3/limits-quotas)
+
+### Environment variables
+
+* [Setting environment variables in Windows XP](http://support.microsoft.com/kb/310519)
+* [Setting environment variables in earlier versions of OSX](https://developer.apple.com/library/mac/#documentation/MacOSX/Conceptual/BPRuntimeConfig/Articles/EnvironmentVars.html)
+* [Setting environment variables in Ubuntu Linux](https://help.ubuntu.com/community/EnvironmentVariables)
