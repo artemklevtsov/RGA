@@ -21,6 +21,7 @@ Collate:
     'api-request.R'
     'build-df.R'
     'utils.R'
+    'build-url.R'
     'query.R'
     'report.R'
     'firstdate.R'

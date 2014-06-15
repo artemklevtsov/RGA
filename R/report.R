@@ -47,7 +47,7 @@
 #' @seealso \code{\link{get_token}} \code{\link{set_query}}
 #'
 #' @include query.R
-#' @include utils.R
+#' @include build-url.R
 #' @include api-request.R
 #' @include build-df.R
 #'
@@ -58,6 +58,9 @@ get_report <- function(profile.id, start.date = "7daysAgo", end.date = "yesterda
                        sort = NULL, filters = NULL, segment = NULL, start.index = NULL, max.results = 10000L,
                        date.format = "%Y-%m-%d", type = c("ga", "mcf"), query, token,
                        batch = FALSE, messages = FALSE) {
+    type <- match.arg(type)
+    if (type == "mcf" && !is.null(segment))
+        segment <- NULL
     if (!missing(query) && !missing(profile.id))
         stop("Must specify query or additional arguments.")
     if (missing(query) && !missing(profile.id)) {
@@ -65,7 +68,6 @@ get_report <- function(profile.id, start.date = "7daysAgo", end.date = "yesterda
                            metrics = metrics, dimensions = dimensions, sort = sort, filters = filters,
                            segment = segment, start.index = start.index, max.results = max.results)
     }
-    type <- match.arg(type)
     url <- build_url(type = type, query = query)
     data.json <- api_request(url, token = token, messages = messages)
     cols <- data.json$columnHeaders
