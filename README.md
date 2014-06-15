@@ -13,29 +13,20 @@ Key **features**:
 
 ## Installation
 
-Notice: Currently the package `RGA` is in development and is not available via a CRAN network
+Notice: Currently the package `RGA` is in development and is not available via a CRAN network.
 
-### Requirements
-
-* R version should be at least 2.15.0;
-* `RCurl`, `httr` and `jsonlite` packages;
-* `devtools` package.
-
-### Installing the `devtools` package
-
-To install the latest version `devtools` package, use the following command:
+`RGA` package can be installed from the git-repository with the `install_bitbucket` function from `devtools` package:
 
 ```R
-install.packages("devtools", dependencies = TRUE)
+devtools::install_bitbucket(repo = "rga", username = "unikum")
 ```
 
-### Installing the `RGA` package 
+If you know GIT and R CMD build, here is another way:
 
-`RGA` can be installed from the git-repository:
-
-```R
-library(devtools)
-install_bitbucket(repo = "rga", username = "unikum")
+```bash
+git clone https://unikum@bitbucket.org/unikum/rga.git
+R CMD build rga
+R CMD INSTALL rga_*.tar.gz
 ```
 
 ## Preparation
