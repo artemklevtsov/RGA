@@ -88,3 +88,8 @@ Environment variables can also be set directly from R-session using the `Sys.set
 ```R
 Sys.setenv(RGA_CONSUMER_ID = "My_Client_ID", RGA_CONSUMER_SECRET = "My_Client_secret")
 ```
+
+ This string can be added to the file `.Rprofile` in the user's current оr home directory, to set automatically these variables when the R-сессион starts.
+
+After calling the function `get_token`, the browser with the page of request of confirmation the permission to access to the Google Analytics data will be opened by default.
+
