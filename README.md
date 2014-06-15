@@ -2,7 +2,7 @@
 
 This package is designed to work with the **API Google Analytics** in **R**.
 
-Key features:
+Key **features**:
 
 * Support for OAuth 2.0 authentication;
 * Support Google Analytics APIs:
@@ -11,7 +11,6 @@ Key features:
     - Access to the Metadata API.
 * Support of the batch processing of the requests (allows to overcome the restriction on the number of rows returned for a single request).
 
-
 ## Installation
 
 Notice: Currently the package `RGA` is in development and is not available via a CRAN network
@@ -19,7 +18,7 @@ Notice: Currently the package `RGA` is in development and is not available via a
 ### Requirements
 
 * R version should be at least 2.15.0;
-* Packages `RCurl`, `httr` and `jsonlite`;
+* `RCurl`, `httr` and `jsonlite` packages;
 * `devtools` package.
 
 ### Installing the `devtools` package
