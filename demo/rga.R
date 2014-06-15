@@ -11,15 +11,8 @@ get_profiles(token = ga_token)
 # 3. Profile ID
 profile.id <- get_profiles(token = ga_token)[1, 1]
 
-# 4. Set query
-query <- set_query(profile.id = profile.id)
-print(query)
-
-# 5. Get first date
+# 4. Get first date
 first.date <- get_firstdate(profile.id = profile.id, token = ga_token)
 
-# 6. Get data
-# 6.1. Get data with query
-get_report(query = query, token = ga_token)
-# 6.2 Get data directly
+# 5. Get data
 get_report(profile.id = profile.id, token = ga_token)
