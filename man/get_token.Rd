@@ -16,7 +16,7 @@ get_token(client.id, client.secret, cache = TRUE)
 A \code{\link[httr]{Token2.0}} reference class (RC) object.
 }
 \description{
-\code{get_token} is wrapper for \code{link[httr]{oauth2.0_token} function}.
+\code{get_token} is wrapper for \code{link[httr]{oauth2.0_token}} function.
 }
 \section{Getting an OAuth Console Key and Secret}{
 
@@ -35,9 +35,9 @@ You can return to the \href{https://console.developers.google.com/}{Google Devel
 }
 \examples{
 \dontrun{
-ga_token <- get_token(client.id = "myID", client.secret = "mySecret")
-# if set RGA_CONSUMER_ID and RGA_CONSUMER_SECRET environment variables
-ga_token <- get_token()
+    ga_token <- get_token(client.id = "myID", client.secret = "mySecret")
+    # if set RGA_CONSUMER_ID and RGA_CONSUMER_SECRET environment variables
+    ga_token <- get_token()
 }
 }
 \references{

@@ -1,7 +1,7 @@
 #' @title Generate an oauth2.0 token
 #'
 #' @description
-#' \code{get_token} is wrapper for \code{link[httr]{oauth2.0_token} function}.
+#' \code{get_token} is wrapper for \code{link[httr]{oauth2.0_token}} function.
 #'
 #' @param client.id OAuth client ID. if client.id is missing, we'll look in the environment variable RGA_CONSUMER_ID.
 #' @param client.secret OAuth client secret. if client.secret is missing, we'll look in the environment variable RGA_CONSUMER_SECRET.
@@ -35,9 +35,9 @@
 #'
 #' @examples
 #' \dontrun{
-#' ga_token <- get_token(client.id = "myID", client.secret = "mySecret")
-#' # if set RGA_CONSUMER_ID and RGA_CONSUMER_SECRET environment variables
-#' ga_token <- get_token()
+#'     ga_token <- get_token(client.id = "myID", client.secret = "mySecret")
+#'     # if set RGA_CONSUMER_ID and RGA_CONSUMER_SECRET environment variables
+#'     ga_token <- get_token()
 #' }
 #'
 #' @import httr
