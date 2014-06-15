@@ -1,18 +1,4 @@
-#' @title Make a Goolge Analytics API request
-#'
-#' @param url the url of the page to retrieve.
-#' @param token \code{Token2.0} class object.
-#' @param simplify logical; should the result be simplified to a vector, matrix or data.frame.
-#' @param messages logical; print information messages.
-#'
-#' @examples
-#' \dontrun{
-#'     url <- "https://www.googleapis.com/analytics/v3/metadata/ga/olumns"
-#'     data.json <- api_request(url)
-#' }
-#'
-#' @keywords internal
-#'
+# Make a Goolge Analytics API request
 #' @import RCurl
 #' @import httr
 #' @import jsonlite
@@ -41,10 +27,8 @@ api_request = function(url, token, simplify = TRUE, messages = FALSE) {
         message(http_status(request)$message)
     # Convert the JSON response into a R list
     data.json <- fromJSON(content(request, as = "text"), simplifyVector = simplify)
-    if (!is.null(data.json$error)) {
-        error.msg <- paste(c(http_status(request)$message, data.json$error$errors$message), collapse = "\n")
-        stop(error.msg)
-    }
+    if (!is.null(data.json$error))
+        stop(paste(http_status(request)$message, "Reason:", data.json$error$errors$message, sep = "\n", collapse = "\n"), call. = FALSE)
     # Return the list containing Google Analytics API response
     return(data.json)
 }
