@@ -130,4 +130,22 @@ Let's review these functions in details.
     - updated - date of the last update of submission;
     - eCommerceTracking - e-commerce tracking;
     - siteSearchQueryParameters - query parameter to track search the site;
- 
+
+
+## References
+
+* [Google Developers Console](https://console.developers.google.com/project);
+
+### Google Analytics API
+
+* [Management API Reference](https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/)
+* [Core Reporting API Reference Guide](https://developers.google.com/analytics/devguides/reporting/core/v3/reference)
+* [Multi-Channel Funnels Reporting API Reference Guide](https://developers.google.com/analytics/devguides/reporting/mcf/v3/reference)
+* [Metadata API Reference](https://developers.google.com/analytics/devguides/reporting/metadata/v3/reference/)
+* [Configuration and Reporting API Limits and Quotas](https://developers.google.com/analytics/devguides/reporting/metadata/v3/limits-quotas)
+
+### Environment variables
+
+* [Setting environment variables in Windows XP](http://support.microsoft.com/kb/310519)
+* [Setting environment variables in earlier versions of OSX](https://developer.apple.com/library/mac/#documentation/MacOSX/Conceptual/BPRuntimeConfig/Articles/EnvironmentVars.html)
+* [Setting environment variables in Ubuntu Linux](https://help.ubuntu.com/community/EnvironmentVariables)
