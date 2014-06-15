@@ -93,6 +93,6 @@ Sys.setenv(RGA_CONSUMER_ID = "My_Client_ID", RGA_CONSUMER_SECRET = "My_Client_se
 
 After calling the function `get_token`, the browser is opened and page with confirmation of permission to access to the Google Analytics data is displayed. You need to authorize with your **Google account** and confirm the permission to access to the Google Analytics data. Note: the package `RGA` requests access to **read-only** data. 
 
-If the arguments were used by default and the parameter `httr_oauth_cache` wasn't changed, after successful authorization, in the working directory will be created file `.httr-oauth` with data to access to the Google API, which will be used between sessions. Also, possible to cancel the file creation using the argument `cache` (meaning `FALSE`) or specify an alternate path to the file storage (necessary to specify the path and file name).
+If the arguments were used by default and the parameter `httr_oauth_cache` wasn't changed, after successful authorization the `.httr-oauth` file will be created in the working directory with data to access to the Google API, which will be used between sessions. Also, possible to cancel the file creation using the argument `cache` (meaning `FALSE`) or specify an alternate path to the file storage (necessary to specify the path and file name).
 
 The obtained `token` variable will be used in all requests to the API Google Analytics, which require user authentication.
