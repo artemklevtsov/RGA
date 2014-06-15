@@ -91,5 +91,43 @@ Sys.setenv(RGA_CONSUMER_ID = "My_Client_ID", RGA_CONSUMER_SECRET = "My_Client_se
 
  This string can be added to the file `.Rprofile` in the user's current оr home directory, to set automatically these variables when the R-сессион starts.
 
-After calling the function `get_token`, the browser with the page of request of confirmation the permission to access to the Google Analytics data will be opened by default.
+After calling the function `get_token`, the browser is opened and page with confirmation of permission to access to the Google Analytics data is displayed. You need to authorize with your **Google account** and confirm the permission to access to the Google Analytics data. Note: the package `RGA` requests access to **read-only** data. 
 
+If the arguments were used by default and the parameter `httr_oauth_cache` wasn't changed, after successful authorization the `.httr-oauth` file will be created in the working directory with data to access to the Google API, which will be used between sessions. Also, possible to cancel the file creation using the argument `cache` (meaning `FALSE`) or specify an alternate path to the file storage (necessary to specify the path and file name).
+
+The obtained `token` variable will be used in all requests to the API Google Analytics, which require user authentication.
+
+### Obtaining the access to the API configuration
+
+To access the API Google Analytics configuration, package `RGA` provides the following functions: `get_accounts`, `get_webproperties`, `get_profiles`, `get_goals` и `get_segments`. Each of these functions returns a table of data (`data.frame`), with the relevant content.
+
+Let's review these functions in details.
+
+* `get_accounts` - getting the list of accounts to which the user has access. Return columns:
+    - id - account ID;
+    - name - account name;
+    - created - Date of creating account;
+    - updated -  date of last update of account;
+* `get_webproperties` - getting a list of resources (Web Properties), to which the user has access. Return columns:
+    - id - resource ID;
+    - name - resource name;
+    - websiteUrl - web-site URL;
+    - level - level of the resource: standard or premium;;
+    - profileCount - number of profiles (submissions) for the resource;
+    - industryVertical - category / industry, which owns the resource;
+    - created - Date of creating the resource;
+    - updated - date of the last change of the resource;
+* `get_profiles` - getting a list of resources (Web Properties) and submissions (Views, Profiles) sites to which the user has access. Return columns:
+    - id - submission ID;
+    - accountId - account ID
+    - webPropertyId - resource ID;
+    - name - submission name;
+    - currency - currency;
+    - timezone - timezone;
+    - websiteUrl - web-site URL;
+    - type - resource type: web-site or application;
+    - created - date of creating submission;
+    - updated - date of the last update of submission;
+    - eCommerceTracking - e-commerce tracking;
+    - siteSearchQueryParameters - query parameter to track search the site;
+ 
