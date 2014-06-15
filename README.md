@@ -91,4 +91,4 @@ Sys.setenv(RGA_CONSUMER_ID = "My_Client_ID", RGA_CONSUMER_SECRET = "My_Client_se
 
  This string can be added to the file `.Rprofile` in the user's current оr home directory, to set automatically these variables when the R-сессион starts.
 
-After calling the function `get_token`, the browser is opened and page with confirmation of permission to access to the Google Analytics data is displayed.
+After calling the function `get_token`, the browser is opened and page with confirmation of permission to access to the Google Analytics data is displayed. You need to authorize with your **Google account** and confirm the permission to access to the Google Analytics data. Note: the package `RGA` requests access to **read-only** data.
