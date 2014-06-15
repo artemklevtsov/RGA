@@ -108,24 +108,24 @@ Let's review these functions in details.
     - name - account name;
     - created - Date of creating account;
     - updated -  date of last update of account;
-* `get_webproperties` - getting a list of resources (Web Properties), to which the user has access. Return columns:
-    - id - resource ID;
-    - name - resource name;
-    - websiteUrl - web-site URL;
-    - level - level of the resource: standard or premium;;
-    - profileCount - number of profiles (submissions) for the resource;
-    - industryVertical - category / industry, which owns the resource;
-    - created - Date of creating the resource;
-    - updated - date of the last change of the resource;
-* `get_profiles` - getting a list of resources (Web Properties) and submissions (Views, Profiles) sites to which the user has access. Return columns:
+* `get_webproperties` - getting a list of web propertys (Web Properties), to which the user has access. Return columns:
+    - id - web property ID;
+    - name - web property name;
+    - websiteUrl - website URL;
+    - level - level of the web property: standard or premium;;
+    - profileCount - number of profiles (views) for the web property;
+    - industryVertical - category / industry, which owns the web property;
+    - created - Date of creating the web property;
+    - updated - date of the last change of the web property;
+* `get_profiles` - getting a list of web propertys (Web Properties) and views (Profiles) sites to which the user has access. Return columns:
     - id - submission ID;
     - accountId - account ID
-    - webPropertyId - resource ID;
+    - webPropertyId - web property ID;
     - name - submission name;
     - currency - currency;
     - timezone - timezone;
-    - websiteUrl - web-site URL;
-    - type - resource type: web-site or application;
+    - websiteUrl - website URL;
+    - type - web property type: website or application;
     - created - date of creating submission;
     - updated - date of the last update of submission;
     - eCommerceTracking - e-commerce tracking;
