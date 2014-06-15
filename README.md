@@ -96,3 +96,7 @@ After calling the function `get_token`, the browser is opened and page with conf
 If the arguments were used by default and the parameter `httr_oauth_cache` wasn't changed, after successful authorization the `.httr-oauth` file will be created in the working directory with data to access to the Google API, which will be used between sessions. Also, possible to cancel the file creation using the argument `cache` (meaning `FALSE`) or specify an alternate path to the file storage (necessary to specify the path and file name).
 
 The obtained `token` variable will be used in all requests to the API Google Analytics, which require user authentication.
+
+### Obtaining the access to the API configuration
+
+To access the API Google Analytics configuration, package `RGA` provides the following functions: `get_accounts`, `get_webproperties`, `get_profiles`, `get_goals` и `get_segments`. Each of these functions returns a table of data (`data.frame`), with the relevant content.
