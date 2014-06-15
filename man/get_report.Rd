@@ -60,7 +60,6 @@ A data frame with Google Analytics reporting data. Columns are metrics and dimes
     ga_query <- set_query("myProfileID", start.date = "30daysAgo", end.date = "today",
                           metrics = "ga:sessions", dimensions = "ga:source,ga:medium"
                           sort = "-ga:sessions")
-    query
     ga_data <- get_report(ga_query, token = ga_token)
 }
 }

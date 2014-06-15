@@ -1,25 +1,3 @@
-# Build report API url
-#' @include utils.R
-#' @import RCurl
-#'
-get_report_url <- function(query, type) {
-    stopifnot(inherits(query, "GAQuery"))
-    if (type == "ga")
-        url <- "https://www.googleapis.com/analytics/v3/data/ga"
-    else if (type == "mcf")
-        url <- "https://www.googleapis.com/analytics/v3/data/mcf"
-    else
-        stop("Unknown report type.")
-    query <- compact(query)
-    params <- names(query)
-    params <- gsub("profile\\.id", "ids", params)
-    params <- gsub("\\.", "-", params)
-    values <- as.vector(query, mode = "character")
-    values <- curlEscape(values)
-    string <- paste(params, values, sep = "=", collapse = "&")
-    return(paste(url, string, sep = "?"))
-}
-
 #' @title Get Google Anaytics report data
 #'
 #' @description
@@ -56,7 +34,6 @@ get_report_url <- function(query, type) {
 #'     ga_query <- set_query("myProfileID", start.date = "30daysAgo", end.date = "today",
 #'                           metrics = "ga:sessions", dimensions = "ga:source,ga:medium"
 #'                           sort = "-ga:sessions")
-#'     query
 #'     ga_data <- get_report(ga_query, token = ga_token)
 #' }
 #'
@@ -70,9 +47,9 @@ get_report_url <- function(query, type) {
 #' @seealso \code{\link{get_token}} \code{\link{set_query}}
 #'
 #' @include query.R
+#' @include utils.R
 #' @include api-request.R
 #' @include build-df.R
-#' @include utils.R
 #'
 #' @export
 #'
@@ -89,7 +66,7 @@ get_report <- function(profile.id, start.date = "7daysAgo", end.date = "yesterda
                            segment = segment, start.index = start.index, max.results = max.results)
     }
     type <- match.arg(type)
-    url <- get_report_url(query, type = type)
+    url <- build_url(type = type, query = query)
     data.json <- api_request(url, token = token, messages = messages)
     cols <- data.json$columnHeaders
     formats <- data.json$columnHeaders$dataType
@@ -105,7 +82,7 @@ get_report <- function(profile.id, start.date = "7daysAgo", end.date = "yesterda
                 if (messages)
                     message(paste0("Fetching page ", page, " of ", total.pages, "..."))
                 query$start.index <- query$max.results * (page - 1) + 1
-                url <- get_report_url(query, type = type)
+                url <- build_url(type = type, query = query)
                 data.json <- api_request(url, token = token, messages = messages)
                 if (inherits(rows, "list"))
                     rows <- append(rows, data.json$rows)

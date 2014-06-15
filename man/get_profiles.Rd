@@ -4,7 +4,7 @@
 \title{Lists views (profiles) to which the user has access}
 \usage{
 get_profiles(token, account.id = "~all", webproperty.id = "~all",
-  start.index = 1L, max.results = 1000L)
+  start.index = NULL, max.results = NULL)
 }
 \arguments{
 \item{token}{\code{Token2.0} class object.}

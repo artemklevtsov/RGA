@@ -3,7 +3,7 @@
 \alias{get_segments}
 \title{Lists segments to which the user has access}
 \usage{
-get_segments(token, start.index = 1L, max.results = 1000L)
+get_segments(token, start.index = NULL, max.results = NULL)
 }
 \arguments{
 \item{token}{\code{Token2.0} class object.}

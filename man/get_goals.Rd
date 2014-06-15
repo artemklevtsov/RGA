@@ -4,7 +4,7 @@
 \title{Lists goals to which the user has access}
 \usage{
 get_goals(token, account.id = "~all", webproperty.id = "~all",
-  profile.id = "~all", start.index = 1L, max.results = 1000L)
+  profile.id = "~all", start.index = NULL, max.results = NULL)
 }
 \arguments{
 \item{token}{\code{Token2.0} class object.}
