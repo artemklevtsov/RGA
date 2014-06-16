@@ -2,6 +2,7 @@
 compact <- function(x) {
     x <- Filter(Negate(is.null), x)
     x <- Filter(nzchar, x)
+    x <- Filter(length, x)
     return(x)
 }
 

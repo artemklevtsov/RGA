@@ -94,7 +94,7 @@ set_query <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday
 print.GAQuery <- function(x, ...) {
     x <- compact(x)
     cat("<Google Analytics Query>\n")
-    cat(paste0("  ", format(paste0(names(x), ": ")), unlist(x), collapse = "\n"))
+    cat(paste0("  ", format(paste0(names(x), ": ")), as.vector(x, mode = "character"), collapse = "\n"))
     cat("\n")
     invisible(x)
 }
