@@ -7,8 +7,15 @@ data.json <- fromJSON(url)
 # Subsettings
 data.r <- .subset2(data.json, "items")
 id <- .subset2(data.r, "id")
-attrs <- .subset2(data.r, "attributes")
+attributes <- .subset2(data.r, "attributes")
+attributes  <- transform(attributes,
+    allowedInSegments = as.logical(match(allowedInSegments, table = c(NA, "true")) - 1),
+    minTemplateIndex = as.numeric(minTemplateIndex),
+    maxTemplateIndex = as.numeric(maxTemplateIndex),
+    premiumMinTemplateIndex = as.numeric(premiumMinTemplateIndex),
+    premiumMaxTemplateIndex = as.numeric(premiumMaxTemplateIndex)
+)
 # Create data.frame
-ga <- cbind(id, attrs, stringsAsFactors = FALSE)
+ga <- cbind(id, attributes, stringsAsFactors = FALSE)
 # Save data to file
-save(ga, file = "data/ga.rda")
+save(ga, file = "data/ga.rda", compress = "xz")

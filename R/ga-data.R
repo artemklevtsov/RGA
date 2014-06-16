@@ -1,7 +1,10 @@
-#' @title Lists all columns for a Google Analytics core report type.
+#' @title Lists all columns for a Google Analytics core report type
 #'
 #' @usage
 #' ga
+#'
+#' @description
+#' This dataset represents all of the dimensions and metrics for a reporting API with their attributes. Attributes returned include UI name, description, segments support, and more.
 #'
 #' @format
 #' A data frame with 321 rows and 14 variables  containing the following columns:
@@ -22,8 +25,12 @@
 #'     \item{premiumMaxTemplateIndex}{Only available for templatized columns. This is the maximum index for the column for premium properties.}
 #' }
 #'
+#' @source \url{https://www.googleapis.com/analytics/v3/metadata/ga/columns?pp=1}
+#'
 #' @references
 #' Dimensions & Metrics Reference: \url{https://developers.google.com/analytics/devguides/reporting/core/dimsmets}
+#'
+#' Google Analytics Metadata API: \url{https://developers.google.com/analytics/devguides/reporting/metadata/v3/}
 #'
 #' @keywords data datasets
 #' @docType data
@@ -40,4 +47,6 @@
 #' subset(ga, !is.na(calculation), c(id, calculation))
 #' # get a not deprecated metrics from user group
 #' subset(ga, group == "User" & type == "METRIC" & status != "DEPRECATED", id)
+#' # get parameters allowed in segments
+#' subset(ga, allowedInSegments, id)
 NULL
