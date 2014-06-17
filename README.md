@@ -135,10 +135,10 @@ Let's review these functions in details.
     - updated - date of last change of goal;
 * `get_segments` - obtaining a list of segments to which the user has access. Return columns:
     - id - segment ID;
-    - segmentId - Segment ID for use to query data;
+    - segmentId - segment ID for use to query data;
     - name - segment name;
     - definition - segment definition:
-    - type - Type of segment: embedded or custom;
+    - type - type of segment: embedded or custom;
     - created - date of segment creation;
     - updated - date of the last change of segment;
 
