@@ -60,17 +60,17 @@ fix_query <- function(query) {
 #'
 #' @export
 #'
-set_query <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
-                      metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = NULL,
-                      sort = NULL, filters = NULL, segment = NULL, start.index = NULL, max.results = NULL) {
-    profile.id <- as.character(profile.id)
-    start.date <- as.character(start.date)
-    end.date <- as.character(end.date)
+set_query <- function(profile.id, start.date = NULL, end.date = NULL,
+                      metrics = NULL, dimensions = NULL, sort = NULL, filters = NULL,
+                      segment = NULL, start.index = NULL, max.results = NULL) {
     # Checks
-    stopifnot(!missing(profile.id),
+    stopifnot(!missing(profile.id), !is.null(profile.id),
               !is.null(start.date), start.date != "",
               !is.null(end.date), end.date != "",
               !is.null(metrics), metrics != "")
+    profile.id <- as.character(profile.id)
+    start.date <- as.character(start.date)
+    end.date <- as.character(end.date)
     # Build query
     query <- list(profile.id = profile.id,
                   start.date = start.date,
@@ -94,7 +94,7 @@ set_query <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday
 print.GAQuery <- function(x, ...) {
     x <- compact(x)
     cat("<Google Analytics Query>\n")
-    cat(paste0("  ", format(paste0(names(x), ": ")), unlist(x), collapse = "\n"))
+    cat(paste0("  ", format(paste0(names(x), ": ")), as.vector(x, mode = "character"), collapse = "\n"))
     cat("\n")
     invisible(x)
 }
