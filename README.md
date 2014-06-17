@@ -110,10 +110,10 @@ Let's review these functions in details.
     - created - Date of creating the web property;
     - updated - date of the last change of the web property;
 * `get_profiles` - getting a list of web propertys (Web Properties) and views (Profiles) sites to which the user has access. Return columns:
-    - id - submission ID;
+    - id - profile ID;
     - accountId - account ID
     - webPropertyId - web property ID;
-    - name - submission name;
+    - name - name of this view;
     - currency - currency;
     - timezone - timezone;
     - websiteUrl - website URL;
@@ -126,7 +126,7 @@ Let's review these functions in details.
     - id - goal ID
     - accountId - account ID;
     - webPropertyId - resource ID;
-    - profileId - submission ID(profile);
+    - profileId - profile ID;
     - name - goal name;
     - value - value of goal (currency);
     - active - activity status of the goal;
