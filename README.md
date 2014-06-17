@@ -142,8 +142,6 @@ Let's review these functions in details.
     - created - date of segment creation;
     - updated - date of the last change of segment;
 
-For functions `get_webproperties`, `get_profiles` and `get_goals`, can specify the additional arguments such as ID account (`account.id`), resource (`webproperty.id`) or submission (`profile.id`) for which is required obtain the information (view the help pages for the corresponding functions). 
-
 For functions such as `get_webproperties`, `get_profiles` и `get_goals` can specify the additional arguments such as ID аккаунта (`account.id`), resource (`webproperty.id`) or submission (`profile.id`), for which is required to obtain the information (view the help pages for the corresponding functions). Example of obtaining the information on all submissions is available to the user:
 
 ```R
