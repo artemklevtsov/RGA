@@ -3,10 +3,9 @@
 \alias{set_query}
 \title{Set Google Analytics report query}
 \usage{
-set_query(profile.id, start.date = "7daysAgo", end.date = "yesterday",
-  metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = NULL,
-  sort = NULL, filters = NULL, segment = NULL, start.index = NULL,
-  max.results = NULL)
+set_query(profile.id, start.date = NULL, end.date = NULL, metrics = NULL,
+  dimensions = NULL, sort = NULL, filters = NULL, segment = NULL,
+  start.index = NULL, max.results = NULL)
 }
 \arguments{
 \item{profile.id}{Google Analytics profile ID. Can be character (with or without "ga:" prefix) or integer.}
