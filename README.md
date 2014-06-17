@@ -148,6 +148,14 @@ For the functions such as `get_webproperties`, `get_profiles` and `get_goals`, c
 get_profiles(token = token)
 ```
 
+### Obtaining access to the metadata of API reports
+
+For obtaining a list of all the indicators (metrics) and measurements (dimensions) the `RGA` package provides a set of data (dataset) `ga`, which is available after loading the package. Access to the set of data is similar to access to any object in R - by the variable name.
+```R
+ga
+```
+
+
 
 ## References
 
