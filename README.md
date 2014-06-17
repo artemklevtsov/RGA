@@ -122,6 +122,26 @@ Let's review these functions in details.
     - updated - date of the last update of submission;
     - eCommerceTracking - e-commerce tracking;
     - siteSearchQueryParameters - query parameter to track search the site;
+* `get_goals` - obtaining a list of goals to which the user has access. Return columns:
+    - id - goal ID
+    - accountId - account ID;
+    - webPropertyId - resource ID;
+    - profileId - submission ID(profile);
+    - name - goal name;
+    - value - value of goal (currency);
+    - active - activity status of the goal;
+    - type - type of goal: event, the landing page, session duration, pages per session; 
+    - created - date of goal creation;
+    - updated - date of last change of goal;
+* `get_segments` - obtaining a list of segments to which the user has access. Return columns:
+    - id - segment ID;
+    - segmentId - Segment ID for use to query data;
+    - name - segment name;
+    - definition - segment definition:
+    - type - Type of segment: embedded or custom;
+    - created - date of segment creation;
+    - updated - date of the last change of segment;
+
 
 
 ## References
