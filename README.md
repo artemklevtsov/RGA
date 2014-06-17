@@ -150,12 +150,11 @@ get_profiles(token = token)
 
 ### Obtaining access to the metadata of API reports
 
-For obtaining a list of all the indicators (metrics) and measurements (dimensions) the `RGA` package provides a set of data (dataset) `ga`, which is available after loading the package. Access to the set of data is similar to access to any object in R - by the variable name.
+For obtaining a list of all the metrics and dimensions the `RGA` package provides a dataset `ga`, which is available after loading the package. Access to the dataset is similar to access to any object in R - by the variable name.
+
 ```R
 ga
 ```
-
-
 
 ## References
 
