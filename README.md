@@ -156,6 +156,25 @@ For obtaining a list of all the metrics and dimensions the `RGA` package provide
 ga
 ```
 
+The variable `ga` consists the the following columns:
+
+* id - the parameter code name (metric or dimension) (used for queries);
+* type - parameter type: metric (METRIC) or dimension (DIMENSION);
+* dataType - data type: STRING, INTEGER, PERCENT, TIME, CURRENCY, FLOAT;
+* group - group of parameters (ex. User, Session, Traffic Sources);
+* status - status: actual (PUBLIC) or outdated (DEPRECATED);
+* uiName - parameter name (not used for queries);
+* description - parameter description;
+* allowedInSegments - whether the parameter can be used in the segments;
+* replacedBy - name of the replacement parameter, if the parameter is deprecated;
+* calculation - formula of calculating the parameter value, if the parameter is calculated based on other parameters;
+* minTemplateIndex - if the parameter contains a numeric index, the minimum parameter index;
+* maxTemplateIndex - if the parameter contains a numeric index, the maximum parameter index;
+* premiumMinTemplateIndex - if the parameter contains a numeric index, a minimum index for the parameter;
+* premiumMaxTemplateIndex - if the parameter contains a numeric index, a maximum index for the parameter.
+
+
+
 ## References
 
 * [Google Developers Console](https://console.developers.google.com/project);
