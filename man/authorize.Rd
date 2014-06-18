@@ -38,11 +38,11 @@ You can return to the \href{https://console.developers.google.com/}{Google Devel
 }
 \examples{
 \dontrun{
-    authorize(client.id = "myID", client.secret = "mySecret")
-    # if set RGA_CONSUMER_ID and RGA_CONSUMER_SECRET environment variables
-    authorize()
-    # assign token to variable
-    ga_token <- authorize(client.id = "myID", client.secret = "mySecret")
+authorize(client.id = "myID", client.secret = "mySecret")
+# if set RGA_CONSUMER_ID and RGA_CONSUMER_SECRET environment variables
+authorize()
+# assign token to variable
+ga_token <- authorize(client.id = "myID", client.secret = "mySecret")
 }
 }
 \references{

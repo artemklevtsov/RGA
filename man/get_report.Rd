@@ -51,17 +51,17 @@ A data frame with Google Analytics reporting data. Columns are metrics and dimes
 }
 \examples{
 \dontrun{
-    # get token data
-    authorize(client.id = "myID", client.secret = "mySecret")
-    # get reporting data
-    ga_data <- get_report("myProfileID", start.date = "30daysAgo", end.date = "today",
-                          metrics = "ga:sessions", dimensions = "ga:source,ga:medium"
-                          sort = "-ga:sessions")
-    # same with query
-    ga_query <- set_query("myProfileID", start.date = "30daysAgo", end.date = "today",
-                          metrics = "ga:sessions", dimensions = "ga:source,ga:medium"
-                          sort = "-ga:sessions")
-    ga_data <- get_report(ga_query)
+# get token data
+authorize(client.id = "myID", client.secret = "mySecret")
+# get reporting data
+ga_data <- get_report("myProfileID", start.date = "30daysAgo", end.date = "today",
+                      metrics = "ga:sessions", dimensions = "ga:source,ga:medium"
+                      sort = "-ga:sessions")
+# same with query
+ga_query <- set_query("myProfileID", start.date = "30daysAgo", end.date = "today",
+                      metrics = "ga:sessions", dimensions = "ga:source,ga:medium"
+                      sort = "-ga:sessions")
+ga_data <- get_report(ga_query)
 }
 }
 \references{

@@ -22,20 +22,20 @@
 #'
 #' @examples
 #' \dontrun{
-#'     # load package
-#'     library(RGA)
-#'     # get access token
-#'     authorize(client.id = "myClientID", client.secret = "myClientSecret", cache = FALSE)
-#'     # get a GA profiles
-#'     ga_profiles <- get_profiles()
-#'     # choose the profile ID by site URL
-#'     profile.id <- ga_profiles[ga_profiles$websiteUrl == "mySiteURL", "id"]
-#'     # get date when GA tracking began
-#'     first.date <- get_firstdate(profile.id)
-#'     # get GA report data
-#'     ga_data <- get_report(profile.id, start.date = first.date, end.date = "today",
-#'                           metrics = "ga:users,ga:sessions",
-#'                           dimensions = "ga:userGender,ga:userAgeBracket")
+#' # load package
+#' library(RGA)
+#' # get access token
+#' authorize(client.id = "myClientID", client.secret = "myClientSecret", cache = FALSE)
+#' # get a GA profiles
+#' ga_profiles <- get_profiles()
+#' # choose the profile ID by site URL
+#' profile.id <- ga_profiles[ga_profiles$websiteUrl == "mySiteURL", "id"]
+#' # get date when GA tracking began
+#' first.date <- get_firstdate(profile.id)
+#' # get GA report data
+#' ga_data <- get_report(profile.id, start.date = first.date, end.date = "today",
+#'                       metrics = "ga:users,ga:sessions",
+#'                       dimensions = "ga:userGender,ga:userAgeBracket")
 #' }
 #'
 NULL
