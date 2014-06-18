@@ -1,9 +1,6 @@
 # Set global variables to be shared with other functions
 if(getRversion() >= "2.15.1") utils::globalVariables(c("GAToken"))
 
-# Environment for OAuth token
-RGA_TokenEnv <- new.env(parent = emptyenv())
-
 # Check koen exists
 check_token <- function(name) {
     exists(name, envir = RGA_TokenEnv)
@@ -11,6 +8,9 @@ check_token <- function(name) {
 
 # Set token to environment
 set_token <- function(name, value) {
+    # Environment for OAuth token
+    assign("RGA_TokenEnv", new.env(hash = TRUE), envir = .GlobalEnv)
+    # Assign token to environment
     assign(name, value, envir = RGA_TokenEnv)
     return(value)
 }
