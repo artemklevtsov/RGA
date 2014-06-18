@@ -4,33 +4,14 @@
 \title{Get Google Anaytics report data}
 \usage{
 get_report(profile.id, start.date = "7daysAgo", end.date = "yesterday",
+  date.format = "\%Y-\%m-\%d",
   metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = NULL,
   sort = NULL, filters = NULL, segment = NULL, start.index = NULL,
-  max.results = 10000L, date.format = "\%Y-\%m-\%d", type = c("ga",
-  "mcf"), query, token, batch = FALSE, messages = FALSE)
+  max.results = 10000L, type = c("ga", "mcf"), query, token,
+  batch = FALSE, messages = FALSE)
 }
 \arguments{
-\item{profile.id}{character or numeric. Google Analytics profile ID. Can be character (with or without "ga:" prefix) or integer.}
-
-\item{start.date}{character. Start date for fetching Analytics data in YYYY-MM-DD format. Also allowed values "today", "yesterday", "ndaysAgo" whene n is number of days.}
-
-\item{end.date}{character. End date for fetching Analytics data in YYYY-MM-DD format. Also allowed values "today", "yesterday", "ndaysAgo" whene n is number of days.}
-
-\item{metrics}{character. A comma-separated list of Analytics metrics, such as "ga:sessions,ga:bounces".}
-
-\item{dimensions}{character. A comma-separated list of Analytics dimensions, such as "ga:browser,ga:city".}
-
-\item{sort}{character. A comma-separated list of dimensions or metrics that determine the sort order for Analytics data.}
-
-\item{filters}{character. A comma-separated list of dimension or metric filters to be applied to Analytics data.}
-
-\item{segment}{character. An Analytics segment to be applied to data.}
-
-\item{start.index}{character. An index of the first entity to retrieve.}
-
-\item{max.results}{character. The maximum number of entries to include in this feed.}
-
-\item{date.format}{character. A date format for output data.}
+\item{query}{\code{GAQuery} class object including a request parameters.}
 
 \item{type}{character string including report type. "ga" for core report, "mcf" for multi-channel funnels report.}
 
@@ -40,7 +21,27 @@ get_report(profile.id, start.date = "7daysAgo", end.date = "yesterday",
 
 \item{batch}{logical. Extract data in batches (extracting more observations than 10000).}
 
-\item{query}{\code{GAQuery} class object including a request parameters.}
+\item{date.format}{character. A date format for output data.}
+
+\item{profile.id}{Google Analytics profile ID. Can be character (with or without "ga:" prefix) or integer.}
+
+\item{start.date}{start date for fetching Analytics data in YYYY-MM-DD format. Also allowed values "today", "yesterday", "ndaysAgo" whene n is number of days.}
+
+\item{end.date}{rnd date for fetching Analytics data in YYYY-MM-DD format. Also allowed values "today", "yesterday", "ndaysAgo" whene n is number of days.}
+
+\item{metrics}{a comma-separated list of Analytics metrics, such as "ga:sessions,ga:bounces".}
+
+\item{dimensions}{a comma-separated list of Analytics dimensions, such as "ga:browser,ga:city".}
+
+\item{sort}{a comma-separated list of dimensions or metrics that determine the sort order for Analytics data.}
+
+\item{filters}{a comma-separated list of dimension or metric filters to be applied to Analytics data.}
+
+\item{segment}{an Analytics segment to be applied to data.}
+
+\item{start.index}{an index of the first entity to retrieve.}
+
+\item{max.results}{the maximum number of entries to include in this feed.}
 }
 \value{
 A data frame with Google Analytics reporting data. Columns are metrics and dimesnions.
@@ -51,16 +52,16 @@ A data frame with Google Analytics reporting data. Columns are metrics and dimes
 \examples{
 \dontrun{
     # get token data
-    ga_token <- get_token(client.id = "myID", client.secret = "mySecret")
+    authorize(client.id = "myID", client.secret = "mySecret")
     # get reporting data
     ga_data <- get_report("myProfileID", start.date = "30daysAgo", end.date = "today",
                           metrics = "ga:sessions", dimensions = "ga:source,ga:medium"
-                          sort = "-ga:sessions", token = ga_token)
+                          sort = "-ga:sessions")
     # same with query
     ga_query <- set_query("myProfileID", start.date = "30daysAgo", end.date = "today",
                           metrics = "ga:sessions", dimensions = "ga:source,ga:medium"
                           sort = "-ga:sessions")
-    ga_data <- get_report(ga_query, token = ga_token)
+    ga_data <- get_report(ga_query)
 }
 }
 \references{
@@ -71,6 +72,6 @@ Multi-Channel Funnels Reporting API - Dimensions & Metrics Reference: \url{https
 Google Analytics Query Explorer 2: \url{https://ga-dev-tools.appspot.com/explorer/}
 }
 \seealso{
-\code{\link{get_token}} \code{\link{set_query}}
+\code{\link{authorize}} \code{\link{set_query}}
 }
 

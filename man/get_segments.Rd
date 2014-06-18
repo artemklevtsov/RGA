@@ -8,9 +8,9 @@ get_segments(token, start.index = NULL, max.results = NULL)
 \arguments{
 \item{token}{\code{Token2.0} class object.}
 
-\item{start.index}{an index of the first account to retrieve.}
+\item{start.index}{an index of the first segments to retrieve.}
 
-\item{max.results}{the maximum number of accounts to include in this response.}
+\item{max.results}{the maximum number of segment to include in this response.}
 }
 \value{
 A data frame with Google Analytics management data.
@@ -26,10 +26,10 @@ A data frame with Google Analytics management data.
 Lists segments to which the user has access
 }
 \references{
-Segments: \url{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/segments}
+Google Management API - Segments: \url{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/segments}
 }
 \seealso{
-\code{\link{get_token}}
+\code{\link{authorize}}
 
 Other Management.API: \code{\link{get_accounts}};
   \code{\link{get_goals}}; \code{\link{get_profiles}};

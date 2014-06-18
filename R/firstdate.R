@@ -6,11 +6,12 @@
 #'
 #' @return Start date of collect of the Google Analytics statistics.
 #'
-#' @seealso \code{\link{get_token}} \code{\link{get_report}}
+#' @seealso \code{\link{authorize}} \code{\link{get_report}}
 #'
 #' @examples
 #' \dontrun{
-#' first.date <- get_firstdate(profile.id = "myProfileID", token = ga_token)
+#' authorize(client.id = "myID", client.secret = "mySecret")
+#' first.date <- get_firstdate(profile.id = "myProfileID")
 #' }
 #'
 #' @include report.R

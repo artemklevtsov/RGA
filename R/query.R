@@ -5,18 +5,16 @@ fix_query <- function(query) {
     stopifnot(inherits(query, "list"))
     if (!grepl("^ga:", query$profile.id))
         query$profile.id <- paste0("ga:", query$profile.id)
-    if (!is.null(query$metrics) && nzchar(query$metrics))
+    if (!is.empty(query$metrics))
         query$metrics <- gsub("\\s", "", query$metrics)
-    if (!is.null(query$dimensions) && nzchar(query$dimensions))
+    if (!is.empty(query$dimensions))
         query$dimensions <- gsub("\\s", "", query$dimensions)
-    if (!is.null(query$sort) && nzchar(query$sort))
+    if (!is.empty(query$sort))
         query$sort <- gsub("\\s", "", query$sort)
-    if (!is.null(query$filters) && nzchar(query$filters)) {
+    if (!is.empty(query$filters))
         query$filters <- strip_ops(query$filters)
-    }
-    if (!is.null(query$segment) && nzchar(query$segment)) {
+    if (!is.empty(query$segment))
         query$segment <- strip_ops(query$segment)
-    }
     return(query)
 }
 
@@ -108,7 +106,7 @@ print.GAQuery <- function(x, ...) {
     # Prevent remove a list element if value is NULL
     if (is.null(value))
         value <- list(NULL)
-    x[[name]] <- value
+    x[name] <- value
     x <- fix_query(x)
     class(x) <- cl
     return(x)

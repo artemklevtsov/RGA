@@ -1,3 +1,25 @@
+# Set global variables to be shared with other functions
+if(getRversion() >= "2.15.1") utils::globalVariables(c("GAToken"))
+
+# Environment for OAuth token
+RGA_TokenEnv <- new.env(parent = emptyenv())
+
+# Check koen exists
+check_token <- function(name) {
+    exists(name, envir = RGA_TokenEnv)
+}
+
+# Set token to environment
+set_token <- function(name, value) {
+    assign(name, value, envir = RGA_TokenEnv)
+    return(value)
+}
+
+# Get token from environment
+get_token <- function(name) {
+    get(name, envir = RGA_TokenEnv)
+}
+
 #' @title Generate an oauth2.0 token
 #'
 #' @description
@@ -35,18 +57,20 @@
 #'
 #' @examples
 #' \dontrun{
-#'     ga_token <- get_token(client.id = "myID", client.secret = "mySecret")
+#'     authorize(client.id = "myID", client.secret = "mySecret")
 #'     # if set RGA_CONSUMER_ID and RGA_CONSUMER_SECRET environment variables
-#'     ga_token <- get_token()
+#'     authorize()
+#'     # assign token to variable
+#'     ga_token <- authorize(client.id = "myID", client.secret = "mySecret")
 #' }
 #'
 #' @import httr
 #'
 #' @export
 #'
-get_token <- function(client.id, client.secret, cache = TRUE) {
-    client.id_env <- Sys.getenv(x = "RGA_CONSUMER_ID")
-    client.secret_env <- Sys.getenv(x = "RGA_CONSUMER_SECRET")
+authorize <- function(client.id, client.secret, cache = TRUE) {
+    client.id_env <- Sys.getenv("RGA_CONSUMER_ID")
+    client.secret_env <- Sys.getenv("RGA_CONSUMER_SECRET")
     if (missing(client.id) || !nzchar(client.id)) {
         if (!nzchar(client.id_env))
             stop("Clinet ID not specified.")
@@ -60,7 +84,8 @@ get_token <- function(client.id, client.secret, cache = TRUE) {
             client.secret <- client.secret_env
     }
     rga_app <- oauth_app(appname = "rga", key = client.id, secret = client.secret)
-    token <- oauth2.0_token(endpoint = oauth_endpoints(name = "google"), app = rga_app, cache = cache,
+    token <- oauth2.0_token(endpoint = oauth_endpoints("google"), app = rga_app, cache = cache,
                             scope = "https://www.googleapis.com/auth/analytics.readonly")
-    return(token)
+    set_token("GAToken", token)
+    invisible(token)
 }

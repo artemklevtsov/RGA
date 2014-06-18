@@ -19,7 +19,12 @@ api_request = function(url, token, simplify = TRUE, messages = FALSE) {
         stopifnot(inherits(token, "Token2.0"))
         request <- GET(url = url, config = config(token = token))
     } else {
-        request <- GET(url = url)
+        if (check_token("GAToken")) {
+            token <- get_token("GAToken")
+            stopifnot(inherits(token, "Token2.0"))
+            request <- GET(url = url, config = config(token = token))
+        } else
+            request <- GET(url = url)
     }
     # Send query to Google Analytics API and capture the JSON reponse
     if (messages)

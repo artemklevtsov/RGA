@@ -15,9 +15,9 @@ get_goals(token, account.id = "~all", webproperty.id = "~all",
 
 \item{profile.id}{view (Profile) ID to retrieve goals for. Can either be a specific view (profile) ID or "~all", which refers to all the views (profiles) that user has access to.'}
 
-\item{start.index}{an index of the first account to retrieve.}
+\item{start.index}{an index of the first goals to retrieve.}
 
-\item{max.results}{the maximum number of accounts to include in this response.}
+\item{max.results}{the maximum number of goal to include in this response.}
 }
 \value{
 A data frame with Google Analytics management data.
@@ -36,10 +36,10 @@ A data frame with Google Analytics management data.
 Lists goals to which the user has access
 }
 \references{
-Goals: \url{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/goals}
+Google Management API - Goals: \url{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/goals}
 }
 \seealso{
-\code{\link{get_token}}
+\code{\link{authorize}}
 
 Other Management.API: \code{\link{get_accounts}};
   \code{\link{get_profiles}}; \code{\link{get_segments}};

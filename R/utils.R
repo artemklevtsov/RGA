@@ -1,8 +1,12 @@
+# Check if object is empty
+is.empty <- function(x) {
+    stopifnot(is.atomic(x))
+    is.null(x) || !length(x) || !nzchar(x)
+}
+
 # Reduce NULL and "" elements
 compact <- function(x) {
-    x <- Filter(Negate(is.null), x)
-    x <- Filter(nzchar, x)
-    x <- Filter(length, x)
+    x <- Filter(Negate(is.empty), x)
     return(x)
 }
 

@@ -3,38 +3,29 @@
 #' @description
 #' \code{get_report} provide a query the Core or Multi-Channel Funnels Reporting API for Google Analytics report data.
 #'
-#' @param profile.id character or numeric. Google Analytics profile ID. Can be character (with or without "ga:" prefix) or integer.
-#' @param start.date character. Start date for fetching Analytics data in YYYY-MM-DD format. Also allowed values "today", "yesterday", "ndaysAgo" whene n is number of days.
-#' @param end.date character. End date for fetching Analytics data in YYYY-MM-DD format. Also allowed values "today", "yesterday", "ndaysAgo" whene n is number of days.
-#' @param metrics  character. A comma-separated list of Analytics metrics, such as "ga:sessions,ga:bounces".
-#' @param dimensions character. A comma-separated list of Analytics dimensions, such as "ga:browser,ga:city".
-#' @param sort character. A comma-separated list of dimensions or metrics that determine the sort order for Analytics data.
-#' @param filters character. A comma-separated list of dimension or metric filters to be applied to Analytics data.
-#' @param segment character. An Analytics segment to be applied to data.
-#' @param start.index character. An index of the first entity to retrieve.
-#' @param max.results character. The maximum number of entries to include in this feed.
-#' @param date.format character. A date format for output data.
+#' @inheritParams set_query
+#' @param query \code{GAQuery} class object including a request parameters.
 #' @param type character string including report type. "ga" for core report, "mcf" for multi-channel funnels report.
 #' @param token \code{Token2.0} class object with a valid authorization data.
 #' @param messages logical. Should print information messages?
 #' @param batch logical. Extract data in batches (extracting more observations than 10000).
-#' @param query \code{GAQuery} class object including a request parameters.
+#' @param date.format character. A date format for output data.
 #'
 #' @return A data frame with Google Analytics reporting data. Columns are metrics and dimesnions.
 #'
 #' @examples
 #' \dontrun{
 #'     # get token data
-#'     ga_token <- get_token(client.id = "myID", client.secret = "mySecret")
+#'     authorize(client.id = "myID", client.secret = "mySecret")
 #'     # get reporting data
 #'     ga_data <- get_report("myProfileID", start.date = "30daysAgo", end.date = "today",
 #'                           metrics = "ga:sessions", dimensions = "ga:source,ga:medium"
-#'                           sort = "-ga:sessions", token = ga_token)
+#'                           sort = "-ga:sessions")
 #'     # same with query
 #'     ga_query <- set_query("myProfileID", start.date = "30daysAgo", end.date = "today",
 #'                           metrics = "ga:sessions", dimensions = "ga:source,ga:medium"
 #'                           sort = "-ga:sessions")
-#'     ga_data <- get_report(ga_query, token = ga_token)
+#'     ga_data <- get_report(ga_query)
 #' }
 #'
 #' @references
@@ -44,7 +35,7 @@
 #'
 #' Google Analytics Query Explorer 2: \url{https://ga-dev-tools.appspot.com/explorer/}
 #'
-#' @seealso \code{\link{get_token}} \code{\link{set_query}}
+#' @seealso \code{\link{authorize}} \code{\link{set_query}}
 #'
 #' @include query.R
 #' @include build-url.R
@@ -53,11 +44,10 @@
 #'
 #' @export
 #'
-get_report <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
+get_report <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday", date.format = "%Y-%m-%d",
                        metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = NULL,
                        sort = NULL, filters = NULL, segment = NULL, start.index = NULL, max.results = 10000L,
-                       date.format = "%Y-%m-%d", type = c("ga", "mcf"), query, token,
-                       batch = FALSE, messages = FALSE) {
+                       type = c("ga", "mcf"), query, token, batch = FALSE, messages = FALSE) {
     type <- match.arg(type)
     if (type == "mcf" && !is.null(segment))
         segment <- NULL
