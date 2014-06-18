@@ -10,7 +10,7 @@
 #' \item{created}{time the account was created.}
 #' \item{updated}{time the account was last modified.}
 #'
-#' @seealso \code{\link{get_token}}
+#' @seealso \code{\link{authorize}}
 #'
 #' @references
 #' Google Management API - Accounts: \url{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/accounts}
@@ -49,7 +49,7 @@ get_accounts = function(token, start.index = NULL, max.results = NULL) {
 #' \item{created}{time this web property was created.}
 #' \item{updated}{time this web property was last modified.}
 #'
-#' @seealso \code{\link{get_token}}
+#' @seealso \code{\link{authorize}}
 #'
 #' @references
 #' Google Management API - Web Properties: \url{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/webproperties}
@@ -94,7 +94,7 @@ get_webproperties = function(token, account.id = "~all", start.index = NULL, max
 #' \item{created}{time this view (profile) was created.}
 #' \item{updated}{time this view (profile) was last modified.}
 #'
-#' @seealso \code{\link{get_token}}
+#' @seealso \code{\link{authorize}}
 #'
 #' @references
 #' Google Management API - Views (Profiles): \url{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/profiles}
@@ -137,7 +137,7 @@ get_profiles = function(token, account.id = "~all", webproperty.id = "~all", sta
 #' \item{created}{time this goal was created.}
 #' \item{updated}{time this goal was last modified.}
 #'
-#' @seealso \code{\link{get_token}}
+#' @seealso \code{\link{authorize}}
 #'
 #' @references
 #' Google Management API - Goals: \url{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/goals}
@@ -174,7 +174,7 @@ get_goals = function(token, account.id = "~all", webproperty.id = "~all", profil
 #' \item{created}{time the segment was created.}
 #' \item{updated}{time the segment was last modified.}
 #'
-#' @seealso \code{\link{get_token}}
+#' @seealso \code{\link{authorize}}
 #'
 #' @references
 #' Google Management API - Segments: \url{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/segments}

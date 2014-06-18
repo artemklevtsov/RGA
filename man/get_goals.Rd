@@ -39,7 +39,7 @@ Lists goals to which the user has access
 Google Management API - Goals: \url{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/goals}
 }
 \seealso{
-\code{\link{get_token}}
+\code{\link{authorize}}
 
 Other Management.API: \code{\link{get_accounts}};
   \code{\link{get_profiles}}; \code{\link{get_segments}};

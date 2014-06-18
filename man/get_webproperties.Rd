@@ -33,7 +33,7 @@ Lists web properties to which the user has access
 Google Management API - Web Properties: \url{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/webproperties}
 }
 \seealso{
-\code{\link{get_token}}
+\code{\link{authorize}}
 
 Other Management.API: \code{\link{get_accounts}};
   \code{\link{get_goals}}; \code{\link{get_profiles}};

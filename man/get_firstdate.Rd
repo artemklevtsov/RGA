@@ -20,10 +20,11 @@ Get the first date with available data
 }
 \examples{
 \dontrun{
-first.date <- get_firstdate(profile.id = "myProfileID", token = ga_token)
+authorize(client.id = "myID", client.secret = "mySecret")
+first.date <- get_firstdate(profile.id = "myProfileID")
 }
 }
 \seealso{
-\code{\link{get_token}} \code{\link{get_report}}
+\code{\link{authorize}} \code{\link{get_report}}
 }
 

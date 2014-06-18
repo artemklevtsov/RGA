@@ -26,7 +26,7 @@ Lists all accounts to which the user has access
 Google Management API - Accounts: \url{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/accounts}
 }
 \seealso{
-\code{\link{get_token}}
+\code{\link{authorize}}
 
 Other Management.API: \code{\link{get_goals}};
   \code{\link{get_profiles}}; \code{\link{get_segments}};
