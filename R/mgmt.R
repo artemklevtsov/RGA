@@ -13,7 +13,7 @@
 #' @seealso \code{\link{get_token}}
 #'
 #' @references
-#' Accounts: \url{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/accounts}
+#' Google Management API - Accounts: \url{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/accounts}
 #'
 #' @family Management API
 #'
@@ -36,8 +36,8 @@ get_accounts = function(token, start.index = NULL, max.results = NULL) {
 #'
 #' @param token \code{Token2.0} class object.
 #' @param account.id account ID to retrieve web properties for. Can either be a specific account ID or "~all", which refers to all the accounts that user has access to.
-#' @param start.index an index of the first account to retrieve.
-#' @param max.results the maximum number of accounts to include in this response.
+#' @param start.index an index of the first entity to retrieve.
+#' @param max.results the maximum number of web properties to include in this response.
 #'
 #' @return A data frame with Google Analytics management data.
 #' \item{id}{web property ID of the form UA-XXXXX-YY.}
@@ -52,7 +52,7 @@ get_accounts = function(token, start.index = NULL, max.results = NULL) {
 #' @seealso \code{\link{get_token}}
 #'
 #' @references
-#' Web Properties: \url{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/webproperties}
+#' Google Management API - Web Properties: \url{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/webproperties}
 #'
 #' @family Management API
 #'
@@ -76,8 +76,8 @@ get_webproperties = function(token, account.id = "~all", start.index = NULL, max
 #' @param token \code{Token2.0} class object.
 #' @param account.id account ID for the view (profiles) to retrieve. Can either be a specific account ID or "~all", which refers to all the accounts to which the user has access.
 #' @param webproperty.id web property ID for the views (profiles) to retrieve. Can either be a specific web property ID or "~all", which refers to all the web properties to which the user has access.
-#' @param start.index an index of the first account to retrieve.
-#' @param max.results the maximum number of accounts to include in this response.
+#' @param start.index an index of the first entity to retrieve.
+#' @param max.results the maximum number of views (profiles) to include in this response.
 #'
 #' @return A data frame with Google Analytics management data.
 #' \item{id}{view (Profile) ID.}
@@ -97,7 +97,7 @@ get_webproperties = function(token, account.id = "~all", start.index = NULL, max
 #' @seealso \code{\link{get_token}}
 #'
 #' @references
-#' Views (Profiles): \url{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/profiles}
+#' Google Management API - Views (Profiles): \url{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/profiles}
 #'
 #' @family Management API
 #'
@@ -122,8 +122,8 @@ get_profiles = function(token, account.id = "~all", webproperty.id = "~all", sta
 #' @param account.id account ID to retrieve goals for. Can either be a specific account ID or "~all", which refers to all the accounts that user has access to.
 #' @param webproperty.id web property ID to retrieve goals for. Can either be a specific web property ID or "~all", which refers to all the web properties that user has access to.
 #' @param profile.id view (Profile) ID to retrieve goals for. Can either be a specific view (profile) ID or "~all", which refers to all the views (profiles) that user has access to.'
-#' @param start.index an index of the first account to retrieve.
-#' @param max.results the maximum number of accounts to include in this response.
+#' @param start.index an index of the first goals to retrieve.
+#' @param max.results the maximum number of goal to include in this response.
 #'
 #' @return A data frame with Google Analytics management data.
 #' \item{id}{goal ID.}
@@ -140,7 +140,7 @@ get_profiles = function(token, account.id = "~all", webproperty.id = "~all", sta
 #' @seealso \code{\link{get_token}}
 #'
 #' @references
-#' Goals: \url{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/goals}
+#' Google Management API - Goals: \url{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/goals}
 #'
 #' @family Management API
 #'
@@ -162,8 +162,8 @@ get_goals = function(token, account.id = "~all", webproperty.id = "~all", profil
 #' @title Lists segments to which the user has access
 #'
 #' @param token \code{Token2.0} class object.
-#' @param start.index an index of the first account to retrieve.
-#' @param max.results the maximum number of accounts to include in this response.
+#' @param start.index an index of the first segments to retrieve.
+#' @param max.results the maximum number of segment to include in this response.
 #'
 #' @return A data frame with Google Analytics management data.
 #' \item{id}{segment ID.}
@@ -177,7 +177,7 @@ get_goals = function(token, account.id = "~all", webproperty.id = "~all", profil
 #' @seealso \code{\link{get_token}}
 #'
 #' @references
-#' Segments: \url{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/segments}
+#' Google Management API - Segments: \url{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/segments}
 #'
 #' @family Management API
 #'

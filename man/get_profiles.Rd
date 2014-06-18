@@ -13,9 +13,9 @@ get_profiles(token, account.id = "~all", webproperty.id = "~all",
 
 \item{webproperty.id}{web property ID for the views (profiles) to retrieve. Can either be a specific web property ID or "~all", which refers to all the web properties to which the user has access.}
 
-\item{start.index}{an index of the first account to retrieve.}
+\item{start.index}{an index of the first entity to retrieve.}
 
-\item{max.results}{the maximum number of accounts to include in this response.}
+\item{max.results}{the maximum number of views (profiles) to include in this response.}
 }
 \value{
 A data frame with Google Analytics management data.
@@ -37,7 +37,7 @@ A data frame with Google Analytics management data.
 Lists views (profiles) to which the user has access
 }
 \references{
-Views (Profiles): \url{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/profiles}
+Google Management API - Views (Profiles): \url{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/profiles}
 }
 \seealso{
 \code{\link{get_token}}

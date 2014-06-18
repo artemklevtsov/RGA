@@ -11,9 +11,9 @@ get_webproperties(token, account.id = "~all", start.index = NULL,
 
 \item{account.id}{account ID to retrieve web properties for. Can either be a specific account ID or "~all", which refers to all the accounts that user has access to.}
 
-\item{start.index}{an index of the first account to retrieve.}
+\item{start.index}{an index of the first entity to retrieve.}
 
-\item{max.results}{the maximum number of accounts to include in this response.}
+\item{max.results}{the maximum number of web properties to include in this response.}
 }
 \value{
 A data frame with Google Analytics management data.
@@ -30,7 +30,7 @@ A data frame with Google Analytics management data.
 Lists web properties to which the user has access
 }
 \references{
-Web Properties: \url{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/webproperties}
+Google Management API - Web Properties: \url{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/webproperties}
 }
 \seealso{
 \code{\link{get_token}}
