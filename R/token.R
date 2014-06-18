@@ -9,7 +9,7 @@ check_token <- function(name) {
 # Set token to environment
 set_token <- function(name, value) {
     # Environment for OAuth token
-    assign("RGA_TokenEnv", new.env(hash = TRUE), envir = .GlobalEnv)
+    assign("RGA_TokenEnv", new.env(), envir = .GlobalEnv)
     # Assign token to environment
     assign(name, value, envir = RGA_TokenEnv)
     return(value)
@@ -28,6 +28,9 @@ get_token <- function(name) {
 #' @param client.id OAuth client ID. if client.id is missing, we'll look in the environment variable RGA_CONSUMER_ID.
 #' @param client.secret OAuth client secret. if client.secret is missing, we'll look in the environment variable RGA_CONSUMER_SECRET.
 #' @param cache A logical value or a string. TRUE means to cache using the default cache file \code{.oauth-httr}, FALSE means don't cache. A string mean use the specified path as the cache file.
+#'
+#' @details
+#' \code{authorize} create \code{GAToken} variable in the separate environment \code{RGA_TokenEnv}. So you not need to pass \code{token} to any function which requere authorisation. Also you can store \code{token} in variable and pass it them. It is may be useful if you have several tokens.
 #'
 #' @section Getting an OAuth Console Key and Secret:
 #'

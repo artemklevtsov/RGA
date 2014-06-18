@@ -18,6 +18,9 @@ A \code{\link[httr]{Token2.0}} reference class (RC) object.
 \description{
 \code{get_token} is wrapper for \code{link[httr]{oauth2.0_token}} function.
 }
+\details{
+\code{authorize} create \code{GAToken} variable in the separate environment \code{RGA_TokenEnv}. So you not need to pass \code{token} to any function which requere authorisation. Also you can store \code{token} in variable and pass it them. It is may be useful if you have several tokens.
+}
 \section{Getting an OAuth Console Key and Secret}{
 
 
