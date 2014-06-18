@@ -173,6 +173,20 @@ The variable `ga` consists the the following columns:
 * premiumMinTemplateIndex - if the parameter contains a numeric index, a minimum index for the parameter;
 * premiumMaxTemplateIndex - if the parameter contains a numeric index, a maximum index for the parameter.
 
+There are several examples of  usage the metadata Google Analytics API.
+
+List of all outdated and replacing their parameters:
+
+```R
+subset(ga, status == "DEPRECATED", c(id, replacedBy))
+```
+
+List of all parameters from certain group:
+
+```R
+subset(ga, group == "Traffic Sources", c(id, type))
+```
+
 
 
 ## References
