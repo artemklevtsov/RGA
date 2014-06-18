@@ -45,8 +45,8 @@
 #' @export
 #'
 get_token <- function(client.id, client.secret, cache = TRUE) {
-    client.id_env <- Sys.getenv(x = "RGA_CONSUMER_ID")
-    client.secret_env <- Sys.getenv(x = "RGA_CONSUMER_SECRET")
+    client.id_env <- Sys.getenv("RGA_CONSUMER_ID")
+    client.secret_env <- Sys.getenv("RGA_CONSUMER_SECRET")
     if (missing(client.id) || !nzchar(client.id)) {
         if (!nzchar(client.id_env))
             stop("Clinet ID not specified.")
@@ -60,7 +60,7 @@ get_token <- function(client.id, client.secret, cache = TRUE) {
             client.secret <- client.secret_env
     }
     rga_app <- oauth_app(appname = "rga", key = client.id, secret = client.secret)
-    token <- oauth2.0_token(endpoint = oauth_endpoints(name = "google"), app = rga_app, cache = cache,
+    token <- oauth2.0_token(endpoint = oauth_endpoints("google"), app = rga_app, cache = cache,
                             scope = "https://www.googleapis.com/auth/analytics.readonly")
     return(token)
 }
