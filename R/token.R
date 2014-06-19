@@ -5,7 +5,7 @@ if(getRversion() >= "2.15.1") utils::globalVariables(c("GAToken"))
 TokenEnv <- new.env(parent = emptyenv())
 
 # Check koen exists
-check_token <- function(name) {
+token_exists <- function(name) {
     exists(name, envir = TokenEnv)
 }
 

@@ -19,7 +19,7 @@ api_request = function(url, token, simplify = TRUE, messages = FALSE) {
         stopifnot(inherits(token, "Token2.0"))
         request <- GET(url = url, config = config(token = token))
     } else {
-        if (check_token("GAToken")) {
+        if (token_exists("GAToken")) {
             token <- get_token("GAToken")
             stopifnot(inherits(token, "Token2.0"))
             request <- GET(url = url, config = config(token = token))
