@@ -19,7 +19,7 @@ A \code{\link[httr]{Token2.0}} reference class (RC) object.
 \code{get_token} is wrapper for \code{link[httr]{oauth2.0_token}} function.
 }
 \details{
-\code{authorize} create \code{GAToken} variable in the separate environment \code{RGA_TokenEnv}. So you not need to pass \code{token} to any function which requere authorisation. Also you can store \code{token} in variable and pass it them. It is may be useful if you have several tokens.
+When the \code{authorize} is used, the \code{GAToken} variable is created in the separate \code{TokenEnv} environment which not visible for user. So, there is no need to pass every time the \code{token} argument to any function which require authorisation. Also, there is possibility to store \code{token} in separate variable and pass it to the functions. It can be convinient if used several access tokens.
 }
 \section{Getting an OAuth Console Key and Secret}{
 

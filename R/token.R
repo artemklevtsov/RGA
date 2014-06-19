@@ -1,23 +1,23 @@
 # Set global variables to be shared with other functions
 if(getRversion() >= "2.15.1") utils::globalVariables(c("GAToken"))
 
+# Environment for OAuth token
+TokenEnv <- new.env(parent = emptyenv())
+
 # Check koen exists
 check_token <- function(name) {
-    exists(name, envir = RGA_TokenEnv)
+    exists(name, envir = TokenEnv)
 }
 
 # Set token to environment
 set_token <- function(name, value) {
-    # Environment for OAuth token
-    assign("RGA_TokenEnv", new.env(), envir = .GlobalEnv)
-    # Assign token to environment
-    assign(name, value, envir = RGA_TokenEnv)
+    assign(name, value, envir = TokenEnv)
     return(value)
 }
 
 # Get token from environment
 get_token <- function(name) {
-    get(name, envir = RGA_TokenEnv)
+    get(name, envir = TokenEnv)
 }
 
 #' @title Generate an oauth2.0 token
@@ -30,7 +30,7 @@ get_token <- function(name) {
 #' @param cache A logical value or a string. TRUE means to cache using the default cache file \code{.oauth-httr}, FALSE means don't cache. A string mean use the specified path as the cache file.
 #'
 #' @details
-#' \code{authorize} create \code{GAToken} variable in the separate environment \code{RGA_TokenEnv}. So you not need to pass \code{token} to any function which requere authorisation. Also you can store \code{token} in variable and pass it them. It is may be useful if you have several tokens.
+#' When the \code{authorize} is used, the \code{GAToken} variable is created in the separate \code{TokenEnv} environment which not visible for user. So, there is no need to pass every time the \code{token} argument to any function which require authorisation. Also, there is possibility to store \code{token} in separate variable and pass it to the functions. It can be convinient if used several access tokens.
 #'
 #' @section Getting an OAuth Console Key and Secret:
 #'
