@@ -1,31 +1,46 @@
 # Build data.frame for core report
-build_ga <- function(rows, cols) {
+build_ga <- function(data, cols) {
     cols$name <- gsub("ga:", "", cols$name)
-    data.df <- as.data.frame(rows, stringsAsFactors = FALSE)
+    data.df <- as.data.frame(data, stringsAsFactors = FALSE)
     colnames(data.df) <- cols$name
     return(data.df)
 }
 
 # Build data.frame for mcf report
-build_mcf <- function(rows, cols) {
+build_mcf <- function(data, cols) {
     cols$name <- gsub("mcf:", "", cols$name)
     if ("MCF_SEQUENCE" %in% cols$dataType) {
         primitive.idx <- grep("MCF_SEQUENCE", cols$dataType, invert = TRUE)
         conversion.idx <- grep("MCF_SEQUENCE", cols$dataType)
-        primitive <- lapply(rows, function(x) .subset2(x, "primitiveValue")[primitive.idx])
+        primitive <- lapply(data, function(x) .subset2(x, "primitiveValue")[primitive.idx])
         primitive <- do.call(rbind, primitive)
         colnames(primitive) <- cols$name[primitive.idx]
-        conversion <- lapply(rows, function(x) .subset2(x, "conversionPathValue")[conversion.idx])
+        conversion <- lapply(data, function(x) .subset2(x, "conversionPathValue")[conversion.idx])
         conversion <- lapply(conversion, function(i) lapply(i, function(x) paste(apply(x, 1, paste, collapse = ":"), collapse = " > ")))
         conversion <- do.call(rbind, lapply(conversion, unlist))
         colnames(conversion) <- cols$name[conversion.idx]
         data.df <- data.frame(primitive, conversion, stringsAsFactors = FALSE)[, cols$name]
     } else {
-        data.df <- as.data.frame(do.call(rbind, lapply(rows, unlist)), stringsAsFactors = FALSE)
+        data.df <- as.data.frame(do.call(rbind, lapply(data, unlist)), stringsAsFactors = FALSE)
         # insert column names
         colnames(data.df) <- cols$name
     }
     return(data.df)
+}
+
+# Convert data types
+convert_datatypes <- function(data, formats, date.format) {
+    formats[formats %in% c("INTEGER", "PERCENT", "TIME", "CURRENCY", "FLOAT")] <- "numeric"
+    formats[formats == "STRING"] <- "character"
+    formats[formats == "MCF_SEQUENCE"] <- "character"
+    data[] <- lapply(seq_along(formats), function(i) as(data[[i]], Class = formats[i]))
+    if ("date" %in% colnames(data)) {
+        data$date <- format(as.Date(data$date, "%Y%m%d"), date.format)
+    }
+    if ("conversionDate" %in% colnames(data)) {
+        data$conversionDate <- format(as.Date(data$conversionDate, "%Y%m%d"), date.format)
+    }
+    return(data)
 }
 
 # Build data.frame for mgmt
@@ -38,4 +53,13 @@ build_mgmt <- function(data, cols) {
         colnames(data.r) <- cols
     }
     return(data.r)
+}
+
+# Build a data.frame for GA report data
+build_df <- function(type = c("ga", "mcf"), data, cols) {
+    type <- match.arg(type)
+    data.df <- switch(type,
+                      ga = build_ga(data, cols),
+                      mcf = build_mcf(data, cols))
+    return(data.df)
 }

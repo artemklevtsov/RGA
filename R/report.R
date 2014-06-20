@@ -6,7 +6,7 @@
 #' @inheritParams set_query
 #' @param query \code{GAQuery} class object including a request parameters.
 #' @param type character string including report type. "ga" for core report, "mcf" for multi-channel funnels report.
-#' @param token \code{Token2.0} class object with a valid authorization data.
+#' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
 #' @param messages logical. Should print information messages?
 #' @param batch logical. Extract data in batches (extracting more observations than 10000).
 #' @param date.format character. A date format for output data.
@@ -87,10 +87,7 @@ get_report <- function(profile.id, start.date = "7daysAgo", end.date = "yesterda
     sampled <- data.json$containsSampledData
     if (sampled)
         warning("Data contains sampled data.")
-    if (type == "ga")
-        data.r <- build_ga(rows, cols)
-    else if (type == "mcf")
-        data.r <- build_mcf(rows, cols)
-    data.df <- convert_datatypes(data.r, formats, date.format = date.format)
+    data.df <- build_df(type, rows, cols)
+    data.df <- convert_datatypes(data.df, formats, date.format = date.format)
     return(data.df)
 }
