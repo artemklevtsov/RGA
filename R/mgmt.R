@@ -1,6 +1,6 @@
 #' @title Lists all accounts to which the user has access
 #'
-#' @param token \code{Token2.0} class object.
+#' @param token \code{\link[httr]{Token2.0}} class object.
 #' @param start.index an index of the first account to retrieve.
 #' @param max.results the maximum number of accounts to include in this response.
 #'
@@ -34,7 +34,7 @@ get_accounts = function(token, start.index = NULL, max.results = NULL) {
 
 #' @title Lists web properties to which the user has access
 #'
-#' @param token \code{Token2.0} class object.
+#' @param token \code{\link[httr]{Token2.0}} class object.
 #' @param account.id account ID to retrieve web properties for. Can either be a specific account ID or "~all", which refers to all the accounts that user has access to.
 #' @param start.index an index of the first entity to retrieve.
 #' @param max.results the maximum number of web properties to include in this response.
@@ -73,7 +73,7 @@ get_webproperties = function(token, account.id = "~all", start.index = NULL, max
 
 #' @title Lists views (profiles) to which the user has access
 #'
-#' @param token \code{Token2.0} class object.
+#' @param token \code{\link[httr]{Token2.0}} class object.
 #' @param account.id account ID for the view (profiles) to retrieve. Can either be a specific account ID or "~all", which refers to all the accounts to which the user has access.
 #' @param webproperty.id web property ID for the views (profiles) to retrieve. Can either be a specific web property ID or "~all", which refers to all the web properties to which the user has access.
 #' @param start.index an index of the first entity to retrieve.
@@ -118,7 +118,7 @@ get_profiles = function(token, account.id = "~all", webproperty.id = "~all", sta
 
 #' @title Lists goals to which the user has access
 #'
-#' @param token \code{Token2.0} class object.
+#' @param token \code{\link[httr]{Token2.0}} class object.
 #' @param account.id account ID to retrieve goals for. Can either be a specific account ID or "~all", which refers to all the accounts that user has access to.
 #' @param webproperty.id web property ID to retrieve goals for. Can either be a specific web property ID or "~all", which refers to all the web properties that user has access to.
 #' @param profile.id view (Profile) ID to retrieve goals for. Can either be a specific view (profile) ID or "~all", which refers to all the views (profiles) that user has access to.'
@@ -161,7 +161,7 @@ get_goals = function(token, account.id = "~all", webproperty.id = "~all", profil
 
 #' @title Lists segments to which the user has access
 #'
-#' @param token \code{Token2.0} class object.
+#' @param token \code{\link[httr]{Token2.0}} class object.
 #' @param start.index an index of the first segments to retrieve.
 #' @param max.results the maximum number of segment to include in this response.
 #'

@@ -22,6 +22,7 @@ Imports:
     jsonlite,
     httr (>= 0.3)
 Collate:
+    'token.R'
     'api-request.R'
     'build-df.R'
     'utils.R'
@@ -33,4 +34,3 @@ Collate:
     'help-ga.R'
     'mgmt.R'
     'rga.R'
-    'token.R'

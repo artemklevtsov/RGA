@@ -15,7 +15,7 @@ get_report(profile.id, start.date = "7daysAgo", end.date = "yesterday",
 
 \item{type}{character string including report type. "ga" for core report, "mcf" for multi-channel funnels report.}
 
-\item{token}{\code{Token2.0} class object with a valid authorization data.}
+\item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
 
 \item{messages}{logical. Should print information messages?}
 

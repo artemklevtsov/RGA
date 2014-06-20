@@ -23,7 +23,7 @@ get_token <- function(name) {
 #' @title Generate an oauth2.0 token
 #'
 #' @description
-#' \code{get_token} is wrapper for \code{link[httr]{oauth2.0_token}} function.
+#' \code{authorize} is wrapper for \code{\link[httr]{oauth2.0_token}} function.
 #'
 #' @param client.id OAuth client ID. if client.id is missing, we'll look in the environment variable RGA_CONSUMER_ID.
 #' @param client.secret OAuth client secret. if client.secret is missing, we'll look in the environment variable RGA_CONSUMER_SECRET.
@@ -75,16 +75,16 @@ authorize <- function(client.id, client.secret, cache = TRUE) {
     client.id_env <- Sys.getenv("RGA_CONSUMER_ID")
     client.secret_env <- Sys.getenv("RGA_CONSUMER_SECRET")
     if (missing(client.id) || !nzchar(client.id)) {
-        if (!nzchar(client.id_env))
-            stop("Clinet ID not specified.")
-        else
+        if (nzchar(client.id_env))
             client.id <- client.id_env
+        else
+            stop("Clinet ID not specified.")
     }
     if (missing(client.secret) || !nzchar(client.secret)) {
-        if (!nzchar(client.secret_env))
-            stop("Clinet secret not specified.")
-        else
+        if (nzchar(client.secret_env))
             client.secret <- client.secret_env
+        else
+            stop("Clinet secret not specified.")
     }
     rga_app <- oauth_app(appname = "rga", key = client.id, secret = client.secret)
     token <- oauth2.0_token(endpoint = oauth_endpoints("google"), app = rga_app, cache = cache,

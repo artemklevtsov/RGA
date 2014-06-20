@@ -7,7 +7,7 @@ get_goals(token, account.id = "~all", webproperty.id = "~all",
   profile.id = "~all", start.index = NULL, max.results = NULL)
 }
 \arguments{
-\item{token}{\code{Token2.0} class object.}
+\item{token}{\code{\link[httr]{Token2.0}} class object.}
 
 \item{account.id}{account ID to retrieve goals for. Can either be a specific account ID or "~all", which refers to all the accounts that user has access to.}
 

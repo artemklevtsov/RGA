@@ -7,7 +7,7 @@ get_webproperties(token, account.id = "~all", start.index = NULL,
   max.results = NULL)
 }
 \arguments{
-\item{token}{\code{Token2.0} class object.}
+\item{token}{\code{\link[httr]{Token2.0}} class object.}
 
 \item{account.id}{account ID to retrieve web properties for. Can either be a specific account ID or "~all", which refers to all the accounts that user has access to.}
 

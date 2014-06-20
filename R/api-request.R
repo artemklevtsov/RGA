@@ -1,4 +1,14 @@
-# Make a Goolge Analytics API request
+#' @title Make a Goolge Analytics API request
+#'
+#' @param url the url of the page to retrieve.
+#' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
+#' @param simplify logical. Should the result be simplified to a vector, matrix or data.frame if possible?
+#' @param messages logical. Should print information messages?
+#'
+#' @noRd
+#'
+#' @include token.R
+#'
 #' @import RCurl
 #' @import httr
 #' @import jsonlite
@@ -31,9 +41,10 @@ api_request = function(url, token, simplify = TRUE, messages = FALSE) {
         message(http_status(request)$message)
     # Convert the JSON response into a R list
     data.json <- fromJSON(content(request, as = "text"), simplifyVector = simplify)
-    if (!is.null(data.json$error))
+    if (!is.null(data.json$error)) {
         stop(paste(http_status(request)$message, "Reason:",
                    paste(data.json$error$errors$message, collapse = "\n"), sep = "\n"))
+    }
     # Return the list containing Google Analytics API response
     return(data.json)
 }

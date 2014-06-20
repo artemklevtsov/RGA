@@ -7,7 +7,7 @@ get_profiles(token, account.id = "~all", webproperty.id = "~all",
   start.index = NULL, max.results = NULL)
 }
 \arguments{
-\item{token}{\code{Token2.0} class object.}
+\item{token}{\code{\link[httr]{Token2.0}} class object.}
 
 \item{account.id}{account ID for the view (profiles) to retrieve. Can either be a specific account ID or "~all", which refers to all the accounts to which the user has access.}
 

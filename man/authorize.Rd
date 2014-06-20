@@ -16,7 +16,7 @@ authorize(client.id, client.secret, cache = TRUE)
 A \code{\link[httr]{Token2.0}} reference class (RC) object.
 }
 \description{
-\code{get_token} is wrapper for \code{link[httr]{oauth2.0_token}} function.
+\code{authorize} is wrapper for \code{\link[httr]{oauth2.0_token}} function.
 }
 \details{
 When the \code{authorize} is used, the \code{GAToken} variable is created in the separate \code{TokenEnv} environment which not visible for user. So, there is no need to pass every time the \code{token} argument to any function which require authorisation. Also, there is possibility to store \code{token} in separate variable and pass it to the functions. It can be convinient if used several access tokens.
