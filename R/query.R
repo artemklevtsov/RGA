@@ -58,14 +58,14 @@ fix_query <- function(query) {
 #'
 #' @export
 #'
-set_query <- function(profile.id, start.date = NULL, end.date = NULL,
+set_query <- function(profile.id = NULL, start.date = NULL, end.date = NULL,
                       metrics = NULL, dimensions = NULL, sort = NULL, filters = NULL,
                       segment = NULL, start.index = NULL, max.results = NULL) {
     # Checks
-    stopifnot(!missing(profile.id), !is.null(profile.id),
-              !is.null(start.date), start.date != "",
-              !is.null(end.date), end.date != "",
-              !is.null(metrics), metrics != "")
+    stopifnot(!is.null(profile.id), nzchar(profile.id),
+              !is.null(start.date), nzchar(start.date),
+              !is.null(end.date), nzchar(end.date),
+              !is.null(metrics), nzchar(metrics))
     profile.id <- as.character(profile.id)
     start.date <- as.character(start.date)
     end.date <- as.character(end.date)
