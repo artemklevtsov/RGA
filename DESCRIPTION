@@ -34,3 +34,4 @@ Collate:
     'help-ga.R'
     'mgmt.R'
     'rga.R'
+    'test-query.R'
