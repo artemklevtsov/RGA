@@ -187,6 +187,16 @@ List of all parameters from certain group:
 subset(ga, group == "Traffic Sources", c(id, type))
 ```
 
+### Obtaining an access to API reports
+
+To access to API reports is used `get_report`. function. In this case, the parameters for a query to Google Analytics can be passed whether directly through arguments of the `get_report`function or through an intermediate `GAQuery`object which is created with the `set_query`function. Example of data obtaining for the last 30 days:
+
+```R
+ga_data <- get_report(profile.id = XXXXXXXX, start.date = "30daysAgo", end.date = "yesterday",
+                      metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = NULL, token = token)
+```
+
+
 
 
 ## References
