@@ -12,7 +12,7 @@ get_profiles()
 profile.id <- get_profiles()[1, 1]
 
 # 4. Get first date
-first.date <- get_firstdate(profile.id = profile.id)
+get_firstdate(profile.id = profile.id)
 
 # 5. Get data
 get_report(profile.id = profile.id)
