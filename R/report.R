@@ -87,7 +87,11 @@ get_report <- function(profile.id, start.date = "7daysAgo", end.date = "yesterda
     sampled <- data.json$containsSampledData
     if (sampled)
         warning("Data contains sampled data.")
+    if(messages)
+        message("Building data frame...")
     data.df <- build_df(type, rows, cols)
+    if(messages)
+        message("Converting data types...")
     data.df <- convert_datatypes(data.df, formats, date.format = date.format)
     return(data.df)
 }
