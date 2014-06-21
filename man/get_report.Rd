@@ -27,7 +27,7 @@ get_report(profile.id, start.date = "7daysAgo", end.date = "yesterday",
 
 \item{start.date}{start date for fetching Analytics data in YYYY-MM-DD format. Also allowed values "today", "yesterday", "ndaysAgo" whene n is number of days.}
 
-\item{end.date}{rnd date for fetching Analytics data in YYYY-MM-DD format. Also allowed values "today", "yesterday", "ndaysAgo" whene n is number of days.}
+\item{end.date}{end date for fetching Analytics data in YYYY-MM-DD format. Also allowed values "today", "yesterday", "ndaysAgo" whene n is number of days.}
 
 \item{metrics}{a comma-separated list of Analytics metrics, such as "ga:sessions,ga:bounces".}
 
