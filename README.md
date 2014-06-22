@@ -207,7 +207,15 @@ ga_data <- get_report(profile.id = XXXXXXXX, start.date = "30daysAgo", end.date 
 * `start.index` - index of the first returned result (line number).
 * `max.results` - maximum number of fields (rows) of the returned results.
 
+The following arguments:`profile.id`, `start.date`, `end.date` and `metrics` are mandatory. Notice that all arguments must be a character strings of unit length. The exception is `profile.id` which can be as a character string, as the number.
 
+Besides, function `get_report` supports the following arguments:
+
+* `type` - type of report: "ga" - basic report (core report) and "mcf" - report of multichannel sequences (multi-channel funnels).
+* `query` - object of class `GAQuery` which contains the query parameters. Can be obtained using the `set_query` function.
+* `token` - object of class `Token2.0` which contains data about the token of access. Can be obtained using the `authorize` function.
+* `batch` - logical argument which includes a mode of batch processing of queries. It is required if the number of fields (rows) exceeds 10000 (restriction Google).
+* `messages` - logical argument which includes includes displaying of additional messages during the data request.
 
 ## References
 
