@@ -13,7 +13,7 @@ Key **features**:
 
 ## Installation
 
-Notice: Currently the package `RGA` is in development and is not available via a CRAN network.
+**Notice:** Currently the package `RGA` is under development and is not available via a CRAN network.
 
 `RGA` package can be installed from the git-repository with the `install_bitbucket` function from `devtools` package:
 
@@ -56,6 +56,8 @@ Step by step instructions is below.
     * In the left sidebar, select **APIs & auth** and **Credentials** sub-paragraph;
     * In the **Client ID for native application** table, copy the values of the following fields: **Client ID** and **Client secret**.
 
+You can return to the Google Developers Console at any time to view the **client ID** and **client secret** on the Client ID for native application section on Credentials page.
+
 ## Working with the package
 
 ### Obtaining an access token
@@ -63,7 +65,7 @@ Step by step instructions is below.
 Authorization and obtaining the access token is necessary before implementing any requests to API. It can be done with the following command:
 
 ```R
-token <- get_token(client.id = "My_Client_ID", client.secret = "My_Client_secret")
+authorize(client.id = "My_Client_ID", client.secret = "My_Client_secret")
 ```
 
 Note: The values of Client.id and client.secret arguments can be defined via the following environment variables: `RGA_CONSUMER_ID` and `RGA_CONSUMER_SECRET`. In this case, it is not necessary to specify the `client.id` and `client.secret` arguments when calling the `get_token` function.
@@ -95,57 +97,16 @@ To access the API Google Analytics configuration, package `RGA` provides the fol
 
 Let's review these functions in details.
 
-* `get_accounts` - getting the list of accounts to which the user has access. Return columns:
-    - id - account ID;
-    - name - account name;
-    - created - Date of creating account;
-    - updated -  date of last update of account;
-* `get_webproperties` - getting a list of web propertys (Web Properties), to which the user has access. Return columns:
-    - id - web property ID;
-    - name - web property name;
-    - websiteUrl - website URL;
-    - level - level of the web property: standard or premium;;
-    - profileCount - number of profiles (views) for the web property;
-    - industryVertical - category / industry, which owns the web property;
-    - created - Date of creating the web property;
-    - updated - date of the last change of the web property;
-* `get_profiles` - getting a list of web propertys (Web Properties) and views (Profiles) sites to which the user has access. Return columns:
-    - id - profile ID;
-    - accountId - account ID
-    - webPropertyId - web property ID;
-    - name - name of this view;
-    - currency - currency;
-    - timezone - timezone;
-    - websiteUrl - website URL;
-    - type - web property type: website or application;
-    - created - date of creating submission;
-    - updated - date of the last update of submission;
-    - eCommerceTracking - e-commerce tracking;
-    - siteSearchQueryParameters - query parameter to track search the site;
-* `get_goals` - obtaining a list of goals to which the user has access. Return columns:
-    - id - goal ID
-    - accountId - account ID;
-    - webPropertyId - resource ID;
-    - profileId - profile ID;
-    - name - goal name;
-    - value - value of goal (currency);
-    - active - activity status of the goal;
-    - type - type of goal: event, the landing page, session duration, pages per session; 
-    - created - date of goal creation;
-    - updated - date of last change of goal;
-* `get_segments` - obtaining a list of segments to which the user has access. Return columns:
-    - id - segment ID;
-    - segmentId - segment ID for use to query data;
-    - name - segment name;
-    - definition - segment definition:
-    - type - type of segment: embedded or custom;
-    - created - date of segment creation;
-    - updated - date of the last change of segment;
+* `get_accounts` - getting the list of accounts to which the user has access;
+* `get_webproperties` - getting a list of web propertys (Web Properties), to which the user has access;
+* `get_profiles` - getting a list of web propertys (Web Properties) and views (Profiles) sites to which the user has access;
+* `get_goals` - obtaining a list of goals to which the user has access;
+* `get_segments` - obtaining a list of segments to which the user has access;
 
-For the functions such as `get_webproperties`, `get_profiles` and `get_goals`, can be specified the additional arguments such as ID аккаунта (`account.id`), resource (`webproperty.id`) or submission (`profile.id`), for which is required to obtain the information (view the help pages for the corresponding functions). Example of obtaining the information on all submissions is available to the user:
+For the functions such as `get_webproperties`, `get_profiles` and `get_goals`, can be specified the additional arguments such as `account.id`, `webproperty.id` or `profile.id`  which is required to obtain the information for specific account, resource or profile (view the help pages for the corresponding functions). Example of obtaining the information on all submissions is available to the user:
 
 ```R
-get_profiles(token = token)
+get_profiles()
 ```
 
 ### Obtaining access to the metadata of API reports
@@ -158,20 +119,20 @@ ga
 
 The variable `ga` consists the the following columns:
 
-* id - the parameter code name (metric or dimension) (used for queries);
-* type - parameter type: metric (METRIC) or dimension (DIMENSION);
-* dataType - data type: STRING, INTEGER, PERCENT, TIME, CURRENCY, FLOAT;
-* group - group of parameters (ex. User, Session, Traffic Sources);
-* status - status: actual (PUBLIC) or outdated (DEPRECATED);
-* uiName - parameter name (not used for queries);
-* description - parameter description;
-* allowedInSegments - whether the parameter can be used in the segments;
-* replacedBy - name of the replacement parameter, if the parameter is deprecated;
-* calculation - formula of calculating the parameter value, if the parameter is calculated based on other parameters;
-* minTemplateIndex - if the parameter contains a numeric index, the minimum parameter index;
-* maxTemplateIndex - if the parameter contains a numeric index, the maximum parameter index;
-* premiumMinTemplateIndex - if the parameter contains a numeric index, a minimum index for the parameter;
-* premiumMaxTemplateIndex - if the parameter contains a numeric index, a maximum index for the parameter.
+* `id` - the parameter code name (metric or dimension) (used for queries);
+* `type` - parameter type: metric (METRIC) or dimension (DIMENSION);
+* `dataType` - data type: STRING, INTEGER, PERCENT, TIME, CURRENCY, FLOAT;
+* `group` - group of parameters (ex. User, Session, Traffic Sources);
+* `status` - status: actual (PUBLIC) or outdated (DEPRECATED);
+* `uiName` - parameter name (not used for queries);
+* `description` - parameter description;
+* `allowedInSegments` - whether the parameter can be used in the segments;
+* `replacedBy` - name of the replacement parameter, if the parameter is deprecated;
+* `calculation` - formula of calculating the parameter value, if the parameter is calculated based on other parameters;
+* `minTemplateIndex` - if the parameter contains a numeric index, the minimum parameter index;
+* `maxTemplateIndex` - if the parameter contains a numeric index, the maximum parameter index;
+* `premiumMinTemplateIndex` - if the parameter contains a numeric index, a minimum index for the parameter;
+* `premiumMaxTemplateIndex`      - if the parameter contains a numeric index, a maximum index for the parameter.
 
 There are several examples of  usage the metadata Google Analytics API.
 
@@ -185,6 +146,18 @@ List of all parameters from certain group:
 
 ```R
 subset(ga, group == "Traffic Sources", c(id, type))
+```
+
+List of all calculated parameters:
+
+```R
+subset(ga, !is.na(calculation), c(id, calculation))
+```
+
+List of all parameters allowed in segments:
+
+```R
+subset(ga, allowedInSegments, id)
 ```
 
 ### Obtaining an access to API reports

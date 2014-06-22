@@ -22,7 +22,6 @@ build_mcf <- function(data, cols) {
         data.df <- data.frame(primitive, conversion, stringsAsFactors = FALSE)[, cols$name]
     } else {
         data.df <- as.data.frame(do.call(rbind, lapply(data, unlist)), stringsAsFactors = FALSE)
-        # insert column names
         colnames(data.df) <- cols$name
     }
     return(data.df)

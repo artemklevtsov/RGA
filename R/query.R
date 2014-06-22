@@ -21,7 +21,7 @@ fix_query <- function(query) {
 #' @title Set Google Analytics report query
 #'
 #' @description
-#' \code{set_query} provide a query the Core or Multi-Channel Funnels Reporting API for Google Analytics report data.
+#' \code{set_query} create a query object the for Google Analytics report data.
 #'
 #' @param profile.id Google Analytics profile ID. Can be character (with or without "ga:" prefix) or integer.
 #' @param start.date start date for fetching Analytics data in YYYY-MM-DD format. Also allowed values "today", "yesterday", "ndaysAgo" whene n is number of days.

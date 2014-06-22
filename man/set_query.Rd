@@ -32,7 +32,7 @@ set_query(profile.id = NULL, start.date = NULL, end.date = NULL,
 \code{GAQuery} class object.
 }
 \description{
-\code{set_query} provide a query the Core or Multi-Channel Funnels Reporting API for Google Analytics report data.
+\code{set_query} create a query object the for Google Analytics report data.
 }
 \examples{
 set_query(profile.id = "ga:00000000", start.date = "7daysAgo", end.date = "yesterday",
