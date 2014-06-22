@@ -215,7 +215,55 @@ Besides, function `get_report` supports the following arguments:
 * `query` - object of class `GAQuery` which contains the query parameters. Can be obtained using the `set_query` function.
 * `token` - object of class `Token2.0` which contains data about the token of access. Can be obtained using the `authorize` function.
 * `batch` - logical argument which includes a mode of batch processing of queries. It is required if the number of fields (rows) exceeds 10000 (restriction Google).
-* `messages` - logical argument which includes includes displaying of additional messages during the data request.
+* `messages` - logical argument which includes displaying of additional messages during the data request.
+
+Notice, if you use the metrics (metrics) and measurements (dimensions) of the report of multichannel sequences, for instance, "mcf:totalConversions", then the argument `type` should be set value "mcf".
+
+Example of data obtaining for the last 30 days:
+
+```R
+ga_data <- get_report(profile.id = XXXXXXXX, start.date = "30daysAgo", end.date = "yesterday",
+                      metrics = "ga:users,ga:sessions,ga:pageviews")
+```
+
+The same effect can be achieved through intermediate variable `query`:
+
+```R
+query <- set_query(profile.id = XXXXXXXX, start.date = "30daysAgo", end.date = "yesterday",
+                   metrics = "ga:users,ga:sessions,ga:pageviews")
+print(query)
+ga_data <- get_report(query)
+```
+
+The variable `ga_data` is a data table (`data.frame`) and contains as columns those metrics (metrics)and measurements (dimensions) that were defined in the query.
+
+Notice, after creating the object `query`, we can change its parameters, setting them values ​​analogically to lists:
+
+```R
+query$dimensions <- "ga:date"
+query$filters <- "ga:sessions > 1000"
+print(query)
+```
+
+Remove one or another value of `query` object might be by assigning it a value of `NULL`:
+
+```R
+query$filters <- NULL
+print(query)
+```
+
+Sometimes it is necessary to obtain the data for the entire monitoring period through service Google Analytics. For these purposes, the package `RGA` provides the function `get_firstdate` which takes as an argument a charming profile ID (submission):
+
+```R
+first_date <- get_firstdate(profile.id = XXXXXXXX, token = token)
+```
+
+Now we can use the variable `first_date` as the argument `start.date` when call the `get_report` function:
+
+```R
+ga_data <- get_report(profile.id = XXXXXXXX, start.date = first_date, end.date = "yesterday",
+                      metrics = "ga:users,ga:sessions,ga:pageviews")
+
 
 ## References
 
