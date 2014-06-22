@@ -9,7 +9,6 @@
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
 #' @param messages logical. Should print information messages?
 #' @param batch logical. Extract data in batches (extracting more observations than 10000).
-#' @param date.format character. A date format for output data.
 #'
 #' @return A data frame with Google Analytics reporting data. Columns are metrics and dimesnions.
 #'
@@ -44,7 +43,7 @@
 #'
 #' @export
 #'
-get_report <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday", date.format = "%Y-%m-%d",
+get_report <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
                        metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = NULL,
                        sort = NULL, filters = NULL, segment = NULL, start.index = NULL, max.results = 10000L,
                        type = c("ga", "mcf"), query, token, batch = FALSE, messages = FALSE) {
@@ -92,6 +91,6 @@ get_report <- function(profile.id, start.date = "7daysAgo", end.date = "yesterda
     data.df <- build_df(type, rows, cols)
     if(messages)
         message("Converting data types...")
-    data.df <- convert_datatypes(data.df, formats, date.format = date.format)
+    data.df <- convert_datatypes(data.df, formats)
     return(data.df)
 }

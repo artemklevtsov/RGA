@@ -29,16 +29,16 @@ build_mcf <- function(data, cols) {
 }
 
 # Convert data types
-convert_datatypes <- function(data, formats, date.format) {
+convert_datatypes <- function(data, formats) {
     formats[formats %in% c("INTEGER", "PERCENT", "TIME", "CURRENCY", "FLOAT")] <- "numeric"
     formats[formats == "STRING"] <- "character"
     formats[formats == "MCF_SEQUENCE"] <- "character"
     data[] <- lapply(seq_along(formats), function(i) as(data[[i]], Class = formats[i]))
     if ("date" %in% colnames(data)) {
-        data$date <- format(as.Date(data$date, "%Y%m%d"), date.format)
+        data$date <- as.Date(data$date, "%Y%m%d")
     }
     if ("conversionDate" %in% colnames(data)) {
-        data$conversionDate <- format(as.Date(data$conversionDate, "%Y%m%d"), date.format)
+        data$conversionDate <-as.Date(data$conversionDate, "%Y%m%d")
     }
     return(data)
 }

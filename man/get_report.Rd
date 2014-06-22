@@ -4,7 +4,6 @@
 \title{Get Google Anaytics report data}
 \usage{
 get_report(profile.id, start.date = "7daysAgo", end.date = "yesterday",
-  date.format = "\%Y-\%m-\%d",
   metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = NULL,
   sort = NULL, filters = NULL, segment = NULL, start.index = NULL,
   max.results = 10000L, type = c("ga", "mcf"), query, token,
@@ -20,8 +19,6 @@ get_report(profile.id, start.date = "7daysAgo", end.date = "yesterday",
 \item{messages}{logical. Should print information messages?}
 
 \item{batch}{logical. Extract data in batches (extracting more observations than 10000).}
-
-\item{date.format}{character. A date format for output data.}
 
 \item{profile.id}{Google Analytics profile ID. Can be character (with or without "ga:" prefix) or integer.}
 
