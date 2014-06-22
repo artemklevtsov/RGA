@@ -263,6 +263,7 @@ Now we can use the variable `first_date` as the argument `start.date` when call 
 ```R
 ga_data <- get_report(profile.id = XXXXXXXX, start.date = first_date, end.date = "yesterday",
                       metrics = "ga:users,ga:sessions,ga:pageviews")
+```
 
 
 ## References
@@ -282,3 +283,5 @@ ga_data <- get_report(profile.id = XXXXXXXX, start.date = first_date, end.date =
 * [Setting environment variables in Windows XP](http://support.microsoft.com/kb/310519)
 * [Setting environment variables in earlier versions of OSX](https://developer.apple.com/library/mac/#documentation/MacOSX/Conceptual/BPRuntimeConfig/Articles/EnvironmentVars.html)
 * [Setting environment variables in Ubuntu Linux](https://help.ubuntu.com/community/EnvironmentVariables)
+
+
