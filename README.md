@@ -196,6 +196,16 @@ ga_data <- get_report(profile.id = XXXXXXXX, start.date = "30daysAgo", end.date 
                       metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = NULL, token = token)
 ```
 
+* `profile.id` - profile ID (submission) Google Analytics. Can be obtained using the `get_progiles` or via the web interface Google Analytics.
+* `start.date` - date started collecting data in the format YYYY-MM-DD. Also, allowed values, such as "today", "yesterday", "ndaysAgo", where `n` is the number of days.
+* `end.date` - дата окончания сбора данных в формате YYYY-MM-DD. Also, allowed values, such as "today", "yesterday", "ndaysAgo", where `n` is the number of days.
+* `metrics` -  comma-separated list of values ​​of metrics (metrics), for example, "ga:sessions,ga:bounces". The number of metrics can not exceed 10 indicators for a single request.
+* `dimensions` - comma-separated list of values ​​of measurements (dimensions), for example, "ga:browser,ga:city". The number of dimensions can not exceed 7 measurements at a single request.
+* `sort` - comma-separated list of metrics (metrics) and measurements (dimensions) determining the order and direction of sorting data. Reverse the sort order is defined by `-` before the relevant metric.
+* `filters` - comma-separated list of filters of metrics (metrics) and measurements (dimensions), that will be imposed when selecting data.
+* `segment` - segments that will be used when retrieving data.
+* `start.index` - index of the first returned result (line number).
+* `max.results` - maximum number of fields (rows) of the returned results.
 
 
 
