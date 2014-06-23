@@ -20,19 +20,19 @@ get_token <- function(name) {
     get(name, envir = TokenEnv)
 }
 
-#' @title Generate an oauth2.0 token
+#' @title Obtain an OAuth 2.0 access token
 #'
 #' @description
 #' \code{authorize} is wrapper for \code{\link[httr]{oauth2.0_token}} function.
 #'
-#' @param client.id OAuth client ID. if client.id is missing, we'll look in the environment variable RGA_CONSUMER_ID.
-#' @param client.secret OAuth client secret. if client.secret is missing, we'll look in the environment variable RGA_CONSUMER_SECRET.
+#' @param client.id OAuth client ID. if client.id is missing, we'll look in the environment variable \code{RGA_CONSUMER_ID}.
+#' @param client.secret OAuth client secret. if client.secret is missing, we'll look in the environment variable \code{RGA_CONSUMER_SECRET}.
 #' @param cache A logical value or a string. TRUE means to cache using the default cache file \code{.oauth-httr}, FALSE means don't cache. A string mean use the specified path as the cache file.
 #'
 #' @details
 #' When the \code{authorize} is used, the \code{GAToken} variable is created in the separate \code{TokenEnv} environment which not visible for user. So, there is no need to pass every time the \code{token} argument to any function which require authorisation. Also, there is possibility to store \code{token} in separate variable and pass it to the functions. It can be convinient if used several access tokens.
 #'
-#' @section Getting an OAuth Console Key and Secret:
+#' @section Obtain OAuth 2.0 credentials:
 #'
 #' To find your project's client ID and client secret, do the following:
 #'
