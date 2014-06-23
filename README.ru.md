@@ -17,7 +17,7 @@
 Установить актуальную версию пакета `RGA` можно установить с помощью функции `install_bitbucket` из пакета `devtools`:
 
 ```R
-devtools::install.packages("devtools", dependencies = TRUE)
+devtools::install_bitbucket(repo = "rga", username = "unikum")
 ```
 Другой способ установки пакета `RGA` (с помощью команд в терминале):
 
