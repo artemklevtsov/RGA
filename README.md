@@ -22,7 +22,7 @@ To install the current version of the `RGA` package can be used the `install_bit
 devtools::install_bitbucket(repo = "rga", username = "unikum")
 ```
 
-Another method to install the package `RGA` (using the commands in the terminal):
+Another method to install the package `RGA` (using the command line):
 
 ```bash
 git clone https://unikum@bitbucket.org/unikum/rga.git
