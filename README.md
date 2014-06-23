@@ -1,8 +1,8 @@
 # RGA
 
-This package is designed to work with the **API Google Analytics** in **R**.
+This package is designed to work with the [**API Google Analytics**](https://developers.google.com/analytics) in [**R**](http://www.r-project.org/).
 
-Key **features**:
+Key features:
 
 * Support for [OAuth 2.0 authorization](https://developers.google.com/accounts/docs/OAuth2);
 * Access to following [Google Analytics APIs](https://developers.google.com/analytics/devguides/platform/):
@@ -71,7 +71,7 @@ authorize(client.id = "My_Client_ID", client.secret = "My_Client_secret")
 
 After executing this command, a web browser will be opened with a page of query of confirmation of access permission to the data Google Analytics. It's necessary to authorize with your own **Google account** and confirm the authorization to access the Google Analytics data. Note, the package `RGA` requests access of **read-only** data.
 
-When the `authorize` is used, the `GAToken` variable is created in the separate `TokenEnv` environment which not visible for user. So, there is no need to pass every time the `token` argument to any function which require authorisation.
+When the `authorize` function is used, the `GAToken` variable is created in the separate `TokenEnv` environment which not visible for user. So, there is no need to pass every time the `token` argument to any function which require authorisation.
 
 Access token can also be stored in a variable and passed as argument for functions, which make requests to the API Google Analytics. This can be useful if you work with several accounts at the same time.
 
