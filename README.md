@@ -32,7 +32,7 @@ R CMD INSTALL rga_*.tar.gz
 
 ## Preparation
 
-### Obtaining the keys to access to the API Google Analytics
+### Obtain OAuth 2.0 credentials to access to the API Google Analytics
 
 Before to start working with the `RGA` package, it is necessary to create a new application in [Google Developers Console](https://console.developers.google.com/) and obtain a **Client ID** and **Client secret** to access the API Google Analytics.
 
