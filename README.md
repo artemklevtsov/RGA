@@ -81,7 +81,7 @@ get_profiles(token = ga_token)
 ```
 This can be useful if you work with several accounts at the same time.
 
-Note: Besides of the explicit specifying the Client.id and client.secret arguments, their values ​​can be defined via environment variables: `RGA_CONSUMER_ID` and `RGA_CONSUMER_SECRET`. In this case, the specifying the `client.id` and `client.secret` arguments at call `authorize` function is not required.
+Note: Besides of the explicit specifying the `client.id` and `client.secret` arguments, their values ​​can be defined via environment variables: `RGA_CONSUMER_ID` and `RGA_CONSUMER_SECRET`. In this case, the specifying the `client.id` and `client.secret` arguments at call `authorize` function is not required.
 
 Setting the environment variables is different for various operating systems, so the user should refer to the relevant reference materials (view the list of references at the end of this manual). Also, there is a setup method of the environment variables when running R-sessions using the `.Renviron` files in the user's working or home directory. Contents of the file might look like this:
 
