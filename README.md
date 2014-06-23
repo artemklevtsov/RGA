@@ -61,7 +61,7 @@ You can return to the Google Developers Console at any time to view the **client
 
 ## Working with the package
 
-### Obtaining an access token
+### Obtain an access token
 
 Before to exercise any requests to API, it's necessary to perform authorization and to obtain access token. It can be done with the following command:
 
