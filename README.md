@@ -61,13 +61,13 @@ You can return to the Google Developers Console at any time to view the **client
 
 ### Obtaining a token of access
 
-Before to exercise any requests to API, it's necessary to perform authorization and to obtain  token of access. It can be done with the following command:
+Before to exercise any requests to API, it's necessary to perform authorization and to obtain access token. It can be done with the following command:
 
 ```R
 authorize(client.id = "My_Client_ID", client.secret = "My_Client_secret")
 ```
 
-After executing this command, a web browser will be opened with a page of query of confirmation of access permission to the data Google Analytics. Necessary to authorize with your own **Google account** and confirm the authorization to access the Google Analytics data. Note, the package `RGA` requests access of **read-only** data.
+After executing this command, a web browser will be opened with a page of query of confirmation of access permission to the data Google Analytics. It's necessary to authorize with your own **Google account** and confirm the authorization to access the Google Analytics data. Note, the package `RGA` requests access of **read-only** data.
 
 If the `cache` argument was ​​assigned the `TRUE` (default) and  the `httr_oauth_cache` parameter  was not changed, then after successful authorization the `.httr-oauth` file with access data to Google API will be created in the working directory. The `.httr-oauth` file will be used between sessions, i.e. at a subsequent call to the `authorize`  function, authorization is no longer required. With using the `cache` argument you can also cancel the creation of the file (`FALSE` value) or specify an alternate path to the file storage (for that necessary to explicitly specify the path and file name).
 
