@@ -17,7 +17,7 @@ Key **features**:
 To install the current version of the `RGA` package can be used the `install_bitbucket` function from `devtools` package:
 
 ```R
-devtools::install.packages("devtools", dependencies = TRUE)
+devtools::install_bitbucket(repo = "rga", username = "unikum")
 ```
 
 Another method to install the package `RGA` (using the commands in the terminal):
