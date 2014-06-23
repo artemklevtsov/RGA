@@ -116,13 +116,15 @@ get_profiles()
 
 ### Obtaining access to the metadata of API reports
 
-For obtaining a list of all the metrics and dimensions the `RGA` package provides a dataset `ga`, which is available after loading the package. Access to the dataset is similar to access to any object in R - by the variable name.
+When working with the API reports, sometimes necessary to obtain background information about these or other query parameters to the API. To obtain a list of all the metrics (metrics) and measurements (dimensions)`RGA` package provides a  a set of data (dataset) `ga`, which is available after loading the package.
+
+Access to a set of data is exercised similarly as access to any object in R - variable name:
 
 ```R
 ga
 ```
 
-The variable `ga` consists the the following columns:
+The set of data `ga` consists the the following columns:
 
 * `id` - the parameter code name (metric or dimension) (used for queries);
 * `type` - parameter type: metric (METRIC) or dimension (DIMENSION);
@@ -167,12 +169,9 @@ subset(ga, allowedInSegments, id)
 
 ### Obtaining an access to API reports
 
-To access to API reports is used `get_report` function. In this case, the parameters for a query to Google Analytics can be passed whether directly through arguments of the `get_report`function or through an intermediate `GAQuery`object which is created with the `set_query`function. Example of data obtaining for the last 30 days:
+To access to API reports is used `get_report` function. In this case, the parameters for a query to Google Analytics can be passed whether directly through arguments of the `get_report`function or through an intermediate `GAQuery`object which is created with the `set_query`function.
 
-```R
-ga_data <- get_report(profile.id = XXXXXXXX, start.date = "30daysAgo", end.date = "yesterday",
-                      metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = NULL, token = token)
-```
+The following parameters are available for queries to the API reports:
 
 * `profile.id` - profile ID (submission) Google Analytics. Can be obtained using the `get_progiles` or via the web interface Google Analytics.
 * `start.date` - date started collecting data in the format YYYY-MM-DD. Also, allowed values, such as "today", "yesterday", "ndaysAgo", where `n` is the number of days.
