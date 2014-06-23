@@ -248,10 +248,9 @@ ga_data <- get_report(profile.id = XXXXXXXX, start.date = first_date, end.date =
 
 ## References
 
-* [Google Developers Console](https://console.developers.google.com/project);
-
 ### Google Analytics API
 
+* [Google Developers Console](https://console.developers.google.com/project);
 * [Management API Reference](https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/)
 * [Core Reporting API Reference Guide](https://developers.google.com/analytics/devguides/reporting/core/v3/reference)
 * [Multi-Channel Funnels Reporting API Reference Guide](https://developers.google.com/analytics/devguides/reporting/mcf/v3/reference)
