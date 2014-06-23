@@ -71,15 +71,16 @@ authorize(client.id = "My_Client_ID", client.secret = "My_Client_secret")
 
 After executing this command, a web browser will be opened with a page of query of confirmation of access permission to the data Google Analytics. It's necessary to authorize with your own **Google account** and confirm the authorization to access the Google Analytics data. Note, the package `RGA` requests access of **read-only** data.
 
-If the `cache` argument was ​​assigned the `TRUE` (default) and  the `httr_oauth_cache` parameter  was not changed, then after successful authorization the `.httr-oauth` file with access data to Google API will be created in the working directory. The `.httr-oauth` file will be used between sessions, i.e. at a subsequent call to the `authorize`  function, authorization is no longer required. With using the `cache` argument you can also cancel the creation of the file (`FALSE` value) or specify an alternate path to the file storage (for that necessary to explicitly specify the path and file name).
+When the `authorize` is used, the `GAToken` variable is created in the separate `TokenEnv` environment which not visible for user. So, there is no need to pass every time the `token` argument to any function which require authorisation.
 
-Access token  can also be stored in a variable and used as arguments for functions, which make requests to the API Google Analytics::
+Access token can also be stored in a variable and passed as argument for functions, which make requests to the API Google Analytics. This can be useful if you work with several accounts at the same time.
 
 ```R
 ga_token <- authorize(client.id = "My_Client_ID", client.secret = "My_Client_secret")
 get_profiles(token = ga_token)
 ```
-This can be useful if you work with several accounts at the same time.
+
+If the `cache` argument was ​​assigned the `TRUE` (default) and  the `httr_oauth_cache` option was not changed, then after successful authorization the `.httr-oauth` file with access data to Google API will be created in the current working directory. The `.httr-oauth` file will be used between sessions, i.e. at a subsequent call to the `authorize`  function, authorization is no longer required. With using the `cache` argument you can also cancel the creation of the file (`FALSE` value) or specify an alternate path to the file storage (for that necessary to explicitly specify the path and file name).
 
 Note: Besides of the explicit specifying the `client.id` and `client.secret` arguments, their values ​​can be defined via environment variables: `RGA_CONSUMER_ID` and `RGA_CONSUMER_SECRET`. In this case, the specifying the `client.id` and `client.secret` arguments at call `authorize` function is not required.
 
