@@ -71,7 +71,7 @@ After executing this command, a web browser will be opened with a page of query 
 
 If the `cache` argument was ​​assigned the `TRUE` (default) and  the `httr_oauth_cache` parameter  was not changed, then after successful authorization the `.httr-oauth` file with access data to Google API will be created in the working directory. The `.httr-oauth` file will be used between sessions, i.e. at a subsequent call to the `authorize`  function, authorization is no longer required. With using the `cache` argument you can also cancel the creation of the file (`FALSE` value) or specify an alternate path to the file storage (for that necessary to explicitly specify the path and file name).
 
-Token of access can also be stored in a variable and used as arguments for functions, which make requests to the API Google Analytics::
+Access token  can also be stored in a variable and used as arguments for functions, which make requests to the API Google Analytics::
 
 ```R
 ga_token <- authorize(client.id = "My_Client_ID", client.secret = "My_Client_secret")
@@ -79,7 +79,7 @@ get_profiles(token = ga_token)
 ```
 This can be useful if you work with several accounts at the same time.
 
-Note: Besides of the explicit specifying the Client.id and client.secret arguments, their values ​​can be defined via environment variables: `RGA_CONSUMER_ID` and `RGA_CONSUMER_SECRET`. In this case, the specifying the  `client.id` and `client.secret` arguments at call `authorize` function is not required.
+Note: Besides of the explicit specifying the Client.id and client.secret arguments, their values ​​can be defined via environment variables: `RGA_CONSUMER_ID` and `RGA_CONSUMER_SECRET`. In this case, the specifying the `client.id` and `client.secret` arguments at call `authorize` function is not required.
 
 Setting the environment variables is different for various operating systems, so the user should refer to the relevant reference materials (view the list of references at the end of this manual). Also, there is a setup method of the environment variables when running R-sessions using the `.Renviron` files in the user's working or home directory. Contents of the file might look like this:
 
