@@ -4,11 +4,13 @@ This package is designed to work with the **API Google Analytics** in **R**.
 
 Key **features**:
 
-* Support for OAuth 2.0 authentication;
-* Access to the API configuration (accounts information, profiles, goals, segments);
-* Access to API basic reports and reports multichannel sequences;
+* Support for [OAuth 2.0 authorization](https://developers.google.com/accounts/docs/OAuth2);
+* Access to following [Google Analytics APIs](https://developers.google.com/analytics/devguides/platform/):
+    - [Management API](https://developers.google.com/analytics/devguides/config/mgmt/v3): access configuration data for accounts, web properties, views (profiles), goals and segments;
+    - [Core Reporting API](https://developers.google.com/analytics/devguides/reporting/core/v3): query for dimensions and metrics to produce customized reports;
+    - [Multi-Channel Funnels Reporting API](https://developers.google.com/analytics/devguides/reporting/mcf/v3): query the traffic source paths that lead to a user's goal conversion;
+    - [Metadata API](https://developers.google.com/analytics/devguides/reporting/metadata/v3): access the list of API dimensions and metrics and their attributes;
 * Support of the batch processing of the requests (allows to overcome the restriction on the number of rows returned for a single request).
-* Access to the Metadata of the API reports.
 
 ## Installation
 
