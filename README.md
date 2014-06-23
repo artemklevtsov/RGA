@@ -36,7 +36,7 @@ Before to start working with the `RGA` package, it is necessary to create a new 
 
 Step by step instructions is below.
 
-1. Create a new project:
+1. Creation of a new project (can be skipped if the project already created):
     * Open the page https://console.developers.google.com/project;
     * Click on the **Create Project** red button at the top left of the page;
     * In the pop-up window, enter the name of the project into the **PROJECT NAME** field;
@@ -44,28 +44,36 @@ Step by step instructions is below.
 2. Activation of the access to the API Google Analytics:
     * Select the project from the project list on https://console.developers.google.com/project page;
     * Select **APIs & auth** in the left sidebar;
-    * In the **APIs** tab, click on the **OFF** button to activate **Analytics API**.
+    * In the **APIs** tab, click on the **OFF** button to activate **Analytics API** (ensure that instead of `OFF` appeared `ON`).
 3. Creating a new application:
-    * In the left sidebar, select **APIs & auth** and **Credentials** sub-paragraph;
+    * In the left sidebar, select **APIs & auth** and then **Credentials** sub-paragraph;
     * Click on the **Create new Client ID** button on the left side of the page;
     * In the pop-up window, select **Installed application** from the APPLICATION TYPE list and **Other** from INSTALLED APPLICATION TYPE list.
     * Click on the **Create Client ID** button to confirm the creation of the application.
 4. Obtaining Client ID and Client secret:
     * Select the project from the project list on the https://console.developers.google.com/project page;
-    * In the left sidebar, select **APIs & auth** and **Credentials** sub-paragraph;
+    * In the left sidebar, select **APIs & auth** and then **Credentials** sub-paragraph;
     * In the **Client ID for native application** table, copy the values of the following fields: **Client ID** and **Client secret**.
 
 You can return to the Google Developers Console at any time to view the **client ID** and **client secret** on the Client ID for native application section on Credentials page.
 
 ## Working with the package
 
-### Obtaining an access token
+### Obtaining a token of access
 
-Authorization and obtaining the access token is necessary before implementing any requests to API. It can be done with the following command:
+Before to exercise any requests to API, it's necessary to perform authorization and to obtain  token of access. It can be done with the following command:
 
 ```R
 authorize(client.id = "My_Client_ID", client.secret = "My_Client_secret")
 ```
+
+After executing this command, a web browser will be opened with a page of query of confirmation of access permission to the data Google Analytics. Necessary to authorize with your own **Google account** and confirm the authorization to access the Google Analytics data. Note, the package `RGA` requests access of **read-only** data.
+
+If the `cache` argument was ​​assigned the `TRUE` (default) and  the `httr_oauth_cache` parameter  was not changed, then after successful authorization the `.httr-oauth` file with access data to Google APIwill be created in the working directory. The `.httr-oauth` file will be used between sessions, i.e. at a subsequent call to the `authorize`  function, authorization is no longer required. With using the `cache` argument you can also cancel the creation of the file (`FALSE` value) or specify an alternate path to the file storage (for that necessary to explicitly specify the path and file name).
+
+
+
+
 
 Note: The values of Client.id and client.secret arguments can be defined via the following environment variables: `RGA_CONSUMER_ID` and `RGA_CONSUMER_SECRET`. In this case, it is not necessary to specify the `client.id` and `client.secret` arguments when calling the `get_token` function.
 
