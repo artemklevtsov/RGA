@@ -1,8 +1,8 @@
 # RGA
 
-This package is designed to work with the **API Google Analytics** in **R**.
+This package is designed to work with the [**API Google Analytics**](https://developers.google.com/analytics) in [**R**](http://www.r-project.org/).
 
-Key **features**:
+Key features:
 
 * Support for [OAuth 2.0 authorization](https://developers.google.com/accounts/docs/OAuth2);
 * Access to following [Google Analytics APIs](https://developers.google.com/analytics/devguides/platform/):
