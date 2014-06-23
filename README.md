@@ -99,7 +99,7 @@ Sys.setenv(RGA_CONSUMER_ID = "My_Client_ID", RGA_CONSUMER_SECRET = "My_Client_se
 
  This string can be added to the file `.Rprofile` in the user's current оr home directory, to set automatically these variables when the R-сессион starts.
 
-### Obtaining the access to the API configuration
+### Obtain the access to the Management API
 
 To access the API Google Analytics configuration, package `RGA` provides the following functions: `get_accounts`, `get_webproperties`, `get_profiles`, `get_goals` и `get_segments`. Each of these functions returns a table of data (`data.frame`), with the relevant content.
 
@@ -117,7 +117,7 @@ For the functions such as `get_webproperties`, `get_profiles` and `get_goals`, c
 get_profiles()
 ```
 
-### Obtaining access to the metadata of API reports
+### Obtain access to the Metadata API
 
 When working with the API reports, sometimes necessary to obtain background information about these or other query parameters to the API. To obtain a list of all the metrics (metrics) and measurements (dimensions)`RGA` package provides a  a set of data (dataset) `ga`, which is available after loading the package.
 
@@ -170,7 +170,7 @@ List of all parameters allowed in segments:
 subset(ga, allowedInSegments, id)
 ```
 
-### Obtaining an access to API reports
+### Obtain an access to the Reporting API
 
 To access to API reports is used `get_report` function. In this case, the parameters for a query to Google Analytics can be passed whether directly through arguments of the `get_report`function or through an intermediate `GAQuery`object which is created with the `set_query`function.
 
