@@ -5,23 +5,22 @@ This package is designed to work with the **API Google Analytics** in **R**.
 Key **features**:
 
 * Support for OAuth 2.0 authentication;
-* Support Google Analytics APIs:
-    - Access to the Management API (including accounts information, profiles, goals, segments);
-    - Access to the Core Reporting API and the Multi-Channel Funnels Reporting API;
-    - Access to the Metadata API.
+* Access to the API configuration (accounts information, profiles, goals, segments);
+* Access to API basic reports and reports multichannel sequences;
 * Support of the batch processing of the requests (allows to overcome the restriction on the number of rows returned for a single request).
+* Access to the Metadata of the API reports.
 
 ## Installation
 
 **Notice:** Currently the package `RGA` is under development and is not available via a CRAN network.
 
-`RGA` package can be installed from the git-repository with the `install_bitbucket` function from `devtools` package:
+To install the current version of the `RGA` package can be used the `install_bitbucket` function from `devtools` package:
 
 ```R
-devtools::install_bitbucket(repo = "rga", username = "unikum")
+devtools::install.packages("devtools", dependencies = TRUE)
 ```
 
-If you know GIT and R CMD build, here is another way:
+Another method to install the package `RGA` (using the commands in the terminal):
 
 ```bash
 git clone https://unikum@bitbucket.org/unikum/rga.git
@@ -33,7 +32,7 @@ R CMD INSTALL rga_*.tar.gz
 
 ### Obtaining the keys to access to the API Google Analytics
 
-Before start working with the `RGA` package, it is necessary to create a new application in [Google Developers Console](https://console.developers.google.com/) and obtain a **Client ID** and **Client secret** to access the API Google Analytics.
+Before to start working with the `RGA` package, it is necessary to create a new application in [Google Developers Console](https://console.developers.google.com/) and obtain a **Client ID** and **Client secret** to access the API Google Analytics.
 
 Step by step instructions is below.
 
@@ -256,5 +255,3 @@ ga_data <- get_report(profile.id = XXXXXXXX, start.date = first_date, end.date =
 * [Setting environment variables in Windows XP](http://support.microsoft.com/kb/310519)
 * [Setting environment variables in earlier versions of OSX](https://developer.apple.com/library/mac/#documentation/MacOSX/Conceptual/BPRuntimeConfig/Articles/EnvironmentVars.html)
 * [Setting environment variables in Ubuntu Linux](https://help.ubuntu.com/community/EnvironmentVariables)
-
-
