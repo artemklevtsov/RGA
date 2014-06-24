@@ -29,10 +29,12 @@ build_query <- function(x) {
 #' @title Build URL for Google Analytics request
 #'
 #' @param type type of Google Analytics API data.
-#' @param path URL path.
-#' @param query URL query string.
+#' @param path URL path. May be list or character.
+#' @param query URL query string. May be list or character.
 #'
 #' @return Character string.
+#'
+#' @keywords internal
 #'
 #' @noRd
 #'

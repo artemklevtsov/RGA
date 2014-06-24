@@ -7,6 +7,8 @@
 #'
 #' @noRd
 #'
+#' @keywords internal
+#'
 #' @include token.R
 #'
 #' @import RCurl
