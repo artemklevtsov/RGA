@@ -38,11 +38,12 @@ build_query <- function(x) {
 #'
 #' @noRd
 #'
-build_url <- function(type = c("ga", "mcf", "mgmt"), path, query) {
+build_url <- function(type = c("ga", "mcf", "rt", "mgmt"), path, query) {
     type <- match.arg(type)
     url <- switch(type,
                   ga = "https://www.googleapis.com/analytics/v3/data/ga",
                   mcf = "https://www.googleapis.com/analytics/v3/data/mcf",
+                  rt = "https://www.googleapis.com/analytics/v3/data/realtime",
                   mgmt = "https://www.googleapis.com/analytics/v3/management",
                   stop("Unknown API data type."))
     if (!missing(path)) {

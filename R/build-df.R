@@ -1,6 +1,5 @@
 # Build data.frame for core report
 build_ga <- function(data, cols) {
-    cols$name <- gsub("ga:", "", cols$name)
     data.df <- as.data.frame(data, stringsAsFactors = FALSE)
     colnames(data.df) <- cols$name
     return(data.df)
@@ -8,7 +7,6 @@ build_ga <- function(data, cols) {
 
 # Build data.frame for mcf report
 build_mcf <- function(data, cols) {
-    cols$name <- gsub("mcf:", "", cols$name)
     if ("MCF_SEQUENCE" %in% cols$dataType) {
         primitive.idx <- grep("MCF_SEQUENCE", cols$dataType, invert = TRUE)
         conversion.idx <- grep("MCF_SEQUENCE", cols$dataType)
@@ -55,10 +53,12 @@ build_mgmt <- function(data, cols) {
 }
 
 # Build a data.frame for GA report data
-build_df <- function(type = c("ga", "mcf"), data, cols) {
+build_df <- function(type = c("ga", "mcf", "rt"), data, cols) {
+    cols$name <- gsub("^(ga|mcf|rt):", "", cols$name)
     type <- match.arg(type)
     data.df <- switch(type,
                       ga = build_ga(data, cols),
+                      rt = build_ga(data, cols),
                       mcf = build_mcf(data, cols))
     return(data.df)
 }

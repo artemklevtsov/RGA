@@ -3,11 +3,7 @@
 \alias{get_report}
 \title{Get Google Anaytics report data}
 \usage{
-get_report(profile.id, start.date = "7daysAgo", end.date = "yesterday.",
-  metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = NULL,
-  sort = NULL, filters = NULL, segment = NULL, start.index = NULL,
-  max.results = NULL, type = c("ga", "mcf"), query, token,
-  messages = FALSE)
+get_report(query, type = c("ga", "mcf", "rt"), token, messages = FALSE)
 }
 \arguments{
 \item{query}{\code{GAQuery} class object including a request parameters.}
@@ -17,26 +13,6 @@ get_report(profile.id, start.date = "7daysAgo", end.date = "yesterday.",
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
 
 \item{messages}{logical. Should print information messages?}
-
-\item{profile.id}{string or integer. Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID.}
-
-\item{start.date}{string. Start date for fetching Analytics data. Requests can specify a start date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is 7daysAgo.}
-
-\item{end.date}{string. End date for fetching Analytics data. Request can should specify an end date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is yesterday.}
-
-\item{metrics}{string. A comma-separated list of Analytics metrics. E.g., "ga:sessions,ga:pageviews". At least one metric must be specified.}
-
-\item{dimensions}{string. A comma-separated list of Analytics dimensions. E.g., "ga:browser,ga:city".}
-
-\item{sort}{string. A comma-separated list of dimensions or metrics that determine the sort order for Analytics data.}
-
-\item{filters}{string. A comma-separated list of dimension or metric filters to be applied to Analytics data.}
-
-\item{segment}{string. An Analytics segment to be applied to data.}
-
-\item{start.index}{integer. An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.}
-
-\item{max.results}{integer. The maximum number of entries to include in this feed.}
 }
 \value{
 A data frame with Google Analytics reporting data. Columns are metrics and dimesnions.
@@ -48,25 +24,18 @@ A data frame with Google Analytics reporting data. Columns are metrics and dimes
 \dontrun{
 # get token data
 authorize(client.id = "myID", client.secret = "mySecret")
-# get reporting data
-ga_data <- get_report("myProfileID", start.date = "30daysAgo", end.date = "today",
-                      metrics = "ga:sessions", dimensions = "ga:source,ga:medium"
-                      sort = "-ga:sessions")
-# same with query
+# set query
 ga_query <- set_query("myProfileID", start.date = "30daysAgo", end.date = "today",
                       metrics = "ga:sessions", dimensions = "ga:source,ga:medium"
                       sort = "-ga:sessions")
-ga_data <- get_report(ga_query)
+# get report data
+ga_data <- get_report(ga_query, type = "ga")
 }
-}
-\references{
-Core Reporting API - Dimensions & Metrics Reference: \url{https://developers.google.com/analytics/devguides/reporting/core/dimsmets}
-
-Multi-Channel Funnels Reporting API - Dimensions & Metrics Reference: \url{https://developers.google.com/analytics/devguides/reporting/mcf/dimsmets/}
-
-Google Analytics Query Explorer 2: \url{https://ga-dev-tools.appspot.com/explorer/}
 }
 \seealso{
 \code{\link{authorize}} \code{\link{set_query}}
+
+Other Reporting API: \code{\link{get_ga}};
+  \code{\link{get_mcf}}; \code{\link{get_realtime}}
 }
 
