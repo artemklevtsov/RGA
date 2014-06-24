@@ -23,16 +23,16 @@ fix_query <- function(query) {
 #' @description
 #' \code{set_query} create a query object the for Google Analytics report data.
 #'
-#' @param profile.id Google Analytics profile ID. Can be character (with or without "ga:" prefix) or integer.
-#' @param start.date start date for fetching Analytics data in YYYY-MM-DD format. Also allowed values "today", "yesterday", "ndaysAgo" whene n is number of days.
-#' @param end.date end date for fetching Analytics data in YYYY-MM-DD format. Also allowed values "today", "yesterday", "ndaysAgo" whene n is number of days.
-#' @param metrics a comma-separated list of Analytics metrics, such as "ga:sessions,ga:bounces".
-#' @param dimensions a comma-separated list of Analytics dimensions, such as "ga:browser,ga:city".
-#' @param sort a comma-separated list of dimensions or metrics that determine the sort order for Analytics data.
-#' @param filters a comma-separated list of dimension or metric filters to be applied to Analytics data.
-#' @param segment an Analytics segment to be applied to data.
-#' @param start.index an index of the first entity to retrieve.
-#' @param max.results the maximum number of entries to include in this feed.
+#' @param profile.id string or integer. Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID.
+#' @param start.date string. Start date for fetching Analytics data. Requests can specify a start date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is 7daysAgo.
+#' @param end.date string. End date for fetching Analytics data. Request can should specify an end date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is yesterday.
+#' @param metrics string. A comma-separated list of Analytics metrics. E.g., "ga:sessions,ga:pageviews". At least one metric must be specified.
+#' @param dimensions string. A comma-separated list of Analytics dimensions. E.g., "ga:browser,ga:city".
+#' @param sort string. A comma-separated list of dimensions or metrics that determine the sort order for Analytics data.
+#' @param filters string. A comma-separated list of dimension or metric filters to be applied to Analytics data.
+#' @param segment string. An Analytics segment to be applied to data.
+#' @param start.index integer. An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+#' @param max.results integer. The maximum number of entries to include in this feed.
 #'
 #' @return \code{GAQuery} class object.
 #'

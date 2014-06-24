@@ -9,19 +9,19 @@ get_profiles(token, account.id = "~all", webproperty.id = "~all",
 \arguments{
 \item{token}{\code{\link[httr]{Token2.0}} class object.}
 
-\item{account.id}{account ID for the view (profiles) to retrieve. Can either be a specific account ID or "~all", which refers to all the accounts to which the user has access.}
+\item{account.id}{string. Account ID for the view (profiles) to retrieve. Can either be a specific account ID or '~all', which refers to all the accounts to which the user has access. (required)}
 
-\item{webproperty.id}{web property ID for the views (profiles) to retrieve. Can either be a specific web property ID or "~all", which refers to all the web properties to which the user has access.}
+\item{webproperty.id}{string. Web property ID for the views (profiles) to retrieve. Can either be a specific web property ID or '~all', which refers to all the web properties to which the user has access. (required)}
 
-\item{start.index}{an index of the first entity to retrieve.}
+\item{start.index}{integer. An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.}
 
-\item{max.results}{the maximum number of views (profiles) to include in this response.}
+\item{max.results}{integer. The maximum number of views (profiles) to include in this response.}
 }
 \value{
 A data frame with Google Analytics management data.
-\item{id}{view (Profile) ID.}
 \item{accountId}{account ID to which this view (profile) belongs.}
 \item{webPropertyId}{web property ID of the form UA-XXXXX-YY to which this view (profile) belongs.}
+\item{id}{view (Profile) ID.}
 \item{name}{name of this view (profile).}
 \item{currency}{the currency type associated with this view (profile).}
 \item{timezone}{time zone for which this view (profile) has been configured.}

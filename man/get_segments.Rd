@@ -8,9 +8,9 @@ get_segments(token, start.index = NULL, max.results = NULL)
 \arguments{
 \item{token}{\code{\link[httr]{Token2.0}} class object.}
 
-\item{start.index}{an index of the first segments to retrieve.}
+\item{start.index}{integer. An index of the first segment to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.}
 
-\item{max.results}{the maximum number of segment to include in this response.}
+\item{max.results}{integer. The maximum number of segments to include in this response.}
 }
 \value{
 A data frame with Google Analytics management data.

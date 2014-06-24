@@ -9,15 +9,15 @@ get_goals(token, account.id = "~all", webproperty.id = "~all",
 \arguments{
 \item{token}{\code{\link[httr]{Token2.0}} class object.}
 
-\item{account.id}{account ID to retrieve goals for. Can either be a specific account ID or "~all", which refers to all the accounts that user has access to.}
+\item{account.id}{string. Account ID to retrieve goals for. Can either be a specific account ID or '~all', which refers to all the accounts that user has access to. (required)}
 
-\item{webproperty.id}{web property ID to retrieve goals for. Can either be a specific web property ID or "~all", which refers to all the web properties that user has access to.}
+\item{webproperty.id}{string. Web property ID to retrieve goals for. Can either be a specific web property ID or '~all', which refers to all the web properties that user has access to. (required)}
 
-\item{profile.id}{view (Profile) ID to retrieve goals for. Can either be a specific view (profile) ID or "~all", which refers to all the views (profiles) that user has access to.'}
+\item{profile.id}{string. View (Profile) ID to retrieve goals for. Can either be a specific view (profile) ID or '~all', which refers to all the views (profiles) that user has access to. (required)}
 
-\item{start.index}{an index of the first goals to retrieve.}
+\item{start.index}{integer. An index of the first goal to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.}
 
-\item{max.results}{the maximum number of goal to include in this response.}
+\item{max.results}{integer. The maximum number of goals to include in this response.}
 }
 \value{
 A data frame with Google Analytics management data.

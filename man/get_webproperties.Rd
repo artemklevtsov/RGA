@@ -9,14 +9,15 @@ get_webproperties(token, account.id = "~all", start.index = NULL,
 \arguments{
 \item{token}{\code{\link[httr]{Token2.0}} class object.}
 
-\item{account.id}{account ID to retrieve web properties for. Can either be a specific account ID or "~all", which refers to all the accounts that user has access to.}
+\item{account.id}{string. Account ID to retrieve web properties for. Can either be a specific account ID or "~all", which refers to all the accounts that user has access to.}
 
-\item{start.index}{an index of the first entity to retrieve.}
+\item{start.index}{integer. An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.}
 
-\item{max.results}{the maximum number of web properties to include in this response.}
+\item{max.results}{integer. The maximum number of web properties to include in this response.}
 }
 \value{
 A data frame with Google Analytics management data.
+\item{accountId}{Account ID to which this web property belongs.}
 \item{id}{web property ID of the form UA-XXXXX-YY.}
 \item{name}{name of this web property.}
 \item{websiteUrl}{website url for this web property.}

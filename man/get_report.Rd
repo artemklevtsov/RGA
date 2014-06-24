@@ -3,7 +3,7 @@
 \alias{get_report}
 \title{Get Google Anaytics report data}
 \usage{
-get_report(profile.id, start.date = "7daysAgo", end.date = "yesterday",
+get_report(profile.id, start.date = "7daysAgo", end.date = "yesterday.",
   metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = NULL,
   sort = NULL, filters = NULL, segment = NULL, start.index = NULL,
   max.results = NULL, type = c("ga", "mcf"), query, token,
@@ -18,25 +18,25 @@ get_report(profile.id, start.date = "7daysAgo", end.date = "yesterday",
 
 \item{messages}{logical. Should print information messages?}
 
-\item{profile.id}{Google Analytics profile ID. Can be character (with or without "ga:" prefix) or integer.}
+\item{profile.id}{string or integer. Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID.}
 
-\item{start.date}{start date for fetching Analytics data in YYYY-MM-DD format. Also allowed values "today", "yesterday", "ndaysAgo" whene n is number of days.}
+\item{start.date}{string. Start date for fetching Analytics data. Requests can specify a start date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is 7daysAgo.}
 
-\item{end.date}{end date for fetching Analytics data in YYYY-MM-DD format. Also allowed values "today", "yesterday", "ndaysAgo" whene n is number of days.}
+\item{end.date}{string. End date for fetching Analytics data. Request can should specify an end date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is yesterday.}
 
-\item{metrics}{a comma-separated list of Analytics metrics, such as "ga:sessions,ga:bounces".}
+\item{metrics}{string. A comma-separated list of Analytics metrics. E.g., "ga:sessions,ga:pageviews". At least one metric must be specified.}
 
-\item{dimensions}{a comma-separated list of Analytics dimensions, such as "ga:browser,ga:city".}
+\item{dimensions}{string. A comma-separated list of Analytics dimensions. E.g., "ga:browser,ga:city".}
 
-\item{sort}{a comma-separated list of dimensions or metrics that determine the sort order for Analytics data.}
+\item{sort}{string. A comma-separated list of dimensions or metrics that determine the sort order for Analytics data.}
 
-\item{filters}{a comma-separated list of dimension or metric filters to be applied to Analytics data.}
+\item{filters}{string. A comma-separated list of dimension or metric filters to be applied to Analytics data.}
 
-\item{segment}{an Analytics segment to be applied to data.}
+\item{segment}{string. An Analytics segment to be applied to data.}
 
-\item{start.index}{an index of the first entity to retrieve.}
+\item{start.index}{integer. An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.}
 
-\item{max.results}{the maximum number of entries to include in this feed.}
+\item{max.results}{integer. The maximum number of entries to include in this feed.}
 }
 \value{
 A data frame with Google Analytics reporting data. Columns are metrics and dimesnions.

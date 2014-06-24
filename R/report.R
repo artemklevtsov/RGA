@@ -42,7 +42,7 @@
 #'
 #' @export
 #'
-get_report <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
+get_report <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday.",
                        metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = NULL,
                        sort = NULL, filters = NULL, segment = NULL, start.index = NULL, max.results = NULL,
                        type = c("ga", "mcf"), query, token, messages = FALSE) {
