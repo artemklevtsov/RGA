@@ -26,8 +26,8 @@ fix_query <- function(query) {
 #' @param profile.id string or integer. Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID.
 #' @param start.date string. Start date for fetching Analytics data. Requests can specify a start date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is 7daysAgo.
 #' @param end.date string. End date for fetching Analytics data. Request can should specify an end date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is yesterday.
-#' @param metrics string. A comma-separated list of Analytics metrics. E.g., "ga:sessions,ga:pageviews". At least one metric must be specified.
-#' @param dimensions string. A comma-separated list of Analytics dimensions. E.g., "ga:browser,ga:city".
+#' @param metrics string. A comma-separated list of Analytics metrics.
+#' @param dimensions string. A comma-separated list of Analytics dimensions.
 #' @param sort string. A comma-separated list of dimensions or metrics that determine the sort order for Analytics data.
 #' @param filters string. A comma-separated list of dimension or metric filters to be applied to Analytics data.
 #' @param segment string. An Analytics segment to be applied to data.
@@ -47,13 +47,6 @@ fix_query <- function(query) {
 #' query$sort <- NULL
 #' query
 #'
-#' @references
-#' Core Reporting API - Dimensions & Metrics Reference: \url{https://developers.google.com/analytics/devguides/reporting/core/dimsmets}
-#'
-#' Multi-Channel Funnels Reporting API - Dimensions & Metrics Reference: \url{https://developers.google.com/analytics/devguides/reporting/mcf/dimsmets/}
-#'
-#' Google Analytics Query Explorer 2: \url{https://ga-dev-tools.appspot.com/explorer/}
-#'
 #' @keywords internal
 #'
 #' @export
@@ -61,14 +54,7 @@ fix_query <- function(query) {
 set_query <- function(profile.id = NULL, start.date = NULL, end.date = NULL,
                       metrics = NULL, dimensions = NULL, sort = NULL, filters = NULL,
                       segment = NULL, start.index = NULL, max.results = NULL) {
-    # Checks
-    stopifnot(!is.null(profile.id), nzchar(profile.id),
-              !is.null(start.date), nzchar(start.date),
-              !is.null(end.date), nzchar(end.date),
-              !is.null(metrics), nzchar(metrics))
     profile.id <- as.character(profile.id)
-    start.date <- as.character(start.date)
-    end.date <- as.character(end.date)
     # Build query
     query <- list(profile.id = profile.id,
                   start.date = start.date,

@@ -14,9 +14,9 @@ set_query(profile.id = NULL, start.date = NULL, end.date = NULL,
 
 \item{end.date}{string. End date for fetching Analytics data. Request can should specify an end date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is yesterday.}
 
-\item{metrics}{string. A comma-separated list of Analytics metrics. E.g., "ga:sessions,ga:pageviews". At least one metric must be specified.}
+\item{metrics}{string. A comma-separated list of Analytics metrics.}
 
-\item{dimensions}{string. A comma-separated list of Analytics dimensions. E.g., "ga:browser,ga:city".}
+\item{dimensions}{string. A comma-separated list of Analytics dimensions.}
 
 \item{sort}{string. A comma-separated list of dimensions or metrics that determine the sort order for Analytics data.}
 
@@ -44,13 +44,6 @@ query$sort <- "-ga:sessions"
 query
 query$sort <- NULL
 query
-}
-\references{
-Core Reporting API - Dimensions & Metrics Reference: \url{https://developers.google.com/analytics/devguides/reporting/core/dimsmets}
-
-Multi-Channel Funnels Reporting API - Dimensions & Metrics Reference: \url{https://developers.google.com/analytics/devguides/reporting/mcf/dimsmets/}
-
-Google Analytics Query Explorer 2: \url{https://ga-dev-tools.appspot.com/explorer/}
 }
 \keyword{internal}
 
