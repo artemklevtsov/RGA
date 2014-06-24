@@ -36,7 +36,7 @@ Google Management API - Web Properties: \url{https://developers.google.com/analy
 \seealso{
 \code{\link{authorize}}
 
-Other Management.API: \code{\link{get_accounts}};
+Other Management API: \code{\link{get_accounts}};
   \code{\link{get_goals}}; \code{\link{get_profiles}};
   \code{\link{get_segments}}
 }

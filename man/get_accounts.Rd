@@ -28,7 +28,7 @@ Google Management API - Accounts: \url{https://developers.google.com/analytics/d
 \seealso{
 \code{\link{authorize}}
 
-Other Management.API: \code{\link{get_goals}};
+Other Management API: \code{\link{get_goals}};
   \code{\link{get_profiles}}; \code{\link{get_segments}};
   \code{\link{get_webproperties}}
 }

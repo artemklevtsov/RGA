@@ -42,7 +42,7 @@ Google Management API - Views (Profiles): \url{https://developers.google.com/ana
 \seealso{
 \code{\link{authorize}}
 
-Other Management.API: \code{\link{get_accounts}};
+Other Management API: \code{\link{get_accounts}};
   \code{\link{get_goals}}; \code{\link{get_segments}};
   \code{\link{get_webproperties}}
 }
