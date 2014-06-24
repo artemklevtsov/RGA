@@ -8,7 +8,6 @@
 #' @param type character string including report type. "ga" for core report, "mcf" for multi-channel funnels report.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
 #' @param messages logical. Should print information messages?
-#' @param batch logical. Extract data in batches (extracting more observations than 10000).
 #'
 #' @return A data frame with Google Analytics reporting data. Columns are metrics and dimesnions.
 #'
@@ -37,16 +36,16 @@
 #' @seealso \code{\link{authorize}} \code{\link{set_query}}
 #'
 #' @include query.R
-#' @include build-url.R
-#' @include api-request.R
+#' @include get-data.R
+#' @include get-pages.R
 #' @include build-df.R
 #'
 #' @export
 #'
 get_report <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
                        metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = NULL,
-                       sort = NULL, filters = NULL, segment = NULL, start.index = NULL, max.results = 10000L,
-                       type = c("ga", "mcf"), query, token, batch = FALSE, messages = FALSE) {
+                       sort = NULL, filters = NULL, segment = NULL, start.index = NULL, max.results = NULL,
+                       type = c("ga", "mcf"), query, token, messages = FALSE) {
     type <- match.arg(type)
     if (type == "mcf" && !is.null(segment))
         segment <- NULL
@@ -55,31 +54,30 @@ get_report <- function(profile.id, start.date = "7daysAgo", end.date = "yesterda
     if (missing(query) && !missing(profile.id)) {
         query <- set_query(profile.id = profile.id, start.date = start.date, end.date = end.date,
                            metrics = metrics, dimensions = dimensions, sort = sort, filters = filters,
-                           segment = segment, start.index = start.index, max.results = max.results)
+                           segment = segment, start.index = start.index, max.results = 1L)
     }
-    url <- build_url(type = type, query = query)
-    data.json <- api_request(url, token = token, messages = messages)
+    data.json <- get_data(type = type, query = query, token = token, messages = messages)
     cols <- data.json$columnHeaders
     formats <- data.json$columnHeaders$dataType
     if (data.json$totalResults > 0 && !is.null(data.json$rows)) {
-        rows <- data.json$rows
-        total.pages <- ceiling(data.json$totalResults / data.json$itemsPerPage)
-        if (total.pages > 1L && !batch)
-            warning(paste("Only", data.json$itemsPerPage, "observations out of", data.json$totalResults, "were obtained (set batch = TRUE to get all the results)."))
-        if (total.pages > 1L && batch) {
+        if (!is.null(max.results)) {
+            query$max.results <- max.results
+            if (max.results < data.json$totalResults)
+                warning(paste("Only", data.json$max.results, "observations out of", data.json$totalResults, "were obtained (set max.results = NULL to get all the results)."))
+        } else {
+            if (data.json$totalResults <= 10000)
+                query$max.results <- data.json$totalResults
+            else
+                query$max.results <- 10000L
+        }
+        if (data.json$totalResults <= 10000) {
+            data.json <- get_data(type = type, query = query, token = token, messages = messages)
+            rows <- data.json$rows
+        } else {
             if (messages)
                 message("Response contain more then 10000 rows.")
-            for (page in 2:total.pages) {
-                if (messages)
-                    message(paste0("Fetching page ", page, " of ", total.pages, "..."))
-                query$start.index <- query$max.results * (page - 1) + 1
-                url <- build_url(type = type, query = query)
-                data.json <- api_request(url, token = token, messages = messages)
-                if (inherits(rows, "list"))
-                    rows <- append(rows, data.json$rows)
-                else if (inherits(rows, "matrix"))
-                    rows <- rbind(rows, data.json$rows)
-            }
+            query$max.results <- 10000L
+            rows <- get_pages(total.results = data.json$totalResults, type = type, query = query, token = token, messages = messages)
         }
     } else
         rows <- matrix(NA, nrow = 1L, ncol = nrow(cols))

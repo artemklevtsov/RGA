@@ -17,8 +17,7 @@
 #'
 #' @family Management API
 #'
-#' @include build-url.R
-#' @include api-request.R
+#' @include get-data.R
 #' @include build-df.R
 #'
 #' @export
@@ -26,8 +25,7 @@
 get_accounts = function(token, start.index = NULL, max.results = NULL) {
     path <- "accounts"
     query <-  list(start.index = start.index, max.results = max.results)
-    url <- build_url(type = "mgmt", path = path, query = query)
-    data.json <- api_request(url = url, token = token)
+    data.json <- get_data(type = "mgmt", path = path, query = query, token = token)
     cols <- c("id", "name", "created", "updated")
     return(build_mgmt(data.json, cols))
 }
@@ -56,8 +54,7 @@ get_accounts = function(token, start.index = NULL, max.results = NULL) {
 #'
 #' @family Management API
 #'
-#' @include build-url.R
-#' @include api-request.R
+#' @include get-data.R
 #' @include build-df.R
 #'
 #' @export
@@ -65,8 +62,7 @@ get_accounts = function(token, start.index = NULL, max.results = NULL) {
 get_webproperties = function(token, account.id = "~all", start.index = NULL, max.results = NULL) {
     path <- paste("accounts", account.id, "webproperties", sep = "/")
     query <-  list(start.index = start.index, max.results = max.results)
-    url <- build_url(type = "mgmt", path, query)
-    data.json <- api_request(url = url, token = token)
+    data.json <- get_data(type = "mgmt", path = path, query = query, token = token)
     cols <- c("id", "name", "websiteUrl", "level", "profileCount", "industryVertical", "created", "updated")
     return(build_mgmt(data.json, cols))
 }
@@ -101,8 +97,7 @@ get_webproperties = function(token, account.id = "~all", start.index = NULL, max
 #'
 #' @family Management API
 #'
-#' @include build-url.R
-#' @include api-request.R
+#' @include get-data.R
 #' @include build-df.R
 #'
 #' @export
@@ -110,8 +105,7 @@ get_webproperties = function(token, account.id = "~all", start.index = NULL, max
 get_profiles = function(token, account.id = "~all", webproperty.id = "~all", start.index = NULL, max.results = NULL) {
     path <- paste("accounts", account.id, "webproperties", webproperty.id, "profiles", sep = "/")
     query <-  list(start.index = start.index, max.results = max.results)
-    url <- build_url(type = "mgmt", path = path, query = query)
-    data.json <- api_request(url = url, token = token)
+    data.json <- get_data(type = "mgmt", path = path, query = query, token = token)
     cols <- c("id", "accountId", "webPropertyId", "name", "currency", "timezone", "websiteUrl", "type", "siteSearchQueryParameters", "siteSearchCategoryParameters", "eCommerceTracking", "created", "updated")
     return(build_mgmt(data.json, cols))
 }
@@ -144,8 +138,7 @@ get_profiles = function(token, account.id = "~all", webproperty.id = "~all", sta
 #'
 #' @family Management API
 #'
-#' @include build-url.R
-#' @include api-request.R
+#' @include get-data.R
 #' @include build-df.R
 #'
 #' @export
@@ -153,8 +146,7 @@ get_profiles = function(token, account.id = "~all", webproperty.id = "~all", sta
 get_goals = function(token, account.id = "~all", webproperty.id = "~all", profile.id = "~all", start.index = NULL, max.results = NULL) {
     path <- paste("accounts", account.id, "webproperties", webproperty.id, "profiles", profile.id, "goals", sep = "/")
     query <-  list(start.index = start.index, max.results = max.results)
-    url <- build_url(type = "mgmt", path = path, query = query)
-    data.json <- api_request(url = url, token = token)
+    data.json <- get_data(type = "mgmt", path = path, query = query, token = token)
     cols <- c("id", "accountId", "webPropertyId", "profileId", "name", "value", "active", "type", "created", "updated")
     return(build_mgmt(data.json, cols))
 }
@@ -181,8 +173,7 @@ get_goals = function(token, account.id = "~all", webproperty.id = "~all", profil
 #'
 #' @family Management API
 #'
-#' @include build-url.R
-#' @include api-request.R
+#' @include get-data.R
 #' @include build-df.R
 #'
 #' @export
@@ -190,8 +181,7 @@ get_goals = function(token, account.id = "~all", webproperty.id = "~all", profil
 get_segments = function(token, start.index = NULL, max.results = NULL) {
     path <- "segments"
     query <-  list(start.index = start.index, max.results = max.results)
-    url <- build_url(type = "mgmt", path = path, query = query)
-    data.json <- api_request(url = url, token = token)
+    data.json <- get_data(type = "mgmt", path = path, query = query, token = token)
     cols <- c("id", "segmentId", "name", "definition", "type", "created", "updated")
     return(build_mgmt(data.json, cols))
 }

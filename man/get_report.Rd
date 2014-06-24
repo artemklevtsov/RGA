@@ -6,8 +6,8 @@
 get_report(profile.id, start.date = "7daysAgo", end.date = "yesterday",
   metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = NULL,
   sort = NULL, filters = NULL, segment = NULL, start.index = NULL,
-  max.results = 10000L, type = c("ga", "mcf"), query, token,
-  batch = FALSE, messages = FALSE)
+  max.results = NULL, type = c("ga", "mcf"), query, token,
+  messages = FALSE)
 }
 \arguments{
 \item{query}{\code{GAQuery} class object including a request parameters.}
@@ -17,8 +17,6 @@ get_report(profile.id, start.date = "7daysAgo", end.date = "yesterday",
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
 
 \item{messages}{logical. Should print information messages?}
-
-\item{batch}{logical. Extract data in batches (extracting more observations than 10000).}
 
 \item{profile.id}{Google Analytics profile ID. Can be character (with or without "ga:" prefix) or integer.}
 

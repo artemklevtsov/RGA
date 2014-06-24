@@ -28,6 +28,8 @@ Collate:
     'utils.R'
     'build-url.R'
     'query.R'
+    'get-data.R'
+    'get-pages.R'
     'report.R'
     'firstdate.R'
     'ga-data.R'
