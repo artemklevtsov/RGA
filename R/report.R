@@ -4,7 +4,7 @@
 #' \code{get_report} provide a query the Core or Multi-Channel Funnels Reporting API for Google Analytics report data.
 #'
 #' @param query \code{GAQuery} class object including a request parameters.
-#' @param type character string including report type. "ga" for core report, "mcf" for multi-channel funnels report.
+#' @param type character. Report type.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
 #' @param messages logical. Should print information messages?
 #'
@@ -27,6 +27,7 @@
 #' @seealso \code{\link{authorize}} \code{\link{set_query}}
 #'
 #' @include get-data.R
+#' @include test-query.R
 #' @include get-pages.R
 #' @include build-df.R
 #'
@@ -34,18 +35,13 @@
 #'
 get_report <- function(query, type = c("ga", "mcf", "rt"), token, messages = FALSE) {
     type <- match.arg(type)
-    max.results <- query$max.results
-    query$max.results <- 1L
-    if (messages)
-        message("Testing query...")
-    data.json <- get_data(type = type, query = query, token = token, messages = messages)
+    data.json <- test_query(type = type, query = query, token = token, messages = messages)
     cols <- data.json$columnHeaders
-    formats <- data.json$columnHeaders$dataType
+    formats <- cols$dataType
     if (data.json$totalResults > 0 && !is.null(data.json$rows)) {
-        if (!is.null(max.results)) {
-            stopifnot(max.results > 10000)
-            query$max.results <- max.results
-            if (max.results < data.json$totalResults)
+        if (!is.null(query$max.results)) {
+            stopifnot(query$max.results <= 10000)
+            if (query$max.results < data.json$totalResults)
                 warning(paste("Only", query$max.results, "observations out of", data.json$totalResults, "were obtained (set max.results = NULL to get all the results)."))
         } else {
             if (data.json$totalResults <= 10000)
@@ -84,13 +80,13 @@ get_report <- function(query, type = c("ga", "mcf", "rt"), token, messages = FAL
 #' @title Get the Google Anaytics from Core Reporting API
 #'
 #' @param profile.id string or integer. Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID.
-#' @param start.date string. Start date for fetching Analytics data. Requests can specify a start date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is 7daysAgo.
-#' @param end.date string. End date for fetching Analytics data. Request can should specify an end date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is yesterday.
-#' @param metrics string. A comma-separated list of Analytics metrics. E.g., "ga:sessions,ga:pageviews". At least one metric must be specified.
-#' @param dimensions string. A comma-separated list of Analytics dimensions. E.g., "ga:browser,ga:city".
-#' @param sort string. A comma-separated list of dimensions or metrics that determine the sort order for Analytics data.
-#' @param filters string. A comma-separated list of dimension or metric filters to be applied to Analytics data.
-#' @param segment string. An Analytics segment to be applied to data.
+#' @param start.date character. Start date for fetching Analytics data. Requests can specify a start date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is 7daysAgo.
+#' @param end.date character. End date for fetching Analytics data. Request can should specify an end date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is yesterday.
+#' @param metrics character. A comma-separated list of Analytics metrics. E.g., "ga:sessions,ga:pageviews". At least one metric must be specified.
+#' @param dimensions character. A comma-separated list of Analytics dimensions. E.g., "ga:browser,ga:city".
+#' @param sort character. A comma-separated list of dimensions or metrics that determine the sort order for Analytics data.
+#' @param filters character. A comma-separated list of dimension or metric filters to be applied to Analytics data.
+#' @param segment character. An Analytics segment to be applied to data.
 #' @param start.index integer. An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
 #' @param max.results integer. The maximum number of entries to include in this feed.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
@@ -135,12 +131,12 @@ get_ga <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
 #' @title Get the Google Anaytics from Multi-Channel Funnels Reporting API
 #'
 #' @param profile.id string or integer. Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID.
-#' @param start.date string. Start date for fetching Analytics data. Requests can specify a start date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is 7daysAgo.
-#' @param end.date string. End date for fetching Analytics data. Request can should specify an end date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is yesterday.
-#' @param metrics string. A comma-separated list of Multi-Channel Funnels metrics. E.g., "mcf:totalConversions,mcf:totalConversionValue". At least one metric must be specified.
-#' @param dimensions string. A comma-separated list of Multi-Channel Funnels dimensions. E.g., "mcf:source,mcf:medium".
-#' @param sort string. A comma-separated list of dimensions or metrics that determine the sort order for Analytics data.
-#' @param filters string. A comma-separated list of dimension or metric filters to be applied to Analytics data.
+#' @param start.date character. Start date for fetching Analytics data. Requests can specify a start date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is 7daysAgo.
+#' @param end.date character. End date for fetching Analytics data. Request can should specify an end date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is yesterday.
+#' @param metrics character. A comma-separated list of Multi-Channel Funnels metrics. E.g., "mcf:totalConversions,mcf:totalConversionValue". At least one metric must be specified.
+#' @param dimensions character. A comma-separated list of Multi-Channel Funnels dimensions. E.g., "mcf:source,mcf:medium".
+#' @param sort character. A comma-separated list of dimensions or metrics that determine the sort order for Analytics data.
+#' @param filters character. A comma-separated list of dimension or metric filters to be applied to Analytics data.
 #' @param start.index integer. An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
 #' @param max.results integer. The maximum number of entries to include in this feed.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
@@ -185,10 +181,10 @@ get_mcf <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
 #' @@title Get the Google Anaytics from Real Time Reporting API
 #'
 #' @param profile.id string or integer. Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID.
-#' @param metrics string. A comma-separated list of real time metrics. E.g., "rt:activeUsers". At least one metric must be specified.
-#' @param dimensions string. A comma-separated list of real time dimensions. E.g., "rt:medium,rt:city".
-#' @param sort string. A comma-separated list of dimensions or metrics that determine the sort order for real time data.
-#' @param filters string. A comma-separated list of dimension or metric filters to be applied to real time data.
+#' @param metrics character. A comma-separated list of real time metrics. E.g., "rt:activeUsers". At least one metric must be specified.
+#' @param dimensions character. A comma-separated list of real time dimensions. E.g., "rt:medium,rt:city".
+#' @param sort character. A comma-separated list of dimensions or metrics that determine the sort order for real time data.
+#' @param filters character. A comma-separated list of dimension or metric filters to be applied to real time data.
 #' @param max.results integer. The maximum number of entries to include in this feed.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
 #' @param messages logical. Should print information messages?

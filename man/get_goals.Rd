@@ -9,11 +9,11 @@ get_goals(token, account.id = "~all", webproperty.id = "~all",
 \arguments{
 \item{token}{\code{\link[httr]{Token2.0}} class object.}
 
-\item{account.id}{string. Account ID to retrieve goals for. Can either be a specific account ID or '~all', which refers to all the accounts that user has access to. (required)}
+\item{account.id}{character. Account ID to retrieve goals for. Can either be a specific account ID or '~all', which refers to all the accounts that user has access to. (required)}
 
-\item{webproperty.id}{string. Web property ID to retrieve goals for. Can either be a specific web property ID or '~all', which refers to all the web properties that user has access to. (required)}
+\item{webproperty.id}{character. Web property ID to retrieve goals for. Can either be a specific web property ID or '~all', which refers to all the web properties that user has access to. (required)}
 
-\item{profile.id}{string. View (Profile) ID to retrieve goals for. Can either be a specific view (profile) ID or '~all', which refers to all the views (profiles) that user has access to. (required)}
+\item{profile.id}{character. View (Profile) ID to retrieve goals for. Can either be a specific view (profile) ID or '~all', which refers to all the views (profiles) that user has access to. (required)}
 
 \item{start.index}{integer. An index of the first goal to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.}
 

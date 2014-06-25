@@ -10,19 +10,19 @@ set_query(profile.id = NULL, start.date = NULL, end.date = NULL,
 \arguments{
 \item{profile.id}{string or integer. Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID.}
 
-\item{start.date}{string. Start date for fetching Analytics data. Requests can specify a start date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is 7daysAgo.}
+\item{start.date}{character. Start date for fetching Analytics data. Requests can specify a start date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is 7daysAgo.}
 
-\item{end.date}{string. End date for fetching Analytics data. Request can should specify an end date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is yesterday.}
+\item{end.date}{character. End date for fetching Analytics data. Request can should specify an end date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is yesterday.}
 
-\item{metrics}{string. A comma-separated list of Analytics metrics.}
+\item{metrics}{character. A comma-separated list of Analytics metrics.}
 
-\item{dimensions}{string. A comma-separated list of Analytics dimensions.}
+\item{dimensions}{character. A comma-separated list of Analytics dimensions.}
 
-\item{sort}{string. A comma-separated list of dimensions or metrics that determine the sort order for Analytics data.}
+\item{sort}{character. A comma-separated list of dimensions or metrics that determine the sort order for Analytics data.}
 
-\item{filters}{string. A comma-separated list of dimension or metric filters to be applied to Analytics data.}
+\item{filters}{character. A comma-separated list of dimension or metric filters to be applied to Analytics data.}
 
-\item{segment}{string. An Analytics segment to be applied to data.}
+\item{segment}{character. An Analytics segment to be applied to data.}
 
 \item{start.index}{integer. An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.}
 

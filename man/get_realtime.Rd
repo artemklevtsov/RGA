@@ -10,13 +10,13 @@ get_realtime(profile.id, metrics = "rt:activeUsers", dimensions = NULL,
 \arguments{
 \item{profile.id}{string or integer. Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID.}
 
-\item{metrics}{string. A comma-separated list of real time metrics. E.g., "rt:activeUsers". At least one metric must be specified.}
+\item{metrics}{character. A comma-separated list of real time metrics. E.g., "rt:activeUsers". At least one metric must be specified.}
 
-\item{dimensions}{string. A comma-separated list of real time dimensions. E.g., "rt:medium,rt:city".}
+\item{dimensions}{character. A comma-separated list of real time dimensions. E.g., "rt:medium,rt:city".}
 
-\item{sort}{string. A comma-separated list of dimensions or metrics that determine the sort order for real time data.}
+\item{sort}{character. A comma-separated list of dimensions or metrics that determine the sort order for real time data.}
 
-\item{filters}{string. A comma-separated list of dimension or metric filters to be applied to real time data.}
+\item{filters}{character. A comma-separated list of dimension or metric filters to be applied to real time data.}
 
 \item{max.results}{integer. The maximum number of entries to include in this feed.}
 

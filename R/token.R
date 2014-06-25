@@ -25,9 +25,9 @@ get_token <- function(name) {
 #' @description
 #' \code{authorize} is wrapper for \code{\link[httr]{oauth2.0_token}} function.
 #'
-#' @param client.id string. OAuth client ID. if client.id is missing, we'll look in the environment variable \code{RGA_CONSUMER_ID}.
-#' @param client.secret string. OAuth client secret. if client.secret is missing, we'll look in the environment variable \code{RGA_CONSUMER_SECRET}.
-#' @param cache logical or string. TRUE means to cache using the default cache file \code{.oauth-httr}, FALSE means don't cache. A string mean use the specified path as the cache file.
+#' @param client.id character. OAuth client ID. if client.id is missing, we'll look in the environment variable \code{RGA_CONSUMER_ID}.
+#' @param client.secret character. OAuth client secret. if client.secret is missing, we'll look in the environment variable \code{RGA_CONSUMER_SECRET}.
+#' @param cache logical or character. TRUE means to cache using the default cache file \code{.oauth-httr}, FALSE means don't cache. A string mean use the specified path as the cache file.
 #'
 #' @details
 #' When the \code{authorize} function is used, the \code{GAToken} variable is created in the separate \code{TokenEnv} environment which not visible for user. So, there is no need to pass every time the \code{token} argument to any function which require authorisation. Also, there is possibility to store \code{token} in separate variable and pass it to the functions. It can be convinient if used several access tokens.

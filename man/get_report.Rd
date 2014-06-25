@@ -8,7 +8,7 @@ get_report(query, type = c("ga", "mcf", "rt"), token, messages = FALSE)
 \arguments{
 \item{query}{\code{GAQuery} class object including a request parameters.}
 
-\item{type}{character string including report type. "ga" for core report, "mcf" for multi-channel funnels report.}
+\item{type}{character. Report type.}
 
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
 

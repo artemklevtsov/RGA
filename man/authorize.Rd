@@ -6,11 +6,11 @@
 authorize(client.id, client.secret, cache = TRUE)
 }
 \arguments{
-\item{client.id}{string. OAuth client ID. if client.id is missing, we'll look in the environment variable \code{RGA_CONSUMER_ID}.}
+\item{client.id}{character. OAuth client ID. if client.id is missing, we'll look in the environment variable \code{RGA_CONSUMER_ID}.}
 
-\item{client.secret}{string. OAuth client secret. if client.secret is missing, we'll look in the environment variable \code{RGA_CONSUMER_SECRET}.}
+\item{client.secret}{character. OAuth client secret. if client.secret is missing, we'll look in the environment variable \code{RGA_CONSUMER_SECRET}.}
 
-\item{cache}{logical or string. TRUE means to cache using the default cache file \code{.oauth-httr}, FALSE means don't cache. A string mean use the specified path as the cache file.}
+\item{cache}{logical or character. TRUE means to cache using the default cache file \code{.oauth-httr}, FALSE means don't cache. A string mean use the specified path as the cache file.}
 }
 \value{
 A \code{\link[httr]{Token2.0}} reference class (RC) object.

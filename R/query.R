@@ -24,13 +24,13 @@ fix_query <- function(query) {
 #' \code{set_query} create a query object the for Google Analytics report data.
 #'
 #' @param profile.id string or integer. Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID.
-#' @param start.date string. Start date for fetching Analytics data. Requests can specify a start date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is 7daysAgo.
-#' @param end.date string. End date for fetching Analytics data. Request can should specify an end date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is yesterday.
-#' @param metrics string. A comma-separated list of Analytics metrics.
-#' @param dimensions string. A comma-separated list of Analytics dimensions.
-#' @param sort string. A comma-separated list of dimensions or metrics that determine the sort order for Analytics data.
-#' @param filters string. A comma-separated list of dimension or metric filters to be applied to Analytics data.
-#' @param segment string. An Analytics segment to be applied to data.
+#' @param start.date character. Start date for fetching Analytics data. Requests can specify a start date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is 7daysAgo.
+#' @param end.date character. End date for fetching Analytics data. Request can should specify an end date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is yesterday.
+#' @param metrics character. A comma-separated list of Analytics metrics.
+#' @param dimensions character. A comma-separated list of Analytics dimensions.
+#' @param sort character. A comma-separated list of dimensions or metrics that determine the sort order for Analytics data.
+#' @param filters character. A comma-separated list of dimension or metric filters to be applied to Analytics data.
+#' @param segment character. An Analytics segment to be applied to data.
 #' @param start.index integer. An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
 #' @param max.results integer. The maximum number of entries to include in this feed.
 #'
