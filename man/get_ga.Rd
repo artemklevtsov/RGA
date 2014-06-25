@@ -54,6 +54,6 @@ Core Reporting API - Dimensions & Metrics Reference: \url{https://developers.goo
 }
 \seealso{
 Other Reporting API: \code{\link{get_mcf}};
-  \code{\link{get_realtime}}; \code{\link{get_report}}
+  \code{\link{get_report}}; \code{\link{get_rt}}
 }
 

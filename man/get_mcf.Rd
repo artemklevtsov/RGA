@@ -52,6 +52,6 @@ Multi-Channel Funnels Reporting API - Dimensions & Metrics Reference: \url{https
 }
 \seealso{
 Other Reporting API: \code{\link{get_ga}};
-  \code{\link{get_realtime}}; \code{\link{get_report}}
+  \code{\link{get_report}}; \code{\link{get_rt}}
 }
 

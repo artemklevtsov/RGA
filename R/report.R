@@ -177,11 +177,11 @@ get_mcf <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
 #' # get token data
 #' authorize(client.id = "myID", client.secret = "mySecret")
 #' # get report data
-#' ga_data <- get_realtime("myProfileID", metrics = "rt:activeUsers", dimensions = "rt:source,rt:medium")
+#' ga_data <- get_rt("myProfileID", metrics = "rt:activeUsers", dimensions = "rt:source,rt:medium")
 #' # get active users in realtime (press Esc to abort)
 #' while (TRUE) {
 #'     cat("\014")
-#'     print(get_realtime("myProfileID", metrics = "rt:activeUsers"))
+#'     print(get_rt("myProfileID", metrics = "rt:activeUsers"))
 #'     Sys.sleep(2)
 #' }
 #' }
@@ -190,7 +190,7 @@ get_mcf <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
 #'
 #' @export
 #'
-get_realtime <- function(profile.id, metrics = "rt:activeUsers", dimensions = NULL,
+get_rt <- function(profile.id, metrics = "rt:activeUsers", dimensions = NULL,
                          sort = NULL, filters = NULL, max.results = NULL,
                          token, messages = FALSE) {
     stopifnot(!is.null(profile.id), nzchar(profile.id),

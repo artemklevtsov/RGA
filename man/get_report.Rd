@@ -36,6 +36,6 @@ ga_data <- get_report(ga_query, type = "ga")
 \code{\link{authorize}} \code{\link{set_query}}
 
 Other Reporting API: \code{\link{get_ga}};
-  \code{\link{get_mcf}}; \code{\link{get_realtime}}
+  \code{\link{get_mcf}}; \code{\link{get_rt}}
 }
 
