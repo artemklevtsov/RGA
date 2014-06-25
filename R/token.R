@@ -49,9 +49,9 @@ get_token <- function(name) {
 #' @return A \code{\link[httr]{Token2.0}} reference class (RC) object.
 #'
 #' @references
-#' Google Developers Console: \url{https://console.developers.google.com/}
+#' \href{https://console.developers.google.com/}{Google Developers Console}
 #'
-#' Environment variable: \url{http://en.wikipedia.org/wiki/Environment_variable}
+#' \href{http://en.wikipedia.org/wiki/Environment_variable}{Environment variable}
 #'
 #' @seealso
 #' Other OAuth: \code{\link[httr]{oauth_app}} \code{\link[httr]{oauth2.0_token}} \code{\link[httr]{Token-class}}

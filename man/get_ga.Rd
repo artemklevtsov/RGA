@@ -50,10 +50,13 @@ ga_data <- get_ga("myProfileID", start.date = "30daysAgo", end.date = "today",
 }
 }
 \references{
-Core Reporting API - Dimensions & Metrics Reference: \url{https://developers.google.com/analytics/devguides/reporting/core/dimsmets}
+\href{https://developers.google.com/analytics/devguides/reporting/core/dimsmets}{Core Reporting API - Dimensions & Metrics Reference}
 }
 \seealso{
-Other Reporting API: \code{\link{get_mcf}};
-  \code{\link{get_report}}; \code{\link{get_rt}}
+\code{\link{authorize}}
+
+Other The.Google.Analytics.Reporting.API: \code{\link{get_firstdate}};
+  \code{\link{get_mcf}}; \code{\link{get_report}};
+  \code{\link{get_rt}}
 }
 

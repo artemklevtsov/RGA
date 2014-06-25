@@ -23,12 +23,12 @@ A data frame with Google Analytics management data.
 Lists all accounts to which the user has access
 }
 \references{
-Google Management API - Accounts: \url{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/accounts}
+\href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/accounts}{Google Management API - Accounts}
 }
 \seealso{
 \code{\link{authorize}}
 
-Other Management API: \code{\link{get_goals}};
+Other The.Google.Analytics.Management.API: \code{\link{get_goals}};
   \code{\link{get_profiles}}; \code{\link{get_segments}};
   \code{\link{get_webproperties}}
 }

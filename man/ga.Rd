@@ -44,9 +44,9 @@ subset(ga, group == "User" & type == "METRIC" & status != "DEPRECATED", id)
 subset(ga, allowedInSegments, id)
 }
 \references{
-Dimensions & Metrics Reference: \url{https://developers.google.com/analytics/devguides/reporting/core/dimsmets}
+\href{https://developers.google.com/analytics/devguides/reporting/metadata/v3/}{Google Analytics Metadata API}
 
-Google Analytics Metadata API: \url{https://developers.google.com/analytics/devguides/reporting/metadata/v3/}
+\href{https://developers.google.com/analytics/devguides/reporting/core/dimsmets}{Dimensions & Metrics Reference}
 }
 \keyword{data}
 \keyword{datasets}

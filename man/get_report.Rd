@@ -35,7 +35,9 @@ ga_data <- get_report(ga_query, type = "ga")
 \seealso{
 \code{\link{authorize}} \code{\link{set_query}}
 
-Other Reporting API: \code{\link{get_ga}};
-  \code{\link{get_mcf}}; \code{\link{get_rt}}
+Other The.Google.Analytics.Reporting.API: \code{\link{get_firstdate}};
+  \code{\link{get_ga}}; \code{\link{get_mcf}};
+  \code{\link{get_rt}}
 }
+\keyword{internal}
 

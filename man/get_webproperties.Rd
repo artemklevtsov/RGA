@@ -31,12 +31,12 @@ A data frame with Google Analytics management data.
 Lists web properties to which the user has access
 }
 \references{
-Google Management API - Web Properties: \url{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/webproperties}
+\href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/webproperties}{Google Management API - Web Properties}
 }
 \seealso{
 \code{\link{authorize}}
 
-Other Management API: \code{\link{get_accounts}};
+Other The.Google.Analytics.Management.API: \code{\link{get_accounts}};
   \code{\link{get_goals}}; \code{\link{get_profiles}};
   \code{\link{get_segments}}
 }

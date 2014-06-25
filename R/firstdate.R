@@ -5,7 +5,9 @@
 #'
 #' @return Start date of collect of the Google Analytics statistics.
 #'
-#' @seealso \code{\link{authorize}} \code{\link{get_report}}
+#' @seealso \code{\link{authorize}}
+#'
+#' @family The Google Analytics Reporting API
 #'
 #' @examples
 #' \dontrun{

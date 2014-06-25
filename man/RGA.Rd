@@ -30,13 +30,15 @@ ga_data <- get_report(profile.id, start.date = first.date, end.date = "today",
 Artem Klevtsov \email{a.a.klevtsov@gmail.com}
 }
 \references{
-Google Developers Console: \url{https://console.developers.google.com/project}
+\href{https://console.developers.google.com/project}{Google Developers Console}
 
-The Management API: \url{https://developers.google.com/analytics/devguides/config/mgmt/v3}
+\href{https://developers.google.com/analytics/devguides/config/mgmt/v3/}{The Management API}
 
-The Core Reporting API: \url{https://developers.google.com/analytics/devguides/reporting/core/v3}
+\href{https://developers.google.com/analytics/devguides/reporting/core/v3/}{The Core Reporting API}
 
-The Multi-Channel Funnels Reporting API: \url{https://developers.google.com/analytics/devguides/reporting/mcf/v3}
+\href{https://developers.google.com/analytics/devguides/reporting/mcf/v3/}{The Multi-Channel Funnels Reporting API}
+
+\href{https://developers.google.com/analytics/devguides/reporting/realtime/v3/}{The Real Time Reporting API}
 }
 \keyword{package}
 

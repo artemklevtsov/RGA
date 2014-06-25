@@ -22,9 +22,11 @@
 #' ga_data <- get_report(ga_query, type = "ga")
 #' }
 #'
-#' @family Reporting API
-#'
 #' @seealso \code{\link{authorize}} \code{\link{set_query}}
+#'
+#' @family The Google Analytics Reporting API
+#'
+#' @keywords internal
 #'
 #' @include get-data.R
 #' @include test-query.R
@@ -71,9 +73,11 @@ get_report <- function(query, type = c("ga", "mcf", "rt"), token, messages = FAL
 #' @return A data frame including the Analytics data for a view (profile).
 #'
 #' @references
-#' Core Reporting API - Dimensions & Metrics Reference: \url{https://developers.google.com/analytics/devguides/reporting/core/dimsmets}
+#' \href{https://developers.google.com/analytics/devguides/reporting/core/dimsmets}{Core Reporting API - Dimensions & Metrics Reference}
 #'
-#' @family Reporting API
+#' @seealso \code{\link{authorize}}
+#'
+#' @family The Google Analytics Reporting API
 #'
 #' @examples
 #' \dontrun{
@@ -121,9 +125,11 @@ get_ga <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
 #' @return A data frame including the Analytics Multi-Channel Funnels data for a view (profile).
 #'
 #' @references
-#' Multi-Channel Funnels Reporting API - Dimensions & Metrics Reference: \url{https://developers.google.com/analytics/devguides/reporting/mcf/dimsmets/}
+#' \href{https://developers.google.com/analytics/devguides/reporting/mcf/dimsmets/}{Multi-Channel Funnels Reporting API - Dimensions & Metrics Reference}
 #'
-#' @family Reporting API
+#' @seealso \code{\link{authorize}}
+#'
+#' @family The Google Analytics Reporting API
 #'
 #' @examples
 #' \dontrun{
@@ -168,9 +174,11 @@ get_mcf <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
 #' @return A data frame including the real time data for a view (profile).
 #'
 #' @references
-#' Real Time Reporting API - Dimensions & Metrics Reference: \url{https://developers.google.com/analytics/devguides/reporting/realtime/dimsmets/}
+#' \href{https://developers.google.com/analytics/devguides/reporting/realtime/dimsmets/}{Real Time Reporting API - Dimensions & Metrics Reference}
 #'
-#' @family Reporting API
+#' @seealso \code{\link{authorize}}
+#'
+#' @family The Google Analytics Reporting API
 #'
 #' @examples
 #' \dontrun{

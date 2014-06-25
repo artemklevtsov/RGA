@@ -8,7 +8,7 @@ set_query(profile.id = NULL, start.date = NULL, end.date = NULL,
   segment = NULL, start.index = NULL, max.results = NULL)
 }
 \arguments{
-\item{profile.id}{string or integer. Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID.}
+\item{profile.id}{character or integer. Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID.}
 
 \item{start.date}{character. Start date for fetching Analytics data. Requests can specify a start date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is 7daysAgo.}
 

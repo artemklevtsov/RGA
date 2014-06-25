@@ -45,10 +45,13 @@ while (TRUE) {
 }
 }
 \references{
-Real Time Reporting API - Dimensions & Metrics Reference: \url{https://developers.google.com/analytics/devguides/reporting/realtime/dimsmets/}
+\href{https://developers.google.com/analytics/devguides/reporting/realtime/dimsmets/}{Real Time Reporting API - Dimensions & Metrics Reference}
 }
 \seealso{
-Other Reporting API: \code{\link{get_ga}};
-  \code{\link{get_mcf}}; \code{\link{get_report}}
+\code{\link{authorize}}
+
+Other The.Google.Analytics.Reporting.API: \code{\link{get_firstdate}};
+  \code{\link{get_ga}}; \code{\link{get_mcf}};
+  \code{\link{get_report}}
 }
 

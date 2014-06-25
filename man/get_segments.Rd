@@ -26,12 +26,12 @@ A data frame with Google Analytics management data.
 Lists segments to which the user has access
 }
 \references{
-Google Management API - Segments: \url{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/segments}
+\href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/segments}{Google Management API - Segments}
 }
 \seealso{
 \code{\link{authorize}}
 
-Other Management API: \code{\link{get_accounts}};
+Other The.Google.Analytics.Management.API: \code{\link{get_accounts}};
   \code{\link{get_goals}}; \code{\link{get_profiles}};
   \code{\link{get_webproperties}}
 }

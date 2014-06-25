@@ -13,9 +13,9 @@
 #' @seealso \code{\link{authorize}}
 #'
 #' @references
-#' Google Management API - Accounts: \url{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/accounts}
+#' \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/accounts}{Google Management API - Accounts}
 #'
-#' @family Management API
+#' @family The Google Analytics Management API
 #'
 #' @include get-data.R
 #' @include build-df.R
@@ -51,9 +51,9 @@ get_accounts = function(token, start.index = NULL, max.results = NULL) {
 #' @seealso \code{\link{authorize}}
 #'
 #' @references
-#' Google Management API - Web Properties: \url{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/webproperties}
+#' \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/webproperties}{Google Management API - Web Properties}
 #'
-#' @family Management API
+#' @family The Google Analytics Management API
 #'
 #' @include get-data.R
 #' @include build-df.R
@@ -94,9 +94,9 @@ get_webproperties = function(token, account.id = "~all", start.index = NULL, max
 #' @seealso \code{\link{authorize}}
 #'
 #' @references
-#' Google Management API - Views (Profiles): \url{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/profiles}
+#' \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/profiles}{Google Management API - Views (Profiles)}
 #'
-#' @family Management API
+#' @family The Google Analytics Management API
 #'
 #' @include get-data.R
 #' @include build-df.R
@@ -135,9 +135,9 @@ get_profiles = function(token, account.id = "~all", webproperty.id = "~all", sta
 #' @seealso \code{\link{authorize}}
 #'
 #' @references
-#' Google Management API - Goals: \url{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/goals}
+#' \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/goals}{Google Management API - Goals}
 #'
-#' @family Management API
+#' @family The Google Analytics Management API
 #'
 #' @include get-data.R
 #' @include build-df.R
@@ -170,9 +170,9 @@ get_goals = function(token, account.id = "~all", webproperty.id = "~all", profil
 #' @seealso \code{\link{authorize}}
 #'
 #' @references
-#' Google Management API - Segments: \url{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/segments}
+#' \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/segments}{Google Management API - Segments}
 #'
-#' @family Management API
+#' @family The Google Analytics Management API
 #'
 #' @include get-data.R
 #' @include build-df.R

@@ -36,12 +36,12 @@ A data frame with Google Analytics management data.
 Lists goals to which the user has access
 }
 \references{
-Google Management API - Goals: \url{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/goals}
+\href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/goals}{Google Management API - Goals}
 }
 \seealso{
 \code{\link{authorize}}
 
-Other Management API: \code{\link{get_accounts}};
+Other The.Google.Analytics.Management.API: \code{\link{get_accounts}};
   \code{\link{get_profiles}}; \code{\link{get_segments}};
   \code{\link{get_webproperties}}
 }

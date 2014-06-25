@@ -28,9 +28,10 @@
 #' @source \url{https://www.googleapis.com/analytics/v3/metadata/ga/columns?pp=1}
 #'
 #' @references
-#' Dimensions & Metrics Reference: \url{https://developers.google.com/analytics/devguides/reporting/core/dimsmets}
+#' \href{https://developers.google.com/analytics/devguides/reporting/metadata/v3/}{Google Analytics Metadata API}
 #'
-#' Google Analytics Metadata API: \url{https://developers.google.com/analytics/devguides/reporting/metadata/v3/}
+#' \href{https://developers.google.com/analytics/devguides/reporting/core/dimsmets}{Dimensions & Metrics Reference}
+#'
 #'
 #' @keywords data datasets
 #' @docType data
