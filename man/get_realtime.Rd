@@ -36,6 +36,12 @@ A data frame including the real time data for a view (profile).
 authorize(client.id = "myID", client.secret = "mySecret")
 # get report data
 ga_data <- get_realtime("myProfileID", metrics = "rt:activeUsers", dimensions = "rt:source,rt:medium")
+# get active users in realtime (press Esc to abort)
+while (TRUE) {
+    cat("\\014")
+    print(get_realtime("myProfileID", metrics = "rt:activeUsers"))
+    Sys.sleep(2)
+}
 }
 }
 \references{
