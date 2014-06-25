@@ -28,7 +28,7 @@
 #'
 #' @include get-data.R
 #' @include test-query.R
-#' @include get-pages.R
+#' @include get-rows.R
 #' @include build-df.R
 #'
 #' @export
@@ -38,33 +38,9 @@ get_report <- function(query, type = c("ga", "mcf", "rt"), token, messages = FAL
     data.json <- test_query(type = type, query = query, token = token, messages = messages)
     cols <- data.json$columnHeaders
     formats <- cols$dataType
-    if (data.json$totalResults > 0 && !is.null(data.json$rows)) {
-        if (!is.null(query$max.results)) {
-            stopifnot(query$max.results <= 10000)
-            if (query$max.results < data.json$totalResults)
-                warning(paste("Only", query$max.results, "observations out of", data.json$totalResults, "were obtained (set max.results = NULL to get all the results)."))
-        } else {
-            if (data.json$totalResults <= 10000)
-                query$max.results <- data.json$totalResults
-            else
-                query$max.results <- 10000L
-        }
-        if (data.json$totalResults <= 10000) {
-            data.json <- get_data(type = type, query = query, token = token, messages = messages)
-            rows <- data.json$rows
-        } else {
-            if (messages)
-                message("Response contain more then 10000 rows.")
-            query$max.results <- 10000L
-            if (type == "rt") {
-                warning(paste("Only", query$max.results, "observations out of", data.json$totalResults, "were obtained (the batch processing mode is not implemented for this report type)."))
-                data.json <- get_data(type = type, query = query, token = token, messages = messages)
-                rows <- data.json$rows
-            }
-            else
-                rows <- get_pages(total.results = data.json$totalResults, type = type, query = query, token = token, messages = messages)
-        }
-    } else
+    if (data.json$totalResults > 0 && !is.null(data.json$rows))
+        rows <- get_rows(type = type, query = query, total.results = data.json$totalResults, token = token, messages = messages)
+    else
         rows <- matrix(NA, nrow = 1L, ncol = nrow(cols))
     if (!is.null(data.json$containsSampledData) && data.json$containsSampledData)
         warning("Data contains sampled data.")
