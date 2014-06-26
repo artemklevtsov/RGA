@@ -1,4 +1,4 @@
-#' @title Get Google Anaytics report data
+#' @title Get Anaytics data for a view (profile)
 #'
 #' @description
 #' \code{get_report} provide a query the Core or Multi-Channel Funnels Reporting API for Google Analytics report data.
@@ -55,7 +55,7 @@ get_report <- function(query, type = c("ga", "mcf", "rt"), token, messages = FAL
     return(data.df)
 }
 
-#' @title Get the Google Anaytics from Core Reporting API
+#' @title Get the Anaytics data from Core Reporting API for a view (profile)
 #'
 #' @param profile.id string or integer. Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID.
 #' @param start.date character. Start date for fetching Analytics data. Requests can specify a start date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is 7daysAgo.
@@ -108,7 +108,7 @@ get_ga <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
     return(data.df)
 }
 
-#' @title Get the Google Anaytics from Multi-Channel Funnels Reporting API
+#' @title Get the Anaytics data from Multi-Channel Funnels Reporting API for a view (profile)
 #'
 #' @param profile.id string or integer. Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID.
 #' @param start.date character. Start date for fetching Analytics data. Requests can specify a start date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is 7daysAgo.
@@ -160,7 +160,7 @@ get_mcf <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
     return(data.df)
 }
 
-#' @@title Get the Google Anaytics from Real Time Reporting API
+#' @@title Get the Anaytics data from Real Time Reporting API for a view (profile)
 #'
 #' @param profile.id string or integer. Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID.
 #' @param metrics character. A comma-separated list of real time metrics. E.g., "rt:activeUsers". At least one metric must be specified.

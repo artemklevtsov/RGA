@@ -1,6 +1,6 @@
 # RGA
 
-Данный пакет предназначен для работы с API **Google Analytics** в **R**.
+Данный пакет предназначен для работы с API [**API Google Analytics**](https://developers.google.com/analytics) в [**R**](http://www.r-project.org/).
 
 Основные возможности:
 

@@ -1,6 +1,6 @@
 # RGA
 
-This package is designed to work with the [**API Google Analytics**](https://developers.google.com/analytics) in [**R**](http://www.r-project.org/).
+This package is designed to work with the [**API Google Analytics**](https://developers.google.com/analytics) in [**R**](http://www.r-project.org/). This project only helps you with **Data Collection** part of **Google Analytics**.
 
 Key features:
 
@@ -9,6 +9,7 @@ Key features:
     - [Management API](https://developers.google.com/analytics/devguides/config/mgmt/v3): access configuration data for accounts, web properties, views (profiles), goals and segments;
     - [Core Reporting API](https://developers.google.com/analytics/devguides/reporting/core/v3): query for dimensions and metrics to produce customized reports;
     - [Multi-Channel Funnels Reporting API](https://developers.google.com/analytics/devguides/reporting/mcf/v3): query the traffic source paths that lead to a user's goal conversion;
+    - [Real Time Reporting API](https://developers.google.com/analytics/devguides/reporting/realtime/v3): report on activity occurring on your property right now;
     - [Metadata API](https://developers.google.com/analytics/devguides/reporting/metadata/v3): access the list of API dimensions and metrics and their attributes;
 * Support of the batch processing of the requests (allows to overcome the restriction on the number of rows returned for a single request).
 
@@ -101,7 +102,7 @@ Sys.setenv(RGA_CONSUMER_ID = "My_Client_ID", RGA_CONSUMER_SECRET = "My_Client_se
 
 ### Obtain the access to the Management API
 
-To access the API Google Analytics configuration, package `RGA` provides the following functions: `get_accounts`, `get_webproperties`, `get_profiles`, `get_goals` и `get_segments`. Each of these functions returns a table of data (`data.frame`), with the relevant content.
+To access the Management API Google Analytics, package `RGA` provides the following functions: `get_accounts`, `get_webproperties`, `get_profiles`, `get_goals` и `get_segments`. Each of these functions returns a table of data (`data.frame`), with the relevant content.
 
 Let's review these functions in details.
 
@@ -172,7 +173,11 @@ subset(ga, allowedInSegments, id)
 
 ### Obtain an access to the Reporting API
 
-To access to API reports is used `get_report` function. In this case, the parameters for a query to Google Analytics can be passed whether directly through arguments of the `get_report`function or through an intermediate `GAQuery`object which is created with the `set_query`function.
+To access the Reporting API Google Analytics, package `RGA` provides the following functions:
+
+* `get_ga` - returns Analytics data for a view (profile);
+* `get_mcf` - returns Analytics Multi-Channel Funnels data for a view (profile);
+* `get_rt` - returns real time data for a view (profile).
 
 The following parameters are available for queries to the API reports:
 
@@ -186,18 +191,10 @@ The following parameters are available for queries to the API reports:
 * `segment` - segments that will be used when retrieving data.
 * `start.index` - index of the first returned result (line number).
 * `max.results` - maximum number of fields (rows) of the returned results.
-
-The following arguments:`profile.id`, `start.date`, `end.date` and `metrics` are mandatory. Notice that all arguments must be a character strings of unit length. The exception is `profile.id` which can be as a character string, as the number.
-
-Besides, function `get_report` supports the following arguments:
-
-* `type` - type of report: "ga" - basic report (core report) and "mcf" - report of multichannel sequences (multi-channel funnels).
-* `query` - object of class `GAQuery` which contains the query parameters. Can be obtained using the `set_query` function.
 * `token` - object of class `Token2.0` which contains data about the token of access. Can be obtained using the `authorize` function.
-* `batch` - logical argument which includes a mode of batch processing of queries. It is required if the number of fields (rows) exceeds 10000 (restriction Google).
 * `messages` - logical argument which includes displaying of additional messages during the data request.
 
-Notice, if you use the metrics (metrics) and measurements (dimensions) of the report of multichannel sequences, for instance, "mcf:totalConversions", then the argument `type` should be set value "mcf".
+The following arguments:`profile.id`, `start.date`, `end.date` and `metrics` are mandatory. Notice that all arguments must be a character strings of unit length. The exception is `profile.id` which can be as a character string, as the numeric.
 
 Example of data obtaining for the last 30 days:
 
@@ -206,36 +203,10 @@ ga_data <- get_report(profile.id = XXXXXXXX, start.date = "30daysAgo", end.date 
                       metrics = "ga:users,ga:sessions,ga:pageviews")
 ```
 
-The same effect can be achieved through intermediate variable `query`:
-
-```R
-query <- set_query(profile.id = XXXXXXXX, start.date = "30daysAgo", end.date = "yesterday",
-                   metrics = "ga:users,ga:sessions,ga:pageviews")
-print(query)
-ga_data <- get_report(query)
-```
-
-The variable `ga_data` is a data table (`data.frame`) and contains as columns those metrics (metrics)and measurements (dimensions) that were defined in the query.
-
-Notice, after creating the object `query`, we can change its parameters, setting them values ​​analogically to lists:
-
-```R
-query$dimensions <- "ga:date"
-query$filters <- "ga:sessions > 1000"
-print(query)
-```
-
-Remove one or another value of `query` object might be by assigning it a value of `NULL`:
-
-```R
-query$filters <- NULL
-print(query)
-```
-
 Sometimes it is necessary to obtain the data for the entire monitoring period through service Google Analytics. For these purposes, the package `RGA` provides the function `get_firstdate` which takes as an argument a charming profile ID (submission):
 
 ```R
-first_date <- get_firstdate(profile.id = XXXXXXXX, token = token)
+first_date <- get_firstdate(profile.id = XXXXXXXX)
 ```
 
 Now we can use the variable `first_date` as the argument `start.date` when call the `get_report` function:
@@ -244,7 +215,6 @@ Now we can use the variable `first_date` as the argument `start.date` when call 
 ga_data <- get_report(profile.id = XXXXXXXX, start.date = first_date, end.date = "yesterday",
                       metrics = "ga:users,ga:sessions,ga:pageviews")
 ```
-
 
 ## References
 
