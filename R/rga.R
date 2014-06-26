@@ -35,9 +35,8 @@
 #' # get date when GA tracking began
 #' first.date <- get_firstdate(profile.id)
 #' # get GA report data
-#' ga_data <- get_report(profile.id, start.date = first.date, end.date = "today",
-#'                       metrics = "ga:users,ga:sessions",
-#'                       dimensions = "ga:userGender,ga:userAgeBracket")
+#' ga_data <- get_ga(profile.id, start.date = first.date, end.date = "today",
+#'                   metrics = "ga:users,ga:sessions", dimensions = "ga:userGender,ga:userAgeBracket")
 #' }
 #'
 NULL
