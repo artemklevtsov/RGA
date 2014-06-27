@@ -32,6 +32,8 @@ get_token <- function(name) {
 #' @details
 #' When the \code{authorize} function is used, the \code{GAToken} variable is created in the separate \code{TokenEnv} environment which not visible for user. So, there is no need to pass every time the \code{token} argument to any function which require authorisation. Also, there is possibility to store \code{token} in separate variable and pass it to the functions. It can be convinient if used several access tokens.
 #'
+#' After calling this function at first time, a web browser will be opened. First log in with a Google Account confirm the authorization to access the Google Analytics data. Note, the package requests access of read-only data.
+#'
 #' @section Obtain OAuth 2.0 credentials:
 #'
 #' To find your project's client ID and client secret, do the following:
