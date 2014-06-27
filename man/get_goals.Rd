@@ -21,10 +21,10 @@ get_goals(account.id = "~all", webproperty.id = "~all",
 }
 \value{
 A data frame with Google Analytics management data.
-\item{id}{goal ID.}
 \item{accountId}{account ID to which this goal belongs.}
 \item{webPropertyId}{web property ID to which this goal belongs. The web property ID is of the form UA-XXXXX-YY.}
 \item{profileId}{view (Profile) ID to which this goal belongs.}
+\item{id}{goal ID (number).}
 \item{name}{goal name.}
 \item{value}{goal value.}
 \item{active}{determines whether this goal is active.}

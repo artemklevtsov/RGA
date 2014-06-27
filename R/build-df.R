@@ -44,7 +44,7 @@ convert_datatypes <- function(data, formats) {
 build_mgmt <- function(data, cols) {
     if (data$totalResults > 0 && !is.null(data[["items"]])) {
         data.r <- data[["items"]]
-        data.r <- data.r[, names(data[["items"]]) %in% cols]
+        data.r <- data.r[, names(data.r) %in% cols]
     } else {
         data.r <- data.frame(matrix(NA, nrow = 1L, ncol = length(cols)))
         colnames(data.r) <- cols

@@ -121,10 +121,10 @@ get_profiles = function(account.id = "~all", webproperty.id = "~all", start.inde
 #' @param max.results integer. The maximum number of goals to include in this response.
 #'
 #' @return A data frame with Google Analytics management data.
-#' \item{id}{goal ID.}
 #' \item{accountId}{account ID to which this goal belongs.}
 #' \item{webPropertyId}{web property ID to which this goal belongs. The web property ID is of the form UA-XXXXX-YY.}
 #' \item{profileId}{view (Profile) ID to which this goal belongs.}
+#' \item{id}{goal ID (number).}
 #' \item{name}{goal name.}
 #' \item{value}{goal value.}
 #' \item{active}{determines whether this goal is active.}
@@ -148,7 +148,7 @@ get_goals = function(account.id = "~all", webproperty.id = "~all", profile.id = 
     path <- paste("accounts", account.id, "webproperties", webproperty.id, "profiles", profile.id, "goals", sep = "/")
     query <-  list(start.index = start.index, max.results = max.results)
     data.json <- get_data(type = "mgmt", path = path, query = query, token = token)
-    cols <- c("id", "accountId", "webPropertyId", "profileId", "name", "value", "active", "type", "created", "updated")
+    cols <- c("accountId", "webPropertyId", "profileId", "id", "name", "value", "active", "type", "created", "updated")
     return(build_mgmt(data.json, cols))
 }
 
@@ -183,6 +183,6 @@ get_segments = function(start.index = NULL, max.results = NULL, token) {
     path <- "segments"
     query <-  list(start.index = start.index, max.results = max.results)
     data.json <- get_data(type = "mgmt", path = path, query = query, token = token)
-    cols <- c("id", "segmentId", "name", "definition", "type", "created", "updated")
+    cols <- c("segmentId", "id", "name", "definition", "type", "created", "updated")
     return(build_mgmt(data.json, cols))
 }
