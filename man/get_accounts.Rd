@@ -3,7 +3,7 @@
 \alias{get_accounts}
 \title{Lists all accounts to which the user has access}
 \usage{
-get_accounts(token, start.index = NULL, max.results = NULL)
+get_accounts(start.index = NULL, max.results = NULL, token)
 }
 \arguments{
 \item{token}{\code{\link[httr]{Token2.0}} class object.}

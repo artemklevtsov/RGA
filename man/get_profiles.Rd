@@ -3,8 +3,8 @@
 \alias{get_profiles}
 \title{Lists views (profiles) to which the user has access}
 \usage{
-get_profiles(token, account.id = "~all", webproperty.id = "~all",
-  start.index = NULL, max.results = NULL)
+get_profiles(account.id = "~all", webproperty.id = "~all",
+  start.index = NULL, max.results = NULL, token)
 }
 \arguments{
 \item{token}{\code{\link[httr]{Token2.0}} class object.}

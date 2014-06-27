@@ -3,8 +3,8 @@
 \alias{get_webproperties}
 \title{Lists web properties to which the user has access}
 \usage{
-get_webproperties(token, account.id = "~all", start.index = NULL,
-  max.results = NULL)
+get_webproperties(account.id = "~all", start.index = NULL,
+  max.results = NULL, token)
 }
 \arguments{
 \item{token}{\code{\link[httr]{Token2.0}} class object.}

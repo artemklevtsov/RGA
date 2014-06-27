@@ -22,7 +22,7 @@
 #'
 #' @export
 #'
-get_accounts = function(token, start.index = NULL, max.results = NULL) {
+get_accounts = function(start.index = NULL, max.results = NULL, token) {
     path <- "accounts"
     query <-  list(start.index = start.index, max.results = max.results)
     data.json <- get_data(type = "mgmt", path = path, query = query, token = token)
@@ -60,7 +60,7 @@ get_accounts = function(token, start.index = NULL, max.results = NULL) {
 #'
 #' @export
 #'
-get_webproperties = function(token, account.id = "~all", start.index = NULL, max.results = NULL) {
+get_webproperties = function(account.id = "~all", start.index = NULL, max.results = NULL, token) {
     path <- paste("accounts", account.id, "webproperties", sep = "/")
     query <-  list(start.index = start.index, max.results = max.results)
     data.json <- get_data(type = "mgmt", path = path, query = query, token = token)
@@ -103,7 +103,7 @@ get_webproperties = function(token, account.id = "~all", start.index = NULL, max
 #'
 #' @export
 #'
-get_profiles = function(token, account.id = "~all", webproperty.id = "~all", start.index = NULL, max.results = NULL) {
+get_profiles = function(account.id = "~all", webproperty.id = "~all", start.index = NULL, max.results = NULL, token) {
     path <- paste("accounts", account.id, "webproperties", webproperty.id, "profiles", sep = "/")
     query <-  list(start.index = start.index, max.results = max.results)
     data.json <- get_data(type = "mgmt", path = path, query = query, token = token)
@@ -144,7 +144,7 @@ get_profiles = function(token, account.id = "~all", webproperty.id = "~all", sta
 #'
 #' @export
 #'
-get_goals = function(token, account.id = "~all", webproperty.id = "~all", profile.id = "~all", start.index = NULL, max.results = NULL) {
+get_goals = function(account.id = "~all", webproperty.id = "~all", profile.id = "~all", start.index = NULL, max.results = NULL, token) {
     path <- paste("accounts", account.id, "webproperties", webproperty.id, "profiles", profile.id, "goals", sep = "/")
     query <-  list(start.index = start.index, max.results = max.results)
     data.json <- get_data(type = "mgmt", path = path, query = query, token = token)
@@ -179,7 +179,7 @@ get_goals = function(token, account.id = "~all", webproperty.id = "~all", profil
 #'
 #' @export
 #'
-get_segments = function(token, start.index = NULL, max.results = NULL) {
+get_segments = function(start.index = NULL, max.results = NULL, token) {
     path <- "segments"
     query <-  list(start.index = start.index, max.results = max.results)
     data.json <- get_data(type = "mgmt", path = path, query = query, token = token)

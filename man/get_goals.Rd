@@ -3,8 +3,8 @@
 \alias{get_goals}
 \title{Lists goals to which the user has access}
 \usage{
-get_goals(token, account.id = "~all", webproperty.id = "~all",
-  profile.id = "~all", start.index = NULL, max.results = NULL)
+get_goals(account.id = "~all", webproperty.id = "~all",
+  profile.id = "~all", start.index = NULL, max.results = NULL, token)
 }
 \arguments{
 \item{token}{\code{\link[httr]{Token2.0}} class object.}
