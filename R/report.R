@@ -42,8 +42,11 @@ get_report <- function(query, type = c("ga", "mcf", "rt"), token, messages = FAL
     formats <- cols$dataType
     if (data.json$totalResults > 0 && !is.null(data.json$rows))
         rows <- get_rows(type = type, query = query, total.results = data.json$totalResults, token = token, messages = messages)
-    else
+    else {
+        if(messages)
+            message("No results were obtained.")
         rows <- matrix(NA, nrow = 1L, ncol = nrow(cols))
+    }
     if (!is.null(data.json$containsSampledData) && data.json$containsSampledData)
         warning("Data contains sampled data.")
     if(messages)
