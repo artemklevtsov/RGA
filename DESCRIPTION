@@ -1,7 +1,7 @@
 Package: RGA
 Type: Package
-Title: Interact with Google Analytics using R
-Description: A package for seemless API connection to Google Analytics
+Title: A Google Analytics API client for R
+Description: A package for extracting data from Google Analytics API into R
 URL: https://bitbucket.org/unikum/rga
 BugReports: https://bitbucket.org/unikum/rga/issues
 Version: 0.1

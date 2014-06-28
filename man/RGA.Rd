@@ -23,6 +23,8 @@ This is a package for extracting data from Google Analytics API into R.
   }
   \item Support of the batch processing of the requests (allows to overcome the restriction on the number of rows returned for a single request).
 }
+
+To report a bug please type: \code{utils::bug.report(package="RGA")}.
 }
 \examples{
 \dontrun{
@@ -43,17 +45,6 @@ ga_data <- get_ga(profile.id, start.date = first.date, end.date = "today",
 }
 \author{
 Artem Klevtsov \email{a.a.klevtsov@gmail.com}
-}
-\references{
-\href{https://console.developers.google.com/project}{Google Developers Console}
-
-\href{https://developers.google.com/analytics/devguides/config/mgmt/v3/}{The Management API}
-
-\href{https://developers.google.com/analytics/devguides/reporting/core/v3/}{The Core Reporting API}
-
-\href{https://developers.google.com/analytics/devguides/reporting/mcf/v3/}{The Multi-Channel Funnels Reporting API}
-
-\href{https://developers.google.com/analytics/devguides/reporting/realtime/v3/}{The Real Time Reporting API}
 }
 \keyword{package}
 
