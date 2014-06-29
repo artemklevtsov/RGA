@@ -1,9 +1,8 @@
 # Load libraries
 library(jsonlite)
 # Type of data
-data <- "ga"
 # Request URL
-url <- paste("https://www.googleapis.com/analytics/v3/metadata", data, "columns", sep = "/")
+url <- "https://www.googleapis.com/analytics/v3/metadata/ga/columns"
 # Get JSON data
 data.json <- fromJSON(url)
 # Subsettings
@@ -19,13 +18,18 @@ attributes  <- transform(attributes,
 )
 # Create data.frame
 new_data <- cbind(id, attributes, stringsAsFactors = FALSE)
+# Get data file path
+data_file <- file.path("data", paste0(data, ".rda"))
+# Assign new_data according with a data name
+assign("ga", new_data)
 # Get old data
-old_data <- get(data, envir = asNamespace("RGA"))
-if (!identical(old_data, new_data)) {
-    # Get data file path
-    data_file <- file.path("data", paste0(data, ".rda"))
-    # Assign new_data according with a data name
-    assign(data, new_data)
+if (!file.exists("data/ga.rda")) {
     # Save data to file
-    save(data, file = data_file, compress = "xz")
+    save(ga, file = data_file, compress = "xz")
+} else {
+    load("data/ga.rda")
+    old_data <- get("ga")
+    if (!identical(old_data, new_data)) {
+        save(ga, file = data_file, compress = "xz")
+    }
 }
