@@ -30,9 +30,10 @@ get_token <- function(name) {
 #' @param cache logical or character. TRUE means to cache using the default cache file \code{.oauth-httr}, FALSE means don't cache. A string mean use the specified path as the cache file.
 #'
 #' @details
-#' When the \code{authorize} function is used, the \code{GAToken} variable is created in the separate \code{TokenEnv} environment which not visible for user. So, there is no need to pass every time the \code{token} argument to any function which require authorisation. Also, there is possibility to store \code{token} in separate variable and pass it to the functions. It can be convinient if used several access tokens.
 #'
 #' After calling this function at first time, a web browser will be opened. First log in with a Google Account confirm the authorization to access the Google Analytics data. Note, the package requests access of read-only data.
+#'
+#' When the \code{authorize} function is used, the \code{GAToken} variable is created in the separate \code{TokenEnv} environment which not visible for user. So, there is no need to pass every time the \code{token} argument to any function which require authorisation. Also, there is possibility to store \code{token} in separate variable and pass it to the functions. It can be convinient if used several access tokens.
 #'
 #' @section Obtain OAuth 2.0 credentials:
 #'

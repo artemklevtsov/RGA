@@ -70,11 +70,11 @@ Before to exercise any requests to API, it's necessary to perform authorization 
 authorize(client.id = "My_Client_ID", client.secret = "My_Client_secret")
 ```
 
-After executing this command, a web browser will be opened with a page of query of confirmation of access permission to the data Google Analytics. It's necessary to authorize with your own **Google account** and confirm the authorization to access the Google Analytics data. Note, the package `RGA` requests access of **read-only** data.
+After calling this function at first time, a web browser will be opened. First log in with a **Google Account** confirm the authorization to access the Google Analytics data. Note, the package requests access of **read-only** data.
 
 When the `authorize` function is used, the `GAToken` variable is created in the separate `TokenEnv` environment which not visible for user. So, there is no need to pass every time the `token` argument to any function which require authorisation.
 
-Access token can also be stored in a variable and passed as argument for functions, which make requests to the API Google Analytics. This can be useful if you work with several accounts at the same time.
+Access token can also be stored in a variable and passed as argument to the functions, which make requests to the API Google Analytics. This can be useful if you work with several accounts at the same time.
 
 ```R
 ga_token <- authorize(client.id = "My_Client_ID", client.secret = "My_Client_secret")
@@ -112,7 +112,7 @@ Let's review these functions in details.
 * `get_goals` - obtaining a list of goals to which the user has access;
 * `get_segments` - obtaining a list of segments to which the user has access;
 
-For the functions such as `get_webproperties`, `get_profiles` and `get_goals`, can be specified the additional arguments such as `account.id`, `webproperty.id` or `profile.id`  which is required to obtain the information for specific account, resource or profile (view the help pages for the corresponding functions). Example of obtaining the information on all submissions is available to the user:
+For the functions such as `get_webproperties`, `get_profiles` and `get_goals`, can be specified the additional arguments such as `account.id`, `webproperty.id` or `profile.id`  which is required to obtain the information for specific account, resource or profile (view the help pages for the corresponding functions). Example of obtaining the information on all views(profiles) is available to the user:
 
 ```R
 get_profiles()
@@ -181,7 +181,7 @@ To access the Reporting API Google Analytics, package `RGA` provides the followi
 
 The following parameters are available for queries to the API reports:
 
-* `profile.id` - profile ID (submission) Google Analytics. Can be obtained using the `get_progiles` or via the web interface Google Analytics.
+* `profile.id` - profile (view) ID. Can be obtained using the `get_progiles` or via the web interface Google Analytics.
 * `start.date` - date started collecting data in the format YYYY-MM-DD. Also, allowed values, such as "today", "yesterday", "ndaysAgo", where `n` is the number of days.
 * `end.date` - дата окончания сбора данных в формате YYYY-MM-DD. Also, allowed values, such as "today", "yesterday", "ndaysAgo", where `n` is the number of days.
 * `metrics` -  comma-separated list of values ​​of metrics (metrics), for example, "ga:sessions,ga:bounces". The number of metrics can not exceed 10 indicators for a single request.
@@ -194,13 +194,13 @@ The following parameters are available for queries to the API reports:
 * `token` - object of class `Token2.0` which contains data about the token of access. Can be obtained using the `authorize` function.
 * `messages` - logical argument which includes displaying of additional messages during the data request.
 
-The following arguments:`profile.id`, `start.date`, `end.date` and `metrics` are mandatory. Notice that all arguments must be a character strings of unit length. The exception is `profile.id` which can be as a character string, as the numeric.
+The following arguments:`profile.id`, `start.date`, `end.date` and `metrics` are required for `get_ga` and `get_mcf` (`get_rt` requier only `profile.id` and `metrics`). Notice that all arguments must be a character strings of unit length. The exception is `profile.id` which can be as a character string, as the numeric.
 
 Example of data obtaining for the last 30 days:
 
 ```R
-ga_data <- get_report(profile.id = XXXXXXXX, start.date = "30daysAgo", end.date = "yesterday",
-                      metrics = "ga:users,ga:sessions,ga:pageviews")
+ga_data <- get_ga(profile.id = XXXXXXXX, start.date = "30daysAgo", end.date = "yesterday",
+                  metrics = "ga:users,ga:sessions,ga:pageviews")
 ```
 
 Sometimes it is necessary to obtain the data for the entire monitoring period through service Google Analytics. For these purposes, the package `RGA` provides the function `get_firstdate` which takes as an argument a charming profile ID (submission):
@@ -209,11 +209,11 @@ Sometimes it is necessary to obtain the data for the entire monitoring period th
 first_date <- get_firstdate(profile.id = XXXXXXXX)
 ```
 
-Now we can use the variable `first_date` as the argument `start.date` when call the `get_report` function:
+Now we can use the variable `first_date` as the argument `start.date` when call the `get_ga` function:
 
 ```R
-ga_data <- get_report(profile.id = XXXXXXXX, start.date = first_date, end.date = "yesterday",
-                      metrics = "ga:users,ga:sessions,ga:pageviews")
+ga_data <- get_ga(profile.id = XXXXXXXX, start.date = first_date, end.date = "yesterday",
+                  metrics = "ga:users,ga:sessions,ga:pageviews")
 ```
 
 ## References
