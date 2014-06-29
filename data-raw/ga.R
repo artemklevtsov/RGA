@@ -18,15 +18,15 @@ attributes  <- transform(attributes,
 # Create data.frame
 new_data <- cbind(id, attributes, stringsAsFactors = FALSE)
 # Get data file path
-data_file <- file.path("data", paste0(data, ".rda"))
+data_file <- file.path("data/ga.rda")
 # Assign new_data according with a data name
 assign("ga", new_data)
 # Get old data
-if (!file.exists("data/ga.rda")) {
+if (!file.exists(data_file)) {
     # Save data to file
     save(ga, file = data_file, compress = "xz")
 } else {
-    load("data/ga.rda")
+    load(data_file)
     old_data <- get("ga")
     if (!identical(old_data, new_data)) {
         save(ga, file = data_file, compress = "xz")
