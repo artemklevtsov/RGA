@@ -1,6 +1,5 @@
 # Load libraries
 library(jsonlite)
-# Type of data
 # Request URL
 url <- "https://www.googleapis.com/analytics/v3/metadata/ga/columns"
 # Get JSON data
