@@ -112,7 +112,7 @@ Let's review these functions in details.
 * `get_goals` - obtaining a list of goals to which the user has access;
 * `get_segments` - obtaining a list of segments to which the user has access;
 
-For the functions such as `get_webproperties`, `get_profiles` and `get_goals`, can be specified the additional arguments such as `account.id`, `webproperty.id` or `profile.id`  which is required to obtain the information for specific account, resource or profile (view the help pages for the corresponding functions). Example of obtaining the information on all views(profiles) is available to the user:
+For the functions such as `get_webproperties`, `get_profiles` and `get_goals`, can be specified the additional arguments such as `account.id`, `webproperty.id` or `profile.id`  which is required to obtain the information for specific account, resource or profile (view the help pages for the corresponding functions). Example of obtaining the information on all views (profiles) is available to the user:
 
 ```R
 get_profiles()
