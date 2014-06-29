@@ -28,5 +28,4 @@ if (!identical(old_data, new_data)) {
     assign(data, new_data)
     # Save data to file
     save(data, file = data_file, compress = "xz")
-
 }
