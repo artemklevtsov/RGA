@@ -5,7 +5,7 @@
 \usage{
 get_goals(account.id = "~all", webproperty.id = "~all",
   profile.id = "~all", start.index = NULL, max.results = NULL, token,
-  verbose = getOption("rga.verbose"))
+  verbose = getOption("rga.verbose", FALSE))
 }
 \arguments{
 \item{account.id}{character. Account ID to retrieve goals for. Can either be a specific account ID or '~all', which refers to all the accounts that user has access to.}

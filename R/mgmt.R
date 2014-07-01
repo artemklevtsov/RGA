@@ -23,7 +23,7 @@
 #'
 #' @export
 #'
-get_accounts = function(start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose")) {
+get_accounts = function(start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose", FALSE)) {
     path <- "accounts"
     query <-  list(start.index = start.index, max.results = max.results)
     data.json <- get_data(type = "mgmt", path = path, query = query, token = token, verbose = verbose)
@@ -62,7 +62,7 @@ get_accounts = function(start.index = NULL, max.results = NULL, token, verbose =
 #'
 #' @export
 #'
-get_webproperties = function(account.id = "~all", start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose")) {
+get_webproperties = function(account.id = "~all", start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose", FALSE)) {
     path <- paste("accounts", account.id, "webproperties", sep = "/")
     query <-  list(start.index = start.index, max.results = max.results)
     data.json <- get_data(type = "mgmt", path = path, query = query, token = token, verbose = verbose)
@@ -106,7 +106,7 @@ get_webproperties = function(account.id = "~all", start.index = NULL, max.result
 #'
 #' @export
 #'
-get_profiles = function(account.id = "~all", webproperty.id = "~all", start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose")) {
+get_profiles = function(account.id = "~all", webproperty.id = "~all", start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose", FALSE)) {
     path <- paste("accounts", account.id, "webproperties", webproperty.id, "profiles", sep = "/")
     query <-  list(start.index = start.index, max.results = max.results)
     data.json <- get_data(type = "mgmt", path = path, query = query, token = token, verbose = verbose)
@@ -148,7 +148,7 @@ get_profiles = function(account.id = "~all", webproperty.id = "~all", start.inde
 #'
 #' @export
 #'
-get_goals = function(account.id = "~all", webproperty.id = "~all", profile.id = "~all", start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose")) {
+get_goals = function(account.id = "~all", webproperty.id = "~all", profile.id = "~all", start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose", FALSE)) {
     path <- paste("accounts", account.id, "webproperties", webproperty.id, "profiles", profile.id, "goals", sep = "/")
     query <-  list(start.index = start.index, max.results = max.results)
     data.json <- get_data(type = "mgmt", path = path, query = query, token = token, verbose = verbose)
@@ -184,7 +184,7 @@ get_goals = function(account.id = "~all", webproperty.id = "~all", profile.id = 
 #'
 #' @export
 #'
-get_segments = function(start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose")) {
+get_segments = function(start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose", FALSE)) {
     path <- "segments"
     query <-  list(start.index = start.index, max.results = max.results)
     data.json <- get_data(type = "mgmt", path = path, query = query, token = token, verbose = verbose)

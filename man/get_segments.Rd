@@ -4,7 +4,7 @@
 \title{Lists segments to which the user has access}
 \usage{
 get_segments(start.index = NULL, max.results = NULL, token,
-  verbose = getOption("rga.verbose"))
+  verbose = getOption("rga.verbose", FALSE))
 }
 \arguments{
 \item{start.index}{integer. An index of the first segment to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.}

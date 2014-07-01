@@ -4,7 +4,7 @@
 \title{Get Anaytics data for a view (profile)}
 \usage{
 get_report(query, type = c("ga", "mcf", "rt"), token,
-  verbose = getOption("rga.verbose"))
+  verbose = getOption("rga.verbose", FALSE))
 }
 \arguments{
 \item{query}{\code{GAQuery} class object including a request parameters.}

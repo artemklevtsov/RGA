@@ -35,7 +35,7 @@
 #'
 #' @export
 #'
-get_report <- function(query, type = c("ga", "mcf", "rt"), token, verbose = getOption("rga.verbose")) {
+get_report <- function(query, type = c("ga", "mcf", "rt"), token, verbose = getOption("rga.verbose", FALSE)) {
     type <- match.arg(type)
     data.json <- test_query(type = type, query = query, token = token, verbose = verbose)
     cols <- data.json$columnHeaders
@@ -99,7 +99,7 @@ get_report <- function(query, type = c("ga", "mcf", "rt"), token, verbose = getO
 get_ga <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
                    metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = NULL,
                    sort = NULL, filters = NULL, segment = NULL, start.index = NULL, max.results = NULL,
-                   token, verbose = getOption("rga.verbose")) {
+                   token, verbose = getOption("rga.verbose", FALSE)) {
     stopifnot(!is.null(profile.id), nzchar(profile.id),
               !is.null(start.date), nzchar(start.date),
               !is.null(end.date), nzchar(end.date),
@@ -151,7 +151,7 @@ get_ga <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
 get_mcf <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
                     metrics = "mcf:totalConversions", dimensions = NULL,
                     sort = NULL, filters = NULL, start.index = NULL, max.results = NULL,
-                    token, verbose = getOption("rga.verbose")) {
+                    token, verbose = getOption("rga.verbose", FALSE)) {
     stopifnot(!is.null(profile.id), nzchar(profile.id),
               !is.null(start.date), nzchar(start.date),
               !is.null(end.date), nzchar(end.date),
@@ -203,7 +203,7 @@ get_mcf <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
 #'
 get_rt <- function(profile.id, metrics = "rt:activeUsers", dimensions = NULL,
                          sort = NULL, filters = NULL, max.results = NULL,
-                         token, verbose = getOption("rga.verbose")) {
+                         token, verbose = getOption("rga.verbose", FALSE)) {
     stopifnot(!is.null(profile.id), nzchar(profile.id),
               !is.null(metrics), nzchar(metrics))
     query <- set_query(profile.id = profile.id, metrics = metrics, dimensions = dimensions,

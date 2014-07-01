@@ -3,7 +3,7 @@
 \alias{get_firstdate}
 \title{Get the first date with available data}
 \usage{
-get_firstdate(profile.id, token, verbose = getOption("rga.verbose"))
+get_firstdate(profile.id, token, verbose = getOption("rga.verbose", FALSE))
 }
 \arguments{
 \item{profile.id}{Google Analytics profile ID.}

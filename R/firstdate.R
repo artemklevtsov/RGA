@@ -20,7 +20,7 @@
 #'
 #' @export
 #'
-get_firstdate <- function(profile.id, token, verbose = getOption("rga.verbose")) {
+get_firstdate <- function(profile.id, token, verbose = getOption("rga.verbose", FALSE)) {
     data.r <- suppressWarnings(
         get_ga(profile.id = profile.id, start.date = "2005-01-01", end.date = "today",
                metrics = "ga:sessions", dimensions = "ga:date", filters = "ga:sessions!=0",

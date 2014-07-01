@@ -5,7 +5,7 @@
 \usage{
 get_profiles(account.id = "~all", webproperty.id = "~all",
   start.index = NULL, max.results = NULL, token,
-  verbose = getOption("rga.verbose"))
+  verbose = getOption("rga.verbose", FALSE))
 }
 \arguments{
 \item{account.id}{character. Account ID for the view (profiles) to retrieve. Can either be a specific account ID or '~all', which refers to all the accounts to which the user has access. Requere spcify \code{account.id}.}

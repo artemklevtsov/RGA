@@ -13,7 +13,7 @@
 #' @include build-url.R
 #' @include api-request.R
 
-get_data <- function(type, query, path, token, verbose = getOption("rga.verbose")) {
+get_data <- function(type, query, path, token, verbose = getOption("rga.verbose", FALSE)) {
     url <- build_url(type = type, path = path, query = query)
     data.json <- api_request(url, token = token, verbose = verbose)
     return(data.json)

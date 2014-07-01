@@ -4,7 +4,7 @@
 \title{Lists web properties to which the user has access}
 \usage{
 get_webproperties(account.id = "~all", start.index = NULL,
-  max.results = NULL, token, verbose = getOption("rga.verbose"))
+  max.results = NULL, token, verbose = getOption("rga.verbose", FALSE))
 }
 \arguments{
 \item{account.id}{character. Account ID to retrieve web properties for. Can either be a specific account ID or "~all", which refers to all the accounts that user has access to.}

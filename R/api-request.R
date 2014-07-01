@@ -15,7 +15,7 @@
 #' @import httr
 #' @import jsonlite
 #'
-api_request = function(url, token, simplify = TRUE, verbose = getOption("rga.verbose")) {
+api_request = function(url, token, simplify = TRUE, verbose = getOption("rga.verbose", FALSE)) {
     stopifnot(is.character(url) && length(url) == 1L)
     if (.Platform$OS.type == "windows") {
         options(RCurlOptions = list(
