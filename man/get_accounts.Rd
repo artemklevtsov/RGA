@@ -3,14 +3,17 @@
 \alias{get_accounts}
 \title{Lists all accounts to which the user has access}
 \usage{
-get_accounts(start.index = NULL, max.results = NULL, token)
+get_accounts(start.index = NULL, max.results = NULL, token,
+  verbose = getOption("rga.verbose"))
 }
 \arguments{
-\item{token}{\code{\link[httr]{Token2.0}} class object.}
-
 \item{start.index}{integer. An index of the first account to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.}
 
 \item{max.results}{integer. The maximum number of accounts to include in this response.}
+
+\item{token}{\code{\link[httr]{Token2.0}} class object.}
+
+\item{verbose}{logical. Should print information verbose?}
 }
 \value{
 A data frame with Google Analytics management data.

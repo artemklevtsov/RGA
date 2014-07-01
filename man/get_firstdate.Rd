@@ -3,12 +3,14 @@
 \alias{get_firstdate}
 \title{Get the first date with available data}
 \usage{
-get_firstdate(profile.id, token)
+get_firstdate(profile.id, token, verbose = getOption("rga.verbose"))
 }
 \arguments{
 \item{profile.id}{Google Analytics profile ID.}
 
 \item{token}{\code{Token2.0} class object.}
+
+\item{verbose}{logical. Should print information verbose?}
 }
 \value{
 Start date of collect of the Google Analytics statistics.

@@ -3,7 +3,7 @@
 #' @param url the url of the page to retrieve.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
 #' @param simplify logical. Should the result be simplified to a vector, matrix or data.frame if possible?
-#' @param messages logical. Should print information messages?
+#' @param verbose logical. Should print information verbose?
 #'
 #' @noRd
 #'
@@ -15,7 +15,7 @@
 #' @import httr
 #' @import jsonlite
 #'
-api_request = function(url, token, simplify = TRUE, messages = FALSE) {
+api_request = function(url, token, simplify = TRUE, verbose = getOption("rga.verbose")) {
     stopifnot(is.character(url) && length(url) == 1L)
     if (.Platform$OS.type == "windows") {
         options(RCurlOptions = list(
@@ -23,7 +23,7 @@ api_request = function(url, token, simplify = TRUE, messages = FALSE) {
             capath = system.file("CurlSSL", "cacert.pem", package = "RCurl"), ssl.verifypeer = FALSE))
     }
     # Print the URL to the console
-    if (messages) {
+    if (verbose) {
         message("Sending request to Google Analytics...")
         message(url)
     }
@@ -39,7 +39,7 @@ api_request = function(url, token, simplify = TRUE, messages = FALSE) {
             request <- GET(url = url)
     }
     # Send query to Google Analytics API and capture the JSON reponse
-    if (messages)
+    if (verbose)
         message(http_status(request)$message)
     # Convert the JSON response into a R list
     data.json <- fromJSON(content(request, as = "text"), simplifyVector = simplify)

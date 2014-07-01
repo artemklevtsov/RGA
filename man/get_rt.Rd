@@ -5,7 +5,7 @@
 \usage{
 get_rt(profile.id, metrics = "rt:activeUsers", dimensions = NULL,
   sort = NULL, filters = NULL, max.results = NULL, token,
-  messages = FALSE)
+  verbose = getOption("rga.verbose"))
 }
 \arguments{
 \item{profile.id}{string or integer. Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID.}
@@ -22,7 +22,7 @@ get_rt(profile.id, metrics = "rt:activeUsers", dimensions = NULL,
 
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
 
-\item{messages}{logical. Should print information messages?}
+\item{verbose}{logical. Should print information verbose?}
 }
 \value{
 A data frame including the real time data for a view (profile).

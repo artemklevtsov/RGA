@@ -4,11 +4,10 @@
 \title{Lists views (profiles) to which the user has access}
 \usage{
 get_profiles(account.id = "~all", webproperty.id = "~all",
-  start.index = NULL, max.results = NULL, token)
+  start.index = NULL, max.results = NULL, token,
+  verbose = getOption("rga.verbose"))
 }
 \arguments{
-\item{token}{\code{\link[httr]{Token2.0}} class object.}
-
 \item{account.id}{character. Account ID for the view (profiles) to retrieve. Can either be a specific account ID or '~all', which refers to all the accounts to which the user has access. Requere spcify \code{account.id}.}
 
 \item{webproperty.id}{character. Web property ID for the views (profiles) to retrieve. Can either be a specific web property ID or '~all', which refers to all the web properties to which the user has access.}
@@ -16,6 +15,10 @@ get_profiles(account.id = "~all", webproperty.id = "~all",
 \item{start.index}{integer. An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.}
 
 \item{max.results}{integer. The maximum number of views (profiles) to include in this response.}
+
+\item{token}{\code{\link[httr]{Token2.0}} class object.}
+
+\item{verbose}{logical. Should print information verbose?}
 }
 \value{
 A data frame with Google Analytics management data.

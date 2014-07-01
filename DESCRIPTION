@@ -36,4 +36,5 @@ Collate:
     'firstdate.R'
     'help-ga.R'
     'mgmt.R'
+    'onload.R'
     'rga.R'

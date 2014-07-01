@@ -6,7 +6,7 @@
 get_ga(profile.id, start.date = "7daysAgo", end.date = "yesterday",
   metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = NULL,
   sort = NULL, filters = NULL, segment = NULL, start.index = NULL,
-  max.results = NULL, token, messages = FALSE)
+  max.results = NULL, token, verbose = getOption("rga.verbose"))
 }
 \arguments{
 \item{profile.id}{string or integer. Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID.}
@@ -31,7 +31,7 @@ get_ga(profile.id, start.date = "7daysAgo", end.date = "yesterday",
 
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
 
-\item{messages}{logical. Should print information messages?}
+\item{verbose}{logical. Should print information verbose?}
 }
 \value{
 A data frame including the Analytics data for a view (profile).

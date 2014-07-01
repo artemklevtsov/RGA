@@ -4,11 +4,10 @@
 \title{Lists goals to which the user has access}
 \usage{
 get_goals(account.id = "~all", webproperty.id = "~all",
-  profile.id = "~all", start.index = NULL, max.results = NULL, token)
+  profile.id = "~all", start.index = NULL, max.results = NULL, token,
+  verbose = getOption("rga.verbose"))
 }
 \arguments{
-\item{token}{\code{\link[httr]{Token2.0}} class object.}
-
 \item{account.id}{character. Account ID to retrieve goals for. Can either be a specific account ID or '~all', which refers to all the accounts that user has access to.}
 
 \item{webproperty.id}{character. Web property ID to retrieve goals for. Can either be a specific web property ID or '~all', which refers to all the web properties that user has access to. Requere spcify \code{account.id}.}
@@ -18,6 +17,10 @@ get_goals(account.id = "~all", webproperty.id = "~all",
 \item{start.index}{integer. An index of the first goal to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.}
 
 \item{max.results}{integer. The maximum number of goals to include in this response.}
+
+\item{token}{\code{\link[httr]{Token2.0}} class object.}
+
+\item{verbose}{logical. Should print information verbose?}
 }
 \value{
 A data frame with Google Analytics management data.

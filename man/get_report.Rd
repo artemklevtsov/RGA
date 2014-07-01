@@ -3,7 +3,8 @@
 \alias{get_report}
 \title{Get Anaytics data for a view (profile)}
 \usage{
-get_report(query, type = c("ga", "mcf", "rt"), token, messages = FALSE)
+get_report(query, type = c("ga", "mcf", "rt"), token,
+  verbose = getOption("rga.verbose"))
 }
 \arguments{
 \item{query}{\code{GAQuery} class object including a request parameters.}
@@ -12,7 +13,7 @@ get_report(query, type = c("ga", "mcf", "rt"), token, messages = FALSE)
 
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
 
-\item{messages}{logical. Should print information messages?}
+\item{verbose}{logical. Should print information verbose?}
 }
 \value{
 A data frame with Google Analytics reporting data. Columns are metrics and dimesnions.

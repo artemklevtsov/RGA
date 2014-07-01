@@ -1,8 +1,9 @@
 #' @title Lists all accounts to which the user has access
 #'
-#' @param token \code{\link[httr]{Token2.0}} class object.
 #' @param start.index integer. An index of the first account to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
 #' @param max.results integer. The maximum number of accounts to include in this response.
+#' @param token \code{\link[httr]{Token2.0}} class object.
+#' @param verbose logical. Should print information verbose?
 #'
 #' @return A data frame with Google Analytics management data.
 #' \item{id}{account ID.}
@@ -22,20 +23,21 @@
 #'
 #' @export
 #'
-get_accounts = function(start.index = NULL, max.results = NULL, token) {
+get_accounts = function(start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose")) {
     path <- "accounts"
     query <-  list(start.index = start.index, max.results = max.results)
-    data.json <- get_data(type = "mgmt", path = path, query = query, token = token)
+    data.json <- get_data(type = "mgmt", path = path, query = query, token = token, verbose = verbose)
     cols <- c("id", "name", "created", "updated")
     return(build_mgmt(data.json, cols))
 }
 
 #' @title Lists web properties to which the user has access
 #'
-#' @param token \code{\link[httr]{Token2.0}} class object.
 #' @param account.id character. Account ID to retrieve web properties for. Can either be a specific account ID or "~all", which refers to all the accounts that user has access to.
 #' @param start.index integer. An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
 #' @param max.results integer. The maximum number of web properties to include in this response.
+#' @param token \code{\link[httr]{Token2.0}} class object.
+#' @param verbose logical. Should print information verbose?
 #'
 #' @return A data frame with Google Analytics management data.
 #' \item{accountId}{Account ID to which this web property belongs.}
@@ -60,21 +62,22 @@ get_accounts = function(start.index = NULL, max.results = NULL, token) {
 #'
 #' @export
 #'
-get_webproperties = function(account.id = "~all", start.index = NULL, max.results = NULL, token) {
+get_webproperties = function(account.id = "~all", start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose")) {
     path <- paste("accounts", account.id, "webproperties", sep = "/")
     query <-  list(start.index = start.index, max.results = max.results)
-    data.json <- get_data(type = "mgmt", path = path, query = query, token = token)
+    data.json <- get_data(type = "mgmt", path = path, query = query, token = token, verbose = verbose)
     cols <- c("accountId", "id", "name", "websiteUrl", "level", "profileCount", "industryVertical", "created", "updated")
     return(build_mgmt(data.json, cols))
 }
 
 #' @title Lists views (profiles) to which the user has access
 #'
-#' @param token \code{\link[httr]{Token2.0}} class object.
 #' @param account.id character. Account ID for the view (profiles) to retrieve. Can either be a specific account ID or '~all', which refers to all the accounts to which the user has access. Requere spcify \code{account.id}.
 #' @param webproperty.id character. Web property ID for the views (profiles) to retrieve. Can either be a specific web property ID or '~all', which refers to all the web properties to which the user has access.
 #' @param start.index integer. An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
 #' @param max.results integer. The maximum number of views (profiles) to include in this response.
+#' @param token \code{\link[httr]{Token2.0}} class object.
+#' @param verbose logical. Should print information verbose?
 #'
 #' @return A data frame with Google Analytics management data.
 #' \item{accountId}{account ID to which this view (profile) belongs.}
@@ -103,22 +106,23 @@ get_webproperties = function(account.id = "~all", start.index = NULL, max.result
 #'
 #' @export
 #'
-get_profiles = function(account.id = "~all", webproperty.id = "~all", start.index = NULL, max.results = NULL, token) {
+get_profiles = function(account.id = "~all", webproperty.id = "~all", start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose")) {
     path <- paste("accounts", account.id, "webproperties", webproperty.id, "profiles", sep = "/")
     query <-  list(start.index = start.index, max.results = max.results)
-    data.json <- get_data(type = "mgmt", path = path, query = query, token = token)
+    data.json <- get_data(type = "mgmt", path = path, query = query, token = token, verbose = verbose)
     cols <- c("accountId", "webPropertyId", "id", "name", "websiteUrl", "type", "siteSearchQueryParameters", "siteSearchCategoryParameters", "eCommerceTracking", "currency", "timezone", "created", "updated")
     return(build_mgmt(data.json, cols))
 }
 
 #' @title Lists goals to which the user has access
 #'
-#' @param token \code{\link[httr]{Token2.0}} class object.
 #' @param account.id character. Account ID to retrieve goals for. Can either be a specific account ID or '~all', which refers to all the accounts that user has access to.
 #' @param webproperty.id character. Web property ID to retrieve goals for. Can either be a specific web property ID or '~all', which refers to all the web properties that user has access to. Requere spcify \code{account.id}.
 #' @param profile.id character. View (Profile) ID to retrieve goals for. Can either be a specific view (profile) ID or '~all', which refers to all the views (profiles) that user has access to. Requere spcify \code{account.id} and \code{webproperty.id}.
 #' @param start.index integer. An index of the first goal to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
 #' @param max.results integer. The maximum number of goals to include in this response.
+#' @param token \code{\link[httr]{Token2.0}} class object.
+#' @param verbose logical. Should print information verbose?
 #'
 #' @return A data frame with Google Analytics management data.
 #' \item{accountId}{account ID to which this goal belongs.}
@@ -144,19 +148,20 @@ get_profiles = function(account.id = "~all", webproperty.id = "~all", start.inde
 #'
 #' @export
 #'
-get_goals = function(account.id = "~all", webproperty.id = "~all", profile.id = "~all", start.index = NULL, max.results = NULL, token) {
+get_goals = function(account.id = "~all", webproperty.id = "~all", profile.id = "~all", start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose")) {
     path <- paste("accounts", account.id, "webproperties", webproperty.id, "profiles", profile.id, "goals", sep = "/")
     query <-  list(start.index = start.index, max.results = max.results)
-    data.json <- get_data(type = "mgmt", path = path, query = query, token = token)
+    data.json <- get_data(type = "mgmt", path = path, query = query, token = token, verbose = verbose)
     cols <- c("accountId", "webPropertyId", "profileId", "id", "name", "value", "active", "type", "created", "updated")
     return(build_mgmt(data.json, cols))
 }
 
 #' @title Lists segments to which the user has access
 #'
-#' @param token \code{\link[httr]{Token2.0}} class object.
 #' @param start.index integer. An index of the first segment to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
 #' @param max.results integer. The maximum number of segments to include in this response.
+#' @param token \code{\link[httr]{Token2.0}} class object.
+#' @param verbose logical. Should print information verbose?
 #'
 #' @return A data frame with Google Analytics management data.
 #' \item{id}{segment ID.}
@@ -179,10 +184,10 @@ get_goals = function(account.id = "~all", webproperty.id = "~all", profile.id = 
 #'
 #' @export
 #'
-get_segments = function(start.index = NULL, max.results = NULL, token) {
+get_segments = function(start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose")) {
     path <- "segments"
     query <-  list(start.index = start.index, max.results = max.results)
-    data.json <- get_data(type = "mgmt", path = path, query = query, token = token)
+    data.json <- get_data(type = "mgmt", path = path, query = query, token = token, verbose = verbose)
     cols <- c("segmentId", "id", "name", "definition", "type", "created", "updated")
     return(build_mgmt(data.json, cols))
 }
