@@ -32,17 +32,19 @@ get_rows <- function(type = c("ga", "mcf", "rt"), query, total.results, token, v
                 rows <- data.json$rows
             } else {
                 total.pages <- ceiling(total.results / query$max.results)
-                rows <- NULL
+                rows <- vector(mode = "list", length = total.pages)
                 for (page in 1:total.pages) {
                     if (verbose)
                         message(paste0("Fetching page ", page, " of ", total.pages, "..."))
                     query$start.index <- query$max.results * (page - 1) + 1
                     data.json <- get_data(type = type, query = query, token = token, verbose = verbose)
-                    if (inherits(data.json$rows, "matrix") || inherits(data.json$rows, "data.frame"))
-                        rows <- rbind(rows, data.json$rows)
-                    else if (inherits(data.json$rows, "list"))
-                        rows <- c(rows, data.json$rows)
+                    rows[[page]] <- data.json$rows
+
                 }
+                if (inherits(rows[[1]], "matrix") || inherits(rows[[1]], "data.frame"))
+                    rows <- do.call(rbind, rows)
+                else if (inherits(rows[[1]], "list"))
+                    rows <- do.call(c, rows)
             }
         }
     }
