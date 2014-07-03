@@ -25,21 +25,6 @@ build_mcf <- function(data, cols) {
     return(data.df)
 }
 
-# Convert data types
-convert_datatypes <- function(data, formats) {
-    formats[formats %in% c("INTEGER", "PERCENT", "TIME", "CURRENCY", "FLOAT")] <- "numeric"
-    formats[formats == "STRING"] <- "character"
-    formats[formats == "MCF_SEQUENCE"] <- "character"
-    data[] <- lapply(seq_along(formats), function(i) as(data[[i]], Class = formats[i]))
-    if ("date" %in% colnames(data)) {
-        data$date <- as.Date(data$date, "%Y%m%d")
-    }
-    if ("conversionDate" %in% colnames(data)) {
-        data$conversionDate <-as.Date(data$conversionDate, "%Y%m%d")
-    }
-    return(data)
-}
-
 # Build data.frame for mgmt
 build_mgmt <- function(data, cols) {
     if (data$totalResults > 0 && !is.null(data[["items"]])) {
@@ -61,4 +46,19 @@ build_df <- function(type = c("ga", "mcf", "rt"), data, cols) {
                       rt = build_ga(data, cols),
                       mcf = build_mcf(data, cols))
     return(data.df)
+}
+
+# Convert data types
+convert_datatypes <- function(data, formats) {
+    formats[formats %in% c("INTEGER", "PERCENT", "TIME", "CURRENCY", "FLOAT")] <- "numeric"
+    formats[formats == "STRING"] <- "character"
+    formats[formats == "MCF_SEQUENCE"] <- "character"
+    data[] <- lapply(seq_along(formats), function(i) as(data[[i]], Class = formats[i]))
+    if ("date" %in% colnames(data)) {
+        data$date <- as.Date(data$date, "%Y%m%d")
+    }
+    if ("conversionDate" %in% colnames(data)) {
+        data$conversionDate <-as.Date(data$conversionDate, "%Y%m%d")
+    }
+    return(data)
 }

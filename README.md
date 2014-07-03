@@ -4,13 +4,13 @@ This package is designed to work with the [**API Google Analytics**](https://dev
 
 Key features:
 
-* Support for [OAuth 2.0 authorization](https://developers.google.com/accounts/docs/OAuth2);
+* Support for [OAuth 2.0 authorization](https://developers.google.com/accounts/docs/OAuth2): `authorise`;
 * Access to following [Google Analytics APIs](https://developers.google.com/analytics/devguides/platform/):
-    - [Management API](https://developers.google.com/analytics/devguides/config/mgmt/v3): access configuration data for accounts, web properties, views (profiles), goals and segments;
-    - [Core Reporting API](https://developers.google.com/analytics/devguides/reporting/core/v3): query for dimensions and metrics to produce customized reports;
-    - [Multi-Channel Funnels Reporting API](https://developers.google.com/analytics/devguides/reporting/mcf/v3): query the traffic source paths that lead to a user's goal conversion;
-    - [Real Time Reporting API](https://developers.google.com/analytics/devguides/reporting/realtime/v3): report on activity occurring on your property right now;
-    - [Metadata API](https://developers.google.com/analytics/devguides/reporting/metadata/v3): access the list of API dimensions and metrics and their attributes;
+    - [Management API](https://developers.google.com/analytics/devguides/config/mgmt/v3): access configuration data for accounts, web properties, views (profiles), goals and segments: `get_accounts`, `get_webproperties`, `get_profiles`, `get_goals`, `get_segments`;
+    - [Core Reporting API](https://developers.google.com/analytics/devguides/reporting/core/v3): query for dimensions and metrics to produce customized reports: `get_ga`;
+    - [Multi-Channel Funnels Reporting API](https://developers.google.com/analytics/devguides/reporting/mcf/v3): query the traffic source paths that lead to a user's goal conversion: `get_mcf`;
+    - [Real Time Reporting API](https://developers.google.com/analytics/devguides/reporting/realtime/v3): report on activity occurring on your property right now: `get_rt`;
+    - [Metadata API](https://developers.google.com/analytics/devguides/reporting/metadata/v3): access the list of API dimensions and metrics and their attributes: `ga` (dataset);
 * Support of the batch processing of the requests (allows to overcome the restriction on the number of rows returned for a single request).
 
 ## Installation
@@ -118,6 +118,51 @@ For the functions such as `get_webproperties`, `get_profiles` and `get_goals`, c
 get_profiles()
 ```
 
+### Obtain an access to the Reporting API
+
+To access the Reporting API Google Analytics, package `RGA` provides the following functions:
+
+* `get_ga` - returns Analytics data for a view (profile);
+* `get_mcf` - returns Analytics Multi-Channel Funnels data for a view (profile);
+* `get_rt` - returns real time data for a view (profile).
+
+The following parameters are available for queries to the API reports:
+
+* `profile.id` - profile (view) ID. Can be obtained using the `get_progiles` or via the web interface Google Analytics.
+* `start.date` - date started collecting data in the format YYYY-MM-DD. Also, allowed values, such as "today", "yesterday", "ndaysAgo", where `n` is the number of days.
+* `end.date` - дата окончания сбора данных в формате YYYY-MM-DD. Also, allowed values, such as "today", "yesterday", "ndaysAgo", where `n` is the number of days.
+* `metrics` -  comma-separated list of values ​​of metrics (metrics), for example, "ga:sessions,ga:bounces". The number of metrics can not exceed 10 indicators for a single request.
+* `dimensions` - comma-separated list of values ​​of measurements (dimensions), for example, "ga:browser,ga:city". The number of dimensions can not exceed 7 measurements at a single request.
+* `sort` - comma-separated list of metrics (metrics) and measurements (dimensions) determining the order and direction of sorting data. Reverse the sort order is defined by `-` before the relevant metric.
+* `filters` - comma-separated list of filters of metrics (metrics) and measurements (dimensions), that will be imposed when selecting data.
+* `segment` - segments that will be used when retrieving data.
+* `start.index` - index of the first returned result (line number).
+* `max.results` - maximum number of fields (rows) of the returned results.
+* `token` - object of class `Token2.0` which contains data about the token of access. Can be obtained using the `authorize` function.
+* `messages` - logical argument which includes displaying of additional messages during the data request.
+
+The following arguments:`profile.id`, `start.date`, `end.date` and `metrics` are required for `get_ga` and `get_mcf` (`get_rt` requier only `profile.id` and `metrics`). Notice that all arguments must be a character strings of unit length. The exception is `profile.id` which can be as a character string, as the numeric.
+
+Example of data obtaining for the last 30 days:
+
+```R
+ga_data <- get_ga(profile.id = XXXXXXXX, start.date = "30daysAgo", end.date = "yesterday",
+                  metrics = "ga:users,ga:sessions,ga:pageviews")
+```
+
+Sometimes it is necessary to obtain the data for the entire monitoring period through service Google Analytics. For these purposes, the package `RGA` provides the function `get_firstdate` which takes as an argument a charming profile ID (submission):
+
+```R
+first_date <- get_firstdate(profile.id = XXXXXXXX)
+```
+
+Now we can use the variable `first_date` as the argument `start.date` when call the `get_ga` function:
+
+```R
+ga_data <- get_ga(profile.id = XXXXXXXX, start.date = first_date, end.date = "yesterday",
+                  metrics = "ga:users,ga:sessions,ga:pageviews")
+```
+
 ### Obtain access to the Metadata API
 
 When working with the API reports, sometimes necessary to obtain background information about these or other query parameters to the API. To obtain a list of all the metrics (metrics) and measurements (dimensions)`RGA` package provides a  a set of data (dataset) `ga`, which is available after loading the package.
@@ -169,51 +214,6 @@ List of all parameters allowed in segments:
 
 ```R
 subset(ga, allowedInSegments, id)
-```
-
-### Obtain an access to the Reporting API
-
-To access the Reporting API Google Analytics, package `RGA` provides the following functions:
-
-* `get_ga` - returns Analytics data for a view (profile);
-* `get_mcf` - returns Analytics Multi-Channel Funnels data for a view (profile);
-* `get_rt` - returns real time data for a view (profile).
-
-The following parameters are available for queries to the API reports:
-
-* `profile.id` - profile (view) ID. Can be obtained using the `get_progiles` or via the web interface Google Analytics.
-* `start.date` - date started collecting data in the format YYYY-MM-DD. Also, allowed values, such as "today", "yesterday", "ndaysAgo", where `n` is the number of days.
-* `end.date` - дата окончания сбора данных в формате YYYY-MM-DD. Also, allowed values, such as "today", "yesterday", "ndaysAgo", where `n` is the number of days.
-* `metrics` -  comma-separated list of values ​​of metrics (metrics), for example, "ga:sessions,ga:bounces". The number of metrics can not exceed 10 indicators for a single request.
-* `dimensions` - comma-separated list of values ​​of measurements (dimensions), for example, "ga:browser,ga:city". The number of dimensions can not exceed 7 measurements at a single request.
-* `sort` - comma-separated list of metrics (metrics) and measurements (dimensions) determining the order and direction of sorting data. Reverse the sort order is defined by `-` before the relevant metric.
-* `filters` - comma-separated list of filters of metrics (metrics) and measurements (dimensions), that will be imposed when selecting data.
-* `segment` - segments that will be used when retrieving data.
-* `start.index` - index of the first returned result (line number).
-* `max.results` - maximum number of fields (rows) of the returned results.
-* `token` - object of class `Token2.0` which contains data about the token of access. Can be obtained using the `authorize` function.
-* `messages` - logical argument which includes displaying of additional messages during the data request.
-
-The following arguments:`profile.id`, `start.date`, `end.date` and `metrics` are required for `get_ga` and `get_mcf` (`get_rt` requier only `profile.id` and `metrics`). Notice that all arguments must be a character strings of unit length. The exception is `profile.id` which can be as a character string, as the numeric.
-
-Example of data obtaining for the last 30 days:
-
-```R
-ga_data <- get_ga(profile.id = XXXXXXXX, start.date = "30daysAgo", end.date = "yesterday",
-                  metrics = "ga:users,ga:sessions,ga:pageviews")
-```
-
-Sometimes it is necessary to obtain the data for the entire monitoring period through service Google Analytics. For these purposes, the package `RGA` provides the function `get_firstdate` which takes as an argument a charming profile ID (submission):
-
-```R
-first_date <- get_firstdate(profile.id = XXXXXXXX)
-```
-
-Now we can use the variable `first_date` as the argument `start.date` when call the `get_ga` function:
-
-```R
-ga_data <- get_ga(profile.id = XXXXXXXX, start.date = first_date, end.date = "yesterday",
-                  metrics = "ga:users,ga:sessions,ga:pageviews")
 ```
 
 ## References
