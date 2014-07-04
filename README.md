@@ -1,17 +1,19 @@
 # RGA
 
-This package is designed to work with the [**API Google Analytics**](https://developers.google.com/analytics) in [**R**](http://www.r-project.org/). This project only helps you with **Data Collection** part of **Google Analytics**.
+This package is designed to work with the [**API Google Analytics**](https://developers.google.com/analytics) in [**R**](http://www.r-project.org/). You can use this package to retrieve an R `data.frame` with **Google Analytics** data.
 
 Key features:
 
-* Support for [OAuth 2.0 authorization](https://developers.google.com/accounts/docs/OAuth2): `authorise`;
+* [OAuth 2.0](https://developers.google.com/accounts/docs/OAuth2) authorization: `authorise`;
 * Access to following [Google Analytics APIs](https://developers.google.com/analytics/devguides/platform/):
     - [Management API](https://developers.google.com/analytics/devguides/config/mgmt/v3): access configuration data for accounts, web properties, views (profiles), goals and segments: `get_accounts`, `get_webproperties`, `get_profiles`, `get_goals`, `get_segments`;
     - [Core Reporting API](https://developers.google.com/analytics/devguides/reporting/core/v3): query for dimensions and metrics to produce customized reports: `get_ga`;
     - [Multi-Channel Funnels Reporting API](https://developers.google.com/analytics/devguides/reporting/mcf/v3): query the traffic source paths that lead to a user's goal conversion: `get_mcf`;
     - [Real Time Reporting API](https://developers.google.com/analytics/devguides/reporting/realtime/v3): report on activity occurring on your property right now: `get_rt`;
     - [Metadata API](https://developers.google.com/analytics/devguides/reporting/metadata/v3): access the list of API dimensions and metrics and their attributes: `ga` (dataset);
-* Support of the batch processing of the requests (allows to overcome the restriction on the number of rows returned for a single request).
+* Access to all the accounts to which the user has access.
+* API response is converted directly into R as a `data.frame`.
+* Auto-pagination to return more than 10,000 rows of the results by combining multiple data requests.
 
 ## Installation
 
@@ -61,6 +63,14 @@ Step by step instructions is below.
 You can return to the Google Developers Console at any time to view the **client ID** and **client secret** on the Client ID for native application section on Credentials page.
 
 ## Working with the package
+
+### Overview
+
+One you have the package loaded, there are 3 steps you use to get data from **Google Analytics**:
+
+1. Authorize this package to access your Google Analytics data with `authorize` function.
+1. Determine the table ID of the profile you want to access to with `get_profiles` function.
+1. Get the results from the API with one of this: `get_ga`, `get_mcf` or `get_rt`.
 
 ### Obtain an access token
 
