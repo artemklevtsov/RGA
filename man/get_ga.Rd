@@ -51,6 +51,8 @@ ga_data <- get_ga("myProfileID", start.date = "30daysAgo", end.date = "today",
 }
 \references{
 \href{https://developers.google.com/analytics/devguides/reporting/core/dimsmets}{Core Reporting API - Dimensions & Metrics Reference}
+
+\href{https://developers.google.com/analytics/devguides/reporting/core/v3/common-queries}{Core Reporting API - Common Queries}
 }
 \seealso{
 \code{\link{authorize}}

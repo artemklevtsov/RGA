@@ -78,6 +78,8 @@ get_report <- function(query, type = c("ga", "mcf", "rt"), token, verbose = getO
 #' @references
 #' \href{https://developers.google.com/analytics/devguides/reporting/core/dimsmets}{Core Reporting API - Dimensions & Metrics Reference}
 #'
+#' \href{https://developers.google.com/analytics/devguides/reporting/core/v3/common-queries}{Core Reporting API - Common Queries}
+#'
 #' @seealso \code{\link{authorize}}
 #'
 #' @family The Google Analytics Reporting API
