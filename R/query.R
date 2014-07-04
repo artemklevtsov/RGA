@@ -9,16 +9,27 @@ fix_query <- function(query) {
         query$start.date <- as.character(query$start.date)
     if (!is.null(query$end.date) && !is.character(query$end.date))
         query$end.date <- as.character(query$end.date)
-    if (!is.empty(query$metrics))
+    if (!is.empty(query$metrics)) {
+        if (length(query$metrics) > 1L)
+            query$metrics <- paste(query$metrics, collapse = ",")
         query$metrics <- gsub("\\s", "", query$metrics)
-    if (!is.empty(query$dimensions))
+    }
+    if (!is.empty(query$dimensions)) {
+        if (length(query$dimensions) > 1L)
+            query$dimensions <- paste(query$dimensions, collapse = ",")
         query$dimensions <- gsub("\\s", "", query$dimensions)
-    if (!is.empty(query$sort))
+    }
+    if (!is.empty(query$sort)) {
+        if (length(query$sort) > 1L)
+            query$sort <- paste(query$sort, collapse = ",")
         query$sort <- gsub("\\s", "", query$sort)
+
+    }
     if (!is.empty(query$filters))
         query$filters <- strip_ops(query$filters)
     if (!is.empty(query$segment))
         query$segment <- strip_ops(query$segment)
+    stopifnot(any(lapply(query, length) <= 1L))
     return(query)
 }
 
@@ -70,7 +81,6 @@ set_query <- function(profile.id = NULL, start.date = NULL, end.date = NULL,
                   segment = segment,
                   start.index = start.index,
                   max.results = max.results)
-    stopifnot(any(lapply(query, length) <= 1L))
     # Fix query
     query <- fix_query(query)
     class(query) <- c(class(query), "GAQuery")
@@ -91,19 +101,37 @@ print.GAQuery <- function(x, ...) {
 `$<-.GAQuery` <- function(x, name, value) {
     cl <- oldClass(x)
     class(x) <- NULL
-    if (!name %in% names(x))
-        stop(paste("Field", name, "not found: allowed assign only existing fields."))
-    # Prevent remove a list element if value is NULL
     if (is.null(value))
-        value <- list(NULL)
-    x[name] <- value
+        x[name] <- list(NULL)
+    else
+        x[[name]] <- value
     x <- fix_query(x)
     class(x) <- cl
     return(x)
 }
 
 #'@export
-`[[<-.GAQuery` <- `$<-.GAQuery`
+`[[<-.GAQuery` <- function(x, i, value) {
+    cl <- oldClass(x)
+    class(x) <- NULL
+    if (is.null(value))
+        x[i] <- list(NULL)
+    else
+        x[[i]] <- value
+    x <- fix_query(x)
+    class(x) <- cl
+    return(x)
+}
 
 #'@export
-`[<-.GAQuery` <- `$<-.GAQuery`
+`[<-.GAQuery` <- function(x, i, value) {
+    cl <- oldClass(x)
+    class(x) <- NULL
+    if (is.null(value))
+        x[i] <- list(NULL)
+    else
+        x[i] <- value
+    x <- fix_query(x)
+    class(x) <- cl
+    return(x)
+}
