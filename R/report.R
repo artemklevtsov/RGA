@@ -29,7 +29,6 @@
 #' @keywords internal
 #'
 #' @include get-data.R
-#' @include test-query.R
 #' @include get-rows.R
 #' @include build-df.R
 #'
