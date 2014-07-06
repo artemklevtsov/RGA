@@ -177,6 +177,8 @@ get_goals = function(account.id = "~all", webproperty.id = "~all", profile.id = 
 #' @references
 #' \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/segments}{Google Management API - Segments}
 #'
+#' \href{https://developers.google.com/analytics/devguides/reporting/core/v3/segments}{Core Reporting API - Segments}
+#'
 #' @family The Google Analytics Management API
 #'
 #' @include get-data.R
