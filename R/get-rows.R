@@ -1,12 +1,4 @@
-#' @title Get Gogole Analytics report data
-#'
-#' @inheritParams get_report
-#' @param total.results total number of rows in the query result.
-#'
-#' @return List or matrix.
-#'
-#' @noRd
-#'
+#' @include query.R
 #' @include get-data.R
 #'
 get_rows <- function(type = c("ga", "mcf", "rt"), query, total.results, token, verbose = FALSE) {
@@ -31,22 +23,32 @@ get_rows <- function(type = c("ga", "mcf", "rt"), query, total.results, token, v
                 data.json <- get_data(type = type, query = query, token = token, verbose = verbose)
                 rows <- data.json$rows
             } else {
-                total.pages <- ceiling(total.results / query$max.results)
-                rows <- vector(mode = "list", length = total.pages)
-                for (page in 1:total.pages) {
-                    if (verbose)
-                        message(paste0("Fetching page ", page, " of ", total.pages, "..."))
-                    query$start.index <- query$max.results * (page - 1) + 1
-                    data.json <- get_data(type = type, query = query, token = token, verbose = verbose)
-                    rows[[page]] <- data.json$rows
-
-                }
-                if (inherits(rows[[1]], "matrix") || inherits(rows[[1]], "data.frame"))
-                    rows <- do.call(rbind, rows)
-                else if (inherits(rows[[1]], "list"))
-                    rows <- do.call(c, rows)
+                rows <- get_pages(type = type, query = query, total.results = total.results, verbose = verbose)
             }
         }
     }
+    if (verbose)
+        message("obtained data.frame with", nrow(rows), "rows and", ncol(rows), "columns.")
+    return(rows)
+}
+
+#' @include query.R
+#' @include get-data.R
+#'
+get_pages <- function(type = c("ga", "mcf"), query, total.results, token, verbose = FALSE) {
+    type <- match.arg(type)
+    total.pages <- ceiling(total.results / query$max.results)
+    rows <- vector(mode = "list", length = total.pages)
+    for (page in 1:total.pages) {
+        if (verbose)
+            message(paste0("Fetching page ", page, " of ", total.pages, "..."))
+        query$start.index <- query$max.results * (page - 1) + 1
+        data.json <- get_data(type = type, query = query, token = token, verbose = verbose)
+        rows[[page]] <- data.json$rows
+    }
+    if (inherits(rows[[1]], "matrix") || inherits(rows[[1]], "data.frame"))
+        rows <- do.call(rbind, rows)
+    else if (inherits(rows[[1]], "list"))
+        rows <- do.call(c, rows)
     return(rows)
 }
