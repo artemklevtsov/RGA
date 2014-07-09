@@ -35,32 +35,32 @@ R CMD INSTALL rga_*.tar.gz
 
 ## Preparation
 
-### Obtain OAuth 2.0 credentials to access to the API Google Analytics
+### Obtain OAuth 2.0 credentials to get access to the Google Analytics API 
 
-Before to start working with the `RGA` package, it is necessary to create a new application in [Google Developers Console](https://console.developers.google.com/) and obtain a **Client ID** and **Client secret** to access the API Google Analytics.
+Before start working with the `RGA` package, it is necessary to create a new application in [Google Developers Console](https://console.developers.google.com/) and obtain a **Client ID** and **Client secret** to access to the Google Analytics API.
 
-Step by step instructions is below.
+Step by step instructions are below.
 
-1. Creation of a new project (can be skipped if the project already created):
+1. Creation of a new project (can be skipped if the project is already created):
     * Open the page https://console.developers.google.com/project;
     * Click on the **Create Project** red button at the top left of the page;
-    * In the pop-up window, enter the name of the project into the **PROJECT NAME** field;
-    * Click on **Create** to confirm the creation of the project.
-2. Activation of the access to the API Google Analytics:
-    * Select the project from the project list on https://console.developers.google.com/project page;
+    * Enter the name of the project into the **PROJECT NAME** field in the pop-up window;
+    * Click **Create** to confirm the creation of the project.
+2. Enabling access to the Google Analytics API:
+    * Select your project from the project list on https://console.developers.google.com/project page;
     * Select **APIs & auth** in the left sidebar;
-    * In the **APIs** tab, click on the **OFF** button to activate **Analytics API** (ensure that instead of `OFF` appeared `ON`).
+    * Click **OFF** for activation **Analytics API** (ensure that `OFF` turned to `ON`) in the **APIs** tab.
 3. Creating a new application:
-    * In the left sidebar, select **APIs & auth** and then **Credentials** sub-paragraph;
-    * Click on the **Create new Client ID** button on the left side of the page;
-    * In the pop-up window, select **Installed application** from the APPLICATION TYPE list and **Other** from INSTALLED APPLICATION TYPE list.
+    * Select **APIs & auth** and then **Credentials** sub-menu in the left sidebar;
+    * Click **Create new Client ID** on the left side of the page;
+    * Select **Installed application** from the APPLICATION TYPE list and **Other** from INSTALLED APPLICATION TYPE list in the pop-up window.
     * Click on the **Create Client ID** button to confirm the creation of the application.
 4. Obtaining Client ID and Client secret:
     * Select the project from the project list on the https://console.developers.google.com/project page;
-    * In the left sidebar, select **APIs & auth** and then **Credentials** sub-paragraph;
-    * In the **Client ID for native application** table, copy the values of the following fields: **Client ID** and **Client secret**.
+    * Select **APIs & auth** and then **Credentials** sub-menu in the left sidebar;
+    * Copy the values of the following fields: **Client ID** and **Client secret** in the **Client ID for native application** table.
 
-You can return to the Google Developers Console at any time to view the **client ID** and **client secret** on the Client ID for native application section on Credentials page.
+You can return to the Google Developers Console at any time to view the **Client ID** and **Client secret** on the Client ID for native application section on Credentials page.
 
 ## Working with the package
 
