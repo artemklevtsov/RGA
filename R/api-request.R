@@ -11,16 +11,19 @@
 #'
 #' @include token.R
 #'
-#' @import RCurl
-#' @import httr
-#' @import jsonlite
+#' @importFrom httr GET
+#' @importFrom httr config
+#' @importFrom httr content
+#' @importFrom httr http_status
+#' @importFrom jsonlite fromJSON
 #'
 api_request = function(url, token, simplify = TRUE, verbose = getOption("rga.verbose", FALSE)) {
     stopifnot(is.character(url) && length(url) == 1L)
     if (.Platform$OS.type == "windows") {
         options(RCurlOptions = list(
             verbose = FALSE,
-            capath = system.file("CurlSSL", "cacert.pem", package = "RCurl"), ssl.verifypeer = FALSE))
+            capath = system.file("CurlSSL", "cacert.pem", package = "RCurl"),
+            ssl.verifypeer = FALSE))
     }
     # Print the URL to the console
     if (verbose) {

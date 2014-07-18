@@ -13,7 +13,8 @@ build_path <- function(x) {
 
 # Build URL query string
 #' @include utils.R
-#' @import RCurl
+#' @importFrom RCurl curlEscape
+#'
 build_query <- function(x) {
     stopifnot(inherits(x, "list"))
     x <- compact(x)

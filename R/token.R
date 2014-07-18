@@ -70,7 +70,9 @@ get_token <- function(name) {
 #' ga_token <- authorize(client.id = "myID", client.secret = "mySecret")
 #' }
 #'
-#' @import httr
+#' @importFrom httr oauth_app
+#' @importFrom httr oauth_endpoints
+#' @importFrom httr oauth2.0_token
 #'
 #' @export
 #'
