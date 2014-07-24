@@ -11,10 +11,7 @@
 #'
 #' @include token.R
 #'
-#' @importFrom httr GET
-#' @importFrom httr config
-#' @importFrom httr content
-#' @importFrom httr http_status
+#' @importFrom httr GET config content http_status
 #' @importFrom jsonlite fromJSON
 #'
 api_request = function(url, token, simplify = TRUE, verbose = getOption("rga.verbose", FALSE)) {
