@@ -69,29 +69,29 @@ You can return to the Google Developers Console at any time to view the **Client
 One you have the package loaded, there are 3 steps you use to get data from **Google Analytics**:
 
 1. Authorize this package to access your Google Analytics data with `authorize` function.
-1. Determine the table ID of the profile you want to access to with `get_profiles` function.
-1. Get the results from the API with one of this: `get_ga`, `get_mcf` or `get_rt`.
+1. Determine the profile ID which you want to get access with the `get_profiles` function.
+1. Get the results from the API with one of these functions: `get_ga`, `get_mcf` or `get_rt`.
 
 ### Obtain an access token
 
-Before to exercise any requests to API, it's necessary to perform authorization and to obtain access token. It can be done with the following command:
+Before send any requests to GA API, it's necessary to perform authorization and to obtain access token. It can be done with the following command:
 
 ```R
 authorize(client.id = "My_Client_ID", client.secret = "My_Client_secret")
 ```
 
-After calling this function at first time, a web browser will be opened. First log in with a **Google Account** confirm the authorization to access the Google Analytics data. Note, the package requests access of **read-only** data.
+After calling this function at first time, a web browser will be opened. First entrance with a **Google Account** confirms access to the Google Analytics data. Note that the package requests access for the **read-only** data.
 
-When the `authorize` function is used, the `GAToken` variable is created in the separate `TokenEnv` environment which not visible for user. So, there is no need to pass every time the `token` argument to any function which require authorisation.
+When the `authorize` function is used, the `GAToken` variable is created in the separate `TokenEnv` environment which not visible for user. So, there is no need to pass every time the `token` argument to any function which requires authorization.
 
-Access token can also be stored in a variable and passed as argument to the functions, which make requests to the API Google Analytics. This can be useful if you work with several accounts at the same time.
+Also access token can be stored in a variable and passed as the argument to the functions requests the API Google Analytics. It can be useful when you are working with several accounts at the same time.
 
 ```R
 ga_token <- authorize(client.id = "My_Client_ID", client.secret = "My_Client_secret")
 get_profiles(token = ga_token)
 ```
 
-If the `cache` argument was ​​assigned the `TRUE` (default) and  the `httr_oauth_cache` option was not changed, then after successful authorization the `.httr-oauth` file with access data to Google API will be created in the current working directory. The `.httr-oauth` file will be used between sessions, i.e. at a subsequent call to the `authorize`  function, authorization is no longer required. With using the `cache` argument you can also cancel the creation of the file (`FALSE` value) or specify an alternate path to the file storage (for that necessary to explicitly specify the path and file name).
+When the `cache` argument was ​​assigned the `TRUE` (default) and  the `httr_oauth_cache` option was not changed, then after successful authorization the `.httr-oauth` file with access data to Google API will be created in the current working directory. The `.httr-oauth` file will be used between sessions, i.e. at a subsequent call to the `authorize`  function and authorization in the browser tab is not required. With using the `cache` argument you can also cancel the creation of the file (`FALSE` value) or specify an alternate path to the file storage (for that necessary to explicitly specify the path and file name).
 
 Note: Besides of the explicit specifying the `client.id` and `client.secret` arguments, their values ​​can be defined via environment variables: `RGA_CONSUMER_ID` and `RGA_CONSUMER_SECRET`. In this case, the specifying the `client.id` and `client.secret` arguments at call `authorize` function is not required.
 
