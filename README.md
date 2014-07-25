@@ -4,13 +4,13 @@ This package is designed to work with the [**API Google Analytics**](https://dev
 
 Key features:
 
-* [OAuth 2.0](https://developers.google.com/accounts/docs/OAuth2) authorization: `authorise`;
+* [OAuth 2.0](https://developers.google.com/accounts/docs/OAuth2) authorization;
 * Access to following [Google Analytics APIs](https://developers.google.com/analytics/devguides/platform/):
-    - [Management API](https://developers.google.com/analytics/devguides/config/mgmt/v3): access configuration data for accounts, web properties, views (profiles), goals and segments: `get_accounts`, `get_webproperties`, `get_profiles`, `get_goals`, `get_segments`;
-    - [Core Reporting API](https://developers.google.com/analytics/devguides/reporting/core/v3): query for dimensions and metrics to produce customized reports: `get_ga`;
-    - [Multi-Channel Funnels Reporting API](https://developers.google.com/analytics/devguides/reporting/mcf/v3): query the traffic source paths that lead to a user's goal conversion: `get_mcf`;
-    - [Real Time Reporting API](https://developers.google.com/analytics/devguides/reporting/realtime/v3): report on activity occurring on your property right now: `get_rt`;
-    - [Metadata API](https://developers.google.com/analytics/devguides/reporting/metadata/v3): access the list of API dimensions and metrics and their attributes: `ga` (dataset);
+    - [Management API](https://developers.google.com/analytics/devguides/config/mgmt/v3): access configuration data for accounts, web properties, views (profiles), goals and segments;
+    - [Core Reporting API](https://developers.google.com/analytics/devguides/reporting/core/v3): query for dimensions and metrics to produce customized reports;
+    - [Multi-Channel Funnels Reporting API](https://developers.google.com/analytics/devguides/reporting/mcf/v3): query the traffic source paths that lead to a user's goal conversion;
+    - [Real Time Reporting API](https://developers.google.com/analytics/devguides/reporting/realtime/v3): report on activity occurring on your property right now;
+    - [Metadata API](https://developers.google.com/analytics/devguides/reporting/metadata/v3): access the list of API dimensions and metrics and their attributes;
 * Access to all the accounts to which the user has access.
 * API response is converted directly into R as a `data.frame`.
 * Auto-pagination to return more than 10,000 rows of the results by combining multiple data requests.
@@ -62,7 +62,7 @@ Step by step instructions are below.
 
 You can return to the Google Developers Console at any time to view the **Client ID** and **Client secret** on the Client ID for native application section on Credentials page.
 
-## Working with the package
+## Usage
 
 ### Overview
 
