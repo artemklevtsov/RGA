@@ -32,10 +32,12 @@
 #'
 #' \href{https://developers.google.com/analytics/devguides/reporting/core/dimsmets}{Dimensions & Metrics Reference}
 #'
-#'
 #' @keywords data datasets
 #' @docType data
 #' @name ga
+#'
+#' @seealso
+#' \code{demo("shiny-ga", package = "RGA")}
 #'
 #' @examples
 #' # a count of parameters types
