@@ -13,9 +13,9 @@
 #' @include build-url.R
 #' @include api-request.R
 
-get_data <- function(type, query, path, token, verbose = getOption("rga.verbose", FALSE)) {
+get_data <- function(type, query, path, token, simplify = TRUE, verbose = getOption("rga.verbose", FALSE)) {
     url <- build_url(type = type, path = path, query = query)
-    data.json <- api_request(url, token = token, verbose = verbose)
+    data.json <- api_request(url, token = token, simplify = simplify, verbose = verbose)
     return(data.json)
 }
 
@@ -28,10 +28,10 @@ get_data <- function(type, query, path, token, verbose = getOption("rga.verbose"
 #'
 #' @noRd
 #'
-test_query <- function(type, query, token, verbose = FALSE) {
+test_query <- function(type, query, token, simplify = TRUE, verbose = FALSE) {
     if (verbose)
         message("Check query...")
     query$max.results <- 1L
-    data.json <- get_data(type = type, query = query, token = token, verbose = verbose)
+    data.json <- get_data(type = type, query = query, token = token, simplify = simplify, verbose = verbose)
     return(data.json)
 }
