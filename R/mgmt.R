@@ -25,7 +25,7 @@
 #'
 get_accounts = function(start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose", FALSE)) {
     path <- "accounts"
-    query <-  list(start.index = start.index, max.results = max.results)
+    query <- list(start.index = start.index, max.results = max.results)
     data.json <- get_data(type = "mgmt", path = path, query = query, token = token, verbose = verbose)
     cols <- c("id", "name", "created", "updated")
     return(build_mgmt(data.json, cols))
@@ -64,7 +64,7 @@ get_accounts = function(start.index = NULL, max.results = NULL, token, verbose =
 #'
 get_webproperties = function(account.id = "~all", start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose", FALSE)) {
     path <- paste("accounts", account.id, "webproperties", sep = "/")
-    query <-  list(start.index = start.index, max.results = max.results)
+    query <- list(start.index = start.index, max.results = max.results)
     data.json <- get_data(type = "mgmt", path = path, query = query, token = token, verbose = verbose)
     cols <- c("accountId", "id", "name", "websiteUrl", "level", "profileCount", "industryVertical", "created", "updated")
     return(build_mgmt(data.json, cols))
@@ -108,7 +108,7 @@ get_webproperties = function(account.id = "~all", start.index = NULL, max.result
 #'
 get_profiles = function(account.id = "~all", webproperty.id = "~all", start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose", FALSE)) {
     path <- paste("accounts", account.id, "webproperties", webproperty.id, "profiles", sep = "/")
-    query <-  list(start.index = start.index, max.results = max.results)
+    query <- list(start.index = start.index, max.results = max.results)
     data.json <- get_data(type = "mgmt", path = path, query = query, token = token, verbose = verbose)
     cols <- c("accountId", "webPropertyId", "id", "name", "websiteUrl", "type", "siteSearchQueryParameters", "siteSearchCategoryParameters", "eCommerceTracking", "currency", "timezone", "created", "updated")
     return(build_mgmt(data.json, cols))
@@ -150,7 +150,7 @@ get_profiles = function(account.id = "~all", webproperty.id = "~all", start.inde
 #'
 get_goals = function(account.id = "~all", webproperty.id = "~all", profile.id = "~all", start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose", FALSE)) {
     path <- paste("accounts", account.id, "webproperties", webproperty.id, "profiles", profile.id, "goals", sep = "/")
-    query <-  list(start.index = start.index, max.results = max.results)
+    query <- list(start.index = start.index, max.results = max.results)
     data.json <- get_data(type = "mgmt", path = path, query = query, token = token, verbose = verbose)
     cols <- c("accountId", "webPropertyId", "profileId", "id", "name", "value", "active", "type", "created", "updated")
     return(build_mgmt(data.json, cols))
@@ -188,7 +188,7 @@ get_goals = function(account.id = "~all", webproperty.id = "~all", profile.id = 
 #'
 get_segments = function(start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose", FALSE)) {
     path <- "segments"
-    query <-  list(start.index = start.index, max.results = max.results)
+    query <- list(start.index = start.index, max.results = max.results)
     data.json <- get_data(type = "mgmt", path = path, query = query, token = token, verbose = verbose)
     cols <- c("segmentId", "id", "name", "definition", "type", "created", "updated")
     return(build_mgmt(data.json, cols))
