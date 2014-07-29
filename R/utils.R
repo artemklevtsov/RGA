@@ -6,8 +6,8 @@ is.empty <- function(x) {
 
 # Reduce NULL and "" elements
 compact <- function(x) {
-    x <- Filter(Negate(is.empty), x)
-    return(x)
+    empty <- vapply(x, is.null, logical(1))
+    return(x[!empty])
 }
 
 # Remove whitespace around operators
