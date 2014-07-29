@@ -1,5 +1,6 @@
 # Build URL path
 #' @include utils.R
+#'
 build_path <- function(x) {
     stopifnot(inherits(x, "list"))
     x <- compact(x)
@@ -41,23 +42,23 @@ build_query <- function(x) {
 #'
 build_url <- function(type = c("ga", "mcf", "rt", "mgmt"), path, query) {
     type <- match.arg(type)
-    url <- switch(type,
-                  ga = "https://www.googleapis.com/analytics/v3/data/ga",
-                  mcf = "https://www.googleapis.com/analytics/v3/data/mcf",
-                  rt = "https://www.googleapis.com/analytics/v3/data/realtime",
-                  mgmt = "https://www.googleapis.com/analytics/v3/management",
-                  stop("Unknown API data type."))
+    base_url <- switch(type,
+                       ga = "https://www.googleapis.com/analytics/v3/data/ga",
+                       mcf = "https://www.googleapis.com/analytics/v3/data/mcf",
+                       rt = "https://www.googleapis.com/analytics/v3/data/realtime",
+                       mgmt = "https://www.googleapis.com/analytics/v3/management",
+                       stop("Unknown API data type."))
     if (!missing(path)) {
         if (length(path) > 1L)
             path <- build_path(path)
         if(nzchar(path))
-            url <- paste(url, path, sep = "/")
+            url <- paste(base_url, path, sep = "/")
     }
     if (!missing(query)) {
         if (length(query) > 1L)
             query <- build_query(query)
         if(nzchar(query))
-            url <- paste(url, query, sep = "?")
+            url <- paste(base_url, query, sep = "?")
     }
     return(url)
 }

@@ -24,13 +24,12 @@ Imports:
 Suggests:
     shiny
 Collate:
-    'token.R'
-    'api-request.R'
-    'build-df.R'
-    'utils.R'
-    'build-url.R'
+    'convert.R'
     'data-ga.R'
+    'utils.R'
     'query.R'
+    'url.R'
+    'token.R'
     'get-data.R'
     'get-rows.R'
     'report.R'

@@ -30,31 +30,31 @@
 #'
 #' @include get-data.R
 #' @include get-rows.R
-#' @include build-df.R
+#' @include convert.R
 #'
 #' @export
 #'
 get_report <- function(query, type = c("ga", "mcf", "rt"), token, verbose = getOption("rga.verbose", FALSE)) {
     type <- match.arg(type)
-    data.json <- test_query(type = type, query = query, token = token, verbose = verbose)
-    cols <- data.json$columnHeaders
+    data_json <- test_request(type = type, query = query, token = token, verbose = verbose)
+    cols <- data_json$columnHeaders
     formats <- cols$dataType
-    if (data.json$totalResults > 0 && !is.null(data.json$rows))
-        rows <- get_rows(type = type, query = query, total.results = data.json$totalResults, token = token, verbose = verbose)
+    if (data_json$totalResults > 0 && !is.null(data_json$rows))
+        rows <- get_rows(type = type, query = query, total.results = data_json$totalResults, token = token, verbose = verbose)
     else {
         if(verbose)
             message("No results were obtained.")
         rows <- matrix(NA, nrow = 1L, ncol = nrow(cols))
     }
-    if (!is.null(data.json$containsSampledData) && data.json$containsSampledData)
+    if (!is.null(data_json$containsSampledData) && data_json$containsSampledData)
         warning("Data contains sampled data.")
     if(verbose)
         message("Building data frame...")
-    data.df <- build_df(type, rows, cols)
+    data_df <- build_df(type, rows, cols)
     if(verbose)
         message("Converting data types...")
-    data.df <- convert_datatypes(data.df, formats)
-    return(data.df)
+    data_df <- convert_datatypes(data_df, formats)
+    return(data_df)
 }
 
 #' @title Get the Anaytics data from Core Reporting API for a view (profile)
@@ -108,8 +108,8 @@ get_ga <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
     query <- set_query(profile.id = profile.id, start.date = start.date, end.date = end.date,
                        metrics = metrics, dimensions = dimensions, sort = sort, filters = filters,
                        segment = segment, start.index = start.index, max.results = max.results)
-    data.df <- get_report(query = query, type = "ga", token = token, verbose = verbose)
-    return(data.df)
+    data_df <- get_report(query = query, type = "ga", token = token, verbose = verbose)
+    return(data_df)
 }
 
 #' @title Get the Anaytics data from Multi-Channel Funnels Reporting API for a view (profile)
@@ -160,8 +160,8 @@ get_mcf <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
     query <- set_query(profile.id = profile.id, start.date = start.date, end.date = end.date,
                        metrics = metrics, dimensions = dimensions, sort = sort, filters = filters,
                        start.index = start.index, max.results = max.results)
-    data.df <- get_report(query = query, type = "mcf", token = token, verbose = verbose)
-    return(data.df)
+    data_df <- get_report(query = query, type = "mcf", token = token, verbose = verbose)
+    return(data_df)
 }
 
 #' @@title Get the Anaytics data from Real Time Reporting API for a view (profile)
@@ -209,6 +209,6 @@ get_rt <- function(profile.id, metrics = "rt:activeUsers", dimensions = NULL,
               !is.null(metrics), nzchar(metrics))
     query <- set_query(profile.id = profile.id, metrics = metrics, dimensions = dimensions,
                        sort = sort, filters = filters, max.results = max.results)
-    data.df <- get_report(query = query, type = "rt", token = token, verbose = verbose)
-    return(data.df)
+    data_df <- get_report(query = query, type = "rt", token = token, verbose = verbose)
+    return(data_df)
 }

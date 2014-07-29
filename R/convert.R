@@ -1,8 +1,8 @@
 # Build data.frame for core report
 build_ga <- function(data, cols) {
-    data.df <- as.data.frame(data, stringsAsFactors = FALSE)
-    colnames(data.df) <- cols$name
-    return(data.df)
+    data_df <- as.data.frame(data, stringsAsFactors = FALSE)
+    colnames(data_df) <- cols$name
+    return(data_df)
 }
 
 # Build data.frame for mcf report
@@ -17,35 +17,35 @@ build_mcf <- function(data, cols) {
         conversion <- lapply(conversion, function(i) lapply(i, function(x) paste(apply(x, 1, paste, collapse = ":"), collapse = " > ")))
         conversion <- do.call(rbind, lapply(conversion, unlist))
         colnames(conversion) <- cols$name[conversion.idx]
-        data.df <- data.frame(primitive, conversion, stringsAsFactors = FALSE)[, cols$name]
+        data_df <- data.frame(primitive, conversion, stringsAsFactors = FALSE)[, cols$name]
     } else {
-        data.df <- as.data.frame(do.call(rbind, lapply(data, unlist)), stringsAsFactors = FALSE)
-        colnames(data.df) <- cols$name
+        data_df <- as.data.frame(do.call(rbind, lapply(data, unlist)), stringsAsFactors = FALSE)
+        colnames(data_df) <- cols$name
     }
-    return(data.df)
+    return(data_df)
 }
 
 # Build data.frame for mgmt
 build_mgmt <- function(data, cols) {
     if (data$totalResults > 0 && !is.null(data[["items"]])) {
-        data.r <- data[["items"]]
-        data.r <- data.r[, names(data.r) %in% cols]
+        data_df <- data[["items"]]
+        data_df <- data_df[, names(data_df) %in% cols]
     } else {
-        data.r <- data.frame(matrix(NA, nrow = 1L, ncol = length(cols)))
-        colnames(data.r) <- cols
+        data_df <- data.frame(matrix(NA, nrow = 1L, ncol = length(cols)))
+        colnames(data_df) <- cols
     }
-    return(data.r)
+    return(data_df)
 }
 
 # Build a data.frame for GA report data
 build_df <- function(type = c("ga", "mcf", "rt"), data, cols) {
     cols$name <- gsub("^(ga|mcf|rt):", "", cols$name)
     type <- match.arg(type)
-    data.df <- switch(type,
+    data_df <- switch(type,
                       ga = build_ga(data, cols),
                       rt = build_ga(data, cols),
                       mcf = build_mcf(data, cols))
-    return(data.df)
+    return(data_df)
 }
 
 # Convert data types
