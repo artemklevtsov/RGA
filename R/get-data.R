@@ -76,6 +76,8 @@ get_data <- function(type, query, path, token, simplify = TRUE, verbose = getOpt
 #'
 #' @inheritParams get_data
 #'
+#' @include query.R
+#'
 #' @noRd
 #'
 test_request <- function(type, query, token, simplify = TRUE, verbose = getOption("rga.verbose", FALSE)) {
