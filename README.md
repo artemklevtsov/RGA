@@ -173,6 +173,26 @@ ga_data <- get_ga(profile.id = XXXXXXXX, start.date = first_date, end.date = "ye
                   metrics = "ga:users,ga:sessions,ga:pageviews")
 ```
 
+#### Sampled data
+
+If either one of the following thresholds are met, Analytics samples data accordingly:
+
+* 1000000 maximum unique dimension combinations for any type of query.
+* 500000 maximum sessions for special queries where the data is not already stored.
+
+In order to avoid this, you can partition the query into multiple small querys (day-by-day). You can get this day-by-day data by using following code:
+
+```R
+dates <- seq(as.Date("2012-01-01"), as.Date("2012-02-01"), by = "days")
+ga_data <- aggregate(. ~ keyword, FUN = sum,
+                     data = do.call(rbind, lapply(dates, function(d) {
+                       get_ga(profile.id = XXXXXXXX, start.date = d, end.date = d,
+                       metrics = "ga:sessions", dimensions = "ga:keyword",
+                       filter = "ga:medium==organic;ga:keyword!=(not provided);ga:keyword!=(not set)")})))
+```
+
+Note: a formula in `aggregate` function shoyuld include all Google Analyitcs dimensions without prefix ("ga" or "mcf").
+
 ### Obtain access to the Metadata API
 
 When working with the API reports, sometimes necessary to obtain background information about these or other query parameters to the API. To obtain a list of all the metrics (metrics) and measurements (dimensions)`RGA` package provides a  a set of data (dataset) `ga`, which is available after loading the package.
