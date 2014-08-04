@@ -191,7 +191,7 @@ ga_data <- aggregate(. ~ keyword, FUN = sum,
                        filter = "ga:medium==organic;ga:keyword!=(not provided);ga:keyword!=(not set)")})))
 ```
 
-Note: a formula in `aggregate` function shoyuld include all Google Analyitcs dimensions without prefix ("ga" or "mcf").
+Note: a formula in `aggregate` function should include all Google Analyitcs dimensions without prefix ("ga" or "mcf").
 
 ### Obtain access to the Metadata API
 
