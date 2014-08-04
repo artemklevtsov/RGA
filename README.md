@@ -177,8 +177,8 @@ ga_data <- get_ga(profile.id = XXXXXXXX, start.date = first_date, end.date = "ye
 
 If either one of the following thresholds are met, Analytics samples data accordingly:
 
-* 1000000 maximum unique dimension combinations for any type of query.
-* 500000 maximum sessions for special queries where the data is not already stored.
+* 1,000,000 maximum unique dimension combinations for any type of query.
+* 500,000 maximum sessions for special queries where the data is not already stored.
 
 In order to avoid this, you can partition the query into multiple small querys (day-by-day). You can get this day-by-day data by using following code:
 
