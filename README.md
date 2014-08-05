@@ -246,6 +246,13 @@ List of all parameters allowed in segments:
 subset(ga, allowedInSegments, id)
 ```
 
+`RGA` package also provide the shiny demo app to access `ga` dataset:
+
+
+```R
+demo("shiny-ga", package = "RGA")
+```
+
 ## References
 
 ### Google Analytics API
