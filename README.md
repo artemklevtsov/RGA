@@ -11,8 +11,8 @@ Key features:
     - [Multi-Channel Funnels Reporting API](https://developers.google.com/analytics/devguides/reporting/mcf/v3): query the traffic source paths that lead to a user's goal conversion;
     - [Real Time Reporting API](https://developers.google.com/analytics/devguides/reporting/realtime/v3): report on activity occurring on your property right now;
     - [Metadata API](https://developers.google.com/analytics/devguides/reporting/metadata/v3): access the list of API dimensions and metrics and their attributes;
-* Access to all the accounts to which the user has access.
-* API response is converted directly into R as a `data.frame`.
+* Access to all the accounts to which the user has access;
+* API response is converted directly into R as a `data.frame`;
 * Auto-pagination to return more than 10,000 rows of the results by combining multiple data requests.
 
 ## Installation
