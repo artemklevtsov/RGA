@@ -71,6 +71,7 @@ get_token <- function(name) {
 #' }
 #'
 #' @importFrom httr oauth_app oauth_endpoints oauth2.0_token
+#' @import httpuv
 #'
 #' @export
 #'
