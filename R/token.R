@@ -20,7 +20,7 @@ get_token <- function(name) {
     get(name, envir = TokenEnv)
 }
 
-#' @title Obtain an OAuth 2.0 access token
+#' @title Authorize the RGA package to the user's Google Analytics account using OAuth2.0
 #'
 #' @description
 #' \code{authorize} is wrapper for \code{\link[httr]{oauth2.0_token}} function.
@@ -49,7 +49,7 @@ get_token <- function(name) {
 #'
 #' You can return to the \href{https://console.developers.google.com/}{Google Developers Console} at any time to view the client ID and client secret on the \emph{Client ID for native application} section on \emph{Credentials} page.
 #'
-#' @return A \code{\link[httr]{Token2.0}} reference class (RC) object.
+#' @return A \code{\link[httr]{Token2.0}} object containing all the data required for OAuth access.
 #'
 #' @references
 #' \href{https://console.developers.google.com/}{Google Developers Console}

@@ -11,7 +11,7 @@ get_segments(start.index = NULL, max.results = NULL, token,
 
 \item{max.results}{integer. The maximum number of segments to include in this response.}
 
-\item{token}{\code{\link[httr]{Token2.0}} class object.}
+\item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
 
 \item{verbose}{logical. Should print information verbose?}
 }

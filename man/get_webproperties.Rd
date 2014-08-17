@@ -13,7 +13,7 @@ get_webproperties(account.id = "~all", start.index = NULL,
 
 \item{max.results}{integer. The maximum number of web properties to include in this response.}
 
-\item{token}{\code{\link[httr]{Token2.0}} class object.}
+\item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
 
 \item{verbose}{logical. Should print information verbose?}
 }

@@ -18,7 +18,7 @@ get_goals(account.id = "~all", webproperty.id = "~all",
 
 \item{max.results}{integer. The maximum number of goals to include in this response.}
 
-\item{token}{\code{\link[httr]{Token2.0}} class object.}
+\item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
 
 \item{verbose}{logical. Should print information verbose?}
 }
