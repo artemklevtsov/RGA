@@ -37,7 +37,7 @@
 #' @name ga
 #'
 #' @seealso
-#' \code{demo("shiny-ga", package = "RGA")}
+#' \code{shiny_demo(ga)}
 #'
 #' @examples
 #' # a count of parameters types

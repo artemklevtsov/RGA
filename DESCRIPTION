@@ -21,9 +21,8 @@ Imports:
     RCurl,
     jsonlite,
     httr (>= 0.3),
-    httpuv
-Suggests:
-    shiny
+    httpuv,
+    shiny (>= 0.10.0)
 Collate:
     'convert.R'
     'data-ga.R'
@@ -37,3 +36,4 @@ Collate:
     'onload.R'
     'package.R'
     'report.R'
+    'shiny.R'

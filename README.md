@@ -248,9 +248,8 @@ subset(ga, allowedInSegments, id)
 
 `RGA` package also provide the shiny demo app to access `ga` dataset:
 
-
 ```R
-demo("shiny-ga", package = "RGA")
+shiny_demo(ga)
 ```
 
 ## References
