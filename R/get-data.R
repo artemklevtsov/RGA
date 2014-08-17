@@ -1,3 +1,13 @@
+# Set the RCurlOptions for Windows
+set_curl_opts <- function() {
+    if (.Platform$OS.type == "windows") {
+        options(RCurlOptions = list(
+            verbose = FALSE,
+            capath = system.file("CurlSSL", "cacert.pem", package = "RCurl"),
+            ssl.verifypeer = FALSE))
+    }
+}
+
 #' @title Make a Goolge Analytics API request
 #'
 #' @param url the url of the page to retrieve.
@@ -16,12 +26,7 @@
 #'
 make_request = function(url, token, simplify = TRUE, verbose = getOption("rga.verbose", FALSE)) {
     stopifnot(is.character(url) && length(url) == 1L)
-    if (.Platform$OS.type == "windows") {
-        options(RCurlOptions = list(
-            verbose = FALSE,
-            capath = system.file("CurlSSL", "cacert.pem", package = "RCurl"),
-            ssl.verifypeer = FALSE))
-    }
+    set_curl_opts()
     # Print the URL to the console
     if (verbose) {
         message("Sending request to Google Analytics...")
@@ -43,7 +48,7 @@ make_request = function(url, token, simplify = TRUE, verbose = getOption("rga.ve
         message(http_status(request)$message)
     # Convert the JSON response into a R list
     data_json <- fromJSON(content(request, as = "text"), simplifyVector = simplify)
-    # Hamdle errors
+    # Parse API error messages
     if (!is.null(data_json$error)) {
         stop(paste(http_status(request)$message, "Reason:",
                    paste(data_json$error$errors$message, collapse = "\n"), sep = "\n"))
