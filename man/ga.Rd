@@ -49,7 +49,7 @@ subset(ga, allowedInSegments, id)
 \href{https://developers.google.com/analytics/devguides/reporting/core/dimsmets}{Dimensions & Metrics Reference}
 }
 \seealso{
-\code{demo("shiny-ga", package = "RGA")}
+\code{shiny_demo(ga)}
 }
 \keyword{data}
 \keyword{datasets}

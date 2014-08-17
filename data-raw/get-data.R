@@ -18,7 +18,7 @@ attributes  <- transform(attributes,
 # Create data.frame
 new_data <- cbind(id, attributes, stringsAsFactors = FALSE)
 # Get data file path
-data_file <- file.path("data/ga.rda")
+data_file <- file.path("R/sysdata.rda")
 # Assign new_data according with a data name
 assign("ga", new_data)
 # Get old data

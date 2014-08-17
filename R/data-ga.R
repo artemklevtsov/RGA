@@ -36,6 +36,8 @@
 #' @docType data
 #' @name ga
 #'
+#' @export ga
+#'
 #' @seealso
 #' \code{shiny_demo(ga)}
 #'

@@ -14,7 +14,6 @@ Authors@R: c(
     person(given = "Olga", family = "Shramko",
     email = "ol1709@yahoo.com", role = "ctb"))
 License: GPL (>= 2)
-LazyData: true
 Depends:
     R (>= 2.15.1)
 Imports:
