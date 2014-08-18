@@ -24,7 +24,7 @@ Imports:
     shiny (>= 0.10.0)
 Collate:
     'convert.R'
-    'data-ga.R'
+    'data.R'
     'utils.R'
     'url.R'
     'token.R'
