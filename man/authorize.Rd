@@ -10,7 +10,7 @@ authorize(client.id, client.secret, cache = TRUE)
 
 \item{client.secret}{character. OAuth client secret. if client.secret is missing, we'll look in the environment variable \code{RGA_CONSUMER_SECRET}.}
 
-\item{cache}{logical or character. TRUE means to cache using the default cache file \code{.oauth-httr}, FALSE means don't cache. A string mean use the specified path as the cache file.}
+\item{cache}{logical or character. \code{TRUE} means to cache using the default cache file \code{.oauth-httr}, \code{FALSE} means not to cache. A string means to use the specified path as the cache file.}
 }
 \value{
 A \code{\link[httr]{Token2.0}} object containing all the data required for OAuth access.
@@ -19,9 +19,9 @@ A \code{\link[httr]{Token2.0}} object containing all the data required for OAuth
 \code{authorize} is wrapper for \code{\link[httr]{oauth2.0_token}} function.
 }
 \details{
-After calling this function at first time, a web browser will be opened. First log in with a Google Account confirm the authorization to access the Google Analytics data. Note, the package requests access of read-only data.
+After calling this function first time, a web browser will be opened. First, log in with a Google Account, confirm the authorization to access the Google Analytics data. Note that the package requests access for read-only data.
 
-When the \code{authorize} function is used, the \code{GAToken} variable is created in the separate \code{TokenEnv} environment which not visible for user. So, there is no need to pass every time the \code{token} argument to any function which require authorisation. Also, there is possibility to store \code{token} in separate variable and pass it to the functions. It can be convinient if used several access tokens.
+When the \code{authorize} function is used the \code{GAToken} variable is created in the separate \code{TokenEnv} environment which is not visible for user. So, there is no need to pass the token argument to any function which requires authorisation every time. Also there is a possibility to store token in separate variable and to pass it to the functions. It can be useful when you are working with several accounts at the same time.
 }
 \section{Obtain OAuth 2.0 credentials}{
 
@@ -31,9 +31,9 @@ To find your project's client ID and client secret, do the following:
 \enumerate{
     \item Go to the \href{https://console.developers.google.com/}{Google Developers Console}.
     \item Select a project (create if needed).
-    \item In the sidebar on the left, select \emph{APIs & auth}. In the list of \emph{APIs}, make sure the status is \emph{ON} for the \emph{Analytics API}.
-    \item In the sidebar on the left, select \emph{Credentials}.
-    \item To set up a service account, select \emph{Create New Client ID}. Select \emph{Installed Application} and \emph{Others} options and then select \emph{Create Client ID}.
+    \item Select \emph{APIs & auth} in the sidebar on the left. Then in the list of APIs make sure that the status is \emph{ON} for the Analytics API.
+    \item Select \emph{Credentials} in the sidebar on the left.
+    \item To set up a service account select \emph{Create New Client ID}. Select \emph{Installed Application} and \emph{Others} options and then select \emph{Create Client ID}.
 }
 
 You can return to the \href{https://console.developers.google.com/}{Google Developers Console} at any time to view the client ID and client secret on the \emph{Client ID for native application} section on \emph{Credentials} page.

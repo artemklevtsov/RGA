@@ -11,15 +11,15 @@ get_mcf(profile.id, start.date = "7daysAgo", end.date = "yesterday",
 \arguments{
 \item{profile.id}{string or integer. Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID.}
 
-\item{start.date}{character. Start date for fetching Analytics data. Requests can specify a start date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is 7daysAgo.}
+\item{start.date}{character. Start date for fetching Analytics data. Request can specify a start date formatted as YYYY-MM-DD or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is 7daysAgo.}
 
-\item{end.date}{character. End date for fetching Analytics data. Request can should specify an end date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is yesterday.}
+\item{end.date}{character. End date for fetching Analytics data. Request can specify an end date formatted as YYYY-MM-DD or as a relative date (e.g., today, yester-day, or 7daysAgo). The default value is yesterday.}
 
-\item{metrics}{character. A comma-separated list of Multi-Channel Funnels metrics. E.g., "mcf:totalConversions,mcf:totalConversionValue". At least one metric must be specified.}
+\item{metrics}{character. A comma-separated list of Multi-Channel Funnels metrics. E.g., \code{"mcf:totalConversions,mcf:totalConversionValue"}. At least one metric must be specified.}
 
-\item{dimensions}{character. A comma-separated list of Multi-Channel Funnels dimensions. E.g., "mcf:source,mcf:medium".}
+\item{dimensions}{character. A comma-separated list of Multi-Channel Funnels dimensions. E.g., code{"mcf:source,mcf:medium"}.}
 
-\item{sort}{character. A comma-separated list of dimensions or metrics that determine the sort order for Analytics data.}
+\item{sort}{character. character. A comma-separated list of dimensions or metrics that determine the sort order for Analytics data.}
 
 \item{filters}{character. A comma-separated list of dimension or metric filters to be applied to Analytics data.}
 
@@ -32,7 +32,7 @@ get_mcf(profile.id, start.date = "7daysAgo", end.date = "yesterday",
 \item{verbose}{logical. Should print information verbose?}
 }
 \value{
-A data frame including the Analytics Multi-Channel Funnels data for a view (profile).
+A data frame including the Analytics Multi-Channel Funnels data for a view (profile)
 }
 \description{
 Get the Anaytics data from Multi-Channel Funnels Reporting API for a view (profile)

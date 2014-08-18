@@ -8,12 +8,12 @@ get_firstdate(profile.id, token, verbose = getOption("rga.verbose", FALSE))
 \arguments{
 \item{profile.id}{Google Analytics profile ID.}
 
-\item{token}{\code{Token2.0} class object.}
+\item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
 
 \item{verbose}{logical. Should print information verbose?}
 }
 \value{
-Start date of collect of the Google Analytics statistics.
+Start date of collecting the Google Analytics statistics.
 }
 \description{
 Get the first date with available data

@@ -1,6 +1,6 @@
-#' @title Lists all accounts to which the user has access
+#' @title Lists all accounts which the user has access to
 #'
-#' @param start.index integer. An index of the first account to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+#' @param start.index integer. An index of the first account to retrieve. Use this parameter as a pagi- nation mechanism along with the max-results parameter.
 #' @param max.results integer. The maximum number of accounts to include in this response.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
 #' @param verbose logical. Should print information verbose?
@@ -31,7 +31,7 @@ get_accounts = function(start.index = NULL, max.results = NULL, token, verbose =
     return(build_mgmt(data_json, cols))
 }
 
-#' @title Lists web properties to which the user has access
+#' @title Lists web properties which the user has access to
 #'
 #' @param account.id character. Account ID to retrieve web properties for. Can either be a specific account ID or "~all", which refers to all the accounts that user has access to.
 #' @param start.index integer. An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
@@ -70,10 +70,10 @@ get_webproperties = function(account.id = "~all", start.index = NULL, max.result
     return(build_mgmt(data_json, cols))
 }
 
-#' @title Lists views (profiles) to which the user has access
+#' @title Lists views (profiles) which the user has access to
 #'
-#' @param account.id character. Account ID for the view (profiles) to retrieve. Can either be a specific account ID or '~all', which refers to all the accounts to which the user has access. Requere spcify \code{account.id}.
-#' @param webproperty.id character. Web property ID for the views (profiles) to retrieve. Can either be a specific web property ID or '~all', which refers to all the web properties to which the user has access.
+#' @param account.id character. Account ID for the view (profiles) to retrieve. Can either be a specific account ID or '~all', which refers to all the accounts which the user has access to. Requires specified account.id.
+#' @param webproperty.id character. Web property ID for the views (profiles) to retrieve. Can either be a specific web property ID or '~all', which refers to all the web properties which the user has access to.
 #' @param start.index integer. An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
 #' @param max.results integer. The maximum number of views (profiles) to include in this response.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
@@ -114,19 +114,19 @@ get_profiles = function(account.id = "~all", webproperty.id = "~all", start.inde
     return(build_mgmt(data_json, cols))
 }
 
-#' @title Lists goals to which the user has access
+#' @title Lists  Lists goals which the user has access to
 #'
-#' @param account.id character. Account ID to retrieve goals for. Can either be a specific account ID or '~all', which refers to all the accounts that user has access to.
-#' @param webproperty.id character. Web property ID to retrieve goals for. Can either be a specific web property ID or '~all', which refers to all the web properties that user has access to. Requere spcify \code{account.id}.
-#' @param profile.id character. View (Profile) ID to retrieve goals for. Can either be a specific view (profile) ID or '~all', which refers to all the views (profiles) that user has access to. Requere spcify \code{account.id} and \code{webproperty.id}.
+#' @param account.id character. The account ID to retrieve goals for. Can either be a specific account ID or '~all', which refers to all the accounts that user has access to.
+#' @param webproperty.id character. Web property ID to retrieve goals for. Can either be a specific web property ID or '~all', which refers to all the web properties that user has access to. Requires specified \code{account.id}.
+#' @param profile.id character. View (Profile) ID to retrieve goals for. Can either be a specific view (profile) ID or '~all', which refers to all the views (profiles) that user has access to. Requires specified \code{account.id} and \code{webproperty.id}.
 #' @param start.index integer. An index of the first goal to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
 #' @param max.results integer. The maximum number of goals to include in this response.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
 #' @param verbose logical. Should print information verbose?
 #'
 #' @return A data frame with Google Analytics management data.
-#' \item{accountId}{account ID to which this goal belongs.}
-#' \item{webPropertyId}{web property ID to which this goal belongs. The web property ID is of the form UA-XXXXX-YY.}
+#' \item{accountId}{account ID which this goal belongs to.}
+#' \item{webPropertyId}{web property ID which this goal belongs to. The web property ID is of the form UA-XXXXX-YY.}
 #' \item{profileId}{view (Profile) ID to which this goal belongs.}
 #' \item{id}{goal ID (number).}
 #' \item{name}{goal name.}
@@ -156,9 +156,9 @@ get_goals = function(account.id = "~all", webproperty.id = "~all", profile.id = 
     return(build_mgmt(data_json, cols))
 }
 
-#' @title Lists segments to which the user has access
+#' @title Lists segments which the user has access to
 #'
-#' @param start.index integer. An index of the first segment to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+#' @param start.index integer. An index of the first segment to retrieve. Use this parameter as a pagi- nation mechanism along with the max-results parameter.
 #' @param max.results integer. The maximum number of segments to include in this response.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
 #' @param verbose logical. Should print information verbose?
