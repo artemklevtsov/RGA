@@ -1,5 +1,5 @@
 # Set global variables to be shared with other functions
-if(getRversion() >= "2.15.1") utils::globalVariables(c("GAToken"))
+if (getRversion() >= "2.15.1") utils::globalVariables(c("GAToken"))
 
 # Environment for OAuth token
 TokenEnv <- new.env(parent = emptyenv())

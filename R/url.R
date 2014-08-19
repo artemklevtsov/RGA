@@ -51,13 +51,13 @@ build_url <- function(type = c("ga", "mcf", "rt", "mgmt"), path, query) {
     if (!missing(path)) {
         if (length(path) > 1L)
             path <- build_path(path)
-        if(nzchar(path))
+        if (nzchar(path))
             url <- paste(base_url, path, sep = "/")
     }
     if (!missing(query)) {
         if (length(query) > 1L)
             query <- build_query(query)
-        if(nzchar(query))
+        if (nzchar(query))
             url <- paste(base_url, query, sep = "?")
     }
     return(url)
