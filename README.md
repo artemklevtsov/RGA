@@ -17,9 +17,13 @@ Key features:
 
 ## Installation
 
-**Notice:** Currently the package `RGA` is under development and is not available via CRAN network.
+To install the latest release version from CRAN with:
 
-To install the current version of the `RGA` package the `install_bitbucket` function from `devtools` package can be used:
+```R
+install.packages("RGA")
+```
+
+To install the development version the `install_bitbucket` function from `devtools` package can be used:
 
 ```R
 devtools::install_bitbucket(repo = "rga", username = "unikum")
