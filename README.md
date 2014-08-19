@@ -249,7 +249,7 @@ subset(ga, allowedInSegments, id)
 `RGA` package also provide the shiny demo app to access `ga` dataset:
 
 ```R
-shiny_demo(ga)
+show_dimsmets(ga)
 ```
 
 ## References

@@ -2,11 +2,13 @@
 #'
 #' @param data dataset to show (now available only \code{\link{ga}}).
 #'
+#' @return \code{shiny.appobj} class object to show \link{\code{ga}} dataset.
+#'
 #' @export
 #'
 #' @importFrom shiny shinyApp fluidPage titlePanel fluidRow column absolutePanel wellPanel checkboxGroupInput selectInput dataTableOutput renderDataTable
 #'
-shiny_demo <- function(data = ga) {
+show_dimsmets <- function(data = ga) {
     shinyApp(
         ui = fluidPage(
             titlePanel("Google Analytics: Dimensions & Metrics"),
