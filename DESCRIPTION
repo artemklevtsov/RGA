@@ -1,10 +1,10 @@
 Package: RGA
 Type: Package
 Title: A Google Analytics API client for R
-Description: A package for extracting data from Google Analytics API into R
-URL: https://bitbucket.org/unikum/rga
+Description: Provides functions for accessing the Google Analytics API
+URL: https://bitbucket.org/unikum/rga, https://developers.google.com/analytics/
 BugReports: https://bitbucket.org/unikum/rga/issues
-Version: 0.1
+Version: 0.1.1
 Date: 2014-06-03
 Authors@R: c(
     person(given = "Artem", family = "Klevtsov",
@@ -22,6 +22,7 @@ Imports:
     httr (>= 0.3),
     httpuv,
     shiny (>= 0.10.0)
+NeedsCompilation: no
 Collate:
     'auth.R'
     'convert.R'
