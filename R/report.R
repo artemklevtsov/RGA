@@ -29,7 +29,6 @@
 #' @keywords internal
 #'
 #' @include get-data.R
-#' @include get-rows.R
 #' @include convert.R
 #'
 #' @export

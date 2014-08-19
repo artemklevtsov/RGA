@@ -23,14 +23,13 @@ Imports:
     httpuv,
     shiny (>= 0.10.0)
 Collate:
+    'auth.R'
     'convert.R'
     'data.R'
     'utils.R'
     'url.R'
-    'token.R'
     'query.R'
     'get-data.R'
-    'get-rows.R'
     'mgmt.R'
     'onload.R'
     'package.R'
