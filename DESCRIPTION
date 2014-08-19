@@ -8,7 +8,7 @@ Version: 0.1
 Date: 2014-06-03
 Authors@R: c(
     person(given = "Artem", family = "Klevtsov",
-    email = "a.a.klevtsov@gmai.com", role = c("aut", "cre")),
+    email = "a.a.klevtsov@gmail.com", role = c("aut", "cre")),
     person(given = "Philipp", family = "Upravitelev",
     email = "upravitelev@gmail.com", role = "ctb"),
     person(given = "Olga", family = "Shramko",
