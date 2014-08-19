@@ -6,10 +6,10 @@
 show_dimsmets(data = ga)
 }
 \arguments{
-\item{data}{dataset to show (now available only \code{\link{ga}}).}
+\item{data}{dataset to show (now available only \code{ga}).}
 }
 \value{
-\code{shiny.appobj} class object to show \link{\code{ga}} dataset.
+\code{shiny.appobj} class object to show \code{\link{ga}} dataset.
 }
 \description{
 The shiny app to lists all columns for a Google Analytics given report type

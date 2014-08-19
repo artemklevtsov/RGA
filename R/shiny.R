@@ -1,8 +1,8 @@
 #' @title The shiny app to lists all columns for a Google Analytics given report type
 #'
-#' @param data dataset to show (now available only \code{\link{ga}}).
+#' @param data dataset to show (now available only \code{ga}).
 #'
-#' @return \code{shiny.appobj} class object to show \link{\code{ga}} dataset.
+#' @return \code{shiny.appobj} class object to show \code{\link{ga}} dataset.
 #'
 #' @export
 #'
