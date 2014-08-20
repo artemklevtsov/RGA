@@ -49,7 +49,7 @@ subset(ga, allowedInSegments, id)
 \href{https://developers.google.com/analytics/devguides/reporting/core/dimsmets}{Dimensions & Metrics Reference}
 }
 \seealso{
-\code{show_dimsmets(ga)}
+\code{\link{show_dimsmets}}
 }
 \keyword{data}
 \keyword{datasets}

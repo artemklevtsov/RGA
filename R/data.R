@@ -39,7 +39,7 @@
 #' @export ga
 #'
 #' @seealso
-#' \code{show_dimsmets(ga)}
+#' \code{\link{show_dimsmets}}
 #'
 #' @examples
 #' # a count of parameters types
