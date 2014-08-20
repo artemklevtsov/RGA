@@ -2,13 +2,13 @@ Package: RGA
 Type: Package
 Title: A Google Analytics API client for R
 Description: Provides functions for accessing and retrieving data from the
-    Google Analytics APIs. Supports OAuth 2.0 authorization. Package provides
-    access to the Management, Core Reporting, Multi-Channel Funnels Reporting,
-    Real Time Reporting and Metadata APIs. Access to all the Google Analytics
-    accounts which the user has access to. Auto-pagination to return more than
-    10,000 rows of the results by combining multiple data requests. Also the
-    RGA package provides shiny app to explore the core reporting API dimensions
-    and metrics.
+    Google Analytics APIs (https://developers.google.com/analytics/). Supports
+    OAuth 2.0 authorization. Package provides access to the Management, Core
+    Reporting, Multi-Channel Funnels Reporting, Real Time Reporting and
+    Metadata APIs. Access to all the Google Analytics accounts which the user
+    has access to. Auto-pagination to return more than 10,000 rows of the
+    results by combining multiple data requests. Also the RGA package provides
+    shiny app to explore the core reporting API dimensions and metrics.
 URL: https://bitbucket.org/unikum/rga
 BugReports: https://bitbucket.org/unikum/rga/issues
 Version: 0.1.1
@@ -29,7 +29,6 @@ Imports:
     httr (>= 0.3),
     httpuv,
     shiny (>= 0.10.0)
-NeedsCompilation: no
 Collate:
     'auth.R'
     'convert.R'
