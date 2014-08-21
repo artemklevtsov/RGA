@@ -2,6 +2,4 @@
 ^\.Rproj\.user$
 ^\.httr-oauth$
 ^\.Renviron$
-^NEWS\.md$
-^README\.ru\.md$
 ^data-raw$
