@@ -1,3 +1,18 @@
+# Get the management API data
+#' @include get-data.R
+#'
+get_mgmt <- function(path, query, cols, token, verbose = getOption("rga.verbose", FALSE)) {
+    data_json <- get_data(type = "mgmt", path = path, query = query, token = token, verbose = verbose)
+    if (data_json$totalResults > 0 && !is.null(data_json[["items"]])) {
+        data_df <- data_json[["items"]]
+        data_df <- data_df[, names(data_df) %in% cols]
+    } else {
+        data_df <- data.frame(matrix(NA, nrow = 1L, ncol = length(cols)))
+        colnames(data_df) <- cols
+    }
+    return(data_df)
+}
+
 #' @title Lists all accounts which the user has access to
 #'
 #' @param start.index integer. An index of the first account to retrieve. Use this parameter as a pagi- nation mechanism along with the max-results parameter.
@@ -18,17 +33,14 @@
 #'
 #' @family The Google Analytics Management API
 #'
-#' @include get-data.R
-#' @include convert.R
-#'
 #' @export
 #'
 get_accounts = function(start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose", FALSE)) {
     path <- "accounts"
     query <- list(start.index = start.index, max.results = max.results)
-    data_json <- get_data(type = "mgmt", path = path, query = query, token = token, verbose = verbose)
-    cols <- c("id", "name", "created", "updated")
-    return(build_mgmt(data_json, cols))
+    data_df <- get_mgmt(path = path, query = query, token = token, verbose = verbose,
+                        cols = c("id", "name", "created", "updated"))
+    return(data_df)
 }
 
 #' @title Lists web properties which the user has access to
@@ -57,17 +69,14 @@ get_accounts = function(start.index = NULL, max.results = NULL, token, verbose =
 #'
 #' @family The Google Analytics Management API
 #'
-#' @include get-data.R
-#' @include convert.R
-#'
 #' @export
 #'
 get_webproperties = function(account.id = "~all", start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose", FALSE)) {
     path <- paste("accounts", account.id, "webproperties", sep = "/")
     query <- list(start.index = start.index, max.results = max.results)
-    data_json <- get_data(type = "mgmt", path = path, query = query, token = token, verbose = verbose)
-    cols <- c("accountId", "id", "name", "websiteUrl", "level", "profileCount", "industryVertical", "created", "updated")
-    return(build_mgmt(data_json, cols))
+    data_df <- get_mgmt(path = path, query = query, token = token, verbose = verbose,
+                        cols = c("accountId", "id", "name", "websiteUrl", "level", "profileCount", "industryVertical", "created", "updated"))
+    return(data_df)
 }
 
 #' @title Lists views (profiles) which the user has access to
@@ -101,17 +110,14 @@ get_webproperties = function(account.id = "~all", start.index = NULL, max.result
 #'
 #' @family The Google Analytics Management API
 #'
-#' @include get-data.R
-#' @include convert.R
-#'
 #' @export
 #'
 get_profiles = function(account.id = "~all", webproperty.id = "~all", start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose", FALSE)) {
     path <- paste("accounts", account.id, "webproperties", webproperty.id, "profiles", sep = "/")
     query <- list(start.index = start.index, max.results = max.results)
-    data_json <- get_data(type = "mgmt", path = path, query = query, token = token, verbose = verbose)
-    cols <- c("accountId", "webPropertyId", "id", "name", "websiteUrl", "type", "siteSearchQueryParameters", "siteSearchCategoryParameters", "eCommerceTracking", "currency", "timezone", "created", "updated")
-    return(build_mgmt(data_json, cols))
+    data_df <- get_mgmt(path = path, query = query, token = token, verbose = verbose,
+                        cols = c("accountId", "webPropertyId", "id", "name", "websiteUrl", "type", "siteSearchQueryParameters", "siteSearchCategoryParameters", "eCommerceTracking", "currency", "timezone", "created", "updated"))
+    return(data_df)
 }
 
 #' @title Lists  Lists goals which the user has access to
@@ -143,17 +149,14 @@ get_profiles = function(account.id = "~all", webproperty.id = "~all", start.inde
 #'
 #' @family The Google Analytics Management API
 #'
-#' @include get-data.R
-#' @include convert.R
-#'
 #' @export
 #'
 get_goals = function(account.id = "~all", webproperty.id = "~all", profile.id = "~all", start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose", FALSE)) {
     path <- paste("accounts", account.id, "webproperties", webproperty.id, "profiles", profile.id, "goals", sep = "/")
     query <- list(start.index = start.index, max.results = max.results)
-    data_json <- get_data(type = "mgmt", path = path, query = query, token = token, verbose = verbose)
-    cols <- c("accountId", "webPropertyId", "profileId", "id", "name", "value", "active", "type", "created", "updated")
-    return(build_mgmt(data_json, cols))
+    data_df <- get_mgmt(path = path, query = query, token = token, verbose = verbose,
+                        cols = c("accountId", "webPropertyId", "profileId", "id", "name", "value", "active", "type", "created", "updated"))
+    return(data_df)
 }
 
 #' @title Lists segments which the user has access to
@@ -181,15 +184,12 @@ get_goals = function(account.id = "~all", webproperty.id = "~all", profile.id = 
 #'
 #' @family The Google Analytics Management API
 #'
-#' @include get-data.R
-#' @include convert.R
-#'
 #' @export
 #'
 get_segments = function(start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose", FALSE)) {
     path <- "segments"
     query <- list(start.index = start.index, max.results = max.results)
-    data_json <- get_data(type = "mgmt", path = path, query = query, token = token, verbose = verbose)
-    cols <- c("segmentId", "id", "name", "definition", "type", "created", "updated")
-    return(build_mgmt(data_json, cols))
+    data_df <- get_mgmt(path = path, query = query, token = token, verbose = verbose,
+                        cols = c("segmentId", "id", "name", "definition", "type", "created", "updated"))
+    return(data_df)
 }

@@ -25,18 +25,6 @@ build_mcf <- function(data, cols) {
     return(data_df)
 }
 
-# Build data.frame for mgmt
-build_mgmt <- function(data, cols) {
-    if (data$totalResults > 0 && !is.null(data[["items"]])) {
-        data_df <- data[["items"]]
-        data_df <- data_df[, names(data_df) %in% cols]
-    } else {
-        data_df <- data.frame(matrix(NA, nrow = 1L, ncol = length(cols)))
-        colnames(data_df) <- cols
-    }
-    return(data_df)
-}
-
 # Build a data.frame for GA report data
 build_df <- function(type = c("ga", "mcf", "rt"), data, cols) {
     cols$name <- gsub("^(ga|mcf|rt):", "", cols$name)
