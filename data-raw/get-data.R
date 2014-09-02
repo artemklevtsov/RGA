@@ -21,14 +21,4 @@ new_data <- cbind(id, attributes, stringsAsFactors = FALSE)
 data_file <- file.path("R/sysdata.rda")
 # Assign new_data according with a data name
 assign("ga", new_data)
-# Get old data
-if (!file.exists(data_file)) {
-    # Save data to file
-    save(ga, file = data_file, compress = "xz")
-} else {
-    load(data_file)
-    old_data <- get("ga")
-    if (!identical(old_data, new_data)) {
-        save(ga, file = data_file, compress = "xz")
-    }
-}
+save(ga, file = data_file, compress = "xz")
