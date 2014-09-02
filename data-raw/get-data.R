@@ -1,13 +1,12 @@
-# Load libraries
-library(jsonlite)
 # Request URL
 url <- "https://www.googleapis.com/analytics/v3/metadata/ga/columns"
 # Get JSON data
-data.json <- fromJSON(url)
+data_json <- jsonlite::fromJSON(url)
 # Subsettings
-data.r <- .subset2(data.json, "items")
+data_r <- .subset2(data.json, "items")
 id <- .subset2(data.r, "id")
 attributes <- .subset2(data.r, "attributes")
+# Convert column types
 attributes  <- transform(attributes,
     allowedInSegments = as.logical(match(allowedInSegments, table = c(NA, "true")) - 1),
     minTemplateIndex = as.numeric(minTemplateIndex),
@@ -16,9 +15,6 @@ attributes  <- transform(attributes,
     premiumMaxTemplateIndex = as.numeric(premiumMaxTemplateIndex)
 )
 # Create data.frame
-new_data <- cbind(id, attributes, stringsAsFactors = FALSE)
-# Get data file path
-data_file <- file.path("R/sysdata.rda")
-# Assign new_data according with a data name
-assign("ga", new_data)
-save(ga, file = data_file, compress = "xz")
+ga <- cbind(id, attributes, stringsAsFactors = FALSE)
+# Save dataset
+save(ga, file = "R/sysdata.rda", compress = "xz")
