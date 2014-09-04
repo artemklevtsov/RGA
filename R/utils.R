@@ -6,7 +6,7 @@ is.empty <- function(x) {
 
 # Reduce NULL and "" elements
 compact <- function(x) {
-    empty <- vapply(x, is.null, logical(1))
+    empty <- vapply(x, is.empty, logical(1))
     return(x[!empty])
 }
 
