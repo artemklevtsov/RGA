@@ -4,7 +4,7 @@ if (getRversion() >= "2.15.1") utils::globalVariables(c("GAToken"))
 # Environment for OAuth token
 TokenEnv <- new.env(parent = emptyenv())
 
-# Check koen exists
+# Check token exists
 token_exists <- function(name) {
     exists(name, envir = TokenEnv)
 }
@@ -18,6 +18,13 @@ set_token <- function(name, value) {
 # Get token from environment
 get_token <- function(name) {
     get(name, envir = TokenEnv)
+}
+
+# Check environment variables exists
+env_exists <- function(...) {
+    dots <- list(...)
+    res <- lapply(dots, Sys.getenv)
+    vapply(res, nzchar, logical(1))
 }
 
 #' @title Authorize the RGA package to the user's Google Analytics account using OAuth2.0
@@ -72,19 +79,13 @@ get_token <- function(name) {
 #' @export
 #'
 authorize <- function(client.id, client.secret, cache = TRUE) {
-    client.id_env <- Sys.getenv("RGA_CONSUMER_ID")
-    client.secret_env <- Sys.getenv("RGA_CONSUMER_SECRET")
-    if (missing(client.id) || !nzchar(client.id)) {
-        if (nzchar(client.id_env))
-            client.id <- client.id_env
+    if (missing(client.id) || missing(client.secret)) {
+        if (all(env_exists("RGA_CONSUMER_ID", "RGA_CONSUMER_SECRET"))) {
+            client.id <- Sys.getenv("RGA_CONSUMER_ID")
+            client.secret <- Sys.getenv("RGA_CONSUMER_SECRET")
+        }
         else
-            stop("Clinet ID not specified.")
-    }
-    if (missing(client.secret) || !nzchar(client.secret)) {
-        if (nzchar(client.secret_env))
-            client.secret <- client.secret_env
-        else
-            stop("Clinet secret not specified.")
+            stop("Clinet ID or Clinet secret not specified.")
     }
     rga_app <- oauth_app(appname = "rga", key = client.id, secret = client.secret)
     token <- oauth2.0_token(endpoint = oauth_endpoints("google"), app = rga_app, cache = cache,
