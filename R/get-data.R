@@ -134,6 +134,6 @@ get_rows <- function(type = c("ga", "mcf", "rt"), query, total.results, token, v
         }
     }
     if (verbose)
-        message("obtained data.frame with", nrow(rows), "rows and", ncol(rows), "columns.")
+        message(paste("Obtained data.frame with", nrow(rows), "rows and", ncol(rows), "columns."))
     return(rows)
 }

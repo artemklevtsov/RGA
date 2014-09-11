@@ -14,7 +14,6 @@ build_path <- function(x) {
 
 # Build URL query string
 #' @include utils.R
-#' @importFrom RCurl curlEscape
 #'
 build_query <- function(x) {
     stopifnot(inherits(x, "list"))
@@ -23,7 +22,6 @@ build_query <- function(x) {
     params <- gsub("\\.", "-", params)
     params <- gsub("profile-id", "ids", params)
     values <- as.vector(x, mode = "character")
-    values <- curlEscape(values)
     string <- paste(params, values, sep = "=", collapse = "&")
     return(string)
 }
