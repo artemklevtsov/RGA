@@ -17,4 +17,6 @@ attributes  <- transform(attributes,
 # Create data.frame
 ga <- cbind(id, attributes, stringsAsFactors = FALSE)
 # Save dataset
-save(ga, file = "R/sysdata.rda", compress = "xz")
+devtools::use_data(ga, internal = TRUE, overwrite = TRUE)
+# Resave sysdata.rda with the best compression
+tools::resaveRdaFiles(paths = "R/sysdata.rda")
