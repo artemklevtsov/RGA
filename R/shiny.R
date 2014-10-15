@@ -43,18 +43,14 @@ show_dimsmets <- function(data = ga) {
         ),
         server =  function(input, output) {
             output$table <- renderDataTable({
-                if (input$group != "All") {
+                if (input$group != "All")
                     data <- data[data$group == input$group,]
-                }
-                if (input$type != "All") {
+                if (input$type != "All")
                     data <- data[data$type == input$type,]
-                }
-                if (input$status != "All") {
+                if (input$status != "All")
                     data <- data[data$status == input$status,]
-                }
-                if (input$allowedInSegments != "All") {
+                if (input$allowedInSegments != "All")
                     data <- data[data$allowedInSegments == input$allowedInSegments,]
-                }
                 data[, input$columns, drop = FALSE]
             })
         }

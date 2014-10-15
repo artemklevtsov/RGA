@@ -94,7 +94,7 @@ get_pages <- function(type = c("ga", "mcf"), query, total.results, token, verbos
     for (page in 1:total.pages) {
         if (verbose)
             message(paste0("Fetching page ", page, " of ", total.pages, "..."))
-        query$start.index <- query$max.results * (page - 1) + 1
+        query$start.index <- query$max.results * (page - 1L) + 1L
         data_json <- get_data(type = type, query = query, token = token, verbose = verbose)
         rows[[page]] <- data_json$rows
     }
