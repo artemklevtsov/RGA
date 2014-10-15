@@ -126,19 +126,23 @@ get_pages <- function(type = c("ga", "mcf", "mgmt"), path = NULL, query = NULL, 
 #'
 get_items <- function(type = c("ga", "mcf", "rt", "mgmt"), path = NULL, query = NULL, total.results, token, verbose = getOption("rga.verbose", FALSE)) {
     type <- match.arg(type)
+    if (typy == "mgmt")
+        max.results.limit <- 1000
+    else
+        max.results.limit <- 10000
     if (!is.null(query$max.results)) {
-        stopifnot(query$max.results <= 10000)
+        stopifnot(query$max.results <= max.results.limit)
         if (query$max.results < total.results)
             warning(paste("Only", query$max.results, "observations out of", total.results, "were obtained (set max.results = NULL to get all results)."))
         res <- get_data(type = type, path = path, query = query, token = token, verbose = verbose)
     } else {
-        if (total.results <= 10000) {
+        if (total.results <= max.results.limit) {
             query$max.results <- total.results
             res <- get_data(type = type, path = path, query = query, token = token, verbose = verbose)
         } else {
             if (verbose)
                 message("Response contain more then 10000 rows.")
-            query$max.results <- 10000L
+            query$max.results <- max.results.limit
             if (type == "rt") {
                 warning(paste("Only", query$max.results, "observations out of", total.results, "were obtained (the batch processing mode is not implemented for this report type)."))
                 res <- get_data(type = type, path = path, query = query, token = token, verbose = verbose)
