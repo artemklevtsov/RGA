@@ -126,7 +126,7 @@ get_pages <- function(type = c("ga", "mcf", "mgmt"), path = NULL, query = NULL, 
 #'
 get_items <- function(type = c("ga", "mcf", "rt", "mgmt"), path = NULL, query = NULL, total.results, token, verbose = getOption("rga.verbose", FALSE)) {
     type <- match.arg(type)
-    if (typy == "mgmt")
+    if (type == "mgmt")
         max.results.limit <- 1000
     else
         max.results.limit <- 10000
