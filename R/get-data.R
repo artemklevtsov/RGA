@@ -113,7 +113,7 @@ get_pages <- function(type = c("ga", "mcf", "mgmt"), path = NULL, query = NULL, 
         if (verbose)
             message(paste0("Fetching page ", page, " of ", total.pages, "..."))
         query$start.index <- query$max.results * (page - 1) + 1
-        res <- get_data(type = type, path = path, query = query, token = token, verbose = verbose)
+        res[[page]] <- get_data(type = type, path = path, query = query, token = token, verbose = verbose)
     }
     if (inherits(res[[1]], "matrix") || inherits(res[[1]], "data.frame"))
         res <- do.call(rbind, res)
