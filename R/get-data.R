@@ -58,6 +58,24 @@ make_request = function(url, token, simplify = TRUE, verbose = getOption("rga.ve
     return(data_json)
 }
 
+#' @include query.R
+#'
+test_request <- function(type, path = NULL, query = NULL, token, simplify = TRUE, verbose = getOption("rga.verbose", FALSE)) {
+    if (verbose)
+        message("Test request...")
+    query$max.results <- 1L
+    url <- build_url(type = type, path = path, query = query)
+    data_json <- make_request(url, token = token, simplify = simplify, verbose = verbose)
+    return(data_json)
+}
+
+#' @include query.R
+#'
+get_total <- function(type, path = NULL, query = NULL, token, simplify = TRUE, verbose = getOption("rga.verbose", FALSE)) {
+    data_json <- test_request(type = type, path = path, query = query, token = token, simplify = simplify, verbose = verbose)
+    return(data_json$totalResults)
+}
+
 #' @title Get a Google Analytics API response
 #'
 #' @param path list including a request parameters.
@@ -74,66 +92,64 @@ make_request = function(url, token, simplify = TRUE, verbose = getOption("rga.ve
 #'
 #' @include url.R
 #'
-get_data <- function(type, query, path, token, simplify = TRUE, test = FALSE, verbose = getOption("rga.verbose", FALSE)) {
-    if (test) {
-        if (verbose)
-            message("Test query...")
-        query$max.results <- 1L
-    }
+get_data <- function(type = c("ga", "rt", "mcf", "mgmt"), path = NULL, query = NULL, token, simplify = TRUE, verbose = getOption("rga.verbose", FALSE)) {
+    type <- match.arg(type)
     url <- build_url(type = type, path = path, query = query)
     data_json <- make_request(url, token = token, simplify = simplify, verbose = verbose)
-    return(data_json)
+    if (type == "mgmt")
+        res <- data_json[["items"]]
+    else
+        res <- data_json[["rows"]]
+    return(res)
 }
 
 #' @include query.R
 #'
-get_pages <- function(type = c("ga", "mcf"), query, total.results, token, verbose = getOption("rga.verbose", FALSE)) {
+get_pages <- function(type = c("ga", "mcf", "mgmt"), path = NULL, query = NULL, total.results, token, verbose = getOption("rga.verbose", FALSE)) {
     type <- match.arg(type)
+    if (is.null(query$start.index))
+        query$start.index <- 1L
     total.pages <- ceiling(total.results / query$max.results)
-    rows <- vector(mode = "list", length = total.pages)
+    res <- vector(mode = "list", length = total.pages)
     for (page in 1:total.pages) {
         if (verbose)
             message(paste0("Fetching page ", page, " of ", total.pages, "..."))
-        query$start.index <- query$max.results * (page - 1L) + 1L
-        data_json <- get_data(type = type, query = query, token = token, verbose = verbose)
-        rows[[page]] <- data_json$rows
+        query$start.index <- query$start.index + query$max.results * (page - 1)
+        res <- get_data(type = type, path = path, query = query, token = token, verbose = verbose)
     }
-    if (inherits(rows[[1]], "matrix") || inherits(rows[[1]], "data.frame"))
-        rows <- do.call(rbind, rows)
-    else if (inherits(rows[[1]], "list"))
-        rows <- do.call(c, rows)
-    return(rows)
+    if (inherits(res[[1]], "matrix") || inherits(res[[1]], "data.frame"))
+        res <- do.call(rbind, res)
+    else if (inherits(res[[1]], "list"))
+        res <- do.call(c, res)
+    return(res)
 }
 
 #' @include query.R
 #'
-get_rows <- function(type = c("ga", "mcf", "rt"), query, total.results, token, verbose = getOption("rga.verbose", FALSE)) {
+get_items <- function(type = c("ga", "mcf", "rt", "mgmt"), path = NULL, query = NULL, total.results, token, verbose = getOption("rga.verbose", FALSE)) {
     type <- match.arg(type)
     if (!is.null(query$max.results)) {
         stopifnot(query$max.results <= 10000)
         if (query$max.results < total.results)
             warning(paste("Only", query$max.results, "observations out of", total.results, "were obtained (set max.results = NULL to get all results)."))
-        data_json <- get_data(type = type, query = query, token = token, verbose = verbose)
-        rows <- data_json$rows
+        res <- get_data(type = type, path = path, query = query, token = token, verbose = verbose)
     } else {
         if (total.results <= 10000) {
             query$max.results <- total.results
-            data_json <- get_data(type = type, query = query, token = token, verbose = verbose)
-            rows <- data_json$rows
+            res <- get_data(type = type, path = path, query = query, token = token, verbose = verbose)
         } else {
             if (verbose)
                 message("Response contain more then 10000 rows.")
             query$max.results <- 10000L
             if (type == "rt") {
                 warning(paste("Only", query$max.results, "observations out of", total.results, "were obtained (the batch processing mode is not implemented for this report type)."))
-                data_json <- get_data(type = type, query = query, token = token, verbose = verbose)
-                rows <- data_json$rows
+                res <- get_data(type = type, path = path, query = query, token = token, verbose = verbose)
             } else {
-                rows <- get_pages(type = type, query = query, total.results = total.results, verbose = verbose)
+                res <- get_pages(type = type, path = path, query = query, total.results = total.results, verbose = verbose)
             }
         }
     }
     if (verbose)
-        message(paste("Obtained data.frame with", nrow(rows), "rows and", ncol(rows), "columns."))
-    return(rows)
+        message("obtained data.frame with", nrow(res), "rows and", ncol(res), "columns.")
+    return(res)
 }

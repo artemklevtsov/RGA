@@ -2,9 +2,9 @@
 #' @include get-data.R
 #'
 get_mgmt <- function(path, query, cols, token, verbose = getOption("rga.verbose", FALSE)) {
-    data_json <- get_data(type = "mgmt", path = path, query = query, token = token, verbose = verbose)
-    if (data_json$totalResults > 0 && !is.null(data_json[["items"]])) {
-        data_df <- data_json[["items"]]
+    total.results <- get_total(type = "mgmt", path = path, query = query, token = token, verbose = verbose)
+    if (total.results > 0) {
+        data_df <- get_items(type = "mgmt", path = path, query = query, total.results = total.results, token = token, verbose = verbose)
         data_df <- data_df[, names(data_df) %in% cols]
     } else {
         data_df <- data.frame(matrix(NA, nrow = 1L, ncol = length(cols)))

@@ -35,11 +35,11 @@
 #'
 get_report <- function(query, type = c("ga", "mcf", "rt"), token, verbose = getOption("rga.verbose", FALSE)) {
     type <- match.arg(type)
-    data_json <- get_data(type = type, query = query, token = token, test = TRUE, verbose = verbose)
+    data_json <- test_request(type = type, query = query, token = token, verbose = verbose)
     cols <- data_json$columnHeaders
     formats <- cols$dataType
     if (data_json$totalResults > 0 && !is.null(data_json$rows))
-        rows <- get_rows(type = type, query = query, total.results = data_json$totalResults, token = token, verbose = verbose)
+        rows <- get_items(type = type, query = query, total.results = data_json$totalResults, token = token, verbose = verbose)
     else {
         if (verbose)
             message("No results were obtained.")
