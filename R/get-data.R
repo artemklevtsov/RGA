@@ -107,14 +107,12 @@ get_data <- function(type = c("ga", "rt", "mcf", "mgmt"), path = NULL, query = N
 #'
 get_pages <- function(type = c("ga", "mcf", "mgmt"), path = NULL, query = NULL, total.results, token, verbose = getOption("rga.verbose", FALSE)) {
     type <- match.arg(type)
-    if (is.null(query$start.index))
-        query$start.index <- 1L
     total.pages <- ceiling(total.results / query$max.results)
     res <- vector(mode = "list", length = total.pages)
     for (page in 1:total.pages) {
         if (verbose)
             message(paste0("Fetching page ", page, " of ", total.pages, "..."))
-        query$start.index <- query$start.index + query$max.results * (page - 1)
+        query$start.index <- query$max.results * (page - 1) + 1
         res <- get_data(type = type, path = path, query = query, token = token, verbose = verbose)
     }
     if (inherits(res[[1]], "matrix") || inherits(res[[1]], "data.frame"))
