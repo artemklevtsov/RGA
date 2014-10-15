@@ -148,6 +148,6 @@ get_items <- function(type = c("ga", "mcf", "rt", "mgmt"), path = NULL, query = 
         }
     }
     if (verbose)
-        message("obtained data.frame with", nrow(res), "rows and", ncol(res), "columns.")
+        message(paste("Obtained data.frame with", nrow(res), "rows and", ncol(res), "columns."))
     return(res)
 }
