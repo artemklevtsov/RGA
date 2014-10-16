@@ -115,6 +115,11 @@ get_pages <- function(type = c("ga", "mcf", "mgmt"), path = NULL, query = NULL, 
         query$start.index <- query$max.results * (page - 1) + 1
         res[[page]] <- get_data(type = type, path = path, query = query, token = token, verbose = verbose)
     }
+    if (type == "mgmt") {
+        cols <- unlist(lapply(res, colnames))
+        cols <- names(table(cols) == total.pages)
+        res <- lapply(res, function(x) x[cols])
+    }
     if (inherits(res[[1]], "matrix") || inherits(res[[1]], "data.frame"))
         res <- do.call(rbind, res)
     else if (inherits(res[[1]], "list"))
@@ -141,7 +146,7 @@ get_items <- function(type = c("ga", "mcf", "rt", "mgmt"), path = NULL, query = 
             res <- get_data(type = type, path = path, query = query, token = token, verbose = verbose)
         } else {
             if (verbose)
-                message("Response contain more then 10000 rows.")
+                message(paste("Response contain more then", max.results.limit, "rows."))
             query$max.results <- max.results.limit
             if (type == "rt") {
                 warning(paste("Only", query$max.results, "observations out of", total.results, "were obtained (the batch processing mode is not implemented for this report type)."))
