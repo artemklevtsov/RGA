@@ -4,8 +4,8 @@
 get_mgmt <- function(path, query, cols, token, verbose = getOption("rga.verbose", FALSE)) {
     total.results <- get_total(type = "mgmt", path = path, query = query, token = token, verbose = verbose)
     if (total.results > 0) {
-        data_df <- get_items(type = "mgmt", path = path, query = query, total.results = total.results, token = token, verbose = verbose)
-        data_df <- data_df[, names(data_df) %in% cols]
+        items <- get_items(type = "mgmt", path = path, query = query, total.results = total.results, token = token, verbose = verbose)
+        data_df <- build_df(type = "mgmt", items, cols)
     } else {
         data_df <- data.frame(matrix(NA, nrow = 1L, ncol = length(cols)))
         colnames(data_df) <- cols

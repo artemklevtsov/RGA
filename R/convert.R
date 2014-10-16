@@ -1,5 +1,6 @@
 # Build data.frame for core report
 build_ga <- function(data, cols) {
+    cols$name <- gsub("^(ga|rt):", "", cols$name)
     data_df <- as.data.frame(data, stringsAsFactors = FALSE)
     colnames(data_df) <- cols$name
     return(data_df)
@@ -7,6 +8,7 @@ build_ga <- function(data, cols) {
 
 # Build data.frame for mcf report
 build_mcf <- function(data, cols) {
+    cols$name <- gsub("^mcf:", "", cols$name)
     if ("MCF_SEQUENCE" %in% cols$dataType) {
         primitive.idx <- grep("MCF_SEQUENCE", cols$dataType, invert = TRUE)
         conversion.idx <- grep("MCF_SEQUENCE", cols$dataType)
@@ -25,14 +27,28 @@ build_mcf <- function(data, cols) {
     return(data_df)
 }
 
+build_mgmt <- function(data, cols) {
+    if (inherits(data, "matrix") || inherits(data, "data.frame"))
+        data_df <- data[, names(data) %in% cols]
+    else if (inherits(data, "list")) {
+        cn <- unlist(lapply(data, colnames))
+        ctab <- table(cn)
+        cn <- names(ctab)[ctab == length(data)]
+        data <- lapply(data, function(x) x[cn])
+        data <- lapply(data, function(x) x[, names(x) %in% cols])
+        data_df <- do.call(rbind, data)
+    }
+    return(data_df)
+}
+
 # Build a data.frame for GA report data
-build_df <- function(type = c("ga", "mcf", "rt"), data, cols) {
-    cols$name <- gsub("^(ga|mcf|rt):", "", cols$name)
+build_df <- function(type = c("ga", "mcf", "rt", "mgmt"), data, cols) {
     type <- match.arg(type)
     data_df <- switch(type,
                       ga = build_ga(data, cols),
                       rt = build_ga(data, cols),
-                      mcf = build_mcf(data, cols))
+                      mcf = build_mcf(data, cols),
+                      mgmt = build_mgmt(data, cols))
     return(data_df)
 }
 

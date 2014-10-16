@@ -115,18 +115,12 @@ get_pages <- function(type = c("ga", "mcf", "mgmt"), path = NULL, query = NULL, 
         query$start.index <- query$max.results * (page - 1) + 1
         res[[page]] <- get_data(type = type, path = path, query = query, token = token, verbose = verbose)
     }
-    if (type == "mgmt") {
-        col_names <- unlist(lapply(res, colnames))
-        cols_tab <- table(col_names)
-        cols <- names(cols_tab)[cols_tab == total.pages]
-        res <- lapply(res, function(x) {
-            rownames(x) <- NULL
-            x[cols]})
+    if (type == "ga" || type == "mcf") {
+        if (inherits(res[[1]], "matrix") || inherits(res[[1]], "data.frame"))
+            res <- do.call(rbind, res)
+        else if (inherits(res[[1]], "list"))
+            res <- do.call(c, res)
     }
-    if (inherits(res[[1]], "matrix") || inherits(res[[1]], "data.frame"))
-        res <- do.call(rbind, res)
-    else if (inherits(res[[1]], "list"))
-        res <- do.call(c, res)
     return(res)
 }
 
