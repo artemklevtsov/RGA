@@ -116,8 +116,9 @@ get_pages <- function(type = c("ga", "mcf", "mgmt"), path = NULL, query = NULL, 
         res[[page]] <- get_data(type = type, path = path, query = query, token = token, verbose = verbose)
     }
     if (type == "mgmt") {
-        cols <- unlist(lapply(res, colnames))
-        cols <- names(table(cols) == total.pages)
+        col_names <- unlist(lapply(res, colnames))
+        cols_tab <- table(col_names)
+        cols <- names(cols_tab)[cols_tab == total.pages]
         res <- lapply(res, function(x) x[cols])
     }
     if (inherits(res[[1]], "matrix") || inherits(res[[1]], "data.frame"))
