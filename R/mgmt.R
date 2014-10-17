@@ -1,5 +1,6 @@
 # Get the management API data
 #' @include get-data.R
+#' @include convert.R
 #'
 get_mgmt <- function(path, query, cols, token, verbose = getOption("rga.verbose", FALSE)) {
     data_json <- get_data(type = "mgmt", path = path, query = query, token = token, verbose = verbose)

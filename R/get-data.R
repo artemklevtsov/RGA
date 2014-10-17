@@ -99,6 +99,8 @@ get_pages <- function(type = c("ga", "mcf", "mgmt"), path = NULL, query = NULL, 
     return(res[-1])
 }
 
+#' @include query.R
+#'
 get_data <- function(type = c("ga", "rt", "mcf", "mgmt"), path = NULL, query = NULL, token, verbose = getOption("rga.verbose", FALSE)) {
     type <- match.arg(type)
     if (type == "mgmt") {
