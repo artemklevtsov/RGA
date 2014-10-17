@@ -8,7 +8,7 @@
 #'
 #' @importFrom shiny shinyApp fluidPage titlePanel fluidRow column absolutePanel wellPanel checkboxGroupInput selectInput dataTableOutput renderDataTable
 #'
-show_dimsmets <- function(data = ga) {
+dims_mets <- function(data = ga) {
     shinyApp(
         ui = fluidPage(
             titlePanel("Google Analytics: Dimensions & Metrics"),
