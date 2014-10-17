@@ -3,13 +3,13 @@
 \alias{get_report}
 \title{Get Anaytics data for a view (profile)}
 \usage{
-get_report(query, type = c("ga", "mcf", "rt"), token,
+get_report(type = c("ga", "mcf", "rt"), query, token,
   verbose = getOption("rga.verbose", FALSE))
 }
 \arguments{
-\item{query}{\code{GAQuery} class object including a request parameters.}
-
 \item{type}{character. Report type.}
+
+\item{query}{\code{GAQuery} class object including a request parameters.}
 
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
 

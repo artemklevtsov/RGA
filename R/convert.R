@@ -42,13 +42,17 @@ build_mgmt <- function(data, cols) {
 }
 
 # Build a data.frame for GA report data
-build_df <- function(type = c("ga", "mcf", "rt", "mgmt"), data, cols) {
+build_df <- function(type = c("ga", "mcf", "rt", "mgmt"), data, cols, verbose = getOption("rga.verbose", FALSE)) {
+    if (verbose)
+        message("Building data frame...")
     type <- match.arg(type)
     data_df <- switch(type,
                       ga = build_ga(data, cols),
                       rt = build_ga(data, cols),
                       mcf = build_mcf(data, cols),
                       mgmt = build_mgmt(data, cols))
+    if (verbose)
+        message(paste("Obtained data.frame with", nrow(data_df), "rows and", ncol(data_df), "columns."))
     return(data_df)
 }
 

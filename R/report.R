@@ -3,8 +3,8 @@
 #' @description
 #' \code{get_report} provide a query the Core or Multi-Channel Funnels Reporting API for Google Analytics report data.
 #'
-#' @param query \code{GAQuery} class object including a request parameters.
 #' @param type character. Report type.
+#' @param query \code{GAQuery} class object including a request parameters.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
 #' @param verbose logical. Should print information verbose?
 #'
@@ -33,25 +33,45 @@
 #'
 #' @export
 #'
-get_report <- function(query, type = c("ga", "mcf", "rt"), token, verbose = getOption("rga.verbose", FALSE)) {
+get_report <- function(type = c("ga", "mcf", "rt"), query, token, verbose = getOption("rga.verbose", FALSE)) {
     type <- match.arg(type)
-    data_json <- test_request(type = type, query = query, token = token, verbose = verbose)
-    cols <- data_json$columnHeaders
-    formats <- cols$dataType
-    if (data_json$totalResults > 0 && !is.null(data_json$rows))
-        rows <- get_items(type = type, query = query, total.results = data_json$totalResults, token = token, verbose = verbose)
+    if (is.null(query$max.results)) {
+        pagination <- TRUE
+        query$max.results <- 10000
+    }
     else {
+        pagination <- FALSE
+        stopifnot(query$max.results <= 10000)
+    }
+    data_json <- get_data(type = type, query = query, token = token, verbose = verbose)
+    rows <- data_json$rows
+    cols <- data_json$columnHeaders
+    if (data_json$totalResults == 0 || is.null(rows)) {
         if (verbose)
             message("No results were obtained.")
         rows <- matrix(NA, nrow = 1L, ncol = nrow(cols))
     }
+    if (!isTRUE(pagination) && query$max.results < data_json$totalResults)
+        warning(paste("Only", query$max.results, "observations out of", data_json$totalResults, "were obtained. Sset max.results = NULL (default value) to get all results."))
+    if (isTRUE(pagination) && query$max.results < data_json$totalResults) {
+        if (type == "rt")
+            warning(paste("Only", query$max.results, "observations out of", data_json$totalResults, "were obtained (the batch processing mode is not implemented for this report type)."))
+        else {
+            pages <- get_pages(type = type, query = query, total.results = data_json$totalResults, verbose = verbose)
+            pages <- lapply(pages, `[[`, "rows")
+            items <- c(list(rows), pages)
+            if (inherits(rows, "matrix") || inherits(rows, "data.frame"))
+                rows <- do.call(rbind, items)
+            else if (inherits(data_json$rows, "list"))
+                rows <- do.call(c, items)
+        }
+    }
     if (!is.null(data_json$containsSampledData) && data_json$containsSampledData)
         warning("Data contains sampled data.")
-    if (verbose)
-        message("Building data frame...")
-    data_df <- build_df(type, rows, cols)
+    data_df <- build_df(type, rows, cols, verbose = verbose)
     if (verbose)
         message("Converting data types...")
+    formats <- cols$dataType
     data_df <- convert_datatypes(data_df, formats)
     return(data_df)
 }
@@ -107,8 +127,8 @@ get_ga <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
     query <- set_query(profile.id = profile.id, start.date = start.date, end.date = end.date,
                        metrics = metrics, dimensions = dimensions, sort = sort, filters = filters,
                        segment = segment, start.index = start.index, max.results = max.results)
-    data_df <- get_report(query = query, type = "ga", token = token, verbose = verbose)
-    return(data_df)
+    res <- get_report(query = query, type = "ga", token = token, verbose = verbose)
+    return(res)
 }
 
 #' @title Get the Anaytics data from Multi-Channel Funnels Reporting API for a view (profile)
@@ -159,8 +179,8 @@ get_mcf <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
     query <- set_query(profile.id = profile.id, start.date = start.date, end.date = end.date,
                        metrics = metrics, dimensions = dimensions, sort = sort, filters = filters,
                        start.index = start.index, max.results = max.results)
-    data_df <- get_report(query = query, type = "mcf", token = token, verbose = verbose)
-    return(data_df)
+    res <- get_report(query = query, type = "mcf", token = token, verbose = verbose)
+    return(res)
 }
 
 #' @title Get the Anaytics data from Real Time Reporting API for a view (profile)
@@ -208,8 +228,8 @@ get_rt <- function(profile.id, metrics = "rt:activeUsers", dimensions = NULL,
               !is.null(metrics), nzchar(metrics))
     query <- set_query(profile.id = profile.id, metrics = metrics, dimensions = dimensions,
                        sort = sort, filters = filters, max.results = max.results)
-    data_df <- get_report(query = query, type = "rt", token = token, verbose = verbose)
-    return(data_df)
+    res <- get_report(query = query, type = "rt", token = token, verbose = verbose)
+    return(res)
 }
 
 #' @title Get the first date with available data
@@ -233,10 +253,10 @@ get_rt <- function(profile.id, metrics = "rt:activeUsers", dimensions = NULL,
 #' @export
 #'
 get_firstdate <- function(profile.id, token, verbose = getOption("rga.verbose", FALSE)) {
-    data_r <- suppressWarnings(
+    res <- suppressWarnings(
         get_ga(profile.id = profile.id, start.date = "2005-01-01", end.date = "today",
                metrics = "ga:sessions", dimensions = "ga:date", filters = "ga:sessions>0",
                max.results = 1L, token = token, verbose = verbose)
     )
-    return(data_r$date)
+    return(res$date)
 }
