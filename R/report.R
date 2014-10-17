@@ -35,14 +35,6 @@
 #'
 get_report <- function(type = c("ga", "mcf", "rt"), query, token, verbose = getOption("rga.verbose", FALSE)) {
     type <- match.arg(type)
-    if (is.null(query$max.results)) {
-        pagination <- TRUE
-        query$max.results <- 10000
-    }
-    else {
-        pagination <- FALSE
-        stopifnot(query$max.results <= 10000)
-    }
     data_json <- get_data(type = type, query = query, token = token, verbose = verbose)
     rows <- data_json$rows
     cols <- data_json$columnHeaders
@@ -51,28 +43,17 @@ get_report <- function(type = c("ga", "mcf", "rt"), query, token, verbose = getO
             message("No results were obtained.")
         rows <- matrix(NA, nrow = 1L, ncol = nrow(cols))
     }
-    if (!isTRUE(pagination) && query$max.results < data_json$totalResults)
-        warning(paste("Only", query$max.results, "observations out of", data_json$totalResults, "were obtained. Sset max.results = NULL (default value) to get all results."))
-    if (isTRUE(pagination) && query$max.results < data_json$totalResults) {
-        if (type == "rt")
-            warning(paste("Only", query$max.results, "observations out of", data_json$totalResults, "were obtained (the batch processing mode is not implemented for this report type)."))
-        else {
-            pages <- get_pages(type = type, query = query, total.results = data_json$totalResults, verbose = verbose)
-            pages <- lapply(pages, `[[`, "rows")
-            items <- c(list(rows), pages)
-            if (inherits(rows, "matrix") || inherits(rows, "data.frame"))
-                rows <- do.call(rbind, items)
-            else if (inherits(data_json$rows, "list"))
-                rows <- do.call(c, items)
-        }
+    if (inherits(data_json$rows, "list")) {
+        if (inherits(rows[[1]], "matrix") || inherits(rows[[1]], "data.frame"))
+            rows <- do.call(rbind, rows)
+        else if (inherits(rows[[1]], "list"))
+            rows <- do.call(c, rows)
     }
     if (!is.null(data_json$containsSampledData) && data_json$containsSampledData)
         warning("Data contains sampled data.")
     data_df <- build_df(type, rows, cols, verbose = verbose)
-    if (verbose)
-        message("Converting data types...")
     formats <- cols$dataType
-    data_df <- convert_datatypes(data_df, formats)
+    data_df <- convert_datatypes(data_df, formats, verbose = verbose)
     return(data_df)
 }
 

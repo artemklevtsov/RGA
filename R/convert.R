@@ -57,7 +57,9 @@ build_df <- function(type = c("ga", "mcf", "rt", "mgmt"), data, cols, verbose = 
 }
 
 # Convert data types
-convert_datatypes <- function(data, formats) {
+convert_datatypes <- function(data, formats, verbose = getOption("rga.verbose", FALSE)) {
+    if (verbose)
+        message("Converting data types...")
     formats[formats %in% c("INTEGER", "PERCENT", "TIME", "CURRENCY", "FLOAT")] <- "numeric"
     formats[formats == "STRING"] <- "character"
     formats[formats == "MCF_SEQUENCE"] <- "character"

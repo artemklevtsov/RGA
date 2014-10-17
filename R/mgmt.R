@@ -2,27 +2,12 @@
 #' @include get-data.R
 #'
 get_mgmt <- function(path, query, cols, token, verbose = getOption("rga.verbose", FALSE)) {
-    if (is.null(query$max.results)) {
-        pagination <- TRUE
-        query$max.results <- 1000
-    }
-    else {
-        pagination <- FALSE
-        stopifnot(query$max.results <= 1000)
-    }
     data_json <- get_data(type = "mgmt", path = path, query = query, token = token, verbose = verbose)
     items <- data_json[["items"]]
     if (data_json$totalResults == 0 || is.null(items)) {
         if (verbose)
             message("No results were obtained.")
         items <- data.frame(matrix(NA, nrow = 1L, ncol = length(cols)))
-    }
-    if (!isTRUE(pagination) && query$max.results < data_json$totalResults)
-        warning(paste("Only", query$max.results, "observations out of", data_json$totalResults, "were obtained. Sset max.results = NULL (default value) to get all results."))
-    if (isTRUE(pagination) && query$max.results < data_json$totalResults) {
-        pages <- get_pages(type = "mgmt", path = path, query = query, total.results = data_json$totalResults, verbose = verbose)
-        pages <- lapply(pages, `[[`, "items")
-        items <- c(list(items), pages)
     }
     data_df <- build_df(type = "mgmt", items, cols, verbose = verbose)
     return(data_df)

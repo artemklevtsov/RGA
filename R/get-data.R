@@ -60,10 +60,11 @@ make_request = function(url, token, simplify = TRUE, verbose = getOption("rga.ve
 
 #' @title Get a Google Analytics API response
 #'
+#' @param type character string including report type.
 #' @param path list including a request parameters.
 #' @param query list including a request parameters.
-#' @param type character string including report type.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
+#' @param simplify logical. Should the result be simplified to a vector, matrix or data.frame if possible?
 #' @param verbose logical. Should print information verbose?
 #'
 #' @return A list contatin Google Analytics API response.
@@ -74,7 +75,7 @@ make_request = function(url, token, simplify = TRUE, verbose = getOption("rga.ve
 #'
 #' @include url.R
 #'
-get_data <- function(type = c("ga", "rt", "mcf", "mgmt"), path = NULL, query = NULL, token, simplify = TRUE, verbose = getOption("rga.verbose", FALSE)) {
+get_response <- function(type = c("ga", "rt", "mcf", "mgmt"), path = NULL, query = NULL, token, simplify = TRUE, verbose = getOption("rga.verbose", FALSE)) {
     type <- match.arg(type)
     url <- build_url(type = type, path = path, query = query)
     data_json <- make_request(url, token = token, simplify = simplify, verbose = verbose)
@@ -93,7 +94,39 @@ get_pages <- function(type = c("ga", "mcf", "mgmt"), path = NULL, query = NULL, 
         if (verbose)
             message(paste0("Fetching page ", page, " of ", total.pages, "..."))
         query$start.index <- query$max.results * (page - 1) + 1
-        res[[page]] <- get_data(type = type, path = path, query = query, token = token, verbose = verbose)
+        res[[page]] <- get_response(type = type, path = path, query = query, token = token, verbose = verbose)
     }
     return(res[-1])
+}
+
+get_data <- function(type = c("ga", "rt", "mcf", "mgmt"), path = NULL, query = NULL, token, verbose = getOption("rga.verbose", FALSE)) {
+    type <- match.arg(type)
+    if (type == "mgmt") {
+        resukts_linit <- 1000
+        items_name <- "items"
+    } else {
+        resukts_linit <- 10000
+        items_name <- "rows"
+    }
+    if (is.null(query$max.results)) {
+        pagination <- TRUE
+        query$max.results <- resukts_linit
+    }
+    else {
+        pagination <- FALSE
+        stopifnot(query$max.results <= resukts_linit)
+    }
+    data_json <- get_response(type = type, path = path, query = query, token = token, verbose = verbose)
+    if (!isTRUE(pagination) && query$max.results < data_json$totalResults)
+        warning(paste("Only", query$max.results, "observations out of", data_json$totalResults, "were obtained. Set max.results = NULL (default value) to get all results."))
+    if (isTRUE(pagination) && query$max.results < data_json$totalResults) {
+        if (type == "rt")
+            warning(paste("Only", query$max.results, "observations out of", data_json$totalResults, "were obtained (the batch processing mode is not implemented for this report type)."))
+        else {
+            pages <- get_pages(type = type, query = query, total.results = data_json$totalResults, verbose = verbose)
+            pages <- lapply(pages, `[[`, items_name)
+            data_json[[items_name]] <- c(list(data_json[[items_name]]), pages)
+        }
+    }
+    return(data_json)
 }
