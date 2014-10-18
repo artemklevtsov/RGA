@@ -37,6 +37,8 @@ make_request = function(url, token, simplify = TRUE, verbose = getOption("rga.ve
         request <- GET(url = url, config = config(token = token))
     } else {
         if (token_exists("GAToken")) {
+            if (verbose)
+                message("Use token stored in RGA:::TokenEnv$GAToken.")
             token <- get_token("GAToken")
             stopifnot(inherits(token, "Token2.0"))
             request <- GET(url = url, config = config(token = token))

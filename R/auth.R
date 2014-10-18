@@ -34,6 +34,7 @@ env_exists <- function(...) {
 #' @param client.id character. OAuth client ID. if client.id is missing, we'll look in the environment variable \code{RGA_CONSUMER_ID}.
 #' @param client.secret character. OAuth client secret. if client.secret is missing, we'll look in the environment variable \code{RGA_CONSUMER_SECRET}.
 #' @param cache logical or character. \code{TRUE} means to cache using the default cache file \code{.oauth-httr}, \code{FALSE} means not to cache. A string means to use the specified path as the cache file.
+#' @param verbose logical. Should print information verbose?
 #'
 #' @details
 #'
@@ -78,9 +79,11 @@ env_exists <- function(...) {
 #'
 #' @export
 #'
-authorize <- function(client.id, client.secret, cache = TRUE) {
+authorize <- function(client.id, client.secret, cache = TRUE, verbose = getOption("rga.verbose", FALSE)) {
     if (missing(client.id) || missing(client.secret)) {
         if (all(env_exists("RGA_CONSUMER_ID", "RGA_CONSUMER_SECRET"))) {
+            if (verbose)
+                message("client.id and client.secret loaded from environment variables.")
             client.id <- Sys.getenv("RGA_CONSUMER_ID")
             client.secret <- Sys.getenv("RGA_CONSUMER_SECRET")
         }
@@ -90,6 +93,8 @@ authorize <- function(client.id, client.secret, cache = TRUE) {
     rga_app <- oauth_app(appname = "rga", key = client.id, secret = client.secret)
     token <- oauth2.0_token(endpoint = oauth_endpoints("google"), app = rga_app, cache = cache,
                             scope = "https://www.googleapis.com/auth/analytics.readonly")
+    if (verbose)
+        message("Token saved in RGA:::TokenEnv$GAToken.")
     set_token("GAToken", token)
     invisible(token)
 }
