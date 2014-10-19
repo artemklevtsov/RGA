@@ -43,8 +43,8 @@ get_report <- function(type = c("ga", "mcf", "rt"), query, token, verbose = getO
             message("No results were obtained.")
         rows <- matrix(NA, nrow = 1L, ncol = nrow(cols))
     }
-    if (inherits(data_json$rows, "list")) {
-        if (inherits(rows[[1]], "matrix") || inherits(rows[[1]], "data.frame"))
+    if (inherits(rows, "list")) {
+        if (inherits(rows[[1]], "matrix"))
             rows <- do.call(rbind, rows)
         else if (inherits(rows[[1]], "list"))
             rows <- do.call(c, rows)

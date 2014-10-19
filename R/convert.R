@@ -28,7 +28,7 @@ build_mcf <- function(data, cols) {
 }
 
 build_mgmt <- function(data, cols) {
-    if (inherits(data, "matrix") || inherits(data, "data.frame"))
+    if (inherits(data, "data.frame"))
         data_df <- data[, names(data) %in% cols]
     else if (inherits(data, "list")) {
         cn <- unlist(lapply(data, colnames))
