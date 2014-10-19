@@ -43,8 +43,7 @@ build_url <- function(type = c("ga", "mcf", "rt", "mgmt"), path = NULL, query = 
                        ga = "https://www.googleapis.com/analytics/v3/data/ga",
                        mcf = "https://www.googleapis.com/analytics/v3/data/mcf",
                        rt = "https://www.googleapis.com/analytics/v3/data/realtime",
-                       mgmt = "https://www.googleapis.com/analytics/v3/management",
-                       stop("Unknown API data type."))
+                       mgmt = "https://www.googleapis.com/analytics/v3/management")
     if (!is.null(path)) {
         path <- build_path(path)
         url <- paste(url, path, sep = "/")
