@@ -42,8 +42,11 @@ make_request = function(url, token, simplify = TRUE, verbose = getOption("rga.ve
             token <- get_token("GAToken")
             stopifnot(inherits(token, "Token2.0"))
             request <- GET(url = url, config = config(token = token))
-        } else
+        } else {
+            if (verbose)
+                message("Send request without authorise data.")
             request <- GET(url = url)
+        }
     }
     # Send query to Google Analytics API and capture the JSON reponse
     if (verbose)
