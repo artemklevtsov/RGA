@@ -86,8 +86,7 @@ authorize <- function(client.id, client.secret, cache = TRUE, verbose = getOptio
                 message("client.id and client.secret loaded from environment variables.")
             client.id <- Sys.getenv("RGA_CONSUMER_ID")
             client.secret <- Sys.getenv("RGA_CONSUMER_SECRET")
-        }
-        else
+        } else
             stop("Clinet ID or Clinet secret not specified.")
     }
     rga_app <- oauth_app(appname = "rga", key = client.id, secret = client.secret)
