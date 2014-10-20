@@ -28,9 +28,9 @@ build_mcf <- function(data, cols) {
 }
 
 build_mgmt <- function(data, cols) {
-    if (inherits(data, "data.frame"))
+    if (is.data.frame(data))
         data_df <- data[, names(data) %in% cols]
-    else if (inherits(data, "list")) {
+    else if (is.list(data)) {
         cn <- unlist(lapply(data, colnames))
         ctab <- table(cn)
         cn <- names(ctab)[ctab == length(data)]
@@ -53,6 +53,7 @@ build_df <- function(type = c("ga", "mcf", "rt", "mgmt"), data, cols, verbose = 
                       mgmt = build_mgmt(data, cols))
     if (verbose)
         message(paste("Obtained data.frame with", nrow(data_df), "rows and", ncol(data_df), "columns."))
+    rownames(data_df) <- NULL
     return(data_df)
 }
 

@@ -43,10 +43,10 @@ get_report <- function(type = c("ga", "mcf", "rt"), query, token, verbose = getO
             message("No results were obtained.")
         rows <- matrix(NA, nrow = 1L, ncol = nrow(cols))
     }
-    if (inherits(rows, "list")) {
-        if (inherits(rows[[1]], "matrix"))
+    if (is.list(rows)) {
+        if (is.matrix(rows[[1]]))
             rows <- do.call(rbind, rows)
-        else if (inherits(rows[[1]], "list"))
+        else if (is.list(rows[[1]]))
             rows <- do.call(c, rows)
     }
     if (!is.null(data_json$containsSampledData) && data_json$containsSampledData)
