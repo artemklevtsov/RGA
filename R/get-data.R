@@ -109,19 +109,19 @@ get_pages <- function(type = c("ga", "mcf", "mgmt"), path = NULL, query = NULL, 
 get_data <- function(type = c("ga", "rt", "mcf", "mgmt"), path = NULL, query = NULL, token, verbose = getOption("rga.verbose", FALSE)) {
     type <- match.arg(type)
     if (type == "mgmt") {
-        resukts_linit <- 1000
+        results_limit <- 1000
         items_name <- "items"
     } else {
-        resukts_linit <- 10000
+        results_limit <- 10000
         items_name <- "rows"
     }
     if (is.null(query$max.results)) {
         pagination <- TRUE
-        query$max.results <- resukts_linit
+        query$max.results <- results_limit
     }
     else {
         pagination <- FALSE
-        stopifnot(query$max.results <= resukts_linit)
+        stopifnot(query$max.results <= results_limit)
     }
     data_json <- get_response(type = type, path = path, query = query, token = token, verbose = verbose)
     if (!isTRUE(pagination) && query$max.results < data_json$totalResults)
@@ -130,7 +130,7 @@ get_data <- function(type = c("ga", "rt", "mcf", "mgmt"), path = NULL, query = N
         if (type == "rt")
             warning(paste("Only", query$max.results, "observations out of", data_json$totalResults, "were obtained (the batch processing mode is not implemented for this report type)."))
         else {
-            pages <- get_pages(type = type, query = query, total.results = data_json$totalResults, verbose = verbose)
+            pages <- get_pages(type = type, path = path, query = query, total.results = data_json$totalResults, verbose = verbose)
             pages <- lapply(pages, `[[`, items_name)
             data_json[[items_name]] <- c(list(data_json[[items_name]]), pages)
         }
