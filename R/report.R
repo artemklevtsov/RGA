@@ -50,7 +50,7 @@ get_report <- function(type = c("ga", "mcf", "rt"), query, token, verbose = getO
             rows <- do.call(c, rows)
     }
     if (!is.null(data_json$containsSampledData) && data_json$containsSampledData)
-        warning("Data contains sampled data.")
+        warning("Data contains sampled data.", call. = FALSE)
     data_df <- build_df(type, rows, cols, verbose = verbose)
     formats <- cols$dataType
     data_df <- convert_datatypes(data_df, formats, verbose = verbose)

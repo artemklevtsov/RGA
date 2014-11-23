@@ -26,6 +26,8 @@ Depends:
 Imports:
     httr (>= 0.3),
     httpuv,
+    RCurl,
+    jsonlite,
     shiny (>= 0.10.0)
 Collate:
     'auth.R'

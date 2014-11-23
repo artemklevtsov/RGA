@@ -21,22 +21,25 @@ set_curl_opts <- function() {
 #' @include auth.R
 #'
 #' @importFrom httr GET config content http_status
+#' @importFrom jsonlite fromJSON
 #'
 make_request = function(url, token, verbose = getOption("rga.verbose", FALSE)) {
     stopifnot(is.character(url) && length(url) == 1L)
     set_curl_opts()
     # Print the URL to the console
     if (verbose) {
-        message("Sending request to Google Analytics...")
-        message(url)
+        message("Sending request to the Google Analytics API...")
+        message(paste("Query URL:", url))
     }
     if (!missing(token)) {
         stopifnot(inherits(token, "Token2.0"))
+        if (verbose)
+            message("Use OAuth Token passed in", substitute(token), "variable.")
         request <- GET(url = url, config = config(token = token))
     } else {
         if (token_exists("GAToken")) {
             if (verbose)
-                message("Use token stored in RGA:::TokenEnv$GAToken.")
+                message("Use OAuth Token stored in RGA:::TokenEnv$GAToken.")
             token <- get_token("GAToken")
             stopifnot(inherits(token, "Token2.0"))
             request <- GET(url = url, config = config(token = token))
@@ -48,9 +51,9 @@ make_request = function(url, token, verbose = getOption("rga.verbose", FALSE)) {
     }
     # Send query to Google Analytics API and capture the JSON reponse
     if (verbose)
-        message(http_status(request)$message)
+        message(paste("HTTP status", http_status(request)$message))
     # Convert the JSON response into a R list
-    data_json <- content(request, as = "parsed", simplifyVector = TRUE, simplifyMatrix = TRUE, simplifyDataFrame = TRUE)
+    data_json <- fromJSON(content(request, as = "text"))
     # Parse API error messages
     if (!is.null(data_json$error)) {
         code <- http_status(request)$message
@@ -122,10 +125,10 @@ get_data <- function(type = c("ga", "rt", "mcf", "mgmt"), path = NULL, query = N
     }
     data_json <- get_response(type = type, path = path, query = query, token = token, verbose = verbose)
     if (!isTRUE(pagination) && query$max.results < data_json$totalResults)
-        warning(paste("Only", query$max.results, "observations out of", data_json$totalResults, "were obtained. Set max.results = NULL (default value) to get all results."))
+        warning(paste("Only", query$max.results, "observations out of", data_json$totalResults, "were obtained. Set max.results = NULL (default value) to get all results."), call. = FALSE)
     if (isTRUE(pagination) && query$max.results < data_json$totalResults) {
         if (type == "rt")
-            warning(paste("Only", query$max.results, "observations out of", data_json$totalResults, "were obtained (the batch processing mode is not implemented for this report type)."))
+            warning(paste("Only", query$max.results, "observations out of", data_json$totalResults, "were obtained (the batch processing mode is not implemented for this report type)."), call. = FALSE)
         else {
             pages <- get_pages(type = type, path = path, query = query, total.results = data_json$totalResults, verbose = verbose)
             pages <- lapply(pages, `[[`, items_name)
