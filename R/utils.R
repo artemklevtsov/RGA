@@ -1,13 +1,20 @@
 # Check if object is empty
 is.empty <- function(x) {
     stopifnot(is.atomic(x))
-    is.null(x) || !length(x) || !nzchar(x)
+    is.null(x) || is.na(x) || !length(x) || !nzchar(x)
 }
 
 # Reduce NULL and "" elements
 compact <- function(x) {
     empty <- vapply(x, is.empty, logical(1))
     return(x[!empty])
+}
+
+# Remove whitespaces
+strip_spaces <- function(x) {
+    if (length(x) > 1L)
+        x <- paste(x, collapse = ",")
+    gsub("\\s", "", x)
 }
 
 # Remove whitespace around operators

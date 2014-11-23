@@ -9,22 +9,12 @@ fix_query <- function(query) {
         query$start.date <- as.character(query$start.date)
     if (!is.null(query$end.date) && !is.character(query$end.date))
         query$end.date <- as.character(query$end.date)
-    if (!is.empty(query$metrics)) {
-        if (length(query$metrics) > 1L)
-            query$metrics <- paste(query$metrics, collapse = ",")
-        query$metrics <- gsub("\\s", "", query$metrics)
-    }
-    if (!is.empty(query$dimensions)) {
-        if (length(query$dimensions) > 1L)
-            query$dimensions <- paste(query$dimensions, collapse = ",")
-        query$dimensions <- gsub("\\s", "", query$dimensions)
-    }
-    if (!is.empty(query$sort)) {
-        if (length(query$sort) > 1L)
-            query$sort <- paste(query$sort, collapse = ",")
-        query$sort <- gsub("\\s", "", query$sort)
-
-    }
+    if (!is.empty(query$metrics))
+        query$metrics <- strip_spaces(query$metrics)
+    if (!is.empty(query$dimensions))
+        query$dimensions <- strip_spaces(query$dimensions)
+    if (!is.empty(query$sort))
+        query$sort <- strip_spaces(query$sort)
     if (!is.empty(query$filters))
         query$filters <- strip_ops(query$filters)
     if (!is.empty(query$segment))
