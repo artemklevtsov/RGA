@@ -12,7 +12,6 @@ set_curl_opts <- function() {
 #'
 #' @param url the url of the page to retrieve.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
-#' @param simplify logical. Should the result be simplified to a vector, matrix or data.frame if possible?
 #' @param verbose logical. Should print information verbose?
 #'
 #' @keywords internal
@@ -22,9 +21,8 @@ set_curl_opts <- function() {
 #' @include auth.R
 #'
 #' @importFrom httr GET config content http_status
-#' @importFrom jsonlite fromJSON
 #'
-make_request = function(url, token, simplify = TRUE, verbose = getOption("rga.verbose", FALSE)) {
+make_request = function(url, token, verbose = getOption("rga.verbose", FALSE)) {
     stopifnot(is.character(url) && length(url) == 1L)
     set_curl_opts()
     # Print the URL to the console
@@ -52,7 +50,7 @@ make_request = function(url, token, simplify = TRUE, verbose = getOption("rga.ve
     if (verbose)
         message(http_status(request)$message)
     # Convert the JSON response into a R list
-    data_json <- fromJSON(content(request, as = "text"), simplifyVector = simplify)
+    data_json <- content(request, as = "parsed", simplifyVector = TRUE, simplifyMatrix = TRUE, simplifyDataFrame = TRUE)
     # Parse API error messages
     if (!is.null(data_json$error)) {
         code <- http_status(request)$message
@@ -69,7 +67,6 @@ make_request = function(url, token, simplify = TRUE, verbose = getOption("rga.ve
 #' @param path list including a request parameters.
 #' @param query list including a request parameters.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
-#' @param simplify logical. Should the result be simplified to a vector, matrix or data.frame if possible?
 #' @param verbose logical. Should print information verbose?
 #'
 #' @return A list contatin Google Analytics API response.
@@ -80,10 +77,10 @@ make_request = function(url, token, simplify = TRUE, verbose = getOption("rga.ve
 #'
 #' @include url.R
 #'
-get_response <- function(type = c("ga", "rt", "mcf", "mgmt"), path = NULL, query = NULL, token, simplify = TRUE, verbose = getOption("rga.verbose", FALSE)) {
+get_response <- function(type = c("ga", "rt", "mcf", "mgmt"), path = NULL, query = NULL, token, verbose = getOption("rga.verbose", FALSE)) {
     type <- match.arg(type)
     url <- build_url(type = type, path = path, query = query)
-    data_json <- make_request(url, token = token, simplify = simplify, verbose = verbose)
+    data_json <- make_request(url, token = token, verbose = verbose)
     return(data_json)
 }
 
