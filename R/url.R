@@ -13,6 +13,7 @@ build_path <- function(x) {
 }
 
 # Build URL query string
+#' @importFrom stringi stri_enc_isutf8 stri_enc_toutf8
 #' @importFrom RCurl curlEscape
 #' @include utils.R
 #'
@@ -22,7 +23,8 @@ build_query <- function(x) {
     params <- gsub("\\.", "-", params)
     params <- gsub("profile-id", "ids", params)
     values <- as.vector(x, mode = "character")
-    params <- curlEscape(params)
+    if (all(stri_enc_isutf8(values)))
+        values <- stri_enc_toutf8(values)
     values <- curlEscape(values)
     string <- paste(params, values, sep = "=", collapse = "&")
     return(string)
