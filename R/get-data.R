@@ -34,7 +34,7 @@ make_request = function(url, token, verbose = getOption("rga.verbose", FALSE)) {
     if (!missing(token)) {
         stopifnot(inherits(token, "Token2.0"))
         if (verbose)
-            message("Use OAuth Token passed in", substitute(token), "variable.")
+            message(paste("Use OAuth Token passed in", substitute(token), "variable."))
         request <- GET(url = url, config = config(token = token))
     } else {
         if (token_exists("GAToken")) {
