@@ -142,7 +142,7 @@ get_ga <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
 #' # get report data
 #' ga_data <- get_mcf("myProfileID", start.date = "30daysAgo", end.date = "today",
 #'                    metrics = "mcf:totalConversions",
-#'                    dimensions = "mcf:totalConversions,mcf:totalConversionValue")
+#'                    dimensions = "mcf:source,mcf:medium")
 #' }
 #'
 #' @include query.R
