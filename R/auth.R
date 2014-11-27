@@ -87,7 +87,7 @@ authorize <- function(client.id, client.secret, cache = TRUE, verbose = getOptio
             client.id <- Sys.getenv("RGA_CONSUMER_ID")
             client.secret <- Sys.getenv("RGA_CONSUMER_SECRET")
         } else
-            stop("Clinet ID or Clinet secret not specified.")
+            stop("Client ID or Clinet secret not specified.")
     }
     rga_app <- oauth_app(appname = "rga", key = client.id, secret = client.secret)
     token <- oauth2.0_token(endpoint = oauth_endpoints("google"), app = rga_app, cache = cache,
