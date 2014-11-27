@@ -114,6 +114,29 @@ Sys.setenv(RGA_CONSUMER_ID = "My_Client_ID", RGA_CONSUMER_SECRET = "My_Client_se
 
 This string can be added to the file `.Rprofile` in the user's current оr home directory in order to set these variables automatically when the R session starts.
 
+#### getting access to GA API with multiple tokens
+
+If you want to work with `RGA` package with client.ids and client.secrets from different accounts (for example from business account at work and personal account at home) you need to clearly distinguish them. The best way in this case is creating two different tokens with disabled `cache` option:
+
+```R
+work_token <- authorize(client.id1, client.secret1, cache = FALSE)
+home_token <- authorize(client.id2, client.secret2, cache = FALSE)
+```
+
+or define a specific cache path for each token:
+
+```R
+work_token <- authorize(client.id1, client.secret1, cache = "work.token")
+home_token <- authorize(client.id2, client.secret2, cache = "home.token")
+```
+
+Then pass this token to other functions:
+
+```R
+get_profiles(token = work_token)
+get_profiles(token = home_token)
+```
+
 ### Obtain the access to the Management API
 
 To access the Management API Google Analytics package `RGA` provides the following functions: `get_accounts`, `get_webproperties`, `get_profiles`, `get_goals` и `get_segments`. Each of these functions return a table of data (`data.frame`), with the relevant content.
