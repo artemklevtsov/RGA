@@ -39,9 +39,8 @@ get_report <- function(type = c("ga", "mcf", "rt"), query, token, verbose = getO
     rows <- data_json$rows
     cols <- data_json$columnHeaders
     if (data_json$totalResults == 0 || is.null(rows)) {
-        if (verbose)
-            message("No results were obtained.")
-        rows <- matrix(NA, nrow = 1L, ncol = nrow(cols))
+        message("No results were obtained.")
+        return(NULL)
     }
     if (is.list(rows)) {
         if (is.matrix(rows[[1]]))
@@ -52,8 +51,6 @@ get_report <- function(type = c("ga", "mcf", "rt"), query, token, verbose = getO
     if (!is.null(data_json$containsSampledData) && data_json$containsSampledData)
         warning("Data contains sampled data.", call. = FALSE)
     data_df <- build_df(type, rows, cols, verbose = verbose)
-    formats <- cols$dataType
-    data_df <- convert_datatypes(data_df, formats, verbose = verbose)
     return(data_df)
 }
 

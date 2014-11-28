@@ -2,15 +2,14 @@
 #' @include get-data.R
 #' @include convert.R
 #'
-get_mgmt <- function(path, query, cols, token, verbose = getOption("rga.verbose", FALSE)) {
+get_mgmt <- function(path, query, token, verbose = getOption("rga.verbose", FALSE)) {
     data_json <- get_data(type = "mgmt", path = path, query = query, token = token, verbose = verbose)
     items <- data_json[["items"]]
     if (data_json$totalResults == 0 || is.null(items)) {
-        if (verbose)
-            message("No results were obtained.")
-        items <- data.frame(matrix(NA, nrow = 1L, ncol = length(cols)))
+        message("No results were obtained.")
+        return(NULL)
     }
-    data_df <- build_df(type = "mgmt", items, cols, verbose = verbose)
+    data_df <- build_df(type = "mgmt", items, verbose = verbose)
     return(data_df)
 }
 
@@ -39,8 +38,7 @@ get_mgmt <- function(path, query, cols, token, verbose = getOption("rga.verbose"
 get_accounts = function(start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose", FALSE)) {
     path <- "accounts"
     query <- list(start.index = start.index, max.results = max.results)
-    res <- get_mgmt(path = path, query = query, token = token, verbose = verbose,
-                    cols = c("id", "name", "created", "updated"))
+    res <- get_mgmt(path = path, query = query, token = token, verbose = verbose)
     return(res)
 }
 
@@ -75,8 +73,7 @@ get_accounts = function(start.index = NULL, max.results = NULL, token, verbose =
 get_webproperties = function(account.id = "~all", start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose", FALSE)) {
     path <- paste("accounts", account.id, "webproperties", sep = "/")
     query <- list(start.index = start.index, max.results = max.results)
-    res <- get_mgmt(path = path, query = query, token = token, verbose = verbose,
-                    cols = c("accountId", "id", "name", "websiteUrl", "level", "profileCount", "industryVertical", "created", "updated"))
+    res <- get_mgmt(path = path, query = query, token = token, verbose = verbose)
     return(res)
 }
 
@@ -116,8 +113,7 @@ get_webproperties = function(account.id = "~all", start.index = NULL, max.result
 get_profiles = function(account.id = "~all", webproperty.id = "~all", start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose", FALSE)) {
     path <- paste("accounts", account.id, "webproperties", webproperty.id, "profiles", sep = "/")
     query <- list(start.index = start.index, max.results = max.results)
-    res <- get_mgmt(path = path, query = query, token = token, verbose = verbose,
-                    cols = c("accountId", "webPropertyId", "id", "name", "websiteUrl", "type", "siteSearchQueryParameters", "siteSearchCategoryParameters", "eCommerceTracking", "currency", "timezone", "created", "updated"))
+    res <- get_mgmt(path = path, query = query, token = token, verbose = verbose)
     return(res)
 }
 
@@ -155,8 +151,7 @@ get_profiles = function(account.id = "~all", webproperty.id = "~all", start.inde
 get_goals = function(account.id = "~all", webproperty.id = "~all", profile.id = "~all", start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose", FALSE)) {
     path <- paste("accounts", account.id, "webproperties", webproperty.id, "profiles", profile.id, "goals", sep = "/")
     query <- list(start.index = start.index, max.results = max.results)
-    res <- get_mgmt(path = path, query = query, token = token, verbose = verbose,
-                    cols = c("accountId", "webPropertyId", "profileId", "id", "name", "value", "active", "type", "created", "updated"))
+    res <- get_mgmt(path = path, query = query, token = token, verbose = verbose)
     return(res)
 }
 
@@ -190,7 +185,6 @@ get_goals = function(account.id = "~all", webproperty.id = "~all", profile.id = 
 get_segments = function(start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose", FALSE)) {
     path <- "segments"
     query <- list(start.index = start.index, max.results = max.results)
-    res <- get_mgmt(path = path, query = query, token = token, verbose = verbose,
-                    cols = c("segmentId", "id", "name", "definition", "type", "created", "updated"))
+    res <- get_mgmt(path = path, query = query, token = token, verbose = verbose)
     return(res)
 }
