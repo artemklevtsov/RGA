@@ -32,9 +32,9 @@ Lists all accounts which the user has access to
 \seealso{
 \code{\link{authorize}}
 
-Other The Google Analytics Management API: \code{\link{get_goals}};
-  \code{\link{get_profiles}}; \code{\link{get_segments}};
-  \code{\link{get_unsampled}};
+Other The Google Analytics Management API: \code{\link{get_custom_sources}};
+  \code{\link{get_goals}}; \code{\link{get_profiles}};
+  \code{\link{get_segments}}; \code{\link{get_unsampled}};
   \code{\link{get_webproperties}}
 }
 

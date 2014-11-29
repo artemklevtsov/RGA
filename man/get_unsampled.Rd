@@ -51,6 +51,7 @@ Lists unsampled reports which the user has access to
 \code{\link{authorize}}
 
 Other The Google Analytics Management API: \code{\link{get_accounts}};
+  \code{\link{get_custom_sources}};
   \code{\link{get_goals}}; \code{\link{get_profiles}};
   \code{\link{get_segments}};
   \code{\link{get_webproperties}}
