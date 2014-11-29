@@ -22,6 +22,7 @@ get_unsampled(account.id, webproperty.id, profile.id, start.index = NULL,
 \item{verbose}{logical. Should print information verbose?}
 }
 \value{
+An unsampled report collection lists Analytics unsampled reports to which the user has access. Each view (profile) can have a set of unsampled reports. Each resource in the unsampled report collection corresponds to a single Analytics unsampled report.
 \item{id}{Unsampled report ID.}
 \item{title}{Title of the unsampled report.}
 \item{accountId}{Account ID to which this unsampled report belongs.}
