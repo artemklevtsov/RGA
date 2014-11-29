@@ -47,7 +47,7 @@ get_report <- function(type = c("ga", "mcf", "rt"), query, token, verbose = getO
     if (is.list(rows)) {
         if (is.matrix(rows[[1]]))
             rows <- do.call(rbind, rows)
-        else if (is.list(rows[[1]]))
+        else if (is.list(rows[[1]]) && !is.data.frame(rows[[1]]))
             rows <- do.call(c, rows)
     }
     if (!is.null(data_json$containsSampledData) && data_json$containsSampledData)
@@ -105,7 +105,7 @@ get_ga <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
     query <- list(profile.id = profile.id, start.date = start.date, end.date = end.date,
                   metrics = metrics, dimensions = dimensions, sort = sort, filters = filters,
                   segment = segment, start.index = start.index, max.results = max.results)
-    res <- get_report(query = query, type = "ga", token = token, verbose = verbose)
+    res <- get_report(type = "ga", query = query, token = token, verbose = verbose)
     return(res)
 }
 
@@ -155,7 +155,7 @@ get_mcf <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
     query <- list(profile.id = profile.id, start.date = start.date, end.date = end.date,
                   metrics = metrics, dimensions = dimensions, sort = sort, filters = filters,
                   start.index = start.index, max.results = max.results)
-    res <- get_report(query = query, type = "mcf", token = token, verbose = verbose)
+    res <- get_report(type = "mcf", query = query, token = token, verbose = verbose)
     return(res)
 }
 
@@ -202,7 +202,7 @@ get_rt <- function(profile.id, metrics = "rt:activeUsers", dimensions = NULL,
               !is.null(metrics), nzchar(metrics))
     query <- list(profile.id = profile.id, metrics = metrics, dimensions = dimensions,
                   sort = sort, filters = filters, max.results = max.results)
-    res <- get_report(query = query, type = "rt", token = token, verbose = verbose)
+    res <- get_report(type = "rt", query = query, token = token, verbose = verbose)
     return(res)
 }
 
