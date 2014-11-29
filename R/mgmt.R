@@ -44,7 +44,7 @@ get_accounts = function(start.index = NULL, max.results = NULL, token, verbose =
 
 #' @title Lists web properties which the user has access to
 #'
-#' @param account.id character. Account ID to retrieve web properties for. Can either be a specific account ID or "~all", which refers to all the accounts that user has access to.
+#' @param account.id integer or character. Account ID to retrieve web properties for. Can either be a specific account ID or "~all", which refers to all the accounts that user has access to.
 #' @param start.index integer. An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
 #' @param max.results integer. The maximum number of web properties to include in this response.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
@@ -79,7 +79,7 @@ get_webproperties = function(account.id = "~all", start.index = NULL, max.result
 
 #' @title Lists views (profiles) which the user has access to
 #'
-#' @param account.id character. Account ID for the view (profiles) to retrieve. Can either be a specific account ID or '~all', which refers to all the accounts which the user has access to. Requires specified account.id.
+#' @param account.id integer or character. Account ID for the view (profiles) to retrieve. Can either be a specific account ID or '~all', which refers to all the accounts which the user has access to. Requires specified account.id.
 #' @param webproperty.id character. Web property ID for the views (profiles) to retrieve. Can either be a specific web property ID or '~all', which refers to all the web properties which the user has access to.
 #' @param start.index integer. An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
 #' @param max.results integer. The maximum number of views (profiles) to include in this response.
@@ -119,9 +119,9 @@ get_profiles = function(account.id = "~all", webproperty.id = "~all", start.inde
 
 #' @title Lists  Lists goals which the user has access to
 #'
-#' @param account.id character. The account ID to retrieve goals for. Can either be a specific account ID or '~all', which refers to all the accounts that user has access to.
+#' @param account.id integer or character. The account ID to retrieve goals for. Can either be a specific account ID or '~all', which refers to all the accounts that user has access to.
 #' @param webproperty.id character. Web property ID to retrieve goals for. Can either be a specific web property ID or '~all', which refers to all the web properties that user has access to. Requires specified \code{account.id}.
-#' @param profile.id character. View (Profile) ID to retrieve goals for. Can either be a specific view (profile) ID or '~all', which refers to all the views (profiles) that user has access to. Requires specified \code{account.id} and \code{webproperty.id}.
+#' @param profile.id ineger or character. View (Profile) ID to retrieve goals for. Can either be a specific view (profile) ID or '~all', which refers to all the views (profiles) that user has access to. Requires specified \code{account.id} and \code{webproperty.id}.
 #' @param start.index integer. An index of the first goal to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
 #' @param max.results integer. The maximum number of goals to include in this response.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.

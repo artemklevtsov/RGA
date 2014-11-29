@@ -36,7 +36,7 @@ Lists segments which the user has access to
 \seealso{
 \code{\link{authorize}}
 
-Other The.Google.Analytics.Management.API: \code{\link{get_accounts}};
+Other The Google Analytics Management API: \code{\link{get_accounts}};
   \code{\link{get_goals}}; \code{\link{get_profiles}};
   \code{\link{get_webproperties}}
 }

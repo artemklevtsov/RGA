@@ -8,7 +8,7 @@ get_profiles(account.id = "~all", webproperty.id = "~all",
   verbose = getOption("rga.verbose", FALSE))
 }
 \arguments{
-\item{account.id}{character. Account ID for the view (profiles) to retrieve. Can either be a specific account ID or '~all', which refers to all the accounts which the user has access to. Requires specified account.id.}
+\item{account.id}{integer or character. Account ID for the view (profiles) to retrieve. Can either be a specific account ID or '~all', which refers to all the accounts which the user has access to. Requires specified account.id.}
 
 \item{webproperty.id}{character. Web property ID for the views (profiles) to retrieve. Can either be a specific web property ID or '~all', which refers to all the web properties which the user has access to.}
 
@@ -45,7 +45,7 @@ Lists views (profiles) which the user has access to
 \seealso{
 \code{\link{authorize}}
 
-Other The.Google.Analytics.Management.API: \code{\link{get_accounts}};
+Other The Google Analytics Management API: \code{\link{get_accounts}};
   \code{\link{get_goals}}; \code{\link{get_segments}};
   \code{\link{get_webproperties}}
 }

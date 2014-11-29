@@ -8,11 +8,11 @@ get_goals(account.id = "~all", webproperty.id = "~all",
   verbose = getOption("rga.verbose", FALSE))
 }
 \arguments{
-\item{account.id}{character. The account ID to retrieve goals for. Can either be a specific account ID or '~all', which refers to all the accounts that user has access to.}
+\item{account.id}{integer or character. The account ID to retrieve goals for. Can either be a specific account ID or '~all', which refers to all the accounts that user has access to.}
 
 \item{webproperty.id}{character. Web property ID to retrieve goals for. Can either be a specific web property ID or '~all', which refers to all the web properties that user has access to. Requires specified \code{account.id}.}
 
-\item{profile.id}{character. View (Profile) ID to retrieve goals for. Can either be a specific view (profile) ID or '~all', which refers to all the views (profiles) that user has access to. Requires specified \code{account.id} and \code{webproperty.id}.}
+\item{profile.id}{ineger or character. View (Profile) ID to retrieve goals for. Can either be a specific view (profile) ID or '~all', which refers to all the views (profiles) that user has access to. Requires specified \code{account.id} and \code{webproperty.id}.}
 
 \item{start.index}{integer. An index of the first goal to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.}
 
@@ -44,7 +44,7 @@ Lists  Lists goals which the user has access to
 \seealso{
 \code{\link{authorize}}
 
-Other The.Google.Analytics.Management.API: \code{\link{get_accounts}};
+Other The Google Analytics Management API: \code{\link{get_accounts}};
   \code{\link{get_profiles}}; \code{\link{get_segments}};
   \code{\link{get_webproperties}}
 }

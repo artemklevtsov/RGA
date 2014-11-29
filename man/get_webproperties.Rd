@@ -7,7 +7,7 @@ get_webproperties(account.id = "~all", start.index = NULL,
   max.results = NULL, token, verbose = getOption("rga.verbose", FALSE))
 }
 \arguments{
-\item{account.id}{character. Account ID to retrieve web properties for. Can either be a specific account ID or "~all", which refers to all the accounts that user has access to.}
+\item{account.id}{integer or character. Account ID to retrieve web properties for. Can either be a specific account ID or "~all", which refers to all the accounts that user has access to.}
 
 \item{start.index}{integer. An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.}
 
@@ -38,7 +38,7 @@ Lists web properties which the user has access to
 \seealso{
 \code{\link{authorize}}
 
-Other The.Google.Analytics.Management.API: \code{\link{get_accounts}};
+Other The Google Analytics Management API: \code{\link{get_accounts}};
   \code{\link{get_goals}}; \code{\link{get_profiles}};
   \code{\link{get_segments}}
 }

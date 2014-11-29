@@ -27,8 +27,7 @@ first.date <- get_firstdate(profile.id = "myProfileID")
 \seealso{
 \code{\link{authorize}}
 
-Other The.Google.Analytics.Reporting.API: \code{\link{get_ga}};
-  \code{\link{get_mcf}}; \code{\link{get_report}};
-  \code{\link{get_rt}}
+Other The Google Analytics Reporting API: \code{\link{get_ga}};
+  \code{\link{get_mcf}}; \code{\link{get_rt}}
 }
 
