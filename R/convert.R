@@ -32,8 +32,10 @@ clean_mgmt <- function(data) {
     data_names <- names(data)
     to_drop <- c("kind", grep("Link", data_names, value = TRUE))
     data <- data[, !data_names %in% to_drop]
-    if (!is.null(data$permissions$effective))
-        data$permissions <- vapply(data$permissions$effective, paste, collapse = ",", FUN.VALUE = character(1))
+    if (!is.null(data$permissions.effective)) {
+        data$permissions.effective <- vapply(data$permissions.effective, paste, collapse = ",", FUN.VALUE = character(1))
+        names(data)[grep("permissions", names(data))] <- "permissions"
+    }
     return(data)
 }
 
