@@ -16,12 +16,12 @@ get_segments(start.index = NULL, max.results = NULL, token,
 \item{verbose}{logical. Should print information verbose?}
 }
 \value{
-A data frame with Google Analytics management data.
-\item{id}{segment ID.}
-\item{segmentId}{segment ID. Can be used with the segment parameter in Data Feed.}
-\item{name}{segment name.}
-\item{definition}{segment definition.}
-\item{type}{type for a segment. Possible values are "BUILT_IN" or "CUSTOM".}
+An segment collection lists Analytics segments that the user has access to. Each resource in the collection corresponds to a single Analytics segment.
+\item{id}{Segment ID.}
+\item{segmentId}{Segment ID. Can be used with the segment parameter in Data Feed.}
+\item{name}{Segment name.}
+\item{definition}{Segment definition.}
+\item{type}{Type for a segment. Possible values are "BUILT_IN" or "CUSTOM".}
 \item{created}{time the segment was created.}
 \item{updated}{time the segment was last modified.}
 }
@@ -38,6 +38,7 @@ Lists segments which the user has access to
 
 Other The Google Analytics Management API: \code{\link{get_accounts}};
   \code{\link{get_goals}}; \code{\link{get_profiles}};
+  \code{\link{get_unsampled}};
   \code{\link{get_webproperties}}
 }
 

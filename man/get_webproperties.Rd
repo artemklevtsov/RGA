@@ -18,16 +18,19 @@ get_webproperties(account.id = "~all", start.index = NULL,
 \item{verbose}{logical. Should print information verbose?}
 }
 \value{
-A data frame with Google Analytics management data.
+web property collection lists Analytics web properties to which the user has access. Each resource in the collection corresponds to a single Analytics web property.
+\item{id}{Web property ID of the form UA-XXXXX-YY.}
 \item{accountId}{Account ID to which this web property belongs.}
-\item{id}{web property ID of the form UA-XXXXX-YY.}
-\item{name}{name of this web property.}
-\item{websiteUrl}{website url for this web property.}
-\item{level}{level for this web property. Acceptable values are: "PREMIUM", "STANDARD".}
-\item{industryVertical}{we propetry industry vertical category.}
-\item{profileCount}{view (Profile) count for this web property.}
-\item{created}{time this web property was created.}
-\item{updated}{time this web property was last modified.}
+\item{internalWebPropertyId}{Internal ID for this web property.}
+\item{name}{Name of this web property.}
+\item{websiteUrl}{Website url for this web property.}
+\item{level}{Level for this web property. Possible values are STANDARD or PREMIUM.}
+\item{profileCount}{View (Profile) count for this web property.}
+\item{industryVertical}{The industry vertical/category selected for this web property.}
+\item{defaultProfileId}{Default view (profile) ID.}
+\item{permissions}{All the permissions that the user has for this web property. These include any implied permissions (e.g., EDIT implies VIEW) or inherited permissions from the parent account.}
+\item{created}{Time this web property was created.}
+\item{updated}{Time this web property was last modified.}
 }
 \description{
 Lists web properties which the user has access to
@@ -40,6 +43,6 @@ Lists web properties which the user has access to
 
 Other The Google Analytics Management API: \code{\link{get_accounts}};
   \code{\link{get_goals}}; \code{\link{get_profiles}};
-  \code{\link{get_segments}}
+  \code{\link{get_segments}}; \code{\link{get_unsampled}}
 }
 

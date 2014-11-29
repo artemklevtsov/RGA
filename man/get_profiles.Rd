@@ -21,20 +21,23 @@ get_profiles(account.id = "~all", webproperty.id = "~all",
 \item{verbose}{logical. Should print information verbose?}
 }
 \value{
-A data frame with Google Analytics management data.
-\item{accountId}{account ID to which this view (profile) belongs.}
-\item{webPropertyId}{web property ID of the form UA-XXXXX-YY to which this view (profile) belongs.}
-\item{id}{view (Profile) ID.}
-\item{name}{name of this view (profile).}
-\item{currency}{the currency type associated with this view (profile).}
-\item{timezone}{time zone for which this view (profile) has been configured.}
-\item{websiteUrl}{website URL for this view (profile).}
-\item{type}{view (Profile) type. Supported types: WEB or APP.}
-\item{eCommerceTracking}{indicates whether ecommerce tracking is enabled for this view (profile).}
-\item{siteSearchQueryParameters}{the site search query parameters for this view (profile).}
-\item{stripSiteSearchQueryParameters}{site search category parameters for this view (profile).}
-\item{created}{time this view (profile) was created.}
-\item{updated}{time this view (profile) was last modified.}
+A view (profile) collection lists Analytics views (profiles) to which the user has access. Each resource in the collection corresponds to a single Analytics view (profile).
+\item{id}{View (Profile) ID.}
+\item{accountId}{Account ID to which this view (profile) belongs.}
+\item{webPropertyId}{Web property ID of the form UA-XXXXX-YY to which this view (profile) belongs.}
+\item{internalWebPropertyId}{Internal ID for the web property to which this view (profile) belongs.}
+\item{name}{Name of this view (profile).}
+\item{currency}{The currency type associated with this view (profile).}
+\item{timezone}{Time zone for which this view (profile) has been configured. Time zones are identified by strings from the TZ database.}
+\item{websiteUrl}{Website URL for this view (profile).}
+\item{type}{View (Profile) type. Supported types: WEB or APP.}
+\item{siteSearchCategoryParameters}{Site search category parameters for this view (profile).}
+\item{stripSiteSearchCategoryParameters}{Whether or not Analytics will strip search category parameters from the URLs in your reports.}
+\item{excludeQueryParameters}{The query parameters that are excluded from this view (profile).}
+\item{eCommerceTracking}{Indicates whether ecommerce tracking is enabled for this view (profile).}
+\item{permissions}{All the permissions that the user has for this view (profile). These include any implied permissions (e.g., EDIT implies VIEW) or inherited permissions from the parent web property.}
+\item{created}{Time this view (profile) was created.}
+\item{updated}{Time this view (profile) was last modified.}
 }
 \description{
 Lists views (profiles) which the user has access to
@@ -47,6 +50,7 @@ Lists views (profiles) which the user has access to
 
 Other The Google Analytics Management API: \code{\link{get_accounts}};
   \code{\link{get_goals}}; \code{\link{get_segments}};
+  \code{\link{get_unsampled}};
   \code{\link{get_webproperties}}
 }
 

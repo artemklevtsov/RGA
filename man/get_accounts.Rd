@@ -16,11 +16,12 @@ get_accounts(start.index = NULL, max.results = NULL, token,
 \item{verbose}{logical. Should print information verbose?}
 }
 \value{
-A data frame with Google Analytics management data.
-\item{id}{account ID.}
-\item{name}{account name.}
-\item{created}{time the account was created.}
-\item{updated}{time the account was last modified.}
+An account collection provides a list of Analytics accounts to which a user has access. The account collection is the entry point to all management information. Each resource in the collection corresponds to a single Analytics account.
+\item{id}{Account ID.}
+\item{name}{Account name.}
+\item{permissions}{All the permissions that the user has for this account. These include any implied permissions (e.g., EDIT implies VIEW).}
+\item{created}{Time the account was created.}
+\item{updated}{Time the account was last modified.}
 }
 \description{
 Lists all accounts which the user has access to
@@ -33,6 +34,7 @@ Lists all accounts which the user has access to
 
 Other The Google Analytics Management API: \code{\link{get_goals}};
   \code{\link{get_profiles}}; \code{\link{get_segments}};
+  \code{\link{get_unsampled}};
   \code{\link{get_webproperties}}
 }
 
