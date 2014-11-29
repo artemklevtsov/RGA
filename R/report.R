@@ -15,26 +15,28 @@
 #' # get token data
 #' authorize(client.id = "myID", client.secret = "mySecret")
 #' # set query
-#' ga_query <- set_query("myProfileID", start.date = "30daysAgo", end.date = "today",
-#'                       metrics = "ga:sessions", dimensions = "ga:source,ga:medium"
-#'                       sort = "-ga:sessions")
+#' ga_query <- list("ProfileID", start.date = "30daysAgo", end.date = "today",
+#'                  metrics = "ga:sessions", dimensions = "ga:source,ga:medium"
+#'                  sort = "-ga:sessions")
 #' # get report data
-#' ga_data <- get_report(ga_query, type = "ga")
+#' ga_data <- get_report(type = "ga", ga_query)
 #' }
 #'
-#' @seealso \code{\link{authorize}} \code{\link{set_query}}
+#' @seealso \code{\link{authorize}}
 #'
 #' @family The Google Analytics Reporting API
 #'
 #' @keywords internal
 #'
+#' @noRd
+#'
+#' @include query.R
 #' @include get-data.R
 #' @include convert.R
 #'
-#' @export
-#'
 get_report <- function(type = c("ga", "mcf", "rt"), query, token, verbose = getOption("rga.verbose", FALSE)) {
     type <- match.arg(type)
+    query <- fix_query(query)
     data_json <- get_data(type = type, query = query, token = token, verbose = verbose)
     rows <- data_json$rows
     cols <- data_json$columnHeaders
@@ -56,7 +58,7 @@ get_report <- function(type = c("ga", "mcf", "rt"), query, token, verbose = getO
 
 #' @title Get the Anaytics data from Core Reporting API for a view (profile)
 #'
-#' @param profile.id string or integer. Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID.
+#' @param profile.id integer or character. Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID.
 #' @param start.date character. Start date for fetching Analytics data. Request can specify the start date formatted as YYYY-MM-DD or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is 7daysAgo.
 #' @param end.date character. End date for fetching Analytics data. Request can specify the end date formatted as YYYY-MM-DD or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is yesterday.
 #' @param metrics character. A comma-separated list of Analytics metrics. E.g., \code{"ga:sessions,ga:pageviews"}. At least one metric must be specified.
@@ -90,8 +92,6 @@ get_report <- function(type = c("ga", "mcf", "rt"), query, token, verbose = getO
 #'                   sort = "-ga:sessions")
 #' }
 #'
-#' @include query.R
-#'
 #' @export
 #'
 get_ga <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
@@ -102,16 +102,16 @@ get_ga <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
               !is.null(start.date), nzchar(start.date),
               !is.null(end.date), nzchar(end.date),
               !is.null(metrics), nzchar(metrics))
-    query <- set_query(profile.id = profile.id, start.date = start.date, end.date = end.date,
-                       metrics = metrics, dimensions = dimensions, sort = sort, filters = filters,
-                       segment = segment, start.index = start.index, max.results = max.results)
+    query <- list(profile.id = profile.id, start.date = start.date, end.date = end.date,
+                  metrics = metrics, dimensions = dimensions, sort = sort, filters = filters,
+                  segment = segment, start.index = start.index, max.results = max.results)
     res <- get_report(query = query, type = "ga", token = token, verbose = verbose)
     return(res)
 }
 
 #' @title Get the Anaytics data from Multi-Channel Funnels Reporting API for a view (profile)
 #'
-#' @param profile.id string or integer. Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID.
+#' @param profile.id integer or character. Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID.
 #' @param start.date character. Start date for fetching Analytics data. Request can specify a start date formatted as YYYY-MM-DD or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is 7daysAgo.
 #' @param end.date character. End date for fetching Analytics data. Request can specify an end date formatted as YYYY-MM-DD or as a relative date (e.g., today, yester-day, or 7daysAgo). The default value is yesterday.
 #' @param metrics character. A comma-separated list of Multi-Channel Funnels metrics. E.g., \code{"mcf:totalConversions,mcf:totalConversionValue"}. At least one metric must be specified.
@@ -142,8 +142,6 @@ get_ga <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
 #'                    dimensions = "mcf:source,mcf:medium")
 #' }
 #'
-#' @include query.R
-#'
 #' @export
 #'
 get_mcf <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
@@ -154,16 +152,16 @@ get_mcf <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
               !is.null(start.date), nzchar(start.date),
               !is.null(end.date), nzchar(end.date),
               !is.null(metrics), nzchar(metrics))
-    query <- set_query(profile.id = profile.id, start.date = start.date, end.date = end.date,
-                       metrics = metrics, dimensions = dimensions, sort = sort, filters = filters,
-                       start.index = start.index, max.results = max.results)
+    query <- list(profile.id = profile.id, start.date = start.date, end.date = end.date,
+                  metrics = metrics, dimensions = dimensions, sort = sort, filters = filters,
+                  start.index = start.index, max.results = max.results)
     res <- get_report(query = query, type = "mcf", token = token, verbose = verbose)
     return(res)
 }
 
 #' @title Get the Anaytics data from Real Time Reporting API for a view (profile)
 #'
-#' @param profile.id string or integer. Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID.
+#' @param profile.id integer or character. Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID.
 #' @param metrics character. A comma-separated list of real time metrics. E.g., \code{"rt:activeUsers"}. At least one metric must be specified.
 #' @param dimensions character. A comma-separated list of real time dimensions. E.g., \code{"rt:medium,rt:city"}.
 #' @param sort character. A comma-separated list of dimensions or metrics that determine the sort order for real time data.
@@ -195,8 +193,6 @@ get_mcf <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
 #' }
 #' }
 #'
-#' @include query.R
-#'
 #' @export
 #'
 get_rt <- function(profile.id, metrics = "rt:activeUsers", dimensions = NULL,
@@ -204,8 +200,8 @@ get_rt <- function(profile.id, metrics = "rt:activeUsers", dimensions = NULL,
                          token, verbose = getOption("rga.verbose", FALSE)) {
     stopifnot(!is.null(profile.id), nzchar(profile.id),
               !is.null(metrics), nzchar(metrics))
-    query <- set_query(profile.id = profile.id, metrics = metrics, dimensions = dimensions,
-                       sort = sort, filters = filters, max.results = max.results)
+    query <- list(profile.id = profile.id, metrics = metrics, dimensions = dimensions,
+                  sort = sort, filters = filters, max.results = max.results)
     res <- get_report(query = query, type = "rt", token = token, verbose = verbose)
     return(res)
 }
