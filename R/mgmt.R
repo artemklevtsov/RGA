@@ -32,6 +32,8 @@ get_mgmt <- function(path, query, token, verbose = getOption("rga.verbose", FALS
 #' @references
 #' \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/accounts}{Google Management API - Accounts}
 #'
+#' \href{https://ga-dev-tools.appspot.com/account-explorer/}{Google Analytics Demos & Tools - Account Explorer}
+#'
 #' @family The Google Analytics Management API
 #'
 #' @export
@@ -69,6 +71,8 @@ get_accounts = function(start.index = NULL, max.results = NULL, token, verbose =
 #'
 #' @references
 #' \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/webproperties}{Google Management API - Web Properties}
+#'
+#' \href{https://ga-dev-tools.appspot.com/account-explorer/}{Google Analytics Demos & Tools - Account Explorer}
 #'
 #' @family The Google Analytics Management API
 #'
@@ -112,6 +116,8 @@ get_webproperties = function(account.id = "~all", start.index = NULL, max.result
 #'
 #' @references
 #' \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/profiles}{Google Management API - Views (Profiles)}
+#'
+#' \href{https://ga-dev-tools.appspot.com/account-explorer/}{Google Analytics Demos & Tools - Account Explorer}
 #'
 #' @family The Google Analytics Management API
 #'

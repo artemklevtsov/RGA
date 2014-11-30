@@ -2,6 +2,11 @@
 #'
 #' @param data dataset to show (now available only \code{ga}).
 #'
+#' @references
+#' \href{https://developers.google.com/analytics/devguides/reporting/core/dimsmets}{Core Reporting API - Dimensions & Metrics Reference}
+#'
+#' @seealso \code{\link{ga}} \code{\link{get_ga}}
+#'
 #' @return \code{shiny.appobj} class object to show \code{\link{ga}} dataset.
 #'
 #' @export

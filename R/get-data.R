@@ -119,8 +119,7 @@ get_data <- function(type = c("ga", "rt", "mcf", "mgmt"), path = NULL, query = N
     if (is.null(query$max.results)) {
         pagination <- TRUE
         query$max.results <- results_limit
-    }
-    else {
+    } else {
         pagination <- FALSE
         stopifnot(query$max.results <= results_limit)
     }

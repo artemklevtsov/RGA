@@ -37,6 +37,8 @@ Lists web properties which the user has access to
 }
 \references{
 \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/webproperties}{Google Management API - Web Properties}
+
+\href{https://ga-dev-tools.appspot.com/account-explorer/}{Google Analytics Demos & Tools - Account Explorer}
 }
 \seealso{
 \code{\link{authorize}}

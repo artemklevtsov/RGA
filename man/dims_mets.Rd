@@ -14,4 +14,10 @@ dims_mets(data = ga)
 \description{
 The shiny app to lists all columns for a Google Analytics given report type
 }
+\references{
+\href{https://developers.google.com/analytics/devguides/reporting/core/dimsmets}{Core Reporting API - Dimensions & Metrics Reference}
+}
+\seealso{
+\code{\link{ga}} \code{\link{get_ga}}
+}
 
