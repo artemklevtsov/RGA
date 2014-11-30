@@ -10,8 +10,8 @@ build_ga <- function(data, cols) {
 build_mcf <- function(data, cols) {
     cols$name <- gsub("^mcf:", "", cols$name)
     if ("MCF_SEQUENCE" %in% cols$dataType) {
-        primitive.idx <- grep("MCF_SEQUENCE", cols$dataType, invert = TRUE)
-        conversion.idx <- grep("MCF_SEQUENCE", cols$dataType)
+        primitive.idx <- grep("MCF_SEQUENCE", cols$dataType, fixed = TRUE, invert = TRUE)
+        conversion.idx <- grep("MCF_SEQUENCE", cols$dataType, fixed = TRUE)
         primitive <- lapply(data, function(x) .subset2(x, "primitiveValue")[primitive.idx])
         primitive <- do.call(rbind, primitive)
         colnames(primitive) <- cols$name[primitive.idx]

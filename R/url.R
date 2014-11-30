@@ -4,11 +4,11 @@
 build_path <- function(x) {
     x <- compact(x)
     params <- names(x)
-    params <- gsub("\\.", "-", params)
+    params <- gsub(".", "-", params, fixed = TRUE)
     values <- as.vector(x, mode = "character")
     string <- paste(params, values, sep = "/", collapse = "/")
     string <- sub("^/", "", string)
-    string <- gsub("//", "/", string)
+    string <- gsub("//", "/", string, fixed = TRUE)
     return(string)
 }
 
@@ -19,8 +19,9 @@ build_path <- function(x) {
 build_query <- function(x) {
     x <- compact(x)
     params <- names(x)
-    params <- gsub("\\.", "-", params)
-    params <- gsub("profile-id", "ids", params)
+    params <- sub("profile.id", "ids", params, fixed = TRUE)
+    params <- sub("sampling.level", "samplingLevel", params, fixed = TRUE)
+    params <- gsub(".", "-", params, fixed = TRUE)
     values <- as.vector(x, mode = "character")
     values <- enc2utf8(values)
     values <- curlEscape(values)
