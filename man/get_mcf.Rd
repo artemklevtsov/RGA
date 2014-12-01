@@ -5,8 +5,8 @@
 \usage{
 get_mcf(profile.id, start.date = "7daysAgo", end.date = "yesterday",
   metrics = "mcf:totalConversions", dimensions = NULL, sort = NULL,
-  filters = NULL, start.index = NULL, max.results = NULL, token,
-  verbose = getOption("rga.verbose", FALSE))
+  filters = NULL, sampling.level = NULL, start.index = NULL,
+  max.results = NULL, token, verbose = getOption("rga.verbose", FALSE))
 }
 \arguments{
 \item{profile.id}{integer or character. Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID.}
@@ -22,6 +22,8 @@ get_mcf(profile.id, start.date = "7daysAgo", end.date = "yesterday",
 \item{sort}{character. character. A comma-separated list of dimensions or metrics that determine the sort order for Analytics data.}
 
 \item{filters}{character. A comma-separated list of dimension or metric filters to be applied to Analytics data.}
+
+\item{sampling.level}{character. The desired sampling level. Allowed values: "default", "faster", "higher_precision".}
 
 \item{start.index}{integer. An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.}
 

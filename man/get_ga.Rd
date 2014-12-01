@@ -5,8 +5,9 @@
 \usage{
 get_ga(profile.id, start.date = "7daysAgo", end.date = "yesterday",
   metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = NULL,
-  sort = NULL, filters = NULL, segment = NULL, start.index = NULL,
-  max.results = NULL, token, verbose = getOption("rga.verbose", FALSE))
+  sort = NULL, filters = NULL, segment = NULL, sampling.level = NULL,
+  start.index = NULL, max.results = NULL, token,
+  verbose = getOption("rga.verbose", FALSE))
 }
 \arguments{
 \item{profile.id}{integer or character. Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID.}
@@ -24,6 +25,8 @@ get_ga(profile.id, start.date = "7daysAgo", end.date = "yesterday",
 \item{filters}{character. A comma-separated list of dimension or metric filters to be applied to Analytics data.}
 
 \item{segment}{character. An Analytics segment to be applied to data. Can be obtained using the \code{\link{get_segments}} or via the web interface Google Analytics.}
+
+\item{sampling.level}{character. The desired sampling level. Allowed values: "default", "faster", "higher_precision".}
 
 \item{start.index}{integer. An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.}
 
@@ -53,6 +56,8 @@ ga_data <- get_ga("myProfileID", start.date = "30daysAgo", end.date = "today",
 \href{https://developers.google.com/analytics/devguides/reporting/core/dimsmets}{Core Reporting API - Dimensions & Metrics Reference}
 
 \href{https://developers.google.com/analytics/devguides/reporting/core/v3/common-queries}{Core Reporting API - Common Queries}
+
+\href{https://ga-dev-tools.appspot.com/explorer/}{oogle Analytics Demos & Tools - Query Explorer}
 }
 \seealso{
 \code{\link{authorize}}

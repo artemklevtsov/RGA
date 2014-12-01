@@ -19,6 +19,8 @@ fix_query <- function(query) {
         query$filters <- strip_ops(query$filters)
     if (!is.empty(query$segment))
         query$segment <- strip_ops(query$segment)
+    if (!is.empty(query$sampling.level))
+        query$sampling.level <- toupper(query$sampling.level)
     stopifnot(any(lapply(query, length) <= 1L))
     return(query)
 }

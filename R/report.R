@@ -66,6 +66,7 @@ get_report <- function(type = c("ga", "mcf", "rt"), query, token, verbose = getO
 #' @param sort  character. A comma-separated list of dimensions or metrics that determine the sort order for Analytics data.
 #' @param filters character. A comma-separated list of dimension or metric filters to be applied to Analytics data.
 #' @param segment character. An Analytics segment to be applied to data. Can be obtained using the \code{\link{get_segments}} or via the web interface Google Analytics.
+#' @param sampling.level character. The desired sampling level. Allowed values: "default", "faster", "higher_precision".
 #' @param start.index integer. An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
 #' @param max.results integer. The maximum number of entries to include in this feed.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
@@ -77,6 +78,8 @@ get_report <- function(type = c("ga", "mcf", "rt"), query, token, verbose = getO
 #' \href{https://developers.google.com/analytics/devguides/reporting/core/dimsmets}{Core Reporting API - Dimensions & Metrics Reference}
 #'
 #' \href{https://developers.google.com/analytics/devguides/reporting/core/v3/common-queries}{Core Reporting API - Common Queries}
+#'
+#' \href{https://ga-dev-tools.appspot.com/explorer/}{oogle Analytics Demos & Tools - Query Explorer}
 #'
 #' @seealso \code{\link{authorize}}
 #'
@@ -96,7 +99,8 @@ get_report <- function(type = c("ga", "mcf", "rt"), query, token, verbose = getO
 #'
 get_ga <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
                    metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = NULL,
-                   sort = NULL, filters = NULL, segment = NULL, start.index = NULL, max.results = NULL,
+                   sort = NULL, filters = NULL, segment = NULL, sampling.level = NULL,
+                   start.index = NULL, max.results = NULL,
                    token, verbose = getOption("rga.verbose", FALSE)) {
     stopifnot(!is.null(profile.id), nzchar(profile.id),
               !is.null(start.date), nzchar(start.date),
@@ -104,7 +108,8 @@ get_ga <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
               !is.null(metrics), nzchar(metrics))
     query <- list(profile.id = profile.id, start.date = start.date, end.date = end.date,
                   metrics = metrics, dimensions = dimensions, sort = sort, filters = filters,
-                  segment = segment, start.index = start.index, max.results = max.results)
+                  segment = segment, sampling.level = match.arg(sampling.level, c("default", "faster", "higher_precision")),
+                  start.index = start.index, max.results = max.results)
     res <- get_report(type = "ga", query = query, token = token, verbose = verbose)
     return(res)
 }
@@ -118,6 +123,7 @@ get_ga <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
 #' @param dimensions character. A comma-separated list of Multi-Channel Funnels dimensions. E.g., code{"mcf:source,mcf:medium"}.
 #' @param sort character. character. A comma-separated list of dimensions or metrics that determine the sort order for Analytics data.
 #' @param filters character. A comma-separated list of dimension or metric filters to be applied to Analytics data.
+#' @param sampling.level character. The desired sampling level. Allowed values: "default", "faster", "higher_precision".
 #' @param start.index integer. An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
 #' @param max.results integer. The maximum number of entries to include in this feed.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
@@ -146,7 +152,8 @@ get_ga <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
 #'
 get_mcf <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
                     metrics = "mcf:totalConversions", dimensions = NULL,
-                    sort = NULL, filters = NULL, start.index = NULL, max.results = NULL,
+                    sort = NULL, filters = NULL, sampling.level = NULL,
+                    start.index = NULL, max.results = NULL,
                     token, verbose = getOption("rga.verbose", FALSE)) {
     stopifnot(!is.null(profile.id), nzchar(profile.id),
               !is.null(start.date), nzchar(start.date),
@@ -154,6 +161,7 @@ get_mcf <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
               !is.null(metrics), nzchar(metrics))
     query <- list(profile.id = profile.id, start.date = start.date, end.date = end.date,
                   metrics = metrics, dimensions = dimensions, sort = sort, filters = filters,
+                  sampling.level = match.arg(sampling.level, c("default", "faster", "higher_precision")),
                   start.index = start.index, max.results = max.results)
     res <- get_report(type = "mcf", query = query, token = token, verbose = verbose)
     return(res)
