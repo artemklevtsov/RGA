@@ -9,7 +9,7 @@ get_mcf(profile.id, start.date = "7daysAgo", end.date = "yesterday",
   max.results = NULL, token, verbose = getOption("rga.verbose", FALSE))
 }
 \arguments{
-\item{profile.id}{integer or character. Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID.}
+\item{profile.id}{integer or character. Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID. Can be obtained using the \code{\link{list_profiles}} or via the web interface Google Analytics.}
 
 \item{start.date}{character. Start date for fetching Analytics data. Request can specify a start date formatted as YYYY-MM-DD or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is 7daysAgo.}
 

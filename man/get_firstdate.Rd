@@ -6,7 +6,7 @@
 get_firstdate(profile.id, token, verbose = getOption("rga.verbose", FALSE))
 }
 \arguments{
-\item{profile.id}{Google Analytics profile ID.}
+\item{profile.id}{Google Analytics profile ID. Can be obtained using the \code{\link{list_profiles}} or via the web interface Google Analytics.}
 
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
 

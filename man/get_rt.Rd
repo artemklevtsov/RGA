@@ -8,7 +8,7 @@ get_rt(profile.id, metrics = "rt:activeUsers", dimensions = NULL,
   verbose = getOption("rga.verbose", FALSE))
 }
 \arguments{
-\item{profile.id}{integer or character. Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID.}
+\item{profile.id}{integer or character. Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID. Can be obtained using the \code{\link{list_profiles}} or via the web interface Google Analytics.}
 
 \item{metrics}{character. A comma-separated list of real time metrics. E.g., \code{"rt:activeUsers"}. At least one metric must be specified.}
 

@@ -10,7 +10,7 @@ get_ga(profile.id, start.date = "7daysAgo", end.date = "yesterday",
   verbose = getOption("rga.verbose", FALSE))
 }
 \arguments{
-\item{profile.id}{integer or character. Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID.}
+\item{profile.id}{integer or character. Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID. Can be obtained using the \code{\link{list_profiles}} or via the web interface Google Analytics.}
 
 \item{start.date}{character. Start date for fetching Analytics data. Request can specify the start date formatted as YYYY-MM-DD or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is 7daysAgo.}
 
@@ -24,7 +24,7 @@ get_ga(profile.id, start.date = "7daysAgo", end.date = "yesterday",
 
 \item{filters}{character. A comma-separated list of dimension or metric filters to be applied to Analytics data.}
 
-\item{segment}{character. An Analytics segment to be applied to data. Can be obtained using the \code{\link{get_segments}} or via the web interface Google Analytics.}
+\item{segment}{character. An Analytics segment to be applied to data. Can be obtained using the \code{\link{list_segments}} or via the web interface Google Analytics.}
 
 \item{sampling.level}{character. The desired sampling level. Allowed values: "default", "faster", "higher_precision".}
 
