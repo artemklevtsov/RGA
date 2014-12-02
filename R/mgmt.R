@@ -1,4 +1,4 @@
-# Get the management API data
+# Get the Management API data
 #' @include get-data.R
 #' @include convert.R
 #'

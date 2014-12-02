@@ -1,35 +1,4 @@
-#' @title Get Anaytics data for a view (profile)
-#'
-#' @description
-#' \code{get_report} provide a query the Core or Multi-Channel Funnels Reporting API for Google Analytics report data.
-#'
-#' @param type character. Report type.
-#' @param query \code{GAQuery} class object including a request parameters.
-#' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
-#' @param verbose logical. Should print information verbose?
-#'
-#' @return A data frame with Google Analytics reporting data. Columns are metrics and dimesnions.
-#'
-#' @examples
-#' \dontrun{
-#' # get token data
-#' authorize(client.id = "myID", client.secret = "mySecret")
-#' # set query
-#' ga_query <- list("ProfileID", start.date = "30daysAgo", end.date = "today",
-#'                  metrics = "ga:sessions", dimensions = "ga:source,ga:medium"
-#'                  sort = "-ga:sessions")
-#' # get report data
-#' ga_data <- get_report(type = "ga", ga_query)
-#' }
-#'
-#' @seealso \code{\link{authorize}}
-#'
-#' @family The Google Analytics Reporting API
-#'
-#' @keywords internal
-#'
-#' @noRd
-#'
+# Get the Report API data
 #' @include query.R
 #' @include get-data.R
 #' @include convert.R
