@@ -73,7 +73,7 @@ You can return to the Google Developers Console at any time to view the **Client
 Once you have the package loaded, there are 3 steps you need to use to get data from **Google Analytics**:
 
 1. Authorize this package to access your Google Analytics data with the `authorize` function.
-1. Determine the profile ID which you want to get access to with the `get_profiles` function.
+1. Determine the profile ID which you want to get access to with the `list_profiles` function.
 1. Get the results from the API with one of these functions: `get_ga`, `get_mcf` or `get_rt`.
 
 ### Obtain an access token
@@ -92,7 +92,7 @@ Access token can also be stored in a variable and passed as the argument to the 
 
 ```R
 ga_token <- authorize(client.id = "My_Client_ID", client.secret = "My_Client_secret")
-get_profiles(token = ga_token)
+list_profiles(token = ga_token)
 ```
 
 When the `cache` argument is ​​assigned the `TRUE` (default) and  the `httr_oauth_cache` option is not changed, then after successful authorization the `.httr-oauth` file with access data to Google API will be created in the current working directory. The `.httr-oauth` file is used between sessions, i.e. at a subsequent call to the `authorize`  function and authorization in the browser tab is not required. Using the `cache` argument you can also cancel the creation of the file (`FALSE` value) or specify an alternate path to the file storage (in this case It is necessary to specify the path and file name explicitly).
@@ -133,26 +133,26 @@ home_token <- authorize(client.id2, client.secret2, cache = "home.token")
 Then pass this token to other functions:
 
 ```R
-get_profiles(token = work_token)
-get_profiles(token = home_token)
+list_profiles(token = work_token)
+list_profiles(token = home_token)
 ```
 
 ### Obtain the access to the Management API
 
-To access the Management API Google Analytics package `RGA` provides the following functions: `get_accounts`, `get_webproperties`, `get_profiles`, `get_goals` и `get_segments`. Each of these functions return a table of data (`data.frame`), with the relevant content.
+To access the Management API Google Analytics package `RGA` provides the following functions: `list_accounts`, `list_webproperties`, `list_profiles`, `list_goals` и `list_segments`. Each of these functions return a table of data (`data.frame`), with the relevant content.
 
 Let's review these functions in details:
 
-* `get_accounts` - getting the list of accounts which the user has access to;
-* `get_webproperties` - getting a list of web properties (Web Properties) which the user has access to;
-* `get_profiles` - getting a list of web properties (Web Properties) and views (Profiles) sites which the user has access to;
-* `get_goals` - obtaining a list of goals which the user has access to;
-* `get_segments` - obtaining a list of segments which the user has access to;
+* `list_accounts` - getting the list of accounts which the user has access to;
+* `list_webproperties` - getting a list of web properties (Web Properties) which the user has access to;
+* `list_profiles` - getting a list of web properties (Web Properties) and views (Profiles) sites which the user has access to;
+* `list_goals` - obtaining a list of goals which the user has access to;
+* `list_segments` - obtaining a list of segments which the user has access to;
 
-The functions such as `get_webproperties`, `get_profiles` and `get_goals` can be specified with the additional arguments such as `account.id`, `webproperty.id` or `profile.id`  which are required to obtain the information for specific account, resource or profile (view the help pages for the corresponding functions). This is an example of obtaining the information on all views (profiles):
+The functions such as `list_webproperties`, `list_profiles` and `list_goals` can be specified with the additional arguments such as `account.id`, `webproperty.id` or `profile.id`  which are required to obtain the information for specific account, resource or profile (view the help pages for the corresponding functions). This is an example of obtaining the information on all views (profiles):
 
 ```R
-get_profiles()
+list_profiles()
 ```
 
 ### Obtain an access to the Reporting API
@@ -165,14 +165,14 @@ To access the Reporting API Google Analytics package `RGA` provides the followin
 
 The following parameters are available for queries to the API reports:
 
-* `profile.id` - profile (view) ID. Can be obtained using the `get_profiles` or via the web interface Google Analytics;
+* `profile.id` - profile (view) ID. Can be obtained using the `list_profiles` or via the web interface Google Analytics. Can be obtained using the `list_profiles` or via the web interface Google Analytics;
 * `start.date` - the start date for collecting data formatted as YYYY-MM-DD. Also values such as "today", "yesterday", "ndaysAgo" are allowed, where n is the number of days;
 * `end.date` - the end date for collecting data formatted as YYYY-MM-DD. Also values such as "today", "yesterday", "ndaysAgo" are allowed, where n is the number of days;
 * `metrics` -  comma-separated list of values ​​of metrics (metrics), for example, `"ga:sessions,ga:bounces"`. The number of metrics cannot exceed 10 indicators for a single request;
 * `dimensions` - comma-separated list of values ​​of measurements (dimensions), for example, `"ga:browser,ga:city"`. The number of dimensions cannot exceed 7 measurements at a single request;
 * `sort` - comma-separated list of metrics (metrics) and measurements (dimensions) which determine the order and direction of sorting data. The reverse sort order is defined by “-“ before the relevant metric;
 * `filters` - comma-separated list of metric (metrics) and measurement (dimensions) filters that are imposed when data is selected;
-* `segment` - segments that are used when retrieving data. Can be obtained using the `get_segments` or via the web interface Google Analytics;
+* `segment` - segments that are used when retrieving data. Can be obtained using the `list_segments` or via the web interface Google Analytics;
 * `start.index` - index of the first returned result (line number);
 * `max.results` - maximum number of fields (rows) of the returned results;
 * `token` - object of class `Token2.0` which contains data with a valid authorization data. Can be obtained using the `authorize` function;
