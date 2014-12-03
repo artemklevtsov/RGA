@@ -46,7 +46,7 @@ make_request = function(url, simplify = TRUE, token, verbose = getOption("rga.ve
             request <- GET(url = url, config = config(token = token))
         } else {
             if (verbose)
-                message("Send request without authorise data.")
+                message("Send request without OAuth Token.")
             request <- GET(url = url)
         }
     }
