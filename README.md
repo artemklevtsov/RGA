@@ -88,12 +88,7 @@ After calling this function first time, a web browser will be opened. First entr
 
 When the `authorize` function is used, the `GAToken` variable is created in the separate `TokenEnv` environment which not visible for user. So, there is no need to pass every time the `token` argument to any function which requires authorization.
 
-Access token can also be stored in a variable and passed as the argument to the functions which request the API Google Analytics. It can be useful when you are working with several accounts at the same time.
-
-```R
-ga_token <- authorize(client.id = "My_Client_ID", client.secret = "My_Client_secret")
-list_profiles(token = ga_token)
-```
+Access token can also be stored in a variable and passed as the argument to the functions which request the API Google Analytics. It can be useful when you are working with several accounts at the same time (for details see next subsection).
 
 When the `cache` argument is ​​assigned the `TRUE` (default) and  the `httr_oauth_cache` option is not changed, then after successful authorization the `.httr-oauth` file with access data to Google API will be created in the current working directory. The `.httr-oauth` file is used between sessions, i.e. at a subsequent call to the `authorize`  function and authorization in the browser tab is not required. Using the `cache` argument you can also cancel the creation of the file (`FALSE` value) or specify an alternate path to the file storage (in this case It is necessary to specify the path and file name explicitly).
 
@@ -114,9 +109,9 @@ Sys.setenv(RGA_CLIENT_ID = "Client_ID", RGA_CLIENT_SECRET = "Client_secret")
 
 This string can be added to the file `.Rprofile` in the user's current оr home directory in order to set these variables automatically when the R session starts.
 
-#### getting access to GA API with multiple tokens
+#### Getting access to GA API with multiple tokens
 
-If you want to work with `RGA` package with client.ids and client.secrets from different accounts (for example from business account at work and personal account at home) you need to clearly distinguish them. The best way in this case is creating two different tokens with disabled `cache` option:
+If you want to work with `RGA` package with multiple client.ids and client.secrets from different accounts (for example from business account at work and personal account at home) you need to clearly distinguish them. The best way in this case is creating two different tokens with disabled `cache` option:
 
 ```R
 work_token <- authorize(client.id1, client.secret1, cache = FALSE)
@@ -173,6 +168,7 @@ The following parameters are available for queries to the API reports:
 * `sort` - comma-separated list of metrics (metrics) and measurements (dimensions) which determine the order and direction of sorting data. The reverse sort order is defined by “-“ before the relevant metric;
 * `filters` - comma-separated list of metric (metrics) and measurement (dimensions) filters that are imposed when data is selected;
 * `segment` - segments that are used when retrieving data. Can be obtained using the `list_segments` or via the web interface Google Analytics;
+* `sampling.level` - the desired sampling level. Allowed values: "default", "faster", "higher_precision";
 * `start.index` - index of the first returned result (line number);
 * `max.results` - maximum number of fields (rows) of the returned results;
 * `token` - object of class `Token2.0` which contains data with a valid authorization data. Can be obtained using the `authorize` function;
