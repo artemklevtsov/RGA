@@ -97,19 +97,19 @@ list_profiles(token = ga_token)
 
 When the `cache` argument is ​​assigned the `TRUE` (default) and  the `httr_oauth_cache` option is not changed, then after successful authorization the `.httr-oauth` file with access data to Google API will be created in the current working directory. The `.httr-oauth` file is used between sessions, i.e. at a subsequent call to the `authorize`  function and authorization in the browser tab is not required. Using the `cache` argument you can also cancel the creation of the file (`FALSE` value) or specify an alternate path to the file storage (in this case It is necessary to specify the path and file name explicitly).
 
-Note: Besides the explicit specifying of the `client.id` and `client.secret` arguments, their values ​​can be defined via environment variables: `RGA_CONSUMER_ID` and `RGA_CONSUMER_SECRET`. In this case, specifying of the `client.id` and `client.secret` arguments is not required for calling `authorize` function.
+Note: Besides the explicit specifying of the `client.id` and `client.secret` arguments, their values ​​can be defined via environment variables: `RGA_CLIENT_ID` and `RGA_CLIENT_SECRET`. In this case, specifying of the `client.id` and `client.secret` arguments is not required for calling `authorize` function.
 
 Setting the environment variables is different for various operating systems. The user should refer to the relevant reference materials (view the list of references at the end of this manual). Also there is a setup method of the environment variables when running R sessions using the `.Renviron` files in the user's working or home directory. Contents of the file might look like this:
 
 ```txt
-RGA_CONSUMER_ID="My_Client_ID"
-RGA_CONSUMER_SECRET="My_Client_secret"
+RGA_CLIENT_ID="Client_ID"
+RGA_CLIENT_SECRET="Client_secret"
 ```
 
 Environment variables can also be set directly from R session using the `Sys.setenv` function. For instance:
 
 ```R
-Sys.setenv(RGA_CONSUMER_ID = "My_Client_ID", RGA_CONSUMER_SECRET = "My_Client_secret")
+Sys.setenv(RGA_CLIENT_ID = "Client_ID", RGA_CLIENT_SECRET = "Client_secret")
 ```
 
 This string can be added to the file `.Rprofile` in the user's current оr home directory in order to set these variables automatically when the R session starts.

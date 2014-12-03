@@ -7,9 +7,9 @@ authorize(client.id, client.secret, cache = TRUE,
   verbose = getOption("rga.verbose", FALSE))
 }
 \arguments{
-\item{client.id}{character. OAuth client ID. if client.id is missing, we'll look in the environment variable \code{RGA_CONSUMER_ID}.}
+\item{client.id}{character. OAuth client ID. if client.id is missing, we'll look in the environment variable \code{RGA_CLIENT_ID}.}
 
-\item{client.secret}{character. OAuth client secret. if client.secret is missing, we'll look in the environment variable \code{RGA_CONSUMER_SECRET}.}
+\item{client.secret}{character. OAuth client secret. if client.secret is missing, we'll look in the environment variable \code{RGA_CLIENT_SECRET}.}
 
 \item{cache}{logical or character. \code{TRUE} means to cache using the default cache file \code{.oauth-httr}, \code{FALSE} means not to cache. A string means to use the specified path as the cache file.}
 
@@ -41,7 +41,7 @@ When the \code{authorize} function is used the \code{GAToken} variable is create
 \examples{
 \dontrun{
 authorize(client.id = "myID", client.secret = "mySecret")
-# if set RGA_CONSUMER_ID and RGA_CONSUMER_SECRET environment variables
+# if set RGA_CLIENT_ID and RGA_CLIENT_SECRET environment variables
 authorize()
 # assign token to variable
 ga_token <- authorize(client.id = "myID", client.secret = "mySecret")
