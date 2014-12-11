@@ -19,7 +19,7 @@ list_accounts(start.index = NULL, max.results = NULL, token,
 An account collection provides a list of Analytics accounts to which a user has access. The account collection is the entry point to all management information. Each resource in the collection corresponds to a single Analytics account.
 \item{id}{Account ID.}
 \item{name}{Account name.}
-\item{permissions}{All the permissions that the user has for this account. These include any implied permissions (e.g., EDIT implies VIEW).}
+\item{permissions}{Permissions the user has for this account.}
 \item{created}{Time the account was created.}
 \item{updated}{Time the account was last modified.}
 }
@@ -34,7 +34,11 @@ Lists all accounts which the user has access to
 \seealso{
 \code{\link{authorize}}
 
-Other The Google Analytics Management API: \code{\link{list_custom_sources}};
+Other The Google Analytics Management API: \code{\link{get_goal}};
+  \code{\link{get_profile}};
+  \code{\link{get_unsampled_report}};
+  \code{\link{get_webproperty}};
+  \code{\link{list_custom_sources}};
   \code{\link{list_goals}}; \code{\link{list_profiles}};
   \code{\link{list_segments}};
   \code{\link{list_unsampled_reports}};

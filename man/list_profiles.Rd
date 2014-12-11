@@ -8,9 +8,9 @@ list_profiles(account.id = "~all", webproperty.id = "~all",
   verbose = getOption("rga.verbose", FALSE))
 }
 \arguments{
-\item{account.id}{integer or character. Account ID for the view (profiles) to retrieve. Can either be a specific account ID or '~all', which refers to all the accounts which the user has access to. Requires specified account.id.}
+\item{account.id}{integer or character. Account ID for the view (profiles) to retrieve. Can either be a specific account ID or '~all', which refers to all the accounts which the user has access to.}
 
-\item{webproperty.id}{character. Web property ID for the views (profiles) to retrieve. Can either be a specific web property ID or '~all', which refers to all the web properties which the user has access to.}
+\item{webproperty.id}{character. Web property ID for the views (profiles) to retrieve. Can either be a specific web property ID or '~all', which refers to all the web properties which the user has access to. Requires specified \code{account.id}.}
 
 \item{start.index}{integer. An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.}
 
@@ -35,7 +35,7 @@ A view (profile) collection lists Analytics views (profiles) to which the user h
 \item{stripSiteSearchCategoryParameters}{Whether or not Analytics will strip search category parameters from the URLs in your reports.}
 \item{excludeQueryParameters}{The query parameters that are excluded from this view (profile).}
 \item{eCommerceTracking}{Indicates whether ecommerce tracking is enabled for this view (profile).}
-\item{permissions}{All the permissions that the user has for this view (profile). These include any implied permissions (e.g., EDIT implies VIEW) or inherited permissions from the parent web property.}
+\item{permissions}{Permissions the user has for this view (profile).}
 \item{created}{Time this view (profile) was created.}
 \item{updated}{Time this view (profile) was last modified.}
 }
@@ -50,7 +50,11 @@ Lists views (profiles) which the user has access to
 \seealso{
 \code{\link{authorize}}
 
-Other The Google Analytics Management API: \code{\link{list_accounts}};
+Other The Google Analytics Management API: \code{\link{get_goal}};
+  \code{\link{get_profile}};
+  \code{\link{get_unsampled_report}};
+  \code{\link{get_webproperty}};
+  \code{\link{list_accounts}};
   \code{\link{list_custom_sources}};
   \code{\link{list_goals}}; \code{\link{list_segments}};
   \code{\link{list_unsampled_reports}};

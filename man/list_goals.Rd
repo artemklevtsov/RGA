@@ -27,6 +27,7 @@ A goal collection lists Analytics goals to which the user has access. Each view 
 \item{id}{Goal ID (number).}
 \item{accountId}{Account ID which this goal belongs to.}
 \item{webPropertyId}{Web property ID which this goal belongs to. The web property ID is of the form UA-XXXXX-YY.}
+\item{internalWebPropertyId}{Internal ID for the web property to which this goal belongs.}
 \item{profileId}{View (Profile) ID to which this goal belongs.}
 \item{name}{Goal name.}
 \item{value}{Goal value.}
@@ -52,7 +53,11 @@ Lists goals which the user has access to
 \seealso{
 \code{\link{authorize}}
 
-Other The Google Analytics Management API: \code{\link{list_accounts}};
+Other The Google Analytics Management API: \code{\link{get_goal}};
+  \code{\link{get_profile}};
+  \code{\link{get_unsampled_report}};
+  \code{\link{get_webproperty}};
+  \code{\link{list_accounts}};
   \code{\link{list_custom_sources}};
   \code{\link{list_profiles}}; \code{\link{list_segments}};
   \code{\link{list_unsampled_reports}};
