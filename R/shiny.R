@@ -11,7 +11,7 @@
 #'
 #' @export
 #'
-#' @importFrom shiny shinyApp fluidPage titlePanel fluidRow column absolutePanel wellPanel checkboxGroupInput selectInput dataTableOutput renderDataTable
+#' @import shiny
 #'
 dims_mets <- function(data = ga) {
     shinyApp(
