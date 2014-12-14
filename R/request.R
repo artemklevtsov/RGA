@@ -10,7 +10,7 @@ set_curl_opts <- function() {
 
 #' @title Make a Goolge Analytics API request
 #'
-#' @param url character. The url of the page to retrieve.
+#' @param url character. The url of the request.
 #' @param simplify logical. See \code{\link[jsonlite]{fromJSON}}.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
 #' @param verbose logical. Should print information verbose?
@@ -27,7 +27,6 @@ set_curl_opts <- function() {
 make_request = function(url, simplify = TRUE, token, verbose = getOption("rga.verbose", FALSE)) {
     stopifnot(is.character(url) && length(url) == 1L)
     set_curl_opts()
-    # Print the URL to the console
     if (verbose) {
         message("Sending request to the Google Analytics API...")
         message(paste("Query URL:", url))
@@ -50,18 +49,14 @@ make_request = function(url, simplify = TRUE, token, verbose = getOption("rga.ve
             request <- GET(url = url)
         }
     }
-    # Send query to Google Analytics API and capture the JSON reponse
     if (verbose)
         message(paste("HTTP status", http_status(request)$message))
-    # Convert the JSON response into a R list
     data_json <- fromJSON(content(request, as = "text"), simplifyVector = simplify, flatten = TRUE)
-    # Parse API error messages
     if (!is.null(data_json$error)) {
         code <- http_status(request)$message
         reasons <- data_json$error$errors$message
         stop(paste(code, paste("Reason:", reasons, collapse = "\n"), sep = "\n"))
     }
-    # Return the list containing Google Analytics API response
     return(data_json)
 }
 

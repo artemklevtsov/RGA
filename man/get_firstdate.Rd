@@ -22,7 +22,7 @@ Get the first date with available data
 \examples{
 \dontrun{
 authorize(client.id = "myID", client.secret = "mySecret")
-first.date <- get_firstdate(profile.id = "myProfileID")
+first_date <- get_firstdate(profile.id = "myProfileID")
 }
 }
 \seealso{

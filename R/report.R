@@ -1,7 +1,31 @@
-# Get the Report API data
+#' @title Get the Anaytics reporting data
+#'
+#' @param type character. Report type. Allowed values: ga, mcf, rt.
+#' @param query list. List of the data request query parameters.
+#' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
+#' @param verbose logical. Should print information verbose?
+#'
+#' @return A data frame including the Analytics data for a view (profile).
+#'
+#' @keywords internal
+#'
 #' @include query.R
 #' @include get-data.R
 #' @include convert.R
+#'
+#' @noRd
+#'
+#' @examples
+#' \dontrun{
+#' # get token data
+#' authorize(client.id = "myID", client.secret = "mySecret")
+#' # set query
+#' query <- list(profile.id = "XXXXXXXX", start.date = "31daysAgo", end.date = "today",
+#'               metrics = "ga:users,ga:sessions", dimensions = "ga:userType")
+
+#' # get report data
+#' ga_data <- get_report(type = "ga", query = query)
+#' }
 #'
 get_report <- function(type = c("ga", "mcf", "rt"), query, token, verbose = getOption("rga.verbose", FALSE)) {
     type <- match.arg(type)
@@ -9,14 +33,14 @@ get_report <- function(type = c("ga", "mcf", "rt"), query, token, verbose = getO
     data_json <- get_data(type = type, query = query, token = token, verbose = verbose)
     rows <- data_json$rows
     cols <- data_json$columnHeaders
-    if (data_json$totalResults == 0 || is.null(rows)) {
+    if (data_json$totalResults == 0L || is.null(rows)) {
         message("No results were obtained.")
         return(NULL)
     }
     if (is.list(rows)) {
-        if (is.matrix(rows[[1]]))
+        if (is.matrix(rows[[1L]]))
             rows <- do.call(rbind, rows)
-        else if (is.list(rows[[1]]) && !is.data.frame(rows[[1]]))
+        else if (is.list(rows[[1L]]) && !is.data.frame(rows[[1L]]))
             rows <- do.call(c, rows)
     }
     if (!is.null(data_json$containsSampledData) && data_json$containsSampledData)
@@ -198,7 +222,7 @@ get_rt <- function(profile.id, metrics = "rt:activeUsers", dimensions = NULL,
 #' @examples
 #' \dontrun{
 #' authorize(client.id = "myID", client.secret = "mySecret")
-#' first.date <- get_firstdate(profile.id = "myProfileID")
+#' first_date <- get_firstdate(profile.id = "myProfileID")
 #' }
 #'
 #' @export
