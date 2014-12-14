@@ -5,10 +5,10 @@
 get_data <- function(type = c("ga", "rt", "mcf", "mgmt"), path = NULL, query = NULL, token, verbose = getOption("rga.verbose", FALSE)) {
     type <- match.arg(type)
     if (type == "mgmt") {
-        results_limit <- 1000
+        results_limit <- 1000L
         items_name <- "items"
     } else {
-        results_limit <- 10000
+        results_limit <- 10000L
         items_name <- "rows"
     }
     if (is.null(query$max.results)) {

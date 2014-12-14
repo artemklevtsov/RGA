@@ -5,7 +5,7 @@
 get_mgmt <- function(path, query, token, verbose = getOption("rga.verbose", FALSE)) {
     data_json <- get_data(type = "mgmt", path = path, query = query, token = token, verbose = verbose)
     items <- data_json[["items"]]
-    if (data_json$totalResults == 0 || is.null(items)) {
+    if (data_json$totalResults == 0L || is.null(items)) {
         message("No results were obtained.")
         return(NULL)
     }
