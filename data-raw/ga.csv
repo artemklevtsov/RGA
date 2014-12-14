@@ -98,8 +98,8 @@
 "ga:mobileDeviceMarketingName","DIMENSION","STRING","Platform or Device","PUBLIC","Mobile Device Marketing Name","The marketing name used for the mobile device.",TRUE,NA,NA,NA,NA,NA,NA
 "ga:deviceCategory","DIMENSION","STRING","Platform or Device","PUBLIC","Device Category","The type of device: desktop, tablet, or mobile.",TRUE,NA,NA,NA,NA,NA,NA
 "ga:continent","DIMENSION","STRING","Geo Network","PUBLIC","Continent","The continents of property users, derived from IP addresses.",TRUE,NA,NA,NA,NA,NA,NA
-"ga:subContinent","DIMENSION","STRING","Geo Network","PUBLIC","Sub Continent Region","The sub-continent of users, derived from IP addresses. For example, Polynesia or Northern Europe.",TRUE,NA,NA,NA,NA,NA,NA
-"ga:country","DIMENSION","STRING","Geo Network","PUBLIC","Country / Territory","The country of users, derived from IP addresses.",TRUE,NA,NA,NA,NA,NA,NA
+"ga:subContinent","DIMENSION","STRING","Geo Network","PUBLIC","Sub Continent","The sub-continent of users, derived from IP addresses. For example, Polynesia or Northern Europe.",TRUE,NA,NA,NA,NA,NA,NA
+"ga:country","DIMENSION","STRING","Geo Network","PUBLIC","Country","The country of users, derived from IP addresses.",TRUE,NA,NA,NA,NA,NA,NA
 "ga:region","DIMENSION","STRING","Geo Network","PUBLIC","Region","The region of users to your property, derived from IP addresses. In the U.S., a region is a state, such as New York.",TRUE,NA,NA,NA,NA,NA,NA
 "ga:metro","DIMENSION","STRING","Geo Network","PUBLIC","Metro","The Designated Market Area (DMA) from where traffic arrived on your property.",TRUE,NA,NA,NA,NA,NA,NA
 "ga:city","DIMENSION","STRING","Geo Network","PUBLIC","City","The cities of property users, derived from IP addresses.",TRUE,NA,NA,NA,NA,NA,NA
