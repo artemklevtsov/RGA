@@ -2,5 +2,6 @@
 .Rhistory
 .RData
 .httr-oauth
+.ga-token.rds
 .Renviron
 tmp
