@@ -63,6 +63,8 @@ env_exists <- function(...) {
 #' @seealso
 #' Other OAuth: \code{\link[httr]{oauth_app}} \code{\link[httr]{oauth2.0_token}} \code{\link[httr]{Token-class}}
 #'
+#' To revoke all tokens: \code{\link[httr]{revoke_all}}
+#'
 #' Setup environment variables: \code{\link{Startup}}
 #'
 #' @examples
@@ -79,7 +81,7 @@ env_exists <- function(...) {
 #'
 #' @export
 #'
-authorize <- function(client.id, client.secret, cache = TRUE, verbose = getOption("rga.verbose", FALSE)) {
+authorize <- function(client.id, client.secret, cache = getOption("rga.cache"), verbose = getOption("rga.verbose")) {
     if (missing(client.id) || missing(client.secret)) {
         if (all(env_exists("RGA_CLIENT_ID", "RGA_CLIENT_SECRET"))) {
             if (verbose)

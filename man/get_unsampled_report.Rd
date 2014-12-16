@@ -5,7 +5,7 @@
 \title{Getsa single unsampled report}
 \usage{
 get_unsampled_report(account.id, webproperty.id, profile.id,
-  unsampled.report.id, token, verbose = getOption("rga.verbose", FALSE))
+  unsampled.report.id, token, verbose = getOption("rga.verbose"))
 }
 \arguments{
 \item{account.id}{integer or character. Account ID to retrieve unsampled report for.}

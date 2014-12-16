@@ -5,7 +5,7 @@
 \title{Gets a web property to which the user has access to}
 \usage{
 get_webproperty(account.id, webproperty.id, token,
-  verbose = getOption("rga.verbose", FALSE))
+  verbose = getOption("rga.verbose"))
 }
 \arguments{
 \item{account.id}{integer or character. Account ID to retrieve the web property for.}

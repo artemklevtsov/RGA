@@ -24,7 +24,7 @@ set_curl_opts <- function() {
 #' @importFrom httr GET config content http_status
 #' @importFrom jsonlite fromJSON
 #'
-make_request = function(url, simplify = TRUE, token, verbose = getOption("rga.verbose", FALSE)) {
+make_request = function(url, simplify = TRUE, token, verbose = getOption("rga.verbose")) {
     stopifnot(is.character(url) && length(url) == 1L)
     set_curl_opts()
     if (verbose) {
@@ -76,7 +76,7 @@ make_request = function(url, simplify = TRUE, token, verbose = getOption("rga.ve
 #'
 #' @include url.R
 #'
-get_response <- function(type = c("ga", "rt", "mcf", "mgmt"), path = NULL, query = NULL, token, verbose = getOption("rga.verbose", FALSE)) {
+get_response <- function(type = c("ga", "rt", "mcf", "mgmt"), path = NULL, query = NULL, token, verbose = getOption("rga.verbose")) {
     type <- match.arg(type)
     url <- build_url(type = type, path = path, query = query)
     data_json <- make_request(url, token = token, verbose = verbose)

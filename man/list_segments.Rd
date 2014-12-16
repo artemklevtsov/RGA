@@ -5,7 +5,7 @@
 \title{Lists segments which the user has access to}
 \usage{
 list_segments(start.index = NULL, max.results = NULL, token,
-  verbose = getOption("rga.verbose", FALSE))
+  verbose = getOption("rga.verbose"))
 }
 \arguments{
 \item{start.index}{integer. An index of the first segment to retrieve. Use this parameter as a pagi- nation mechanism along with the max-results parameter.}

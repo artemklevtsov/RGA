@@ -5,7 +5,7 @@
 \title{Gets a goal to which the user has access to}
 \usage{
 get_goal(account.id, webproperty.id, profile.id, goal.id, token,
-  verbose = getOption("rga.verbose", FALSE))
+  verbose = getOption("rga.verbose"))
 }
 \arguments{
 \item{account.id}{integer or character. Account ID to retrieve the goal for.}

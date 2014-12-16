@@ -6,7 +6,7 @@
 \usage{
 list_unsampled_reports(account.id, webproperty.id, profile.id,
   start.index = NULL, max.results = NULL, token,
-  verbose = getOption("rga.verbose", FALSE))
+  verbose = getOption("rga.verbose"))
 }
 \arguments{
 \item{account.id}{integer or character. The account ID to retrieve unsampled reports for. Must be a specific account ID, ~all is not supported.}

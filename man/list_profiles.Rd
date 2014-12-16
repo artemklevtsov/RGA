@@ -6,7 +6,7 @@
 \usage{
 list_profiles(account.id = "~all", webproperty.id = "~all",
   start.index = NULL, max.results = NULL, token,
-  verbose = getOption("rga.verbose", FALSE))
+  verbose = getOption("rga.verbose"))
 }
 \arguments{
 \item{account.id}{integer or character. Account ID for the view (profiles) to retrieve. Can either be a specific account ID or '~all', which refers to all the accounts which the user has access to.}

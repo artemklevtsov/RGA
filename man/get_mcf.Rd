@@ -7,7 +7,7 @@
 get_mcf(profile.id, start.date = "7daysAgo", end.date = "yesterday",
   metrics = "mcf:totalConversions", dimensions = NULL, sort = NULL,
   filters = NULL, sampling.level = NULL, start.index = NULL,
-  max.results = NULL, token, verbose = getOption("rga.verbose", FALSE))
+  max.results = NULL, token, verbose = getOption("rga.verbose"))
 }
 \arguments{
 \item{profile.id}{integer or character. Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID. Can be obtained using the \code{\link{list_profiles}} or via the web interface Google Analytics.}

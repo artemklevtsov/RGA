@@ -27,7 +27,7 @@
 #' ga_data <- get_report(type = "ga", query = query)
 #' }
 #'
-get_report <- function(type = c("ga", "mcf", "rt"), query, token, verbose = getOption("rga.verbose", FALSE)) {
+get_report <- function(type = c("ga", "mcf", "rt"), query, token, verbose = getOption("rga.verbose")) {
     type <- match.arg(type)
     query <- fix_query(query)
     data_json <- get_data(type = type, query = query, token = token, verbose = verbose)
@@ -94,7 +94,7 @@ get_ga <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
                    metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = NULL,
                    sort = NULL, filters = NULL, segment = NULL, sampling.level = NULL,
                    start.index = NULL, max.results = NULL,
-                   token, verbose = getOption("rga.verbose", FALSE)) {
+                   token, verbose = getOption("rga.verbose")) {
     stopifnot(!is.null(profile.id), nzchar(profile.id),
               !is.null(start.date), nzchar(start.date),
               !is.null(end.date), nzchar(end.date),
@@ -147,7 +147,7 @@ get_mcf <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
                     metrics = "mcf:totalConversions", dimensions = NULL,
                     sort = NULL, filters = NULL, sampling.level = NULL,
                     start.index = NULL, max.results = NULL,
-                    token, verbose = getOption("rga.verbose", FALSE)) {
+                    token, verbose = getOption("rga.verbose")) {
     stopifnot(!is.null(profile.id), nzchar(profile.id),
               !is.null(start.date), nzchar(start.date),
               !is.null(end.date), nzchar(end.date),
@@ -198,7 +198,7 @@ get_mcf <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
 #'
 get_rt <- function(profile.id, metrics = "rt:activeUsers", dimensions = NULL,
                          sort = NULL, filters = NULL, max.results = NULL,
-                         token, verbose = getOption("rga.verbose", FALSE)) {
+                         token, verbose = getOption("rga.verbose")) {
     stopifnot(!is.null(profile.id), nzchar(profile.id),
               !is.null(metrics), nzchar(metrics))
     query <- list(profile.id = profile.id, metrics = metrics, dimensions = dimensions,
@@ -227,7 +227,7 @@ get_rt <- function(profile.id, metrics = "rt:activeUsers", dimensions = NULL,
 #'
 #' @export
 #'
-get_firstdate <- function(profile.id, token, verbose = getOption("rga.verbose", FALSE)) {
+get_firstdate <- function(profile.id, token, verbose = getOption("rga.verbose")) {
     res <- suppressWarnings(
         get_ga(profile.id = profile.id, start.date = "2005-01-01", end.date = "today",
                metrics = "ga:sessions", dimensions = "ga:date", filters = "ga:sessions>0",

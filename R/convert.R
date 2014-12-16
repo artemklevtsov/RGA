@@ -64,7 +64,7 @@ convert_datatypes <- function(data) {
 }
 
 # Build a data.frame for GA report data
-build_df <- function(type = c("ga", "mcf", "rt", "mgmt"), data, cols, verbose = getOption("rga.verbose", FALSE)) {
+build_df <- function(type = c("ga", "mcf", "rt", "mgmt"), data, cols, verbose = getOption("rga.verbose")) {
     if (verbose)
         message("Building data frame...")
     type <- match.arg(type)

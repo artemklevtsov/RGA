@@ -4,8 +4,8 @@
 \alias{authorize}
 \title{Authorize the RGA package to the user's Google Analytics account using OAuth2.0}
 \usage{
-authorize(client.id, client.secret, cache = TRUE,
-  verbose = getOption("rga.verbose", FALSE))
+authorize(client.id, client.secret, cache = getOption("rga.cache"),
+  verbose = getOption("rga.verbose"))
 }
 \arguments{
 \item{client.id}{character. OAuth client ID. if client.id is missing, we'll look in the environment variable \code{RGA_CLIENT_ID}.}
@@ -55,6 +55,8 @@ ga_token <- authorize(client.id = "myID", client.secret = "mySecret")
 }
 \seealso{
 Other OAuth: \code{\link[httr]{oauth_app}} \code{\link[httr]{oauth2.0_token}} \code{\link[httr]{Token-class}}
+
+To revoke all tokens: \code{\link[httr]{revoke_all}}
 
 Setup environment variables: \code{\link{Startup}}
 }

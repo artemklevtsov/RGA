@@ -5,7 +5,7 @@
 \title{List custom data sources which the user has access to}
 \usage{
 list_custom_sources(account.id, webproperty.id, start.index = NULL,
-  max.results = NULL, token, verbose = getOption("rga.verbose", FALSE))
+  max.results = NULL, token, verbose = getOption("rga.verbose"))
 }
 \arguments{
 \item{account.id}{integer or character. Account Id for the custom data sources to retrieve. Must be a specific account ID, ~all is not supported.}

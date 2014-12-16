@@ -2,7 +2,7 @@
 #' @include request.R
 #' @include get-pages.R
 #'
-get_data <- function(type = c("ga", "rt", "mcf", "mgmt"), path = NULL, query = NULL, token, verbose = getOption("rga.verbose", FALSE)) {
+get_data <- function(type = c("ga", "rt", "mcf", "mgmt"), path = NULL, query = NULL, token, verbose = getOption("rga.verbose")) {
     type <- match.arg(type)
     if (type == "mgmt") {
         results_limit <- 1000L
