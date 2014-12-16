@@ -291,3 +291,13 @@ show_dimsmets(ga)
 * [Setting environment variables in Windows XP](http://support.microsoft.com/kb/310519)
 * [Setting environment variables in earlier versions of OSX](https://developer.apple.com/library/mac/#documentation/MacOSX/Conceptual/BPRuntimeConfig/Articles/EnvironmentVars.html)
 * [Setting environment variables in Ubuntu Linux](https://help.ubuntu.com/community/EnvironmentVariables)
+
+## Bug reports
+
+To report a bug please type into R:
+
+```R
+utils::bug.report(package = "RGA")
+```
+
+or open this URL in browser: https://bitbucket.org/unikum/rga/issues.

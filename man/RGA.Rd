@@ -27,7 +27,7 @@ A package for extracting data from Google Analytics API into R.
   \item Auto-pagination to return more than 10,000 rows of the results by combining multiple data requests.
 }
 
-To report a bug please type: \code{utils::bug.report(package="RGA")}.
+To report a bug please type: \code{utils::bug.report(package = "RGA")}.
 }
 \examples{
 \dontrun{

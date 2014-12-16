@@ -20,7 +20,7 @@
 #'   \item Auto-pagination to return more than 10,000 rows of the results by combining multiple data requests.
 #' }
 #'
-#' To report a bug please type: \code{utils::bug.report(package="RGA")}.
+#' To report a bug please type: \code{utils::bug.report(package = "RGA")}.
 #'
 #' @author
 #' Artem Klevtsov \email{a.a.klevtsov@@gmail.com}
