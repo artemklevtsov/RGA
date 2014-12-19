@@ -10,6 +10,19 @@ compact <- function(x) {
     return(x[!empty])
 }
 
+tocamel <- function(x, delim = "\\W", upper = FALSE) {
+    stopifnot(is.character(x))
+    if (length(x) > 1)
+        return(vapply(x, tocamel, character(1)))
+    splitted <- strsplit(x, delim)[[1]]
+    first <- substring(splitted, 1, 1)
+    if (isTRUE(upper))
+        first <- toupper(first)
+    else
+        first[-1] <- toupper(first[-1])
+    return(paste0(first, substring(splitted, 2), sep = "", collapse = ""))
+}
+
 # Remove whitespaces
 strip_spaces <- function(x) {
     if (length(x) > 1L)
