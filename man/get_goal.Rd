@@ -52,11 +52,8 @@ Other The Google Analytics Management API: \code{\link{get_accounts}},
   \code{\link{list_goals}}; \code{\link{get_profiles}},
   \code{\link{list_profiles}}; \code{\link{get_profile}};
   \code{\link{get_segments}}, \code{\link{list_segments}};
-  \code{\link{get_unsampled_report}};
   \code{\link{get_webproperties}},
   \code{\link{list_webproperties}};
-  \code{\link{get_webproperty}};
-  \code{\link{list_custom_sources}};
-  \code{\link{list_unsampled_reports}}
+  \code{\link{get_webproperty}}
 }
 
