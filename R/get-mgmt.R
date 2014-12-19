@@ -86,8 +86,6 @@ get_profile <- function(account.id, webproperty.id, profile.id, token, verbose =
     return(res)
 }
 
-
-
 #' @title Gets a goal to which the user has access to
 #'
 #' @param account.id integer or character. Account ID to retrieve the goal for.
