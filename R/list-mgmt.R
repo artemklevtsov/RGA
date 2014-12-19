@@ -271,3 +271,86 @@ get_segments = function(start.index = NULL, max.results = NULL, token, verbose =
     res <- get_mgmt(path = path, query = query, token = token, verbose = verbose)
     return(res)
 }
+
+#' @title List custom data sources which the user has access to
+#'
+#' @param account.id integer or character. Account Id for the custom data sources to retrieve. Must be a specific account ID, ~all is not supported.
+#' @param webproperty.id character. Web property Id for the custom data sources to retrieve.  Must be a specific web property ID, ~all is not supported. Requires specified \code{account.id}.
+#' @param start.index integer. A 1-based index of the first custom data source to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+#' @param max.results integer. The maximum number of custom data sources to include in this response.
+#' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
+#' @param verbose logical. Should print information verbose?
+#'
+#' @return Lists Analytics custom data sources to which the user has access. Each resource in the collection corresponds to a single Analytics custom data source.
+#' \item{id}{Custom data source ID.}
+#' \item{accountId}{Account ID to which this custom data source belongs.}
+#' \item{webPropertyId}{Web property ID of the form UA-XXXXX-YY to which this custom data source belongs.}
+#' \item{name}{Name of this custom data source.}
+#' \item{description}{Description of custom data sourc}
+#' \item{type}{Type of the custom data source.}
+#' \item{uploadType}{The resource type with which the custom data source can be used to upload data; it can have the values "analytics#uploads" or "analytics#dailyUploads". Custom data sources with this property set to "analytics#dailyUploads" are deprecated and should be migrated using the uploads resource.}
+#' \item{importBehavior}{How cost data metrics are treated when there are duplicate keys. If this property is set to "SUMMATION" the values are added; if this property is set to "OVERWRITE" the most recent value overwrites the existing value.}
+#' \item{created}{Time this custom data source was created.}
+#' \item{updated}{Time this custom data source was last modified.}
+#'
+#' @seealso \code{\link{authorize}}
+#'
+#' @references
+#' \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/customDataSources}{Google Management API - Custom Data Sources}
+#'
+#' @family The Google Analytics Management API
+#'
+#' @export
+#'
+list_custom_sources <- function(account.id, webproperty.id, start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose")) {
+    path <- paste("accounts", account.id, "webproperties", webproperty.id, "customDataSources", sep = "/")
+    query <- list(start.index = start.index, max.results = max.results)
+    res <- get_mgmt(path = path, query = query, token = token, verbose = verbose)
+    return(res)
+}
+
+#' @title Lists unsampled reports which the user has access to
+#'
+#' @param account.id integer or character. The account ID to retrieve unsampled reports for. Must be a specific account ID, ~all is not supported.
+#' @param webproperty.id character. Web property ID to retrieve unsampled reports for. Must be a specific web property ID, ~all is not supported. Requires specified \code{account.id}.
+#' @param profile.id ineger or character. View (Profile) ID to retrieve unsampled reports for. Must be a specific view (profile) ID, ~all is not supported. Requires specified \code{account.id} and \code{webproperty.id}.
+#' @param start.index integer. An index of the first unsampled report to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+#' @param max.results integer. The maximum number of unsampled reports to include in this response.
+#' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
+#' @param verbose logical. Should print information verbose?
+#'
+#' @return An unsampled report collection lists Analytics unsampled reports to which the user has access. Each view (profile) can have a set of unsampled reports. Each resource in the unsampled report collection corresponds to a single Analytics unsampled report.
+#' \item{id}{Unsampled report ID.}
+#' \item{title}{Title of the unsampled report.}
+#' \item{accountId}{Account ID to which this unsampled report belongs.}
+#' \item{webPropertyId}{Web property ID to which this unsampled report belongs. The web property ID is of the form UA-XXXXX-YY.}
+#' \item{profileId}{View (Profile) ID to which this unsampled report belongs.}
+#' \item{start-date}{The start date for the unsampled report.}
+#' \item{end-date}{The end date for the unsampled report.}
+#' \item{metrics}{The metrics for the unsampled report.}
+#' \item{dimensions}{The dimensions for the unsampled report.}
+#' \item{filters}{The filters for the unsampled report.}
+#' \item{segment}{The segment for the unsampled report.}
+#' \item{status}{Status of this unsampled report. Possible values are PENDING, COMPLETED, or FAILED.}
+#' \item{downloadType}{The type of download you need to use for the report data file.}
+#' \item{driveDownloadDetails.documentId}{Id of the document/file containing the report data.}
+#' \item{cloudStorageDownloadDetails.bucketId}{Id of the bucket the file object is stored in.}
+#' \item{cloudStorageDownloadDetails.objectId}{Id of the file object containing the report data.}
+#' \item{created}{Time this unsampled report was created.}
+#' \item{updated}{Time this unsampled report was last modified.}
+#'
+#' @seealso \code{\link{authorize}}
+#'
+#' @references
+#' \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/unsampledReports}{Google Management API - Unsampled Reports}
+#'
+#' @family The Google Analytics Management API
+#'
+#' @export
+#'
+list_unsampled_reports <- function(account.id, webproperty.id, profile.id, start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose")) {
+    path <- paste("accounts", account.id, "webproperties", webproperty.id, "profiles", profile.id, "unsampledReports", sep = "/")
+    query <- list(start.index = start.index, max.results = max.results)
+    res <- get_mgmt(path = path, query = query, token = token, verbose = verbose)
+    return(res)
+}

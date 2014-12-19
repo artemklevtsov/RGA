@@ -128,3 +128,50 @@ get_goal <- function(account.id, webproperty.id, profile.id, goal.id, token, ver
     res <- get_response(type = "mgmt", path = path)
     return(res)
 }
+
+#' @title Gets a single unsampled report
+#'
+#' @param account.id integer or character. Account ID to retrieve unsampled report for.
+#' @param webproperty.id integer or character. Web property ID to retrieve unsampled reports for.
+#' @param profile.id integer or character. View (Profile) ID to retrieve unsampled report for.
+#' @param unsampled.report.id integer or character. Web property ID to retrieve unsampled reports for.
+#' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
+#' @param verbose logical. Should print information verbose?
+#'
+#' @return An Analytics unsampled report.
+#' \item{id}{Unsampled report ID.}
+#' \item{kind}{Resource type for an Analytics unsampled report.}
+#' \item{selfLink}{Link for this unsampled report.}
+#' \item{title}{Title of the unsampled report.}
+#' \item{accountId}{Account ID to which this unsampled report belongs.}
+#' \item{webPropertyId}{Web property ID to which this unsampled report belongs. The web property ID is of the form UA-XXXXX-YY.}
+#' \item{profileId}{View (Profile) ID to which this unsampled report belongs.}
+#' \item{start-date}{The start date for the unsampled report.}
+#' \item{end-date}{The end date for the unsampled report.}
+#' \item{metrics}{The metrics for the unsampled report.}
+#' \item{dimensions}{The dimensions for the unsampled report.}
+#' \item{filters}{The filters for the unsampled report.}
+#' \item{segment}{The segment for the unsampled report.}
+#' \item{status}{Status of this unsampled report.  Possible values are PENDING, COMPLETED, or FAILED.}
+#' \item{downloadType}{The type of download you need to use for the report data file.}
+#' \item{driveDownloadDetails}{Download details for a file stored in Google Drive.}
+#' \item{cloudStorageDownloadDetails}{Download details for a file stored in Google Cloud Storage.}
+#' \item{created}{Time this unsampled report was created.}
+#' \item{updated}{Time this unsampled report was last modified.}
+#'
+#' @seealso \code{\link{authorize}}
+#'
+#' @references
+#' \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/unsampledReports}{Google Management API - Unsampled Reports}
+#'
+#' @family The Google Analytics Management API
+#'
+#' @include request.R
+#'
+#' @export
+#'
+get_unsampled_report <- function(account.id, webproperty.id, profile.id, unsampled.report.id, token, verbose = getOption("rga.verbose")) {
+    path <- paste("accounts", account.id, "webproperties", webproperty.id, "profiles", profile.id, "unsampledReports", unsampled.report.id, sep = "/")
+    res <- get_mgmt(path = path, token = token, verbose = verbose)
+    return(res)
+}
