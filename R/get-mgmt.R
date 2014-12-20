@@ -175,3 +175,63 @@ get_unsampled_report <- function(account.id, webproperty.id, profile.id, unsampl
     res <- get_mgmt(path = path, token = token, verbose = verbose)
     return(res)
 }
+
+#' @title Gets a filter to which the user has access to
+#'
+#' @param account.id integer or character. Account ID to retrieve filters for.
+#' @param filter.id integer or character. Filter ID to retrieve filters for.
+#'
+#' @return An Analytics account filter.
+#' \item{id}{Filter ID.}
+#' \item{kind}{Resource type for Analytics filter.}
+#' \item{selfLink}{Link for this filter.}
+#' \item{accountId}{Account ID to which this filter belongs.}
+#' \item{name}{Name of this filter.}
+#' \item{type}{Type of this filter.}
+#' \item{created}{Time this filter was created.}
+#' \item{updated}{Time this filter was last modified.}
+#' \item{parentLink.type}{Value is "analytics#account".}
+#' \item{parentLink.href}{Link to the account to which this filter belongs.}
+#' \item{includeDetails.kind}{Kind value for filter expression}
+#' \item{includeDetails.field}{Field to filter.}
+#' \item{includeDetails.matchType}{Match type for this filter.}
+#' \item{includeDetails.expressionValue}{Filter expression value}
+#' \item{includeDetails.caseSensitive}{Determines if the filter is case sensitive.}
+#' \item{excludeDetails.kind}{Kind value for filter expression}
+#' \item{excludeDetails.field}{Field to filter.}
+#' \item{excludeDetails.matchType}{Match type for this filter.}
+#' \item{excludeDetails.expressionValue}{Filter expression value}
+#' \item{excludeDetails.caseSensitive}{Determines if the filter is case sensitive.}
+#' \item{lowercaseDetails.field}{Field to use in the filter.}
+#' \item{uppercaseDetails.field}{Field to use in the filter.}
+#' \item{searchAndReplaceDetails.field}{Field to use in the filter.}
+#' \item{searchAndReplaceDetails.searchString}{Term to search.}
+#' \item{searchAndReplaceDetails.replaceString}{Term to replace the search term with.}
+#' \item{searchAndReplaceDetails.caseSensitive}{Determines if the filter is case sensitive.}
+#' \item{advancedDetails.fieldA}{Field A.}
+#' \item{advancedDetails.extractA}{Expression to extract from field A.}
+#' \item{advancedDetails.fieldB}{Field B.}
+#' \item{advancedDetails.extractB}{Expression to extract from field B.}
+#' \item{advancedDetails.outputToField}{Output field.}
+#' \item{advancedDetails.outputConstructor}{Expression used to construct the output value.}
+#' \item{advancedDetails.fieldARequired}{Indicates if field A is required to match.}
+#' \item{advancedDetails.fieldBRequired}{Indicates if field B is required to match.}
+#' \item{advancedDetails.overrideOutputField}{Indicates if the existing value of the output field, if any, should be overridden by the output expression.}
+#' \item{advancedDetails.caseSensitive}{Indicates if the filter expressions are case sensitive.}
+#'
+#' @seealso \code{\link{authorize}}
+#'
+#' @references
+#' \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/filters}{Google Management API - Filters}
+#'
+#' @family The Google Analytics Management API
+#'
+#' @include request.R
+#'
+#' @export
+#'
+get_filter <- function(account.id, filter.id, token, verbose = getOption("rga.verbose")) {
+    path <- paste("accounts", account.id, "filters", filter.id, sep = "/")
+    res <- get_response(type = "mgmt", path = path)
+    return(res)
+}
