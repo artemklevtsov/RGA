@@ -45,19 +45,6 @@ list_accounts = function(start.index = NULL, max.results = NULL, token, verbose 
     return(res)
 }
 
-#' @rdname list_accounts
-#'
-#' @export
-#'
-get_accounts <- function(start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose")) {
-    .Deprecated("list_accounts")
-    path <- "accounts"
-    query <- list(start.index = start.index, max.results = max.results)
-    res <- get_mgmt(path = path, query = query, token = token, verbose = verbose)
-    return(res)
-}
-
-
 #' @title Lists web properties which the user has access to
 #'
 #' @param account.id integer or character. Account ID to retrieve web properties for. Can either be a specific account ID or "~all", which refers to all the accounts that user has access to.
@@ -92,18 +79,6 @@ get_accounts <- function(start.index = NULL, max.results = NULL, token, verbose 
 #' @export
 #'
 list_webproperties = function(account.id = "~all", start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose")) {
-    path <- paste("accounts", account.id, "webproperties", sep = "/")
-    query <- list(start.index = start.index, max.results = max.results)
-    res <- get_mgmt(path = path, query = query, token = token, verbose = verbose)
-    return(res)
-}
-
-#' @rdname list_webproperties
-#'
-#' @export
-#'
-get_webproperties = function(account.id = "~all", start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose")) {
-    .Deprecated("list_webproperties")
     path <- paste("accounts", account.id, "webproperties", sep = "/")
     query <- list(start.index = start.index, max.results = max.results)
     res <- get_mgmt(path = path, query = query, token = token, verbose = verbose)
@@ -149,18 +124,6 @@ get_webproperties = function(account.id = "~all", start.index = NULL, max.result
 #' @export
 #'
 list_profiles = function(account.id = "~all", webproperty.id = "~all", start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose")) {
-    path <- paste("accounts", account.id, "webproperties", webproperty.id, "profiles", sep = "/")
-    query <- list(start.index = start.index, max.results = max.results)
-    res <- get_mgmt(path = path, query = query, token = token, verbose = verbose)
-    return(res)
-}
-
-#' @rdname list_profiles
-#'
-#' @export
-#'
-get_profiles = function(account.id = "~all", webproperty.id = "~all", start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose")) {
-    .Deprecated("list_profiles")
     path <- paste("accounts", account.id, "webproperties", webproperty.id, "profiles", sep = "/")
     query <- list(start.index = start.index, max.results = max.results)
     res <- get_mgmt(path = path, query = query, token = token, verbose = verbose)
@@ -214,18 +177,6 @@ list_goals = function(account.id = "~all", webproperty.id = "~all", profile.id =
     return(res)
 }
 
-#' @rdname list_goals
-#'
-#' @export
-#'
-get_goals = function(account.id = "~all", webproperty.id = "~all", profile.id = "~all", start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose")) {
-    .Deprecated("list_goals")
-    path <- paste("accounts", account.id, "webproperties", webproperty.id, "profiles", profile.id, "goals", sep = "/")
-    query <- list(start.index = start.index, max.results = max.results)
-    res <- get_mgmt(path = path, query = query, token = token, verbose = verbose)
-    return(res)
-}
-
 #' @title Lists segments which the user has access to
 #'
 #' @param start.index integer. An index of the first segment to retrieve. Use this parameter as a pagi- nation mechanism along with the max-results parameter.
@@ -255,18 +206,6 @@ get_goals = function(account.id = "~all", webproperty.id = "~all", profile.id = 
 #'
 list_segments = function(start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose")) {
     path <- "segments"
-    query <- list(start.index = start.index, max.results = max.results)
-    res <- get_mgmt(path = path, query = query, token = token, verbose = verbose)
-    return(res)
-}
-
-#' @rdname list_segments
-#'
-#' @export
-#'
-get_segments = function(start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose")) {
-    path <- "segments"
-    .Deprecated("list_segments")
     query <- list(start.index = start.index, max.results = max.results)
     res <- get_mgmt(path = path, query = query, token = token, verbose = verbose)
     return(res)
