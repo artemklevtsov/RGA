@@ -180,6 +180,8 @@ get_unsampled_report <- function(account.id, webproperty.id, profile.id, unsampl
 #'
 #' @param account.id integer or character. Account ID to retrieve filters for.
 #' @param filter.id integer or character. Filter ID to retrieve filters for.
+#' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
+#' @param verbose logical. Should print information verbose?
 #'
 #' @return An Analytics account filter.
 #' \item{id}{Filter ID.}

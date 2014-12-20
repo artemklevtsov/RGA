@@ -13,6 +13,10 @@ list_filters(account.id, start.index = NULL, max.results = NULL, token,
 \item{start.index}{An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.}
 
 \item{max.results}{The maximum number of filters to include in this response.}
+
+\item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
+
+\item{verbose}{logical. Should print information verbose?}
 }
 \value{
 A filter collection lists filters created by users in an Analytics account. Each resource in the collection corresponds to a filter.

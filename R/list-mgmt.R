@@ -299,6 +299,8 @@ list_unsampled_reports <- function(account.id, webproperty.id, profile.id, start
 #' @param account.id Account ID to retrieve filters for.
 #' @param max.results The maximum number of filters to include in this response.
 #' @param start.index An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+#' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
+#' @param verbose logical. Should print information verbose?
 #'
 #' @return A filter collection lists filters created by users in an Analytics account. Each resource in the collection corresponds to a filter.
 #' \item{id}{Filter ID.}
