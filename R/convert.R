@@ -45,6 +45,7 @@ rename_mgmt <- function(x) {
     names(x) <-  to_period(names(x))
     to_rename <- vapply(x, is.list, logical(1))
     x[to_rename] <- lapply(x[to_rename], function(x) setNames(x, to_period(names(x))))
+    names(x) <- gsub("web.property", "webproperty", names(x), fixed = TRUE)
     return(x)
 }
 
@@ -80,6 +81,7 @@ build_df <- function(type = c("ga", "mcf", "rt", "mgmt"), data, cols, verbose = 
         message(paste("Obtained data.frame with", nrow(data_df), "rows and", ncol(data_df), "columns."))
     rownames(data_df) <- NULL
     colnames(data_df) <- to_period(colnames(data_df))
+    colnames(data_df) <- gsub("web.property", "webproperty", colnames(data_df), fixed = TRUE)
     if (verbose)
         message("Converting data types...")
     data_df <- convert_datatypes(data_df)
