@@ -7,21 +7,21 @@
 #'
 #' @return An Analytics web property.
 #' \item{id}{Web property ID of the form UA-XXXXX-YY.}
-#' \item{kind}{Resource type for Analytics WebProperty.}
-#' \item{selfLink}{Link for this web property.}
-#' \item{accountId}{Account ID to which this web property belongs.}
-#' \item{internalWebPropertyId}{Internal ID for this web property.}
+#' \item{kind}{Resource type for Analytics Web.property.}
+#' \item{self.link}{Link for this web property.}
+#' \item{account.id}{Account ID to which this web property belongs.}
+#' \item{internal.web.property.id}{Internal ID for this web property.}
 #' \item{name}{Name of this web property.}
-#' \item{websiteUrl}{Website url for this web property.}
+#' \item{website.url}{Website url for this web property.}
 #' \item{level}{Level for this web property.}
-#' \item{profileCount}{View (Profile) count for this web property.}
-#' \item{industryVertical}{The industry vertical/category selected for this web property.}
-#' \item{defaultProfileId}{Default view (profile) ID.}
+#' \item{profile.count}{View (Profile) count for this web property.}
+#' \item{industry.vertical}{The industry vertical/category selected for this web property.}
+#' \item{default.profile.id}{Default view (profile) ID.}
 #' \item{permissions}{Permissions the user has for this web property.}
 #' \item{created}{Time this web property was created.}
 #' \item{updated}{Time this web property was last modified.}
-#' \item{parentLink}{Parent link for this web property. Points to the account to which this web property belongs.}
-#' \item{childLink}{Child link for this web property. Points to the list of views (profiles) for this web property.}
+#' \item{parent.link}{Parent link for this web property. Points to the account to which this web property belongs.}
+#' \item{child.link}{Child link for this web property. Points to the list of views (profiles) for this web property.}
 #'
 #' @seealso \code{\link{authorize}}
 #'
@@ -53,23 +53,23 @@ get_webproperty <- function(account.id, webproperty.id, token, verbose = getOpti
 #' @return An Analytics view (profile).
 #' \item{id}{View (Profile) ID.}
 #' \item{kind}{Resource type for Analytics view (profile).}
-#' \item{selfLink}{Link for this view (profile).}
-#' \item{accountId}{Account ID to which this view (profile) belongs.}
-#' \item{webPropertyId}{Web property ID of the form UA-XXXXX-YY to which this view (profile) belongs.}
-#' \item{internalWebPropertyId}{Internal ID for the web property to which this view (profile) belongs.}
+#' \item{self.link}{Link for this view (profile).}
+#' \item{account.id}{Account ID to which this view (profile) belongs.}
+#' \item{web.property.id}{Web property ID of the form UA-XXXXX-YY to which this view (profile) belongs.}
+#' \item{internal.web.property.id}{Internal ID for the web property to which this view (profile) belongs.}
 #' \item{name}{Name of this view (profile).}
 #' \item{currency}{The currency type associated with this view (profile).}
 #' \item{timezone}{Time zone for which this view (profile) has been configured. Time zones are identified by strings from the TZ database.}
-#' \item{websiteUrl}{Website URL for this view (profile).}
-#' \item{siteSearchQueryParameters}{The site search query parameters for this view (profile).}
-#' \item{stripSiteSearchQueryParameters}{Whether or not Analytics will strip search query parameters from the URLs in your reports.}
+#' \item{website.url}{Website URL for this view (profile).}
+#' \item{site.search.query.parameters}{The site search query parameters for this view (profile).}
+#' \item{strip.site.search.query.parameters}{Whether or not Analytics will strip search query parameters from the URLs in your reports.}
 #' \item{type}{View (Profile) type. Supported types: WEB or APP.}
 #' \item{permissions}{Permissions the user has for this view (profile).}
 #' \item{created}{Time this view (profile) was created.}
 #' \item{updated}{Time this view (profile) was last modified.}
-#' \item{eCommerceTracking}{Indicates whether ecommerce tracking is enabled for this view (profile).}
-#' \item{parentLink}{Parent link for this view (profile). Points to the web property to which this view (profile) belongs.}
-#' \item{childLink}{Child link for this view (profile). Points to the list of goals for this view (profile).}#'
+#' \item{e.commerce.tracking}{Indicates whether ecommerce tracking is enabled for this view (profile).}
+#' \item{parent.link}{Parent link for this view (profile). Points to the web property to which this view (profile) belongs.}
+#' \item{child.link}{Child link for this view (profile). Points to the list of goals for this view (profile).}#'
 #'
 #' @seealso \code{\link{authorize}}
 #'
@@ -102,19 +102,19 @@ get_profile <- function(account.id, webproperty.id, profile.id, token, verbose =
 #' @return An Analytics goal resource
 #' \item{id}{Goal ID.}
 #' \item{kind}{Resource type for an Analytics goal.}
-#' \item{selfLink}{Link for this goal.}
-#' \item{accountId}{Account ID to which this goal belongs.}
-#' \item{webPropertyId}{Web property ID to which this goal belongs. The web property ID is of the form UA-XXXXX-YY.}
-#' \item{internalWebPropertyId}{Internal ID for the web property to which this goal belongs.}
-#' \item{profileId}{View (Profile) ID to which this goal belongs.}
+#' \item{self.link}{Link for this goal.}
+#' \item{account.id}{Account ID to which this goal belongs.}
+#' \item{web.property.id}{Web property ID to which this goal belongs. The web property ID is of the form UA-XXXXX-YY.}
+#' \item{internal.web.property.id}{Internal ID for the web property to which this goal belongs.}
+#' \item{profile.id}{View (Profile) ID to which this goal belongs.}
 #' \item{name}{Goal name.}
 #' \item{value}{Goal value.}
 #' \item{active}{Determines whether this goal is active.}
 #' \item{type}{Goal type. Possible values are URL_DESTINATION, VISIT_TIME_ON_SITE, VISIT_NUM_PAGES, and EVENT.}
 #' \item{created}{Time this goal was created.}
 #' \item{updated}{Time this goal was last modified.}
-#' \item{parentLink}{Parent link for a goal. Points to the view (profile) to which this goal belongs.}
-#' \item{visitTimeOnSiteDetails}{Details for the goal of the type VISIT_TIME_ON_SITE.}
+#' \item{parent.link}{Parent link for a goal. Points to the view (profile) to which this goal belongs.}
+#' \item{visit.time.on.site.details}{Details for the goal of the type VISIT_TIME_ON_SITE.}
 #'
 #' @seealso \code{\link{authorize}}
 #'
@@ -147,11 +147,11 @@ get_goal <- function(account.id, webproperty.id, profile.id, goal.id, token, ver
 #' @return An Analytics unsampled report.
 #' \item{id}{Unsampled report ID.}
 #' \item{kind}{Resource type for an Analytics unsampled report.}
-#' \item{selfLink}{Link for this unsampled report.}
+#' \item{self.link}{Link for this unsampled report.}
 #' \item{title}{Title of the unsampled report.}
-#' \item{accountId}{Account ID to which this unsampled report belongs.}
-#' \item{webPropertyId}{Web property ID to which this unsampled report belongs. The web property ID is of the form UA-XXXXX-YY.}
-#' \item{profileId}{View (Profile) ID to which this unsampled report belongs.}
+#' \item{account.id}{Account ID to which this unsampled report belongs.}
+#' \item{web.property.id}{Web property ID to which this unsampled report belongs. The web property ID is of the form UA-XXXXX-YY.}
+#' \item{profile.id}{View (Profile) ID to which this unsampled report belongs.}
 #' \item{start-date}{The start date for the unsampled report.}
 #' \item{end-date}{The end date for the unsampled report.}
 #' \item{metrics}{The metrics for the unsampled report.}
@@ -159,9 +159,9 @@ get_goal <- function(account.id, webproperty.id, profile.id, goal.id, token, ver
 #' \item{filters}{The filters for the unsampled report.}
 #' \item{segment}{The segment for the unsampled report.}
 #' \item{status}{Status of this unsampled report.  Possible values are PENDING, COMPLETED, or FAILED.}
-#' \item{downloadType}{The type of download you need to use for the report data file.}
-#' \item{driveDownloadDetails}{Download details for a file stored in Google Drive.}
-#' \item{cloudStorageDownloadDetails}{Download details for a file stored in Google Cloud Storage.}
+#' \item{download.type}{The type of download you need to use for the report data file.}
+#' \item{drive.download.details}{Download details for a file stored in Google Drive.}
+#' \item{cloud.storage.download.details}{Download details for a file stored in Google Cloud Storage.}
 #' \item{created}{Time this unsampled report was created.}
 #' \item{updated}{Time this unsampled report was last modified.}
 #'
@@ -194,40 +194,40 @@ get_unsampled_report <- function(account.id, webproperty.id, profile.id, unsampl
 #' @return An Analytics account filter.
 #' \item{id}{Filter ID.}
 #' \item{kind}{Resource type for Analytics filter.}
-#' \item{selfLink}{Link for this filter.}
-#' \item{accountId}{Account ID to which this filter belongs.}
+#' \item{self.link}{Link for this filter.}
+#' \item{account.id}{Account ID to which this filter belongs.}
 #' \item{name}{Name of this filter.}
 #' \item{type}{Type of this filter.}
 #' \item{created}{Time this filter was created.}
 #' \item{updated}{Time this filter was last modified.}
-#' \item{parentLink.type}{Value is "analytics#account".}
-#' \item{parentLink.href}{Link to the account to which this filter belongs.}
-#' \item{includeDetails.kind}{Kind value for filter expression}
-#' \item{includeDetails.field}{Field to filter.}
-#' \item{includeDetails.matchType}{Match type for this filter.}
-#' \item{includeDetails.expressionValue}{Filter expression value}
-#' \item{includeDetails.caseSensitive}{Determines if the filter is case sensitive.}
-#' \item{excludeDetails.kind}{Kind value for filter expression}
-#' \item{excludeDetails.field}{Field to filter.}
-#' \item{excludeDetails.matchType}{Match type for this filter.}
-#' \item{excludeDetails.expressionValue}{Filter expression value}
-#' \item{excludeDetails.caseSensitive}{Determines if the filter is case sensitive.}
-#' \item{lowercaseDetails.field}{Field to use in the filter.}
-#' \item{uppercaseDetails.field}{Field to use in the filter.}
-#' \item{searchAndReplaceDetails.field}{Field to use in the filter.}
-#' \item{searchAndReplaceDetails.searchString}{Term to search.}
-#' \item{searchAndReplaceDetails.replaceString}{Term to replace the search term with.}
-#' \item{searchAndReplaceDetails.caseSensitive}{Determines if the filter is case sensitive.}
-#' \item{advancedDetails.fieldA}{Field A.}
-#' \item{advancedDetails.extractA}{Expression to extract from field A.}
-#' \item{advancedDetails.fieldB}{Field B.}
-#' \item{advancedDetails.extractB}{Expression to extract from field B.}
-#' \item{advancedDetails.outputToField}{Output field.}
-#' \item{advancedDetails.outputConstructor}{Expression used to construct the output value.}
-#' \item{advancedDetails.fieldARequired}{Indicates if field A is required to match.}
-#' \item{advancedDetails.fieldBRequired}{Indicates if field B is required to match.}
-#' \item{advancedDetails.overrideOutputField}{Indicates if the existing value of the output field, if any, should be overridden by the output expression.}
-#' \item{advancedDetails.caseSensitive}{Indicates if the filter expressions are case sensitive.}
+#' \item{parent.link.type}{Value is "analytics#account".}
+#' \item{parent.link.href}{Link to the account to which this filter belongs.}
+#' \item{include.details.kind}{Kind value for filter expression}
+#' \item{include.details.field}{Field to filter.}
+#' \item{include.details.match.type}{Match type for this filter.}
+#' \item{include.details.expression.value}{Filter expression value}
+#' \item{include.details.case.sensitive}{Determines if the filter is case sensitive.}
+#' \item{exclude.details.kind}{Kind value for filter expression}
+#' \item{exclude.details.field}{Field to filter.}
+#' \item{exclude.details.match.type}{Match type for this filter.}
+#' \item{exclude.details.expression.value}{Filter expression value}
+#' \item{exclude.details.case.sensitive}{Determines if the filter is case sensitive.}
+#' \item{lowercase.details.field}{Field to use in the filter.}
+#' \item{uppercase.details.field}{Field to use in the filter.}
+#' \item{search.and.replace.details.field}{Field to use in the filter.}
+#' \item{search.and.replace.details.search.string}{Term to search.}
+#' \item{search.and.replace.details.replace.string}{Term to replace the search term with.}
+#' \item{search.and.replace.details.case.sensitive}{Determines if the filter is case sensitive.}
+#' \item{advanced.details.field.a}{Field A.}
+#' \item{advanced.details.extract.a}{Expression to extract from field A.}
+#' \item{advanced.details.field.b}{Field B.}
+#' \item{advanced.details.extract.b}{Expression to extract from field B.}
+#' \item{advanced.details.output.to.field}{Output field.}
+#' \item{advanced.details.output.constructor}{Expression used to construct the output value.}
+#' \item{advanced.details.field.aRequired}{Indicates if field A is required to match.}
+#' \item{advanced.details.field.bRequired}{Indicates if field B is required to match.}
+#' \item{advanced.details.override.output.field}{Indicates if the existing value of the output field, if any, should be overridden by the output expression.}
+#' \item{advanced.details.case.sensitive}{Indicates if the filter expressions are case sensitive.}
 #'
 #' @seealso \code{\link{authorize}}
 #'

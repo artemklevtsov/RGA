@@ -55,14 +55,14 @@ list_accounts = function(start.index = NULL, max.results = NULL, token, verbose 
 #'
 #' @return A web property collection lists Analytics web properties to which the user has access. Each resource in the collection corresponds to a single Analytics web property.
 #' \item{id}{Web property ID of the form UA-XXXXX-YY.}
-#' \item{accountId}{Account ID to which this web property belongs.}
-#' \item{internalWebPropertyId}{Internal ID for this web property.}
+#' \item{account.id}{Account ID to which this web property belongs.}
+#' \item{internal.web.property.id}{Internal ID for this web property.}
 #' \item{name}{Name of this web property.}
-#' \item{websiteUrl}{Website url for this web property.}
+#' \item{website.url}{Website url for this web property.}
 #' \item{level}{Level for this web property. Possible values are STANDARD or PREMIUM.}
-#' \item{profileCount}{View (Profile) count for this web property.}
-#' \item{industryVertical}{The industry vertical/category selected for this web property.}
-#' \item{defaultProfileId}{Default view (profile) ID.}
+#' \item{profile.count}{View (Profile) count for this web property.}
+#' \item{industry.vertical}{The industry vertical/category selected for this web property.}
+#' \item{default.profile.id}{Default view (profile) ID.}
 #' \item{permissions}{Permissions the user has for this web property.}
 #' \item{created}{Time this web property was created.}
 #' \item{updated}{Time this web property was last modified.}
@@ -96,18 +96,18 @@ list_webproperties = function(account.id = "~all", start.index = NULL, max.resul
 #'
 #' @return A view (profile) collection lists Analytics views (profiles) to which the user has access. Each resource in the collection corresponds to a single Analytics view (profile).
 #' \item{id}{View (Profile) ID.}
-#' \item{accountId}{Account ID to which this view (profile) belongs.}
-#' \item{webPropertyId}{Web property ID of the form UA-XXXXX-YY to which this view (profile) belongs.}
-#' \item{internalWebPropertyId}{Internal ID for the web property to which this view (profile) belongs.}
+#' \item{account.id}{Account ID to which this view (profile) belongs.}
+#' \item{web.property.id}{Web property ID of the form UA-XXXXX-YY to which this view (profile) belongs.}
+#' \item{internal.web.property.id}{Internal ID for the web property to which this view (profile) belongs.}
 #' \item{name}{Name of this view (profile).}
 #' \item{currency}{The currency type associated with this view (profile).}
 #' \item{timezone}{Time zone for which this view (profile) has been configured. Time zones are identified by strings from the TZ database.}
-#' \item{websiteUrl}{Website URL for this view (profile).}
+#' \item{website.url}{Website URL for this view (profile).}
 #' \item{type}{View (Profile) type. Supported types: WEB or APP.}
-#' \item{siteSearchCategoryParameters}{Site search category parameters for this view (profile).}
-#' \item{stripSiteSearchCategoryParameters}{Whether or not Analytics will strip search category parameters from the URLs in your reports.}
-#' \item{excludeQueryParameters}{The query parameters that are excluded from this view (profile).}
-#' \item{eCommerceTracking}{Indicates whether ecommerce tracking is enabled for this view (profile).}
+#' \item{site.search.category.parameters}{Site search category parameters for this view (profile).}
+#' \item{strip.site.search.category.parameters}{Whether or not Analytics will strip search category parameters from the URLs in your reports.}
+#' \item{exclude.query.parameters}{The query parameters that are excluded from this view (profile).}
+#' \item{e.commerce.tracking}{Indicates whether ecommerce tracking is enabled for this view (profile).}
 #' \item{permissions}{Permissions the user has for this view (profile).}
 #' \item{created}{Time this view (profile) was created.}
 #' \item{updated}{Time this view (profile) was last modified.}
@@ -142,22 +142,22 @@ list_profiles = function(account.id = "~all", webproperty.id = "~all", start.ind
 #'
 #' @return A goal collection lists Analytics goals to which the user has access. Each view (profile) can have a set of goals. Each resource in the Goal collection corresponds to a single Analytics goal.
 #' \item{id}{Goal ID (number).}
-#' \item{accountId}{Account ID which this goal belongs to.}
-#' \item{webPropertyId}{Web property ID which this goal belongs to. The web property ID is of the form UA-XXXXX-YY.}
-#' \item{internalWebPropertyId}{Internal ID for the web property to which this goal belongs.}
-#' \item{profileId}{View (Profile) ID to which this goal belongs.}
+#' \item{account.id}{Account ID which this goal belongs to.}
+#' \item{web.property.id}{Web property ID which this goal belongs to. The web property ID is of the form UA-XXXXX-YY.}
+#' \item{internal.web.property.id}{Internal ID for the web property to which this goal belongs.}
+#' \item{profile.id}{View (Profile) ID to which this goal belongs.}
 #' \item{name}{Goal name.}
 #' \item{value}{Goal value.}
 #' \item{active}{Determines whether this goal is active.}
 #' \item{type}{Goal type. Acceptable values are: "EVENT", "URL_DESTINATION", "VISIT_NUM_PAGES", "VISIT_TIME_ON_SITE"}
-#' \item{visitTimeOnSiteDetails.comparisonType}{Type of comparison. Possible values are LESS_THAN or GREATER_THAN.}
-#' \item{visitTimeOnSiteDetails.comparisonValue}{Value used for this comparison.}
-#' \item{visitNumPagesDetails.comparisonType}{Type of comparison. Possible values are LESS_THAN, GREATER_THAN, or EQUAL.}
-#' \item{visitNumPagesDetails.comparisonValue}{Value used for this comparison.}
-#' \item{urlDestinationDetails.url}{URL for this goal.}
-#' \item{urlDestinationDetails.caseSensitive}{Determines if the goal URL must exactly match the capitalization of visited URLs.}
-#' \item{urlDestinationDetails.matchType}{Match type for the goal URL. Possible values are HEAD, EXACT, or REGEX.}
-#' \item{urlDestinationDetails.firstStepRequired}{Determines if the first step in this goal is required.}
+#' \item{visit.time.on.site.details.comparison.type}{Type of comparison. Possible values are LESS_THAN or GREATER_THAN.}
+#' \item{visit.time.on.site.details.comparison.value}{Value used for this comparison.}
+#' \item{visit.num.pages.details.comparison.type}{Type of comparison. Possible values are LESS_THAN, GREATER_THAN, or EQUAL.}
+#' \item{visit.num.pages.details.comparison.value}{Value used for this comparison.}
+#' \item{url.destination.details.url}{URL for this goal.}
+#' \item{url.destination.details.case.sensitive}{Determines if the goal URL must exactly match the capitalization of visited URLs.}
+#' \item{url.destination.details.match.type}{Match type for the goal URL. Possible values are HEAD, EXACT, or REGEX.}
+#' \item{url.destination.details.first.step.required}{Determines if the first step in this goal is required.}
 #' \item{created}{Time this goal was created.}
 #' \item{updated}{Time this goal was last modified.}
 #'
@@ -186,7 +186,7 @@ list_goals = function(account.id = "~all", webproperty.id = "~all", profile.id =
 #'
 #' @return An segment collection lists Analytics segments that the user has access to. Each resource in the collection corresponds to a single Analytics segment.
 #' \item{id}{Segment ID.}
-#' \item{segmentId}{Segment ID. Can be used with the segment parameter in Data Feed.}
+#' \item{segment.id}{Segment ID. Can be used with the segment parameter in Data Feed.}
 #' \item{name}{Segment name.}
 #' \item{definition}{Segment definition.}
 #' \item{type}{Type for a segment. Possible values are "BUILT_IN" or "CUSTOM".}
@@ -222,13 +222,13 @@ list_segments = function(start.index = NULL, max.results = NULL, token, verbose 
 #'
 #' @return Lists Analytics custom data sources to which the user has access. Each resource in the collection corresponds to a single Analytics custom data source.
 #' \item{id}{Custom data source ID.}
-#' \item{accountId}{Account ID to which this custom data source belongs.}
-#' \item{webPropertyId}{Web property ID of the form UA-XXXXX-YY to which this custom data source belongs.}
+#' \item{account.id}{Account ID to which this custom data source belongs.}
+#' \item{web.property.id}{Web property ID of the form UA-XXXXX-YY to which this custom data source belongs.}
 #' \item{name}{Name of this custom data source.}
 #' \item{description}{Description of custom data sourc}
 #' \item{type}{Type of the custom data source.}
-#' \item{uploadType}{The resource type with which the custom data source can be used to upload data; it can have the values "analytics#uploads" or "analytics#dailyUploads". Custom data sources with this property set to "analytics#dailyUploads" are deprecated and should be migrated using the uploads resource.}
-#' \item{importBehavior}{How cost data metrics are treated when there are duplicate keys. If this property is set to "SUMMATION" the values are added; if this property is set to "OVERWRITE" the most recent value overwrites the existing value.}
+#' \item{upload.type}{The resource type with which the custom data source can be used to upload data; it can have the values "analytics#uploads" or "analytics#daily.uploads". Custom data sources with this property set to "analytics#daily.uploads" are deprecated and should be migrated using the uploads resource.}
+#' \item{import.behavior}{How cost data metrics are treated when there are duplicate keys. If this property is set to "SUMMATION" the values are added; if this property is set to "OVERWRITE" the most recent value overwrites the existing value.}
 #' \item{created}{Time this custom data source was created.}
 #' \item{updated}{Time this custom data source was last modified.}
 #'
@@ -261,9 +261,9 @@ list_custom_sources <- function(account.id, webproperty.id, start.index = NULL, 
 #' @return An unsampled report collection lists Analytics unsampled reports to which the user has access. Each view (profile) can have a set of unsampled reports. Each resource in the unsampled report collection corresponds to a single Analytics unsampled report.
 #' \item{id}{Unsampled report ID.}
 #' \item{title}{Title of the unsampled report.}
-#' \item{accountId}{Account ID to which this unsampled report belongs.}
-#' \item{webPropertyId}{Web property ID to which this unsampled report belongs. The web property ID is of the form UA-XXXXX-YY.}
-#' \item{profileId}{View (Profile) ID to which this unsampled report belongs.}
+#' \item{account.id}{Account ID to which this unsampled report belongs.}
+#' \item{web.property.id}{Web property ID to which this unsampled report belongs. The web property ID is of the form UA-XXXXX-YY.}
+#' \item{profile.id}{View (Profile) ID to which this unsampled report belongs.}
 #' \item{start-date}{The start date for the unsampled report.}
 #' \item{end-date}{The end date for the unsampled report.}
 #' \item{metrics}{The metrics for the unsampled report.}
@@ -271,10 +271,10 @@ list_custom_sources <- function(account.id, webproperty.id, start.index = NULL, 
 #' \item{filters}{The filters for the unsampled report.}
 #' \item{segment}{The segment for the unsampled report.}
 #' \item{status}{Status of this unsampled report. Possible values are PENDING, COMPLETED, or FAILED.}
-#' \item{downloadType}{The type of download you need to use for the report data file.}
-#' \item{driveDownloadDetails.documentId}{Id of the document/file containing the report data.}
-#' \item{cloudStorageDownloadDetails.bucketId}{Id of the bucket the file object is stored in.}
-#' \item{cloudStorageDownloadDetails.objectId}{Id of the file object containing the report data.}
+#' \item{download.type}{The type of download you need to use for the report data file.}
+#' \item{drive.download.details.document.id}{Id of the document/file containing the report data.}
+#' \item{cloud.storage.download.details.bucket.id}{Id of the bucket the file object is stored in.}
+#' \item{cloud.storage.download.details.object.id}{Id of the file object containing the report data.}
 #' \item{created}{Time this unsampled report was created.}
 #' \item{updated}{Time this unsampled report was last modified.}
 #'
@@ -305,37 +305,37 @@ list_unsampled_reports <- function(account.id, webproperty.id, profile.id, start
 #' @return A filter collection lists filters created by users in an Analytics account. Each resource in the collection corresponds to a filter.
 #' \item{id}{Filter ID.}
 #' \item{kind}{Resource type for Analytics filter.}
-#' \item{accountId}{Account ID to which this filter belongs.}
+#' \item{account.id}{Account ID to which this filter belongs.}
 #' \item{name}{Name of this filter.}
 #' \item{type}{Type of this filter.}
 #' \item{created}{Time this filter was created.}
 #' \item{updated}{Time this filter was last modified.}
-#' \item{includeDetails.kind}{Kind value for filter expression}
-#' \item{includeDetails.field}{Field to filter.}
-#' \item{includeDetails.matchType}{Match type for this filter.}
-#' \item{includeDetails.expressionValue}{Filter expression value}
-#' \item{includeDetails.caseSensitive}{Determines if the filter is case sensitive.}
-#' \item{excludeDetails.kind}{Kind value for filter expression}
-#' \item{excludeDetails.field}{Field to filter.}
-#' \item{excludeDetails.matchType}{Match type for this filter.}
-#' \item{excludeDetails.expressionValue}{Filter expression value}
-#' \item{excludeDetails.caseSensitive}{Determines if the filter is case sensitive.}
-#' \item{lowercaseDetails.field}{Field to use in the filter.}
-#' \item{uppercaseDetails.field}{Field to use in the filter.}
-#' \item{searchAndReplaceDetails.field}{Field to use in the filter.}
-#' \item{searchAndReplaceDetails.searchString}{Term to search.}
-#' \item{searchAndReplaceDetails.replaceString}{Term to replace the search term with.}
-#' \item{searchAndReplaceDetails.caseSensitive}{Determines if the filter is case sensitive.}
-#' \item{advancedDetails.fieldA}{Field A.}
-#' \item{advancedDetails.extractA}{Expression to extract from field A.}
-#' \item{advancedDetails.fieldB}{Field B.}
-#' \item{advancedDetails.extractB}{Expression to extract from field B.}
-#' \item{advancedDetails.outputToField}{Output field.}
-#' \item{advancedDetails.outputConstructor}{Expression used to construct the output value.}
-#' \item{advancedDetails.fieldARequired}{Indicates if field A is required to match.}
-#' \item{advancedDetails.fieldBRequired}{Indicates if field B is required to match.}
-#' \item{advancedDetails.overrideOutputField}{Indicates if the existing value of the output field, if any, should be overridden by the output expression.}
-#' \item{advancedDetails.caseSensitive}{Indicates if the filter expressions are case sensitive.}
+#' \item{include.details.kind}{Kind value for filter expression}
+#' \item{include.details.field}{Field to filter.}
+#' \item{include.details.match.type}{Match type for this filter.}
+#' \item{include.details.expression.value}{Filter expression value}
+#' \item{include.details.case.sensitive}{Determines if the filter is case sensitive.}
+#' \item{exclude.details.kind}{Kind value for filter expression}
+#' \item{exclude.details.field}{Field to filter.}
+#' \item{exclude.details.match.type}{Match type for this filter.}
+#' \item{exclude.details.expression.value}{Filter expression value}
+#' \item{exclude.details.case.sensitive}{Determines if the filter is case sensitive.}
+#' \item{lowercase.details.field}{Field to use in the filter.}
+#' \item{uppercase.details.field}{Field to use in the filter.}
+#' \item{search.and.replace.details.field}{Field to use in the filter.}
+#' \item{search.and.replace.details.search.string}{Term to search.}
+#' \item{search.and.replace.details.replace.string}{Term to replace the search term with.}
+#' \item{search.and.replace.details.case.sensitive}{Determines if the filter is case sensitive.}
+#' \item{advanced.details.field.a}{Field A.}
+#' \item{advanced.details.extract.a}{Expression to extract from field A.}
+#' \item{advanced.details.field.b}{Field B.}
+#' \item{advanced.details.extract.b}{Expression to extract from field B.}
+#' \item{advanced.details.output.to.field}{Output field.}
+#' \item{advanced.details.output.constructor}{Expression used to construct the output value.}
+#' \item{advanced.details.field.aRequired}{Indicates if field A is required to match.}
+#' \item{advanced.details.field.bRequired}{Indicates if field B is required to match.}
+#' \item{advanced.details.override.output.field}{Indicates if the existing value of the output field, if any, should be overridden by the output expression.}
+#' \item{advanced.details.case.sensitive}{Indicates if the filter expressions are case sensitive.}
 #'
 #' @seealso \code{\link{authorize}}
 #'

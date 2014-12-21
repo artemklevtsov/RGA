@@ -19,21 +19,21 @@ get_webproperty(account.id, webproperty.id, token,
 \value{
 An Analytics web property.
 \item{id}{Web property ID of the form UA-XXXXX-YY.}
-\item{kind}{Resource type for Analytics WebProperty.}
-\item{selfLink}{Link for this web property.}
-\item{accountId}{Account ID to which this web property belongs.}
-\item{internalWebPropertyId}{Internal ID for this web property.}
+\item{kind}{Resource type for Analytics Web.property.}
+\item{self.link}{Link for this web property.}
+\item{account.id}{Account ID to which this web property belongs.}
+\item{internal.web.property.id}{Internal ID for this web property.}
 \item{name}{Name of this web property.}
-\item{websiteUrl}{Website url for this web property.}
+\item{website.url}{Website url for this web property.}
 \item{level}{Level for this web property.}
-\item{profileCount}{View (Profile) count for this web property.}
-\item{industryVertical}{The industry vertical/category selected for this web property.}
-\item{defaultProfileId}{Default view (profile) ID.}
+\item{profile.count}{View (Profile) count for this web property.}
+\item{industry.vertical}{The industry vertical/category selected for this web property.}
+\item{default.profile.id}{Default view (profile) ID.}
 \item{permissions}{Permissions the user has for this web property.}
 \item{created}{Time this web property was created.}
 \item{updated}{Time this web property was last modified.}
-\item{parentLink}{Parent link for this web property. Points to the account to which this web property belongs.}
-\item{childLink}{Child link for this web property. Points to the list of views (profiles) for this web property.}
+\item{parent.link}{Parent link for this web property. Points to the account to which this web property belongs.}
+\item{child.link}{Child link for this web property. Points to the list of views (profiles) for this web property.}
 }
 \description{
 Gets a web property to which the user has access to

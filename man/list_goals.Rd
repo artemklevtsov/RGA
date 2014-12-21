@@ -26,22 +26,22 @@ list_goals(account.id = "~all", webproperty.id = "~all",
 \value{
 A goal collection lists Analytics goals to which the user has access. Each view (profile) can have a set of goals. Each resource in the Goal collection corresponds to a single Analytics goal.
 \item{id}{Goal ID (number).}
-\item{accountId}{Account ID which this goal belongs to.}
-\item{webPropertyId}{Web property ID which this goal belongs to. The web property ID is of the form UA-XXXXX-YY.}
-\item{internalWebPropertyId}{Internal ID for the web property to which this goal belongs.}
-\item{profileId}{View (Profile) ID to which this goal belongs.}
+\item{account.id}{Account ID which this goal belongs to.}
+\item{web.property.id}{Web property ID which this goal belongs to. The web property ID is of the form UA-XXXXX-YY.}
+\item{internal.web.property.id}{Internal ID for the web property to which this goal belongs.}
+\item{profile.id}{View (Profile) ID to which this goal belongs.}
 \item{name}{Goal name.}
 \item{value}{Goal value.}
 \item{active}{Determines whether this goal is active.}
 \item{type}{Goal type. Acceptable values are: "EVENT", "URL_DESTINATION", "VISIT_NUM_PAGES", "VISIT_TIME_ON_SITE"}
-\item{visitTimeOnSiteDetails.comparisonType}{Type of comparison. Possible values are LESS_THAN or GREATER_THAN.}
-\item{visitTimeOnSiteDetails.comparisonValue}{Value used for this comparison.}
-\item{visitNumPagesDetails.comparisonType}{Type of comparison. Possible values are LESS_THAN, GREATER_THAN, or EQUAL.}
-\item{visitNumPagesDetails.comparisonValue}{Value used for this comparison.}
-\item{urlDestinationDetails.url}{URL for this goal.}
-\item{urlDestinationDetails.caseSensitive}{Determines if the goal URL must exactly match the capitalization of visited URLs.}
-\item{urlDestinationDetails.matchType}{Match type for the goal URL. Possible values are HEAD, EXACT, or REGEX.}
-\item{urlDestinationDetails.firstStepRequired}{Determines if the first step in this goal is required.}
+\item{visit.time.on.site.details.comparison.type}{Type of comparison. Possible values are LESS_THAN or GREATER_THAN.}
+\item{visit.time.on.site.details.comparison.value}{Value used for this comparison.}
+\item{visit.num.pages.details.comparison.type}{Type of comparison. Possible values are LESS_THAN, GREATER_THAN, or EQUAL.}
+\item{visit.num.pages.details.comparison.value}{Value used for this comparison.}
+\item{url.destination.details.url}{URL for this goal.}
+\item{url.destination.details.case.sensitive}{Determines if the goal URL must exactly match the capitalization of visited URLs.}
+\item{url.destination.details.match.type}{Match type for the goal URL. Possible values are HEAD, EXACT, or REGEX.}
+\item{url.destination.details.first.step.required}{Determines if the first step in this goal is required.}
 \item{created}{Time this goal was created.}
 \item{updated}{Time this goal was last modified.}
 }

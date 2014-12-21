@@ -19,7 +19,7 @@ list_segments(start.index = NULL, max.results = NULL, token,
 \value{
 An segment collection lists Analytics segments that the user has access to. Each resource in the collection corresponds to a single Analytics segment.
 \item{id}{Segment ID.}
-\item{segmentId}{Segment ID. Can be used with the segment parameter in Data Feed.}
+\item{segment.id}{Segment ID. Can be used with the segment parameter in Data Feed.}
 \item{name}{Segment name.}
 \item{definition}{Segment definition.}
 \item{type}{Type for a segment. Possible values are "BUILT_IN" or "CUSTOM".}

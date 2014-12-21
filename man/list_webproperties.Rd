@@ -21,14 +21,14 @@ list_webproperties(account.id = "~all", start.index = NULL,
 \value{
 A web property collection lists Analytics web properties to which the user has access. Each resource in the collection corresponds to a single Analytics web property.
 \item{id}{Web property ID of the form UA-XXXXX-YY.}
-\item{accountId}{Account ID to which this web property belongs.}
-\item{internalWebPropertyId}{Internal ID for this web property.}
+\item{account.id}{Account ID to which this web property belongs.}
+\item{internal.web.property.id}{Internal ID for this web property.}
 \item{name}{Name of this web property.}
-\item{websiteUrl}{Website url for this web property.}
+\item{website.url}{Website url for this web property.}
 \item{level}{Level for this web property. Possible values are STANDARD or PREMIUM.}
-\item{profileCount}{View (Profile) count for this web property.}
-\item{industryVertical}{The industry vertical/category selected for this web property.}
-\item{defaultProfileId}{Default view (profile) ID.}
+\item{profile.count}{View (Profile) count for this web property.}
+\item{industry.vertical}{The industry vertical/category selected for this web property.}
+\item{default.profile.id}{Default view (profile) ID.}
 \item{permissions}{Permissions the user has for this web property.}
 \item{created}{Time this web property was created.}
 \item{updated}{Time this web property was last modified.}

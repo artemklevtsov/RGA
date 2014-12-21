@@ -19,40 +19,40 @@ get_filter(account.id, filter.id, token, verbose = getOption("rga.verbose"))
 An Analytics account filter.
 \item{id}{Filter ID.}
 \item{kind}{Resource type for Analytics filter.}
-\item{selfLink}{Link for this filter.}
-\item{accountId}{Account ID to which this filter belongs.}
+\item{self.link}{Link for this filter.}
+\item{account.id}{Account ID to which this filter belongs.}
 \item{name}{Name of this filter.}
 \item{type}{Type of this filter.}
 \item{created}{Time this filter was created.}
 \item{updated}{Time this filter was last modified.}
-\item{parentLink.type}{Value is "analytics#account".}
-\item{parentLink.href}{Link to the account to which this filter belongs.}
-\item{includeDetails.kind}{Kind value for filter expression}
-\item{includeDetails.field}{Field to filter.}
-\item{includeDetails.matchType}{Match type for this filter.}
-\item{includeDetails.expressionValue}{Filter expression value}
-\item{includeDetails.caseSensitive}{Determines if the filter is case sensitive.}
-\item{excludeDetails.kind}{Kind value for filter expression}
-\item{excludeDetails.field}{Field to filter.}
-\item{excludeDetails.matchType}{Match type for this filter.}
-\item{excludeDetails.expressionValue}{Filter expression value}
-\item{excludeDetails.caseSensitive}{Determines if the filter is case sensitive.}
-\item{lowercaseDetails.field}{Field to use in the filter.}
-\item{uppercaseDetails.field}{Field to use in the filter.}
-\item{searchAndReplaceDetails.field}{Field to use in the filter.}
-\item{searchAndReplaceDetails.searchString}{Term to search.}
-\item{searchAndReplaceDetails.replaceString}{Term to replace the search term with.}
-\item{searchAndReplaceDetails.caseSensitive}{Determines if the filter is case sensitive.}
-\item{advancedDetails.fieldA}{Field A.}
-\item{advancedDetails.extractA}{Expression to extract from field A.}
-\item{advancedDetails.fieldB}{Field B.}
-\item{advancedDetails.extractB}{Expression to extract from field B.}
-\item{advancedDetails.outputToField}{Output field.}
-\item{advancedDetails.outputConstructor}{Expression used to construct the output value.}
-\item{advancedDetails.fieldARequired}{Indicates if field A is required to match.}
-\item{advancedDetails.fieldBRequired}{Indicates if field B is required to match.}
-\item{advancedDetails.overrideOutputField}{Indicates if the existing value of the output field, if any, should be overridden by the output expression.}
-\item{advancedDetails.caseSensitive}{Indicates if the filter expressions are case sensitive.}
+\item{parent.link.type}{Value is "analytics#account".}
+\item{parent.link.href}{Link to the account to which this filter belongs.}
+\item{include.details.kind}{Kind value for filter expression}
+\item{include.details.field}{Field to filter.}
+\item{include.details.match.type}{Match type for this filter.}
+\item{include.details.expression.value}{Filter expression value}
+\item{include.details.case.sensitive}{Determines if the filter is case sensitive.}
+\item{exclude.details.kind}{Kind value for filter expression}
+\item{exclude.details.field}{Field to filter.}
+\item{exclude.details.match.type}{Match type for this filter.}
+\item{exclude.details.expression.value}{Filter expression value}
+\item{exclude.details.case.sensitive}{Determines if the filter is case sensitive.}
+\item{lowercase.details.field}{Field to use in the filter.}
+\item{uppercase.details.field}{Field to use in the filter.}
+\item{search.and.replace.details.field}{Field to use in the filter.}
+\item{search.and.replace.details.search.string}{Term to search.}
+\item{search.and.replace.details.replace.string}{Term to replace the search term with.}
+\item{search.and.replace.details.case.sensitive}{Determines if the filter is case sensitive.}
+\item{advanced.details.field.a}{Field A.}
+\item{advanced.details.extract.a}{Expression to extract from field A.}
+\item{advanced.details.field.b}{Field B.}
+\item{advanced.details.extract.b}{Expression to extract from field B.}
+\item{advanced.details.output.to.field}{Output field.}
+\item{advanced.details.output.constructor}{Expression used to construct the output value.}
+\item{advanced.details.field.aRequired}{Indicates if field A is required to match.}
+\item{advanced.details.field.bRequired}{Indicates if field B is required to match.}
+\item{advanced.details.override.output.field}{Indicates if the existing value of the output field, if any, should be overridden by the output expression.}
+\item{advanced.details.case.sensitive}{Indicates if the filter expressions are case sensitive.}
 }
 \description{
 Gets a filter to which the user has access to

@@ -24,19 +24,19 @@ get_goal(account.id, webproperty.id, profile.id, goal.id, token,
 An Analytics goal resource
 \item{id}{Goal ID.}
 \item{kind}{Resource type for an Analytics goal.}
-\item{selfLink}{Link for this goal.}
-\item{accountId}{Account ID to which this goal belongs.}
-\item{webPropertyId}{Web property ID to which this goal belongs. The web property ID is of the form UA-XXXXX-YY.}
-\item{internalWebPropertyId}{Internal ID for the web property to which this goal belongs.}
-\item{profileId}{View (Profile) ID to which this goal belongs.}
+\item{self.link}{Link for this goal.}
+\item{account.id}{Account ID to which this goal belongs.}
+\item{web.property.id}{Web property ID to which this goal belongs. The web property ID is of the form UA-XXXXX-YY.}
+\item{internal.web.property.id}{Internal ID for the web property to which this goal belongs.}
+\item{profile.id}{View (Profile) ID to which this goal belongs.}
 \item{name}{Goal name.}
 \item{value}{Goal value.}
 \item{active}{Determines whether this goal is active.}
 \item{type}{Goal type. Possible values are URL_DESTINATION, VISIT_TIME_ON_SITE, VISIT_NUM_PAGES, and EVENT.}
 \item{created}{Time this goal was created.}
 \item{updated}{Time this goal was last modified.}
-\item{parentLink}{Parent link for a goal. Points to the view (profile) to which this goal belongs.}
-\item{visitTimeOnSiteDetails}{Details for the goal of the type VISIT_TIME_ON_SITE.}
+\item{parent.link}{Parent link for a goal. Points to the view (profile) to which this goal belongs.}
+\item{visit.time.on.site.details}{Details for the goal of the type VISIT_TIME_ON_SITE.}
 }
 \description{
 Gets a goal to which the user has access to

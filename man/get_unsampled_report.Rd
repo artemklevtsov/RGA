@@ -24,11 +24,11 @@ get_unsampled_report(account.id, webproperty.id, profile.id,
 An Analytics unsampled report.
 \item{id}{Unsampled report ID.}
 \item{kind}{Resource type for an Analytics unsampled report.}
-\item{selfLink}{Link for this unsampled report.}
+\item{self.link}{Link for this unsampled report.}
 \item{title}{Title of the unsampled report.}
-\item{accountId}{Account ID to which this unsampled report belongs.}
-\item{webPropertyId}{Web property ID to which this unsampled report belongs. The web property ID is of the form UA-XXXXX-YY.}
-\item{profileId}{View (Profile) ID to which this unsampled report belongs.}
+\item{account.id}{Account ID to which this unsampled report belongs.}
+\item{web.property.id}{Web property ID to which this unsampled report belongs. The web property ID is of the form UA-XXXXX-YY.}
+\item{profile.id}{View (Profile) ID to which this unsampled report belongs.}
 \item{start-date}{The start date for the unsampled report.}
 \item{end-date}{The end date for the unsampled report.}
 \item{metrics}{The metrics for the unsampled report.}
@@ -36,9 +36,9 @@ An Analytics unsampled report.
 \item{filters}{The filters for the unsampled report.}
 \item{segment}{The segment for the unsampled report.}
 \item{status}{Status of this unsampled report.  Possible values are PENDING, COMPLETED, or FAILED.}
-\item{downloadType}{The type of download you need to use for the report data file.}
-\item{driveDownloadDetails}{Download details for a file stored in Google Drive.}
-\item{cloudStorageDownloadDetails}{Download details for a file stored in Google Cloud Storage.}
+\item{download.type}{The type of download you need to use for the report data file.}
+\item{drive.download.details}{Download details for a file stored in Google Drive.}
+\item{cloud.storage.download.details}{Download details for a file stored in Google Cloud Storage.}
 \item{created}{Time this unsampled report was created.}
 \item{updated}{Time this unsampled report was last modified.}
 }
