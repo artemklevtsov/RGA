@@ -37,6 +37,8 @@
 get_webproperty <- function(account.id, webproperty.id, token, verbose = getOption("rga.verbose")) {
     path <- paste("accounts", account.id, "webproperties", webproperty.id, sep = "/")
     res <- get_response(type = "mgmt", path = path)
+    res <- rename_mgmt(res)
+    res <- convert_datatypes(res)
     return(res)
 }
 
@@ -83,6 +85,8 @@ get_webproperty <- function(account.id, webproperty.id, token, verbose = getOpti
 get_profile <- function(account.id, webproperty.id, profile.id, token, verbose = getOption("rga.verbose")) {
     path <- paste("accounts", account.id, "webproperties", webproperty.id, "profiles", profile.id, sep = "/")
     res <- get_response(type = "mgmt", path = path)
+    res <- rename_mgmt(res)
+    res <- convert_datatypes(res)
     return(res)
 }
 
@@ -126,6 +130,8 @@ get_profile <- function(account.id, webproperty.id, profile.id, token, verbose =
 get_goal <- function(account.id, webproperty.id, profile.id, goal.id, token, verbose = getOption("rga.verbose")) {
     path <- paste("accounts", account.id, "webproperties", webproperty.id, "profiles", profile.id, "goals", goal.id, sep = "/")
     res <- get_response(type = "mgmt", path = path)
+    res <- rename_mgmt(res)
+    res <- convert_datatypes(res)
     return(res)
 }
 
@@ -172,7 +178,9 @@ get_goal <- function(account.id, webproperty.id, profile.id, goal.id, token, ver
 #'
 get_unsampled_report <- function(account.id, webproperty.id, profile.id, unsampled.report.id, token, verbose = getOption("rga.verbose")) {
     path <- paste("accounts", account.id, "webproperties", webproperty.id, "profiles", profile.id, "unsampledReports", unsampled.report.id, sep = "/")
-    res <- get_mgmt(path = path, token = token, verbose = verbose)
+    res <- get_response(path = path, token = token, verbose = verbose)
+    res <- rename_mgmt(res)
+    res <- convert_datatypes(res)
     return(res)
 }
 
@@ -235,5 +243,7 @@ get_unsampled_report <- function(account.id, webproperty.id, profile.id, unsampl
 get_filter <- function(account.id, filter.id, token, verbose = getOption("rga.verbose")) {
     path <- paste("accounts", account.id, "filters", filter.id, sep = "/")
     res <- get_response(type = "mgmt", path = path)
+    res <- rename_mgmt(res)
+    res <- convert_datatypes(res)
     return(res)
 }

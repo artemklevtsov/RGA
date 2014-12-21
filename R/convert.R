@@ -39,6 +39,15 @@ clean_mgmt <- function(data) {
     return(data)
 }
 
+# Rename list with sublists for mgmt data
+#' @include utils.R
+rename_mgmt <- function(x) {
+    names(x) <-  to_period(names(x))
+    to_rename <- vapply(x, is.list, logical(1))
+    x[to_rename] <- lapply(x[to_rename], function(x) setNames(x, to_period(names(x))))
+    return(x)
+}
+
 # Build data.frame for mgmt data
 build_mgmt <- function(data) {
     if (is.data.frame(data))
@@ -56,14 +65,8 @@ build_mgmt <- function(data) {
     return(data_df)
 }
 
-# Convert data types
-convert_datatypes <- function(data) {
-    char_cols <- vapply(data, is.character, logical(1))
-    data[char_cols] <- lapply(data[char_cols], type.convert, as.is = TRUE)
-    return(data)
-}
-
 # Build a data.frame for GA report data
+#' @include utils.R
 build_df <- function(type = c("ga", "mcf", "rt", "mgmt"), data, cols, verbose = getOption("rga.verbose")) {
     if (verbose)
         message("Building data frame...")
@@ -76,6 +79,7 @@ build_df <- function(type = c("ga", "mcf", "rt", "mgmt"), data, cols, verbose = 
     if (verbose)
         message(paste("Obtained data.frame with", nrow(data_df), "rows and", ncol(data_df), "columns."))
     rownames(data_df) <- NULL
+    colnames(data_df) <- to_period(colnames(data_df))
     if (verbose)
         message("Converting data types...")
     data_df <- convert_datatypes(data_df)
