@@ -10,15 +10,15 @@ build_ga <- function(data, cols) {
 build_mcf <- function(data, cols) {
     cols$name <- gsub("^mcf:", "", cols$name)
     if ("MCF_SEQUENCE" %in% cols$dataType) {
-        primitive.idx <- grep("MCF_SEQUENCE", cols$dataType, fixed = TRUE, invert = TRUE)
-        conversion.idx <- grep("MCF_SEQUENCE", cols$dataType, fixed = TRUE)
-        primitive <- lapply(data, function(x) .subset2(x, "primitiveValue")[primitive.idx])
+        pv_idx <- grep("MCF_SEQUENCE", cols$dataType, fixed = TRUE, invert = TRUE)
+        cv_idx <- grep("MCF_SEQUENCE", cols$dataType, fixed = TRUE)
+        primitive <- lapply(data, function(x) .subset2(x, "primitiveValue")[pv_idx])
         primitive <- do.call(rbind, primitive)
-        colnames(primitive) <- cols$name[primitive.idx]
-        conversion <- lapply(data, function(x) .subset2(x, "conversionPathValue")[conversion.idx])
+        colnames(primitive) <- cols$name[pv_idx]
+        conversion <- lapply(data, function(x) .subset2(x, "conversionPathValue")[cv_idx])
         conversion <- lapply(conversion, function(i) lapply(i, function(x) paste(apply(x, 1, paste, collapse = ":"), collapse = " > ")))
         conversion <- do.call(rbind, lapply(conversion, unlist))
-        colnames(conversion) <- cols$name[conversion.idx]
+        colnames(conversion) <- cols$name[cv_idx]
         data_df <- data.frame(primitive, conversion, stringsAsFactors = FALSE)[, cols$name]
     } else {
         data_df <- as.data.frame(do.call(rbind, lapply(data, unlist)), stringsAsFactors = FALSE)
