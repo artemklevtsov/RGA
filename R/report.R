@@ -56,7 +56,7 @@ get_report <- function(type = c("ga", "mcf", "rt"), query, token, verbose = getO
 #' @param end.date character. End date for fetching Analytics data. Request can specify the end date formatted as YYYY-MM-DD or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is yesterday.
 #' @param metrics character. A comma-separated list of Analytics metrics. E.g., \code{"ga:sessions,ga:pageviews"}. At least one metric must be specified.
 #' @param dimensions character. A comma-separated list of Analytics dimensions. E.g., \code{"ga:browser,ga:city"}.
-#' @param sort  character. A comma-separated list of dimensions or metrics that determine the sort order for Analytics data.
+#' @param sort character. A comma-separated list of dimensions or metrics that determine the sort order for Analytics data.
 #' @param filters character. A comma-separated list of dimension or metric filters to be applied to Analytics data.
 #' @param segment character. An Analytics segment to be applied to data. Can be obtained using the \code{\link{list_segments}} or via the web interface Google Analytics.
 #' @param sampling.level character. The desired sampling level. Allowed values: "default", "faster", "higher_precision".

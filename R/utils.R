@@ -20,7 +20,7 @@ strip_spaces <- function(x) {
 # Remove whitespace around operators
 strip_ops <- function(x) {
     # available operators
-    ga_ops <- c("==", "!=", ">", "<", ">=", "<=", "<>", "=@", "!@", "=-", "!-", "\\|\\|", "&&", "OR", "AND")
+    ga_ops <- c("==", "!=", ">", "<", ">=", "<=", "<>", "\\[\\]", "=@", "!@", "=-", "!-", "\\|\\|", "&&", "OR", "AND")
     # build pattern for replace
     ops_pattern <- paste("(\\s)+(", paste(ga_ops, collapse = "|"), ")(\\s)+", sep = "")
     # remove whitespaces around operators
