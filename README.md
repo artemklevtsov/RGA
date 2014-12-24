@@ -81,7 +81,7 @@ Once you have the package loaded, there are 3 steps you need to use to get data 
 Before you send any requests to GA API, it's necessary to perform authorization and to obtain access token. It can be done with the following command:
 
 ```R
-authorize(client.id = "My_Client_ID", client.secret = "My_Client_secret")
+authorize(client.id = "client_id", client.secret = "client_secret")
 ```
 
 After calling this function first time, a web browser will be opened. First entrance with a **Google Account** confirms access to the Google Analytics data. Note that the package requests access for the **read-only** data.
@@ -97,14 +97,14 @@ Note: Besides the explicit specifying of the `client.id` and `client.secret` arg
 Setting the environment variables is different for various operating systems. The user should refer to the relevant reference materials (view the list of references at the end of this manual). Also there is a setup method of the environment variables when running R sessions using the `.Renviron` files in the user's working or home directory. Contents of the file might look like this:
 
 ```txt
-RGA_CLIENT_ID="Client_ID"
-RGA_CLIENT_SECRET="Client_secret"
+RGA_CLIENT_ID="client_id"
+RGA_CLIENT_SECRET="client_secret"
 ```
 
 Environment variables can also be set directly from R session using the `Sys.setenv` function. For instance:
 
 ```R
-Sys.setenv(RGA_CLIENT_ID = "Client_ID", RGA_CLIENT_SECRET = "Client_secret")
+Sys.setenv(RGA_CLIENT_ID = "client_id", RGA_CLIENT_SECRET = "client_secret")
 ```
 
 This string can be added to the file `.Rprofile` in the user's current оr home directory in order to set these variables automatically when the R session starts.
