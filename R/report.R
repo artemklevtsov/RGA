@@ -99,9 +99,11 @@ get_ga <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
               !is.null(start.date), nzchar(start.date),
               !is.null(end.date), nzchar(end.date),
               !is.null(metrics), nzchar(metrics))
+    if (!is.null(sampling.level))
+        sampling.level <- match.arg(sampling.level, c("default", "faster", "higher_precision"))
     query <- list(profile.id = profile.id, start.date = start.date, end.date = end.date,
                   metrics = metrics, dimensions = dimensions, sort = sort, filters = filters,
-                  segment = segment, sampling.level = match.arg(sampling.level, c("default", "faster", "higher_precision")),
+                  segment = segment, sampling.level = sampling.level,
                   start.index = start.index, max.results = max.results)
     res <- get_report(type = "ga", query = query, token = token, verbose = verbose)
     return(res)
@@ -152,9 +154,11 @@ get_mcf <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
               !is.null(start.date), nzchar(start.date),
               !is.null(end.date), nzchar(end.date),
               !is.null(metrics), nzchar(metrics))
+    if (!is.null(sampling.level))
+        sampling.level <- match.arg(sampling.level, c("default", "faster", "higher_precision"))
     query <- list(profile.id = profile.id, start.date = start.date, end.date = end.date,
                   metrics = metrics, dimensions = dimensions, sort = sort, filters = filters,
-                  sampling.level = match.arg(sampling.level, c("default", "faster", "higher_precision")),
+                  sampling.level = sampling.level,
                   start.index = start.index, max.results = max.results)
     res <- get_report(type = "mcf", query = query, token = token, verbose = verbose)
     return(res)
