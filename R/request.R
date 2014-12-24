@@ -33,7 +33,7 @@ error_handler <- function(x) {
 #'
 #' @include auth.R
 #'
-#' @importFrom httr GET config content http_status
+#' @importFrom httr GET config content verbose
 #' @importFrom jsonlite fromJSON
 #'
 make_request = function(url, simplify = TRUE, token, verbose = getOption("rga.verbose")) {
@@ -53,7 +53,7 @@ make_request = function(url, simplify = TRUE, token, verbose = getOption("rga.ve
     }
     stopifnot(inherits(token, "Token2.0"))
     if (verbose)
-        request <- GET(url, config(token = token), verbose(data_out = verbose, data_in = verbose))
+        request <- GET(url, config(token = token), verbose(data_out = verbose))
     else
         request <- GET(url, config(token = token))
     data_json <- fromJSON(content(request, as = "text"), simplifyVector = simplify, flatten = TRUE)
