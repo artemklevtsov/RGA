@@ -4,7 +4,7 @@ is.empty <- function(x) {
     is.null(x) || is.na(x) || !length(x) || !nzchar(x)
 }
 
-# Reduce NULL and "" elements
+# Reduce empty elements
 compact <- function(x) {
     empty <- vapply(x, is.empty, logical(1))
     return(x[!empty])
@@ -31,22 +31,41 @@ strip_ops <- function(x) {
     return(x)
 }
 
-to_camel <- function(x, delim = "\\W", upper = FALSE) {
+#' @title Convert character vector to camelCase
+#'
+#' @param a character vector to be converted.
+#' @param delim a string containing regular expression word delimiter (defaults to non-words - "\W").
+#' @param capitalize a logical value indicating if the first letter of the first word should be capitalised (defaults to FALSE).
+#'
+#' @keywords internal
+#'
+#' @noRd
+#'
+to_camel <- function(x, delim = "\\W", capitalize = FALSE) {
     stopifnot(is.character(x))
     if (length(x) > 1)
         return(vapply(x, to_camel, character(1)))
     splitted <- strsplit(x, delim)[[1]]
     first <- substring(splitted, 1, 1)
-    if (isTRUE(upper))
+    if (isTRUE(capitalize))
         first <- toupper(first)
     else
         first[-1] <- toupper(first[-1])
     return(paste0(first, substring(splitted, 2), sep = "", collapse = ""))
 }
 
-to_period <- function(x) {
-    x <- gsub("([a-z])([A-Z])", "\\1.\\2", x)
-    return(tolower(x))
+#' @title Convert camelCase character vectove to separated
+#'
+#' @param x a character vector to be converted.
+#' @param sep a character string to separate the terms.
+#'
+#' @keywords internal
+#'
+#' @noRd
+#'
+to_separated <- function(x, sep = ".") {
+    x <- gsub("([a-z])([A-Z])", paste0("\\1", sep, "\\L\\2"), x, perl = TRUE)
+    return(x)
 }
 
 # Convert data types
