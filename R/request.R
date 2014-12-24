@@ -8,6 +8,18 @@ set_curl_opts <- function() {
     }
 }
 
+# Error printing function
+#' @importFrom httr http_status
+#'
+error_handler <- function(x) {
+    error_code <- x$error$code
+    error_message <- http_status(error_code)$message
+    error_tbl <- x$error$errors[, -1L]
+    error_tbl$reason <- to_separated(error_tbl$reason, sep = " ")
+    reasons <- paste(capture.output(print(error_tbl, right = FALSE)), collapse = "\n")
+    stop(error_message, "\n", reasons, call. = FALSE)
+}
+
 #' @title Make a Goolge Analytics API request
 #'
 #' @param url character. The url of the request.
@@ -31,32 +43,22 @@ make_request = function(url, simplify = TRUE, token, verbose = getOption("rga.ve
         message("Sending request to the Google Analytics API...")
         message(paste("Query URL:", url))
     }
-    if (!missing(token)) {
-        stopifnot(inherits(token, "Token2.0"))
+    if (missing(token) && token_exists("GAToken")) {
+        token <- get_token("GAToken")
+        if (verbose)
+            message("Use OAuth Token stored in RGA:::TokenEnv$GAToken.")
+    } else {
         if (verbose)
             message(paste("Use OAuth Token passed in", substitute(token), "variable."))
-        request <- GET(url = url, config = config(token = token))
-    } else {
-        if (token_exists("GAToken")) {
-            if (verbose)
-                message("Use OAuth Token stored in RGA:::TokenEnv$GAToken.")
-            token <- get_token("GAToken")
-            stopifnot(inherits(token, "Token2.0"))
-            request <- GET(url = url, config = config(token = token))
-        } else {
-            if (verbose)
-                message("Send request without OAuth Token.")
-            request <- GET(url = url)
-        }
     }
+    stopifnot(inherits(token, "Token2.0"))
     if (verbose)
-        message(paste("HTTP status", http_status(request)$message))
+        request <- GET(url, config(token = token), verbose(data_out = verbose, data_in = verbose))
+    else
+        request <- GET(url, config(token = token))
     data_json <- fromJSON(content(request, as = "text"), simplifyVector = simplify, flatten = TRUE)
-    if (!is.null(data_json$error)) {
-        code <- http_status(request)$message
-        reasons <- data_json$error$errors$message
-        stop(paste(code, paste("Reason:", reasons, collapse = "\n"), sep = "\n"))
-    }
+    if (!is.null(data_json$error))
+        error_handler(data_json)
     return(data_json)
 }
 
