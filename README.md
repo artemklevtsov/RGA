@@ -294,6 +294,8 @@ show_dimsmets(ga)
 
 ## Bug reports
 
+Before posting a bug please try execute your code with the `verbose = TRUE` parameter. It will be useful if you attach verbose output to the bug report.
+
 To report a bug please type into R:
 
 ```R
