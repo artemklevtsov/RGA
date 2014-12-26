@@ -86,11 +86,11 @@ authorize(client.id = "client_id", client.secret = "client_secret")
 
 After calling this function first time, a web browser will be opened. First entrance with a **Google Account** confirms access to the Google Analytics data. Note that the package requests access for the **read-only** data.
 
-When the `authorize` function is used, the `GAToken` variable is created in the separate `TokenEnv` environment which not visible for user. So, there is no need to pass every time the `token` argument to any function which requires authorization.
+When the `authorize` function is used, the `GAToken` (can be changed with `rga.token` option) variable is created in the separate `TokenEnv` environment which not visible for user. So, there is no need to pass every time the `token` argument to any function which requires authorization.
 
 Access token can also be stored in a variable and passed as the argument to the functions which request the API Google Analytics. It can be useful when you are working with several accounts at the same time (for details see next subsection).
 
-When the `cache` argument is ​​assigned the `TRUE` (default) and  the `httr_oauth_cache` option is not changed, then after successful authorization the `.httr-oauth` file with access data to Google API will be created in the current working directory. The `.httr-oauth` file is used between sessions, i.e. at a subsequent call to the `authorize`  function and authorization in the browser tab is not required. Using the `cache` argument you can also cancel the creation of the file (`FALSE` value) or specify an alternate path to the file storage (in this case It is necessary to specify the path and file name explicitly).
+When the `cache` argument is ​​assigned the `TRUE` (default) and  the `rga.cache` option is not changed, then after successful authorization the `.ga-token.rds` file with access data to Google API will be created in the current working directory. The `.ga-token.rds` file is used between sessions, i.e. at a subsequent call to the `authorize`  function and authorization in the browser tab is not required. Using the `cache` argument you can also cancel the creation of the file (`FALSE` value) or specify an alternate path to the file storage (in this case It is necessary to specify the path and file name explicitly).
 
 Note: Besides the explicit specifying of the `client.id` and `client.secret` arguments, their values ​​can be defined via environment variables: `RGA_CLIENT_ID` and `RGA_CLIENT_SECRET`. In this case, specifying of the `client.id` and `client.secret` arguments is not required for calling `authorize` function.
 
