@@ -95,7 +95,7 @@ authorize <- function(client.id, client.secret, cache = getOption("rga.cache"), 
     token <- oauth2.0_token(endpoint = oauth_endpoints("google"), app = rga_app, cache = cache,
                             scope = "https://www.googleapis.com/auth/analytics.readonly")
     if (verbose)
-        message("Token saved in RGA:::TokenEnv$GAToken.")
-    set_token("GAToken", token)
+        message(paste0("Token saved in RGA:::TokenEnv$", getOption("rga.token"), "."))
+    set_token(getOption("rga.token"), token)
     invisible(token)
 }
