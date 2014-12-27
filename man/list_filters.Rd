@@ -21,38 +21,11 @@ list_filters(account.id, start.index = NULL, max.results = NULL, token,
 \value{
 A filter collection lists filters created by users in an Analytics account. Each resource in the collection corresponds to a filter.
 \item{id}{Filter ID.}
-\item{kind}{Resource type for Analytics filter.}
 \item{account.id}{Account ID to which this filter belongs.}
 \item{name}{Name of this filter.}
 \item{type}{Type of this filter.}
 \item{created}{Time this filter was created.}
 \item{updated}{Time this filter was last modified.}
-\item{include.details.kind}{Kind value for filter expression}
-\item{include.details.field}{Field to filter.}
-\item{include.details.match.type}{Match type for this filter.}
-\item{include.details.expression.value}{Filter expression value}
-\item{include.details.case.sensitive}{Determines if the filter is case sensitive.}
-\item{exclude.details.kind}{Kind value for filter expression}
-\item{exclude.details.field}{Field to filter.}
-\item{exclude.details.match.type}{Match type for this filter.}
-\item{exclude.details.expression.value}{Filter expression value}
-\item{exclude.details.case.sensitive}{Determines if the filter is case sensitive.}
-\item{lowercase.details.field}{Field to use in the filter.}
-\item{uppercase.details.field}{Field to use in the filter.}
-\item{search.and.replace.details.field}{Field to use in the filter.}
-\item{search.and.replace.details.search.string}{Term to search.}
-\item{search.and.replace.details.replace.string}{Term to replace the search term with.}
-\item{search.and.replace.details.case.sensitive}{Determines if the filter is case sensitive.}
-\item{advanced.details.field.a}{Field A.}
-\item{advanced.details.extract.a}{Expression to extract from field A.}
-\item{advanced.details.field.b}{Field B.}
-\item{advanced.details.extract.b}{Expression to extract from field B.}
-\item{advanced.details.output.to.field}{Output field.}
-\item{advanced.details.output.constructor}{Expression used to construct the output value.}
-\item{advanced.details.field.aRequired}{Indicates if field A is required to match.}
-\item{advanced.details.field.bRequired}{Indicates if field B is required to match.}
-\item{advanced.details.override.output.field}{Indicates if the existing value of the output field, if any, should be overridden by the output expression.}
-\item{advanced.details.case.sensitive}{Indicates if the filter expressions are case sensitive.}
 }
 \description{
 Lists all filters for an account which the user has access to

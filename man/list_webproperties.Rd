@@ -22,7 +22,6 @@ list_webproperties(account.id = "~all", start.index = NULL,
 A web property collection lists Analytics web properties to which the user has access. Each resource in the collection corresponds to a single Analytics web property.
 \item{id}{Web property ID of the form UA-XXXXX-YY.}
 \item{account.id}{Account ID to which this web property belongs.}
-\item{internal.web.property.id}{Internal ID for this web property.}
 \item{name}{Name of this web property.}
 \item{website.url}{Website url for this web property.}
 \item{level}{Level for this web property. Possible values are STANDARD or PREMIUM.}

@@ -38,9 +38,6 @@ An unsampled report collection lists Analytics unsampled reports to which the us
 \item{segment}{The segment for the unsampled report.}
 \item{status}{Status of this unsampled report. Possible values are PENDING, COMPLETED, or FAILED.}
 \item{download.type}{The type of download you need to use for the report data file.}
-\item{drive.download.details.document.id}{Id of the document/file containing the report data.}
-\item{cloud.storage.download.details.bucket.id}{Id of the bucket the file object is stored in.}
-\item{cloud.storage.download.details.object.id}{Id of the file object containing the report data.}
 \item{created}{Time this unsampled report was created.}
 \item{updated}{Time this unsampled report was last modified.}
 }
