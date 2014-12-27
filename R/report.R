@@ -29,6 +29,7 @@
 #'
 get_report <- function(type = c("ga", "mcf", "rt"), query, token, verbose = getOption("rga.verbose")) {
     type <- match.arg(type)
+    query$fields <- "containsSampledData,columnHeaders,rows"
     query <- fix_query(query)
     data_json <- get_data(type = type, query = query, token = token, verbose = verbose)
     rows <- data_json$rows
