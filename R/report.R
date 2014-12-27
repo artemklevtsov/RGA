@@ -106,6 +106,8 @@ get_ga <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
                   segment = segment, sampling.level = sampling.level,
                   start.index = start.index, max.results = max.results)
     res <- get_report(type = "ga", query = query, token = token, verbose = verbose)
+    if (!is.null(res$date))
+        res$date <- as.Date(as.character(res$date), "%Y%m%d")
     return(res)
 }
 
@@ -161,6 +163,8 @@ get_mcf <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
                   sampling.level = sampling.level,
                   start.index = start.index, max.results = max.results)
     res <- get_report(type = "mcf", query = query, token = token, verbose = verbose)
+    if (!is.null(res$conversion.date))
+        res$conversion.date <- as.Date(as.character(res$conversion.date), "%Y%m%d")
     return(res)
 }
 
