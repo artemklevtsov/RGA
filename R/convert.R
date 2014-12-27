@@ -27,18 +27,6 @@ build_mcf <- function(data, cols) {
     return(data_df)
 }
 
-# Remove lists from mgmt data
-clean_mgmt <- function(data) {
-    data_names <- names(data)
-    to_drop <- c("kind", grep("Link", data_names, value = TRUE))
-    data <- data[, !data_names %in% to_drop]
-    if (!is.null(data$permissions.effective)) {
-        data$permissions.effective <- vapply(data$permissions.effective, paste, collapse = ",", FUN.VALUE = character(1))
-        names(data)[grep("permissions", names(data))] <- "permissions"
-    }
-    return(data)
-}
-
 # Rename list with sublists for mgmt data
 #' @include utils.R
 rename_mgmt <- function(x) {
@@ -52,17 +40,15 @@ rename_mgmt <- function(x) {
 # Build data.frame for mgmt data
 build_mgmt <- function(data) {
     if (is.data.frame(data))
-        data_df <- clean_mgmt(data)
+        data_df <- data
     else if (is.list(data)) {
-        data <- lapply(data, clean_mgmt)
-        all_names <- lapply(data, names)
-        u_names <- unique(unlist(all_names))
-        for (i in seq_along(data)) {
-            diff_names <- setdiff(u_names, all_names[[i]])
-            data[[i]][diff_names] <-  NA
-        }
         data_df <- do.call(rbind, data)
     }
+    if (!is.null(data_df$permissions.effective)) {
+        data_df$permissions.effective <- vapply(data_df$permissions.effective, paste, collapse = ",", FUN.VALUE = character(1))
+        names(data_df)[grep("permissions", names(data_df))] <- "permissions"
+    }
+    names(data_df) <- gsub("web.property", "webproperty", names(data_df), fixed = TRUE)
     return(data_df)
 }
 

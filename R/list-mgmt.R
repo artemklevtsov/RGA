@@ -4,7 +4,7 @@
 #'
 list_mgmt <- function(path, query, token, verbose = getOption("rga.verbose")) {
     data_json <- get_data(type = "mgmt", path = path, query = query, token = token, verbose = verbose)
-    items <- data_json[["items"]]
+    items <- data_json$items
     if (data_json$totalResults == 0L || is.null(items)) {
         message("No results were obtained.")
         return(NULL)
@@ -40,7 +40,7 @@ list_mgmt <- function(path, query, token, verbose = getOption("rga.verbose")) {
 #'
 list_accounts = function(start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose")) {
     path <- "accounts"
-    query <- list(start.index = start.index, max.results = max.results)
+    query <- list(start.index = start.index, max.results = max.results, fields = "items(id,name,permissions/effective,created,updated)")
     res <- list_mgmt(path = path, query = query, token = token, verbose = verbose)
     return(res)
 }
@@ -56,7 +56,6 @@ list_accounts = function(start.index = NULL, max.results = NULL, token, verbose 
 #' @return A web property collection lists Analytics web properties to which the user has access. Each resource in the collection corresponds to a single Analytics web property.
 #' \item{id}{Web property ID of the form UA-XXXXX-YY.}
 #' \item{account.id}{Account ID to which this web property belongs.}
-#' \item{internal.web.property.id}{Internal ID for this web property.}
 #' \item{name}{Name of this web property.}
 #' \item{website.url}{Website url for this web property.}
 #' \item{level}{Level for this web property. Possible values are STANDARD or PREMIUM.}
@@ -80,7 +79,7 @@ list_accounts = function(start.index = NULL, max.results = NULL, token, verbose 
 #'
 list_webproperties = function(account.id = "~all", start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose")) {
     path <- paste("accounts", account.id, "webproperties", sep = "/")
-    query <- list(start.index = start.index, max.results = max.results)
+    query <- list(start.index = start.index, max.results = max.results, fields = "items(id,accountId,name,websiteUrl,level,industryVertical,defaultProfileId,permissions/effective,created,updated)")
     res <- list_mgmt(path = path, query = query, token = token, verbose = verbose)
     return(res)
 }
@@ -98,15 +97,11 @@ list_webproperties = function(account.id = "~all", start.index = NULL, max.resul
 #' \item{id}{View (Profile) ID.}
 #' \item{account.id}{Account ID to which this view (profile) belongs.}
 #' \item{web.property.id}{Web property ID of the form UA-XXXXX-YY to which this view (profile) belongs.}
-#' \item{internal.web.property.id}{Internal ID for the web property to which this view (profile) belongs.}
 #' \item{name}{Name of this view (profile).}
 #' \item{currency}{The currency type associated with this view (profile).}
 #' \item{timezone}{Time zone for which this view (profile) has been configured. Time zones are identified by strings from the TZ database.}
 #' \item{website.url}{Website URL for this view (profile).}
 #' \item{type}{View (Profile) type. Supported types: WEB or APP.}
-#' \item{site.search.category.parameters}{Site search category parameters for this view (profile).}
-#' \item{strip.site.search.category.parameters}{Whether or not Analytics will strip search category parameters from the URLs in your reports.}
-#' \item{exclude.query.parameters}{The query parameters that are excluded from this view (profile).}
 #' \item{e.commerce.tracking}{Indicates whether ecommerce tracking is enabled for this view (profile).}
 #' \item{permissions}{Permissions the user has for this view (profile).}
 #' \item{created}{Time this view (profile) was created.}
@@ -125,7 +120,7 @@ list_webproperties = function(account.id = "~all", start.index = NULL, max.resul
 #'
 list_profiles = function(account.id = "~all", webproperty.id = "~all", start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose")) {
     path <- paste("accounts", account.id, "webproperties", webproperty.id, "profiles", sep = "/")
-    query <- list(start.index = start.index, max.results = max.results)
+    query <- list(start.index = start.index, max.results = max.results, fields = "items(id,accountId,webPropertyId,name,currency,timezone,websiteUrl,type,eCommerceTracking,permissions/effective,created,updated)")
     res <- list_mgmt(path = path, query = query, token = token, verbose = verbose)
     return(res)
 }
@@ -143,21 +138,12 @@ list_profiles = function(account.id = "~all", webproperty.id = "~all", start.ind
 #' @return A goal collection lists Analytics goals to which the user has access. Each view (profile) can have a set of goals. Each resource in the Goal collection corresponds to a single Analytics goal.
 #' \item{id}{Goal ID (number).}
 #' \item{account.id}{Account ID which this goal belongs to.}
-#' \item{web.property.id}{Web property ID which this goal belongs to. The web property ID is of the form UA-XXXXX-YY.}
-#' \item{internal.web.property.id}{Internal ID for the web property to which this goal belongs.}
+#' \item{webproperty.id}{Web property ID which this goal belongs to. The web property ID is of the form UA-XXXXX-YY.}
 #' \item{profile.id}{View (Profile) ID to which this goal belongs.}
 #' \item{name}{Goal name.}
 #' \item{value}{Goal value.}
 #' \item{active}{Determines whether this goal is active.}
 #' \item{type}{Goal type. Acceptable values are: "EVENT", "URL_DESTINATION", "VISIT_NUM_PAGES", "VISIT_TIME_ON_SITE"}
-#' \item{visit.time.on.site.details.comparison.type}{Type of comparison. Possible values are LESS_THAN or GREATER_THAN.}
-#' \item{visit.time.on.site.details.comparison.value}{Value used for this comparison.}
-#' \item{visit.num.pages.details.comparison.type}{Type of comparison. Possible values are LESS_THAN, GREATER_THAN, or EQUAL.}
-#' \item{visit.num.pages.details.comparison.value}{Value used for this comparison.}
-#' \item{url.destination.details.url}{URL for this goal.}
-#' \item{url.destination.details.case.sensitive}{Determines if the goal URL must exactly match the capitalization of visited URLs.}
-#' \item{url.destination.details.match.type}{Match type for the goal URL. Possible values are HEAD, EXACT, or REGEX.}
-#' \item{url.destination.details.first.step.required}{Determines if the first step in this goal is required.}
 #' \item{created}{Time this goal was created.}
 #' \item{updated}{Time this goal was last modified.}
 #'
@@ -172,7 +158,7 @@ list_profiles = function(account.id = "~all", webproperty.id = "~all", start.ind
 #'
 list_goals = function(account.id = "~all", webproperty.id = "~all", profile.id = "~all", start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose")) {
     path <- paste("accounts", account.id, "webproperties", webproperty.id, "profiles", profile.id, "goals", sep = "/")
-    query <- list(start.index = start.index, max.results = max.results)
+    query <- list(start.index = start.index, max.results = max.results, fields = "items(id,accountId,webPropertyId,profileId,name,active,value,type,created,updated)")
     res <- list_mgmt(path = path, query = query, token = token, verbose = verbose)
     return(res)
 }
@@ -206,7 +192,7 @@ list_goals = function(account.id = "~all", webproperty.id = "~all", profile.id =
 #'
 list_segments = function(start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose")) {
     path <- "segments"
-    query <- list(start.index = start.index, max.results = max.results)
+    query <- list(start.index = start.index, max.results = max.results, fields = "items(id,segmentId,name,definition,type,created,updated)")
     res <- list_mgmt(path = path, query = query, token = token, verbose = verbose)
     return(res)
 }
@@ -227,7 +213,7 @@ list_segments = function(start.index = NULL, max.results = NULL, token, verbose 
 #' \item{name}{Name of this custom data source.}
 #' \item{description}{Description of custom data sourc}
 #' \item{type}{Type of the custom data source.}
-#' \item{upload.type}{The resource type with which the custom data source can be used to upload data; it can have the values "analytics#uploads" or "analytics#daily.uploads". Custom data sources with this property set to "analytics#daily.uploads" are deprecated and should be migrated using the uploads resource.}
+#' \item{upload.type}{The resource type with which the custom data source can be used to upload data; it can have the values "analytics#uploads" or "analytics#dailyUploads". Custom data sources with this property set to "analytics#daily.uploads" are deprecated and should be migrated using the uploads resource.}
 #' \item{import.behavior}{How cost data metrics are treated when there are duplicate keys. If this property is set to "SUMMATION" the values are added; if this property is set to "OVERWRITE" the most recent value overwrites the existing value.}
 #' \item{created}{Time this custom data source was created.}
 #' \item{updated}{Time this custom data source was last modified.}
@@ -243,7 +229,7 @@ list_segments = function(start.index = NULL, max.results = NULL, token, verbose 
 #'
 list_custom_sources <- function(account.id, webproperty.id, start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose")) {
     path <- paste("accounts", account.id, "webproperties", webproperty.id, "customDataSources", sep = "/")
-    query <- list(start.index = start.index, max.results = max.results)
+    query <- list(start.index = start.index, max.results = max.results, fields = "items(id,accountId,webPropertyId,name,description,type,uploadType,importBehavior,created,updated)")
     res <- list_mgmt(path = path, query = query, token = token, verbose = verbose)
     return(res)
 }
@@ -272,9 +258,6 @@ list_custom_sources <- function(account.id, webproperty.id, start.index = NULL, 
 #' \item{segment}{The segment for the unsampled report.}
 #' \item{status}{Status of this unsampled report. Possible values are PENDING, COMPLETED, or FAILED.}
 #' \item{download.type}{The type of download you need to use for the report data file.}
-#' \item{drive.download.details.document.id}{Id of the document/file containing the report data.}
-#' \item{cloud.storage.download.details.bucket.id}{Id of the bucket the file object is stored in.}
-#' \item{cloud.storage.download.details.object.id}{Id of the file object containing the report data.}
 #' \item{created}{Time this unsampled report was created.}
 #' \item{updated}{Time this unsampled report was last modified.}
 #'
@@ -289,7 +272,7 @@ list_custom_sources <- function(account.id, webproperty.id, start.index = NULL, 
 #'
 list_unsampled_reports <- function(account.id, webproperty.id, profile.id, start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose")) {
     path <- paste("accounts", account.id, "webproperties", webproperty.id, "profiles", profile.id, "unsampledReports", sep = "/")
-    query <- list(start.index = start.index, max.results = max.results)
+    query <- list(start.index = start.index, max.results = max.results, fields = "items(id,title,accountId,segmentId,profileId,start-date,end-date,metrics,dimensions,filters,segment,status,downloadType,created,updated)")
     res <- list_mgmt(path = path, query = query, token = token, verbose = verbose)
     return(res)
 }
@@ -304,38 +287,11 @@ list_unsampled_reports <- function(account.id, webproperty.id, profile.id, start
 #'
 #' @return A filter collection lists filters created by users in an Analytics account. Each resource in the collection corresponds to a filter.
 #' \item{id}{Filter ID.}
-#' \item{kind}{Resource type for Analytics filter.}
 #' \item{account.id}{Account ID to which this filter belongs.}
 #' \item{name}{Name of this filter.}
 #' \item{type}{Type of this filter.}
 #' \item{created}{Time this filter was created.}
 #' \item{updated}{Time this filter was last modified.}
-#' \item{include.details.kind}{Kind value for filter expression}
-#' \item{include.details.field}{Field to filter.}
-#' \item{include.details.match.type}{Match type for this filter.}
-#' \item{include.details.expression.value}{Filter expression value}
-#' \item{include.details.case.sensitive}{Determines if the filter is case sensitive.}
-#' \item{exclude.details.kind}{Kind value for filter expression}
-#' \item{exclude.details.field}{Field to filter.}
-#' \item{exclude.details.match.type}{Match type for this filter.}
-#' \item{exclude.details.expression.value}{Filter expression value}
-#' \item{exclude.details.case.sensitive}{Determines if the filter is case sensitive.}
-#' \item{lowercase.details.field}{Field to use in the filter.}
-#' \item{uppercase.details.field}{Field to use in the filter.}
-#' \item{search.and.replace.details.field}{Field to use in the filter.}
-#' \item{search.and.replace.details.search.string}{Term to search.}
-#' \item{search.and.replace.details.replace.string}{Term to replace the search term with.}
-#' \item{search.and.replace.details.case.sensitive}{Determines if the filter is case sensitive.}
-#' \item{advanced.details.field.a}{Field A.}
-#' \item{advanced.details.extract.a}{Expression to extract from field A.}
-#' \item{advanced.details.field.b}{Field B.}
-#' \item{advanced.details.extract.b}{Expression to extract from field B.}
-#' \item{advanced.details.output.to.field}{Output field.}
-#' \item{advanced.details.output.constructor}{Expression used to construct the output value.}
-#' \item{advanced.details.field.aRequired}{Indicates if field A is required to match.}
-#' \item{advanced.details.field.bRequired}{Indicates if field B is required to match.}
-#' \item{advanced.details.override.output.field}{Indicates if the existing value of the output field, if any, should be overridden by the output expression.}
-#' \item{advanced.details.case.sensitive}{Indicates if the filter expressions are case sensitive.}
 #'
 #' @seealso \code{\link{authorize}}
 #'
@@ -348,7 +304,7 @@ list_unsampled_reports <- function(account.id, webproperty.id, profile.id, start
 #'
 list_filters <- function(account.id, start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose")) {
     path <- paste("accounts", account.id, "filters", sep = "/")
-    query <- list(start.index = start.index, max.results = max.results)
+    query <- list(start.index = start.index, max.results = max.results, fields = "items(id,accountId,name,type,created,updated)")
     res <- list_mgmt(path = path, query = query, token = token, verbose = verbose)
     return(res)
 }
