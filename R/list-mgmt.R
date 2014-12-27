@@ -2,7 +2,7 @@
 #' @include get-data.R
 #' @include convert.R
 #'
-get_mgmt <- function(path, query, token, verbose = getOption("rga.verbose")) {
+list_mgmt <- function(path, query, token, verbose = getOption("rga.verbose")) {
     data_json <- get_data(type = "mgmt", path = path, query = query, token = token, verbose = verbose)
     items <- data_json[["items"]]
     if (data_json$totalResults == 0L || is.null(items)) {
@@ -41,7 +41,7 @@ get_mgmt <- function(path, query, token, verbose = getOption("rga.verbose")) {
 list_accounts = function(start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose")) {
     path <- "accounts"
     query <- list(start.index = start.index, max.results = max.results)
-    res <- get_mgmt(path = path, query = query, token = token, verbose = verbose)
+    res <- list_mgmt(path = path, query = query, token = token, verbose = verbose)
     return(res)
 }
 
@@ -81,7 +81,7 @@ list_accounts = function(start.index = NULL, max.results = NULL, token, verbose 
 list_webproperties = function(account.id = "~all", start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose")) {
     path <- paste("accounts", account.id, "webproperties", sep = "/")
     query <- list(start.index = start.index, max.results = max.results)
-    res <- get_mgmt(path = path, query = query, token = token, verbose = verbose)
+    res <- list_mgmt(path = path, query = query, token = token, verbose = verbose)
     return(res)
 }
 
@@ -126,7 +126,7 @@ list_webproperties = function(account.id = "~all", start.index = NULL, max.resul
 list_profiles = function(account.id = "~all", webproperty.id = "~all", start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose")) {
     path <- paste("accounts", account.id, "webproperties", webproperty.id, "profiles", sep = "/")
     query <- list(start.index = start.index, max.results = max.results)
-    res <- get_mgmt(path = path, query = query, token = token, verbose = verbose)
+    res <- list_mgmt(path = path, query = query, token = token, verbose = verbose)
     return(res)
 }
 
@@ -173,7 +173,7 @@ list_profiles = function(account.id = "~all", webproperty.id = "~all", start.ind
 list_goals = function(account.id = "~all", webproperty.id = "~all", profile.id = "~all", start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose")) {
     path <- paste("accounts", account.id, "webproperties", webproperty.id, "profiles", profile.id, "goals", sep = "/")
     query <- list(start.index = start.index, max.results = max.results)
-    res <- get_mgmt(path = path, query = query, token = token, verbose = verbose)
+    res <- list_mgmt(path = path, query = query, token = token, verbose = verbose)
     return(res)
 }
 
@@ -207,7 +207,7 @@ list_goals = function(account.id = "~all", webproperty.id = "~all", profile.id =
 list_segments = function(start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose")) {
     path <- "segments"
     query <- list(start.index = start.index, max.results = max.results)
-    res <- get_mgmt(path = path, query = query, token = token, verbose = verbose)
+    res <- list_mgmt(path = path, query = query, token = token, verbose = verbose)
     return(res)
 }
 
@@ -244,7 +244,7 @@ list_segments = function(start.index = NULL, max.results = NULL, token, verbose 
 list_custom_sources <- function(account.id, webproperty.id, start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose")) {
     path <- paste("accounts", account.id, "webproperties", webproperty.id, "customDataSources", sep = "/")
     query <- list(start.index = start.index, max.results = max.results)
-    res <- get_mgmt(path = path, query = query, token = token, verbose = verbose)
+    res <- list_mgmt(path = path, query = query, token = token, verbose = verbose)
     return(res)
 }
 
@@ -290,7 +290,7 @@ list_custom_sources <- function(account.id, webproperty.id, start.index = NULL, 
 list_unsampled_reports <- function(account.id, webproperty.id, profile.id, start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose")) {
     path <- paste("accounts", account.id, "webproperties", webproperty.id, "profiles", profile.id, "unsampledReports", sep = "/")
     query <- list(start.index = start.index, max.results = max.results)
-    res <- get_mgmt(path = path, query = query, token = token, verbose = verbose)
+    res <- list_mgmt(path = path, query = query, token = token, verbose = verbose)
     return(res)
 }
 
@@ -349,6 +349,6 @@ list_unsampled_reports <- function(account.id, webproperty.id, profile.id, start
 list_filters <- function(account.id, start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose")) {
     path <- paste("accounts", account.id, "filters", sep = "/")
     query <- list(start.index = start.index, max.results = max.results)
-    res <- get_mgmt(path = path, query = query, token = token, verbose = verbose)
+    res <- list_mgmt(path = path, query = query, token = token, verbose = verbose)
     return(res)
 }

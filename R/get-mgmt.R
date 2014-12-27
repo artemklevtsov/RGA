@@ -1,3 +1,13 @@
+# Get the Management API data
+#' @include request.R
+#'
+get_mgmt <- function(path, token, verbose = getOption("rga.verbose")) {
+    data_list <- get_response(type = "mgmt", path = path, token = token, verbose = verbose)
+    data_list <- rename_mgmt(data_list)
+    data_list <- convert_datatypes(data_list)
+    return(data_list)
+}
+
 #' @title Gets a web property to which the user has access to
 #'
 #' @param account.id integer or character. Account ID to retrieve the web property for.
@@ -30,15 +40,11 @@
 #'
 #' @family The Google Analytics Management API
 #'
-#' @include request.R
-#'
 #' @export
 #'
 get_webproperty <- function(account.id, webproperty.id, token, verbose = getOption("rga.verbose")) {
     path <- paste("accounts", account.id, "webproperties", webproperty.id, sep = "/")
-    res <- get_response(type = "mgmt", path = path)
-    res <- rename_mgmt(res)
-    res <- convert_datatypes(res)
+    res <- get_mgmt(path = path, token = token, verbose = verbose)
     return(res)
 }
 
@@ -78,15 +84,11 @@ get_webproperty <- function(account.id, webproperty.id, token, verbose = getOpti
 #'
 #' @family The Google Analytics Management API
 #'
-#' @include request.R
-#'
 #' @export
 #'
 get_profile <- function(account.id, webproperty.id, profile.id, token, verbose = getOption("rga.verbose")) {
     path <- paste("accounts", account.id, "webproperties", webproperty.id, "profiles", profile.id, sep = "/")
-    res <- get_response(type = "mgmt", path = path)
-    res <- rename_mgmt(res)
-    res <- convert_datatypes(res)
+    res <- get_mgmt(path = path, token = token, verbose = verbose)
     return(res)
 }
 
@@ -123,15 +125,11 @@ get_profile <- function(account.id, webproperty.id, profile.id, token, verbose =
 #'
 #' @family The Google Analytics Management API
 #'
-#' @include request.R
-#'
 #' @export
 #'
 get_goal <- function(account.id, webproperty.id, profile.id, goal.id, token, verbose = getOption("rga.verbose")) {
     path <- paste("accounts", account.id, "webproperties", webproperty.id, "profiles", profile.id, "goals", goal.id, sep = "/")
-    res <- get_response(type = "mgmt", path = path)
-    res <- rename_mgmt(res)
-    res <- convert_datatypes(res)
+    res <- get_mgmt(path = path, token = token, verbose = verbose)
     return(res)
 }
 
@@ -172,15 +170,11 @@ get_goal <- function(account.id, webproperty.id, profile.id, goal.id, token, ver
 #'
 #' @family The Google Analytics Management API
 #'
-#' @include request.R
-#'
 #' @export
 #'
 get_unsampled_report <- function(account.id, webproperty.id, profile.id, unsampled.report.id, token, verbose = getOption("rga.verbose")) {
     path <- paste("accounts", account.id, "webproperties", webproperty.id, "profiles", profile.id, "unsampledReports", unsampled.report.id, sep = "/")
-    res <- get_response(path = path, token = token, verbose = verbose)
-    res <- rename_mgmt(res)
-    res <- convert_datatypes(res)
+    res <- get_mgmt(path = path, token = token, verbose = verbose)
     return(res)
 }
 
@@ -236,14 +230,10 @@ get_unsampled_report <- function(account.id, webproperty.id, profile.id, unsampl
 #'
 #' @family The Google Analytics Management API
 #'
-#' @include request.R
-#'
 #' @export
 #'
 get_filter <- function(account.id, filter.id, token, verbose = getOption("rga.verbose")) {
     path <- paste("accounts", account.id, "filters", filter.id, sep = "/")
-    res <- get_response(type = "mgmt", path = path)
-    res <- rename_mgmt(res)
-    res <- convert_datatypes(res)
+    res <- get_mgmt(path = path, token = token, verbose = verbose)
     return(res)
 }
