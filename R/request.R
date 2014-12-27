@@ -23,7 +23,8 @@ error_handler <- function(x) {
 #' @title Make a Goolge Analytics API request
 #'
 #' @param url character. The url of the request.
-#' @param simplify logical. See \code{\link[jsonlite]{fromJSON}}.
+#' @param simplify logical. Coerce JSON arrays to a vector, matrix or data frame.
+#' @param flatten logical. Automatically flatten nested data frames into a single non-nested data frame.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
 #' @param verbose logical. Should print information verbose?
 #'
@@ -36,7 +37,7 @@ error_handler <- function(x) {
 #' @importFrom httr GET config content verbose
 #' @importFrom jsonlite fromJSON
 #'
-make_request = function(url, simplify = TRUE, token, verbose = getOption("rga.verbose")) {
+make_request = function(url, simplify = TRUE, flatten = TRUE, token, verbose = getOption("rga.verbose")) {
     stopifnot(is.character(url) && length(url) == 1L)
     set_curl_opts()
     if (verbose) {
@@ -56,7 +57,7 @@ make_request = function(url, simplify = TRUE, token, verbose = getOption("rga.ve
         request <- GET(url, config(token = token), verbose(data_out = verbose))
     else
         request <- GET(url, config(token = token))
-    data_json <- fromJSON(content(request, as = "text"), simplifyVector = simplify, flatten = TRUE)
+    data_json <- fromJSON(content(request, as = "text"), simplifyVector = simplify, flatten = flatten)
     if (!is.null(data_json$error))
         error_handler(data_json)
     return(data_json)
@@ -67,6 +68,8 @@ make_request = function(url, simplify = TRUE, token, verbose = getOption("rga.ve
 #' @param type character string including report type.
 #' @param path list including a request parameters.
 #' @param query list including a request parameters.
+#' @param simplify logical. Coerce JSON arrays to a vector, matrix or data frame.
+#' @param flatten logical. Automatically flatten nested data frames into a single non-nested data frame.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
 #' @param verbose logical. Should print information verbose?
 #'
@@ -78,9 +81,9 @@ make_request = function(url, simplify = TRUE, token, verbose = getOption("rga.ve
 #'
 #' @include url.R
 #'
-get_response <- function(type = c("ga", "rt", "mcf", "mgmt"), path = NULL, query = NULL, token, verbose = getOption("rga.verbose")) {
+get_response <- function(type = c("ga", "rt", "mcf", "mgmt"), path = NULL, query = NULL, simplify = TRUE, flatten = TRUE, token, verbose = getOption("rga.verbose")) {
     type <- match.arg(type)
     url <- build_url(type = type, path = path, query = query)
-    data_json <- make_request(url, token = token, verbose = verbose)
+    data_json <- make_request(url, simplify = simplify, flatten = flatten, token = token, verbose = verbose)
     return(data_json)
 }
