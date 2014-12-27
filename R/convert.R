@@ -29,6 +29,7 @@ build_mcf <- function(data, cols) {
 
 # Rename list with sublists for mgmt data
 #' @include utils.R
+#'
 rename_mgmt <- function(x) {
     names(x) <-  to_separated(names(x), sep = ".")
     to_rename <- vapply(x, is.list, logical(1))
@@ -67,7 +68,6 @@ build_df <- function(type = c("ga", "mcf", "rt", "mgmt"), data, cols, verbose = 
         message(paste("Obtained data.frame with", nrow(data_df), "rows and", ncol(data_df), "columns."))
     rownames(data_df) <- NULL
     colnames(data_df) <- to_separated(colnames(data_df), sep = ".")
-    colnames(data_df) <- gsub("web.property", "webproperty", colnames(data_df), fixed = TRUE)
     if (verbose)
         message("Converting data types...")
     data_df <- convert_datatypes(data_df)
