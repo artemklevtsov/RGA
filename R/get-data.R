@@ -18,6 +18,10 @@ get_data <- function(type = c("ga", "rt", "mcf", "mgmt"), path = NULL, query = N
         pagination <- FALSE
         stopifnot(query$max.results <= results_limit)
     }
+    if (is.null(query$fields))
+        query$fields <- paste("totalResults", items_name, sep = ",")
+    else
+        query$fields <- paste("totalResults", query$fields, sep = ",")
     data_json <- get_response(type = type, path = path, query = query, token = token, verbose = verbose)
     if (!isTRUE(pagination) && query$max.results < data_json$totalResults)
         warning(paste("Only", query$max.results, "observations out of", data_json$totalResults, "were obtained. Set max.results = NULL (default value) to get all results."), call. = FALSE)
