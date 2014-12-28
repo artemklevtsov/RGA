@@ -44,10 +44,10 @@ make_request = function(url, simplify = TRUE, flatten = TRUE, token, verbose = g
         message("Sending request to the Google Analytics API...")
         message(paste("Query URL:", url))
     }
-    if (missing(token) && token_exists("GAToken")) {
-        token <- get_token("GAToken")
+    if (missing(token) && token_exists(getOption("rga.token"))) {
+        token <- get_token(getOption("rga.token"))
         if (verbose)
-            message("Use OAuth Token stored in RGA:::TokenEnv$GAToken.")
+            message(paste0("Use OAuth Token stored in RGA:::TokenEnv$", getOption("rga.token"), "."))
     } else {
         if (verbose)
             message(paste("Use OAuth Token passed in", substitute(token), "variable."))
