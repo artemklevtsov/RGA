@@ -18,7 +18,7 @@
 #' @examples
 #' \dontrun{
 #' # get token data
-#' authorize(client.id = "myID", client.secret = "mySecret")
+#' authorize(client.id = "client_id", client.secret = "client_secret")
 #' # set query
 #' query <- list(profile.id = "XXXXXXXX", start.date = "31daysAgo", end.date = "today",
 #'               metrics = "ga:users,ga:sessions", dimensions = "ga:userType")
@@ -84,9 +84,9 @@ get_report <- function(type = c("ga", "mcf", "rt"), query, token, verbose = getO
 #' @examples
 #' \dontrun{
 #' # get token data
-#' authorize(client.id = "myID", client.secret = "mySecret")
+#' authorize(client.id = "client_id", client.secret = "client_secret")
 #' # get report data
-#' ga_data <- get_ga("myProfileID", start.date = "30daysAgo", end.date = "today",
+#' ga_data <- get_ga("profile_id", start.date = "30daysAgo", end.date = "today",
 #'                   metrics = "ga:sessions", dimensions = "ga:source,ga:medium",
 #'                   sort = "-ga:sessions")
 #' }
@@ -143,9 +143,9 @@ get_ga <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
 #' @examples
 #' \dontrun{
 #' # get token data
-#' authorize(client.id = "myID", client.secret = "mySecret")
+#' authorize(client.id = "client_id", client.secret = "client_secret")
 #' # get report data
-#' ga_data <- get_mcf("myProfileID", start.date = "30daysAgo", end.date = "today",
+#' ga_data <- get_mcf("profile_id", start.date = "30daysAgo", end.date = "today",
 #'                    metrics = "mcf:totalConversions",
 #'                    dimensions = "mcf:source,mcf:medium")
 #' }
@@ -196,13 +196,13 @@ get_mcf <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
 #' @examples
 #' \dontrun{
 #' # get token data
-#' authorize(client.id = "myID", client.secret = "mySecret")
+#' authorize(client.id = "client_id", client.secret = "client_secret")
 #' # get report data
-#' ga_data <- get_rt("myProfileID", metrics = "rt:activeUsers", dimensions = "rt:source,rt:medium")
+#' ga_data <- get_rt("profile_id", metrics = "rt:activeUsers", dimensions = "rt:source,rt:medium")
 #' # get active users in realtime (press Esc to abort)
 #' while (TRUE) {
 #'     cat("\014")
-#'     print(get_rt("myProfileID", metrics = "rt:activeUsers"))
+#'     print(get_rt("profile_id", metrics = "rt:activeUsers"))
 #'     Sys.sleep(2)
 #' }
 #' }
@@ -234,8 +234,8 @@ get_rt <- function(profile.id, metrics = "rt:activeUsers", dimensions = NULL,
 #'
 #' @examples
 #' \dontrun{
-#' authorize(client.id = "myID", client.secret = "mySecret")
-#' first_date <- get_firstdate(profile.id = "myProfileID")
+#' authorize(client.id = "client_id", client.secret = "client_secret")
+#' first_date <- get_firstdate(profile.id = "profile_id")
 #' }
 #'
 #' @export
