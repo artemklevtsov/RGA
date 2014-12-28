@@ -108,7 +108,7 @@ list_metadata <- function(report.type = "ga") {
 #'
 #' @export ga
 #'
-#' @seealso \code{\link{get_ga}} \code{\link{dims_mets}}
+#' @seealso \code{\link{get_ga}} \code{\link{dimsmets}}
 #'
 #' @examples
 #' # a count of parameters types
