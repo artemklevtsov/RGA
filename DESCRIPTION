@@ -33,16 +33,18 @@ Collate:
     'auth.R'
     'utils.R'
     'convert.R'
-    'data.R'
     'url.R'
     'request.R'
     'get-pages.R'
     'get-data.R'
     'get-mgmt.R'
     'list-mgmt.R'
-    'onload.R'
+    'metadata.R'
     'package.R'
     'query.R'
     'report.R'
     'shiny.R'
     'zzz.R'
+Suggests:
+    knitr
+VignetteBuilder: knitr
