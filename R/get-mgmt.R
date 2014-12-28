@@ -1,8 +1,8 @@
 # Get the Management API data
 #' @include request.R
 #'
-get_mgmt <- function(path, token, verbose = getOption("rga.verbose")) {
-    data_list <- get_response(type = "mgmt", path = path, token = token, verbose = verbose)
+get_mgmt <- function(path, token) {
+    data_list <- get_response(type = "mgmt", path = path, token = token)
     data_list <- rename_mgmt(data_list)
     data_list <- convert_datatypes(data_list)
     return(data_list)
@@ -13,7 +13,6 @@ get_mgmt <- function(path, token, verbose = getOption("rga.verbose")) {
 #' @param account.id integer or character. Account ID to retrieve the web property for.
 #' @param webproperty.id character. ID to retrieve the web property for.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
-#' @param verbose logical. Should print information verbose?
 #'
 #' @return An Analytics web property.
 #' \item{id}{Web property ID of the form UA-XXXXX-YY.}
@@ -42,9 +41,9 @@ get_mgmt <- function(path, token, verbose = getOption("rga.verbose")) {
 #'
 #' @export
 #'
-get_webproperty <- function(account.id, webproperty.id, token, verbose = getOption("rga.verbose")) {
+get_webproperty <- function(account.id, webproperty.id, token) {
     path <- paste("accounts", account.id, "webproperties", webproperty.id, sep = "/")
-    res <- get_mgmt(path = path, token = token, verbose = verbose)
+    res <- get_mgmt(path = path, token = token)
     return(res)
 }
 
@@ -54,7 +53,6 @@ get_webproperty <- function(account.id, webproperty.id, token, verbose = getOpti
 #' @param webproperty.id character. Web property ID to retrieve the goal for.
 #' @param profile.id View (Profile) ID to retrieve the goal for.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
-#' @param verbose logical. Should print information verbose?
 #'
 #' @return An Analytics view (profile).
 #' \item{id}{View (Profile) ID.}
@@ -86,9 +84,9 @@ get_webproperty <- function(account.id, webproperty.id, token, verbose = getOpti
 #'
 #' @export
 #'
-get_profile <- function(account.id, webproperty.id, profile.id, token, verbose = getOption("rga.verbose")) {
+get_profile <- function(account.id, webproperty.id, profile.id, token) {
     path <- paste("accounts", account.id, "webproperties", webproperty.id, "profiles", profile.id, sep = "/")
-    res <- get_mgmt(path = path, token = token, verbose = verbose)
+    res <- get_mgmt(path = path, token = token)
     return(res)
 }
 
@@ -99,7 +97,6 @@ get_profile <- function(account.id, webproperty.id, profile.id, token, verbose =
 #' @param profile.id ineger or character. View (Profile) ID to retrieve the goal for.
 #' @param goal.id ineger or character. Goal ID to retrieve the goal for.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
-#' @param verbose logical. Should print information verbose?
 #'
 #' @return An Analytics goal resource
 #' \item{id}{Goal ID.}
@@ -127,9 +124,9 @@ get_profile <- function(account.id, webproperty.id, profile.id, token, verbose =
 #'
 #' @export
 #'
-get_goal <- function(account.id, webproperty.id, profile.id, goal.id, token, verbose = getOption("rga.verbose")) {
+get_goal <- function(account.id, webproperty.id, profile.id, goal.id, token) {
     path <- paste("accounts", account.id, "webproperties", webproperty.id, "profiles", profile.id, "goals", goal.id, sep = "/")
-    res <- get_mgmt(path = path, token = token, verbose = verbose)
+    res <- get_mgmt(path = path, token = token)
     return(res)
 }
 
@@ -140,7 +137,6 @@ get_goal <- function(account.id, webproperty.id, profile.id, goal.id, token, ver
 #' @param profile.id integer or character. View (Profile) ID to retrieve unsampled report for.
 #' @param unsampled.report.id integer or character. Web property ID to retrieve unsampled reports for.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
-#' @param verbose logical. Should print information verbose?
 #'
 #' @return An Analytics unsampled report.
 #' \item{id}{Unsampled report ID.}
@@ -172,9 +168,9 @@ get_goal <- function(account.id, webproperty.id, profile.id, goal.id, token, ver
 #'
 #' @export
 #'
-get_unsampled_report <- function(account.id, webproperty.id, profile.id, unsampled.report.id, token, verbose = getOption("rga.verbose")) {
+get_unsampled_report <- function(account.id, webproperty.id, profile.id, unsampled.report.id, token) {
     path <- paste("accounts", account.id, "webproperties", webproperty.id, "profiles", profile.id, "unsampledReports", unsampled.report.id, sep = "/")
-    res <- get_mgmt(path = path, token = token, verbose = verbose)
+    res <- get_mgmt(path = path, token = token)
     return(res)
 }
 
@@ -183,7 +179,6 @@ get_unsampled_report <- function(account.id, webproperty.id, profile.id, unsampl
 #' @param account.id integer or character. Account ID to retrieve filters for.
 #' @param filter.id integer or character. Filter ID to retrieve filters for.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
-#' @param verbose logical. Should print information verbose?
 #'
 #' @return An Analytics account filter.
 #' \item{id}{Filter ID.}
@@ -232,8 +227,8 @@ get_unsampled_report <- function(account.id, webproperty.id, profile.id, unsampl
 #'
 #' @export
 #'
-get_filter <- function(account.id, filter.id, token, verbose = getOption("rga.verbose")) {
+get_filter <- function(account.id, filter.id, token) {
     path <- paste("accounts", account.id, "filters", filter.id, sep = "/")
-    res <- get_mgmt(path = path, token = token, verbose = verbose)
+    res <- get_mgmt(path = path, token = token)
     return(res)
 }

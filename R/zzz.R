@@ -1,7 +1,6 @@
 .onLoad <- function(libname, pkgname) {
     op <- options()
     op.rga <- list(
-        rga.verbose = FALSE,
         rga.cache = ".ga-token.rds",
         rga.token = "GAToken"
     )

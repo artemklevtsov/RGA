@@ -3,7 +3,6 @@
 #' @param type character. Report type. Allowed values: ga, mcf, rt.
 #' @param query list. List of the data request query parameters.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
-#' @param verbose logical. Should print information verbose?
 #'
 #' @return A data frame including the Analytics data for a view (profile).
 #'
@@ -18,7 +17,7 @@
 #' @examples
 #' \dontrun{
 #' # get token data
-#' authorize(client.id = "client_id", client.secret = "client_secret")
+#' authorize(client.id = "client_id", client.secret = "client_sevret")
 #' # set query
 #' query <- list(profile.id = "XXXXXXXX", start.date = "31daysAgo", end.date = "today",
 #'               metrics = "ga:users,ga:sessions", dimensions = "ga:userType")
@@ -27,11 +26,11 @@
 #' ga_data <- get_report(type = "ga", query = query)
 #' }
 #'
-get_report <- function(type = c("ga", "mcf", "rt"), query, token, verbose = getOption("rga.verbose")) {
+get_report <- function(type = c("ga", "mcf", "rt"), query, token) {
     type <- match.arg(type)
     query$fields <- "containsSampledData,columnHeaders,rows"
     query <- fix_query(query)
-    data_json <- get_data(type = type, query = query, token = token, verbose = verbose)
+    data_json <- get_data(type = type, query = query, token = token)
     rows <- data_json$rows
     cols <- data_json$columnHeaders
     if (data_json$totalResults == 0L || is.null(rows)) {
@@ -46,7 +45,7 @@ get_report <- function(type = c("ga", "mcf", "rt"), query, token, verbose = getO
     }
     if (!is.null(data_json$containsSampledData) && data_json$containsSampledData)
         warning("Data contains sampled data.", call. = FALSE)
-    data_df <- build_df(type, rows, cols, verbose = verbose)
+    data_df <- build_df(type, rows, cols)
     return(data_df)
 }
 
@@ -64,7 +63,6 @@ get_report <- function(type = c("ga", "mcf", "rt"), query, token, verbose = getO
 #' @param start.index integer. An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
 #' @param max.results integer. The maximum number of entries to include in this feed.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
-#' @param verbose logical. Should print information verbose?
 #'
 #' @return A data frame including the Analytics data for a view (profile).
 #'
@@ -84,7 +82,7 @@ get_report <- function(type = c("ga", "mcf", "rt"), query, token, verbose = getO
 #' @examples
 #' \dontrun{
 #' # get token data
-#' authorize(client.id = "client_id", client.secret = "client_secret")
+#' authorize(client.id = "client_id", client.secret = "client_sevret")
 #' # get report data
 #' ga_data <- get_ga("profile_id", start.date = "30daysAgo", end.date = "today",
 #'                   metrics = "ga:sessions", dimensions = "ga:source,ga:medium",
@@ -96,8 +94,7 @@ get_report <- function(type = c("ga", "mcf", "rt"), query, token, verbose = getO
 get_ga <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
                    metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = NULL,
                    sort = NULL, filters = NULL, segment = NULL, sampling.level = NULL,
-                   start.index = NULL, max.results = NULL,
-                   token, verbose = getOption("rga.verbose")) {
+                   start.index = NULL, max.results = NULL, token) {
     stopifnot(!is.null(profile.id), nzchar(profile.id),
               !is.null(start.date), nzchar(start.date),
               !is.null(end.date), nzchar(end.date),
@@ -108,7 +105,7 @@ get_ga <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
                   metrics = metrics, dimensions = dimensions, sort = sort, filters = filters,
                   segment = segment, sampling.level = sampling.level,
                   start.index = start.index, max.results = max.results)
-    res <- get_report(type = "ga", query = query, token = token, verbose = verbose)
+    res <- get_report(type = "ga", query = query, token = token)
     if (!is.null(res$date))
         res$date <- as.Date(as.character(res$date), "%Y%m%d")
     return(res)
@@ -127,7 +124,6 @@ get_ga <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
 #' @param start.index integer. An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
 #' @param max.results integer. The maximum number of entries to include in this feed.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
-#' @param verbose logical. Should print information verbose?
 #'
 #' @return A data frame including the Analytics Multi-Channel Funnels data for a view (profile)
 #'
@@ -143,7 +139,7 @@ get_ga <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
 #' @examples
 #' \dontrun{
 #' # get token data
-#' authorize(client.id = "client_id", client.secret = "client_secret")
+#' authorize(client.id = "client_id", client.secret = "client_sevret")
 #' # get report data
 #' ga_data <- get_mcf("profile_id", start.date = "30daysAgo", end.date = "today",
 #'                    metrics = "mcf:totalConversions",
@@ -155,8 +151,7 @@ get_ga <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
 get_mcf <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
                     metrics = "mcf:totalConversions", dimensions = NULL,
                     sort = NULL, filters = NULL, sampling.level = NULL,
-                    start.index = NULL, max.results = NULL,
-                    token, verbose = getOption("rga.verbose")) {
+                    start.index = NULL, max.results = NULL, token) {
     stopifnot(!is.null(profile.id), nzchar(profile.id),
               !is.null(start.date), nzchar(start.date),
               !is.null(end.date), nzchar(end.date),
@@ -167,7 +162,7 @@ get_mcf <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
                   metrics = metrics, dimensions = dimensions, sort = sort, filters = filters,
                   sampling.level = sampling.level,
                   start.index = start.index, max.results = max.results)
-    res <- get_report(type = "mcf", query = query, token = token, verbose = verbose)
+    res <- get_report(type = "mcf", query = query, token = token)
     if (!is.null(res$conversion.date))
         res$conversion.date <- as.Date(as.character(res$conversion.date), "%Y%m%d")
     return(res)
@@ -182,7 +177,6 @@ get_mcf <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
 #' @param filters character. A comma-separated list of dimension or metric filters to be applied to real time data.
 #' @param max.results integer. The maximum number of entries to include in this feed.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
-#' @param verbose logical. Should print information verbose?
 #'
 #' @return A data frame including the real time data for a view (profile).
 #'
@@ -196,7 +190,7 @@ get_mcf <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
 #' @examples
 #' \dontrun{
 #' # get token data
-#' authorize(client.id = "client_id", client.secret = "client_secret")
+#' authorize(client.id = "client_id", client.secret = "client_sevret")
 #' # get report data
 #' ga_data <- get_rt("profile_id", metrics = "rt:activeUsers", dimensions = "rt:source,rt:medium")
 #' # get active users in realtime (press Esc to abort)
@@ -210,13 +204,12 @@ get_mcf <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
 #' @export
 #'
 get_rt <- function(profile.id, metrics = "rt:activeUsers", dimensions = NULL,
-                         sort = NULL, filters = NULL, max.results = NULL,
-                         token, verbose = getOption("rga.verbose")) {
+                         sort = NULL, filters = NULL, max.results = NULL, token) {
     stopifnot(!is.null(profile.id), nzchar(profile.id),
               !is.null(metrics), nzchar(metrics))
     query <- list(profile.id = profile.id, metrics = metrics, dimensions = dimensions,
                   sort = sort, filters = filters, max.results = max.results)
-    res <- get_report(type = "rt", query = query, token = token, verbose = verbose)
+    res <- get_report(type = "rt", query = query, token = token)
     return(res)
 }
 
@@ -224,7 +217,6 @@ get_rt <- function(profile.id, metrics = "rt:activeUsers", dimensions = NULL,
 #'
 #' @param profile.id Google Analytics profile ID. Can be obtained using the \code{\link{list_profiles}} or via the web interface Google Analytics.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
-#' @param verbose logical. Should print information verbose?
 #'
 #' @return Start date of collecting the Google Analytics statistics.
 #'
@@ -234,17 +226,17 @@ get_rt <- function(profile.id, metrics = "rt:activeUsers", dimensions = NULL,
 #'
 #' @examples
 #' \dontrun{
-#' authorize(client.id = "client_id", client.secret = "client_secret")
+#' authorize(client.id = "client_id", client.secret = "client_sevret")
 #' first_date <- get_firstdate(profile.id = "profile_id")
 #' }
 #'
 #' @export
 #'
-get_firstdate <- function(profile.id, token, verbose = getOption("rga.verbose")) {
+get_firstdate <- function(profile.id, token) {
     res <- suppressWarnings(
         get_ga(profile.id = profile.id, start.date = "2005-01-01", end.date = "today",
                metrics = "ga:sessions", dimensions = "ga:date", filters = "ga:sessions>0",
-               max.results = 1L, token = token, verbose = verbose)
+               max.results = 1L, token = token)
     )
     return(res$date)
 }

@@ -55,21 +55,16 @@ build_mgmt <- function(data) {
 
 # Build a data.frame for GA report data
 #' @include utils.R
-build_df <- function(type = c("ga", "mcf", "rt", "mgmt"), data, cols, verbose = getOption("rga.verbose")) {
-    if (verbose)
-        message("Building data frame...")
+build_df <- function(type = c("ga", "mcf", "rt", "mgmt"), data, cols) {
     type <- match.arg(type)
     data_df <- switch(type,
                       ga = build_ga(data, cols),
                       rt = build_ga(data, cols),
                       mcf = build_mcf(data, cols),
                       mgmt = build_mgmt(data))
-    if (verbose)
-        message(paste("Obtained data.frame with", nrow(data_df), "rows and", ncol(data_df), "columns."))
+    message(paste("Obtained data.frame with", nrow(data_df), "rows and", ncol(data_df), "columns."))
     rownames(data_df) <- NULL
     colnames(data_df) <- to_separated(colnames(data_df), sep = ".")
-    if (verbose)
-        message("Converting data types...")
     data_df <- convert_datatypes(data_df)
     return(data_df)
 }
