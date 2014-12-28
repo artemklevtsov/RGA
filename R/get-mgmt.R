@@ -5,6 +5,8 @@ get_mgmt <- function(path, token) {
     data_list <- get_response(type = "mgmt", path = path, token = token)
     data_list <- rename_mgmt(data_list)
     data_list <- convert_datatypes(data_list)
+    data_df$created <- strptime(data_df$created, format = "%Y-%m-%dT%H:%M:%OS", tz = "UTC")
+    data_df$updated <- strptime(data_df$updated, format = "%Y-%m-%dT%H:%M:%OS", tz = "UTC")
     return(data_list)
 }
 

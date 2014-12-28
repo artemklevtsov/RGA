@@ -10,6 +10,8 @@ list_mgmt <- function(path, query, token) {
         return(NULL)
     }
     data_df <- build_df(type = "mgmt", items)
+    data_df$created <- strptime(data_df$created, format = "%Y-%m-%dT%H:%M:%OS", tz = "UTC")
+    data_df$updated <- strptime(data_df$updated, format = "%Y-%m-%dT%H:%M:%OS", tz = "UTC")
     return(data_df)
 }
 
