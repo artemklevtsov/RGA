@@ -5,3 +5,4 @@
 .ga-token.rds
 .Renviron
 tmp
+inst/doc

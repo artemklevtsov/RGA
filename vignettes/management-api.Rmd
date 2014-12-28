@@ -1,0 +1,58 @@
+---
+title: "Obtain the access to the Management API"
+#author: "Artem Klevtsov"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Management API}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+```{r, echo = FALSE, message = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+```
+
+To access summary information of the Management API Google Analytics `RGA` package provides the following functions:
+
+- `list_accounts` - Lists all accounts which the user has access to;
+- `list_webproperties` - Lists web properties which the user has access to;
+- `list_profiles` - Lists views (profiles) which the user has access to;
+- `list_custom_sources` - List custom data sources which the user has access to;
+- `list_filters` - Lists all filters for an account which the user has access to;
+- `list_goals` - Lists goals which the user has access to;
+- `list_segments` - Lists segments which the user has access to;
+- `list_unsampled_reports` - Lists unsampled reports which the user has access to;
+
+Each of these functions return a table of data (`data.frame`) with the relevant content.
+
+The functions such as `list_webproperties`, `list_profiles` and `list_goals` can be specified with the additional arguments such as `account.id`, `webproperty.id` or `profile.id`  which are required to obtain the information for specific account, resource or profile (view the help pages for the corresponding functions). This is an example of obtaining the information on all views (profiles):
+
+```r
+list_profiles()
+```
+
+To get all profiles for a specific account try this:
+
+```r
+list_profiles(account.id = "XXXXXXXX")
+```
+
+To get a more detail information about interesing entry use following functions:
+
+- `get_filter` - Gets a filter to which the user has access to;
+- `get_goal` - Gets a goal to which the user has access to;
+- `get_profile` - Gets a view (profile) to which the user has access to;
+- `get_unsampled_report` - Gets a single unsampled report to which the user has access to;
+- `get_webproperty` - Gets a web property to which the user has access to;
+
+Each of these functions return a set of data (`list`) with the relevant content.
+
+To get information about specific filter in first you need obtain the filter ID with `list_filters()` function. Then use obtained filter ID to get more details about this filter:
+
+```r
+list_accounts()
+list_filters(account.id = "XXXXXXXX")
+get_filter(account.id = "XXXXXXXX", filter.id = "YYYYYYYY")
+```
+

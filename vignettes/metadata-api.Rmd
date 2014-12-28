@@ -1,0 +1,76 @@
+---
+title: "Obtain access to the Metadata API"
+#author: "Artem Klevtsov"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Metadata API}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteDepends{RGA}
+  \usepackage[utf8]{inputenc}
+---
+
+```{r, echo = FALSE, message = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+```
+
+When working with the API reports it is sometimes necessary to obtain background information about these or other query parameters to the API. To obtain a list of all the metrics and dimensions `RGA` package provides the `list_metadata()` function, which return actual informtation about all dimensions and metrics for the given report type (now support only the Core Reporting API metadata).
+
+`list_metadata()` return an `data.frame`,  which consists of the following columns:
+
+* `id` - the parameter code name (metric or dimension) (used for queries);
+* `type` - parameter type: metric (METRIC) or dimension (DIMENSION);
+* `dataType` - data type: STRING, INTEGER, PERCENT, TIME, CURRENCY, FLOAT;
+* `group` - group of parameters (ex. User, Session, Traffic Sources);
+* `status` - status: actual (PUBLIC) or outdated (DEPRECATED);
+* `uiName` - parameter name (not used for queries);
+* `description` - parameter description;
+* `allowedInSegments` - whether the parameter can be used in the segments;
+* `replacedBy` - name of the replacement parameter, if the parameter is deprecated;
+* `calculation` - formula of calculating the parameter value, if the parameter is calculated based on other parameters;
+* `minTemplateIndex` - if the parameter contains a numeric index, the minimum parameter index;
+* `maxTemplateIndex` - if the parameter contains a numeric index, the maximum parameter index;
+* `premiumMinTemplateIndex` - if the parameter contains a numeric index, a minimum index for the parameter;
+* `premiumMaxTemplateIndex` - if the parameter contains a numeric index, a maximum index for the parameter.
+
+There are several examples of usage the metadata Google Analytics API.
+
+## Examples
+
+```r
+ga_meta <- list_metadata()
+```
+
+List of all outdated parameters and those ones which were replaced:
+
+```r
+subset(ga_meta, status == "DEPRECATED", c(id, replacedBy))
+```
+
+List of all parameters from certain group:
+
+```r
+subset(ga_meta, group == "Traffic Sources", c(id, type))
+```
+
+List of all calculated parameters:
+
+```r
+subset(ga_meta, !is.na(calculation), c(id, calculation))
+```
+
+List of all parameters allowed in segments:
+
+```r
+subset(ga_meta, allowedInSegments, id)
+```
+
+`RGA` package also provide the shiny demo app to access `ga` dataset:
+
+```r
+dimsmets(ga_meta)
+```
+
+## References
+
+- [Dimensions & Metrics Reference](https://developers.google.com/analytics/devguides/reporting/core/dimsmets)
