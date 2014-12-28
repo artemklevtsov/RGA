@@ -47,7 +47,7 @@ build_mgmt <- function(data) {
     }
     if (!is.null(data_df$permissions.effective)) {
         data_df$permissions.effective <- vapply(data_df$permissions.effective, paste, collapse = ",", FUN.VALUE = character(1))
-        names(data_df)[grep("permissions", names(data_df))] <- "permissions"
+        names(data_df) <- gsub(".effective", "", names(data_df), fixed = TRUE)
     }
     names(data_df) <- gsub("web.property", "webproperty", names(data_df), fixed = TRUE)
     return(data_df)
