@@ -2,14 +2,14 @@
 #' @include get-data.R
 #' @include convert.R
 #'
-list_mgmt <- function(path, query, token, verbose = getOption("rga.verbose")) {
-    data_json <- get_data(type = "mgmt", path = path, query = query, token = token, verbose = verbose)
+list_mgmt <- function(path, query, token) {
+    data_json <- get_data(type = "mgmt", path = path, query = query, token = token)
     items <- data_json$items
     if (data_json$totalResults == 0L || is.null(items)) {
         message("No results were obtained.")
         return(NULL)
     }
-    data_df <- build_df(type = "mgmt", items, verbose = verbose)
+    data_df <- build_df(type = "mgmt", items)
     return(data_df)
 }
 
@@ -18,7 +18,6 @@ list_mgmt <- function(path, query, token, verbose = getOption("rga.verbose")) {
 #' @param start.index integer. An index of the first account to retrieve. Use this parameter as a pagi- nation mechanism along with the max-results parameter.
 #' @param max.results integer. The maximum number of accounts to include in this response.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
-#' @param verbose logical. Should print information verbose?
 #'
 #' @return An account collection provides a list of Analytics accounts to which a user has access. The account collection is the entry point to all management information. Each resource in the collection corresponds to a single Analytics account.
 #' \item{id}{Account ID.}
@@ -38,10 +37,10 @@ list_mgmt <- function(path, query, token, verbose = getOption("rga.verbose")) {
 #'
 #' @export
 #'
-list_accounts = function(start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose")) {
+list_accounts = function(start.index = NULL, max.results = NULL, token) {
     path <- "accounts"
     query <- list(start.index = start.index, max.results = max.results, fields = "items(id,name,permissions/effective,created,updated)")
-    res <- list_mgmt(path = path, query = query, token = token, verbose = verbose)
+    res <- list_mgmt(path = path, query = query, token = token)
     return(res)
 }
 
@@ -51,7 +50,6 @@ list_accounts = function(start.index = NULL, max.results = NULL, token, verbose 
 #' @param start.index integer. An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
 #' @param max.results integer. The maximum number of web properties to include in this response.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
-#' @param verbose logical. Should print information verbose?
 #'
 #' @return A web property collection lists Analytics web properties to which the user has access. Each resource in the collection corresponds to a single Analytics web property.
 #' \item{id}{Web property ID of the form UA-XXXXX-YY.}
@@ -77,10 +75,10 @@ list_accounts = function(start.index = NULL, max.results = NULL, token, verbose 
 #'
 #' @export
 #'
-list_webproperties = function(account.id = "~all", start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose")) {
+list_webproperties = function(account.id = "~all", start.index = NULL, max.results = NULL, token) {
     path <- paste("accounts", account.id, "webproperties", sep = "/")
     query <- list(start.index = start.index, max.results = max.results, fields = "items(id,accountId,name,websiteUrl,level,industryVertical,defaultProfileId,permissions/effective,created,updated)")
-    res <- list_mgmt(path = path, query = query, token = token, verbose = verbose)
+    res <- list_mgmt(path = path, query = query, token = token)
     return(res)
 }
 
@@ -91,7 +89,6 @@ list_webproperties = function(account.id = "~all", start.index = NULL, max.resul
 #' @param start.index integer. An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
 #' @param max.results integer. The maximum number of views (profiles) to include in this response.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
-#' @param verbose logical. Should print information verbose?
 #'
 #' @return A view (profile) collection lists Analytics views (profiles) to which the user has access. Each resource in the collection corresponds to a single Analytics view (profile).
 #' \item{id}{View (Profile) ID.}
@@ -118,10 +115,10 @@ list_webproperties = function(account.id = "~all", start.index = NULL, max.resul
 #'
 #' @export
 #'
-list_profiles = function(account.id = "~all", webproperty.id = "~all", start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose")) {
+list_profiles = function(account.id = "~all", webproperty.id = "~all", start.index = NULL, max.results = NULL, token) {
     path <- paste("accounts", account.id, "webproperties", webproperty.id, "profiles", sep = "/")
     query <- list(start.index = start.index, max.results = max.results, fields = "items(id,accountId,webPropertyId,name,currency,timezone,websiteUrl,type,eCommerceTracking,permissions/effective,created,updated)")
-    res <- list_mgmt(path = path, query = query, token = token, verbose = verbose)
+    res <- list_mgmt(path = path, query = query, token = token)
     return(res)
 }
 
@@ -133,7 +130,6 @@ list_profiles = function(account.id = "~all", webproperty.id = "~all", start.ind
 #' @param start.index integer. An index of the first goal to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
 #' @param max.results integer. The maximum number of goals to include in this response.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
-#' @param verbose logical. Should print information verbose?
 #'
 #' @return A goal collection lists Analytics goals to which the user has access. Each view (profile) can have a set of goals. Each resource in the Goal collection corresponds to a single Analytics goal.
 #' \item{id}{Goal ID (number).}
@@ -156,10 +152,10 @@ list_profiles = function(account.id = "~all", webproperty.id = "~all", start.ind
 #'
 #' @export
 #'
-list_goals = function(account.id = "~all", webproperty.id = "~all", profile.id = "~all", start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose")) {
+list_goals = function(account.id = "~all", webproperty.id = "~all", profile.id = "~all", start.index = NULL, max.results = NULL, token) {
     path <- paste("accounts", account.id, "webproperties", webproperty.id, "profiles", profile.id, "goals", sep = "/")
     query <- list(start.index = start.index, max.results = max.results, fields = "items(id,accountId,webPropertyId,profileId,name,active,value,type,created,updated)")
-    res <- list_mgmt(path = path, query = query, token = token, verbose = verbose)
+    res <- list_mgmt(path = path, query = query, token = token)
     return(res)
 }
 
@@ -168,7 +164,6 @@ list_goals = function(account.id = "~all", webproperty.id = "~all", profile.id =
 #' @param start.index integer. An index of the first segment to retrieve. Use this parameter as a pagi- nation mechanism along with the max-results parameter.
 #' @param max.results integer. The maximum number of segments to include in this response.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
-#' @param verbose logical. Should print information verbose?
 #'
 #' @return An segment collection lists Analytics segments that the user has access to. Each resource in the collection corresponds to a single Analytics segment.
 #' \item{id}{Segment ID.}
@@ -190,10 +185,10 @@ list_goals = function(account.id = "~all", webproperty.id = "~all", profile.id =
 #'
 #' @export
 #'
-list_segments = function(start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose")) {
+list_segments = function(start.index = NULL, max.results = NULL, token) {
     path <- "segments"
     query <- list(start.index = start.index, max.results = max.results, fields = "items(id,segmentId,name,definition,type,created,updated)")
-    res <- list_mgmt(path = path, query = query, token = token, verbose = verbose)
+    res <- list_mgmt(path = path, query = query, token = token)
     return(res)
 }
 
@@ -204,7 +199,6 @@ list_segments = function(start.index = NULL, max.results = NULL, token, verbose 
 #' @param start.index integer. A 1-based index of the first custom data source to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
 #' @param max.results integer. The maximum number of custom data sources to include in this response.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
-#' @param verbose logical. Should print information verbose?
 #'
 #' @return Lists Analytics custom data sources to which the user has access. Each resource in the collection corresponds to a single Analytics custom data source.
 #' \item{id}{Custom data source ID.}
@@ -227,10 +221,10 @@ list_segments = function(start.index = NULL, max.results = NULL, token, verbose 
 #'
 #' @export
 #'
-list_custom_sources <- function(account.id, webproperty.id, start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose")) {
+list_custom_sources <- function(account.id, webproperty.id, start.index = NULL, max.results = NULL, token) {
     path <- paste("accounts", account.id, "webproperties", webproperty.id, "customDataSources", sep = "/")
     query <- list(start.index = start.index, max.results = max.results, fields = "items(id,accountId,webPropertyId,name,description,type,uploadType,importBehavior,created,updated)")
-    res <- list_mgmt(path = path, query = query, token = token, verbose = verbose)
+    res <- list_mgmt(path = path, query = query, token = token)
     return(res)
 }
 
@@ -242,7 +236,6 @@ list_custom_sources <- function(account.id, webproperty.id, start.index = NULL, 
 #' @param start.index integer. An index of the first unsampled report to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
 #' @param max.results integer. The maximum number of unsampled reports to include in this response.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
-#' @param verbose logical. Should print information verbose?
 #'
 #' @return An unsampled report collection lists Analytics unsampled reports to which the user has access. Each view (profile) can have a set of unsampled reports. Each resource in the unsampled report collection corresponds to a single Analytics unsampled report.
 #' \item{id}{Unsampled report ID.}
@@ -270,10 +263,10 @@ list_custom_sources <- function(account.id, webproperty.id, start.index = NULL, 
 #'
 #' @export
 #'
-list_unsampled_reports <- function(account.id, webproperty.id, profile.id, start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose")) {
+list_unsampled_reports <- function(account.id, webproperty.id, profile.id, start.index = NULL, max.results = NULL, token) {
     path <- paste("accounts", account.id, "webproperties", webproperty.id, "profiles", profile.id, "unsampledReports", sep = "/")
     query <- list(start.index = start.index, max.results = max.results, fields = "items(id,title,accountId,segmentId,profileId,start-date,end-date,metrics,dimensions,filters,segment,status,downloadType,created,updated)")
-    res <- list_mgmt(path = path, query = query, token = token, verbose = verbose)
+    res <- list_mgmt(path = path, query = query, token = token)
     return(res)
 }
 
@@ -283,7 +276,6 @@ list_unsampled_reports <- function(account.id, webproperty.id, profile.id, start
 #' @param max.results The maximum number of filters to include in this response.
 #' @param start.index An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
-#' @param verbose logical. Should print information verbose?
 #'
 #' @return A filter collection lists filters created by users in an Analytics account. Each resource in the collection corresponds to a filter.
 #' \item{id}{Filter ID.}
@@ -302,9 +294,9 @@ list_unsampled_reports <- function(account.id, webproperty.id, profile.id, start
 #'
 #' @export
 #'
-list_filters <- function(account.id, start.index = NULL, max.results = NULL, token, verbose = getOption("rga.verbose")) {
+list_filters <- function(account.id, start.index = NULL, max.results = NULL, token) {
     path <- paste("accounts", account.id, "filters", sep = "/")
     query <- list(start.index = start.index, max.results = max.results, fields = "items(id,accountId,name,type,created,updated)")
-    res <- list_mgmt(path = path, query = query, token = token, verbose = verbose)
+    res <- list_mgmt(path = path, query = query, token = token)
     return(res)
 }
