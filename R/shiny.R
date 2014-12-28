@@ -61,3 +61,11 @@ dimsmets <- function(data = ga) {
         }
     )
 }
+
+#' @describeIn dimsmets
+#' @export
+#'
+dims_mets <- function(data = ga) {
+    .Deprecated("dimsmets")
+    dimsmets(data)
+}
