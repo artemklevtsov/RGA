@@ -7,8 +7,7 @@
 get_ga(profile.id, start.date = "7daysAgo", end.date = "yesterday",
   metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = NULL,
   sort = NULL, filters = NULL, segment = NULL, sampling.level = NULL,
-  start.index = NULL, max.results = NULL, token,
-  verbose = getOption("rga.verbose"))
+  start.index = NULL, max.results = NULL, token)
 }
 \arguments{
 \item{profile.id}{integer or character. Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID. Can be obtained using the \code{\link{list_profiles}} or via the web interface Google Analytics.}
@@ -34,8 +33,6 @@ get_ga(profile.id, start.date = "7daysAgo", end.date = "yesterday",
 \item{max.results}{integer. The maximum number of entries to include in this feed.}
 
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
-
-\item{verbose}{logical. Should print information verbose?}
 }
 \value{
 A data frame including the Analytics data for a view (profile).
@@ -46,19 +43,21 @@ Get the Anaytics data from Core Reporting API for a view (profile)
 \examples{
 \dontrun{
 # get token data
-authorize(client.id = "myID", client.secret = "mySecret")
+authorize(client.id = "client_id", client.secret = "client_sevret")
 # get report data
-ga_data <- get_ga("myProfileID", start.date = "30daysAgo", end.date = "today",
+ga_data <- get_ga("profile_id", start.date = "30daysAgo", end.date = "today",
                   metrics = "ga:sessions", dimensions = "ga:source,ga:medium",
                   sort = "-ga:sessions")
 }
 }
 \references{
-\href{https://developers.google.com/analytics/devguides/reporting/core/dimsmets}{Core Reporting API - Dimensions & Metrics Reference}
+\href{https://developers.google.com/analytics/devguides/reporting/core/dimsmets}{Dimensions & Metrics Reference}
 
-\href{https://developers.google.com/analytics/devguides/reporting/core/v3/common-queries}{Core Reporting API - Common Queries}
+\href{https://developers.google.com/analytics/devguides/reporting/core/v3/reference#q_details}{Query Parameter Details}
 
-\href{https://ga-dev-tools.appspot.com/explorer/}{oogle Analytics Demos & Tools - Query Explorer}
+\href{https://developers.google.com/analytics/devguides/reporting/core/v3/common-queries}{Common Queries}
+
+\href{https://ga-dev-tools.appspot.com/explorer/}{Query Explorer}
 }
 \seealso{
 \code{\link{authorize}}

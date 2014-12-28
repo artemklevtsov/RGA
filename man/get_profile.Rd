@@ -4,8 +4,7 @@
 \alias{get_profile}
 \title{Gets a view (profile) to which the user has access to}
 \usage{
-get_profile(account.id, webproperty.id, profile.id, token,
-  verbose = getOption("rga.verbose"))
+get_profile(account.id, webproperty.id, profile.id, token)
 }
 \arguments{
 \item{account.id}{integer or character. Account ID to retrieve the goal for.}
@@ -15,8 +14,6 @@ get_profile(account.id, webproperty.id, profile.id, token,
 \item{profile.id}{View (Profile) ID to retrieve the goal for.}
 
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
-
-\item{verbose}{logical. Should print information verbose?}
 }
 \value{
 An Analytics view (profile).

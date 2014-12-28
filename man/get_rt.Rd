@@ -5,8 +5,7 @@
 \title{Get the Anaytics data from Real Time Reporting API for a view (profile)}
 \usage{
 get_rt(profile.id, metrics = "rt:activeUsers", dimensions = NULL,
-  sort = NULL, filters = NULL, max.results = NULL, token,
-  verbose = getOption("rga.verbose"))
+  sort = NULL, filters = NULL, max.results = NULL, token)
 }
 \arguments{
 \item{profile.id}{integer or character. Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID. Can be obtained using the \code{\link{list_profiles}} or via the web interface Google Analytics.}
@@ -22,8 +21,6 @@ get_rt(profile.id, metrics = "rt:activeUsers", dimensions = NULL,
 \item{max.results}{integer. The maximum number of entries to include in this feed.}
 
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
-
-\item{verbose}{logical. Should print information verbose?}
 }
 \value{
 A data frame including the real time data for a view (profile).
@@ -34,19 +31,19 @@ Get the Anaytics data from Real Time Reporting API for a view (profile)
 \examples{
 \dontrun{
 # get token data
-authorize(client.id = "myID", client.secret = "mySecret")
+authorize(client.id = "client_id", client.secret = "client_sevret")
 # get report data
-ga_data <- get_rt("myProfileID", metrics = "rt:activeUsers", dimensions = "rt:source,rt:medium")
+ga_data <- get_rt("profile_id", metrics = "rt:activeUsers", dimensions = "rt:source,rt:medium")
 # get active users in realtime (press Esc to abort)
 while (TRUE) {
     cat("\\014")
-    print(get_rt("myProfileID", metrics = "rt:activeUsers"))
+    print(get_rt("profile_id", metrics = "rt:activeUsers"))
     Sys.sleep(2)
 }
 }
 }
 \references{
-\href{https://developers.google.com/analytics/devguides/reporting/realtime/dimsmets/}{Real Time Reporting API - Dimensions & Metrics Reference}
+\href{https://developers.google.com/analytics/devguides/reporting/realtime/dimsmets/}{Dimensions & Metrics Reference}
 }
 \seealso{
 \code{\link{authorize}}

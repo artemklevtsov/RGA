@@ -4,8 +4,7 @@
 \alias{get_webproperty}
 \title{Gets a web property to which the user has access to}
 \usage{
-get_webproperty(account.id, webproperty.id, token,
-  verbose = getOption("rga.verbose"))
+get_webproperty(account.id, webproperty.id, token)
 }
 \arguments{
 \item{account.id}{integer or character. Account ID to retrieve the web property for.}
@@ -13,8 +12,6 @@ get_webproperty(account.id, webproperty.id, token,
 \item{webproperty.id}{character. ID to retrieve the web property for.}
 
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
-
-\item{verbose}{logical. Should print information verbose?}
 }
 \value{
 An Analytics web property.

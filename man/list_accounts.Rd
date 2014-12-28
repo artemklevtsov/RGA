@@ -4,8 +4,7 @@
 \alias{list_accounts}
 \title{Lists all accounts which the user has access to}
 \usage{
-list_accounts(start.index = NULL, max.results = NULL, token,
-  verbose = getOption("rga.verbose"))
+list_accounts(start.index = NULL, max.results = NULL, token)
 }
 \arguments{
 \item{start.index}{integer. An index of the first account to retrieve. Use this parameter as a pagi- nation mechanism along with the max-results parameter.}
@@ -13,8 +12,6 @@ list_accounts(start.index = NULL, max.results = NULL, token,
 \item{max.results}{integer. The maximum number of accounts to include in this response.}
 
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
-
-\item{verbose}{logical. Should print information verbose?}
 }
 \value{
 An account collection provides a list of Analytics accounts to which a user has access. The account collection is the entry point to all management information. Each resource in the collection corresponds to a single Analytics account.

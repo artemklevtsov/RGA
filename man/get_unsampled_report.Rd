@@ -5,7 +5,7 @@
 \title{Gets a single unsampled report}
 \usage{
 get_unsampled_report(account.id, webproperty.id, profile.id,
-  unsampled.report.id, token, verbose = getOption("rga.verbose"))
+  unsampled.report.id, token)
 }
 \arguments{
 \item{account.id}{integer or character. Account ID to retrieve unsampled report for.}
@@ -17,8 +17,6 @@ get_unsampled_report(account.id, webproperty.id, profile.id,
 \item{unsampled.report.id}{integer or character. Web property ID to retrieve unsampled reports for.}
 
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
-
-\item{verbose}{logical. Should print information verbose?}
 }
 \value{
 An Analytics unsampled report.

@@ -5,8 +5,7 @@
 \title{Lists goals which the user has access to}
 \usage{
 list_goals(account.id = "~all", webproperty.id = "~all",
-  profile.id = "~all", start.index = NULL, max.results = NULL, token,
-  verbose = getOption("rga.verbose"))
+  profile.id = "~all", start.index = NULL, max.results = NULL, token)
 }
 \arguments{
 \item{account.id}{integer or character. The account ID to retrieve goals for. Can either be a specific account ID or '~all', which refers to all the accounts that user has access to.}
@@ -20,8 +19,6 @@ list_goals(account.id = "~all", webproperty.id = "~all",
 \item{max.results}{integer. The maximum number of goals to include in this response.}
 
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
-
-\item{verbose}{logical. Should print information verbose?}
 }
 \value{
 A goal collection lists Analytics goals to which the user has access. Each view (profile) can have a set of goals. Each resource in the Goal collection corresponds to a single Analytics goal.

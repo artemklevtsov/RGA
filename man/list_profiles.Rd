@@ -5,8 +5,7 @@
 \title{Lists views (profiles) which the user has access to}
 \usage{
 list_profiles(account.id = "~all", webproperty.id = "~all",
-  start.index = NULL, max.results = NULL, token,
-  verbose = getOption("rga.verbose"))
+  start.index = NULL, max.results = NULL, token)
 }
 \arguments{
 \item{account.id}{integer or character. Account ID for the view (profiles) to retrieve. Can either be a specific account ID or '~all', which refers to all the accounts which the user has access to.}
@@ -18,8 +17,6 @@ list_profiles(account.id = "~all", webproperty.id = "~all",
 \item{max.results}{integer. The maximum number of views (profiles) to include in this response.}
 
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
-
-\item{verbose}{logical. Should print information verbose?}
 }
 \value{
 A view (profile) collection lists Analytics views (profiles) to which the user has access. Each resource in the collection corresponds to a single Analytics view (profile).

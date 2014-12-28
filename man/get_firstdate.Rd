@@ -4,14 +4,12 @@
 \alias{get_firstdate}
 \title{Get the first date with available data}
 \usage{
-get_firstdate(profile.id, token, verbose = getOption("rga.verbose"))
+get_firstdate(profile.id, token)
 }
 \arguments{
 \item{profile.id}{Google Analytics profile ID. Can be obtained using the \code{\link{list_profiles}} or via the web interface Google Analytics.}
 
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
-
-\item{verbose}{logical. Should print information verbose?}
 }
 \value{
 Start date of collecting the Google Analytics statistics.
@@ -21,8 +19,8 @@ Get the first date with available data
 }
 \examples{
 \dontrun{
-authorize(client.id = "myID", client.secret = "mySecret")
-first_date <- get_firstdate(profile.id = "myProfileID")
+authorize(client.id = "client_id", client.secret = "client_sevret")
+first_date <- get_firstdate(profile.id = "profile_id")
 }
 }
 \seealso{

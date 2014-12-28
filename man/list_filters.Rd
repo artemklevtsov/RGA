@@ -4,8 +4,7 @@
 \alias{list_filters}
 \title{Lists all filters for an account which the user has access to}
 \usage{
-list_filters(account.id, start.index = NULL, max.results = NULL, token,
-  verbose = getOption("rga.verbose"))
+list_filters(account.id, start.index = NULL, max.results = NULL, token)
 }
 \arguments{
 \item{account.id}{Account ID to retrieve filters for.}
@@ -15,8 +14,6 @@ list_filters(account.id, start.index = NULL, max.results = NULL, token,
 \item{max.results}{The maximum number of filters to include in this response.}
 
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
-
-\item{verbose}{logical. Should print information verbose?}
 }
 \value{
 A filter collection lists filters created by users in an Analytics account. Each resource in the collection corresponds to a filter.

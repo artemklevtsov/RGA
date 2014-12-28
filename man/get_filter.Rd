@@ -4,7 +4,7 @@
 \alias{get_filter}
 \title{Gets a filter to which the user has access to}
 \usage{
-get_filter(account.id, filter.id, token, verbose = getOption("rga.verbose"))
+get_filter(account.id, filter.id, token)
 }
 \arguments{
 \item{account.id}{integer or character. Account ID to retrieve filters for.}
@@ -12,8 +12,6 @@ get_filter(account.id, filter.id, token, verbose = getOption("rga.verbose"))
 \item{filter.id}{integer or character. Filter ID to retrieve filters for.}
 
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
-
-\item{verbose}{logical. Should print information verbose?}
 }
 \value{
 An Analytics account filter.

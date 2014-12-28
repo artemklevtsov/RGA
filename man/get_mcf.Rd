@@ -7,7 +7,7 @@
 get_mcf(profile.id, start.date = "7daysAgo", end.date = "yesterday",
   metrics = "mcf:totalConversions", dimensions = NULL, sort = NULL,
   filters = NULL, sampling.level = NULL, start.index = NULL,
-  max.results = NULL, token, verbose = getOption("rga.verbose"))
+  max.results = NULL, token)
 }
 \arguments{
 \item{profile.id}{integer or character. Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID. Can be obtained using the \code{\link{list_profiles}} or via the web interface Google Analytics.}
@@ -31,8 +31,6 @@ get_mcf(profile.id, start.date = "7daysAgo", end.date = "yesterday",
 \item{max.results}{integer. The maximum number of entries to include in this feed.}
 
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
-
-\item{verbose}{logical. Should print information verbose?}
 }
 \value{
 A data frame including the Analytics Multi-Channel Funnels data for a view (profile)
@@ -43,15 +41,17 @@ Get the Anaytics data from Multi-Channel Funnels Reporting API for a view (profi
 \examples{
 \dontrun{
 # get token data
-authorize(client.id = "myID", client.secret = "mySecret")
+authorize(client.id = "client_id", client.secret = "client_sevret")
 # get report data
-ga_data <- get_mcf("myProfileID", start.date = "30daysAgo", end.date = "today",
+ga_data <- get_mcf("profile_id", start.date = "30daysAgo", end.date = "today",
                    metrics = "mcf:totalConversions",
                    dimensions = "mcf:source,mcf:medium")
 }
 }
 \references{
-\href{https://developers.google.com/analytics/devguides/reporting/mcf/dimsmets/}{Multi-Channel Funnels Reporting API - Dimensions & Metrics Reference}
+\href{https://developers.google.com/analytics/devguides/reporting/mcf/dimsmets/}{Dimensions & Metrics Reference}
+
+\href{https://developers.google.com/analytics/devguides/reporting/mcf/v3/reference#q_details}{Query Parameter Details}
 }
 \seealso{
 \code{\link{authorize}}

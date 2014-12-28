@@ -4,8 +4,7 @@
 \alias{authorize}
 \title{Authorize the RGA package to the user's Google Analytics account using OAuth2.0}
 \usage{
-authorize(client.id, client.secret, cache = getOption("rga.cache"),
-  verbose = getOption("rga.verbose"))
+authorize(client.id, client.secret, cache = getOption("rga.cache"))
 }
 \arguments{
 \item{client.id}{character. OAuth client ID. if client.id is missing, we'll look in the environment variable \code{RGA_CLIENT_ID}.}
@@ -13,8 +12,6 @@ authorize(client.id, client.secret, cache = getOption("rga.cache"),
 \item{client.secret}{character. OAuth client secret. if client.secret is missing, we'll look in the environment variable \code{RGA_CLIENT_SECRET}.}
 
 \item{cache}{logical or character. \code{TRUE} means to cache using the default cache file \code{.oauth-httr}, \code{FALSE} means not to cache. A string means to use the specified path as the cache file.}
-
-\item{verbose}{logical. Should print information verbose?}
 }
 \value{
 A \code{\link[httr]{Token2.0}} object containing all the data required for OAuth access.

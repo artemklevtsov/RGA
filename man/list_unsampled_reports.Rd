@@ -5,8 +5,7 @@
 \title{Lists unsampled reports which the user has access to}
 \usage{
 list_unsampled_reports(account.id, webproperty.id, profile.id,
-  start.index = NULL, max.results = NULL, token,
-  verbose = getOption("rga.verbose"))
+  start.index = NULL, max.results = NULL, token)
 }
 \arguments{
 \item{account.id}{integer or character. The account ID to retrieve unsampled reports for. Must be a specific account ID, ~all is not supported.}
@@ -20,8 +19,6 @@ list_unsampled_reports(account.id, webproperty.id, profile.id,
 \item{max.results}{integer. The maximum number of unsampled reports to include in this response.}
 
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
-
-\item{verbose}{logical. Should print information verbose?}
 }
 \value{
 An unsampled report collection lists Analytics unsampled reports to which the user has access. Each view (profile) can have a set of unsampled reports. Each resource in the unsampled report collection corresponds to a single Analytics unsampled report.

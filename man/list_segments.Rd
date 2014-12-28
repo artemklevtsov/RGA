@@ -4,8 +4,7 @@
 \alias{list_segments}
 \title{Lists segments which the user has access to}
 \usage{
-list_segments(start.index = NULL, max.results = NULL, token,
-  verbose = getOption("rga.verbose"))
+list_segments(start.index = NULL, max.results = NULL, token)
 }
 \arguments{
 \item{start.index}{integer. An index of the first segment to retrieve. Use this parameter as a pagi- nation mechanism along with the max-results parameter.}
@@ -13,8 +12,6 @@ list_segments(start.index = NULL, max.results = NULL, token,
 \item{max.results}{integer. The maximum number of segments to include in this response.}
 
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
-
-\item{verbose}{logical. Should print information verbose?}
 }
 \value{
 An segment collection lists Analytics segments that the user has access to. Each resource in the collection corresponds to a single Analytics segment.

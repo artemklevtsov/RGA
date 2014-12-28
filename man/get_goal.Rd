@@ -4,8 +4,7 @@
 \alias{get_goal}
 \title{Gets a goal to which the user has access to}
 \usage{
-get_goal(account.id, webproperty.id, profile.id, goal.id, token,
-  verbose = getOption("rga.verbose"))
+get_goal(account.id, webproperty.id, profile.id, goal.id, token)
 }
 \arguments{
 \item{account.id}{integer or character. Account ID to retrieve the goal for.}
@@ -17,8 +16,6 @@ get_goal(account.id, webproperty.id, profile.id, goal.id, token,
 \item{goal.id}{ineger or character. Goal ID to retrieve the goal for.}
 
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
-
-\item{verbose}{logical. Should print information verbose?}
 }
 \value{
 An Analytics goal resource

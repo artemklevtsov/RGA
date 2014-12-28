@@ -5,7 +5,7 @@
 \title{List custom data sources which the user has access to}
 \usage{
 list_custom_sources(account.id, webproperty.id, start.index = NULL,
-  max.results = NULL, token, verbose = getOption("rga.verbose"))
+  max.results = NULL, token)
 }
 \arguments{
 \item{account.id}{integer or character. Account Id for the custom data sources to retrieve. Must be a specific account ID, ~all is not supported.}
@@ -17,8 +17,6 @@ list_custom_sources(account.id, webproperty.id, start.index = NULL,
 \item{max.results}{integer. The maximum number of custom data sources to include in this response.}
 
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
-
-\item{verbose}{logical. Should print information verbose?}
 }
 \value{
 Lists Analytics custom data sources to which the user has access. Each resource in the collection corresponds to a single Analytics custom data source.
