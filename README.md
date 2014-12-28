@@ -39,8 +39,6 @@ R CMD INSTALL rga_*.tar.gz
 
 ## Usage
 
-`RGA` package is designed to work with the [**API Google Analytics**](https://developers.google.com/analytics) in [**R**](http://www.r-project.org/).
-
 Once you have the package loaded, there are 3 steps you need to use to get data from Google Analytics:
 
 1. Authorize this package to access your Google Analytics data with the `authorize()` function.
