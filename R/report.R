@@ -67,17 +67,17 @@ get_report <- function(type = c("ga", "mcf", "rt"), query, token) {
 #' @return A data frame including the Analytics data for a view (profile).
 #'
 #' @references
-#' \href{https://developers.google.com/analytics/devguides/reporting/core/dimsmets}{Dimensions & Metrics Reference}
+#' \href{https://developers.google.com/analytics/devguides/reporting/core/dimsmets}{Core Reporting API - Dimensions & Metrics Reference}
 #'
-#' \href{https://developers.google.com/analytics/devguides/reporting/core/v3/reference#q_details}{Query Parameter Details}
+#' \href{https://developers.google.com/analytics/devguides/reporting/core/v3/reference#q_details}{Core Reporting API - Query Parameter Details}
 #'
-#' \href{https://developers.google.com/analytics/devguides/reporting/core/v3/common-queries}{Common Queries}
+#' \href{https://developers.google.com/analytics/devguides/reporting/core/v3/common-queries}{Core Reporting API - Common Queries}
 #'
 #' \href{https://ga-dev-tools.appspot.com/explorer/}{Query Explorer}
 #'
 #' @seealso \code{\link{authorize}}
 #'
-#' @family The Google Analytics Reporting API
+#' @family Reporting API
 #'
 #' @examples
 #' \dontrun{
@@ -128,13 +128,13 @@ get_ga <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
 #' @return A data frame including the Analytics Multi-Channel Funnels data for a view (profile)
 #'
 #' @references
-#' \href{https://developers.google.com/analytics/devguides/reporting/mcf/dimsmets/}{Dimensions & Metrics Reference}
+#' \href{https://developers.google.com/analytics/devguides/reporting/mcf/dimsmets/}{MCF Reporting API - Dimensions & Metrics Reference}
 #'
-#' \href{https://developers.google.com/analytics/devguides/reporting/mcf/v3/reference#q_details}{Query Parameter Details}
+#' \href{https://developers.google.com/analytics/devguides/reporting/mcf/v3/reference#q_details}{MCF Reporting API - Query Parameter Details}
 #'
 #' @seealso \code{\link{authorize}}
 #'
-#' @family The Google Analytics Reporting API
+#' @family Reporting API
 #'
 #' @examples
 #' \dontrun{
@@ -181,11 +181,11 @@ get_mcf <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
 #' @return A data frame including the real time data for a view (profile).
 #'
 #' @references
-#' \href{https://developers.google.com/analytics/devguides/reporting/realtime/dimsmets/}{Dimensions & Metrics Reference}
+#' \href{https://developers.google.com/analytics/devguides/reporting/realtime/dimsmets/}{Real Time Reporting API - Dimensions & Metrics Reference}
 #'
 #' @seealso \code{\link{authorize}}
 #'
-#' @family The Google Analytics Reporting API
+#' @family Reporting API
 #'
 #' @examples
 #' \dontrun{
@@ -222,7 +222,7 @@ get_rt <- function(profile.id, metrics = "rt:activeUsers", dimensions = NULL,
 #'
 #' @seealso \code{\link{authorize}}
 #'
-#' @family The Google Analytics Reporting API
+#' @family Reporting API
 #'
 #' @examples
 #' \dontrun{

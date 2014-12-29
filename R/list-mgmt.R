@@ -35,7 +35,7 @@ list_mgmt <- function(path, query, token) {
 #'
 #' \href{https://ga-dev-tools.appspot.com/account-explorer/}{Google Analytics Demos & Tools - Account Explorer}
 #'
-#' @family The Google Analytics Management API
+#' @family Management API
 #'
 #' @export
 #'
@@ -73,7 +73,7 @@ list_accounts = function(start.index = NULL, max.results = NULL, token) {
 #'
 #' \href{https://ga-dev-tools.appspot.com/account-explorer/}{Google Analytics Demos & Tools - Account Explorer}
 #'
-#' @family The Google Analytics Management API
+#' @family Management API
 #'
 #' @export
 #'
@@ -113,7 +113,7 @@ list_webproperties = function(account.id = "~all", start.index = NULL, max.resul
 #'
 #' \href{https://ga-dev-tools.appspot.com/account-explorer/}{Google Analytics Demos & Tools - Account Explorer}
 #'
-#' @family The Google Analytics Management API
+#' @family Management API
 #'
 #' @export
 #'
@@ -150,7 +150,7 @@ list_profiles = function(account.id = "~all", webproperty.id = "~all", start.ind
 #' @references
 #' \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/goals}{Google Management API - Goals}
 #'
-#' @family The Google Analytics Management API
+#' @family Management API
 #'
 #' @export
 #'
@@ -183,7 +183,7 @@ list_goals = function(account.id = "~all", webproperty.id = "~all", profile.id =
 #'
 #' \href{https://developers.google.com/analytics/devguides/reporting/core/v3/segments}{Core Reporting API - Segments}
 #'
-#' @family The Google Analytics Management API
+#' @family Management API
 #'
 #' @export
 #'
@@ -219,7 +219,7 @@ list_segments = function(start.index = NULL, max.results = NULL, token) {
 #' @references
 #' \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/customDataSources}{Google Management API - Custom Data Sources}
 #'
-#' @family The Google Analytics Management API
+#' @family Management API
 #'
 #' @export
 #'
@@ -261,7 +261,7 @@ list_custom_sources <- function(account.id, webproperty.id, start.index = NULL, 
 #' @references
 #' \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/unsampledReports}{Google Management API - Unsampled Reports}
 #'
-#' @family The Google Analytics Management API
+#' @family Management API
 #'
 #' @export
 #'
@@ -292,7 +292,7 @@ list_unsampled_reports <- function(account.id, webproperty.id, profile.id, start
 #' @references
 #' \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/filters}{Google Management API - Filters}
 #'
-#' @family The Google Analytics Management API
+#' @family Management API
 #'
 #' @export
 #'
@@ -302,3 +302,48 @@ list_filters <- function(account.id, start.index = NULL, max.results = NULL, tok
     res <- list_mgmt(path = path, query = query, token = token)
     return(res)
 }
+
+#' @title Lists experiments to which the user has access to
+#'
+#' @param account.id Account ID to retrieve experiments for.
+#' @param webproperty.id Web property ID to retrieve experiments for.
+#' @param profile.id View (Profile) ID to retrieve experiments for.
+#' @param max.results The maximum number of experiments to include in this response.
+#' @param start.index An index of the first experiment to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+#' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
+#'
+#' @return An experiment collection lists Analytics experiments to which the user has access. Each view (profile) can have a set of experiments. Each resource in the Experiment collection corresponds to a single Analytics experiment.
+#' \item{id}{Experiment ID. Required for patch and update. Disallowed for create.}
+#' \item{account.id}{Account ID to which this experiment belongs.}
+#' \item{webproperty.id}{Web property ID to which this experiment belongs. The web property ID is of the form UA-XXXXX-YY.}
+#' \item{profile.id}{View (Profile) ID to which this experiment belongs.}
+#' \item{name}{Experiment name. This field may not be changed for an experiment whose status is ENDED.}
+#' \item{description}{Notes about this experiment.}
+#' \item{objective.metric}{The metric that the experiment is optimizing.}
+#' \item{optimization.type}{Whether the objectiveMetric should be minimized or maximized.}
+#' \item{status}{Experiment status.}
+#' \item{winner.found}{Boolean specifying whether a winner has been found for this experiment.}
+#' \item{rewrite.variation.urls.as.original}{Boolean specifying whether variations URLS are rewritten to match those of the original.}
+#' \item{winner.confidence.level}{A floating-point number between 0 and 1. Specifies the necessary confidence level to choose a winner.}
+#' \item{start.time}{The starting time of the experiment (the time the status changed from READY_TO_RUN to RUNNING).}
+#' \item{end.time}{The ending time of the experiment (the time the status changed from RUNNING to ENDED).}
+#' \item{minimum.experiment.length.in.days}{An integer number in [3, 90]. Specifies the minimum length of the experiment.}
+#' \item{reason.experiment.ended}{Why the experiment ended.}
+#' \item{editable.in.ga.ui}{If true, the end user will be able to edit the experiment via the Google Analytics user interface.}
+#'
+#' @seealso \code{\link{authorize}}
+#'
+#' @references
+#' \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/experiments}{Google Management API - Experiments}
+#'
+#' @family Management API
+#'
+#' @export
+#'
+list_experiments <- function(account.id, webproperty.id, profile.id, start.index = NULL, max.results = NULL, token) {
+    path <- paste("accounts", account.id, "webproperties", webproperty.id, "profiles", profile.id, "experiments", sep = "/")
+    query <- list(start.index = start.index, max.results = max.results, fields = "items(id,accountId,webPropertyId,profileId,name,description,objectiveMetric,optimizationType,status,winnerFound,rewriteVariationUrlsAsOriginal,winnerConfidenceLevel,startTime,endTime,minimumExperimentLengthInDays,reasonExperimentEnded,editableInGaUi,created,updated)")
+    res <- list_mgmt(path = path, query = query, token = token)
+    return(res)
+}
+
