@@ -1,6 +1,6 @@
 # RGA
 
-This package is designed to work with the [**API Google Analytics**](https://developers.google.com/analytics) in [**R**](http://www.r-project.org/). You can use this package to retrieve R `data.frame` from **Google Analytics** data.
+This package is designed to work with the [API Google Analytics](https://developers.google.com/analytics) in [R](http://www.r-project.org/).
 
 Key features:
 
@@ -48,7 +48,7 @@ Once you have the package loaded, there are 3 steps you need to use to get data 
 For details about this steps please type into R:
 
 ```r
-vignette(package = "RGA")
+browseVignettes(package = "RGA")
 ```
 
 ## Bug reports
