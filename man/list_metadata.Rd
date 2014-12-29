@@ -50,7 +50,7 @@ subset(ga_meta, allowedInSegments, id)
 \references{
 \href{https://developers.google.com/analytics/devguides/reporting/metadata/v3/}{Google Analytics Metadata API}
 
-\href{https://developers.google.com/analytics/devguides/reporting/core/dimsmets}{Dimensions & Metrics Reference}
+\href{https://developers.google.com/analytics/devguides/reporting/core/dimsmets}{Core Reporting API - Dimensions & Metrics Reference}
 }
 \seealso{
 \code{\link{get_ga}} \code{\link{ga}}

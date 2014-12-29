@@ -49,14 +49,14 @@ ga_data <- get_mcf("profile_id", start.date = "30daysAgo", end.date = "today",
 }
 }
 \references{
-\href{https://developers.google.com/analytics/devguides/reporting/mcf/dimsmets/}{Dimensions & Metrics Reference}
+\href{https://developers.google.com/analytics/devguides/reporting/mcf/dimsmets/}{MCF Reporting API - Dimensions & Metrics Reference}
 
-\href{https://developers.google.com/analytics/devguides/reporting/mcf/v3/reference#q_details}{Query Parameter Details}
+\href{https://developers.google.com/analytics/devguides/reporting/mcf/v3/reference#q_details}{MCF Reporting API - Query Parameter Details}
 }
 \seealso{
 \code{\link{authorize}}
 
-Other The Google Analytics Reporting API: \code{\link{get_firstdate}};
+Other Reporting API: \code{\link{get_firstdate}};
   \code{\link{get_ga}}; \code{\link{get_rt}}
 }
 

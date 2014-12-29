@@ -49,11 +49,12 @@ Gets a single unsampled report
 \seealso{
 \code{\link{authorize}}
 
-Other The Google Analytics Management API: \code{\link{get_filter}};
-  \code{\link{get_goal}}; \code{\link{get_profile}};
-  \code{\link{get_webproperty}};
+Other Management API: \code{\link{get_experiment}};
+  \code{\link{get_filter}}; \code{\link{get_goal}};
+  \code{\link{get_profile}}; \code{\link{get_webproperty}};
   \code{\link{list_accounts}};
   \code{\link{list_custom_sources}};
+  \code{\link{list_experiments}};
   \code{\link{list_filters}}; \code{\link{list_goals}};
   \code{\link{list_profiles}}; \code{\link{list_segments}};
   \code{\link{list_unsampled_reports}};

@@ -51,18 +51,18 @@ ga_data <- get_ga("profile_id", start.date = "30daysAgo", end.date = "today",
 }
 }
 \references{
-\href{https://developers.google.com/analytics/devguides/reporting/core/dimsmets}{Dimensions & Metrics Reference}
+\href{https://developers.google.com/analytics/devguides/reporting/core/dimsmets}{Core Reporting API - Dimensions & Metrics Reference}
 
-\href{https://developers.google.com/analytics/devguides/reporting/core/v3/reference#q_details}{Query Parameter Details}
+\href{https://developers.google.com/analytics/devguides/reporting/core/v3/reference#q_details}{Core Reporting API - Query Parameter Details}
 
-\href{https://developers.google.com/analytics/devguides/reporting/core/v3/common-queries}{Common Queries}
+\href{https://developers.google.com/analytics/devguides/reporting/core/v3/common-queries}{Core Reporting API - Common Queries}
 
 \href{https://ga-dev-tools.appspot.com/explorer/}{Query Explorer}
 }
 \seealso{
 \code{\link{authorize}}
 
-Other The Google Analytics Reporting API: \code{\link{get_firstdate}};
+Other Reporting API: \code{\link{get_firstdate}};
   \code{\link{get_mcf}}; \code{\link{get_rt}}
 }
 
