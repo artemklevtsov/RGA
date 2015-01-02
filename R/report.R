@@ -28,7 +28,10 @@
 #'
 get_report <- function(type = c("ga", "mcf", "rt"), query, token) {
     type <- match.arg(type)
-    query$fields <- "containsSampledData,columnHeaders,rows"
+    if (type == "rt")
+        query$fields <- "columnHeaders,rows"
+    else
+        query$fields <- "containsSampledData,columnHeaders,rows"
     data_json <- get_data(type = type, query = query, token = token)
     rows <- data_json$rows
     cols <- data_json$columnHeaders
