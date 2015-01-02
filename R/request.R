@@ -20,35 +20,6 @@ error_handler <- function(x) {
     stop(error_message, "\n", reasons, call. = FALSE)
 }
 
-#' @title Make a Goolge Analytics API request
-#'
-#' @param url character. The url of the request.
-#' @param simplify logical. Coerce JSON arrays to a vector, matrix or data frame.
-#' @param flatten logical. Automatically flatten nested data frames into a single non-nested data frame.
-#' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
-#'
-#' @keywords internal
-#'
-#' @noRd
-#'
-#' @include auth.R
-#'
-#' @importFrom httr GET config content
-#' @importFrom jsonlite fromJSON
-#'
-make_request = function(url, simplify = TRUE, flatten = TRUE, token) {
-    stopifnot(is.character(url) && length(url) == 1L)
-    set_curl_opts()
-    if (missing(token) && token_exists(getOption("rga.token")))
-        token <- get_token(getOption("rga.token"))
-    stopifnot(inherits(token, "Token2.0"))
-    resp <- GET(url, config(token = token))
-    data_json <- fromJSON(content(resp, as = "text"), simplifyVector = simplify, flatten = flatten)
-    if (!is.null(data_json$error))
-        error_handler(data_json)
-    return(data_json)
-}
-
 #' @title Get a Google Analytics API response
 #'
 #' @param type character string including report type.
@@ -64,11 +35,22 @@ make_request = function(url, simplify = TRUE, flatten = TRUE, token) {
 #'
 #' @noRd
 #'
+#' @include auth.R
 #' @include url.R
+#'
+#' @importFrom httr GET config content
+#' @importFrom jsonlite fromJSON
 #'
 get_response <- function(type = c("ga", "rt", "mcf", "mgmt"), path = NULL, query = NULL, simplify = TRUE, flatten = TRUE, token) {
     type <- match.arg(type)
     url <- build_url(type = type, path = path, query = query)
-    data_json <- make_request(url, simplify = simplify, flatten = flatten, token = token)
+    set_curl_opts()
+    if (missing(token) && token_exists(getOption("rga.token")))
+        token <- get_token(getOption("rga.token"))
+    stopifnot(inherits(token, "Token2.0"))
+    resp <- GET(url, config(token = token))
+    data_json <- fromJSON(content(resp, as = "text"), simplifyVector = simplify, flatten = flatten)
+    if (!is.null(data_json$error))
+        error_handler(data_json)
     return(data_json)
 }
