@@ -27,7 +27,7 @@ A data.frame contains dimensions and metrics for a particular report type.
 \item{premiumMaxTemplateIndex}{Only available for templatized columns. This is the maximum index for the column for premium properties.}
 }
 \description{
-Lists all columns for a report type
+This dataset represents all of the dimensions and metrics for the reporting API with their attributes. Attributes returned include UI name, description, segments support, etc.
 }
 \examples{
 \dontrun{
