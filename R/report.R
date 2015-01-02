@@ -29,7 +29,6 @@
 get_report <- function(type = c("ga", "mcf", "rt"), query, token) {
     type <- match.arg(type)
     query$fields <- "containsSampledData,columnHeaders,rows"
-    query <- fix_query(query)
     data_json <- get_data(type = type, query = query, token = token)
     rows <- data_json$rows
     cols <- data_json$columnHeaders
@@ -101,10 +100,10 @@ get_ga <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
               !is.null(metrics), nzchar(metrics))
     if (!is.null(sampling.level))
         sampling.level <- match.arg(sampling.level, c("default", "faster", "higher_precision"))
-    query <- list(profile.id = profile.id, start.date = start.date, end.date = end.date,
-                  metrics = metrics, dimensions = dimensions, sort = sort, filters = filters,
-                  segment = segment, sampling.level = sampling.level,
-                  start.index = start.index, max.results = max.results)
+    query <- set_query(profile.id = profile.id, start.date = start.date, end.date = end.date,
+                       metrics = metrics, dimensions = dimensions, sort = sort, filters = filters,
+                       segment = segment, sampling.level = sampling.level,
+                       start.index = start.index, max.results = max.results)
     res <- get_report(type = "ga", query = query, token = token)
     if (!is.null(res$date))
         res$date <- as.Date(as.character(res$date), "%Y%m%d")
@@ -158,10 +157,10 @@ get_mcf <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
               !is.null(metrics), nzchar(metrics))
     if (!is.null(sampling.level))
         sampling.level <- match.arg(sampling.level, c("default", "faster", "higher_precision"))
-    query <- list(profile.id = profile.id, start.date = start.date, end.date = end.date,
-                  metrics = metrics, dimensions = dimensions, sort = sort, filters = filters,
-                  sampling.level = sampling.level,
-                  start.index = start.index, max.results = max.results)
+    query <- set_query(profile.id = profile.id, start.date = start.date, end.date = end.date,
+                       metrics = metrics, dimensions = dimensions, sort = sort, filters = filters,
+                       sampling.level = sampling.level,
+                       start.index = start.index, max.results = max.results)
     res <- get_report(type = "mcf", query = query, token = token)
     if (!is.null(res$conversion.date))
         res$conversion.date <- as.Date(as.character(res$conversion.date), "%Y%m%d")
@@ -207,8 +206,8 @@ get_rt <- function(profile.id, metrics = "rt:activeUsers", dimensions = NULL,
                          sort = NULL, filters = NULL, max.results = NULL, token) {
     stopifnot(!is.null(profile.id), nzchar(profile.id),
               !is.null(metrics), nzchar(metrics))
-    query <- list(profile.id = profile.id, metrics = metrics, dimensions = dimensions,
-                  sort = sort, filters = filters, max.results = max.results)
+    query <- set_query(profile.id = profile.id, metrics = metrics, dimensions = dimensions,
+                       sort = sort, filters = filters, max.results = max.results)
     res <- get_report(type = "rt", query = query, token = token)
     return(res)
 }

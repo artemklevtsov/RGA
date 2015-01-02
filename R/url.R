@@ -17,9 +17,6 @@ build_path <- function(x) {
 build_query <- function(x) {
     x <- compact(x)
     params <- names(x)
-    params <- sub("profile.id", "ids", params, fixed = TRUE)
-    params <- sub("sampling.level", "samplingLevel", params, fixed = TRUE)
-    params <- gsub(".", "-", params, fixed = TRUE)
     values <- as.character(x)
     values <- enc2utf8(values)
     values <- curlEscape(values)
