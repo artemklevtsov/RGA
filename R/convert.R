@@ -31,10 +31,10 @@ build_mcf <- function(data, cols) {
 #' @include utils.R
 #'
 rename_mgmt <- function(x) {
+    names(x) <- gsub("webPropertyId", "webpropertyId", names(x), fixed = TRUE)
     names(x) <-  to_separated(names(x), sep = ".")
     to_rename <- vapply(x, is.list, logical(1))
     x[to_rename] <- lapply(x[to_rename], function(x) setNames(x, to_separated(names(x), sep = ".")))
-    names(x) <- gsub("web.property", "webproperty", names(x), fixed = TRUE)
     return(x)
 }
 
@@ -49,7 +49,7 @@ build_mgmt <- function(data) {
         data_df$permissions.effective <- vapply(data_df$permissions.effective, paste, collapse = ",", FUN.VALUE = character(1))
         names(data_df) <- gsub(".effective", "", names(data_df), fixed = TRUE)
     }
-    names(data_df) <- gsub("web.property", "webproperty", names(data_df), fixed = TRUE)
+    names(data_df) <- gsub("webPropertyId", "webpropertyId", names(data_df), fixed = TRUE)
     return(data_df)
 }
 
@@ -62,9 +62,9 @@ build_df <- function(type = c("ga", "mcf", "rt", "mgmt"), data, cols) {
                       rt = build_ga(data, cols),
                       mcf = build_mcf(data, cols),
                       mgmt = build_mgmt(data))
-    message(paste("Obtained data.frame with", nrow(data_df), "rows and", ncol(data_df), "columns."))
     rownames(data_df) <- NULL
     colnames(data_df) <- to_separated(colnames(data_df), sep = ".")
     data_df <- convert_datatypes(data_df)
+    message(paste("Obtained data.frame with", nrow(data_df), "rows and", ncol(data_df), "columns."))
     return(data_df)
 }
