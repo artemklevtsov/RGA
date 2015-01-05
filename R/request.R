@@ -9,8 +9,8 @@ set_curl_opts <- function() {
 }
 
 # Error printing function
+#' @include utils.R
 #' @importFrom httr http_status
-#'
 error_handler <- function(x) {
     error_code <- x$error$code
     error_message <- http_status(error_code)$message

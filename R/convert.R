@@ -29,7 +29,6 @@ build_mcf <- function(data, cols) {
 
 # Rename list with sublists for mgmt data
 #' @include utils.R
-#'
 rename_mgmt <- function(x) {
     names(x) <- gsub("webPropertyId", "webpropertyId", names(x), fixed = TRUE)
     names(x) <-  to_separated(names(x), sep = ".")
