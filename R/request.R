@@ -43,7 +43,7 @@ error_handler <- function(x) {
 #'
 get_response <- function(type = c("ga", "rt", "mcf", "mgmt"), path = NULL, query = NULL, simplify = TRUE, flatten = TRUE, token) {
     type <- match.arg(type)
-    url <- build_url(type = type, path = path, query = query)
+    url <- get_url(type = type, path = path, query = query)
     set_curl_opts()
     if (missing(token) && token_exists(getOption("rga.token")))
         token <- get_token(getOption("rga.token"))
