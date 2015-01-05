@@ -1,6 +1,5 @@
 # Set query
 #' @include utils.R
-#'
 set_query <- function(...) {
     query <- list(...)
     query <- compact(query)
@@ -10,7 +9,6 @@ set_query <- function(...) {
 
 # Fix query fields
 #' @include utils.R
-#'
 fix_query <- function(query) {
     stopifnot(is.list(query))
     if (!grepl("^ga:", query$profile.id))

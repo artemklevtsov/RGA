@@ -1,7 +1,6 @@
 # Get the Google Analytics API data
 #' @include request.R
 #' @include get-pages.R
-#'
 get_data <- function(type = c("ga", "rt", "mcf", "mgmt"), path = NULL, query = NULL, token) {
     type <- match.arg(type)
     if (type == "mgmt") {

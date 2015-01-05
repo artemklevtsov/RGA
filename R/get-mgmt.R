@@ -1,6 +1,5 @@
 # Get the Management API data
 #' @include request.R
-#'
 get_mgmt <- function(path, token) {
     data_list <- get_response(type = "mgmt", path = path, token = token)
     data_list <- rename_mgmt(data_list)

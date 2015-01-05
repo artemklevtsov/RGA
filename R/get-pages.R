@@ -1,6 +1,5 @@
 # Pagination the Google Analytics API requests
 #' @include request.R
-#'
 get_pages <- function(type = c("ga", "mcf", "mgmt"), path = NULL, query = NULL, total.results, token) {
     stopifnot(is.integer(total.results))
     message(paste("Response contain more then", query$max.results, "rows. Batch processing mode enabled."))

@@ -1,7 +1,6 @@
 # Build URL query string
 #' @importFrom RCurl curlEscape
 #' @include utils.R
-#'
 build_query <- function(x) {
     x <- compact(x)
     params <- names(x)
@@ -15,18 +14,7 @@ build_query <- function(x) {
 base_api_url <- "https://www.googleapis.com/analytics"
 base_api_version <- "v3"
 
-#' @title Build URL for Google Analytics request
-#'
-#' @param type type of Google Analytics API data.
-#' @param path URL path. May be list or character.
-#' @param query URL query string. May be list or character.
-#'
-#' @return Character string.
-#'
-#' @keywords internal
-#'
-#' @noRd
-#'
+# Build URL for Google Analytics request
 get_url <- function(type = c("ga", "mcf", "rt", "mgmt"), path = NULL, query = NULL) {
     type <- match.arg(type)
     type <- switch(type,
@@ -35,9 +23,8 @@ get_url <- function(type = c("ga", "mcf", "rt", "mgmt"), path = NULL, query = NU
                   rt = "data/realtime",
                   mgmt = "management")
     url <- paste(base_api_url, base_api_version, type, sep = "/")
-    if (!is.null(path)) {
+    if (!is.null(path))
         url <- paste(url, path, sep = "/")
-    }
     if (!is.null(query)) {
         if (is.list(query))
             query <- build_query(query)

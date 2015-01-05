@@ -1,7 +1,6 @@
 # Get the Management API data
 #' @include get-data.R
 #' @include convert.R
-#'
 list_mgmt <- function(path, query, token) {
     data_json <- get_data(type = "mgmt", path = path, query = query, token = token)
     items <- data_json$items
