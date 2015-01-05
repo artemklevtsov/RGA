@@ -55,6 +55,11 @@ browseVignettes(package = "RGA")
 
 Before posting a bug please try execute your code with the `httr::with_verbose()` wrapper. It will be useful if you attach verbose output to the bug report.
 
+```r
+httr::with_verbose(list_profiles())
+httr::with_verbose(get_ga("XXXXXXXX"))
+```
+
 To report a bug please type into R:
 
 ```r
