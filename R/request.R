@@ -1,13 +1,3 @@
-# Set the RCurlOptions for Windows
-set_curl_opts <- function() {
-    if (.Platform$OS.type == "windows") {
-        options(RCurlOptions = list(
-            verbose = FALSE,
-            capath = system.file("CurlSSL", "cacert.pem", package = "RCurl"),
-            ssl.verifypeer = FALSE))
-    }
-}
-
 # Error printing function
 #' @include utils.R
 #' @importFrom httr http_status
@@ -44,7 +34,6 @@ error_handler <- function(x) {
 get_response <- function(type = c("ga", "rt", "mcf", "mgmt"), path = NULL, query = NULL, simplify = TRUE, flatten = TRUE, token) {
     type <- match.arg(type)
     url <- get_url(type = type, path = path, query = query)
-    set_curl_opts()
     if (missing(token) && token_exists(getOption("rga.token")))
         token <- get_token(getOption("rga.token"))
     stopifnot(inherits(token, "Token2.0"))

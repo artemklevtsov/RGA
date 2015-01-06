@@ -56,7 +56,6 @@
 #' }
 #'
 list_metadata <- function(report.type = "ga") {
-    set_curl_opts()
     url <- paste(base_api_url, base_api_version, "metadata", report.type, "columns", sep = "/")
     resp <- GET(url)
     data_json <- fromJSON(content(resp, as = "text"), flatten = TRUE)
