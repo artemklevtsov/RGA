@@ -24,7 +24,7 @@ License: GPL (>= 2)
 Depends:
     R (>= 2.15.1)
 Imports:
-    httr (>= 0.3),
+    httr (>= 0.6),
     httpuv,
     RCurl,
     jsonlite,
