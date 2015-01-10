@@ -17,10 +17,17 @@ authorize(client.id, client.secret, cache = getOption("rga.cache"))
 A \code{\link[httr]{Token2.0}} object containing all the data required for OAuth access.
 }
 \description{
-\code{authorize} function uses \code{\link[httr]{oauth2.0_token}} to obtain the OAuth tokens. Expired tokens will be refreshe automamaticly.
+\code{authorize} function uses \code{\link[httr]{oauth2.0_token}} to obtain the OAuth tokens. Expired tokens will be refreshed automamaticly. If client.id and client.secret are missing the package provides predefined values.
 }
 \details{
-This function requires client ID and client secret. In order to obtain these, you will have to register an application with the Google Analytics API. To find your project's client ID and client secret, do the following:
+After calling this function first time, a web browser will be opened. First, log in with a Google Account, confirm the authorization to access the Google Analytics data. Note that the package requests access for read-only data.
+
+When the \code{authorize} function is used the \code{GAToken} variable is created in the separate \code{TokenEnv} environment which is not visible for user. So, there is no need to pass the token argument to any function which requires authorisation every time. Also there is a possibility to store token in separate variable and to pass it to the functions. It can be useful when you are working with several accounts at the same time.
+}
+\section{Use custom client.id and client.secret}{
+
+
+For some reasons you may need to use a custom client ID and client secret. In order to obtain these, you will have to register an application with the Google Analytics API. To find your project's client ID and client secret, do the following:
 
 \enumerate{
   \item Go to the \href{https://console.developers.google.com/}{Google Developers Console}.
@@ -31,10 +38,6 @@ This function requires client ID and client secret. In order to obtain these, yo
 }
 
 You can return to the \href{https://console.developers.google.com/}{Google Developers Console} at any time to view the client ID and client secret on the \emph{Client ID for native application} section on \emph{Credentials} page.
-
-After calling this function first time, a web browser will be opened. First, log in with a Google Account, confirm the authorization to access the Google Analytics data. Note that the package requests access for read-only data.
-
-When the \code{authorize} function is used the \code{GAToken} variable is created in the separate \code{TokenEnv} environment which is not visible for user. So, there is no need to pass the token argument to any function which requires authorisation every time. Also there is a possibility to store token in separate variable and to pass it to the functions. It can be useful when you are working with several accounts at the same time.
 }
 \examples{
 \dontrun{
