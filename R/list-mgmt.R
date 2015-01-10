@@ -4,11 +4,11 @@
 list_mgmt <- function(path, query, token) {
     data_json <- get_data(type = "mgmt", path = path, query = query, token = token)
     items <- data_json$items
-    if (data_json$totalResults == 0L || is.null(items)) {
+    if (data_json$totalResults == 0L || is.null(data_json$items)) {
         message("No results were obtained.")
         return(NULL)
     }
-    data_df <- build_df(type = "mgmt", items)
+    data_df <- build_df(type = "mgmt", data_json)
     data_df$created <- strptime(data_df$created, format = "%Y-%m-%dT%H:%M:%OS", tz = "UTC")
     data_df$updated <- strptime(data_df$updated, format = "%Y-%m-%dT%H:%M:%OS", tz = "UTC")
     return(data_df)
@@ -345,4 +345,3 @@ list_experiments <- function(account.id, webproperty.id, profile.id, start.index
     res <- list_mgmt(path = path, query = query, token = token)
     return(res)
 }
-

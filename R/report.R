@@ -33,21 +33,19 @@ get_report <- function(type = c("ga", "mcf", "rt"), query, token) {
     else
         query$fields <- "containsSampledData,columnHeaders,rows"
     data_json <- get_data(type = type, query = query, token = token)
-    rows <- data_json$rows
-    cols <- data_json$columnHeaders
-    if (data_json$totalResults == 0L || is.null(rows)) {
+    if (data_json$totalResults == 0L || is.null(data_json$rows)) {
         message("No results were obtained.")
         return(NULL)
     }
-    if (is.list(rows)) {
-        if (is.matrix(rows[[1L]]))
-            rows <- do.call(rbind, rows)
-        else if (is.list(rows[[1L]]) && !is.data.frame(rows[[1L]]))
-            rows <- do.call(c, rows)
+    if (is.list(data_json$rows)) {
+        if (is.matrix(data_json$rows[[1L]]))
+            data_json$rows <- do.call(rbind, data_json$rows)
+        else if (is.list(data_json$rows[[1L]]) && !is.data.frame(data_json$rows[[1L]]))
+            data_json$rows <- do.call(c, data_json$rows)
     }
     if (!is.null(data_json$containsSampledData) && data_json$containsSampledData)
         warning("Data contains sampled data.", call. = FALSE)
-    data_df <- build_df(type, rows, cols)
+    data_df <- build_df(type, data_json)
     return(data_df)
 }
 
