@@ -25,5 +25,6 @@ fix_query <- function(query) {
     names(query) <- sub("profile.id", "ids", names(query), fixed = TRUE)
     names(query) <- sub("sampling.level", "samplingLevel", names(query), fixed = TRUE)
     names(query) <- gsub(".", "-", names(query), fixed = TRUE)
+    stopifnot(all(vapply(query, is.vector, logical(1))))
     return(query)
 }
