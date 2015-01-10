@@ -29,7 +29,7 @@ env_exists <- function(...) {
 
 #' @title Authorize the RGA package to the user's Google Analytics account using OAuth2.0
 #'
-#' @description \code{authorize} function uses \code{\link[httr]{oauth2.0_token}} to obtain the OAuth tokens. Expired tokens will be refreshe automamaticly.
+#' @description \code{authorize} function uses \code{\link[httr]{oauth2.0_token}} to obtain the OAuth tokens. Expired tokens will be refreshed automamaticly. If client.id and client.secret are missing the package provides predefined values.
 #'
 #' @param client.id character. OAuth client ID. if client.id is missing, we'll look in the environment variable \code{RGA_CLIENT_ID}.
 #' @param client.secret character. OAuth client secret. if client.secret is missing, we'll look in the environment variable \code{RGA_CLIENT_SECRET}.
@@ -37,7 +37,13 @@ env_exists <- function(...) {
 #'
 #' @details
 #'
-#' This function requires client ID and client secret. In order to obtain these, you will have to register an application with the Google Analytics API. To find your project's client ID and client secret, do the following:
+#' After calling this function first time, a web browser will be opened. First, log in with a Google Account, confirm the authorization to access the Google Analytics data. Note that the package requests access for read-only data.
+#'
+#' When the \code{authorize} function is used the \code{GAToken} variable is created in the separate \code{TokenEnv} environment which is not visible for user. So, there is no need to pass the token argument to any function which requires authorisation every time. Also there is a possibility to store token in separate variable and to pass it to the functions. It can be useful when you are working with several accounts at the same time.
+#'
+#' @section Use custom client.id and client.secret
+#'
+#' For some reasons you may need to use a custom client ID and client secret. In order to obtain these, you will have to register an application with the Google Analytics API. To find your project's client ID and client secret, do the following:
 #'
 #' \enumerate{
 #'   \item Go to the \href{https://console.developers.google.com/}{Google Developers Console}.
@@ -48,10 +54,6 @@ env_exists <- function(...) {
 #' }
 #'
 #' You can return to the \href{https://console.developers.google.com/}{Google Developers Console} at any time to view the client ID and client secret on the \emph{Client ID for native application} section on \emph{Credentials} page.
-#'
-#' After calling this function first time, a web browser will be opened. First, log in with a Google Account, confirm the authorization to access the Google Analytics data. Note that the package requests access for read-only data.
-#'
-#' When the \code{authorize} function is used the \code{GAToken} variable is created in the separate \code{TokenEnv} environment which is not visible for user. So, there is no need to pass the token argument to any function which requires authorisation every time. Also there is a possibility to store token in separate variable and to pass it to the functions. It can be useful when you are working with several accounts at the same time.
 #'
 #' @return A \code{\link[httr]{Token2.0}} object containing all the data required for OAuth access.
 #'
@@ -86,8 +88,10 @@ authorize <- function(client.id, client.secret, cache = getOption("rga.cache")) 
             message("client.id and client.secret loaded from environment variables.")
             client.id <- Sys.getenv("RGA_CLIENT_ID")
             client.secret <- Sys.getenv("RGA_CLIENT_SECRET")
-        } else
-            stop("Client ID or Clinet secret not specified.")
+        } else {
+            client.id <- "144394141628-8m5i5icva7akegi3tp6215d9eg9o5cln.apps.googleusercontent.com"
+            client.secret <- "wlFmhluHqTdZw6UG22h5A2nr"
+        }
     }
     rga_app <- oauth_app(appname = "rga", key = client.id, secret = client.secret)
     token <- oauth2.0_token(endpoint = oauth_endpoints("google"), app = rga_app, cache = cache,
