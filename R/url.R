@@ -4,6 +4,7 @@
 build_query <- function(x) {
     x <- compact(x)
     params <- names(x)
+    params <- gsub(".", "-", params, fixed = TRUE)
     values <- as.character(x)
     values <- enc2utf8(values)
     values <- curlEscape(values)
