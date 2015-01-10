@@ -46,5 +46,6 @@ Collate:
     'shiny.R'
     'zzz.R'
 Suggests:
-    knitr
+    knitr,
+    testthat
 VignetteBuilder: knitr
