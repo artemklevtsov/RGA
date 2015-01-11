@@ -22,7 +22,7 @@ Authors@R: c(
     email = "ol1709@yahoo.com", role = "ctb"))
 License: GPL (>= 2)
 Depends:
-    R (>= 2.15.1)
+    R (>= 3.0.0)
 Imports:
     httr (>= 0.6),
     httpuv,
