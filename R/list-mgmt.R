@@ -3,7 +3,6 @@
 #' @include convert.R
 list_mgmt <- function(path, query, token) {
     data_json <- get_data(type = "mgmt", path = path, query = query, token = token)
-    items <- data_json$items
     if (data_json$totalResults == 0L || is.null(data_json$items)) {
         message("No results were obtained.")
         return(NULL)
