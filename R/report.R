@@ -31,7 +31,7 @@ get_report <- function(type = c("ga", "mcf", "rt"), query, token) {
     if (type == "rt")
         query$fields <- "columnHeaders,rows"
     else
-        query$fields <- "containsSampledData,columnHeaders,rows"
+        query$fields <- "containsSampledData,profileInfo,columnHeaders,rows"
     data_json <- get_data(type = type, query = query, token = token)
     if (data_json$totalResults == 0L || is.null(data_json$rows)) {
         message("No results were obtained.")
@@ -46,6 +46,14 @@ get_report <- function(type = c("ga", "mcf", "rt"), query, token) {
     if (!is.null(data_json$containsSampledData) && data_json$containsSampledData)
         warning("Data contains sampled data.", call. = FALSE)
     data_df <- build_df(type, data_json)
+    if (!is.null(data_df$date.hour)) {
+        profile <- get_profile(account.id = data_json$profileInfo$accountId, webproperty.id = data_json$profileInfo$webPropertyId, profile.id = data_json$profileInfo$profileId)
+        data_df$date.hour <- as.POSIXct(strptime(data_df$date.hour, format = "%Y%m%d%H", tz = profile$timezone))
+    }
+    if (!is.null(data_df[["date"]]))
+        data_df[["date"]] <- as.POSIXct(strptime(data_df[["date"]], "%Y%m%d"))
+    if (!is.null(data_df$conversion.date))
+        data_df$conversion.date <- as.POSIXct(strptime(data_df$conversion.date, "%Y%m%d"))
     return(data_df)
 }
 
@@ -106,8 +114,6 @@ get_ga <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
                        segment = segment, sampling.level = sampling.level,
                        start.index = start.index, max.results = max.results)
     res <- get_report(type = "ga", query = query, token = token)
-    if (!is.null(res$date))
-        res$date <- as.Date(as.character(res$date), "%Y%m%d")
     return(res)
 }
 
@@ -163,8 +169,6 @@ get_mcf <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
                        sampling.level = sampling.level,
                        start.index = start.index, max.results = max.results)
     res <- get_report(type = "mcf", query = query, token = token)
-    if (!is.null(res$conversion.date))
-        res$conversion.date <- as.Date(as.character(res$conversion.date), "%Y%m%d")
     return(res)
 }
 
