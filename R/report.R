@@ -46,14 +46,18 @@ get_report <- function(type = c("ga", "mcf", "rt"), query, token) {
     if (!is.null(data_json$containsSampledData) && data_json$containsSampledData)
         warning("Data contains sampled data.", call. = FALSE)
     data_df <- build_df(type, data_json)
-    if (!is.null(data_df$date.hour)) {
-        profile <- get_profile(account.id = data_json$profileInfo$accountId, webproperty.id = data_json$profileInfo$webPropertyId, profile.id = data_json$profileInfo$profileId)
-        data_df$date.hour <- as.POSIXct(strptime(data_df$date.hour, format = "%Y%m%d%H", tz = profile$timezone))
+    if (any(grepl("date", names(data_df), fixed = TRUE))) {
+        profile <- get_profile(account.id = data_json$profileInfo$accountId,
+                               webproperty.id = data_json$profileInfo$webPropertyId,
+                               profile.id = data_json$profileInfo$profileId)
+        timezone <- profile$timezone
     }
+    if (!is.null(data_df$date.hour))
+        data_df$date.hour <- as.POSIXct(strptime(data_df$date.hour, format = "%Y%m%d%H", tz = timezone))
     if (!is.null(data_df[["date"]]))
-        data_df[["date"]] <- as.POSIXct(strptime(data_df[["date"]], "%Y%m%d"))
+        data_df[["date"]] <- as.POSIXct(strptime(data_df[["date"]], "%Y%m%d", tz = timezone))
     if (!is.null(data_df$conversion.date))
-        data_df$conversion.date <- as.POSIXct(strptime(data_df$conversion.date, "%Y%m%d"))
+        data_df$conversion.date <- as.POSIXct(strptime(data_df$conversion.date, "%Y%m%d", tz = timezone))
     return(data_df)
 }
 
