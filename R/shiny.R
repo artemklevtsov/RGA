@@ -1,6 +1,6 @@
 #' @title The shiny app to lists all columns for a Google Analytics given report type
 #'
-#' @param data dataset to show (now available only \code{ga}).
+#' @param report.type character. Report type. Allowed Values: ga. Where ga corresponds to the Core Reporting API.
 #'
 #' @references
 #' \href{https://developers.google.com/analytics/devguides/reporting/core/dimsmets}{Dimensions & Metrics Reference}
@@ -9,11 +9,14 @@
 #'
 #' @return \code{shiny.appobj} class object to show \code{\link{ga}} dataset.
 #'
-#' @export
+#' @include metadata.R
 #'
 #' @import shiny
 #'
-dimsmets <- function(data = ga) {
+#' @export
+#'
+dimsmets <- function(report.type = "ga") {
+    data <- list_metadata(report.type)
     shinyApp(
         ui = fluidPage(
             titlePanel("Google Analytics: Dimensions & Metrics"),
@@ -60,12 +63,4 @@ dimsmets <- function(data = ga) {
             })
         }
     )
-}
-
-#' @describeIn dimsmets
-#' @export
-#'
-dims_mets <- function(data = ga) {
-    .Deprecated("dimsmets")
-    dimsmets(data)
 }
