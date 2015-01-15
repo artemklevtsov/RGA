@@ -21,7 +21,7 @@
 #' \item{premium.min.template.index}{Only available for templatized columns. This is the minimum index for the column for premium properties.}
 #' \item{premium.max.template.index}{Only available for templatized columns. This is the maximum index for the column for premium properties.}
 #'
-#' @seealso \code{\link{get_ga}} \code{\link{ga}}
+#' @seealso \code{\link{get_ga}}
 #'
 #' @references
 #' \href{https://developers.google.com/analytics/devguides/reporting/metadata/v3/}{Google Analytics Metadata API}
