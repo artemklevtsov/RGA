@@ -36,8 +36,12 @@ get_response <- function(type = c("ga", "rt", "mcf", "mgmt"), path = NULL, query
     url <- get_url(type = type, path = path, query = query)
     if (missing(token) && token_exists(getOption("rga.token")))
         token <- get_token(getOption("rga.token"))
-    stopifnot(inherits(token, "Token2.0"))
-    resp <- GET(url, config(token = token))
+    if (!missing(token) || (missing(token) && token_exists(getOption("rga.token")))) {
+        stopifnot(inherits(token, "Token2.0"))
+        config <- config(token = token)
+    } else
+        config <- NULL
+    resp <- GET(url, config)
     data_json <- fromJSON(content(resp, as = "text"), simplifyVector = simplify, flatten = flatten)
     if (!is.null(data_json$error))
         error_handler(data_json)
