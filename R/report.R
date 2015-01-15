@@ -87,7 +87,7 @@ get_report <- function(type = c("ga", "mcf", "rt"), query, token) {
 #'
 #' \href{https://ga-dev-tools.appspot.com/explorer/}{Query Explorer}
 #'
-#' @seealso \code{\link{authorize}}
+#' @seealso \code{\link{authorize}} \code{\link{list_metadata}}
 #'
 #' @family Reporting API
 #'
