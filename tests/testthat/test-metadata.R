@@ -11,5 +11,5 @@ test_that("dimensions", {
 })
 
 test_that("names", {
-    expect_equal(names(data), c("id", "type", "dataType", "group", "status", "uiName", "description", "allowedInSegments", "replacedBy", "calculation", "minTemplateIndex", "maxTemplateIndex", "premiumMinTemplateIndex", "premiumMaxTemplateIndex"))
+    expect_equal(names(data), c("id", "type", "data.type", "group", "status", "ui.name", "description", "allowed.in.segments", "replaced.by", "calculation", "min.template.index", "max.template.index", "premium.min.template.index", "premium.max.template.index"))
 })

@@ -10,7 +10,7 @@ dimsmets(report.type = "ga")
 \item{report.type}{character. Report type. Allowed Values: ga. Where ga corresponds to the Core Reporting API.}
 }
 \value{
-\code{shiny.appobj} class object to show \code{\link{ga}} dataset.
+\code{shiny.appobj} class object to show \code{\link{list_metadata}} output.
 }
 \description{
 The shiny app to lists all columns for a Google Analytics given report type
@@ -19,6 +19,6 @@ The shiny app to lists all columns for a Google Analytics given report type
 \href{https://developers.google.com/analytics/devguides/reporting/core/dimsmets}{Dimensions & Metrics Reference}
 }
 \seealso{
-\code{\link{ga}} \code{\link{get_ga}}
+\code{\link{list_metadata}} \code{\link{get_ga}}
 }
 

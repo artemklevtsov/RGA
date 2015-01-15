@@ -5,9 +5,9 @@
 #' @references
 #' \href{https://developers.google.com/analytics/devguides/reporting/core/dimsmets}{Dimensions & Metrics Reference}
 #'
-#' @seealso \code{\link{ga}} \code{\link{get_ga}}
+#' @seealso \code{\link{list_metadata}} \code{\link{get_ga}}
 #'
-#' @return \code{shiny.appobj} class object to show \code{\link{ga}} dataset.
+#' @return \code{shiny.appobj} class object to show \code{\link{list_metadata}} output.
 #'
 #' @include metadata.R
 #'
