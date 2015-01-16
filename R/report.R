@@ -49,7 +49,7 @@ get_report <- function(type = c("ga", "mcf", "rt"), query, token) {
     if (any(grepl("date", names(data_df), fixed = TRUE))) {
         profile <- get_profile(account.id = data_json$profileInfo$accountId,
                                webproperty.id = data_json$profileInfo$webPropertyId,
-                               profile.id = data_json$profileInfo$profileId)
+                               profile.id = data_json$profileInfo$profileId, token = token)
         timezone <- profile$timezone
     }
     if (!is.null(data_df$date.hour))
