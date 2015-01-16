@@ -1,6 +1,5 @@
 # Get the Google Analytics API data
 #' @include request.R
-#' @include get-pages.R
 get_data <- function(type = c("ga", "rt", "mcf", "mgmt"), path = NULL, query = NULL, token) {
     type <- match.arg(type)
     if (type == "mgmt") {
@@ -28,10 +27,19 @@ get_data <- function(type = c("ga", "rt", "mcf", "mgmt"), path = NULL, query = N
         if (type == "rt")
             warning(paste("Only", query$max.results, "observations out of", data_json$totalResults, "were obtained (the batch processing mode is not implemented for this report type)."), call. = FALSE)
         else {
-            pages <- get_pages(type = type, path = path, query = query, total.results = data_json$totalResults)
+            message(paste("Response contain more then", query$max.results, "rows. Batch processing mode enabled."))
+            total.pages <- ceiling(data_json$totalResults / query$max.results)
+            pages <- vector(mode = "list", length = total.pages)
+            for (page in 2L:total.pages) {
+                message(paste0("Fetching page ", page, " of ", total.pages, "..."))
+                query$start.index <- query$max.results * (page - 1L) + 1L
+                pages[[page]] <- get_response(type = type, path = path, query = query, token = token)
+            }
+            pages <- pages[-1L]
             pages <- lapply(pages, `[[`, items_name)
             data_json[[items_name]] <- c(list(data_json[[items_name]]), pages)
         }
     }
+    data_json[[items_name]] <- build_df(type, data_json)
     return(data_json)
 }

@@ -10,7 +10,7 @@
 #'
 #' @include query.R
 #' @include get-data.R
-#' @include convert.R
+#' @include get-mgmt.R
 #'
 #' @noRd
 #'
@@ -45,7 +45,7 @@ get_report <- function(type = c("ga", "mcf", "rt"), query, token) {
     }
     if (!is.null(data_json$containsSampledData) && data_json$containsSampledData)
         warning("Data contains sampled data.", call. = FALSE)
-    data_df <- build_df(type, data_json)
+    data_df <- data_json$rows
     if (any(grepl("date", names(data_df), fixed = TRUE))) {
         profile <- get_profile(account.id = data_json$profileInfo$accountId,
                                webproperty.id = data_json$profileInfo$webPropertyId,

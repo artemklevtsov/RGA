@@ -35,7 +35,6 @@ Collate:
     'convert.R'
     'url.R'
     'request.R'
-    'get-pages.R'
     'get-data.R'
     'get-mgmt.R'
     'list-mgmt.R'

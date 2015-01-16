@@ -1,13 +1,12 @@
 # Get the Management API data
 #' @include get-data.R
-#' @include convert.R
 list_mgmt <- function(path, query, token) {
     data_json <- get_data(type = "mgmt", path = path, query = query, token = token)
     if (data_json$totalResults == 0L || is.null(data_json$items)) {
         message("No results were obtained.")
         return(NULL)
     }
-    data_df <- build_df(type = "mgmt", data_json)
+    data_df <- data_json$items
     data_df$created <- as.POSIXct(strptime(data_df$created, format = "%Y-%m-%dT%H:%M:%OS", tz = "UTC"))
     data_df$updated <- as.POSIXct(strptime(data_df$updated, format = "%Y-%m-%dT%H:%M:%OS", tz = "UTC"))
     return(data_df)
