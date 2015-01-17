@@ -2,9 +2,9 @@
 #' @include get-data.R
 list_mgmt <- function(path, query, token) {
     data_json <- get_data(type = "mgmt", path = path, query = query, token = token)
-    if (data_json$totalResults == 0L || is.null(data_json$items)) {
+    if (is.null(data_json)) {
         message("No results were obtained.")
-        return(NULL)
+        return(invisible(NULL))
     }
     data_df <- data_json$items
     data_df$created <- as.POSIXct(strptime(data_df$created, format = "%Y-%m-%dT%H:%M:%OS", tz = "UTC"))

@@ -33,9 +33,9 @@ get_report <- function(type = c("ga", "mcf", "rt"), query, token) {
     else
         query$fields <- "containsSampledData,profileInfo,columnHeaders,rows"
     data_json <- get_data(type = type, query = query, token = token)
-    if (data_json$totalResults == 0L || is.null(data_json$rows)) {
+    if (is.null(data_json)) {
         message("No results were obtained.")
-        return(NULL)
+        return(invisible(NULL))
     }
     if (is.list(data_json$rows)) {
         if (is.matrix(data_json$rows[[1L]]))
