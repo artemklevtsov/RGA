@@ -7,8 +7,8 @@ list_mgmt <- function(path, query, token) {
         return(invisible(NULL))
     }
     data_df <- data_json$items
-    data_df$created <- as.POSIXct(strptime(data_df$created, format = "%Y-%m-%dT%H:%M:%OS", tz = "UTC"))
-    data_df$updated <- as.POSIXct(strptime(data_df$updated, format = "%Y-%m-%dT%H:%M:%OS", tz = "UTC"))
+    data_df$created <- as.POSIXct(strptime(data_df$created, format = "%Y-%m-%dT%H:%M:%OS", tz = "GMT"))
+    data_df$updated <- as.POSIXct(strptime(data_df$updated, format = "%Y-%m-%dT%H:%M:%OS", tz = "GMT"))
     return(data_df)
 }
 
