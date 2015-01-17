@@ -1,13 +1,13 @@
 # Error printing function
 #' @include utils.R
 #' @importFrom httr http_status
-error_handler <- function(x) {
-    error_code <- x$error$code
-    error_message <- http_status(error_code)$message
-    error_tbl <- x$error$errors[, -1L]
-    error_tbl$reason <- to_separated(error_tbl$reason, sep = " ")
-    reasons <- paste(capture.output(print(error_tbl, right = FALSE)), collapse = "\n")
-    stop(error_message, "\n", reasons, call. = FALSE)
+error_message <- function(x) {
+    code <- x$error$code
+    message <- http_status(code)$message
+    reasons <- x$error$errors[, -1L]
+    reasons$reason <- to_separated(reasons$reason, sep = " ")
+    reasons <- paste(capture.output(print(reasons, right = FALSE)), collapse = "\n")
+    stop(message, "\n", reasons, call. = FALSE)
 }
 
 #' @title Get a Google Analytics API response
@@ -44,6 +44,6 @@ get_response <- function(type = c("ga", "rt", "mcf", "mgmt"), path = NULL, query
     resp <- GET(url, config)
     data_json <- fromJSON(content(resp, as = "text"), simplifyVector = simplify, flatten = flatten)
     if (!is.null(data_json$error))
-        error_handler(data_json)
+        error_message(data_json)
     return(data_json)
 }

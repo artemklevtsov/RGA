@@ -59,7 +59,7 @@ list_metadata <- function(report.type = "ga") {
     resp <- GET(url)
     data_json <- fromJSON(content(resp, as = "text"), flatten = TRUE)
     if (!is.null(data_json$error))
-        error_handler(data_json)
+        error_message(data_json)
     data_df <- data_json$items
     data_df$kind <- NULL
     colnames(data_df) <- gsub("attributes.", "", colnames(data_df), fixed = TRUE)
