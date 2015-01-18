@@ -1,6 +1,6 @@
 # Set query
 #' @include utils.R
-set_query <- function(...) {
+build_query <- function(...) {
     query <- list(...)
     query <- compact(query)
     query <- fix_query(query)

@@ -113,10 +113,10 @@ get_ga <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
               !is.null(metrics), nzchar(metrics))
     if (!is.null(sampling.level))
         sampling.level <- match.arg(sampling.level, c("default", "faster", "higher_precision"))
-    query <- set_query(profile.id = profile.id, start.date = start.date, end.date = end.date,
-                       metrics = metrics, dimensions = dimensions, sort = sort, filters = filters,
-                       segment = segment, sampling.level = sampling.level,
-                       start.index = start.index, max.results = max.results)
+    query <- build_query(profile.id = profile.id, start.date = start.date, end.date = end.date,
+                         metrics = metrics, dimensions = dimensions, sort = sort, filters = filters,
+                         segment = segment, sampling.level = sampling.level,
+                         start.index = start.index, max.results = max.results)
     res <- get_report(type = "ga", query = query, token = token)
     return(res)
 }
@@ -168,10 +168,10 @@ get_mcf <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
               !is.null(metrics), nzchar(metrics))
     if (!is.null(sampling.level))
         sampling.level <- match.arg(sampling.level, c("default", "faster", "higher_precision"))
-    query <- set_query(profile.id = profile.id, start.date = start.date, end.date = end.date,
-                       metrics = metrics, dimensions = dimensions, sort = sort, filters = filters,
-                       sampling.level = sampling.level,
-                       start.index = start.index, max.results = max.results)
+    query <- build_query(profile.id = profile.id, start.date = start.date, end.date = end.date,
+                         metrics = metrics, dimensions = dimensions, sort = sort, filters = filters,
+                         sampling.level = sampling.level,
+                         start.index = start.index, max.results = max.results)
     res <- get_report(type = "mcf", query = query, token = token)
     return(res)
 }
@@ -215,8 +215,8 @@ get_rt <- function(profile.id, metrics = "rt:activeUsers", dimensions = NULL,
                          sort = NULL, filters = NULL, max.results = NULL, token) {
     stopifnot(!is.null(profile.id), nzchar(profile.id),
               !is.null(metrics), nzchar(metrics))
-    query <- set_query(profile.id = profile.id, metrics = metrics, dimensions = dimensions,
-                       sort = sort, filters = filters, max.results = max.results)
+    query <- build_query(profile.id = profile.id, metrics = metrics, dimensions = dimensions,
+                         sort = sort, filters = filters, max.results = max.results)
     res <- get_report(type = "rt", query = query, token = token)
     return(res)
 }
