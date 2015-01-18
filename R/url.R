@@ -16,6 +16,7 @@ get_url <- function(type = c("ga", "mcf", "rt", "mgmt"), path = NULL, query = NU
         url <- paste(url, path, sep = "/")
     if (!is.null(query)) {
         if (is.list(query)) {
+            query <- compact(query)
             params <- names(query)
             params <- gsub(".", "-", params, fixed = TRUE)
             values <- as.character(query)
