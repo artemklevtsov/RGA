@@ -37,12 +37,6 @@ get_report <- function(type = c("ga", "mcf", "rt"), query, token) {
         message("No results were obtained.")
         return(invisible(NULL))
     }
-    if (is.list(data_json$rows)) {
-        if (is.matrix(data_json$rows[[1L]]))
-            data_json$rows <- do.call(rbind, data_json$rows)
-        else if (is.list(data_json$rows[[1L]]) && !is.data.frame(data_json$rows[[1L]]))
-            data_json$rows <- do.call(c, data_json$rows)
-    }
     if (!is.null(data_json$containsSampledData) && data_json$containsSampledData)
         warning("Data contains sampled data.", call. = FALSE)
     data_df <- data_json$rows

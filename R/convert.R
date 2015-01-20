@@ -1,5 +1,7 @@
 # Build data.frame for core report
 build_ga <- function(x) {
+    if (is.list(x$rows))
+        x$rows <- do.call(rbind, x$rows)
     names <- gsub("^(ga|rt):", "", x$columnHeaders$name)
     data_df <- as.data.frame(x$rows, stringsAsFactors = FALSE)
     colnames(data_df) <- names
@@ -8,6 +10,8 @@ build_ga <- function(x) {
 
 # Build data.frame for mcf report
 build_mcf <- function(x) {
+    if (is.list(x$rows[[1L]]) && !is.data.frame(x$rows[[1L]]))
+        x$rows <- do.call(c, x$rows)
     names <- gsub("^mcf:", "", x$columnHeaders$name)
     types <- x$columnHeaders$dataType
     if ("MCF_SEQUENCE" %in% types) {
