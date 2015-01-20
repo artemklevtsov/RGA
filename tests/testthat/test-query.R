@@ -8,7 +8,7 @@ test_that("errors", {
 
 test_that("dates", {
     query <- build_query(profile.id = 0, end.date = Sys.Date())
-    expect_equal(query$`end-date`, as.character(Sys.Date()))
+    expect_equal(query$`end.date`, as.character(Sys.Date()))
 })
 
 test_that("spaces", {
