@@ -18,6 +18,8 @@ get_url <- function(type = c("ga", "mcf", "rt", "mgmt"), path = NULL, query = NU
         if (is.list(query)) {
             query <- compact(query)
             params <- names(query)
+            params <- sub("profile.id", "ids", params, fixed = TRUE)
+            params <- sub("sampling.level", "samplingLevel", params, fixed = TRUE)
             params <- gsub(".", "-", params, fixed = TRUE)
             values <- as.character(query)
             values <- enc2utf8(values)

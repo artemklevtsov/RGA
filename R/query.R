@@ -22,9 +22,6 @@ fix_query <- function(query) {
     if (!is.empty(query$sampling.level))
         query$sampling.level <- toupper(query$sampling.level)
     stopifnot(any(lapply(query, length) <= 1L))
-    names(query) <- sub("profile.id", "ids", names(query), fixed = TRUE)
-    names(query) <- sub("sampling.level", "samplingLevel", names(query), fixed = TRUE)
-    names(query) <- gsub(".", "-", names(query), fixed = TRUE)
     stopifnot(all(vapply(query, is.vector, logical(1))))
     return(query)
 }
