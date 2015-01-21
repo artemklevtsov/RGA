@@ -46,7 +46,7 @@ rename_mgmt <- function(x) {
 build_mgmt <- function(x) {
     if (is.data.frame(x$items))
         data_df <- x$items
-    else if (is.list(x$items))
+    else if (is.list(x$items) && !is.data.frame(x$items))
         data_df <- do.call(rbind, x$items)
     if (!is.null(data_df$permissions.effective)) {
         data_df$permissions.effective <- vapply(data_df$permissions.effective, paste, collapse = ",", FUN.VALUE = character(1))
