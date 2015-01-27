@@ -5,4 +5,5 @@
 ^\.Renviron$
 ^\.Rprofile$
 ^data-raw$
+^tools$
 ^tmp$
