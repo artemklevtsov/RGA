@@ -20,13 +20,15 @@ dimsmets <- function(report.type = "ga") {
     shinyApp(
         ui = fluidPage(
             titlePanel("Google Analytics: Dimensions & Metrics"),
-            absolutePanel(fixed = TRUE, dragdatable = TRUE, class = "modal",
-                          top = "auto", left = "auto", right = 20, bottom = 20,
-                          width = 300, height = 420,
-                          wellPanel(
-                              checkboxGroupInput(inputId = "columns", label = "Columns to show:",
-                                                 names(data), selected = c("id", "uiName", "type", "description"))
-                          )
+            absolutePanel(id = "controls", class = "panel panel-default",
+                dragdatable = TRUE, fixed = TRUE, width = 300, height = 420,
+                top = "auto", left = "auto", right = 20, bottom = 20,
+                wellPanel(
+                    checkboxGroupInput(inputId = "columns",
+                                       label = "Columns to show:",
+                                       choices = names(data),
+                                       selected = c("id", "ui.name", "type", "description"))
+                )
             ),
             fluidRow(
                 column(3,
@@ -42,8 +44,8 @@ dimsmets <- function(report.type = "ga") {
                                    choices = c("All", unique(data$status)), selected = "PUBLIC")
                 ),
                 column(3,
-                       selectInput(inputId = "allowedInSegments", label = "Allowed in Segments:",
-                                   choices = c("All", unique(data$allowedInSegments)))
+                       selectInput(inputId = "segments", label = "Allowed in Segments:",
+                                   choices = c("All", unique(data$allowed.in.segments)))
                 )),
             fluidRow(
                 dataTableOutput(outputId = "table")
@@ -57,8 +59,8 @@ dimsmets <- function(report.type = "ga") {
                     data <- data[data$type == input$type,]
                 if (input$status != "All")
                     data <- data[data$status == input$status,]
-                if (input$allowedInSegments != "All")
-                    data <- data[data$allowedInSegments == input$allowedInSegments,]
+                if (input$segments != "All")
+                    data <- data[data$allowed.in.segments == input$segments,]
                 data[, input$columns, drop = FALSE]
             })
         }
