@@ -1,4 +1,4 @@
-"id","type","dataType","group","status","uiName","description","allowedInSegments","replacedBy","calculation","minTemplateIndex","maxTemplateIndex","premiumMinTemplateIndex","premiumMaxTemplateIndex"
+"id","type","data.type","group","status","ui.name","description","allowed.in.segments","replaced.by","calculation","min.template.index","max.template.index","premium.min.template.index","premium.max.template.index"
 "ga:userType","DIMENSION","STRING","User","PUBLIC","User Type","A boolean indicating if a user is new or returning. Possible values: New Visitor, Returning Visitor.",TRUE,NA,NA,NA,NA,NA,NA
 "ga:visitorType","DIMENSION","STRING","User","DEPRECATED","User Type","A boolean indicating if a user is new or returning. Possible values: New Visitor, Returning Visitor.",TRUE,"ga:userType",NA,NA,NA,NA,NA
 "ga:sessionCount","DIMENSION","STRING","User","PUBLIC","Count of Sessions","The session index for a user to your property. Each session from a unique user will get its own incremental index starting from 1 for the first session. Subsequent sessions do not change previous session indicies. For example, if a certain user has 4 sessions to your website, sessionCount for that user will have 4 distinct values of '1' through '4'.",TRUE,NA,NA,NA,NA,NA,NA
@@ -45,7 +45,7 @@
 "ga:adPlacementDomain","DIMENSION","STRING","Adwords","PUBLIC","Placement Domain","The domains where your ads on the content network were placed.",FALSE,NA,NA,NA,NA,NA,NA
 "ga:adPlacementUrl","DIMENSION","STRING","Adwords","PUBLIC","Placement URL","The URLs where your ads on the content network were placed.",FALSE,NA,NA,NA,NA,NA,NA
 "ga:adFormat","DIMENSION","STRING","Adwords","PUBLIC","Ad Format","Your AdWords ad formats (Text, Image, Flash, Video, etc.).",FALSE,NA,NA,NA,NA,NA,NA
-"ga:adTargetingType","DIMENSION","STRING","Adwords","PUBLIC","Targeting Type","How your AdWords ads were targeted (keyword, placement, and vertical targeting, etc.).",FALSE,NA,NA,NA,NA,NA,NA
+"ga:adTargetingType","DIMENSION","STRING","Adwords","PUBLIC","Targeting Type","How your AdWords ads were targeted (keyword, placement, and vertical targeting, etc.).",TRUE,NA,NA,NA,NA,NA,NA
 "ga:adTargetingOption","DIMENSION","STRING","Adwords","PUBLIC","Placement Type","How you manage your ads on the content network. Values are Automatic placements or Managed placements.",FALSE,NA,NA,NA,NA,NA,NA
 "ga:adDisplayUrl","DIMENSION","STRING","Adwords","PUBLIC","Display URL","The URLs your AdWords ads displayed.",FALSE,NA,NA,NA,NA,NA,NA
 "ga:adDestinationUrl","DIMENSION","STRING","Adwords","PUBLIC","Destination URL","The URLs to which your AdWords ads referred traffic.",FALSE,NA,NA,NA,NA,NA,NA
@@ -157,6 +157,7 @@
 "ga:searchCategory","DIMENSION","STRING","Internal Search","PUBLIC","Site Search Category","The categories used for the internal search if you have this enabled for your profile. For example, you might have product categories such as electronics, furniture, or clothing.",TRUE,NA,NA,NA,NA,NA,NA
 "ga:searchStartPage","DIMENSION","STRING","Internal Search","PUBLIC","Start Page","A page where the user initiated an internal search on your property.",FALSE,NA,NA,NA,NA,NA,NA
 "ga:searchDestinationPage","DIMENSION","STRING","Internal Search","PUBLIC","Destination Page","The page the user immediately visited after performing an internal search on your site. (Usually the search results page).",FALSE,NA,NA,NA,NA,NA,NA
+"ga:searchAfterDestinationPage","DIMENSION","STRING","Internal Search","PUBLIC","Search Destination Page","A page that the user visited after performing an internal search on your site.",TRUE,NA,NA,NA,NA,NA,NA
 "ga:searchResultViews","METRIC","INTEGER","Internal Search","PUBLIC","Results Pageviews","The number of times a search result page was viewed after performing a search.",FALSE,NA,NA,NA,NA,NA,NA
 "ga:searchUniques","METRIC","INTEGER","Internal Search","PUBLIC","Total Unique Searches","The total number of unique keywords from internal searches within a session. For example if ""shoes"" was searched for 3 times in a session, it will be only counted once.",TRUE,NA,NA,NA,NA,NA,NA
 "ga:avgSearchResultViews","METRIC","FLOAT","Internal Search","PUBLIC","Results Pageviews / Search","The average number of times people viewed a search results page after performing a search.",FALSE,NA,"ga:searchResultViews / ga:searchUniques",NA,NA,NA,NA
@@ -366,7 +367,9 @@
 "ga:campaignCode","DIMENSION","STRING","Traffic Sources","PUBLIC","Campaign Code","When using manual campaign tracking, the value of the utm_id campaign tracking parameter.",FALSE,NA,NA,NA,NA,NA,NA
 "ga:channelGrouping","DIMENSION","STRING","Channel Grouping","PUBLIC","Default Channel Grouping","The default channel grouping that is shared within the View (Profile).",TRUE,NA,NA,NA,NA,NA,NA
 "ga:checkoutOptions","DIMENSION","STRING","Ecommerce","PUBLIC","Checkout Options","User options specified during the checkout process, e.g., FedEx, DHL, UPS for delivery options or Visa, MasterCard, AmEx for payment options. This dimension should be used along with ga:shoppingStage (Enhanced Ecommerce).",TRUE,NA,NA,NA,NA,NA,NA
+"ga:cityId","DIMENSION","STRING","Geo Network","PUBLIC","City ID","The city IDs of property users, derived from IP addresses or Geographical IDs.",FALSE,NA,NA,NA,NA,NA,NA
 "ga:correlationModelId","DIMENSION","STRING","Related Products","PUBLIC","Correlation Model ID","Correlation Model ID for related products.",FALSE,NA,NA,NA,NA,NA,NA
+"ga:countryIsoCode","DIMENSION","STRING","Geo Network","PUBLIC","Country ISO Code","The country ISO code of users, derived from IP addresses or Geographical IDs. Values are given as an ISO-3166-1 alpha-2 code.",FALSE,NA,NA,NA,NA,NA,NA
 "ga:internalPromotionCreative","DIMENSION","STRING","Ecommerce","PUBLIC","Internal Promotion Creative","The creative content designed for a promotion (Enhanced Ecommerce).",TRUE,NA,NA,NA,NA,NA,NA
 "ga:internalPromotionId","DIMENSION","STRING","Ecommerce","PUBLIC","Internal Promotion ID","The ID of the promotion (Enhanced Ecommerce).",TRUE,NA,NA,NA,NA,NA,NA
 "ga:internalPromotionName","DIMENSION","STRING","Ecommerce","PUBLIC","Internal Promotion Name","The name of the promotion (Enhanced Ecommerce).",TRUE,NA,NA,NA,NA,NA,NA
@@ -384,10 +387,13 @@
 "ga:queryProductId","DIMENSION","STRING","Related Products","PUBLIC","Queried Product ID","ID of the product being queried.",FALSE,NA,NA,NA,NA,NA,NA
 "ga:queryProductName","DIMENSION","STRING","Related Products","PUBLIC","Queried Product Name","Name of the product being queried.",FALSE,NA,NA,NA,NA,NA,NA
 "ga:queryProductVariation","DIMENSION","STRING","Related Products","PUBLIC","Queried Product Variation","Variation of the product being queried.",FALSE,NA,NA,NA,NA,NA,NA
+"ga:regionId","DIMENSION","STRING","Geo Network","PUBLIC","Region ID","The region ID of users to your property, derived from IP addresses or Geographical IDs. In the U.S., a region is a state, such as New York.",FALSE,NA,NA,NA,NA,NA,NA
+"ga:regionIsoCode","DIMENSION","STRING","Geo Network","PUBLIC","Region ISO Code","The region ISO code of users to your property, derived from IP addresses or Geographical IDs. Values are given as an ISO-3166-2 code.",FALSE,NA,NA,NA,NA,NA,NA
 "ga:relatedProductId","DIMENSION","STRING","Related Products","PUBLIC","Related Product ID","ID of the related product.",FALSE,NA,NA,NA,NA,NA,NA
 "ga:relatedProductName","DIMENSION","STRING","Related Products","PUBLIC","Related Product Name","Name of the related product.",FALSE,NA,NA,NA,NA,NA,NA
 "ga:relatedProductVariation","DIMENSION","STRING","Related Products","PUBLIC","Related Product Variation","Variation of the related product.",FALSE,NA,NA,NA,NA,NA,NA
 "ga:shoppingStage","DIMENSION","STRING","Ecommerce","PUBLIC","Shopping Stage","Various stages of the shopping experience that users completed in a session, e.g., PRODUCT_VIEW, ADD_TO_CART, CHECKOUT, etc. (Enhanced Ecommerce).",TRUE,NA,NA,NA,NA,NA,NA
+"ga:subContinentCode","DIMENSION","STRING","Geo Network","PUBLIC","Sub Continent Code","The sub-continent code of users, derived from IP addresses or Geographical IDs. For example, Polynesia or Northern Europe. Values are given as a UN M.49 code.",FALSE,NA,NA,NA,NA,NA,NA
 "ga:buyToDetailRate","METRIC","PERCENT","Ecommerce","PUBLIC","Buy-to-Detail Rate","Unique purchases divided by views of product detail pages (Enhanced Ecommerce).",FALSE,NA,NA,NA,NA,NA,NA
 "ga:cartToDetailRate","METRIC","PERCENT","Ecommerce","PUBLIC","Cart-to-Detail Rate","Product adds divided by views of product details (Enhanced Ecommerce).",FALSE,NA,NA,NA,NA,NA,NA
 "ga:correlationScore","METRIC","CURRENCY","Related Products","PUBLIC","Correlation Score","Correlation Score for related products.",FALSE,NA,NA,NA,NA,NA,NA
@@ -396,8 +402,9 @@
 "ga:dcmClicks","METRIC","INTEGER","DoubleClick Campaign Manager","PUBLIC","DFA Clicks","DCM Total Clicks (premium only).",FALSE,NA,NA,NA,NA,NA,NA
 "ga:dcmCost","METRIC","CURRENCY","DoubleClick Campaign Manager","PUBLIC","DFA Cost","DCM Total Cost (premium only).",FALSE,NA,NA,NA,NA,NA,NA
 "ga:dcmImpressions","METRIC","INTEGER","DoubleClick Campaign Manager","PUBLIC","DFA Impressions","DCM Total Impressions (premium only).",FALSE,NA,NA,NA,NA,NA,NA
-"ga:dcmMargin","METRIC","PERCENT","DoubleClick Campaign Manager","PUBLIC","DFA Margin","DCM Margin (premium only).",FALSE,NA,NA,NA,NA,NA,NA
-"ga:dcmROI","METRIC","PERCENT","DoubleClick Campaign Manager","PUBLIC","DFA ROI","DCM Return On Investment (premium only).",FALSE,NA,NA,NA,NA,NA,NA
+"ga:dcmMargin","METRIC","PERCENT","DoubleClick Campaign Manager","DEPRECATED","DFA Margin","This metric is deprecated and will be removed soon. Please use ga:dcmROAS instead.",FALSE,NA,NA,NA,NA,NA,NA
+"ga:dcmROAS","METRIC","PERCENT","DoubleClick Campaign Manager","PUBLIC","DFA ROAS","DCM Return On Ad Spend (ROAS) (premium only).",FALSE,NA,NA,NA,NA,NA,NA
+"ga:dcmROI","METRIC","PERCENT","DoubleClick Campaign Manager","DEPRECATED","DFA ROI","This metric is deprecated and will be removed soon. Please use ga:dcmROAS instead.",FALSE,NA,NA,NA,NA,NA,NA
 "ga:dcmRPC","METRIC","CURRENCY","DoubleClick Campaign Manager","PUBLIC","DFA RPC","DCM Revenue Per Click (premium only).",FALSE,NA,NA,NA,NA,NA,NA
 "ga:hits","METRIC","INTEGER","Session","PUBLIC","Hits","Total number of hits sent to Google Analytics. This metric sums all hit types (e.g. pageview, event, timing, etc.).",TRUE,NA,NA,NA,NA,NA,NA
 "ga:internalPromotionCTR","METRIC","PERCENT","Ecommerce","PUBLIC","Internal Promotion CTR","The rate at which users clicked through to view the internal promotion (ga:internalPromotionClicks / ga:internalPromotionViews) - (Enhanced Ecommerce).",FALSE,NA,"ga:internalPromotionClicks / ga:internalPromotionViews",NA,NA,NA,NA
@@ -422,4 +429,7 @@
 "ga:queryProductQuantity","METRIC","INTEGER","Related Products","PUBLIC","Queried Product Quantity","Quantity of the product being queried.",FALSE,NA,NA,NA,NA,NA,NA
 "ga:refundAmount","METRIC","CURRENCY","Ecommerce","PUBLIC","Refund Amount","Currency amount refunded for a transaction (Enhanced Ecommerce).",TRUE,NA,NA,NA,NA,NA,NA
 "ga:relatedProductQuantity","METRIC","INTEGER","Related Products","PUBLIC","Related Product Quantity","Quantity of the related product.",FALSE,NA,NA,NA,NA,NA,NA
+"ga:revenuePerUser","METRIC","CURRENCY","Ecommerce","PUBLIC","Revenue per User","The total sale revenue provided in the transaction excluding shipping and tax divided by total number of users.",FALSE,NA,NA,NA,NA,NA,NA
+"ga:sessionsPerUser","METRIC","FLOAT","User","PUBLIC","Number of Sessions per User","Counts the total number of sessions and divides that by total number of users.",FALSE,NA,NA,NA,NA,NA,NA
 "ga:totalRefunds","METRIC","INTEGER","Ecommerce","PUBLIC","Refunds","Number of refunds that have been issued (Enhanced Ecommerce).",TRUE,NA,NA,NA,NA,NA,NA
+"ga:transactionsPerUser","METRIC","FLOAT","Ecommerce","PUBLIC","Transactions per User","The average number of transactions for a user on your property.",FALSE,NA,NA,NA,NA,NA,NA
