@@ -2,7 +2,15 @@
 build_ga <- function(x) {
     if (is.list(x$rows))
         x$rows <- do.call(rbind, x$rows)
-    names <- gsub("^(ga|rt):", "", x$columnHeaders$name)
+    names <- gsub("^ga:", "", x$columnHeaders$name)
+    data_df <- as.data.frame(x$rows, stringsAsFactors = FALSE)
+    colnames(data_df) <- names
+    return(data_df)
+}
+
+# Build data.frame for realtime report
+build_rt <- function(x) {
+    names <- gsub("^rt:", "", x$columnHeaders$name)
     data_df <- as.data.frame(x$rows, stringsAsFactors = FALSE)
     colnames(data_df) <- names
     return(data_df)
@@ -62,7 +70,7 @@ build_df <- function(type = c("ga", "mcf", "rt", "mgmt"), data) {
     type <- match.arg(type)
     data_df <- switch(type,
                       ga = build_ga(data),
-                      rt = build_ga(data),
+                      rt = build_rt(data),
                       mcf = build_mcf(data),
                       mgmt = build_mgmt(data))
     rownames(data_df) <- NULL
