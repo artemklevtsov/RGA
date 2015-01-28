@@ -10,7 +10,7 @@
 #'
 #' @include query.R
 #' @include get-data.R
-#' @include get-mgmt.R
+#' @include profiles.R
 #'
 #' @noRd
 #'
