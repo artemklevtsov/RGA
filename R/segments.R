@@ -32,3 +32,13 @@ list_segments = function(start.index = NULL, max.results = NULL, token) {
     res <- list_mgmt(path = path, query = query, token = token)
     return(res)
 }
+
+#' @rdname list_segments
+#'
+#' @export
+#'
+get_segments = function(start.index = NULL, max.results = NULL, token) {
+    path <- "segments"
+    .Defunct("list_segments")
+}
+

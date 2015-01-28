@@ -78,3 +78,11 @@ list_webproperties = function(account.id = "~all", start.index = NULL, max.resul
     res <- list_mgmt(path = path, query = query, token = token)
     return(res)
 }
+
+#' @rdname list_webproperties
+#'
+#' @export
+#'
+get_webproperties <- function(account.id = "~all", start.index = NULL, max.results = NULL, token) {
+    .Defunct("list_webproperties")
+}

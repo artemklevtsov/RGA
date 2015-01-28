@@ -11,7 +11,7 @@
 #'
 #' @include metadata.R
 #'
-#' @import shiny
+#' @importFrom shiny shinyApp fluidPage titlePanel absolutePanel wellPanel checkboxGroupInput fluidRow column selectInput dataTableOutput renderDataTable
 #'
 #' @export
 #'
@@ -65,4 +65,11 @@ dimsmets <- function(report.type = "ga") {
             })
         }
     )
+}
+
+#' @describeIn dimsmets
+#' @export
+#'
+dims_mets <- function(report.type = "ga") {
+    .Defunct("dimsmets")
 }
