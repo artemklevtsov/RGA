@@ -62,7 +62,8 @@ ga_data <- get_ga("profile_id", start.date = "30daysAgo", end.date = "today",
 \seealso{
 \code{\link{authorize}} \code{\link{list_metadata}}
 
-Other Reporting API: \code{\link{get_firstdate}};
-  \code{\link{get_mcf}}; \code{\link{get_rt}}
+Other Reporting API: \code{\link{firstdate}},
+  \code{\link{get_firstdate}}; \code{\link{get_mcf}};
+  \code{\link{get_rt}}
 }
 

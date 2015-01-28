@@ -48,7 +48,8 @@ while (TRUE) {
 \seealso{
 \code{\link{authorize}}
 
-Other Reporting API: \code{\link{get_firstdate}};
-  \code{\link{get_ga}}; \code{\link{get_mcf}}
+Other Reporting API: \code{\link{firstdate}},
+  \code{\link{get_firstdate}}; \code{\link{get_ga}};
+  \code{\link{get_mcf}}
 }
 
