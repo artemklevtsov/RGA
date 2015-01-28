@@ -20,9 +20,9 @@ dimsmets <- function(report.type = "ga") {
     shinyApp(
         ui = fluidPage(
             titlePanel("Google Analytics: Dimensions & Metrics"),
-            absolutePanel(id = "controls", class = "panel panel-default",
-                dragdatable = TRUE, fixed = TRUE, width = 300, height = 420,
-                top = "auto", left = "auto", right = 20, bottom = 20,
+            absolutePanel(id = "controls", class = "panel panel-default", style = "z-index: 1000",
+                dragdatable = TRUE, fixed = TRUE, width = 280, height = 400,
+                top = "auto", left = "auto", right = 20, bottom = 20, cursor = "move",
                 wellPanel(
                     checkboxGroupInput(inputId = "columns",
                                        label = "Columns to show:",
