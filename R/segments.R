@@ -33,7 +33,7 @@ list_segments = function(start.index = NULL, max.results = NULL, token) {
     return(res)
 }
 
-#' @rdname list_segments
+#' @noRd
 #'
 #' @export
 #'

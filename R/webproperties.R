@@ -79,7 +79,7 @@ list_webproperties = function(account.id = "~all", start.index = NULL, max.resul
     return(res)
 }
 
-#' @rdname list_webproperties
+#' @noRd
 #'
 #' @export
 #'

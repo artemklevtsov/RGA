@@ -86,7 +86,7 @@ list_profiles = function(account.id = "~all", webproperty.id = "~all", start.ind
     return(res)
 }
 
-#' @rdname list_profiles
+#' @noRd
 #'
 #' @export
 #'

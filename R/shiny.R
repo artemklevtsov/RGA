@@ -67,7 +67,7 @@ dimsmets <- function(report.type = "ga") {
     )
 }
 
-#' @describeIn dimsmets
+#' @noRd
 #' @export
 #'
 dims_mets <- function(report.type = "ga") {

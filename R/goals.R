@@ -79,7 +79,7 @@ list_goals = function(account.id = "~all", webproperty.id = "~all", profile.id =
     return(res)
 }
 
-#' @rdname list_goals
+#' @noRd
 #'
 #' @export
 #'
