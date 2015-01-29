@@ -66,10 +66,3 @@ dimsmets <- function(report.type = "ga") {
         }
     )
 }
-
-#' @noRd
-#' @export
-#'
-dims_mets <- function(report.type = "ga") {
-    .Defunct("dimsmets")
-}

@@ -85,11 +85,3 @@ list_profiles = function(account.id = "~all", webproperty.id = "~all", start.ind
     res <- list_mgmt(path = path, query = query, token = token)
     return(res)
 }
-
-#' @noRd
-#'
-#' @export
-#'
-get_profiles = function(account.id = "~all", webproperty.id = "~all", start.index = NULL, max.results = NULL, token) {
-    .Defunct("list_profiles")
-}

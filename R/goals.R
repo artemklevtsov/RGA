@@ -78,11 +78,3 @@ list_goals = function(account.id = "~all", webproperty.id = "~all", profile.id =
     res <- list_mgmt(path = path, query = query, token = token)
     return(res)
 }
-
-#' @noRd
-#'
-#' @export
-#'
-get_goals = function(account.id = "~all", webproperty.id = "~all", profile.id = "~all", start.index = NULL, max.results = NULL, token) {
-    .Defunct("list_goals")
-}
