@@ -11,7 +11,7 @@ build_query <- function(...) {
 #' @include utils.R
 fix_query <- function(query) {
     stopifnot(is.list(query))
-    if (!grepl("^ga:", query$profile.id, fixed = TRUE))
+    if (!grepl("^ga:", query$profile.id))
         query$profile.id <- paste0("ga:", query$profile.id)
     snames <- c("metrics", "dimensions", "sort")
     query[names(query) %in% snames] <- lapply(query[names(query) %in% snames], strip_spaces)
