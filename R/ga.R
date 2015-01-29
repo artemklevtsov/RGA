@@ -31,7 +31,7 @@
 #' @examples
 #' \dontrun{
 #' # get token data
-#' authorize(client.id = "client_id", client.secret = "client_sevret")
+#' authorize(client.id = "client_id", client.secret = "client_secret")
 #' # get report data
 #' ga_data <- get_ga("profile_id", start.date = "30daysAgo", end.date = "today",
 #'                   metrics = "ga:sessions", dimensions = "ga:source,ga:medium",

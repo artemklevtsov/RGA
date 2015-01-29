@@ -17,7 +17,7 @@
 #' @examples
 #' \dontrun{
 #' # get token data
-#' authorize(client.id = "client_id", client.secret = "client_sevret")
+#' authorize(client.id = "client_id", client.secret = "client_secret")
 #' # set query
 #' query <- list(profile.id = "XXXXXXXX", start.date = "31daysAgo", end.date = "today",
 #'               metrics = "ga:users,ga:sessions", dimensions = "ga:userType")
