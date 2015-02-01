@@ -58,12 +58,13 @@
 #' # get a GA profiles
 #' ga_profiles <- list_profiles()
 #' # choose the profile ID by site URL
-#' id <- ga_profiles[grep("example.com", ga_profiles$website.url), "id"]
+#' id <- ga_profiles[grep("http://example.com", ga_profiles$website.url), "id"]
 #' # get date when GA tracking began
 #' first.date <- firstdate(id)
 #' # get GA report data
 #' ga_data <- get_ga(id, start.date = first.date, end.date = "today",
-#'                   metrics = "ga:users,ga:sessions", dimensions = "ga:userGender,ga:userAgeBracket")
+#'                   metrics = "ga:users,ga:sessions",
+#'                   dimensions = "ga:userGender,ga:userAgeBracket")
 #' }
 #'
 NULL
