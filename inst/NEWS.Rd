@@ -11,21 +11,20 @@
     \item Improve errors handling (prettify output)
     \item Add \code{rga.cache} package option to specify default cache path
     \item Add \code{rga.token} package option to specify the variable name which assign in the \code{RGA:::TokenEnv} environment when use \code{authorise()}
-    \item Remove \code{rga.verbose} option and \code{verbose} arg. Use \code{httr::with_verbose} instead
+    \item Remove \code{rga.verbose} option and \code{verbose} arg. Use \code{httr::with_verbose()} instead
     \item Add \code{list_metadata()} function to obtain actual information from the Metadata API
     \item Rename \code{dims_mets()} to \code{dimsmets()}. \code{dims_mets()} now is deprecated
     \item Rename \code{get_firstdate()} to \code{firstdate()}. \code{get_firstdate()} now is deprecated
-    \item Dates now converted in \code{POSIXct} class
+    \item Dates now converted in the \code{POSIXct} class
     \item Fix incorrect handling ga:dateHour dimension (#15)
-    \item Use timezone specified in the Profiles settings for handling dates
+    \item Use timezone specified in the Profile settings for handling dates
     \item Add predefined \code{client.id} and \code{client.secret} for the \code{authorise()} function
-    \item Fixes related with shiny update (version 0.11)
-    \item Split README to separate vignettes
-    \item Update minimal \code{R} versions to 3.0.0
-    \item Update minimal \code{httr} version to 0.6
-    \item Update minimal \code{shiny} version to 0.11
+    \item Update code related with shiny update (version 0.11)
+    \item Split README to the separate vignettes
+    \item Update minimal versions of the required dependencies: \code{R} >= 3.0.0, \code{httr} >= 0.6, \code{shiny} >= 0.11
   }
 }
+
 \section{Changes in RGA version 0.1.4 (2014-12-19)}{
   \itemize{
     \item Update data
@@ -42,6 +41,7 @@
     \item Add \code{sampling.level} options to the \code{gat_ga()} and \code{get_mcf()} functions to control sampling level
   }
 }
+
 \section{Changes in RGA version 0.1.3 (2014-10-20)}{
   \itemize{
     \item Update data
@@ -57,14 +57,16 @@
 }
 \section{Changes in RGA version 0.1.2 (2014-09-01)}{
   \itemize{
-    \item Some inner code improves
+    \item Some internal code improvements
   }
 }
+
 \section{Changes in RGA version 0.1.1 (2014-08-20)}{
   \itemize{
     \item Add more extend Descrition in the DESCRIPTION file as requested Brian Ripley
   }
 }
+
 \section{Changes in RGA version 0.1 (2014-08-19)}{
   \itemize{
     \item First release
