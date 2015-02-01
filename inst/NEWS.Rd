@@ -1,5 +1,8 @@
+% -*- coding: utf-8 -*-
+\newcommand{\cpkg}{\href{http://CRAN.R-project.org/package=#1}{\pkg{#1}}}
 \name{NEWS}
-\title{News for Package "RGA"}
+\title{News for Package \pkg{RGA}}
+\encoding{UTF-8}
 
 \section{Changes in RGA version 0.2 (2014-02-01)}{
   \itemize{
@@ -21,7 +24,7 @@
     \item Add predefined \code{client.id} and \code{client.secret} for the \code{authorise()} function
     \item Update code related with shiny update (version 0.11)
     \item Split README to the separate vignettes
-    \item Update minimal versions of the required dependencies: \code{R} >= 3.0.0, \code{httr} >= 0.6, \code{shiny} >= 0.11
+    \item Update minimal versions of the required dependencies: \pkg{R} >= 3.0.0, \cpkg{httr} >= 0.6, \cpkg{shiny} >= 0.11
   }
 }
 
