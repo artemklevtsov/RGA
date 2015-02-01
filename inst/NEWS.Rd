@@ -32,7 +32,7 @@
   \itemize{
     \item Update data
     \item Convert all query values to UTF-8 (solve issues with Windows encoding)
-    \item Return URL encode for the queries and \code{RCurl} as explicit dependency
+    \item Return URL encode for the queries and \cpkg{RCurl} as explicit dependency
     \item Fix get_mcf example (#9)
     \item Add notes about multiple tokens usage (#7)
     \item Remove set_query and related S3-methods from exported namespace
@@ -41,7 +41,7 @@
     \item \code{get_accounts()}, \code{get_webproperties()}, \code{get_profiles()}, \code{get_goals()}, \code{get_segments()} mark as deprecated
     \item Add \code{get_webproperty()}, \code{get_profile()} and \code{get_goal()} functions to get more detailed informtion about specific ID
     \item Set default package optiions when loading
-    \item Add \code{sampling.level} options to the \code{gat_ga()} and \code{get_mcf()} functions to control sampling level
+    \item Add \code{sampling.level} option to the \code{gat_ga()} and \code{get_mcf()} functions to control sampling level
   }
 }
 
@@ -55,7 +55,7 @@
     \item Fix pagination issues
     \item \code{show_dimsmets()} was renamed to \code{dims_mets()}
     \item Add more messages when \code{verbose = TRUE}
-    \item Remove URL encode for the queries and \code{RCurl} package dependency (related with Windows encoding)
+    \item Remove URL encode for the queries and \cpkg{RCurl} package dependency (related with Windows encoding)
   }
 }
 \section{Changes in RGA version 0.1.2 (2014-09-01)}{
