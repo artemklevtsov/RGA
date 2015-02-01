@@ -39,7 +39,7 @@ get_report <- function(type = c("ga", "mcf", "rt"), query, token) {
     }
     if (!is.null(data_json$containsSampledData) && isTRUE(data_json$containsSampledData)) {
         sample_perc <- paste0(round((as.numeric(data_json$sampleSize) / as.numeric(data_json$sampleSpace)) * 100, digits = 2), "%")
-        warning("Data contains sampled data. Percentage of sessions that were used for the query: ", sample_perc, ".", call. = FALSE)
+        warning("Data contains sampled data. Used ", sample_perc, " of sessions for the query.", call. = FALSE)
     }
     data_df <- data_json$rows
     if (any(grepl("date", names(data_df), fixed = TRUE))) {
