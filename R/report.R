@@ -31,14 +31,16 @@ get_report <- function(type = c("ga", "mcf", "rt"), query, token) {
     if (type == "rt")
         query$fields <- "columnHeaders,rows"
     else
-        query$fields <- "containsSampledData,profileInfo,columnHeaders,rows"
+        query$fields <- "containsSampledData,sampleSize,sampleSpace,profileInfo,columnHeaders,rows"
     data_json <- get_data(type = type, query = query, token = token)
     if (is.null(data_json)) {
         message("No results were obtained.")
         return(invisible(NULL))
     }
-    if (!is.null(data_json$containsSampledData) && data_json$containsSampledData)
-        warning("Data contains sampled data.", call. = FALSE)
+    if (!is.null(data_json$containsSampledData) && isTRUE(data_json$containsSampledData)) {
+        sample_perc <- paste0(round((as.numeric(data_json$sampleSize) / as.numeric(data_json$sampleSpace)) * 100, digits = 2), "%")
+        warning("Data contains sampled data. Percentage of sessions that were used for the query: ", sample_perc, ".", call. = FALSE)
+    }
     data_df <- data_json$rows
     if (any(grepl("date", names(data_df), fixed = TRUE))) {
         profile <- get_profile(account.id = data_json$profileInfo$accountId,
