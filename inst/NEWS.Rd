@@ -6,7 +6,7 @@
 
 \section{Changes in RGA version 0.2.1 (2014-xx-xx)}{
   \itemize{
-    \item Fixed column names in the Authorisation vignette
+    \item Fixed column names in the Metadata API vignette
     \item \code{dimsmets()} now try to get data with \code{list_metadata()}. If \code{list_metadata()} caeses a error used data from the package
   }
 }
