@@ -18,6 +18,7 @@
     \item Remove deprecated functions: \code{get_accounts()}, \code{get_webproperties()}, \code{get_profiles()}, \code{get_goals()}, \code{get_segments()}
     \item Convert output names to period-separated style
     \item Improve errors handling
+    \item Add information about a percent of sessions when sampled data returned
     \item Add \code{rga.cache} package option to specify default cache path
     \item Add \code{rga.token} package option to specify the variable name which assign in the \code{RGA:::TokenEnv} environment when use \code{authorise()}
     \item Remove \code{rga.verbose} option and \code{verbose} arg. Use \code{httr::with_verbose()} instead
