@@ -16,7 +16,14 @@
 #' @export
 #'
 dimsmets <- function(report.type = "ga") {
-    data <- list_metadata(report.type)
+    data <- try(list_metadata(report.type), silent = TRUE)
+    if (inherits(data, "try-error")) {
+        data <- try(get(report.type), silent = TRUE)
+        if (inherits(data, "try-error"))
+            stop("Unknown report.type ", dQuote(report.type), ".")
+        else
+            warning("Use ", dQuote(report.type)," data from package.", call. = FALSE)
+    }
     shinyApp(
         ui = fluidPage(
             titlePanel("Google Analytics: Dimensions & Metrics"),
