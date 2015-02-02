@@ -4,16 +4,16 @@
 \title{News for Package \pkg{RGA}}
 \encoding{UTF-8}
 
-\section{Changes in RGA version 0.2 (2014-02-01)}{
+\section{Changes in RGA version 0.2 (2014-02-02)}{
   \itemize{
     \item Update data
     \item Fix Descrition in the DESCRIPTION file as was recommended by Brian Ripley
     \item Add more functions for the Management API: \code{get_experiment()}, \code{get_filter()}, \code{get_unsampled_report()}, \code{list_custom_sources()}, \code{list_experiments()}, \code{list_filters()}, \code{list_unsampled_reports()}
     \item Remove deprecated functions: \code{get_accounts()}, \code{get_webproperties()}, \code{get_profiles()}, \code{get_goals()}, \code{get_segments()}
     \item Convert output names to period-separated style
-    \item Improve errors handling (prettify output)
+    \item Improve errors handling
     \item Add \code{rga.cache} package option to specify default cache path
-    \item Add \code{rga.token} Improve errors handling (prettify output)\code{RGA:::TokenEnv} environment when use \code{authorise()}
+    \item Add \code{rga.token} package option to specify the variable name which assign in the \code{RGA:::TokenEnv} environment when use \code{authorise()}
     \item Remove \code{rga.verbose} option and \code{verbose} arg. Use \code{httr::with_verbose()} instead
     \item Add \code{list_metadata()} function to obtain actual information from the Metadata API
     \item Rename \code{dims_mets()} to \code{dimsmets()}. \code{dims_mets()} now is deprecated
@@ -66,7 +66,7 @@
 
 \section{Changes in RGA version 0.1.1 (2014-08-20)}{
   \itemize{
-    \item Add more extend Descrition in the DESCRIPTION file as requested Brian Ripley
+    \item Add more extend Descrition in the DESCRIPTION file as was requested Brian Ripley
   }
 }
 
