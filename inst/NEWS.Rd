@@ -4,6 +4,12 @@
 \title{News for Package \pkg{RGA}}
 \encoding{UTF-8}
 
+\section{Changes in RGA version 0.2.1 (2014-xx-xx)}{
+  \itemize{
+    \item Fixed column names in the Authorisation vignette
+    \item \code{dimsmets()} now try to get data with \code{list_metadata()}. If \code{list_metadata()} caeses a error used data from the package
+  }
+}
 \section{Changes in RGA version 0.2 (2014-02-02)}{
   \itemize{
     \item Update data
