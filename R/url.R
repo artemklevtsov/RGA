@@ -12,8 +12,10 @@ get_url <- function(type = c("ga", "mcf", "rt", "mgmt"), path = NULL, query = NU
                   rt = "data/realtime",
                   mgmt = "management")
     url <- paste(base_api_url, base_api_version, type, sep = "/")
-    if (!is.null(path))
+    if (!is.null(path)) {
+        path <- gsub("\\s", "", path)
         url <- paste(url, path, sep = "/")
+    }
     if (!is.null(query)) {
         if (is.list(query)) {
             query <- compact(query)
