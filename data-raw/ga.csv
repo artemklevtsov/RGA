@@ -370,6 +370,7 @@
 "ga:cityId","DIMENSION","STRING","Geo Network","PUBLIC","City ID","The city IDs of property users, derived from IP addresses or Geographical IDs.",FALSE,NA,NA,NA,NA,NA,NA
 "ga:correlationModelId","DIMENSION","STRING","Related Products","PUBLIC","Correlation Model ID","Correlation Model ID for related products.",FALSE,NA,NA,NA,NA,NA,NA
 "ga:countryIsoCode","DIMENSION","STRING","Geo Network","PUBLIC","Country ISO Code","The country ISO code of users, derived from IP addresses or Geographical IDs. Values are given as an ISO-3166-1 alpha-2 code.",FALSE,NA,NA,NA,NA,NA,NA
+"ga:dataSource","DIMENSION","STRING","Platform or Device","PUBLIC","Data Source","The data source of a hit. By default, hits sent from ga.js and analytics.js are reported as ""web"". Hits sent from the mobile SDKs are reported as ""app"". These values can be overridden in the Measurement Protocol.",TRUE,NA,NA,NA,NA,NA,NA
 "ga:internalPromotionCreative","DIMENSION","STRING","Ecommerce","PUBLIC","Internal Promotion Creative","The creative content designed for a promotion (Enhanced Ecommerce).",TRUE,NA,NA,NA,NA,NA,NA
 "ga:internalPromotionId","DIMENSION","STRING","Ecommerce","PUBLIC","Internal Promotion ID","The ID of the promotion (Enhanced Ecommerce).",TRUE,NA,NA,NA,NA,NA,NA
 "ga:internalPromotionName","DIMENSION","STRING","Ecommerce","PUBLIC","Internal Promotion Name","The name of the promotion (Enhanced Ecommerce).",TRUE,NA,NA,NA,NA,NA,NA
