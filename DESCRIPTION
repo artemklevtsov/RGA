@@ -1,6 +1,6 @@
 Package: RGA
 Type: Package
-Title: A Google Analytics API client for R
+Title: A Google Analytics API Client
 Description: Provides functions for accessing and retrieving data from the
     Google Analytics APIs (https://developers.google.com/analytics/). Supports
     OAuth 2.0 authorization. Package provides access to the Management, Core
@@ -12,7 +12,7 @@ Description: Provides functions for accessing and retrieving data from the
 URL: https://bitbucket.org/unikum/rga
 BugReports: https://bitbucket.org/unikum/rga/issues
 Version: 0.2.1
-Date: 2014-06-03
+Date: 2015-03-17
 Authors@R: c(
     person(given = "Artem", family = "Klevtsov",
     email = "a.a.klevtsov@gmail.com", role = c("aut", "cre")),
