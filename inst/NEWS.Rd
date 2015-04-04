@@ -5,12 +5,14 @@
 \title{News for Package \pkg{RGA}}
 \encoding{UTF-8}
 
-\section{Changes in RGA version 0.2.1 (2014-xx-xx)}{
+\section{Changes in RGA version 0.2.1 (2014-03-17)}{
   \itemize{
     \item Fixed column names in the Metadata API vignette
     \item \code{dimsmets()} now try to get data with \code{list_metadata()}. If \code{list_metadata()} caeses a error used data from the package
+    \item Fix Title in the DESCRIPTION file as was recommended by Brian Ripley
   }
 }
+
 \section{Changes in RGA version 0.2 (2014-02-02)}{
   \itemize{
     \item Update data
@@ -66,6 +68,7 @@
     \item Remove URL encode for the queries and \CRANpkg{RCurl} package dependency (related with Windows encoding)
   }
 }
+
 \section{Changes in RGA version 0.1.2 (2014-09-01)}{
   \itemize{
     \item Some internal code improvements
