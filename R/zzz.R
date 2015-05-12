@@ -5,7 +5,7 @@
         rga.token = "GAToken"
     )
     toset <- !(names(op.rga) %in% names(op))
-    if(any(toset)) options(op.rga[toset])
+    if (any(toset)) options(op.rga[toset])
 
     invisible()
 }
