@@ -13,8 +13,6 @@ vignette: >
 knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
 ```
 
-## Obtain an access token
-
 Before you send any requests to the Google Analytics API, it's necessary to perform authorization and to obtain access token. It can be done with the following command:
 
 ```r
@@ -37,7 +35,7 @@ ga_token <- authorize(client.id = "client_id", client.secret = "client_secret")
 ga_data <- get_ga(profile.id = "ga:XXXXXXXX", token = ga_token)
 ```
 
-### Obtain OAuth 2.0 credentials
+## Obtain OAuth 2.0 credentials
 
 `RGA` package provides predefined **Client ID** and **Client secret**, but you may need to create a new application in [Google Developers Console](https://console.developers.google.com/) and obtain a **Client ID** and **Client secret** to access to the Google Analytics API.
 
@@ -64,7 +62,7 @@ Step by step instructions are as follows:
 
 You can return to the [Google Developers Console](https://console.developers.google.com/project) at any time to view the **Client ID** and **Client secret** on the Client ID for native application section on Credentials page.
 
-### Use environment variables
+## Use environment variables
 
 Besides the explicit specifying of the `client.id` and `client.secret` arguments, their values can be defined via environment variables: `RGA_CLIENT_ID` and `RGA_CLIENT_SECRET`. In this case, specifying of the `client.id` and `client.secret` arguments is not required for calling `authorize()` function:
 
@@ -89,7 +87,7 @@ Sys.setenv(RGA_CLIENT_ID = "client_id", RGA_CLIENT_SECRET = "client_secret")
 
 This string can be added to the file `.Rprofile` in the user's current оr home directory in order to set these variables automatically when the R session starts.
 
-### Cache an access token to disk
+## Cache an access token to disk
 
 When the `cache` argument and the `rga.cache` option is not changed, then after successful authorization the `.ga-token.rds` file with access token to Google API will be created in the current working directory. The `.ga-token.rds` file is used between sessions, i.e. at a subsequent call to the `authorize()`  function and authorization in the browser tab is not required. Using the `cache` argument you can also suppress caching (`FALSE` value) or specify an alternate path to the file storage (in this case It is necessary to specify the path and file name explicitly).
 
@@ -104,7 +102,7 @@ options(rga.cache = "/path/to/file")
 authorize(client.id, client.secret)
 ```
 
-### Working with multiple tokens
+## Working with multiple tokens
 
 If you want to work with `RGA` package with multiple Client IDs and Client secrets from different accounts (for example from business account at work and personal account at home) you need to clearly distinguish them. The best way in this case is creating two different tokens with disabled `cache` option:
 
