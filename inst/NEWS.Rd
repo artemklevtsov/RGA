@@ -5,15 +5,25 @@
 \title{News for Package \pkg{RGA}}
 \encoding{UTF-8}
 
-\section{Changes in RGA version 0.2.1 (2014-03-17)}{
+\section{Changes in RGA version 0.2.2 (2015-05-12)}{
   \itemize{
-    \item Fixed column names in the Metadata API vignette
+    \item Update data
+    \item Add \code{accept_json()} to the API requests
+    \item Add CRAN version badge to the README
+    \item Fix headings in the Authentification vignette
+    \item Fix dates in the NEWS
+  }
+}
+
+\section{Changes in RGA version 0.2.1 (2015-03-17)}{
+  \itemize{
+    \item Fix column names in the Metadata API vignette
     \item \code{dimsmets()} now try to get data with \code{list_metadata()}. If \code{list_metadata()} caeses a error used data from the package
     \item Fix Title in the DESCRIPTION file as was recommended by Brian Ripley
   }
 }
 
-\section{Changes in RGA version 0.2 (2014-02-02)}{
+\section{Changes in RGA version 0.2 (2015-02-02)}{
   \itemize{
     \item Update data
     \item Fix Descrition in the DESCRIPTION file as was recommended by Brian Ripley
