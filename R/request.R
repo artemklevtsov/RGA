@@ -28,7 +28,7 @@ error_message <- function(x) {
 #' @include auth.R
 #' @include url.R
 #'
-#' @importFrom httr GET config content
+#' @importFrom httr GET config accept_json content
 #' @importFrom jsonlite fromJSON
 #'
 get_response <- function(type = c("ga", "rt", "mcf", "mgmt"), path = NULL, query = NULL, simplify = TRUE, flatten = TRUE, token) {
@@ -41,7 +41,7 @@ get_response <- function(type = c("ga", "rt", "mcf", "mgmt"), path = NULL, query
         config <- config(token = token)
     } else
         config <- NULL
-    resp <- GET(url, config)
+    resp <- GET(url, accept_json(), config)
     data_json <- fromJSON(content(resp, as = "text"), simplifyVector = simplify, flatten = flatten)
     if (!is.null(data_json$error))
         error_message(data_json)
