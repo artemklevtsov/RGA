@@ -38,7 +38,7 @@ Collate:
     'convert.R'
     'mgmt.R'
     'accounts.R'
-    'custom.R'
+    'custom-sources.R'
     'experiments.R'
     'filters.R'
     'query.R'
