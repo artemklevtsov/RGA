@@ -62,8 +62,8 @@ get_filter <- function(account.id, filter.id, token) {
 #' @title Lists all filters for an account which the user has access to
 #'
 #' @param account.id Account ID to retrieve filters for.
-#' @param max.results The maximum number of filters to include in this response.
-#' @param start.index An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+#' @param max.results integer. The maximum number of filters to include in this response.
+#' @param start.index integer. An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
 #'
 #' @return A filter collection lists filters created by users in an Analytics account. Each resource in the collection corresponds to a filter.

@@ -14,9 +14,9 @@ list_experiments(account.id, webproperty.id, profile.id, start.index = NULL,
 
 \item{profile.id}{View (Profile) ID to retrieve experiments for.}
 
-\item{start.index}{An index of the first experiment to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.}
+\item{start.index}{integer. An index of the first experiment to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.}
 
-\item{max.results}{The maximum number of experiments to include in this response.}
+\item{max.results}{integer. The maximum number of experiments to include in this response.}
 
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
 }

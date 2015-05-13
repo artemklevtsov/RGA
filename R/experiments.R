@@ -64,8 +64,8 @@ get_experiment <- function(account.id, webproperty.id, profile.id, experiment.id
 #' @param account.id Account ID to retrieve experiments for.
 #' @param webproperty.id Web property ID to retrieve experiments for.
 #' @param profile.id View (Profile) ID to retrieve experiments for.
-#' @param max.results The maximum number of experiments to include in this response.
-#' @param start.index An index of the first experiment to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+#' @param max.results integer. The maximum number of experiments to include in this response.
+#' @param start.index integer. An index of the first experiment to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
 #'
 #' @return An experiment collection lists Analytics experiments to which the user has access. Each view (profile) can have a set of experiments. Each resource in the Experiment collection corresponds to a single Analytics experiment.
