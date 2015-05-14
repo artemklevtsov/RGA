@@ -1,6 +1,6 @@
 # RGA
 
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/RGA)](http://cran.r-project.org/web/packages/RGA)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/RGA)](http://cran.r-project.org/web/packages/RGA/)[![](http://cranlogs.r-pkg.org/badges/grand-total/RGA)](http://cran.r-project.org/web/packages/RGA/)
 
 This package is designed to work with the [API Google Analytics](https://developers.google.com/analytics) in [R](http://www.r-project.org/).
 
