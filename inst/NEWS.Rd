@@ -5,7 +5,7 @@
 \title{News for Package \pkg{RGA}}
 \encoding{UTF-8}
 
-\section{Changes in RGA version 0.3 (2015-06-13)}{
+\section{Changes in version 0.2.2 (2015-06-13)}{
   \itemize{
     \item Update data
     \item Add \code{accept_json()} to the API requests
@@ -17,7 +17,7 @@
   }
 }
 
-\section{Changes in RGA version 0.2.1 (2015-03-17)}{
+\section{Changes in version 0.2.1 (2015-03-17)}{
   \itemize{
     \item Fix column names in the Metadata API vignette
     \item \code{dimsmets()} now try to get data with \code{list_metadata()}. If \code{list_metadata()} caeses a error used data from the package
@@ -25,7 +25,7 @@
   }
 }
 
-\section{Changes in RGA version 0.2 (2015-02-02)}{
+\section{Changes in version 0.2 (2015-02-02)}{
   \itemize{
     \item Update data
     \item Fix Descrition in the DESCRIPTION file as was recommended by Brian Ripley
@@ -50,7 +50,7 @@
   }
 }
 
-\section{Changes in RGA version 0.1.4 (2014-12-19)}{
+\section{Changes in version 0.1.4 (2014-12-19)}{
   \itemize{
     \item Update data
     \item Convert all query values to UTF-8 (solve issues with Windows encoding)
@@ -67,7 +67,7 @@
   }
 }
 
-\section{Changes in RGA version 0.1.3 (2014-10-20)}{
+\section{Changes in version 0.1.3 (2014-10-20)}{
   \itemize{
     \item Update data
     \item Add CSV version of the data to track changes
@@ -81,19 +81,19 @@
   }
 }
 
-\section{Changes in RGA version 0.1.2 (2014-09-01)}{
+\section{Changes in version 0.1.2 (2014-09-01)}{
   \itemize{
     \item Some internal code improvements
   }
 }
 
-\section{Changes in RGA version 0.1.1 (2014-08-20)}{
+\section{Changes in version 0.1.1 (2014-08-20)}{
   \itemize{
     \item Add more extend Descrition in the DESCRIPTION file as was requested Brian Ripley
   }
 }
 
-\section{Changes in RGA version 0.1 (2014-08-19)}{
+\section{Changes in version 0.1 (2014-08-19)}{
   \itemize{
     \item First release
   }
