@@ -5,13 +5,15 @@
 \title{News for Package \pkg{RGA}}
 \encoding{UTF-8}
 
-\section{Changes in RGA version 0.2.2 (2015-05-12)}{
+\section{Changes in RGA version 0.3 (2015-06-13)}{
   \itemize{
     \item Update data
     \item Add \code{accept_json()} to the API requests
     \item Add CRAN version badge to the README
     \item Fix headings in the Authentification vignette
     \item Fix dates in the NEWS
+    \item Replace \code{RCurl} dependency to \code{curl}
+    \item Add \code{get_custom_dimension}, \code{list_custom_dimensions}, \code{get_custom_metric}, \code{list_custom_metrics} functions
   }
 }
 
