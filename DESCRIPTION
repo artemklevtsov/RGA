@@ -26,7 +26,7 @@ Depends:
 Imports:
     httr (>= 0.6),
     httpuv,
-    RCurl,
+    curl,
     jsonlite,
     shiny (>= 0.11)
 Collate:

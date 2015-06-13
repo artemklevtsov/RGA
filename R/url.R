@@ -2,7 +2,7 @@ base_api_url <- "https://www.googleapis.com/analytics"
 base_api_version <- "v3"
 
 # Build URL for Google Analytics request
-#' @importFrom RCurl curlEscape
+#' @importFrom curl curl_escape
 #' @include utils.R
 get_url <- function(type = c("ga", "mcf", "rt", "mgmt"), path = NULL, query = NULL) {
     type <- match.arg(type)
@@ -25,7 +25,7 @@ get_url <- function(type = c("ga", "mcf", "rt", "mgmt"), path = NULL, query = NU
             params <- gsub(".", "-", params, fixed = TRUE)
             values <- as.character(query)
             values <- enc2utf8(values)
-            values <- curlEscape(values)
+            values <- curl_escape(values)
             query <- paste(params, values, sep = "=", collapse = "&")
         }
         url <- paste(url, query, sep = "?")
