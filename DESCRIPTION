@@ -11,8 +11,8 @@ Description: Provides functions for accessing and retrieving data from the
     shiny app to explore the core reporting API dimensions and metrics.
 URL: https://bitbucket.org/unikum/rga
 BugReports: https://bitbucket.org/unikum/rga/issues
-Version: 0.2.2
-Date: 2015-05-12
+Version: 0.3
+Date: 2015-06-13
 Authors@R: c(
     person(given = "Artem", family = "Klevtsov",
     email = "a.a.klevtsov@gmail.com", role = c("aut", "cre")),
