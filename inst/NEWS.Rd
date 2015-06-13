@@ -12,7 +12,7 @@
     \item Add CRAN version badge to the README
     \item Fix headings in the Authentification vignette
     \item Fix dates in the NEWS
-    \item Replace \code{RCurl} dependency to \code{curl}
+    \item Replace \CRANpkg{RCurl} dependency to \CRANpkg{curl}
     \item Add \code{get_custom_dimension}, \code{list_custom_dimensions}, \code{get_custom_metric}, \code{list_custom_metrics} functions
   }
 }
