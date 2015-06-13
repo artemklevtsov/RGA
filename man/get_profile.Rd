@@ -41,16 +41,20 @@ An Analytics view (profile).
 Gets a view (profile) to which the user has access to
 }
 \references{
-\href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/profiles}{Google Management API - Unsampled Reports}
+\href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/profiles}{Google Management API - Views (Profiles)}
 }
 \seealso{
 \code{\link{authorize}}
 
-Other Management API: \code{\link{get_experiment}};
-  \code{\link{get_filter}}; \code{\link{get_goal}};
+Other Management API: \code{\link{get_custom_dimension}};
+  \code{\link{get_custom_metric}};
+  \code{\link{get_experiment}}; \code{\link{get_filter}};
+  \code{\link{get_goal}};
   \code{\link{get_unsampled_report}};
   \code{\link{get_webproperty}};
   \code{\link{list_accounts}};
+  \code{\link{list_custom_dimensions}};
+  \code{\link{list_custom_metrics}};
   \code{\link{list_custom_sources}};
   \code{\link{list_experiments}};
   \code{\link{list_filters}}; \code{\link{list_goals}};
