@@ -7,11 +7,16 @@ vignette: >
   %\VignetteIndexEntry{Metadata API}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteDepends{RGA}
-  \usepackage[utf8]{inputenc}
+  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r, echo = FALSE, message = FALSE}
-knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+knitr::opts_chunk$set(
+    comment = "#>",
+    collapse = TRUE,
+    error = FALSE,
+    tidy = FALSE
+)
 ```
 
 When working with the API reports it is sometimes necessary to obtain background information about these or other query parameters to the API. To obtain a list of all the metrics and dimensions `RGA` package provides the `list_metadata()` function, which return actual informtation about all dimensions and metrics for the given report type (now support only the Core Reporting API metadata).

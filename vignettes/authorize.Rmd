@@ -6,11 +6,16 @@ output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Authorisation}
   %\VignetteEngine{knitr::rmarkdown}
-  \usepackage[utf8]{inputenc}
+  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r, echo = FALSE, message = FALSE}
-knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+knitr::opts_chunk$set(
+    comment = "#>",
+    collapse = TRUE,
+    error = FALSE,
+    tidy = FALSE
+)
 ```
 
 Before you send any requests to the Google Analytics API, it's necessary to perform authorization and to obtain access token. It can be done with the following command:
