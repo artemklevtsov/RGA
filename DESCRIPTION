@@ -38,6 +38,8 @@ Collate:
     'convert.R'
     'mgmt.R'
     'accounts.R'
+    'custom-dims.R'
+    'custom-mets.R'
     'custom-sources.R'
     'experiments.R'
     'filters.R'
