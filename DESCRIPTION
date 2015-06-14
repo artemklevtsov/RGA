@@ -47,7 +47,7 @@ Collate:
     'profiles.R'
     'report.R'
     'ga.R'
-    'first-date.R'
+    'firstdate.R'
     'goals.R'
     'mcf.R'
     'metadata.R'

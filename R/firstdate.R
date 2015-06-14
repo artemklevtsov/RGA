@@ -27,16 +27,3 @@ firstdate <- function(profile.id, token) {
     )
     return(res$date)
 }
-
-#' @rdname firstdate
-#' @export
-#'
-get_firstdate <- function(profile.id, token) {
-    .Deprecated(new = "firstdate")
-    res <- suppressWarnings(
-        get_ga(profile.id = profile.id, start.date = "2005-01-01", end.date = "today",
-               metrics = "ga:sessions", dimensions = "ga:date", filters = "ga:sessions>0",
-               max.results = 1L, token = token)
-    )
-    return(res$date)
-}
