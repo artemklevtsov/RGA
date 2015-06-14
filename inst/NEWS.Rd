@@ -4,30 +4,38 @@
 \title{News for Package \pkg{RGA}}
 \encoding{UTF-8}
 
+\section{Changes in version 0.2.3 (2015-07-07)}{
+  \itemize{
+    \item Remove deprecated function \code{get_firstadate}. Use \code{firstdate} instead
+  }
+}
+
 \section{Changes in version 0.2.2 (2015-06-13)}{
   \itemize{
     \item Update data
     \item Add \code{accept_json()} to the API requests
     \item Add CRAN version badge to the README
     \item Fix headings in the Authorisation vignette
+    \item Fix links in the Authorisation vignette
+    \item Remove dates from the vignettes
     \item Fix dates in the NEWS
-    \item Replace \cpkg{RCurl} dependency to \cpkg{curl}
-    \item Add \code{get_custom_dimension}, \code{list_custom_dimensions}, \code{get_custom_metric}, \code{list_custom_metrics} functions
+    \item Replace \cpkg{RCurl} dependency to \cpkg{curl}. Related with future \cpkg{httr} update
+    \item Add functions for the Management API: \code{get_custom_dimension}, \code{list_custom_dimensions}, \code{get_custom_metric}, \code{list_custom_metrics}
   }
 }
 
 \section{Changes in version 0.2.1 (2015-03-17)}{
   \itemize{
     \item Fix column names in the Metadata API vignette
-    \item \code{dimsmets()} now try to get data with \code{list_metadata()}. If \code{list_metadata()} caeses a error used data from the package
-    \item Fix Title in the DESCRIPTION file as was recommended by Brian Ripley
+    \item \code{dimsmets()} now try to get data with \code{list_metadata()}. If \code{list_metadata()} causes a error used data from the package
+    \item Fix Title in the DESCRIPTION file
   }
 }
 
 \section{Changes in version 0.2 (2015-02-02)}{
   \itemize{
     \item Update data
-    \item Fix Descrition in the DESCRIPTION file as was recommended by Brian Ripley
+    \item Fix Descrition in the DESCRIPTION file
     \item Add more functions for the Management API: \code{get_experiment()}, \code{get_filter()}, \code{get_unsampled_report()}, \code{list_custom_sources()}, \code{list_experiments()}, \code{list_filters()}, \code{list_unsampled_reports()}
     \item Remove deprecated functions: \code{get_accounts()}, \code{get_webproperties()}, \code{get_profiles()}, \code{get_goals()}, \code{get_segments()}
     \item Convert output names to period-separated style
@@ -43,7 +51,7 @@
     \item Fix incorrect handling ga:dateHour dimension (\issue{15})
     \item Use timezone specified in the Profile settings for handling dates
     \item Add predefined \code{client.id} and \code{client.secret} for the \code{authorise()} function
-    \item Update code related with shiny update (version 0.11)
+    \item Fix code related with \cpkg{shiny} update (version 0.11)
     \item Split README to the separate vignettes
     \item Update minimal versions of the required dependencies: \R >= 3.0.0, \cpkg{httr} >= 0.6, \cpkg{shiny} >= 0.11
   }
@@ -54,14 +62,14 @@
     \item Update data
     \item Convert all query values to UTF-8 (solve issues with Windows encoding)
     \item Return URL encode for the queries and \cpkg{RCurl} as explicit dependency
-    \item Fix get_mcf example (\issue{9})
+    \item Fix \code{get_mcf} example (\issue{9})
     \item Add notes about multiple tokens usage (\issue{7})
-    \item Remove set_query and related S3-methods from exported namespace
+    \item Remove \code{set_query} and related S3-methods from exported namespace
     \item Parsed environment variables \env{RGA_CONSUMER_ID} and \env{RGA_CONSUMER_SECRET} renamed to \env{RGA_CLIENT_ID} and \env{RGA_CLIENT_SECRET}
     \item \code{get_accounts()}, \code{get_webproperties()}, \code{get_profiles()}, \code{get_goals()}, \code{get_segments()} renamed to \code{list_accounts()}, \code{list_webproperties()}, \code{list_rpofiles()}, \code{list_goals()}, \code{list_segments()}
     \item \code{get_accounts()}, \code{get_webproperties()}, \code{get_profiles()}, \code{get_goals()}, \code{get_segments()} mark as deprecated
-    \item Add \code{get_webproperty()}, \code{get_profile()} and \code{get_goal()} functions to get more detailed informtion about specific ID
-    \item Set default package optiions when loading
+    \item Add \code{get_webproperty()}, \code{get_profile()} and \code{get_goal()} functions to get more detailed informtion about specific Profile ID
+    \item Set default package options when loading
     \item Add \code{sampling.level} option to the \code{gat_ga()} and \code{get_mcf()} functions to control sampling level
   }
 }
@@ -70,7 +78,7 @@
   \itemize{
     \item Update data
     \item Add CSV version of the data to track changes
-    \item Fix error when used query and path simultaneously (inner) (\issue{6})
+    \item Fix error when used query and path simultaneously (\issue{6})
     \item Add pagination for the Management API requests
     \item Fix quotas for the Reporting and Management APIs
     \item Fix pagination issues
@@ -88,13 +96,13 @@
 
 \section{Changes in version 0.1.1 (2014-08-20)}{
   \itemize{
-    \item Add more extend Descrition in the DESCRIPTION file as was requested Brian Ripley
+    \item Add more extend Descrition in the DESCRIPTION file
   }
 }
 
 \section{Changes in version 0.1 (2014-08-19)}{
   \itemize{
-    \item First release
+    \item Initial release
   }
 }
 
