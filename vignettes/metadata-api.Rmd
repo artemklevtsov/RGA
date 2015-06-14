@@ -73,7 +73,7 @@ subset(ga_meta, allowed.in.segments, id)
 `RGA` package also provide the shiny demo app to access `ga` dataset:
 
 ```r
-dimsmets(ga_meta)
+dimsmets("ga")
 ```
 
 ## References
