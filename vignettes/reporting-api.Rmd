@@ -1,7 +1,7 @@
 ---
 title: "Obtain an access to the Reporting API"
 #author: "Artem Klevtsov"
-date: "`r Sys.Date()`"
+#date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Reporting API}

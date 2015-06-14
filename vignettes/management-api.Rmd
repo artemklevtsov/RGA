@@ -1,7 +1,7 @@
 ---
 title: "Obtain the access to the Management API"
 #author: "Artem Klevtsov"
-date: "`r Sys.Date()`"
+#date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Management API}
@@ -23,7 +23,10 @@ To access summary information of the Management API Google Analytics `RGA` packa
 - `list_accounts` - Lists all accounts which the user has access to;
 - `list_webproperties` - Lists web properties which the user has access to;
 - `list_profiles` - Lists views (profiles) which the user has access to;
+- `list_custom_dimensions` - Lists custom dimensions to which the user has access to;
+- `list_custom_metrics` - Lists custom metrics to which the user has access to;
 - `list_custom_sources` - List custom data sources which the user has access to;
+- `list_experiments` - Lists experiments to which the user has access to;
 - `list_filters` - Lists all filters for an account which the user has access to;
 - `list_goals` - Lists goals which the user has access to;
 - `list_segments` - Lists segments which the user has access to;
@@ -45,6 +48,9 @@ list_profiles(account.id = "XXXXXXXX")
 
 To get a more detail information about interesing entry use following functions:
 
+- `get_custom_dimension` - Gets a custom dimension to which the user has access to;
+- `get_custom_metric` - Gets a custom metric to which the user has access to;
+- `get_experiment` - Gets a experiment to which the user has access to;
 - `get_filter` - Gets a filter to which the user has access to;
 - `get_goal` - Gets a goal to which the user has access to;
 - `get_profile` - Gets a view (profile) to which the user has access to;
