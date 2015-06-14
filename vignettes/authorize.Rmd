@@ -135,6 +135,5 @@ list_profiles(token = home_token)
 - [OpenID Connect (OAuth 2.0 for Login)](https://developers.google.com/accounts/docs/OpenIDConnect);
 - [Using OAuth 2.0 to Access Google APIs](https://developers.google.com/accounts/docs/OAuth2);
 - [Google Developers Console](https://console.developers.google.com/project);
-- [Setting environment variables in Windows XP](http://support.microsoft.com/kb/310519)
-- [Setting environment variables in earlier versions of OSX](https://developer.apple.com/library/mac/#documentation/MacOSX/Conceptual/BPRuntimeConfig/Articles/EnvironmentVars.html)
-- [Setting environment variables in Ubuntu Linux](https://help.ubuntu.com/community/EnvironmentVariables)
+- [Environment variables](https://en.wikipedia.org/w/index.php?title=Environment_variables)
+- [Getting and setting environment variables](http://environmentvariables.org/Getting_and_setting_environment_variables)
