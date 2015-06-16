@@ -6,7 +6,10 @@
 
 \section{Changes in version 0.2.3 (2015-07-07)}{
   \itemize{
+    \item Update data
     \item Remove deprecated function \code{get_firstadate}. Use \code{firstdate} instead
+    \item Some fixes in the vignettes
+    \teom Add Common Queries vignette
   }
 }
 
