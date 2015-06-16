@@ -42,6 +42,8 @@ There are several examples of usage the metadata Google Analytics API.
 
 ## Examples
 
+To obtain the relevant information metadata:
+
 ```r
 ga_meta <- list_metadata()
 ```

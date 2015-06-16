@@ -20,15 +20,15 @@ knitr::opts_chunk$set(
  
 To access the Reporting API Google Analytics `RGA` package provides the following functions:
 
-* `get_ga` - returns Analytics data for a view (profile);
-* `get_mcf` - returns Analytics Multi-Channel Funnels data for a view (profile);
-* `get_rt` - returns real time data for a view (profile).
+* `get_ga()` - returns Analytics data for a view (profile);
+* `get_mcf()` - returns Analytics Multi-Channel Funnels data for a view (profile);
+* `get_rt()` - returns real time data for a view (profile).
 
 All of this functions return a data frame including the data for a view (profile).
 
 The following parameters are available for queries to the API reports:
 
-* `profile.id` - profile (view) ID. Can be obtained using the `list_profiles` or via the web interface Google Analytics;
+* `profile.id` - profile (view) ID. Can be obtained using the `list_profiles()` or via the web interface Google Analytics;
 * `start.date` - the start date for collecting data formatted as YYYY-MM-DD. Also values such as "today", "yesterday", "ndaysAgo" are allowed, where n is the number of days;
 * `end.date` - the end date for collecting data formatted as YYYY-MM-DD. Also values such as "today", "yesterday", "ndaysAgo" are allowed, where n is the number of days;
 * `metrics` -  comma-separated list of values ​​of metrics (metrics), for example, `"ga:sessions,ga:bounces"`. The number of metrics cannot exceed 10 indicators for a single request;
@@ -40,7 +40,6 @@ The following parameters are available for queries to the API reports:
 * `start.index` - index of the first returned result (line number);
 * `max.results` - maximum number of fields (rows) of the returned results;
 * `token` - object of class `Token2.0` which contains data with a valid authorization data. Can be obtained using the `authorize` function;
-* `messages` - logical argument which includes displaying of additional messages during the data request.
 
 The following arguments: `profile.id`, `start.date`, `end.date` and `metrics` are required for `get_ga` and `get_mcf` (`get_rt` requires only `profile.id` and `metrics`). Notice that all arguments must be character strings of unit length. The exception is `profile.id` which can be both character string and numeric.
 
@@ -54,10 +53,10 @@ ga_data <- get_ga(profile.id = XXXXXXXX, start.date = "30daysAgo", end.date = "y
 Sometimes it is necessary to obtain the data for the entire monitoring period through service Google Analytics. For these purposes the package `RGA` provides the function `get_firstdate` which takes a charming profile ID (submission) as an argument:
 
 ```r
-first_date <- get_firstdate(profile.id = XXXXXXXX)
+first_date <- firstdate(profile.id = XXXXXXXX)
 ```
 
-Now we can use the variable `first_date` as the argument `start.date` when we call the `get_ga` function:
+Now we can use the variable `first_date` as the argument `start.date` when we call the `get_ga()` function:
 
 ```r
 ga_data <- get_ga(profile.id = XXXXXXXX, start.date = first_date, end.date = "yesterday",
