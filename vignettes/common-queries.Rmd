@@ -20,6 +20,8 @@ knitr::opts_chunk$set(
 
 Here are several of the most common queries to the Core Reporting API. Note that the definitions only include dimensions, metrics, filters, and sort parameters. Anybody using these queries should fill in the date range.
 
+Before you start you need to authorize and set dates range.
+
 ## General Queries
 
 ### Users and Pageviews Over Time
