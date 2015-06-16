@@ -70,6 +70,12 @@ List of all parameters allowed in segments:
 subset(ga_meta, allowed.in.segments, id)
 ```
 
+List of all templatized parameters:
+
+```r
+subset(ga_meta, !is.na(min.template.index) & !is.na(max.template.index), id)
+```
+
 `RGA` package also provide the shiny demo app to access `ga` dataset:
 
 ```r
@@ -79,3 +85,4 @@ dimsmets("ga")
 ## References
 
 - [Dimensions & Metrics Reference](https://developers.google.com/analytics/devguides/reporting/core/dimsmets)
+- [Metadata API - Developer Guide](https://developers.google.com/analytics/devguides/reporting/metadata/v3/devguide)
