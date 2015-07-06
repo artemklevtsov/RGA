@@ -1,9 +1,23 @@
 base_api_url <- "https://www.googleapis.com/analytics"
 base_api_version <- "v3"
 
-# Build URL for Google Analytics request
+# Convert query list to the string
 #' @importFrom curl curl_escape
 #' @include utils.R
+prepare_query <- function(query) {
+    query <- compact(query)
+    params <- names(query)
+    params <- sub("profile.id", "ids", params, fixed = TRUE)
+    params <- sub("sampling.level", "samplingLevel", params, fixed = TRUE)
+    params <- gsub(".", "-", params, fixed = TRUE)
+    values <- as.character(query)
+    values <- enc2utf8(values)
+    values <- curl_escape(values)
+    query <- paste(params, values, sep = "=", collapse = "&")
+    return(query)
+}
+
+# Build URL for Google Analytics request
 get_url <- function(type = c("ga", "mcf", "rt", "mgmt"), path = NULL, query = NULL) {
     type <- match.arg(type)
     type <- switch(type,
@@ -17,17 +31,8 @@ get_url <- function(type = c("ga", "mcf", "rt", "mgmt"), path = NULL, query = NU
         url <- paste(url, path, sep = "/")
     }
     if (!is.null(query)) {
-        if (is.list(query)) {
-            query <- compact(query)
-            params <- names(query)
-            params <- sub("profile.id", "ids", params, fixed = TRUE)
-            params <- sub("sampling.level", "samplingLevel", params, fixed = TRUE)
-            params <- gsub(".", "-", params, fixed = TRUE)
-            values <- as.character(query)
-            values <- enc2utf8(values)
-            values <- curl_escape(values)
-            query <- paste(params, values, sep = "=", collapse = "&")
-        }
+        if (is.list(query))
+            query <- prepare_query(query)
         url <- paste(url, query, sep = "?")
     }
     return(url)
