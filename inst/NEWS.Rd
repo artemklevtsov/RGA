@@ -9,7 +9,7 @@
     \item Update data
     \item Remove deprecated function \code{get_firstadate}. Use \code{firstdate} instead
     \item Some fixes in the vignettes
-    \teom Add Common Queries vignette
+    \item Add Common Queries vignette
   }
 }
 
