@@ -29,10 +29,10 @@ env_exists <- function(...) {
 
 #' @title Authorize the RGA package to the user's Google Analytics account using OAuth2.0
 #'
-#' @description \code{authorize} function uses \code{\link[httr]{oauth2.0_token}} to obtain the OAuth tokens. Expired tokens will be refreshed automamaticly. If client.id and client.secret are missing the package provides predefined values.
+#' @description \code{authorize} function uses \code{\link[httr]{oauth2.0_token}} to obtain the OAuth tokens. Expired tokens will be refreshed automamaticly. If you have no \code{client.id} and \code{client.secret} the package provides predefined values.
 #'
-#' @param client.id character. OAuth client ID. if client.id is missing, we'll look in the environment variable \code{RGA_CLIENT_ID}.
-#' @param client.secret character. OAuth client secret. if client.secret is missing, we'll look in the environment variable \code{RGA_CLIENT_SECRET}.
+#' @param client.id character. OAuth client ID. If you set the environment variable \env{RGA_CLIENT_ID} it is used
+#' @param client.secret character. OAuth client secret. If you set the environment variable \env{RGA_CLIENT_SECRET} it is used
 #' @param cache logical or character. \code{TRUE} means to cache using the default cache file \code{.oauth-httr}, \code{FALSE} means not to cache. A string means to use the specified path as the cache file.
 #'
 #' @details
@@ -48,7 +48,8 @@ env_exists <- function(...) {
 #' \enumerate{
 #'   \item Go to the \href{https://console.developers.google.com/}{Google Developers Console}.
 #'   \item Select a project (create if needed).
-#'   \item Select \emph{APIs & auth} in the sidebar on the left. Then in the list of APIs make sure that the status is \emph{ON} for the Analytics API.
+#'   \item Select \emph{APIs & auth} in the sidebar on the left.
+#'   \item In the list of APIs select \emph{Analytics API}. Then click \emph{Enable API}.
 #'   \item Select \emph{Credentials} in the sidebar on the left.
 #'   \item To set up a service account select \emph{Create New Client ID}. Select \emph{Installed Application} and \emph{Others} options and then select \emph{Create Client ID}.
 #' }
@@ -70,11 +71,11 @@ env_exists <- function(...) {
 #'
 #' @examples
 #' \dontrun{
-#' authorize(client.id = "myID", client.secret = "mySecret")
+#' authorize(client.id = "my_id", client.secret = "my_secret")
 #' # if set RGA_CLIENT_ID and RGA_CLIENT_SECRET environment variables
 #' authorize()
 #' # assign token to variable
-#' ga_token <- authorize(client.id = "myID", client.secret = "mySecret")
+#' ga_token <- authorize(client.id = "my_id", client.secret = "my_secret")
 #' }
 #'
 #' @importFrom httr oauth_app oauth_endpoints oauth2.0_token
@@ -82,16 +83,13 @@ env_exists <- function(...) {
 #'
 #' @export
 #'
-authorize <- function(client.id, client.secret, cache = getOption("rga.cache")) {
-    if (missing(client.id) || missing(client.secret)) {
-        if (all(env_exists("RGA_CLIENT_ID", "RGA_CLIENT_SECRET"))) {
-            message("client.id and client.secret loaded from environment variables.")
-            client.id <- Sys.getenv("RGA_CLIENT_ID")
-            client.secret <- Sys.getenv("RGA_CLIENT_SECRET")
-        } else {
-            client.id <- "144394141628-8m5i5icva7akegi3tp6215d9eg9o5cln.apps.googleusercontent.com"
-            client.secret <- "wlFmhluHqTdZw6UG22h5A2nr"
-        }
+authorize <- function(client.id = getOption("rga.client.id"),
+                      client.secret = getOption("rga.client.secret"),
+                      cache = getOption("rga.cache")) {
+    if (all(env_exists("RGA_CLIENT_ID", "RGA_CLIENT_SECRET"))) {
+        message("client.id and client.secret loaded from environment variables.")
+        client.id <- Sys.getenv("RGA_CLIENT_ID")
+        client.secret <- Sys.getenv("RGA_CLIENT_SECRET")
     }
     rga_app <- oauth_app(appname = "rga", key = client.id, secret = client.secret)
     token <- oauth2.0_token(endpoint = oauth_endpoints("google"), app = rga_app, cache = cache,
