@@ -83,7 +83,7 @@ get_unsampled_report <- function(account.id, webproperty.id, profile.id, unsampl
 #'
 list_unsampled_reports <- function(account.id, webproperty.id, profile.id, start.index = NULL, max.results = NULL, token) {
     path <- paste("accounts", account.id, "webproperties", webproperty.id, "profiles", profile.id, "unsampledReports", sep = "/")
-    query <- list(start.index = start.index, max.results = max.results, fields = "items(id,title,accountId,segmentId,profileId,start-date,end-date,metrics,dimensions,filters,segment,status,downloadType,created,updated)")
+    query <- list(start.index = start.index, max.results = max.results, fields = "items(id,title,accountId,webPropertyId,profileId,start-date,end-date,metrics,dimensions,filters,segment,status,downloadType,created,updated)")
     res <- list_mgmt(path = path, query = query, token = token)
     return(res)
 }

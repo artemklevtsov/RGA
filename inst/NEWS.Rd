@@ -8,6 +8,7 @@
   \itemize{
     \item Update data
     \item Remove deprecated function \code{get_firstadate}. Use \code{firstdate} instead
+    \item Fix \code{list_unsampled_reports()} field typo (\issue{20})
     \item Some fixes in the vignettes
     \item Add Common Queries vignette
   }
