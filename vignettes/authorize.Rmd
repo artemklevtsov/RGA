@@ -4,7 +4,7 @@ title: "Obtain an access token"
 #ate: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Authorisation}
+  %\VignetteIndexEntry{Authorization}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -40,7 +40,7 @@ ga_token <- authorize(client.id = "client_id", client.secret = "client_secret")
 ga_data <- get_ga(profile.id = "ga:XXXXXXXX", token = ga_token)
 ```
 
-To authorise of the new Google Analytics account use `new.auth` argument when `authorize()` function call.
+To authorize of the new Google Analytics account use `new.auth` argument when `authorize()` function call.
 
 ## Obtain OAuth 2.0 credentials
 

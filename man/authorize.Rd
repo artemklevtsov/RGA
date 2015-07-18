@@ -26,7 +26,7 @@ A \code{\link[httr]{Token2.0}} object containing all the data required for OAuth
 \details{
 After calling this function first time, a web browser will be opened. First, log in with a Google Account, confirm the authorization to access the Google Analytics data. Note that the package requests access for read-only data.
 
-When the \code{authorize()} function is used the \code{GAToken} variable is created in the separate \code{TokenEnv} environment which is not visible for user. So, there is no need to pass the token argument to any function which requires authorisation every time. Also there is a possibility to store token in separate variable and to pass it to the functions. It can be useful when you are working with several accounts at the same time.
+When the \code{authorize()} function is used the \code{GAToken} variable is created in the separate \code{TokenEnv} environment which is not visible for user. So, there is no need to pass the token argument to any function which requires authorization every time. Also there is a possibility to store token in separate variable and to pass it to the functions. It can be useful when you are working with several accounts at the same time.
 }
 \section{Use custom Client ID and Client secret}{
 
@@ -47,7 +47,7 @@ You can return to the \href{https://console.developers.google.com/}{Google Devel
 There 3 ways to use custom Client ID and Client secret:
 
 \enumerate{
-  \item Pass the \code{client.id} and \code{client.secret} arguments directly in the \code{authorise()} function call
+  \item Pass the \code{client.id} and \code{client.secret} arguments directly in the \code{authorize()} function call
   \item Set the \env{RGA_CLIENT_ID} and \env{RGA_CLIENT_SECRET} environment variables
   \item Set the \code{rga.client.id} and \code{rga.client.secret} options
 }
