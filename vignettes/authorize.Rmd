@@ -9,7 +9,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r, echo = FALSE, message = FALSE}
+```{r opts, echo = FALSE, message = FALSE}
 knitr::opts_chunk$set(
     comment = "#>",
     collapse = TRUE,
@@ -40,6 +40,8 @@ ga_token <- authorize(client.id = "client_id", client.secret = "client_secret")
 ga_data <- get_ga(profile.id = "ga:XXXXXXXX", token = ga_token)
 ```
 
+To authorise of the new Google Analytics account use `new.auth` argument when `authorize()` function call.
+
 ## Obtain OAuth 2.0 credentials
 
 `RGA` package provides predefined **Client ID** and **Client secret**, but you may need to create a new application in [Google Developers Console](https://console.developers.google.com/) and obtain a **Client ID** and **Client secret** to access to the Google Analytics API.
@@ -47,24 +49,24 @@ ga_data <- get_ga(profile.id = "ga:XXXXXXXX", token = ga_token)
 Step by step instructions are as follows:
 
 1. Creation of a new project (can be skipped if the project is already created):
-    * Open the page <https://console.developers.google.com/project> in your favorite browser;
-    * Click on **Create Project** blue button at the top left of the page;
-    * Enter the name of the project into the **PROJECT NAME** field in the pop-up window;
-    * Click **Create** to confirm the creation of the project.
+    - Open the page <https://console.developers.google.com/project> in your favorite browser;
+    - Click on **Create Project** blue button at the top left of the page;
+    - Enter the name of the project into the **PROJECT NAME** field in the pop-up window;
+    - Click **Create** to confirm the creation of the project.
 2. Enabling access to the Google Analytics API:
-    * Select your project from the project list on <https://console.developers.google.com/project page>;
-    * Select **APIs & auth** and then **APIs** sub-menu in the left sidebar;
-    * Click on the **Analytics API** link in the **Advertising APIs** section;
-    * Click **Enable API** for activation **Analytics API**.
+    - Select your project from the project list on <https://console.developers.google.com/project page>;
+    - Select **APIs & auth** and then **APIs** sub-menu in the left sidebar;
+    - Click on the **Analytics API** link in the **Advertising APIs** section;
+    - Click **Enable API** for activation **Analytics API**.
 3. Creating a new application:
-    * Select **APIs & auth** and then **Credentials** sub-menu in the left sidebar;
-    * Click **Create new Client ID** on the left side of the page;
-    * Select **Installed application** from the APPLICATION TYPE list and **Other** from INSTALLED APPLICATION TYPE list in the pop-up window.
-    * Click on the **Create Client ID** button to confirm the creation of the application.
+    - Select **APIs & auth** and then **Credentials** sub-menu in the left sidebar;
+    - Click **Create new Client ID** on the left side of the page;
+    - Select **Installed application** from the APPLICATION TYPE list and **Other** from INSTALLED APPLICATION TYPE list in the pop-up window.
+    - Click on the **Create Client ID** button to confirm the creation of the application.
 4. Obtaining Client ID and Client secret:
-    * Select the project from the project list on the https://console.developers.google.com/project page;
-    * Select **APIs & auth** and then **Credentials** sub-menu in the left sidebar;
-    * Copy the values of the following fields: **Client ID** and **Client secret** in the **Client ID for native application** table.
+    - Select the project from the project list on the https://console.developers.google.com/project page;
+    - Select **APIs & auth** and then **Credentials** sub-menu in the left sidebar;
+    - Copy the values of the following fields: **Client ID** and **Client secret** in the **Client ID for native application** table.
 
 You can return to the [Google Developers Console](https://console.developers.google.com/project) at any time to view the **Client ID** and **Client secret** on the Client ID for native application section on Credentials page.
 
@@ -132,6 +134,14 @@ Then pass this token to other functions:
 list_profiles(token = work_token)
 list_profiles(token = home_token)
 ```
+
+## Revoke access application
+
+To revoke access the \pkg{RGA} package do the following:
+
+1. Go to the [Apps connected to your account](https://security.google.com/settings/security/permissions) page;
+1. Find **RGA package** entry. Then click on it;
+1. Click on the **Revoke access** button in the sidebar on the right.
 
 ## References
 
