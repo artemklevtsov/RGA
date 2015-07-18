@@ -5,7 +5,7 @@ TARBALL = $(PACKAGE)_$(VERSION).tar.gz
 TARBALL_LOC = $(PARENTDIR)/$(TARBALL)
 CHECKDIR = $(PARENTDIR)/$(PACKAGE).Rcheck
 
-all: doc check build
+all: doc check install
 
 data:
 	Rscript tools/get-data.R
@@ -18,6 +18,9 @@ check:
 
 test:
 	Rscript -e 'devtools::test()'
+
+install:
+	Rscript -e 'devtools::install()'
 
 build:
 	Rscript -e 'devtools::build()'
