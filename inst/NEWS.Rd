@@ -4,10 +4,11 @@
 \title{News for Package \pkg{RGA}}
 \encoding{UTF-8}
 
-\section{Changes in version 0.2.3 (2015-07-07)}{
+\section{Changes in version 0.2.3 (2015-07-21)}{
   \itemize{
     \item Update data
     \item Remove deprecated function \code{get_firstadate}. Use \code{firstdate} instead
+    \item Add \code{new.auth} argument in the \code{authorise()} function for the reauthorisation
     \item Fix \code{list_unsampled_reports()} field typo (\issue{20})
     \item Some fixes in the vignettes
     \item Add Common Queries vignette
