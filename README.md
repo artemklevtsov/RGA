@@ -62,6 +62,8 @@ httr::with_verbose(list_profiles())
 httr::with_verbose(get_ga("XXXXXXXX"))
 ```
 
+Post the `traceback()` output also may be helpful.
+
 To report a bug please type into R:
 
 ```r
