@@ -49,6 +49,8 @@ For details about this steps please type into R: \code{browseVignettes(package =
 
 Before posting a bug please try execute your code with the \code{\link[httr]{with_verbose}} wrapper. It will be useful if you attach verbose output to the bug report. For example: \code{httr::with_verbose(list_profiles())}
 
+Post the \code{traceback()} output also may be helpful.
+
 To report a bug please type into R: \code{utils::bug.report(package = "RGA")}
 }
 \examples{
