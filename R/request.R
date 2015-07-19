@@ -37,7 +37,7 @@ get_response <- function(type = c("ga", "rt", "mcf", "mgmt"), path = NULL, query
     url <- get_url(type = type, path = path, query = query)
     if (missing(token) && token_exists(getOption("rga.token")))
         token <- get_token(getOption("rga.token"))
-    if (!missing(token) || (missing(token) && token_exists(getOption("rga.token")))) {
+    if (!missing(token)) {
         stopifnot(inherits(token, "Token2.0"))
         config <- config(token = token)
     } else
