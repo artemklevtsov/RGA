@@ -1,9 +1,9 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^\.httr-oauth$
-^\.ga-token.rds$
 ^\.Renviron$
 ^\.Rprofile$
 ^data-raw$
 ^tools$
 ^tmp$
+\.ga-token.rds$
