@@ -18,17 +18,17 @@ ga_data <- structure(list(
         .Dim = c(8L, 4L))),
     .Names = c("totalResults", "containsSampledData", "columnHeaders", "rows"))
 
-ga_df <- build_df(type = "ga", ga_data)
+ga_df <- suppressMessages(build_df(type = "ga", ga_data))
 
-test_that("class", {
+test_that("Result class", {
     expect_is(ga_df, "data.frame")
 })
 
-test_that("dimensions", {
+test_that("Data frame dimensions", {
     expect_equal(ncol(ga_df), 4L)
     expect_equal(nrow(ga_df), 8L)
 })
 
-test_that("columns types", {
+test_that("Columns types", {
     expect_true(all(sapply(ga_df, is.integer)))
 })

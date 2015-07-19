@@ -25,13 +25,19 @@ mgmt_data <- structure(list(
             row.names = c(NA, 5L))),
     .Names = c("totalResults", "items"))
 
-mgmt_df <- build_df(type = "mgmt", mgmt_data)
+mgmt_df <- suppressMessages(build_df(type = "mgmt", mgmt_data))
 
-test_that("class", {
+test_that("Result class", {
     expect_is(mgmt_df, "data.frame")
 })
 
-test_that("dimensions", {
+test_that("Data frame dimensions", {
     expect_equal(ncol(mgmt_df), 12L)
     expect_equal(nrow(mgmt_df), 5L)
+})
+
+test-that("Columns types", {
+    expect_is(mgmt_df[, 1L], "integer")
+    expect_is(mgmt_df[, 2L], "integer")
+    expect_is(mgmt_df[, 11L], "logical")
 })

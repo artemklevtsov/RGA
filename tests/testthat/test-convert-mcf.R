@@ -1,6 +1,6 @@
 context("Convert MCF Reporting API response")
 
-mcf_data_pr <- structure(list(
+mcf_data <- structure(list(
     totalResults = 3L,
     containsSampledData = FALSE,
     columnHeaders = structure(list(
@@ -29,24 +29,24 @@ mcf_data_pr <- structure(list(
     .Names = c("totalResults", "containsSampledData", "columnHeaders", "rows"))
 
 
-mcf_pr_df <- build_df(type = "mcf", mcf_data_pr)
+mcf_df <- suppressMessages(build_df(type = "mcf", mcf_data))
 
-test_that("class", {
-    expect_is(mcf_pr_df, "data.frame")
+test_that("Result class", {
+    expect_is(mcf_df, "data.frame")
 })
 
-test_that("dimensions", {
-    expect_equal(ncol(mcf_pr_df), 3L)
-    expect_equal(nrow(mcf_pr_df), 3L)
+test_that("Data frame dimensions", {
+    expect_equal(ncol(mcf_df), 3L)
+    expect_equal(nrow(mcf_df), 3L)
 })
 
-test_that("columns types", {
-    expect_is(mcf_pr_df[, 1L], "character")
-    expect_is(mcf_pr_df[, 2L], "integer")
-    expect_is(mcf_pr_df[, 3L], "numeric")
+test_that("Columns types", {
+    expect_is(mcf_df[, 1L], "character")
+    expect_is(mcf_df[, 2L], "integer")
+    expect_is(mcf_df[, 3L], "numeric")
 })
 
-mcf_cv_data <- structure(list(
+mcf_data <- structure(list(
     totalResults = 542L, containsSampledData = FALSE,
     columnHeaders = structure(list(
         name = c("mcf:mediumPath", "mcf:totalConversions", "mcf:totalConversionValue"),
@@ -117,19 +117,19 @@ mcf_cv_data <- structure(list(
     .Names = c("totalResults", "containsSampledData", "columnHeaders", "rows"))
 
 
-mcf_cv_df <- build_df(type = "mcf", mcf_cv_data)
+mcf_df <- suppressMessages(build_df(type = "mcf", mcf_data))
 
-test_that("class", {
-    expect_is(mcf_cv_df, "data.frame")
+test_that("Result class", {
+    expect_is(mcf_df, "data.frame")
 })
 
-test_that("dimensions", {
-    expect_equal(ncol(mcf_cv_df), 3L)
-    expect_equal(nrow(mcf_cv_df), 5L)
+test_that("Data frame dimensions", {
+    expect_equal(ncol(mcf_df), 3L)
+    expect_equal(nrow(mcf_df), 5L)
 })
 
-test_that("columns types", {
-    expect_is(mcf_cv_df[, 1L], "character")
-    expect_is(mcf_cv_df[, 2L], "integer")
-    expect_is(mcf_cv_df[, 3L], "numeric")
+test_that("Columns types", {
+    expect_is(mcf_df[, 1L], "character")
+    expect_is(mcf_df[, 2L], "integer")
+    expect_is(mcf_df[, 3L], "numeric")
 })
