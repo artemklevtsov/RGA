@@ -36,7 +36,7 @@ test_that("Data frame dimensions", {
     expect_equal(nrow(mgmt_df), 5L)
 })
 
-test-that("Columns types", {
+test_that("Columns types", {
     expect_is(mgmt_df[, 1L], "integer")
     expect_is(mgmt_df[, 2L], "integer")
     expect_is(mgmt_df[, 11L], "logical")
