@@ -43,6 +43,10 @@ get_response <- function(type = c("ga", "rt", "mcf", "mgmt"), path = NULL, query
     } else
         config <- NULL
     resp <- GET(url, accept_json(), config)
+    if (resp$status_code == 401L) {
+        authorize(cache = FALSE)
+        return(eval(match.call()))
+    }
     data_json <- fromJSON(content(resp, as = "text"), simplifyVector = simplify, flatten = flatten)
     if (!is.null(data_json$error))
         error_message(data_json)
