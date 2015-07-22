@@ -21,8 +21,8 @@ An Analytics view (profile).
 \item{kind}{Resource type for Analytics view (profile).}
 \item{self.link}{Link for this view (profile).}
 \item{account.id}{Account ID to which this view (profile) belongs.}
-\item{web.property.id}{Web property ID of the form UA-XXXXX-YY to which this view (profile) belongs.}
-\item{internal.web.property.id}{Internal ID for the web property to which this view (profile) belongs.}
+\item{webproperty.id}{Web property ID of the form UA-XXXXX-YY to which this view (profile) belongs.}
+\item{internal.webproperty.id}{Internal ID for the web property to which this view (profile) belongs.}
 \item{name}{Name of this view (profile).}
 \item{currency}{The currency type associated with this view (profile).}
 \item{timezone}{Time zone for which this view (profile) has been configured. Time zones are identified by strings from the TZ database.}

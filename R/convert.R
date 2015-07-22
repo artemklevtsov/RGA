@@ -1,5 +1,5 @@
 # Build data.frame for core report
-build_ga <- function(x) {
+df_ga <- function(x) {
     if (is.list(x$rows))
         x$rows <- do.call(rbind, x$rows)
     names <- gsub("^ga:", "", x$columnHeaders$name)
@@ -9,7 +9,7 @@ build_ga <- function(x) {
 }
 
 # Build data.frame for realtime report
-build_rt <- function(x) {
+df_rt <- function(x) {
     names <- gsub("^rt:", "", x$columnHeaders$name)
     data_df <- as.data.frame(x$rows, stringsAsFactors = FALSE)
     colnames(data_df) <- names
@@ -17,7 +17,7 @@ build_rt <- function(x) {
 }
 
 # Build data.frame for mcf report
-build_mcf <- function(x) {
+df_mcf <- function(x) {
     if (is.list(x$rows[[1L]]) && !is.data.frame(x$rows[[1L]]))
         x$rows <- do.call(c, x$rows)
     names <- gsub("^mcf:", "", x$columnHeaders$name)
@@ -42,8 +42,10 @@ build_mcf <- function(x) {
 
 # Rename list with sublists for mgmt data
 #' @include utils.R
-rename_mgmt <- function(x) {
+ls_mgmt <- function(x) {
     names(x) <- gsub("webPropertyId", "webpropertyId", names(x), fixed = TRUE)
+    names(x) <- gsub("WebPropertyId", "WebpropertyId", names(x), fixed = TRUE)
+    x <- x[!names(x) %in% c("selfLink", "parentLink")]
     names(x) <-  to_separated(names(x), sep = ".")
     to_rename <- vapply(x, is.list, logical(1))
     x[to_rename] <- lapply(x[to_rename], function(x) setNames(x, to_separated(names(x), sep = ".")))
@@ -51,7 +53,7 @@ rename_mgmt <- function(x) {
 }
 
 # Build data.frame for mgmt data
-build_mgmt <- function(x) {
+df_mgmt <- function(x) {
     if (is.data.frame(x$items))
         data_df <- x$items
     else if (is.list(x$items) && !is.data.frame(x$items))
@@ -69,10 +71,10 @@ build_mgmt <- function(x) {
 build_df <- function(type = c("ga", "mcf", "rt", "mgmt"), data) {
     type <- match.arg(type)
     data_df <- switch(type,
-                      ga = build_ga(data),
-                      rt = build_rt(data),
-                      mcf = build_mcf(data),
-                      mgmt = build_mgmt(data))
+                      ga = df_ga(data),
+                      rt = df_rt(data),
+                      mcf = df_mcf(data),
+                      mgmt = df_mgmt(data))
     rownames(data_df) <- NULL
     colnames(data_df) <- to_separated(colnames(data_df), sep = ".")
     data_df <- convert_datatypes(data_df)

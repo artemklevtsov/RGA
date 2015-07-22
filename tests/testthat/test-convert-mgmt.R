@@ -1,4 +1,4 @@
-context("Convert management API response")
+context("Convert Management API response")
 
 mgmt_data <- structure(list(
     totalResults = 8L,

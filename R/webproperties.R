@@ -9,7 +9,7 @@
 #' \item{kind}{Resource type for Analytics Web.property.}
 #' \item{self.link}{Link for this web property.}
 #' \item{account.id}{Account ID to which this web property belongs.}
-#' \item{internal.web.property.id}{Internal ID for this web property.}
+#' \item{internal.webproperty.id}{Internal ID for this web property.}
 #' \item{name}{Name of this web property.}
 #' \item{website.url}{Website url for this web property.}
 #' \item{level}{Level for this web property.}

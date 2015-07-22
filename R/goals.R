@@ -11,8 +11,8 @@
 #' \item{kind}{Resource type for an Analytics goal.}
 #' \item{self.link}{Link for this goal.}
 #' \item{account.id}{Account ID to which this goal belongs.}
-#' \item{web.property.id}{Web property ID to which this goal belongs. The web property ID is of the form UA-XXXXX-YY.}
-#' \item{internal.web.property.id}{Internal ID for the web property to which this goal belongs.}
+#' \item{webproperty.id}{Web property ID to which this goal belongs. The web property ID is of the form UA-XXXXX-YY.}
+#' \item{internal.webproperty.id}{Internal ID for the web property to which this goal belongs.}
 #' \item{profile.id}{View (Profile) ID to which this goal belongs.}
 #' \item{name}{Goal name.}
 #' \item{value}{Goal value.}

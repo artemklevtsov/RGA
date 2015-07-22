@@ -25,7 +25,7 @@ An unsampled report collection lists Analytics unsampled reports to which the us
 \item{id}{Unsampled report ID.}
 \item{title}{Title of the unsampled report.}
 \item{account.id}{Account ID to which this unsampled report belongs.}
-\item{web.property.id}{Web property ID to which this unsampled report belongs. The web property ID is of the form UA-XXXXX-YY.}
+\item{webproperty.id}{Web property ID to which this unsampled report belongs. The web property ID is of the form UA-XXXXX-YY.}
 \item{profile.id}{View (Profile) ID to which this unsampled report belongs.}
 \item{start-date}{The start date for the unsampled report.}
 \item{end-date}{The end date for the unsampled report.}

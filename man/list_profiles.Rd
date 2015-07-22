@@ -22,7 +22,7 @@ list_profiles(account.id = "~all", webproperty.id = "~all",
 A view (profile) collection lists Analytics views (profiles) to which the user has access. Each resource in the collection corresponds to a single Analytics view (profile).
 \item{id}{View (Profile) ID.}
 \item{account.id}{Account ID to which this view (profile) belongs.}
-\item{web.property.id}{Web property ID of the form UA-XXXXX-YY to which this view (profile) belongs.}
+\item{webproperty.id}{Web property ID of the form UA-XXXXX-YY to which this view (profile) belongs.}
 \item{name}{Name of this view (profile).}
 \item{currency}{The currency type associated with this view (profile).}
 \item{timezone}{Time zone for which this view (profile) has been configured. Time zones are identified by strings from the TZ database.}

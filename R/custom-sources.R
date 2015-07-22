@@ -9,7 +9,7 @@
 #' @return Lists Analytics custom data sources to which the user has access. Each resource in the collection corresponds to a single Analytics custom data source.
 #' \item{id}{Custom data source ID.}
 #' \item{account.id}{Account ID to which this custom data source belongs.}
-#' \item{web.property.id}{Web property ID of the form UA-XXXXX-YY to which this custom data source belongs.}
+#' \item{webproperty.id}{Web property ID of the form UA-XXXXX-YY to which this custom data source belongs.}
 #' \item{name}{Name of this custom data source.}
 #' \item{description}{Description of custom data sourc}
 #' \item{type}{Type of the custom data source.}
