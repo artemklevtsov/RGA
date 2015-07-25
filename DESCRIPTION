@@ -12,7 +12,7 @@ Description: Provides functions for accessing and retrieving data from the
 URL: https://bitbucket.org/unikum/rga
 BugReports: https://bitbucket.org/unikum/rga/issues
 Version: 0.2.3
-Date: 2015-07-21
+Date: 2015-07-26
 Authors@R: c(
     person(given = "Artem", family = "Klevtsov",
     email = "a.a.klevtsov@gmail.com", role = c("aut", "cre")),

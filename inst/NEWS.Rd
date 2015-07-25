@@ -4,7 +4,7 @@
 \title{News for Package \pkg{RGA}}
 \encoding{UTF-8}
 
-\section{Changes in version 0.2.3 (2015-07-21)}{
+\section{Changes in version 0.2.3 (2015-07-26)}{
   \itemize{
     \item Update data
     \item Remove deprecated function \code{get_firstadate}. Use \code{firstdate} instead
