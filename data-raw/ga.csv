@@ -37,7 +37,7 @@
 "ga:organicSearches","METRIC","INTEGER","Traffic Sources","PUBLIC","Organic Searches","The number of organic searches that happened within a session. This metric is search engine agnostic.",FALSE,NA,NA,NA,NA,NA,NA
 "ga:adGroup","DIMENSION","STRING","Adwords","PUBLIC","Ad Group","The name of your AdWords ad group.",TRUE,NA,NA,NA,NA,NA,NA
 "ga:adSlot","DIMENSION","STRING","Adwords","PUBLIC","Ad Slot","The location of the advertisement on the hosting page (Top, RHS, or not set).",TRUE,NA,NA,NA,NA,NA,NA
-"ga:adSlotPosition","DIMENSION","STRING","Adwords","PUBLIC","Ad Slot Position","The ad slot positions in which your AdWords ads appeared (1-8).",TRUE,NA,NA,NA,NA,NA,NA
+"ga:adSlotPosition","DIMENSION","STRING","Adwords","DEPRECATED","Ad Slot Position","This dimension is deprecated and will be removed soon.",TRUE,NA,NA,NA,NA,NA,NA
 "ga:adDistributionNetwork","DIMENSION","STRING","Adwords","PUBLIC","Ad Distribution Network","The networks used to deliver your ads (Content, Search, Search partners, etc.).",FALSE,NA,NA,NA,NA,NA,NA
 "ga:adMatchType","DIMENSION","STRING","Adwords","PUBLIC","Query Match Type","The match types applied for the search term the user had input(Phrase, Exact, Broad, etc.). Ads on the content network are identified as ""Content network"". Details: https://support.google.com/adwords/answer/2472708?hl=en",FALSE,NA,NA,NA,NA,NA,NA
 "ga:adKeywordMatchType","DIMENSION","STRING","Adwords","PUBLIC","Keyword Match Type","The match types applied to your keywords (Phrase, Exact, Broad). Details: https://support.google.com/adwords/answer/2472708?hl=en",FALSE,NA,NA,NA,NA,NA,NA
@@ -138,7 +138,7 @@
 "ga:secondPagePath","DIMENSION","STRING","Page Tracking","PUBLIC","Second Page","The second page in a user's session.",FALSE,NA,NA,NA,NA,NA,NA
 "ga:exitPagePath","DIMENSION","STRING","Page Tracking","PUBLIC","Exit Page","The last page in a user's session, or exit page.",TRUE,NA,NA,NA,NA,NA,NA
 "ga:previousPagePath","DIMENSION","STRING","Page Tracking","PUBLIC","Previous Page Path","A page that was visited before another page on the same property. Typically used with the pagePath dimension.",FALSE,NA,NA,NA,NA,NA,NA
-"ga:nextPagePath","DIMENSION","STRING","Page Tracking","PUBLIC","Next Page Path","A page on your website that was visited after another page on your website. Typically used with the previousPagePath dimension.",FALSE,NA,NA,NA,NA,NA,NA
+"ga:nextPagePath","DIMENSION","STRING","Page Tracking","DEPRECATED","Next Page Path","This dimension is deprecated and will be removed soon. Please use ga:pagePath instead.",FALSE,NA,NA,NA,NA,NA,NA
 "ga:pageDepth","DIMENSION","STRING","Page Tracking","PUBLIC","Page Depth","The number of pages visited by users during a session. The value is a histogram that counts pageviews across a range of possible values. In this calculation, all sessions will have at least one pageview, and some percentage of sessions will have more.",TRUE,NA,NA,NA,NA,NA,NA
 "ga:pageValue","METRIC","CURRENCY","Page Tracking","PUBLIC","Page Value","The average value of this page or set of pages. Page Value is (ga:transactionRevenue + ga:goalValueAll) / ga:uniquePageviews (for the page or set of pages).",FALSE,NA,NA,NA,NA,NA,NA
 "ga:entrances","METRIC","INTEGER","Page Tracking","PUBLIC","Entrances","The number of entrances to your property measured as the first pageview in a session. Typically used with landingPagePath",TRUE,NA,NA,NA,NA,NA,NA
@@ -347,7 +347,7 @@
 "ga:landingContentGroupXX","DIMENSION","STRING","Content Grouping","PUBLIC","Landing Page Group XX","The first matching content group in a user's session.",TRUE,NA,NA,1,5,NA,NA
 "ga:previousContentGroupXX","DIMENSION","STRING","Content Grouping","PUBLIC","Previous Page Group XX","Refers to content group that was visited before another content group.",TRUE,NA,NA,1,5,NA,NA
 "ga:contentGroupXX","DIMENSION","STRING","Content Grouping","PUBLIC","Page Group XX","Content group on a property. A content group is a collection of content providing a logical structure that can be determined by tracking code or page title/url regex match, or predefined rules.",TRUE,NA,NA,1,5,NA,NA
-"ga:nextContentGroupXX","DIMENSION","STRING","Content Grouping","PUBLIC","Next Page Group XX","Refers to content group that was visited after another content group.",TRUE,NA,NA,1,5,NA,NA
+"ga:nextContentGroupXX","DIMENSION","STRING","Content Grouping","DEPRECATED","Next Page Group XX","This dimension is deprecated and will be removed soon. Please use ga:contentGroupXX instead.",TRUE,NA,NA,1,5,NA,NA
 "ga:userAgeBracket","DIMENSION","STRING","Audience","PUBLIC","Age","Age bracket of user.",TRUE,NA,NA,NA,NA,NA,NA
 "ga:visitorAgeBracket","DIMENSION","STRING","Audience","DEPRECATED","Age","Age bracket of user.",TRUE,"ga:userAgeBracket",NA,NA,NA,NA,NA
 "ga:userGender","DIMENSION","STRING","Audience","PUBLIC","Gender","Gender of user.",TRUE,NA,NA,NA,NA,NA,NA
