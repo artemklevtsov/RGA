@@ -9,7 +9,7 @@
     \item Update data
     \item Remove deprecated function \code{get_firstadate}. Use \code{firstdate} instead
     \item Add \code{new.auth} argument in the \code{authorise()} function for the reauthorisation
-    \item When receiving the authorisation error from the server requested authorisation for the current session (without cacheing)
+    \item When receiving the authorisation error from the server (error 401), request authorisation for the current session (without cacheing)
     \item Fix \code{list_unsampled_reports()} field typo (\issue{20})
     \item Some fixes in the vignettes
     \item Add Common Queries vignette
