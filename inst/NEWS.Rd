@@ -21,9 +21,7 @@
     \item Update data
     \item Add \code{accept_json()} to the API requests
     \item Add CRAN version badge to the README
-    \item Fix headings in the authorization vignette
-    \item Fix links in the authorization vignette
-    \item Remove dates from the vignettes
+    \item Some fixes in the vignettes
     \item Fix dates in the NEWS
     \item Replace \cpkg{RCurl} dependency to \cpkg{curl}. Related with future \cpkg{httr} update
     \item Add functions for the Management API: \code{get_custom_dimension()}, \code{list_custom_dimensions()}, \code{get_custom_metric()}, \code{list_custom_metrics()}
