@@ -7,9 +7,9 @@
 \section{Changes in version 0.2.3 (2015-07-26)}{
   \itemize{
     \item Update data
-    \item Remove deprecated function \code{get_firstadate}. Use \code{firstdate} instead
-    \item Add \code{new.auth} argument in the \code{authorise()} function for the reauthorisation
-    \item When receiving the authorisation error from the server (error 401), request authorisation for the current session (without cacheing)
+    \item Remove deprecated function \code{get_firstadate()}. Use \code{firstdate()} instead
+    \item Add \code{new.auth} argument in the \code{authorise()} function for the reauthorization
+    \item When receiving the authorization error from the server (error 401), request authorization for the current session (without cacheing)
     \item Fix \code{list_unsampled_reports()} field typo (\issue{20})
     \item Some fixes in the vignettes
     \item Add Common Queries vignette
@@ -21,12 +21,12 @@
     \item Update data
     \item Add \code{accept_json()} to the API requests
     \item Add CRAN version badge to the README
-    \item Fix headings in the Authorisation vignette
-    \item Fix links in the Authorisation vignette
+    \item Fix headings in the authorization vignette
+    \item Fix links in the authorization vignette
     \item Remove dates from the vignettes
     \item Fix dates in the NEWS
     \item Replace \cpkg{RCurl} dependency to \cpkg{curl}. Related with future \cpkg{httr} update
-    \item Add functions for the Management API: \code{get_custom_dimension}, \code{list_custom_dimensions}, \code{get_custom_metric}, \code{list_custom_metrics}
+    \item Add functions for the Management API: \code{get_custom_dimension()}, \code{list_custom_dimensions()}, \code{get_custom_metric()}, \code{list_custom_metrics()}
   }
 }
 
