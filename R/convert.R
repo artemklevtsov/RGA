@@ -42,6 +42,7 @@ df_mcf <- function(x) {
 
 # Rename list with sublists for mgmt data
 #' @include utils.R
+#' @importFrom stats setNames
 ls_mgmt <- function(x) {
     names(x) <- gsub("webPropertyId", "webpropertyId", names(x), fixed = TRUE)
     names(x) <- gsub("WebPropertyId", "WebpropertyId", names(x), fixed = TRUE)

@@ -69,6 +69,7 @@ to_separated <- function(x, sep = ".") {
 }
 
 # Convert data types
+#' @importFrom utils type.convert
 convert_datatypes <- function(x) {
     stopifnot(is.list(x))
     x[] <- rapply(x, type.convert, classes = "character", how = "replace", as.is = TRUE)

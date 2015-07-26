@@ -1,6 +1,7 @@
 # Error printing function
 #' @include utils.R
 #' @importFrom httr http_status
+#' @importFrom utils capture.output
 error_message <- function(x) {
     code <- x$error$code
     message <- http_status(code)$message
