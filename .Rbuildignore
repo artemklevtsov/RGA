@@ -3,8 +3,9 @@
 ^\.httr-oauth$
 ^\.Renviron$
 ^\.Rprofile$
+^\.ga-token\.rds$
 ^data-raw$
 ^tools$
 ^tmp$
-\.ga-token.rds$
 ^Makefile$
+^\.travis\.yml$
