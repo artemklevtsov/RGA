@@ -25,16 +25,16 @@ To install the latest release version from CRAN with:
 install.packages("RGA")
 ```
 
-To install the development version the `install_bitbucket` function from `devtools` package can be used:
+To install the development version the `install_github()` function from `devtools` package can be used:
 
 ```r
-devtools::install_bitbucket(repo = "rga", username = "unikum")
+devtools::install_github("artemklevtsov/RGA")
 ```
 
 Another method to install the package `RGA` (using the command line):
 
 ```bash
-git clone https://unikum@bitbucket.org/unikum/rga.git
+git clone https://github.com/artemklevtsov/RGA.git
 R CMD build rga
 R CMD INSTALL rga_*.tar.gz
 ```

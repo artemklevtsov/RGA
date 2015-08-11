@@ -1,5 +1,4 @@
 \newcommand{\cpkg}{\href{http://CRAN.R-project.org/package=#1}{\pkg{#1}}}
-\newcommand{\issue}{\href{https://bitbucket.org/unikum/rga/issue/#1}{##1}}
 \name{NEWS}
 \title{News for Package \pkg{RGA}}
 \encoding{UTF-8}
@@ -10,7 +9,7 @@
     \item Remove deprecated function \code{get_firstadate()}. Use \code{firstdate()} instead
     \item Add \code{new.auth} argument in the \code{authorise()} function for the reauthorization
     \item When receiving the authorization error from the server (error 401), request authorization for the current session (without cacheing)
-    \item Fix \code{list_unsampled_reports()} field typo (\issue{20})
+    \item Fix \code{list_unsampled_reports()} field typo
     \item Some fixes in the vignettes
     \item Add Common Queries vignette
   }
@@ -52,7 +51,7 @@
     \item Rename \code{dims_mets()} to \code{dimsmets()}. \code{dims_mets()} now is deprecated
     \item Rename \code{get_firstdate()} to \code{firstdate()}. \code{get_firstdate()} now is deprecated
     \item Dates now converted in the \code{POSIXct} class
-    \item Fix incorrect handling ga:dateHour dimension (\issue{15})
+    \item Fix incorrect handling ga:dateHour dimension
     \item Use timezone specified in the Profile settings for handling dates
     \item Add predefined \code{client.id} and \code{client.secret} for the \code{authorise()} function
     \item Fix code related with \cpkg{shiny} update (version 0.11)
@@ -66,8 +65,8 @@
     \item Update data
     \item Convert all query values to UTF-8 (solve issues with Windows encoding)
     \item Return URL encode for the queries and \cpkg{RCurl} as explicit dependency
-    \item Fix \code{get_mcf} example (\issue{9})
-    \item Add notes about multiple tokens usage (\issue{7})
+    \item Fix \code{get_mcf} example
+    \item Add notes about multiple tokens usage
     \item Remove \code{set_query} and related S3-methods from exported namespace
     \item Parsed environment variables \env{RGA_CONSUMER_ID} and \env{RGA_CONSUMER_SECRET} renamed to \env{RGA_CLIENT_ID} and \env{RGA_CLIENT_SECRET}
     \item \code{get_accounts()}, \code{get_webproperties()}, \code{get_profiles()}, \code{get_goals()}, \code{get_segments()} renamed to \code{list_accounts()}, \code{list_webproperties()}, \code{list_rpofiles()}, \code{list_goals()}, \code{list_segments()}
@@ -82,7 +81,7 @@
   \itemize{
     \item Update data
     \item Add CSV version of the data to track changes
-    \item Fix error when used query and path simultaneously (\issue{6})
+    \item Fix error when used query and path simultaneously
     \item Add pagination for the Management API requests
     \item Fix quotas for the Reporting and Management APIs
     \item Fix pagination issues

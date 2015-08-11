@@ -9,8 +9,8 @@ Description: Provides functions for accessing and retrieving data from the
     has access to. Auto-pagination to return more than 10,000 rows of the
     results by combining multiple data requests. Also package provides
     shiny app to explore the core reporting API dimensions and metrics.
-URL: https://bitbucket.org/unikum/rga
-BugReports: https://bitbucket.org/unikum/rga/issues
+URL: https://github.com/artemklevtsov/RGA
+BugReports: https://github.com/artemklevtsov/RGA/issues
 Version: 0.2.3
 Date: 2015-07-26
 Authors@R: c(
