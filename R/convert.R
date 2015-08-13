@@ -46,7 +46,7 @@ df_mcf <- function(x) {
 ls_mgmt <- function(x) {
     names(x) <- gsub("webPropertyId", "webpropertyId", names(x), fixed = TRUE)
     names(x) <- gsub("WebPropertyId", "WebpropertyId", names(x), fixed = TRUE)
-    x <- x[!names(x) %in% c("selfLink", "parentLink")]
+    x <- x[!names(x) %in% c("selfLink", "parentLink", "childLink")]
     names(x) <-  to_separated(names(x), sep = ".")
     to_rename <- vapply(x, is.list, logical(1))
     x[to_rename] <- lapply(x[to_rename], function(x) setNames(x, to_separated(names(x), sep = ".")))
