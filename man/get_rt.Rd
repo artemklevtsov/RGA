@@ -23,7 +23,7 @@ get_rt(profile.id, metrics = "rt:activeUsers", dimensions = NULL,
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
 }
 \value{
-A data frame including the real time data for a view (profile).
+A data frame including the real time data for a view (profile). Addition information about profile and request query stored in the attributes.
 }
 \description{
 Get the Anaytics data from Real Time Reporting API for a view (profile)

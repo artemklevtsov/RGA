@@ -35,7 +35,7 @@ get_ga(profile.id, start.date = "7daysAgo", end.date = "yesterday",
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
 }
 \value{
-A data frame including the Analytics data for a view (profile).
+A data frame including the Analytics data for a view (profile). Addition information about profile and request query stored in the attributes.
 }
 \description{
 Get the Anaytics data from Core Reporting API for a view (profile)

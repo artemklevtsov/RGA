@@ -4,7 +4,7 @@
 \name{ga}
 \alias{ga}
 \title{Lists all columns for a Google Analytics core report type}
-\format{A data frame with 435 rows and 14 variables containing the following columns:
+\format{A data frame with 436 rows and 14 variables containing the following columns:
 \describe{
 \item{id}{Parameter name.}
 \item{type}{The type of column: \code{DIMENSION}, \code{METRIC}.}
