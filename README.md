@@ -35,8 +35,8 @@ Another method to install the package `RGA` (using the command line):
 
 ```bash
 git clone https://github.com/artemklevtsov/RGA.git
-R CMD build rga
-R CMD INSTALL rga_*.tar.gz
+R CMD build RGA
+R CMD INSTALL RGA_*.tar.gz
 ```
 
 ## Usage
