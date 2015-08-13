@@ -44,8 +44,6 @@ df_mcf <- function(x) {
 #' @include utils.R
 #' @importFrom stats setNames
 ls_mgmt <- function(x) {
-    names(x) <- gsub("webPropertyId", "webpropertyId", names(x), fixed = TRUE)
-    names(x) <- gsub("WebPropertyId", "WebpropertyId", names(x), fixed = TRUE)
     x <- x[!names(x) %in% c("selfLink", "parentLink", "childLink")]
     names(x) <-  to_separated(names(x), sep = ".")
     to_rename <- vapply(x, is.list, logical(1))
@@ -63,7 +61,7 @@ df_mgmt <- function(x) {
         data_df$permissions.effective <- vapply(data_df$permissions.effective, paste, collapse = ",", FUN.VALUE = character(1))
         names(data_df) <- gsub(".effective", "", names(data_df), fixed = TRUE)
     }
-    names(data_df) <- gsub("webPropertyId", "webpropertyId", names(data_df), fixed = TRUE)
+    names(data_df) <- gsub("PropertyId", "propertyId", names(data_df), fixed = TRUE)
     return(data_df)
 }
 
