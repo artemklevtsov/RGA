@@ -37,8 +37,6 @@
 #'
 get_rt <- function(profile.id, metrics = "rt:activeUsers", dimensions = NULL,
                    sort = NULL, filters = NULL, max.results = NULL, token) {
-    stopifnot(!is.null(profile.id), nzchar(profile.id),
-              !is.null(metrics), nzchar(metrics))
     query <- build_query(profile.id = profile.id, metrics = metrics, dimensions = dimensions,
                          sort = sort, filters = filters, max.results = max.results)
     res <- get_report(type = "rt", query = query, token = token)

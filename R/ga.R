@@ -46,10 +46,6 @@ get_ga <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
                    metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = NULL,
                    sort = NULL, filters = NULL, segment = NULL, sampling.level = NULL,
                    start.index = NULL, max.results = NULL, token) {
-    stopifnot(!is.null(profile.id), nzchar(profile.id),
-              !is.null(start.date), nzchar(start.date),
-              !is.null(end.date), nzchar(end.date),
-              !is.null(metrics), nzchar(metrics))
     if (!is.null(sampling.level))
         sampling.level <- match.arg(sampling.level, c("default", "faster", "higher_precision"))
     query <- build_query(profile.id = profile.id, start.date = start.date, end.date = end.date,
