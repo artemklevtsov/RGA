@@ -12,7 +12,7 @@
 #' @param max.results integer. The maximum number of entries to include in this feed.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
 #'
-#' @return A data frame including the Analytics Multi-Channel Funnels data for a view (profile)
+#' @return A data frame including the Analytics Multi-Channel Funnels data for a view (profile). Addition information about profile and request query stored in the attributes.
 #'
 #' @references
 #' \href{https://developers.google.com/analytics/devguides/reporting/mcf/dimsmets/}{MCF Reporting API - Dimensions & Metrics Reference}

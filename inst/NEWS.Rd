@@ -3,6 +3,13 @@
 \title{News for Package \pkg{RGA}}
 \encoding{UTF-8}
 
+\section{Changes in version 0.2.4 (2015-08-31)}{
+  \itemize{
+    \item Update data
+    \item Add query and profile info to the reporting api data. Use \code{attributes()} to see it
+  }
+}
+
 \section{Changes in version 0.2.3 (2015-07-26)}{
   \itemize{
     \item Update data

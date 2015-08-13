@@ -28,18 +28,10 @@
 #'
 get_report <- function(type = c("ga", "mcf", "rt"), query, token) {
     type <- match.arg(type)
-    if (type == "rt")
-        query$fields <- "columnHeaders,rows"
-    else
-        query$fields <- "containsSampledData,sampleSize,sampleSpace,profileInfo,columnHeaders,rows"
     data_json <- get_data(type = type, query = query, token = token)
     if (is.null(data_json)) {
         message("No results were obtained.")
         return(invisible(NULL))
-    }
-    if (!is.null(data_json$containsSampledData) && isTRUE(data_json$containsSampledData)) {
-        sample_perc <- paste0(round((as.numeric(data_json$sampleSize) / as.numeric(data_json$sampleSpace)) * 100, digits = 2), "%")
-        warning("Data contains sampled data. Used ", sample_perc, " of sessions for the query.", call. = FALSE)
     }
     data_df <- data_json$rows
     if (any(grepl("date", names(data_df), fixed = TRUE))) {
@@ -54,5 +46,13 @@ get_report <- function(type = c("ga", "mcf", "rt"), query, token) {
         data_df[["date"]] <- as.POSIXct(strptime(data_df[["date"]], "%Y%m%d", tz = timezone))
     if (!is.null(data_df$conversion.date))
         data_df$conversion.date <- as.POSIXct(strptime(data_df$conversion.date, "%Y%m%d", tz = timezone))
+    if (!is.null(data_json$containsSampledData) && isTRUE(data_json$containsSampledData)) {
+        sample_perc <- paste0(round((as.numeric(data_json$sampleSize) / as.numeric(data_json$sampleSpace)) * 100, digits = 2), "%")
+        warning("Data contains sampled data. Used ", sample_perc, " of sessions for the query.", call. = FALSE)
+    }
+    names(data_json$profileInfo) <-  to_separated(names(data_json$profileInfo), sep = ".")
+    names(data_json$query) <-  to_separated(names(data_json$query), sep = ".")
+    attr(data_df, "profile.info") <- data_json$profileInfo
+    attr(data_df, "query") <- data_json$query
     return(data_df)
 }
