@@ -3,7 +3,7 @@
 #' @description
 #' This dataset represents all of the dimensions and metrics for the reporting API with their attributes. Attributes returned include UI name, description, segments support, etc.
 #'
-#' @param report.type character. Report type. Allowed Values: ga. Where ga corresponds to the Core Reporting API.
+#' @param report.type character. Report type. Allowed Values: \dQuote{ga}. Where \dQuote{ga} corresponds to the Core Reporting API.
 #'
 #' @return A data.frame contains dimensions and metrics for a particular report type.
 #' \item{id}{Parameter name.}
@@ -79,7 +79,7 @@ list_metadata <- function(report.type = "ga") {
 #' This dataset represents all of the dimensions and metrics for the reporting API with their attributes. Attributes returned include UI name, description, segments support, etc.
 #'
 #' @format
-#' A data frame with 435 rows and 14 variables containing the following columns:
+#' A data frame with 436 rows and 14 variables containing the following columns:
 #' \describe{
 #' \item{id}{Parameter name.}
 #' \item{type}{The type of column: \code{DIMENSION}, \code{METRIC}.}
