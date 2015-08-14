@@ -12,9 +12,13 @@ install:
   - sudo apt-get -qq install r-cran-{curl,httr,httpuv,jsonlite,shiny,knitr,testthat}
 before_script:
   - echo 'options(repos = c(CRAN = "http://cran.r-project.org"))' | sudo tee -a /etc/R/Rprofile.site > /dev/null
-  - R CMD build .
-script:
+  - Rscript -e 'sessionInfo()'
+  - PKGNAME=$(grep 'Package:' DESCRIPTION | cut -d ' ' -f 2)
+  - PKGVER=$(grep 'Version:' DESCRIPTION | cut -d ' ' -f 2)
   - cd ..
-  - R CMD check RGA_*.tar.gz --as-cran
+  - R CMD build RGA
+script:
+  - R CMD check ${PKGNAME}_${PKGVER}.tar.gz --as-cran
 after_script:
-  - rm -rf RGA_*.tar.gz
+  - rm -f ${PKGNAME}_${PKGVER}.tar.gz
+  - ! grep -q -R "WARNING" ${PKGNAME}.Rcheck/00check.log

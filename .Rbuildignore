@@ -4,8 +4,10 @@
 ^\.Renviron$
 ^\.Rprofile$
 ^\.ga-token\.rds$
+^\.magnum\.yml$
+^\.travis\.yml$
+^tests/testthat/\.ga-token\.rds$
 ^data-raw$
 ^tools$
 ^tmp$
 ^Makefile$
-^\.travis\.yml$
