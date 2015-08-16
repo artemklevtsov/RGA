@@ -2,7 +2,7 @@
 .Rhistory
 .RData
 .httr-oauth
-.ga-token.rds
+.*-token.rds
 .Renviron
 tmp
 inst/doc

@@ -3,11 +3,10 @@
 ^\.httr-oauth$
 ^\.Renviron$
 ^\.Rprofile$
-^\.ga-token\.rds$
 ^\.magnum\.yml$
 ^\.travis\.yml$
-^tests/testthat/\.ga-token\.rds$
 ^data-raw$
 ^tools$
 ^tmp$
 ^Makefile$
+\.*-token\.rds$

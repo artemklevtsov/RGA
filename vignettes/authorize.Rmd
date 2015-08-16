@@ -24,7 +24,7 @@ Before you send any requests to the Google Analytics API, it's necessary to perf
 authorize()
 ```
 
-After calling this function first time, a web browser will be opened. First entrance with a **Google Account** confirms access to the Google Analytics data. Note that the package requests access for the **read-only** data.
+After calling this function first time, a web browser will be opened. If `login` argument was not specified you need choose an account for the authorization. First entrance with a **Google Account** confirms access to the Google Analytics data. Note that the package requests access for the **read-only** data.
 
 When the `authorize()` function is used, the `GAToken` (can be changed with `rga.token` option) variable is created in the separate `TokenEnv` environment which not visible for user. So, there is no need to pass every time the `token` argument to any function which requires authorization.
 
@@ -97,7 +97,9 @@ This string can be added to the file `.Rprofile` in the user's current оr home 
 
 ## Cache an access token to disk
 
-When the `cache` argument and the `rga.cache` option is not changed, then after successful authorization the `.ga-token.rds` file with access token to Google API will be created in the current working directory. The `.ga-token.rds` file is used between sessions, i.e. at a subsequent call to the `authorize()`  function and authorization in the browser tab is not required. Using the `cache` argument you can also suppress caching (`FALSE` value) or specify an alternate path to the file storage (in this case It is necessary to specify the path and file name explicitly).
+When the `cache` argument and the `rga.cache` option is not changed and `login` param is not specified, then after successful authorization the `.ga-token.rds` file with access token to Google API will be created in the current working directory. The `.ga-token.rds` file is used between sessions, i.e. at a subsequent call to the `authorize()`  function and authorization in the browser tab is not required. If `login` argument specified token will be cached in the `.username-token.rds` file.
+
+Using the `cache` argument you can also suppress caching (`FALSE` value) or specify an alternate path to the file storage (in this case It is necessary to specify the path and file name explicitly).
 
 ```r
 authorize(client.id, client.secret, cache = "/path/to/file")

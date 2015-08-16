@@ -37,9 +37,10 @@ env_exists <- function(...) {
 #'
 #' @description \code{authorize()} function uses \code{\link[httr]{oauth2.0_token}} to obtain the OAuth tokens. Expired tokens will be refreshed automamaticly. If you have no \code{client.id} and \code{client.secret} the package provides predefined values.
 #'
+#' @param login character. Google username email address hint. If not set you will need choose an account for the authorization.
 #' @param client.id character. OAuth client ID. If you set the environment variable \env{RGA_CLIENT_ID} it is used.
 #' @param client.secret character. OAuth client secret. If you set the environment variable \env{RGA_CLIENT_SECRET} it is used.
-#' @param cache logical or character. \code{TRUE} means to cache using the default cache file \code{.oauth-httr}, \code{FALSE} means not to cache. A string means to use the specified path as the cache file.
+#' @param cache logical or character. \code{TRUE} means to cache using the default cache file \code{.oauth-httr}, \code{FALSE} means not to cache. A string means to use the specified path as the cache file. Otherwise will be used the \code{rga.cache} option value (\code{.ga-token.rds} by default). If \code{login} argument specified token will be cached in the \code{.username-token.rds} file.
 #' @param new.auth logical. Set \code{TRUE} to reauthorization with the same or different Google Analytics account.
 #'
 #' @details
@@ -47,6 +48,8 @@ env_exists <- function(...) {
 #' After calling this function first time, a web browser will be opened. First, log in with a Google Account, confirm the authorization to access the Google Analytics data. Note that the package requests access for read-only data.
 #'
 #' When the \code{authorize()} function is used the \code{GAToken} variable is created in the separate \code{TokenEnv} environment which is not visible for user. So, there is no need to pass the token argument to any function which requires authorization every time. Also there is a possibility to store token in separate variable and to pass it to the functions. It can be useful when you are working with several accounts at the same time.
+#'
+#' \code{login}, \code{client.id}, \code{client.secret} and \code{cache} params can be specified by an appropriate options (with \dQuote{rga} prefix).
 #'
 #' @section Use custom Client ID and Client secret:
 #'
@@ -109,7 +112,8 @@ env_exists <- function(...) {
 #'
 #' @export
 #'
-authorize <- function(client.id = getOption("rga.client.id"),
+authorize <- function(login = getOption("rga.login"),
+                      client.id = getOption("rga.client.id"),
                       client.secret = getOption("rga.client.secret"),
                       cache = getOption("rga.cache"),
                       new.auth = FALSE) {
@@ -118,13 +122,20 @@ authorize <- function(client.id = getOption("rga.client.id"),
         client.id <- Sys.getenv("RGA_CLIENT_ID")
         client.secret <- Sys.getenv("RGA_CLIENT_SECRET")
     }
+    rga_app <- oauth_app(appname = "rga", key = client.id, secret = client.secret)
+    endpoint <- oauth_endpoints("google")
+    if (!is.null(login)) {
+        stopifnot(is.character(login))
+        stopifnot(length(login) == 1)
+        endpoint$authorize <- paste0(endpoint$authorize, "?login_hint=", login)
+        cache <- paste0(".", strsplit(login, "@", fixed = TRUE)[[1]][1], "-token.rds")
+    }
     if (new.auth) {
         remove_token(getOption("rga.token"))
         if (is.character(cache))
             unlink(cache)
     }
-    rga_app <- oauth_app(appname = "rga", key = client.id, secret = client.secret)
-    token <- oauth2.0_token(endpoint = oauth_endpoints("google"), app = rga_app, cache = cache,
+    token <- oauth2.0_token(endpoint = endpoint, app = rga_app, cache = cache,
                             scope = "https://www.googleapis.com/auth/analytics.readonly")
     set_token(getOption("rga.token"), token)
     invisible(token)
