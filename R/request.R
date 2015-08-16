@@ -47,6 +47,8 @@ get_response <- function(type = c("ga", "rt", "mcf", "mgmt"), path = NULL, query
     if (resp$status_code == 401L) {
         authorize(cache = FALSE)
         return(eval(match.call()))
+    } else if (resp$status_code == 404L) {
+        stop("The requested URL not found. URL: ", url)
     }
     data_json <- fromJSON(content(resp, as = "text"), simplifyVector = simplify, flatten = flatten)
     if (!is.null(data_json$error))
