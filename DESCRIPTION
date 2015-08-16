@@ -26,10 +26,10 @@ Depends:
 Imports:
     utils,
     stats,
-    httr (>= 0.6),
-    httpuv,
     curl,
     jsonlite,
+    httr (>= 0.6),
+    httpuv,
     shiny (>= 0.11)
 Collate:
     'utils.R'

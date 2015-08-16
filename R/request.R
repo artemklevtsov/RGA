@@ -31,6 +31,7 @@ error_message <- function(x) {
 #'
 #' @importFrom httr GET config accept_json content
 #' @importFrom jsonlite fromJSON
+#' @importFrom curl curl_unescape
 #'
 get_response <- function(type = c("ga", "rt", "mcf", "mgmt"), path = NULL, query = NULL,
                          simplify = TRUE, flatten = TRUE, token) {
@@ -48,7 +49,7 @@ get_response <- function(type = c("ga", "rt", "mcf", "mgmt"), path = NULL, query
         authorize(cache = FALSE)
         return(eval(match.call()))
     } else if (resp$status_code == 404L) {
-        stop("The requested URL not found. URL: ", url)
+        stop("The requested URL not found. URL: ", curl_unescape(url))
     }
     data_json <- fromJSON(content(resp, as = "text"), simplifyVector = simplify, flatten = flatten)
     if (!is.null(data_json$error))
