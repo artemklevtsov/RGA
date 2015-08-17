@@ -39,9 +39,9 @@ The following parameters are available for queries to the API reports:
 * `sampling.level` - the desired sampling level. Allowed values: "default", "faster", "higher_precision";
 * `start.index` - index of the first returned result (line number);
 * `max.results` - maximum number of fields (rows) of the returned results;
-* `token` - object of class `Token2.0` which contains data with a valid authorization data. Can be obtained using the `authorize` function;
+* `token` - object of class `Token2.0` which contains data with a valid authorization data. Can be obtained using the `authorize()` function;
 
-The following arguments: `profile.id`, `start.date`, `end.date` and `metrics` are required for `get_ga` and `get_mcf` (`get_rt` requires only `profile.id` and `metrics`). Notice that all arguments must be character strings of unit length. The exception is `profile.id` which can be both character string and numeric.
+The following arguments: `profile.id`, `start.date`, `end.date` and `metrics` are required for `get_ga()` and `get_mcf()` (`get_rt()` requires only `profile.id` and `metrics`). Notice that all arguments must be character strings of unit length. The exception is `profile.id` which can be both character string and numeric.
 
 This is an example of data obtaining for the last 30 days:
 
@@ -50,7 +50,7 @@ ga_data <- get_ga(profile.id = XXXXXXXX, start.date = "30daysAgo", end.date = "y
                   metrics = "ga:users,ga:sessions,ga:pageviews")
 ```
 
-Sometimes it is necessary to obtain the data for the entire monitoring period through service Google Analytics. For these purposes the package `RGA` provides the function `get_firstdate` which takes a charming profile ID (submission) as an argument:
+Sometimes it is necessary to obtain the data for the entire monitoring period through service Google Analytics. For these purposes the package `RGA` provides the function `firstdate()` which takes a charming profile ID (submission) as an argument:
 
 ```r
 first_date <- firstdate(profile.id = XXXXXXXX)
@@ -74,14 +74,15 @@ In order to avoid this, you can split the query into multiple small queries (day
 
 ```r
 dates <- seq(as.Date("2012-01-01"), as.Date("2012-02-01"), by = "days")
-ga_data <- aggregate(. ~ keyword, FUN = sum,
-                     data = do.call(rbind, lapply(dates, function(date) {
-                       get_ga(profile.id = XXXXXXXX, start.date = date, end.date = date,
-                       metrics = "ga:sessions", dimensions = "ga:keyword",
-                       filter = "ga:medium==organic;ga:keyword!=(not provided);ga:keyword!=(not set)")})))
+ga_data <- do.call(rbind, lapply(dates, function(date) {
+    get_ga(profile.id = XXXXXXXX, start.date = date, end.date = date,
+    metrics = "ga:sessions", dimensions = "ga:keyword",
+    filter = "ga:medium==organic;ga:keyword!=(not provided);ga:keyword!=(not set)")
+}))
+ga_data <- aggregate(. ~ keyword, FUN = sum, data = ga_data)
 ```
 
-Note: a formula in `aggregate` function should include all Google Analyitcs dimensions without prefix ("ga:" or "mcf:").
+Note: a formula in `aggregate()` function should include all Google Analyitcs dimensions without prefix ("ga:" or "mcf:").
 
 ## References
 
