@@ -15,8 +15,9 @@ before_script:
   - Rscript -e 'sessionInfo()'
   - PKGNAME=$(grep 'Package:' DESCRIPTION | cut -d ' ' -f 2)
   - PKGVER=$(grep 'Version:' DESCRIPTION | cut -d ' ' -f 2)
+  - PKGDIR=${PWD}
   - cd ..
-  - R CMD build RGA
+  - R CMD build ${PKGDIR}
 script:
   - R CMD check ${PKGNAME}_${PKGVER}.tar.gz --as-cran
 after_script:
