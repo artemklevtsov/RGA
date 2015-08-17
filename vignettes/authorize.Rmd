@@ -130,6 +130,15 @@ work_token <- authorize(client.id1, client.secret1, cache = "work.token")
 home_token <- authorize(client.id2, client.secret2, cache = "home.token")
 ```
 
+Also you can specify `login` argument:
+
+```r
+work_token <- authorize(login = "home@domain.com")
+home_token <- authorize(login = "work2@domain.com")
+```
+
+Tokens will be stored to the separated files.
+
 Then pass this token to other functions:
 
 ```r
