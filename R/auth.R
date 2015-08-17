@@ -128,7 +128,7 @@ authorize <- function(login = getOption("rga.login"),
         stopifnot(is.character(login))
         stopifnot(length(login) == 1)
         endpoint$authorize <- paste0(endpoint$authorize, "?login_hint=", login)
-        cache <- paste0(".", strsplit(login, "@", fixed = TRUE)[[1]][1], "-token.rds")
+        cache <- paste0(".", login, "-token.rds")
     }
     if (new.auth) {
         remove_token(getOption("rga.token"))
