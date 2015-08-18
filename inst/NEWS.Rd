@@ -7,7 +7,7 @@
   \itemize{
     \item Update data
     \item Add query and profile info to the reporting api data. Use \code{attributes()} to see it
-    \item Add \code{login} param to the \code{authorize()} function to define an user account for the authorization
+    \item Add \code{username} param to the \code{authorize()} function to define an user account for the authorization
   }
 }
 

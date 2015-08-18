@@ -33,14 +33,21 @@ env_exists <- function(...) {
     vapply(res, nzchar, logical(1))
 }
 
+# Fix username without domain
+fix_username <- function(x) {
+    if (!grepl("@", x, fixed = TRUE))
+        x <- paste0(x, "@gmail.com")
+    return(x)
+}
+
 #' @title Authorize the RGA package to the user's Google Analytics account using OAuth2.0
 #'
 #' @description \code{authorize()} function uses \code{\link[httr]{oauth2.0_token}} to obtain the OAuth tokens. Expired tokens will be refreshed automamaticly. If you have no \code{client.id} and \code{client.secret} the package provides predefined values.
 #'
-#' @param login character. Google username email address hint. If not set you will need choose an account for the authorization.
+#' @param username character. Google username email address hint. If not set you will need choose an account for the authorization.
 #' @param client.id character. OAuth client ID. If you set the environment variable \env{RGA_CLIENT_ID} it is used.
 #' @param client.secret character. OAuth client secret. If you set the environment variable \env{RGA_CLIENT_SECRET} it is used.
-#' @param cache logical or character. \code{TRUE} means to cache using the default cache file \code{.oauth-httr}, \code{FALSE} means not to cache. A string means to use the specified path as the cache file. Otherwise will be used the \code{rga.cache} option value (\code{.ga-token.rds} by default). If \code{login} argument specified token will be cached in the \code{.username-token.rds} file.
+#' @param cache logical or character. \code{TRUE} means to cache using the default cache file \code{.oauth-httr}, \code{FALSE} means not to cache. A string means to use the specified path as the cache file. Otherwise will be used the \code{rga.cache} option value (\code{.ga-token.rds} by default). If \code{username} argument specified token will be cached in the \code{.username-token.rds} file.
 #' @param new.auth logical. Set \code{TRUE} to reauthorization with the same or different Google Analytics account.
 #'
 #' @details
@@ -49,7 +56,7 @@ env_exists <- function(...) {
 #'
 #' When the \code{authorize()} function is used the \code{GAToken} variable is created in the separate \code{TokenEnv} environment which is not visible for user. So, there is no need to pass the token argument to any function which requires authorization every time. Also there is a possibility to store token in separate variable and to pass it to the functions. It can be useful when you are working with several accounts at the same time.
 #'
-#' \code{login}, \code{client.id}, \code{client.secret} and \code{cache} params can be specified by an appropriate options (with \dQuote{rga} prefix).
+#' \code{username}, \code{client.id}, \code{client.secret} and \code{cache} params can be specified by an appropriate options (with \dQuote{rga} prefix).
 #'
 #' @section Use custom Client ID and Client secret:
 #'
@@ -112,23 +119,28 @@ env_exists <- function(...) {
 #'
 #' @export
 #'
-authorize <- function(login = getOption("rga.login"),
+authorize <- function(username = getOption("rga.username"),
                       client.id = getOption("rga.client.id"),
                       client.secret = getOption("rga.client.secret"),
                       cache = getOption("rga.cache"),
                       new.auth = FALSE) {
     if (all(env_exists("RGA_CLIENT_ID", "RGA_CLIENT_SECRET"))) {
-        message("client.id and client.secret loaded from environment variables.")
+        message("Client ID and Client secret loaded from environment variables.")
         client.id <- Sys.getenv("RGA_CLIENT_ID")
         client.secret <- Sys.getenv("RGA_CLIENT_SECRET")
     }
+    if (env_exists("RGA_USERNAME")) {
+        message("Username loaded from environment variable.")
+        username <- Sys.getenv("RGA_USERNAME")
+    }
     rga_app <- oauth_app(appname = "rga", key = client.id, secret = client.secret)
     endpoint <- oauth_endpoints("google")
-    if (!is.null(login)) {
-        stopifnot(is.character(login))
-        stopifnot(length(login) == 1)
-        endpoint$authorize <- paste0(endpoint$authorize, "?login_hint=", login)
-        cache <- paste0(".", login, "-token.rds")
+    if (!is.null(username)) {
+        stopifnot(is.character(username))
+        stopifnot(length(username) == 1)
+        username <- fix_username(username)
+        endpoint$authorize <- paste0(endpoint$authorize, "?login_hint=", username)
+        cache <- paste0(".", username, "-token.rds")
     }
     if (new.auth) {
         remove_token(getOption("rga.token"))

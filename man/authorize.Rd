@@ -4,19 +4,19 @@
 \alias{authorize}
 \title{Authorize the RGA package to the user's Google Analytics account using OAuth2.0}
 \usage{
-authorize(login = getOption("rga.login"),
+authorize(username = getOption("rga.username"),
   client.id = getOption("rga.client.id"),
   client.secret = getOption("rga.client.secret"),
   cache = getOption("rga.cache"), new.auth = FALSE)
 }
 \arguments{
-\item{login}{character. Google username email address hint. If not set you will need choose an account for the authorization.}
+\item{username}{character. Google username email address hint. If not set you will need choose an account for the authorization.}
 
 \item{client.id}{character. OAuth client ID. If you set the environment variable \env{RGA_CLIENT_ID} it is used.}
 
 \item{client.secret}{character. OAuth client secret. If you set the environment variable \env{RGA_CLIENT_SECRET} it is used.}
 
-\item{cache}{logical or character. \code{TRUE} means to cache using the default cache file \code{.oauth-httr}, \code{FALSE} means not to cache. A string means to use the specified path as the cache file. Otherwise will be used the \code{rga.cache} option value (\code{.ga-token.rds} by default). If \code{login} argument specified token will be cached in the \code{.username-token.rds} file.}
+\item{cache}{logical or character. \code{TRUE} means to cache using the default cache file \code{.oauth-httr}, \code{FALSE} means not to cache. A string means to use the specified path as the cache file. Otherwise will be used the \code{rga.cache} option value (\code{.ga-token.rds} by default). If \code{username} argument specified token will be cached in the \code{.username-token.rds} file.}
 
 \item{new.auth}{logical. Set \code{TRUE} to reauthorization with the same or different Google Analytics account.}
 }
@@ -31,7 +31,7 @@ After calling this function first time, a web browser will be opened. First, log
 
 When the \code{authorize()} function is used the \code{GAToken} variable is created in the separate \code{TokenEnv} environment which is not visible for user. So, there is no need to pass the token argument to any function which requires authorization every time. Also there is a possibility to store token in separate variable and to pass it to the functions. It can be useful when you are working with several accounts at the same time.
 
-\code{login}, \code{client.id}, \code{client.secret} and \code{cache} params can be specified by an appropriate options (with \dQuote{rga} prefix).
+\code{username}, \code{client.id}, \code{client.secret} and \code{cache} params can be specified by an appropriate options (with \dQuote{rga} prefix).
 }
 \section{Use custom Client ID and Client secret}{
 
