@@ -27,6 +27,8 @@
 #' }
 #'
 get_report <- function(type = c("ga", "mcf", "rt"), query, token) {
+    if(is.null(query$profile.id))
+        stop(dQuote("profile.id"), " must be specified. Use ", dQuote("list_profiles()"), "to get list of the views.", call. = FALSE)
     type <- match.arg(type)
     data_json <- get_data(type = type, query = query, token = token)
     if (is.null(data_json)) {
@@ -53,6 +55,6 @@ get_report <- function(type = c("ga", "mcf", "rt"), query, token) {
     names(data_json$profileInfo) <-  to_separated(names(data_json$profileInfo), sep = ".")
     names(data_json$query) <-  to_separated(names(data_json$query), sep = ".")
     attr(data_df, "profile.info") <- data_json$profileInfo
-    attr(data_df, "query") <- data_json$query
+    attr(data_df, "query") <- fix_query(data_json$query)
     return(data_df)
 }

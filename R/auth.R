@@ -133,7 +133,7 @@ authorize <- function(username = getOption("rga.username"),
         message("Username loaded from environment variable.")
         username <- Sys.getenv("RGA_USERNAME")
     }
-    rga_app <- oauth_app(appname = "rga", key = client.id, secret = client.secret)
+    app <- oauth_app(appname = "rga", key = client.id, secret = client.secret)
     endpoint <- oauth_endpoints("google")
     if (!is.null(username)) {
         stopifnot(is.character(username))
@@ -147,7 +147,7 @@ authorize <- function(username = getOption("rga.username"),
         if (is.character(cache))
             unlink(cache)
     }
-    token <- oauth2.0_token(endpoint = endpoint, app = rga_app, cache = cache,
+    token <- oauth2.0_token(endpoint = endpoint, app = app, cache = cache,
                             scope = "https://www.googleapis.com/auth/analytics.readonly")
     set_token(getOption("rga.token"), token)
     invisible(token)
