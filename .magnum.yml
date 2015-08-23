@@ -13,10 +13,11 @@ install:
 before_script:
   - echo 'options(repos = c(CRAN = "http://cran.r-project.org"))' | sudo tee -a /etc/R/Rprofile.site > /dev/null
   - Rscript -e 'sessionInfo()'
-  - PKGNAME=$(grep 'Package:' DESCRIPTION | cut -d ' ' -f 2)
-  - PKGVER=$(grep 'Version:' DESCRIPTION | cut -d ' ' -f 2)
+  - PKGNAME=$(grep 'Package:' DESCRIPTION | cut -d ':' -f 2 | tr -d ' ')
+  - PKGVER=$(grep 'Version:' DESCRIPTION | cut -d ':' -f 2 | tr -d ' ')
   - PKGDIR=${PWD}
   - cd ..
+  - rm -f *.tar.gz
   - R CMD build ${PKGDIR}
 script:
   - R CMD check ${PKGNAME}_${PKGVER}.tar.gz --as-cran
