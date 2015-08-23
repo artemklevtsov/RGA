@@ -63,6 +63,7 @@ ga_data <- get_ga("profile_id", start.date = "30daysAgo", end.date = "today",
 \code{\link{authorize}} \code{\link{list_dimsmets}}
 
 Other Reporting API: \code{\link{firstdate}};
-  \code{\link{get_mcf}}; \code{\link{get_realtime}}
+  \code{\link{get_mcf}}; \code{\link{get_realtime}},
+  \code{\link{get_rt}}
 }
 

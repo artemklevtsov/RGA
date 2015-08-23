@@ -2,6 +2,7 @@
 % Please edit documentation in R/metadata.R
 \name{list_dimsmets}
 \alias{list_dimsmets}
+\alias{list_metadata}
 \title{Lists all the dimensions and metrics for a particular report type}
 \usage{
 list_dimsmets(report.type = "ga")

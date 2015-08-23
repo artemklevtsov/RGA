@@ -19,9 +19,9 @@ knitr::opts_chunk$set(
 )
 ```
 
-When working with the API reports it is sometimes necessary to obtain background information about these or other query parameters to the API. To obtain a list of all the metrics and dimensions `RGA` package provides the `list_metadata()` function, which return actual informtation about all dimensions and metrics for the given report type (now support only the Core Reporting API metadata).
+When working with the API reports it is sometimes necessary to obtain background information about these or other query parameters to the API. To obtain a list of all the metrics and dimensions `RGA` package provides the `list_dimsmets()` function, which return actual informtation about all dimensions and metrics for the given report type (now support only the Core Reporting API metadata).
 
-`list_metadata()` return an `data.frame`,  which consists of the following columns:
+`list_dimsmets()` return an `data.frame`,  which consists of the following columns:
 
 * `id` - the parameter code name (metric or dimension) (used for queries);
 * `type` - parameter type: metric (METRIC) or dimension (DIMENSION);

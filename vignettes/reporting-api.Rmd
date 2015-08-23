@@ -41,7 +41,7 @@ The following parameters are available for queries to the API reports:
 * `max.results` - maximum number of fields (rows) of the returned results;
 * `token` - object of class `Token2.0` which contains data with a valid authorization data. Can be obtained using the `authorize()` function;
 
-The following arguments: `profile.id`, `start.date`, `end.date` and `metrics` are required for `get_ga()` and `get_mcf()` (`get_rt()` requires only `profile.id` and `metrics`). Notice that all arguments must be character strings of unit length. The exception is `profile.id` which can be both character string and numeric.
+The following arguments: `profile.id`, `start.date`, `end.date` and `metrics` are required for `get_ga()` and `get_mcf()` (`get_realtime()` requires only `profile.id` and `metrics`). Notice that all arguments must be character strings of unit length. The exception is `profile.id` which can be both character string and numeric.
 
 This is an example of data obtaining for the last 30 days:
 

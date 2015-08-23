@@ -34,6 +34,8 @@
 #'
 #' @include report.R
 #'
+#' @aliases get_rt
+#'
 #' @export
 #'
 get_realtime <- function(profile.id, metrics = "rt:activeUsers", dimensions = NULL,
@@ -44,8 +46,6 @@ get_realtime <- function(profile.id, metrics = "rt:activeUsers", dimensions = NU
     return(res)
 }
 
-#' @noRd
-#' @aliases get_realtime
 #' @export
 #'
 get_rt <- function(profile.id, metrics = "rt:activeUsers", dimensions = NULL,

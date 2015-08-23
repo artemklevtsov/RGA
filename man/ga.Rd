@@ -50,7 +50,7 @@ subset(ga, allowed.in.segments, id)
 \href{https://developers.google.com/analytics/devguides/reporting/core/dimsmets}{Core Reporting API - Dimensions & Metrics Reference}
 }
 \seealso{
-\code{\link{get_ga}} \code{\link{dimsmets}} \code{\link{list_dimsmets}}
+\code{\link{get_ga}} \code{\link{list_dimsmets}}
 }
 \keyword{data}
 \keyword{datasets}

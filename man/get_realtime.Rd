@@ -2,6 +2,7 @@
 % Please edit documentation in R/realtime.R
 \name{get_realtime}
 \alias{get_realtime}
+\alias{get_rt}
 \title{Get the Anaytics data from Real Time Reporting API for a view (profile)}
 \usage{
 get_realtime(profile.id, metrics = "rt:activeUsers", dimensions = NULL,

@@ -35,6 +35,8 @@
 #' @include request.R
 #' @include convert.R
 #'
+#' @aliases list_metadata
+#'
 #' @export
 #'
 #' @examples
@@ -70,8 +72,6 @@ list_dimsmets <- function(report.type = "ga") {
     return(data_df)
 }
 
-#' @noRd
-#' @aliases list_dimsmets
 #' @export
 #'
 list_metadata <- function(report.type = "ga") {
@@ -117,7 +117,7 @@ list_metadata <- function(report.type = "ga") {
 #' @docType data
 #' @name ga
 #'
-#' @seealso \code{\link{get_ga}} \code{\link{dimsmets}} \code{\link{list_dimsmets}}
+#' @seealso \code{\link{get_ga}} \code{\link{list_dimsmets}}
 #'
 #' @examples
 #' # a count of parameters types

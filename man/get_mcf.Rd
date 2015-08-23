@@ -57,6 +57,7 @@ ga_data <- get_mcf("profile_id", start.date = "30daysAgo", end.date = "today",
 \code{\link{authorize}}
 
 Other Reporting API: \code{\link{firstdate}};
-  \code{\link{get_ga}}; \code{\link{get_realtime}}
+  \code{\link{get_ga}}; \code{\link{get_realtime}},
+  \code{\link{get_rt}}
 }
 
