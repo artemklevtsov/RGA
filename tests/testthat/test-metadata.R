@@ -1,6 +1,6 @@
 context("Metadata Reporting API response")
 
-ga_data <- suppressMessages(list_metadata(report.type = "ga"))
+ga_data <- suppressMessages(list_dimsmets(report.type = "ga"))
 
 test_that("Result class", {
     expect_is(ga_data, "data.frame")

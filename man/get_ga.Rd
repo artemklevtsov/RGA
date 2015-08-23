@@ -60,7 +60,7 @@ ga_data <- get_ga("profile_id", start.date = "30daysAgo", end.date = "today",
 \href{https://ga-dev-tools.appspot.com/explorer/}{Query Explorer}
 }
 \seealso{
-\code{\link{authorize}} \code{\link{list_metadata}}
+\code{\link{authorize}} \code{\link{list_dimsmets}}
 
 Other Reporting API: \code{\link{firstdate}};
   \code{\link{get_mcf}}; \code{\link{get_realtime}}

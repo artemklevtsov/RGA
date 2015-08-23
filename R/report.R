@@ -26,7 +26,7 @@
 #' ga_data <- get_report(type = "ga", query = query)
 #' }
 #'
-get_report <- function(type = c("ga", "mcf", "rt"), query, token) {
+get_report <- function(type = c("ga", "mcf", "realtime"), query, token) {
     if(is.null(query$profile.id))
         stop(dQuote("profile.id"), " must be specified. Use ", dQuote("list_profiles()"), "to get list of the views.", call. = FALSE)
     type <- match.arg(type)

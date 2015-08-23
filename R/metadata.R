@@ -39,7 +39,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' ga_meta <- list_metadata("ga")
+#' ga_meta <- list_dimsmets("ga")
 #' # a count of parameters types
 #' table(ga_meta$type)
 #' # parameters groups
@@ -117,7 +117,7 @@ list_metadata <- function(report.type = "ga") {
 #' @docType data
 #' @name ga
 #'
-#' @seealso \code{\link{get_ga}} \code{\link{dimsmets}} \code{\link{list_metadata}}
+#' @seealso \code{\link{get_ga}} \code{\link{dimsmets}} \code{\link{list_dimsmets}}
 #'
 #' @examples
 #' # a count of parameters types

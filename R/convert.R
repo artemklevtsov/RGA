@@ -9,7 +9,7 @@ df_ga <- function(x) {
 }
 
 # Build data.frame for realtime report
-df_rt <- function(x) {
+df_realtime <- function(x) {
     names <- gsub("^rt:", "", x$columnHeaders$name)
     data_df <- as.data.frame(x$rows, stringsAsFactors = FALSE)
     colnames(data_df) <- names
@@ -67,11 +67,11 @@ df_mgmt <- function(x) {
 
 # Build a data.frame for GA report data
 #' @include utils.R
-build_df <- function(type = c("ga", "mcf", "rt", "mgmt"), data) {
+build_df <- function(type = c("ga", "mcf", "realtime", "mgmt"), data) {
     type <- match.arg(type)
     data_df <- switch(type,
                       ga = df_ga(data),
-                      rt = df_rt(data),
+                      rt = df_realtime(data),
                       mcf = df_mcf(data),
                       mgmt = df_mgmt(data))
     rownames(data_df) <- NULL

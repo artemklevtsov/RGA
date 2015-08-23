@@ -44,7 +44,7 @@ error_message <- function(x) {
 #' @importFrom httr GET config accept_json content
 #' @importFrom jsonlite fromJSON
 #'
-get_response <- function(type = c("ga", "rt", "mcf", "mgmt"), path = NULL, query = NULL,
+get_response <- function(type = c("ga", "realtime", "mcf", "mgmt"), path = NULL, query = NULL,
                          simplify = TRUE, flatten = TRUE, token) {
     type <- match.arg(type)
     url <- get_url(type = type, path = path)

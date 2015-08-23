@@ -22,7 +22,7 @@ To access the Reporting API Google Analytics `RGA` package provides the followin
 
 * `get_ga()` - returns Analytics data for a view (profile);
 * `get_mcf()` - returns Analytics Multi-Channel Funnels data for a view (profile);
-* `get_rt()` - returns real time data for a view (profile).
+* `get_realtime()` - returns real time data for a view (profile).
 
 All of this functions return a data frame including the data for a view (profile).
 

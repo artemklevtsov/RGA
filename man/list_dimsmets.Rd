@@ -31,7 +31,7 @@ This dataset represents all of the dimensions and metrics for the reporting API 
 }
 \examples{
 \dontrun{
-ga_meta <- list_metadata("ga")
+ga_meta <- list_dimsmets("ga")
 # a count of parameters types
 table(ga_meta$type)
 # parameters groups

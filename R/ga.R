@@ -24,7 +24,7 @@
 #'
 #' \href{https://ga-dev-tools.appspot.com/explorer/}{Query Explorer}
 #'
-#' @seealso \code{\link{authorize}} \code{\link{list_metadata}}
+#' @seealso \code{\link{authorize}} \code{\link{list_dimsmets}}
 #'
 #' @family Reporting API
 #'

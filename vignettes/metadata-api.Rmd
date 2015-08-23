@@ -45,7 +45,7 @@ There are several examples of usage the metadata Google Analytics API.
 To obtain the relevant information metadata:
 
 ```r
-ga_meta <- list_metadata()
+ga_meta <- list_dimsmets()
 ```
 
 List of all outdated parameters and those ones which were replaced:
@@ -76,12 +76,6 @@ List of all templatized parameters:
 
 ```r
 subset(ga_meta, !is.na(min.template.index) & !is.na(max.template.index), id)
-```
-
-`RGA` package also provide the shiny demo app to access `ga` dataset:
-
-```r
-dimsmets("ga")
 ```
 
 ## References
