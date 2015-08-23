@@ -7,14 +7,15 @@ This package is designed to work with the [API Google Analytics](https://develop
 Key features:
 
 * [OAuth 2.0](https://developers.google.com/accounts/docs/OAuth2) authorization;
+* Auto refresh an expired OAuth access token;
+* Access to all the accounts which the user has access to;
+* API responses is converted directly into R objects;
 * Access to the following [Google Analytics APIs](https://developers.google.com/analytics/devguides/platform/):
     - [Management API](https://developers.google.com/analytics/devguides/config/mgmt/v3): access to configuration data for accounts, web properties, views (profiles), goals and segments;
     - [Core Reporting API](https://developers.google.com/analytics/devguides/reporting/core/v3): query for dimensions and metrics to produce customized reports;
     - [Multi-Channel Funnels Reporting API](https://developers.google.com/analytics/devguides/reporting/mcf/v3): query the traffic source paths that lead to a user's goal conversion;
     - [Real Time Reporting API](https://developers.google.com/analytics/devguides/reporting/realtime/v3): report on activity occurring on your property at the moment;
     - [Metadata API](https://developers.google.com/analytics/devguides/reporting/metadata/v3): access the list of API dimensions and metrics and their attributes;
-* Access to all the accounts which the user has access to;
-* API responses is converted directly into R as a `data.frame`;
 * Auto-pagination to return more than 10,000 rows of the results by combining multiple data requests.
 
 ## Installation
@@ -43,13 +44,17 @@ R CMD INSTALL RGA_*.tar.gz
 
 Once you have the package loaded, there are 3 steps you need to use to get data from Google Analytics:
 
-1. Authorize this package to access your Google Analytics data with the `authorize()` function.
-1. Determine the profile ID which you want to get access to with the `list_profiles()` function.
-1. Get the results from the API with one of these functions: `get_ga()`, `get_mcf()` or `get_rt()`. 
+1. Authorize this package to access your Google Analytics data with the `authorize()` function;
+1. Determine the profile ID which you want to get access to with the `list_profiles()` function;
+1. Get the anaytics data from the API with one of these functions:
+    - `get_ga()` for the Core Reporting API
+    - `get_mcf()` for the Multi-Channel Funnels Reporting API
+    - `get_realtime()` for the Real Time Reporting API
 
 For details about this steps please type into R:
 
 ```r
+library(help = "RGA")
 browseVignettes(package = "RGA")
 ```
 
