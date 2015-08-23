@@ -8,6 +8,9 @@
     \item Update data
     \item Add query and profile info to the reporting api data. Use \code{attributes()} to see it
     \item Add \code{username} param to the \code{authorize()} function to define an user account for the authorization
+    \item \code{get_rt()} renamed to \code{get_realtime()}
+    \item \code{list_metadata()} renamed to \code{list_dimsmets()}
+    \item Removed \code{dimsmets()} and shiny dependency
   }
 }
 
