@@ -17,10 +17,10 @@
 #' @examples
 #' \dontrun{
 #' # get token data
-#' authorize(client.id = "client_id", client.secret = "client_secret")
+#' authorize()
 #' # set query
-#' query <- list(profile.id = "XXXXXXXX", start.date = "31daysAgo", end.date = "today",
-#'               metrics = "ga:users,ga:sessions", dimensions = "ga:userType")
+#' query <- build_query(profile.id = "XXXXXXXX", start.date = "31daysAgo", end.date = "today",
+#'                      metrics = "ga:users,ga:sessions", dimensions = "ga:userType")
 
 #' # get report data
 #' ga_data <- get_report(type = "ga", query = query)

@@ -29,7 +29,7 @@
 #' \enumerate{
 #'   \item Authorize this package to access your Google Analytics data with the \code{\link{authorize}} function;
 #'   \item Determine the profile ID which you want to get access to with the \code{\link{list_profiles}} function;
-#'   \item Get the results from the API with one of these functions: \code{\link{get_ga}}, \code{\link{get_mcf}} or \code{\link{get_rt}}.
+#'   \item Get the results from the API with one of these functions: \code{\link{get_ga}}, \code{\link{get_mcf}} or \code{\link{get_realtime}}.
 #' }
 #'
 #' For details about this steps please type into R: \code{browseVignettes(package = "RGA")}
@@ -45,10 +45,10 @@
 #' @author
 #' Artem Klevtsov \email{a.a.klevtsov@@gmail.com}
 #'
-#' @name RGA
+#' @name RGA-package
 #' @docType package
 #' @keywords package
-#' @aliases rga RGA-package
+#' @aliases rga RGA
 #'
 #' @examples
 #' \dontrun{

@@ -53,7 +53,7 @@ Collate:
     'mcf.R'
     'metadata.R'
     'package.R'
-    'rt.R'
+    'realtime.R'
     'segments.R'
     'shiny.R'
     'unsampled.R'

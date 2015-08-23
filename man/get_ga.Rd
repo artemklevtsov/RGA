@@ -43,7 +43,7 @@ Get the Anaytics data from Core Reporting API for a view (profile)
 \examples{
 \dontrun{
 # get token data
-authorize(client.id = "client_id", client.secret = "client_secret")
+authorize()
 # get report data
 ga_data <- get_ga("profile_id", start.date = "30daysAgo", end.date = "today",
                   metrics = "ga:sessions", dimensions = "ga:source,ga:medium",
@@ -63,6 +63,6 @@ ga_data <- get_ga("profile_id", start.date = "30daysAgo", end.date = "today",
 \code{\link{authorize}} \code{\link{list_metadata}}
 
 Other Reporting API: \code{\link{firstdate}};
-  \code{\link{get_mcf}}; \code{\link{get_rt}}
+  \code{\link{get_mcf}}; \code{\link{get_realtime}}
 }
 

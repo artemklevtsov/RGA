@@ -20,13 +20,13 @@
 #' @examples
 #' \dontrun{
 #' # get token data
-#' authorize(client.id = "client_id", client.secret = "client_sevret")
+#' authorize()
 #' # get report data
-#' ga_data <- get_rt("profile_id", metrics = "rt:activeUsers", dimensions = "rt:source,rt:medium")
+#' ga_data <- get_realtime("profile_id", metrics = "rt:activeUsers", dimensions = "rt:source,rt:medium")
 #' # get active users in realtime (press Esc to abort)
 #' while (TRUE) {
 #'     cat("\014")
-#'     print(get_rt("profile_id", metrics = "rt:activeUsers"))
+#'     print(get_realtime("profile_id", metrics = "rt:activeUsers"))
 #'     Sys.sleep(2)
 #' }
 #' }
@@ -35,10 +35,24 @@
 #'
 #' @export
 #'
-get_rt <- function(profile.id, metrics = "rt:activeUsers", dimensions = NULL,
+get_realtime <- function(profile.id, metrics = "rt:activeUsers", dimensions = NULL,
                    sort = NULL, filters = NULL, max.results = NULL, token) {
     query <- build_query(profile.id = profile.id, metrics = metrics, dimensions = dimensions,
                          sort = sort, filters = filters, max.results = max.results)
     res <- get_report(type = "rt", query = query, token = token)
     return(res)
 }
+
+#' @noRd
+#' @aliases get_realtime
+#' @export
+#'
+get_rt <- function(profile.id, metrics = "rt:activeUsers", dimensions = NULL,
+                   sort = NULL, filters = NULL, max.results = NULL, token) {
+    query <- build_query(profile.id = profile.id, metrics = metrics, dimensions = dimensions,
+                         sort = sort, filters = filters, max.results = max.results)
+    .Deprecated("get_realtime")
+    res <- get_report(type = "rt", query = query, token = token)
+    return(res)
+}
+

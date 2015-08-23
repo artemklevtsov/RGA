@@ -26,7 +26,7 @@
 #' @examples
 #' \dontrun{
 #' # get token data
-#' authorize(client.id = "client_id", client.secret = "client_sevret")
+#' authorize()
 #' # get report data
 #' ga_data <- get_mcf("profile_id", start.date = "30daysAgo", end.date = "today",
 #'                    metrics = "mcf:totalConversions",

@@ -19,14 +19,17 @@ Get the first date with available data
 }
 \examples{
 \dontrun{
-authorize(client.id = "client_id", client.secret = "client_sevret")
+authorize()
 first_date <- firstdate(profile.id = "profile_id")
+ga_data <- get_ga("profile_id", start.date = first_date, end.date = "today",
+                  metrics = "ga:sessions", dimensions = "ga:source,ga:medium",
+                  sort = "-ga:sessions")
 }
 }
 \seealso{
 \code{\link{authorize}}
 
 Other Reporting API: \code{\link{get_ga}};
-  \code{\link{get_mcf}}; \code{\link{get_rt}}
+  \code{\link{get_mcf}}; \code{\link{get_realtime}}
 }
 
