@@ -1,4 +1,4 @@
-#' @title Lists all columns for a report type
+#' @title Lists all the dimensions and metrics for a particular report type
 #'
 #' @description
 #' This dataset represents all of the dimensions and metrics for the reporting API with their attributes. Attributes returned include UI name, description, segments support, etc.
@@ -54,7 +54,7 @@
 #' subset(ga_meta, allowed.in.segments, id)
 #' }
 #'
-list_metadata <- function(report.type = "ga") {
+list_dimsmets <- function(report.type = "ga") {
     url <- paste(base_api_url, base_api_version, "metadata", report.type, "columns", sep = "/")
     resp <- GET(url, accept_json())
     data_json <- fromJSON(content(resp, as = "text"), flatten = TRUE)
@@ -68,6 +68,15 @@ list_metadata <- function(report.type = "ga") {
     data_df <- convert_datatypes(data_df)
     message(paste("Obtained data.frame with", nrow(data_df), "rows and", ncol(data_df), "columns."))
     return(data_df)
+}
+
+#' @noRd
+#' @aliases list_dimsmets
+#' @export
+#'
+list_metadata <- function(report.type = "ga") {
+    .Deprecated("list_dimsmets")
+    return(list_dimsmets(report.type))
 }
 
 #' @title Lists all columns for a Google Analytics core report type
