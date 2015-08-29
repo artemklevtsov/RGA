@@ -1,6 +1,6 @@
 # RGA
 
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/RGA)](http://cran.r-project.org/package=RGA) [![Travis-CI Build Status](https://travis-ci.org/artemklevtsov/RGA.svg?branch=master)](https://travis-ci.org/artemklevtsov/RGA)
+[![Travis-CI Build Status](https://travis-ci.org/artemklevtsov/RGA.svg?branch=master)](https://travis-ci.org/artemklevtsov/RGA) [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/RGA)](http://cran.r-project.org/package=RGA)
 
 This package is designed to work with the [API Google Analytics](https://developers.google.com/analytics) in [R](http://www.r-project.org/).
 
@@ -59,6 +59,12 @@ browseVignettes(package = "RGA")
 ```
 
 ## Bug reports
+
+First check the changes in the latest version of the package. Type type into R:
+
+```r
+news(package = "RGA", Version == packageVersion("RGA"))
+```
 
 Before posting a bug please try execute your code with the `httr::with_verbose()` wrapper. It will be useful if you attach verbose output to the bug report.
 
