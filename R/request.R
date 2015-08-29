@@ -26,7 +26,7 @@ error_message <- function(x) {
 #' @title Get a Google Analytics API response
 #'
 #' @param type character string including report type.
-#' @param path list including a request parameters.
+#' @param path character including a request path.
 #' @param query list including a request parameters.
 #' @param simplify logical. Coerce JSON arrays to a vector, matrix or data frame.
 #' @param flatten logical. Automatically flatten nested data frames into a single non-nested data frame.
@@ -61,9 +61,8 @@ get_response <- function(type = c("ga", "realtime", "mcf", "mgmt"), path = NULL,
     if (resp$status_code == 401L) {
         authorize(cache = FALSE)
         return(eval(match.call()))
-    } else if (resp$status_code == 404L) {
+    } else if (resp$status_code == 404L)
         stop("The requested URL not found. URL: ", strsplit(resp$url, split = "?", fixed = TRUE)[[1]][1])
-    }
     data_json <- fromJSON(content(resp, as = "text"), simplifyVector = simplify, flatten = flatten)
     if (!is.null(data_json$error))
         error_message(data_json)
