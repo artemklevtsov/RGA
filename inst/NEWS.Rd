@@ -2,6 +2,11 @@
 \title{News for Package \pkg{RGA}}
 \encoding{UTF-8}
 
+\section{Changes in RGA version 0.2.9999 (2015-xx-xx)}{
+  \itemize{
+    \item Updated data
+}
+
 \section{Changes in RGA version 0.2.4 (2015-08-31)}{
   \itemize{
     \item Updated data
