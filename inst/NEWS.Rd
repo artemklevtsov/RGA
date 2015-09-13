@@ -5,6 +5,8 @@
 \section{Changes in RGA version 0.2.9999 (2015-xx-xx)}{
   \itemize{
     \item Updated data
+    \item Removed \sQuote{Common Queries} vegnette. See references in the \code{get_ga()} help page
+  }
 }
 
 \section{Changes in RGA version 0.2.4 (2015-08-31)}{
