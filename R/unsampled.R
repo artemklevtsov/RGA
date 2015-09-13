@@ -30,7 +30,7 @@
 #' @seealso \code{\link{authorize}}
 #'
 #' @references
-#' \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/unsampledReports}{Google Management API - Unsampled Reports}
+#' \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/unsampledReports}{Management API - Unsampled Reports}
 #'
 #' @family Management API
 #'
@@ -73,7 +73,7 @@ get_unsampled_report <- function(account.id, webproperty.id, profile.id, unsampl
 #' @seealso \code{\link{authorize}}
 #'
 #' @references
-#' \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/unsampledReports}{Google Management API - Unsampled Reports}
+#' \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/unsampledReports}{Management API - Unsampled Reports}
 #'
 #' @family Management API
 #'

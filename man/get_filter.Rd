@@ -56,7 +56,7 @@ An Analytics account filter.
 Gets a filter to which the user has access to
 }
 \references{
-\href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/filters}{Google Management API - Filters}
+\href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/filters}{Management API - Filters}
 }
 \seealso{
 \code{\link{authorize}}

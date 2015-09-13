@@ -27,7 +27,7 @@
 #' @seealso \code{\link{authorize}}
 #'
 #' @references
-#' \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/customMetrics}{Google Management API - Custom metrics}
+#' \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/customMetrics}{Management API - Custom metrics}
 #'
 #' @family Management API
 #'
@@ -66,7 +66,7 @@ get_custom_metric <- function(account.id, webproperty.id, metric.id, token) {
 #' @seealso \code{\link{authorize}}
 #'
 #' @references
-#' \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/customMetrics}{Google Management API - Custom metrics}
+#' \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/customMetrics}{Management API - Custom metrics}
 #'
 #' @family Management API
 #'

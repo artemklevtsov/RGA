@@ -14,9 +14,11 @@
 #' @seealso \code{\link{authorize}}
 #'
 #' @references
-#' \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/accounts}{Google Management API - Accounts}
+#' \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/accounts}{Management API - Accounts}
 #'
 #' \href{https://ga-dev-tools.appspot.com/account-explorer/}{Google Analytics Demos & Tools - Account Explorer}
+#'
+#' \href{https://support.google.com/analytics/answer/1009618?vid=1-635777221050507375-76049587}{Analytics Help - Hierarchy of accounts, users, properties, and views}
 #'
 #' @family Management API
 #'

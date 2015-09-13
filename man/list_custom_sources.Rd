@@ -35,7 +35,7 @@ Lists Analytics custom data sources to which the user has access. Each resource 
 List custom data sources which the user has access to
 }
 \references{
-\href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/customDataSources}{Google Management API - Custom Data Sources}
+\href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/customDataSources}{Management API - Custom Data Sources}
 }
 \seealso{
 \code{\link{authorize}}

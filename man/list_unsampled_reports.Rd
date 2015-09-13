@@ -42,7 +42,7 @@ An unsampled report collection lists Analytics unsampled reports to which the us
 Lists unsampled reports which the user has access to
 }
 \references{
-\href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/unsampledReports}{Google Management API - Unsampled Reports}
+\href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/unsampledReports}{Management API - Unsampled Reports}
 }
 \seealso{
 \code{\link{authorize}}

@@ -37,7 +37,7 @@ A goal collection lists Analytics goals to which the user has access. Each view 
 Lists goals which the user has access to
 }
 \references{
-\href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/goals}{Google Management API - Goals}
+\href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/goals}{Management API - Goals}
 }
 \seealso{
 \code{\link{authorize}}

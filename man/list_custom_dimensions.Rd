@@ -34,7 +34,7 @@ An Analytics custom dimension.
 Lists custom dimensions to which the user has access to
 }
 \references{
-\href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/customDimensions}{Google Management API - Custom Dimensions}
+\href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/customDimensions}{Management API - Custom Dimensions}
 }
 \seealso{
 \code{\link{authorize}}

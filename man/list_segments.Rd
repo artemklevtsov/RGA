@@ -27,7 +27,7 @@ An segment collection lists Analytics segments that the user has access to. Each
 Lists segments which the user has access to
 }
 \references{
-\href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/segments}{Google Management API - Segments}
+\href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/segments}{Management API - Segments}
 
 \href{https://developers.google.com/analytics/devguides/reporting/core/v3/segments}{Core Reporting API - Segments}
 }

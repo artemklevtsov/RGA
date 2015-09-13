@@ -24,7 +24,7 @@
 #' @seealso \code{\link{authorize}}
 #'
 #' @references
-#' \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/customDimensions}{Google Management API - Custom Dimensions}
+#' \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/customDimensions}{Management API - Custom Dimensions}
 #'
 #' @family Management API
 #'
@@ -60,7 +60,7 @@ get_custom_dimension <- function(account.id, webproperty.id, dimension.id, token
 #' @seealso \code{\link{authorize}}
 #'
 #' @references
-#' \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/customDimensions}{Google Management API - Custom Dimensions}
+#' \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/customDimensions}{Management API - Custom Dimensions}
 #'
 #' @family Management API
 #'

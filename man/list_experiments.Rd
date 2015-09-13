@@ -44,7 +44,7 @@ An experiment collection lists Analytics experiments to which the user has acces
 Lists experiments to which the user has access to
 }
 \references{
-\href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/experiments}{Google Management API - Experiments}
+\href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/experiments}{Management API - Experiments}
 }
 \seealso{
 \code{\link{authorize}}

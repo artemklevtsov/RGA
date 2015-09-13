@@ -45,7 +45,7 @@
 #' @seealso \code{\link{authorize}}
 #'
 #' @references
-#' \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/experiments}{Google Management API - Experiments}
+#' \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/experiments}{Management API - Experiments}
 #'
 #' @family Management API
 #'
@@ -90,7 +90,7 @@ get_experiment <- function(account.id, webproperty.id, profile.id, experiment.id
 #' @seealso \code{\link{authorize}}
 #'
 #' @references
-#' \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/experiments}{Google Management API - Experiments}
+#' \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/experiments}{Management API - Experiments}
 #'
 #' @family Management API
 #'

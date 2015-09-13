@@ -37,7 +37,7 @@ An Analytics custom metric.
 Lists custom metrics to which the user has access to
 }
 \references{
-\href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/customMetrics}{Google Management API - Custom metrics}
+\href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/customMetrics}{Management API - Custom metrics}
 }
 \seealso{
 \code{\link{authorize}}

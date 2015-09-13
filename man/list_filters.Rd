@@ -28,7 +28,7 @@ A filter collection lists filters created by users in an Analytics account. Each
 Lists all filters for an account which the user has access to
 }
 \references{
-\href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/filters}{Google Management API - Filters}
+\href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/filters}{Management API - Filters}
 }
 \seealso{
 \code{\link{authorize}}

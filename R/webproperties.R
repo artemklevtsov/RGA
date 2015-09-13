@@ -25,7 +25,11 @@
 #' @seealso \code{\link{authorize}}
 #'
 #' @references
-#' \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/webproperties}{Google Management API - Web Properties}
+#' \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/webproperties}{Management API - Web Properties}
+#'
+#' \href{https://ga-dev-tools.appspot.com/account-explorer/}{Google Analytics Demos & Tools - Account Explorer}
+#'
+#' \href{https://support.google.com/analytics/answer/1009618?vid=1-635777221050507375-76049587}{Analytics Help - Hierarchy of accounts, users, properties, and views}
 #'
 #' @family Management API
 #'
@@ -62,9 +66,11 @@ get_webproperty <- function(account.id, webproperty.id, token) {
 #' @seealso \code{\link{authorize}}
 #'
 #' @references
-#' \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/webproperties}{Google Management API - Web Properties}
+#' \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/webproperties}{Management API - Web Properties}
 #'
 #' \href{https://ga-dev-tools.appspot.com/account-explorer/}{Google Analytics Demos & Tools - Account Explorer}
+#'
+#' \href{https://support.google.com/analytics/answer/1009618?vid=1-635777221050507375-76049587}{Analytics Help - Hierarchy of accounts, users, properties, and views}
 #'
 #' @family Management API
 #'

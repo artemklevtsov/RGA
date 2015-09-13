@@ -39,7 +39,7 @@ An Analytics goal resource
 Gets a goal to which the user has access to
 }
 \references{
-\href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/goals}{Google Management API - Goals}
+\href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/goals}{Management API - Goals}
 }
 \seealso{
 \code{\link{authorize}}

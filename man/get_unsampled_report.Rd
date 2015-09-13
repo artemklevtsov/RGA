@@ -44,7 +44,7 @@ An Analytics unsampled report.
 Gets a single unsampled report
 }
 \references{
-\href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/unsampledReports}{Google Management API - Unsampled Reports}
+\href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/unsampledReports}{Management API - Unsampled Reports}
 }
 \seealso{
 \code{\link{authorize}}

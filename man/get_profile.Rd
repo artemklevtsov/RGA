@@ -41,7 +41,11 @@ An Analytics view (profile).
 Gets a view (profile) to which the user has access to
 }
 \references{
-\href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/profiles}{Google Management API - Views (Profiles)}
+\href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/profiles}{Management API - Views (Profiles)}
+
+\href{https://ga-dev-tools.appspot.com/account-explorer/}{Google Analytics Demos & Tools - Account Explorer}
+
+\href{https://support.google.com/analytics/answer/1009618?vid=1-635777221050507375-76049587}{Analytics Help - Hierarchy of accounts, users, properties, and views}
 }
 \seealso{
 \code{\link{authorize}}

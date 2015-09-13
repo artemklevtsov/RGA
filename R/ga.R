@@ -22,7 +22,7 @@
 #'
 #' \href{https://developers.google.com/analytics/devguides/reporting/core/v3/common-queries}{Core Reporting API - Common Queries}
 #'
-#' \href{https://ga-dev-tools.appspot.com/explorer/}{Query Explorer}
+#' \href{https://ga-dev-tools.appspot.com/explorer/}{Google Analytics Demos & Tools - Query Explorer}
 #'
 #' @seealso \code{\link{authorize}} \code{\link{list_dimsmets}}
 #'
