@@ -12,14 +12,12 @@ prepare_query <- function(query) {
 
 # Error printing function
 #' @include utils.R
-#' @importFrom httr http_status
-#' @importFrom utils capture.output
 error_message <- function(x) {
     code <- x$error$code
-    message <- http_status(code)$message
+    message <- httr::http_status(code)$message
     reasons <- x$error$errors[, -1L]
     reasons$reason <- to_separated(reasons$reason, sep = " ")
-    reasons <- paste(capture.output(print(reasons, right = FALSE)), collapse = "\n")
+    reasons <- paste(utils::capture.output(print(reasons, right = FALSE)), collapse = "\n")
     stop(message, "\n", reasons, call. = FALSE)
 }
 
@@ -41,9 +39,6 @@ error_message <- function(x) {
 #' @include auth.R
 #' @include url.R
 #'
-#' @importFrom httr GET config accept_json content
-#' @importFrom jsonlite fromJSON
-#'
 get_response <- function(type = c("ga", "realtime", "mcf", "mgmt"), path = NULL, query = NULL,
                          simplify = TRUE, flatten = TRUE, token) {
     type <- match.arg(type)
@@ -52,18 +47,18 @@ get_response <- function(type = c("ga", "realtime", "mcf", "mgmt"), path = NULL,
         token <- get_token(getOption("rga.token"))
     if (!missing(token)) {
         stopifnot(inherits(token, "Token2.0"))
-        config <- config(token = token)
+        config <- httr::config(token = token)
     } else
         config <- NULL
     if (!is.null(query) && is.list(query))
         query <- prepare_query(query)
-    resp <- GET(url, query = query, config = config, accept_json())
+    resp <- httr::GET(url, query = query, config = config, httr::accept_json())
     if (resp$status_code == 401L) {
         authorize(cache = FALSE)
         return(eval(match.call()))
     } else if (resp$status_code == 404L)
         stop("The requested URL not found. URL: ", strsplit(resp$url, split = "?", fixed = TRUE)[[1]][1])
-    data_json <- fromJSON(content(resp, as = "text"), simplifyVector = simplify, flatten = flatten)
+    data_json <- jsonlite::fromJSON(httr::content(resp, as = "text"), simplifyVector = simplify, flatten = flatten)
     if (!is.null(data_json$error))
         error_message(data_json)
     return(data_json)

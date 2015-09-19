@@ -28,9 +28,6 @@
 #'
 #' \href{https://developers.google.com/analytics/devguides/reporting/core/dimsmets}{Core Reporting API - Dimensions & Metrics Reference}
 #'
-#' @importFrom httr GET accept_json content
-#' @importFrom jsonlite fromJSON
-#'
 #' @include url.R
 #' @include request.R
 #' @include convert.R
@@ -58,8 +55,8 @@
 #'
 list_dimsmets <- function(report.type = "ga") {
     url <- paste(base_api_url, base_api_version, "metadata", report.type, "columns", sep = "/")
-    resp <- GET(url, accept_json())
-    data_json <- fromJSON(content(resp, as = "text"), flatten = TRUE)
+    resp <- httr::GET(url, httr::accept_json())
+    data_json <- jsonlite::fromJSON(httr::content(resp, as = "text"), flatten = TRUE)
     if (!is.null(data_json$error))
         error_message(data_json)
     data_df <- data_json$items

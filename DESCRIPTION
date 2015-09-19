@@ -27,8 +27,7 @@ Imports:
     utils,
     stats,
     jsonlite,
-    httr (>= 1.0.0),
-    httpuv
+    httr (>= 1.0.0)
 Collate:
     'utils.R'
     'url.R'
