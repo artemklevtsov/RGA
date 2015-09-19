@@ -24,7 +24,7 @@
 #'
 #' \href{https://ga-dev-tools.appspot.com/explorer/}{Google Analytics Demos & Tools - Query Explorer}
 #'
-#' @seealso \code{\link{authorize}} \code{\link{list_dimsmets}}
+#' @seealso \code{\link{authorize}} \code{\link{list_dimsmets}} \code{\link{shiny_dimsmets}}
 #'
 #' @family Reporting API
 #'

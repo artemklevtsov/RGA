@@ -60,7 +60,7 @@ ga_data <- get_ga("profile_id", start.date = "30daysAgo", end.date = "today",
 \href{https://ga-dev-tools.appspot.com/explorer/}{Google Analytics Demos & Tools - Query Explorer}
 }
 \seealso{
-\code{\link{authorize}} \code{\link{list_dimsmets}}
+\code{\link{authorize}} \code{\link{list_dimsmets}} \code{\link{shiny_dimsmets}}
 
 Other Reporting API: \code{\link{firstdate}};
   \code{\link{get_mcf}}; \code{\link{get_realtime}},

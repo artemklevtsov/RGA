@@ -21,7 +21,7 @@
 #' \item{premium.min.template.index}{Only available for templatized columns. This is the minimum index for the column for premium properties.}
 #' \item{premium.max.template.index}{Only available for templatized columns. This is the maximum index for the column for premium properties.}
 #'
-#' @seealso \code{\link{get_ga}}
+#' @seealso \code{\link{shiny_dimsmets}} \code{\link{get_ga}}
 #'
 #' @references
 #' \href{https://developers.google.com/analytics/devguides/reporting/metadata/v3/}{Google Analytics Metadata API}
@@ -31,8 +31,6 @@
 #' @include url.R
 #' @include request.R
 #' @include convert.R
-#'
-#' @aliases list_metadata
 #'
 #' @export
 #'
@@ -69,11 +67,20 @@ list_dimsmets <- function(report.type = "ga") {
     return(data_df)
 }
 
+#' @title The Shiny Dimensions & Metrics Explorer
+#'
+#' @description
+#' The dimensions and metrics explorer lists and describes all the dimensions and metrics available through the Core Reporting API.
+#'
+#' @seealso \code{\link{list_dimsmets}} \code{\link{get_ga}}
+#'
 #' @export
 #'
-list_metadata <- function(report.type = "ga") {
-    .Deprecated("list_dimsmets")
-    return(list_dimsmets(report.type))
+shiny_dimsmets <- function() {
+    appDir <- system.file("shiny-examples", "01-dimsmets", package = "RGA")
+    if (appDir == "")
+        stop("Could not find example directory. Try re-installing ", dQuote("RGA"), " package.", call. = FALSE)
+    shiny::runApp(appDir, display.mode = "normal")
 }
 
 #' @title Lists all columns for a Google Analytics core report type

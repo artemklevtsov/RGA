@@ -6,6 +6,8 @@
   \itemize{
     \item Updated data
     \item Removed \sQuote{Common Queries} vegnette. See references in the \code{get_ga()} help page
+    \item Added \code{shiny_dimsmets()} to explore dimensions and metrics for the Core Reporting API
+    \item Some inner code improvements
   }
 }
 

@@ -58,6 +58,7 @@ Collate:
     'zzz.R'
 Suggests:
     knitr,
-    testthat
+    testthat,
+    shiny
 VignetteBuilder: knitr
 LazyData: true
