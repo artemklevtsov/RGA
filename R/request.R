@@ -57,7 +57,7 @@ get_response <- function(type = c("ga", "realtime", "mcf", "mgmt"), path = NULL,
         config <- NULL
     if (!is.null(query) && is.list(query))
         query <- prepare_query(query)
-    resp <- GET(url, query = query, accept_json(), config)
+    resp <- GET(url, query = query, config = config, accept_json())
     if (resp$status_code == 401L) {
         authorize(cache = FALSE)
         return(eval(match.call()))

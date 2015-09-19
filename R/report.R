@@ -41,16 +41,16 @@ get_report <- function(type = c("ga", "mcf", "realtime"), query, token) {
                                webproperty.id = data_json$profileInfo$webPropertyId,
                                profile.id = data_json$profileInfo$profileId, token = token)
         timezone <- profile$timezone
+        if (!is.null(data_df$date.hour))
+            data_df$date.hour <- as.POSIXct(strptime(data_df$date.hour, format = "%Y%m%d%H", tz = timezone))
+        if (!is.null(data_df[["date"]]))
+            data_df[["date"]] <- as.POSIXct(strptime(data_df[["date"]], "%Y%m%d", tz = timezone))
+        if (!is.null(data_df$conversion.date))
+            data_df$conversion.date <- as.POSIXct(strptime(data_df$conversion.date, "%Y%m%d", tz = timezone))
     }
-    if (!is.null(data_df$date.hour))
-        data_df$date.hour <- as.POSIXct(strptime(data_df$date.hour, format = "%Y%m%d%H", tz = timezone))
-    if (!is.null(data_df[["date"]]))
-        data_df[["date"]] <- as.POSIXct(strptime(data_df[["date"]], "%Y%m%d", tz = timezone))
-    if (!is.null(data_df$conversion.date))
-        data_df$conversion.date <- as.POSIXct(strptime(data_df$conversion.date, "%Y%m%d", tz = timezone))
     if (!is.null(data_json$containsSampledData) && isTRUE(data_json$containsSampledData)) {
         sample_perc <- paste0(round((as.numeric(data_json$sampleSize) / as.numeric(data_json$sampleSpace)) * 100, digits = 2), "%")
-        warning("Data contains sampled data. Used ", sample_perc, " of sessions for the query.", call. = FALSE)
+        warning("Data contains sampled data. Used ", data_json$sampleSize, " sessions (", sample_perc, " of sessions).", call. = FALSE)
     }
     names(data_json$profileInfo) <-  to_separated(names(data_json$profileInfo), sep = ".")
     names(data_json$query) <-  to_separated(names(data_json$query), sep = ".")
