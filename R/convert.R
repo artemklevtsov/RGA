@@ -2,17 +2,17 @@
 df_ga <- function(x) {
     if (is.list(x$rows))
         x$rows <- do.call(rbind, x$rows)
-    names <- gsub("^ga:", "", x$columnHeaders$name)
+    col_names <- gsub("^ga:", "", x$columnHeaders$name)
     data_df <- as.data.frame(x$rows, stringsAsFactors = FALSE)
-    colnames(data_df) <- names
+    colnames(data_df) <- col_names
     return(data_df)
 }
 
 # Build data.frame for realtime report
 df_realtime <- function(x) {
-    names <- gsub("^rt:", "", x$columnHeaders$name)
+    col_names <- gsub("^rt:", "", x$columnHeaders$name)
     data_df <- as.data.frame(x$rows, stringsAsFactors = FALSE)
-    colnames(data_df) <- names
+    colnames(data_df) <- col_names
     return(data_df)
 }
 
@@ -20,22 +20,21 @@ df_realtime <- function(x) {
 df_mcf <- function(x) {
     if (is.list(x$rows[[1L]]) && !is.data.frame(x$rows[[1L]]))
         x$rows <- do.call(c, x$rows)
-    names <- gsub("^mcf:", "", x$columnHeaders$name)
+    col_names <- gsub("^mcf:", "", x$columnHeaders$name)
     types <- x$columnHeaders$dataType
     if ("MCF_SEQUENCE" %in% types) {
-        pv_idx <- grep("MCF_SEQUENCE", types, fixed = TRUE, invert = TRUE)
-        cv_idx <- grep("MCF_SEQUENCE", types, fixed = TRUE)
-        primitive <- lapply(x$rows, function(i) .subset2(i, "primitiveValue")[pv_idx])
+        idx <- grep("MCF_SEQUENCE", types, fixed = TRUE)
+        primitive <- lapply(x$rows, function(i) .subset2(i, "primitiveValue")[-idx])
         primitive <- do.call(rbind, primitive)
-        colnames(primitive) <- names[pv_idx]
-        conversion <- lapply(x$rows, function(i) .subset2(i, "conversionPathValue")[cv_idx])
-        conversion <- lapply(conversion, function(i) lapply(i, function(j) paste(apply(j, 1, paste, collapse = ":"), collapse = " > ")))
+        colnames(primitive) <- col_names[-idx]
+        conversion <- lapply(x$rows, function(i) .subset2(i, "conversionPathValue")[idx])
+        conversion <- lapply(conversion, function(i) lapply(i, function(j) paste(j$interactionType, j$nodeValue, sep = ":", collapse = " > ")))
         conversion <- do.call(rbind, lapply(conversion, unlist))
-        colnames(conversion) <- names[cv_idx]
-        data_df <- data.frame(primitive, conversion, stringsAsFactors = FALSE)[, names]
+        colnames(conversion) <- col_names[idx]
+        data_df <- data.frame(primitive, conversion, stringsAsFactors = FALSE)[, col_names]
     } else {
         data_df <- as.data.frame(do.call(rbind, lapply(x$rows, unlist)), stringsAsFactors = FALSE)
-        colnames(data_df) <- names
+        colnames(data_df) <- col_names
     }
     return(data_df)
 }
