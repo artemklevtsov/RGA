@@ -16,6 +16,16 @@ df_realtime <- function(x) {
     return(data_df)
 }
 
+collapse_mcf <- function(x) {
+    if (ncol(x) == 1)
+        res <- paste(x$nodeValue, collapse = " > ")
+    else {
+        res <- paste(x$interactionType, x$nodeValue, collapse = " > ", sep = ":")
+        res <- gsub("NA:", "", res)
+    }
+    return(res)
+}
+
 # Build data.frame for mcf report
 df_mcf <- function(x) {
     if (is.list(x$rows[[1L]]) && !is.data.frame(x$rows[[1L]]))
@@ -28,7 +38,7 @@ df_mcf <- function(x) {
         primitive <- do.call(rbind, primitive)
         colnames(primitive) <- col_names[-idx]
         conversion <- lapply(x$rows, function(i) .subset2(i, "conversionPathValue")[idx])
-        conversion <- lapply(conversion, function(i) lapply(i, function(j) paste(j$interactionType, j$nodeValue, sep = ":", collapse = " > ")))
+        conversion <- lapply(conversion, function(i) lapply(i, function(j) collapse_mcf(j)))
         conversion <- do.call(rbind, lapply(conversion, unlist))
         colnames(conversion) <- col_names[idx]
         data_df <- data.frame(primitive, conversion, stringsAsFactors = FALSE)[, col_names]
