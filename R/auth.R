@@ -26,6 +26,11 @@ remove_token <- function(name) {
         remove(list = name, envir = TokenEnv)
 }
 
+# Validate token
+validate_token <- function(x) {
+    inherits(x, "Token2.0") && is.null(x$credentials$error)
+}
+
 # Check environment variables exists
 env_exists <- function(...) {
     dots <- list(...)
@@ -146,6 +151,8 @@ authorize <- function(username = getOption("rga.username"),
     }
     token <- httr::oauth2.0_token(endpoint = endpoint, app = app, cache = cache,
                             scope = "https://www.googleapis.com/auth/analytics.readonly")
+    if (!validate_token(token))
+        stop("OAuth token is invalid.", call. = FALSE)
     set_token(getOption("rga.token"), token)
     invisible(token)
 }
