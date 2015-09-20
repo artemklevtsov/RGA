@@ -46,8 +46,8 @@ get_response <- function(type = c("ga", "realtime", "mcf", "mgmt"), path = NULL,
     if (missing(token) && token_exists(getOption("rga.token")))
         token <- get_token(getOption("rga.token"))
     if (!missing(token)) {
-        stopifnot(inherits(token, "Token2.0"))
-        config <- httr::config(token = token)
+        if (validate_token(token))
+            config <- httr::config(token = token)
     } else
         config <- NULL
     if (!is.null(query) && is.list(query))
