@@ -150,7 +150,8 @@ authorize <- function(username = getOption("rga.username"),
         stopifnot(length(username) == 1)
         username <- fix_username(username)
         endpoint$authorize <- paste0(endpoint$authorize, "?login_hint=", username)
-        cache <- paste0(".", username, "-token.rds")
+        if (is.character(cache))
+            cache <- paste0(".", username, "-token.rds")
     }
     if (new.auth) {
         if (token_exists(getOption("rga.token")))
@@ -160,6 +161,8 @@ authorize <- function(username = getOption("rga.username"),
             file.remove(cache)
         }
     }
+    if (is.character(cache))
+        message("Access token will be stored in the ", dQuote(cache), " file.")
     token <- httr::oauth2.0_token(endpoint = endpoint, app = app, cache = cache,
                             scope = "https://www.googleapis.com/auth/analytics.readonly")
     if (validate_token(token))
