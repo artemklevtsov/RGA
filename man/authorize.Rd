@@ -44,7 +44,7 @@ For some reasons you may need to use a custom client ID and client secret. In or
   \item Select \emph{APIs & auth} in the sidebar on the left.
   \item In the list of APIs select \emph{Analytics API}. Then click \emph{Enable API}.
   \item Select \emph{Credentials} in the sidebar on the left.
-  \item To set up a service account select \emph{Create New Client ID}. Select \emph{Installed Application} and \emph{Others} options and then select \emph{Create Client ID}.
+  \item To set up a service account select \emph{Add credentials}. Select \emph{OAuth 2.0 client ID} and \emph{Other} options and then select \emph{Create}.
 }
 
 You can return to the \href{https://console.developers.google.com/}{Google Developers Console} at any time to view the client ID and client secret on the \emph{Client ID for native application} section on \emph{Credentials} page.

@@ -60,13 +60,16 @@ Step by step instructions are as follows:
     - Click **Enable API** for activation **Analytics API**.
 3. Creating a new application:
     - Select **APIs & auth** and then **Credentials** sub-menu in the left sidebar;
-    - Click **Create new Client ID** on the left side of the page;
-    - Select **Installed application** from the APPLICATION TYPE list and **Other** from INSTALLED APPLICATION TYPE list in the pop-up window.
-    - Click on the **Create Client ID** button to confirm the creation of the application.
+    - Click on **Add credentials** blue button at the top left of the page;
+    - Select **OAuth 2.0 client ID** in the pop-up window;
+    - Select **Other** from Application type list;
+    - Change name of the client if you need;
+    - Click on the **Create** blue button to confirm the creation of the client ID.
 4. Obtaining Client ID and Client secret:
-    - Select the project from the project list on the https://console.developers.google.com/project page;
+    - Select the project from the project list on the <https://console.developers.google.com/project> page;
     - Select **APIs & auth** and then **Credentials** sub-menu in the left sidebar;
-    - Copy the values of the following fields: **Client ID** and **Client secret** in the **Client ID for native application** table.
+    - Click on name of the client from the **Name column** in the **OAuth 2.0 client IDs** table;
+    - Copy the values of the following fields: **Client ID** and **Client secret**.
 
 You can return to the [Google Developers Console](https://console.developers.google.com/project) at any time to view the **Client ID** and **Client secret** on the Client ID for native application section on Credentials page.
 

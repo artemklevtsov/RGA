@@ -81,7 +81,7 @@ fix_username <- function(x) {
 #'   \item Select \emph{APIs & auth} in the sidebar on the left.
 #'   \item In the list of APIs select \emph{Analytics API}. Then click \emph{Enable API}.
 #'   \item Select \emph{Credentials} in the sidebar on the left.
-#'   \item To set up a service account select \emph{Create New Client ID}. Select \emph{Installed Application} and \emph{Others} options and then select \emph{Create Client ID}.
+#'   \item To set up a service account select \emph{Add credentials}. Select \emph{OAuth 2.0 client ID} and \emph{Other} options and then select \emph{Create}.
 #' }
 #'
 #' You can return to the \href{https://console.developers.google.com/}{Google Developers Console} at any time to view the client ID and client secret on the \emph{Client ID for native application} section on \emph{Credentials} page.
@@ -153,13 +153,16 @@ authorize <- function(username = getOption("rga.username"),
         cache <- paste0(".", username, "-token.rds")
     }
     if (new.auth) {
-        remove_token(getOption("rga.token"))
-        if (is.character(cache))
-            unlink(cache)
+        if (token_exists(getOption("rga.token")))
+            remove_token(getOption("rga.token"))
+        if (is.character(cache) && file.exists(cache)) {
+            message("Removed old", dQuote(cache), " file.")
+            file.remove(cache)
+        }
     }
     token <- httr::oauth2.0_token(endpoint = endpoint, app = app, cache = cache,
                             scope = "https://www.googleapis.com/auth/analytics.readonly")
     if (validate_token(token))
         set_token(getOption("rga.token"), token)
-    invisible(token)
+    return(invisible(token))
 }
