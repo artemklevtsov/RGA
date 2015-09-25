@@ -27,8 +27,6 @@
 #' }
 #'
 get_report <- function(type = c("ga", "mcf", "realtime"), query, token) {
-    if(is.null(query$profile.id))
-        stop(sprintf("%s must be specified. Use %s to get list of the views.", dQuote("profile.id"), dQuote("list_profiles()")), call. = FALSE)
     type <- match.arg(type)
     data_json <- get_data(type = type, query = query, token = token)
     if (is.null(data_json)) {
