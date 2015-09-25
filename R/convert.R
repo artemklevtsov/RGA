@@ -85,6 +85,6 @@ build_df <- function(type = c("ga", "mcf", "realtime", "mgmt"), data) {
     rownames(data_df) <- NULL
     colnames(data_df) <- to_separated(colnames(data_df), sep = ".")
     data_df <- convert_datatypes(data_df)
-    message(paste("Obtained data.frame with", nrow(data_df), "rows and", ncol(data_df), "columns."))
+    message(sprintf("Obtained data.frame with %d rows and %d columns.", nrow(data_df), ncol(data_df)))
     return(data_df)
 }

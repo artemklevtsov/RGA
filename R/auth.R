@@ -29,7 +29,7 @@ remove_token <- function(name) {
 # Validate token
 validate_token <- function(x) {
     if (!inherits(x, "Token2.0"))
-        stop("Token is not a Token2.0 object. Found: ", class(x), ".")
+        stop(sprintf("Token is not a Token2.0 object. Found: %s.", class(x)))
     if (!is.null(x$credentials$error)) {
         if (x$credentials$error == "invalid_request")
             stop("Authorization error. No access token obtained.")
@@ -157,12 +157,12 @@ authorize <- function(username = getOption("rga.username"),
         if (token_exists(getOption("rga.token")))
             remove_token(getOption("rga.token"))
         if (is.character(cache) && file.exists(cache)) {
-            message("Removed old", dQuote(cache), " file.")
+            message(sprintf("Removed old %s file.", dQuote(cache)))
             file.remove(cache)
         }
     }
     if (is.character(cache))
-        message("Access token will be stored in the ", dQuote(cache), " file.")
+        message(sprintf("Access token will be stored in the %s file.", dQuote(cache)))
     token <- httr::oauth2.0_token(endpoint = endpoint, app = app, cache = cache,
                             scope = "https://www.googleapis.com/auth/analytics.readonly")
     if (validate_token(token))

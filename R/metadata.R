@@ -63,7 +63,7 @@ list_dimsmets <- function(report.type = "ga") {
     data_df$allowedInSegments <- match(data_df$allowedInSegments, "true", nomatch = 0) > 0
     colnames(data_df) <- to_separated(colnames(data_df), sep = ".")
     data_df <- convert_datatypes(data_df)
-    message(paste("Obtained data.frame with", nrow(data_df), "rows and", ncol(data_df), "columns."))
+    message(sprintf("Obtained data.frame with %d rows and %d columns.",  nrow(data_df), ncol(data_df)))
     return(data_df)
 }
 
@@ -79,7 +79,7 @@ list_dimsmets <- function(report.type = "ga") {
 shiny_dimsmets <- function() {
     appDir <- system.file("shiny-examples", "01-dimsmets", package = "RGA")
     if (appDir == "")
-        stop("Could not find example directory. Try re-installing ", dQuote("RGA"), " package.", call. = FALSE)
+        stop(sprintf("Could not find example directory. Try re-installing %s package.", dQuote("RGA")), call. = FALSE)
     shiny::runApp(appDir, display.mode = "normal")
 }
 

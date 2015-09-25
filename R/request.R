@@ -18,7 +18,8 @@ error_message <- function(x) {
     reasons <- x$error$errors[, -1L]
     reasons$reason <- to_separated(reasons$reason, sep = " ")
     reasons <- paste(utils::capture.output(print(reasons, right = FALSE)), collapse = "\n")
-    stop(message, "\n", reasons, call. = FALSE)
+    message <- c(message, "\n", reasons)
+    stop(message, call. = FALSE)
 }
 
 #' @title Get a Google Analytics API response
@@ -56,8 +57,10 @@ get_response <- function(type = c("ga", "realtime", "mcf", "mgmt"), path = NULL,
     if (resp$status_code == 401L) {
         authorize(cache = FALSE)
         return(eval(match.call()))
-    } else if (resp$status_code == 404L)
-        stop("The requested URL not found. URL: ", strsplit(resp$url, split = "?", fixed = TRUE)[[1]][1])
+    } else if (resp$status_code == 404L) {
+        u <- strsplit(resp$url, split = "?", fixed = TRUE)[[1]][1]
+        stop(sprintf("The requested URL not found. URL: %s.", u), call. = FALSE)
+    }
     data_json <- jsonlite::fromJSON(httr::content(resp, as = "text"), simplifyVector = simplify, flatten = flatten)
     if (!is.null(data_json$error))
         error_message(data_json)

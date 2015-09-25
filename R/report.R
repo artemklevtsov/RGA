@@ -28,7 +28,7 @@
 #'
 get_report <- function(type = c("ga", "mcf", "realtime"), query, token) {
     if(is.null(query$profile.id))
-        stop(dQuote("profile.id"), " must be specified. Use ", dQuote("list_profiles()"), "to get list of the views.", call. = FALSE)
+        stop(sprintf("%s must be specified. Use %s to get list of the views.", dQuote("profile.id"), dQuote("list_profiles()")), call. = FALSE)
     type <- match.arg(type)
     data_json <- get_data(type = type, query = query, token = token)
     if (is.null(data_json)) {
@@ -49,8 +49,8 @@ get_report <- function(type = c("ga", "mcf", "realtime"), query, token) {
             data_df$conversion.date <- as.POSIXct(strptime(data_df$conversion.date, "%Y%m%d", tz = timezone))
     }
     if (!is.null(data_json$containsSampledData) && isTRUE(data_json$containsSampledData)) {
-        sample_perc <- paste0(round((as.numeric(data_json$sampleSize) / as.numeric(data_json$sampleSpace)) * 100, digits = 2), "%")
-        warning("Data contains sampled data. Used ", data_json$sampleSize, " sessions (", sample_perc, " of sessions).", call. = FALSE)
+        sample_perc <- round((as.numeric(data_json$sampleSize) / as.numeric(data_json$sampleSpace)) * 100, digits = 2)
+        warning(sprintf("Data contains sampled data. Used %d sessions (%d%% of sessions).", data_json$sampleSize, sample_perc), call. = FALSE)
     }
     names(data_json$profileInfo) <-  to_separated(names(data_json$profileInfo), sep = ".")
     names(data_json$query) <-  to_separated(names(data_json$query), sep = ".")

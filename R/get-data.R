@@ -25,17 +25,18 @@ get_data <- function(type = c("ga", "realtime", "mcf", "mgmt"), path = NULL, que
     if (data_json$totalResults == 0L || is.null(data_json[[items_name]]) || length(data_json[[items_name]]) == 0L)
         return(NULL)
     if (!isTRUE(pagination) && query$max.results < data_json$totalResults)
-        warning(paste("Only", query$max.results, "observations out of", data_json$totalResults, "were obtained. Set max.results = NULL (default value) to get all results."), call. = FALSE)
+        warning(sprintf("Only %d observations out of %d were obtained. Set max.results = NULL (default value) to get all results.", query$max.results, data_json$totalResults), call. = FALSE)
+
     # Pagination
     if (isTRUE(pagination) && query$max.results < data_json$totalResults) {
         if (type == "realtime")
-            warning(paste("Only", query$max.results, "observations out of", data_json$totalResults, "were obtained (the batch processing mode is not implemented for this report type)."), call. = FALSE)
+            warning(sprintf("Only %d observations out of %d were obtained (the batch processing mode is not implemented for this report type).", query$max.results, data_json$totalResults), call. = FALSE)
         else {
-            message(paste("Response contain more then", query$max.results, "rows. Batch processing mode enabled."))
+            message(sprintf("Response contain more then %d rows. Batch processing mode enabled.", query$max.results))
             total.pages <- ceiling(data_json$totalResults / query$max.results)
             pages <- vector(mode = "list", length = total.pages)
             for (page in 2L:total.pages) {
-                message(paste0("Fetching page ", page, " of ", total.pages, "..."))
+                message(sprintf("Fetching page %d of %d...", page, total.pages))
                 query$start.index <- query$max.results * (page - 1L) + 1L
                 pages[[page]] <- get_response(type = type, path = path, query = query, token = token)
             }
