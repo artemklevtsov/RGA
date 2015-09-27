@@ -5,7 +5,7 @@ TARBALL = $(PACKAGE)_$(VERSION).tar.gz
 TARBALL_LOC = $(PARENTDIR)/$(TARBALL)
 CHECKDIR = $(PARENTDIR)/$(PACKAGE).Rcheck
 
-all: data doc check install
+all: data doc locales check install
 
 deps:
 	Rscript -e 'devtools::install_deps()'
@@ -33,6 +33,9 @@ build-win:
 
 vignettes:
 	Rscript -e 'devtools::build_vignettes()'
+
+locales:
+	Rscript -e 'tools::update_pkg_po(".", bugs = "https://github.com/artemklevtsov/RGA/issues")'
 
 submit:
 	Rscript -e 'devtools::submit_cran()'
