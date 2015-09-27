@@ -47,8 +47,8 @@ get_report <- function(type = c("ga", "mcf", "realtime"), query, token) {
             data_df$conversion.date <- as.POSIXct(strptime(data_df$conversion.date, "%Y%m%d", tz = timezone))
     }
     if (!is.null(data_json$containsSampledData) && isTRUE(data_json$containsSampledData)) {
-        sample_perc <- round((as.numeric(data_json$sampleSize) / as.numeric(data_json$sampleSpace)) * 100, digits = 2)
-        warning(sprintf("Data contains sampled data. Used %d sessions (%d%% of sessions).", data_json$sampleSize, sample_perc), call. = FALSE)
+        sample_perc <- as.numeric(data_json$sampleSize) / as.numeric(data_json$sampleSpace) * 100
+        warning(sprintf("Data contains sampled data. Used %d sessions (%1.0f%% of sessions).", data_json$sampleSize, sample_perc), call. = FALSE)
     }
     names(data_json$profileInfo) <-  to_separated(names(data_json$profileInfo), sep = ".")
     names(data_json$query) <-  to_separated(names(data_json$query), sep = ".")

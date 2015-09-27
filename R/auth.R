@@ -157,11 +157,11 @@ authorize <- function(username = getOption("rga.username"),
         if (token_exists(getOption("rga.token")))
             remove_token(getOption("rga.token"))
         if (is.character(cache) && file.exists(cache)) {
-            message(sprintf("Removed old %s file.", dQuote(cache)))
+            message(sprintf("Removed old %s cache file.", dQuote(cache)))
             file.remove(cache)
         }
     }
-    if (is.character(cache))
+    if (is.character(cache) && nzchar(cache))
         message(sprintf("Access token will be stored in the %s file.", dQuote(cache)))
     token <- httr::oauth2.0_token(endpoint = endpoint, app = app, cache = cache,
                             scope = "https://www.googleapis.com/auth/analytics.readonly")
