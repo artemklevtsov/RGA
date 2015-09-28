@@ -6,9 +6,10 @@ shinyServer(function(input, output) {
             ga <- ga[ga$group == input$group,]
         if (input$type != "All")
             ga <- ga[ga$type == input$type,]
-        if (!input$status) {
+        if (!input$status)
             ga <- ga[ga$status != "DEPRECATED",]
-        }
+        if (input$calc)
+            ga <- ga[!is.na(ga$calculation),]
         if (input$segments)
             ga <- ga[ga$allowed.in.segments,]
         if (!is.null(input$columns))
@@ -20,7 +21,7 @@ shinyServer(function(input, output) {
         extensions = c("Responsive"),
         options = list(
             autoWidth = TRUE, paging = FALSE, searchHighlight = TRUE,
-            dom = 'irt'
+            dom = 'firt'
         )
     )
 })

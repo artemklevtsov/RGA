@@ -14,7 +14,8 @@ shinyUI(
         fluidRow(
             column(4,
                    checkboxInput(inputId = "segments", label = "Show allowed in segments only"),
-                   checkboxInput(inputId = "status", label = "Show deprecated")
+                   checkboxInput(inputId = "status", label = "Show deprecated"),
+                   checkboxInput(inputId = "calc", label = "Show culculated only")
             ),
             column(4,
                    selectInput(inputId = "group", label = "Group:",
