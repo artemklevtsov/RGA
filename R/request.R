@@ -63,5 +63,6 @@ get_response <- function(type = c("ga", "realtime", "mcf", "mgmt"), path = NULL,
     data_json <- jsonlite::fromJSON(httr::content(resp, as = "text"), simplifyVector = simplify, flatten = flatten)
     if (!is.null(data_json$error))
         error_message(data_json)
+
     return(data_json)
 }
