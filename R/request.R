@@ -40,8 +40,7 @@ error_message <- function(x) {
 #' @include auth.R
 #' @include url.R
 #'
-get_response <- function(type = c("ga", "realtime", "mcf", "mgmt"), path = NULL, query = NULL,
-                         simplify = TRUE, flatten = TRUE, token) {
+get_response <- function(type = c("ga", "realtime", "mcf", "mgmt"), path = NULL, query = NULL, token) {
     type <- match.arg(type)
     url <- get_url(type = type, path = path)
     if (missing(token) && token_exists(getOption("rga.token")))
@@ -60,7 +59,7 @@ get_response <- function(type = c("ga", "realtime", "mcf", "mgmt"), path = NULL,
         u <- strsplit(resp$url, split = "?", fixed = TRUE)[[1]][1]
         stop(sprintf("The requested URL not found. URL: %s.", u), call. = FALSE)
     }
-    data_json <- jsonlite::fromJSON(httr::content(resp, as = "text"), simplifyVector = simplify, flatten = flatten)
+    data_json <- jsonlite::fromJSON(httr::content(resp, as = "text"))
     if (!is.null(data_json$error))
         error_message(data_json)
 
