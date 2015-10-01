@@ -21,7 +21,7 @@ shinyServer(function(input, output) {
         extensions = c("Responsive"),
         options = list(
             autoWidth = TRUE, paging = FALSE, searchHighlight = TRUE,
-            dom = 'firt'
+            dom = 'irt'
         )
     )
 })
