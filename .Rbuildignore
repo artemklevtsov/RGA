@@ -8,6 +8,7 @@
 ^data-raw$
 ^tools$
 ^tmp$
+rsconnect$
 ^Makefile$
 \.*-token\.rds$
 .*~$

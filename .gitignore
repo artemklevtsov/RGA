@@ -6,4 +6,5 @@
 .Renviron
 tmp
 inst/doc
+rsconnect
 *~$
