@@ -1,4 +1,5 @@
 # Get the Google Analytics API data
+#' @include url.R
 #' @include request.R
 get_data <- function(type = c("ga", "realtime", "mcf", "mgmt"), path = NULL, query = NULL, token) {
     type <- match.arg(type)
@@ -21,12 +22,12 @@ get_data <- function(type = c("ga", "realtime", "mcf", "mgmt"), path = NULL, que
     if (!is.null(query$fields) && type == "mgmt")
         query$fields <- paste("totalResults", "username", query$fields, sep = ",")
     # Make request
-    data_json <- get_response(type = type, path = path, query = query, token = token)
+    url <- get_url(type, path, query)
+    data_json <- get_response(url, token)
     if (data_json$totalResults == 0L || is.null(data_json[[items_name]]) || length(data_json[[items_name]]) == 0L)
         return(NULL)
     if (!isTRUE(pagination) && query$max.results < data_json$totalResults)
         warning(sprintf("Only %d observations out of %d were obtained. Set max.results = NULL (default value) to get all results.", query$max.results, data_json$totalResults), call. = FALSE)
-
     # Pagination
     if (isTRUE(pagination) && query$max.results < data_json$totalResults) {
         if (type == "realtime")
@@ -38,10 +39,11 @@ get_data <- function(type = c("ga", "realtime", "mcf", "mgmt"), path = NULL, que
             for (page in 2L:total.pages) {
                 message(sprintf("Fetching page %d of %d...", page, total.pages))
                 query$start.index <- query$max.results * (page - 1L) + 1L
-                pages[[page]] <- get_response(type = type, path = path, query = query, token = token)
+                url <- get_url(type, path, query)
+                pages[[page]] <- get_response(url, token)
             }
             pages <- pages[-1L]
-            pages <- lapply(pages, `[[`, items_name)
+            pages <- lapply(pages, .subset2, items_name)
             data_json[[items_name]] <- c(list(data_json[[items_name]]), pages)
         }
     }

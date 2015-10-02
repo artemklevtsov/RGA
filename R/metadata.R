@@ -52,7 +52,7 @@
 #' }
 #'
 list_dimsmets <- function(report.type = "ga") {
-    url <- paste(base_api_url, base_api_version, "metadata", report.type, "columns", sep = "/")
+    url <- paste(base_api_url, base_api_path, base_api_version, "metadata", report.type, "columns", sep = "/")
     resp <- httr::GET(url, httr::accept_json())
     data_json <- jsonlite::fromJSON(httr::content(resp, as = "text"), flatten = TRUE)
     if (!is.null(data_json$error))

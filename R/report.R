@@ -34,6 +34,7 @@ get_report <- function(type = c("ga", "mcf", "realtime"), query, token) {
         return(invisible(NULL))
     }
     data_df <- data_json$rows
+    # Convert to POSIXct with timezone defined in the GA profile
     if (any(grepl("date", names(data_df), fixed = TRUE))) {
         profile <- get_profile(account.id = data_json$profileInfo$accountId,
                                webproperty.id = data_json$profileInfo$webPropertyId,
