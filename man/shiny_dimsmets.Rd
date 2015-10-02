@@ -7,7 +7,7 @@
 shiny_dimsmets()
 }
 \description{
-The dimensions and metrics explorer lists and describes all the dimensions and metrics available through the Core Reporting API.
+The dimensions and metrics explorer lists and describes all the dimensions and metrics available through the Core Reporting API. This app deployed to the \url{https://artemklevtsov.shinyapps.io/ga-dimsmets}.
 }
 \seealso{
 \code{\link{list_dimsmets}} \code{\link{get_ga}}
