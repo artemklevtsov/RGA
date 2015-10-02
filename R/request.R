@@ -43,8 +43,8 @@ error_message <- function(x) {
 get_response <- function(type = c("ga", "realtime", "mcf", "mgmt"), path = NULL, query = NULL, token) {
     type <- match.arg(type)
     url <- get_url(type = type, path = path)
-    if (missing(token) && token_exists(getOption("rga.token")))
-        token <- get_token(getOption("rga.token"))
+    if (missing(token) && token_exists("GAToken"))
+        token <- get_token("GAToken")
     if (!missing(token) && validate_token(token))
         config <- httr::config(token = token)
     else

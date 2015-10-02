@@ -154,8 +154,8 @@ authorize <- function(username = getOption("rga.username"),
             cache <- paste0(".", username, "-token.rds")
     }
     if (new.auth) {
-        if (token_exists(getOption("rga.token")))
-            remove_token(getOption("rga.token"))
+        if (token_exists("GAToken"))
+            remove_token("GAToken")
         if (is.character(cache) && file.exists(cache)) {
             message(sprintf("Removed old %s cache file.", dQuote(cache)))
             file.remove(cache)
@@ -166,6 +166,6 @@ authorize <- function(username = getOption("rga.username"),
     token <- httr::oauth2.0_token(endpoint = endpoint, app = app, cache = cache,
                             scope = "https://www.googleapis.com/auth/analytics.readonly")
     if (validate_token(token))
-        set_token(getOption("rga.token"), token)
+        set_token("GAToken", token)
     return(invisible(token))
 }
