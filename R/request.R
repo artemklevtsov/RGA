@@ -25,15 +25,15 @@ process <- function(x) {
 # Get a Google Analytics API response
 #' @include auth.R
 GET_ <- function(url, token) {
+    if (missing(token) && !token_exists("GAToken")) {
+        authorize(cache = FALSE)
+        return(eval(match.call()))
+    }
     if (missing(token) && token_exists("GAToken"))
         token <- get_token("GAToken")
     if (validate_token(token))
         config <- httr::config(token = token)
     res <- httr::GET(url, config = config, httr::accept_json())
-    if (res$status_code == 401L) {
-        authorize(cache = FALSE)
-        return(eval(match.call()))
-    }
     res <- process(res)
     return(res)
 }
