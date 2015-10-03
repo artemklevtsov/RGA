@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: RGA 0.2.4.0999\n"
 "Report-Msgid-Bugs-To: https://github.com/artemklevtsov/RGA/issues\n"
-"POT-Creation-Date: 2015-09-27 19:27\n"
+"POT-Creation-Date: 2015-10-04 00:18\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -10,6 +10,9 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+
+msgid "Authorization error. Access token not found."
+msgstr ""
 
 msgid "Token is not a Token2.0 object. Found: %s."
 msgstr ""
