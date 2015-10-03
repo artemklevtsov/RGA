@@ -1,9 +1,7 @@
 # Get the Anaytics reporting data
-#'
 #' @include query.R
 #' @include get-data.R
 #' @include profiles.R
-#'
 get_report <- function(path, query, token) {
     data_json <- get_data(path, query, token)
     if (is.null(data_json)) {
