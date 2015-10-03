@@ -25,6 +25,8 @@ remove_token <- function(name) {
 
 # Validate token
 validate_token <- function(x) {
+    if (missing(x))
+         stop("Authorization error. Access token not found.")
     if (!inherits(x, "Token2.0"))
         stop(sprintf("Token is not a Token2.0 object. Found: %s.", class(x)))
     if (!is.null(x$credentials$error)) {
