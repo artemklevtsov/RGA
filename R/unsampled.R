@@ -39,7 +39,7 @@
 #' @export
 #'
 get_unsampled_report <- function(account.id, webproperty.id, profile.id, unsampled.report.id, token) {
-    path <- paste("accounts", account.id, "webproperties", webproperty.id, "profiles", profile.id, "unsampledReports", unsampled.report.id, sep = "/")
+    path <- c("accounts", account.id, "webproperties", webproperty.id, "profiles", profile.id, "unsampledReports", unsampled.report.id)
     res <- get_mgmt(path = path, token = token)
     return(res)
 }
@@ -82,7 +82,7 @@ get_unsampled_report <- function(account.id, webproperty.id, profile.id, unsampl
 #' @export
 #'
 list_unsampled_reports <- function(account.id, webproperty.id, profile.id, start.index = NULL, max.results = NULL, token) {
-    path <- paste("accounts", account.id, "webproperties", webproperty.id, "profiles", profile.id, "unsampledReports", sep = "/")
+    path <- c("accounts", account.id, "webproperties", webproperty.id, "profiles", profile.id, "unsampledReports")
     query <- list(start.index = start.index, max.results = max.results, fields = "items(id,title,accountId,webPropertyId,profileId,start-date,end-date,metrics,dimensions,filters,segment,status,downloadType,created,updated)")
     res <- list_mgmt(path = path, query = query, token = token)
     return(res)

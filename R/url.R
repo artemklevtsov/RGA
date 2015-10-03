@@ -4,19 +4,9 @@ base_api_version <- "v3"
 
 # Build URL for Google Analytics request
 #' @include utils.R
-get_url <- function(type = c("ga", "mcf", "realtime", "mgmt"), path = NULL, query = NULL) {
-    type <- match.arg(type)
-    type <- switch(type,
-                  ga = "data/ga",
-                  mcf = "data/mcf",
-                  realtime = "data/realtime",
-                  mgmt = "management")
-    if (!is.null(path)) {
-        if (length(path) > 1)
-            path <- paste(path, collapse = "/")
-        path <- paste(base_api_path, base_api_version, type, path, sep = "/")
-    } else
-        path <- paste(base_api_path, base_api_version, type, sep = "/")
+get_url <- function(path = NULL, query = NULL) {
+    path <- c(base_api_path, base_api_version, path)
+    path <- paste(path, collapse = "/")
     if (is.list(query)) {
         query <- compact(query)
         params <- names(query)

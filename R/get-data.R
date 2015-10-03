@@ -3,6 +3,7 @@
 #' @include request.R
 get_data <- function(type = c("ga", "realtime", "mcf", "mgmt"), path = NULL, query = NULL, token) {
     type <- match.arg(type)
+    path <- c(switch(type, ga = "data/ga", mcf = "data/mcf", realtime = "data/realtime", mgmt = "management"), path)
     # Set limits
     if (type == "mgmt") {
         results_limit <- 1000L
@@ -22,8 +23,8 @@ get_data <- function(type = c("ga", "realtime", "mcf", "mgmt"), path = NULL, que
     if (!is.null(query$fields) && type == "mgmt")
         query$fields <- paste("totalResults", "username", query$fields, sep = ",")
     # Make request
-    url <- get_url(type, path, query)
-    data_json <- get_response(url, token)
+    url <- get_url(path, query)
+    data_json <- GET_(url, token)
     if (data_json$totalResults == 0L || is.null(data_json[[items_name]]) || length(data_json[[items_name]]) == 0L)
         return(NULL)
     if (!isTRUE(pagination) && query$max.results < data_json$totalResults)
@@ -39,8 +40,8 @@ get_data <- function(type = c("ga", "realtime", "mcf", "mgmt"), path = NULL, que
             for (page in 2L:total.pages) {
                 message(sprintf("Fetching page %d of %d...", page, total.pages))
                 query$start.index <- query$max.results * (page - 1L) + 1L
-                url <- get_url(type, path, query)
-                pages[[page]] <- get_response(url, token)
+                url <- get_url(path, query)
+                pages[[page]] <- GET_(url, token)
             }
             pages <- pages[-1L]
             pages <- lapply(pages, .subset2, items_name)

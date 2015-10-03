@@ -54,7 +54,7 @@
 #' @export
 #'
 get_filter <- function(account.id, filter.id, token) {
-    path <- paste("accounts", account.id, "filters", filter.id, sep = "/")
+    path <- c("accounts", account.id, "filters", filter.id)
     res <- get_mgmt(path = path, token = token)
     return(res)
 }
@@ -86,7 +86,7 @@ get_filter <- function(account.id, filter.id, token) {
 #' @export
 #'
 list_filters <- function(account.id, start.index = NULL, max.results = NULL, token) {
-    path <- paste("accounts", account.id, "filters", sep = "/")
+    path <- c("accounts", account.id, "filters")
     query <- list(start.index = start.index, max.results = max.results, fields = "items(id,accountId,name,type,created,updated)")
     res <- list_mgmt(path = path, query = query, token = token)
     return(res)

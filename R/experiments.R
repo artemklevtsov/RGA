@@ -54,7 +54,7 @@
 #' @export
 #'
 get_experiment <- function(account.id, webproperty.id, profile.id, experiment.id, token) {
-    path <- paste("accounts", account.id, "webproperties", webproperty.id, "profiles", profile.id, "experiments", experiment.id, sep = "/")
+    path <- c("accounts", account.id, "webproperties", webproperty.id, "profiles", profile.id, "experiments", experiment.id)
     res <- get_mgmt(path = path, token = token)
     return(res)
 }
@@ -99,7 +99,7 @@ get_experiment <- function(account.id, webproperty.id, profile.id, experiment.id
 #' @export
 #'
 list_experiments <- function(account.id, webproperty.id, profile.id, start.index = NULL, max.results = NULL, token) {
-    path <- paste("accounts", account.id, "webproperties", webproperty.id, "profiles", profile.id, "experiments", sep = "/")
+    path <- c("accounts", account.id, "webproperties", webproperty.id, "profiles", profile.id, "experiments")
     query <- list(start.index = start.index, max.results = max.results, fields = "items(id,accountId,webPropertyId,profileId,name,description,objectiveMetric,optimizationType,status,winnerFound,rewriteVariationUrlsAsOriginal,winnerConfidenceLevel,startTime,endTime,minimumExperimentLengthInDays,reasonExperimentEnded,editableInGaUi,created,updated)")
     res <- list_mgmt(path = path, query = query, token = token)
     return(res)

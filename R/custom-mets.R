@@ -36,7 +36,7 @@
 #' @export
 #'
 get_custom_metric <- function(account.id, webproperty.id, metric.id, token) {
-    path <- paste("accounts", account.id, "webproperties", webproperty.id, "customMetrics", metric.id, sep = "/")
+    path <- c("accounts", account.id, "webproperties", webproperty.id, "customMetrics", metric.id)
     res <- get_mgmt(path = path, token = token)
     return(res)
 }
@@ -75,7 +75,7 @@ get_custom_metric <- function(account.id, webproperty.id, metric.id, token) {
 #' @export
 #'
 list_custom_metrics <- function(account.id, webproperty.id, start.index = NULL, max.results = NULL, token) {
-    path <- paste("accounts", account.id, "webproperties", webproperty.id, "customMetrics", sep = "/")
+    path <- c("accounts", account.id, "webproperties", webproperty.id, "customMetrics")
     query <- list(start.index = start.index, max.results = max.results, fields = "items(id,accountId,webPropertyId,name,index,scope,active,type,min_value,max_value,created,updated)")
     res <- list_mgmt(path = path, query = query, token = token)
     return(res)

@@ -52,15 +52,12 @@
 #' }
 #'
 list_dimsmets <- function(report.type = "ga") {
-    url <- paste(base_api_url, base_api_path, base_api_version, "metadata", report.type, "columns", sep = "/")
-    resp <- httr::GET(url, httr::accept_json())
-    data_json <- jsonlite::fromJSON(httr::content(resp, as = "text"), flatten = TRUE)
-    if (!is.null(data_json$error))
-        error_message(data_json)
+    url <- get_url(c("metadata", report.type, "columns"))
+    data_json <- process(httr::GET(url))
     data_df <- data_json$items
     data_df$kind <- NULL
     colnames(data_df) <- gsub("attributes.", "", colnames(data_df), fixed = TRUE)
-    data_df$allowedInSegments <- match(data_df$allowedInSegments, "true", nomatch = 0) > 0
+    data_df$allowedInSegments <- ifelse(data_df$allowedInSegments == "true", TRUE, FALSE)
     colnames(data_df) <- to_separated(colnames(data_df), sep = ".")
     data_df <- convert_datatypes(data_df)
     message(sprintf("Obtained data.frame with %d rows and %d columns.",  nrow(data_df), ncol(data_df)))

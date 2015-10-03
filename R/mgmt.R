@@ -19,8 +19,8 @@ list_mgmt <- function(path, query, token) {
 #' @include convert.R
 #' @include utils.R
 get_mgmt <- function(path, token) {
-    url <- get_url("mgmt", path)
-    data_list <- get_response(url, token)
+    url <- get_url(c("management", path))
+    data_list <- GET_(url, token)
     data_list <- ls_mgmt(data_list)
     data_list <- convert_datatypes(data_list)
     data_list$created <- as.POSIXct(strptime(data_list$created, format = "%Y-%m-%dT%H:%M:%OS", tz = "GMT"))
