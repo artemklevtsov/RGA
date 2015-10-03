@@ -52,6 +52,6 @@ get_ga <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
                          metrics = metrics, dimensions = dimensions, sort = sort, filters = filters,
                          segment = segment, sampling.level = sampling.level,
                          start.index = start.index, max.results = max.results)
-    res <- get_report(type = "ga", query = query, token = token)
+    res <- get_report("data/ga", query, token)
     return(res)
 }

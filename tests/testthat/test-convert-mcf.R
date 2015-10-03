@@ -1,6 +1,7 @@
 context("Convert MCF Reporting API response")
 
 mcf_data <- structure(list(
+    kind = "analytics#mcfData",
     totalResults = 3L,
     containsSampledData = FALSE,
     columnHeaders = structure(list(
@@ -26,10 +27,10 @@ mcf_data <- structure(list(
             .Names = "primitiveValue",
             class = "data.frame",
             row.names = c(NA, 3L)))),
-    .Names = c("totalResults", "containsSampledData", "columnHeaders", "rows"))
+    .Names = c("kind", "totalResults", "containsSampledData", "columnHeaders", "rows"))
 
 
-mcf_df <- suppressMessages(build_df(type = "mcf", mcf_data))
+mcf_df <- suppressMessages(build_df(mcf_data))
 
 test_that("Result class", {
     expect_is(mcf_df, "data.frame")
@@ -47,6 +48,7 @@ test_that("Columns types", {
 })
 
 mcf_data <- structure(list(
+    kind = "analytics#mcfData",
     totalResults = 542L, containsSampledData = FALSE,
     columnHeaders = structure(list(
         name = c("mcf:mediumPath", "mcf:totalConversions", "mcf:totalConversionValue"),
@@ -114,10 +116,10 @@ mcf_data <- structure(list(
             .Names = c("conversionPathValue", "primitiveValue"),
             class = "data.frame",
             row.names = c(NA, 3L)))),
-    .Names = c("totalResults", "containsSampledData", "columnHeaders", "rows"))
+    .Names = c("kind", "totalResults", "containsSampledData", "columnHeaders", "rows"))
 
 
-mcf_df <- suppressMessages(build_df(type = "mcf", mcf_data))
+mcf_df <- suppressMessages(build_df(mcf_data))
 
 test_that("Result class", {
     expect_is(mcf_df, "data.frame")

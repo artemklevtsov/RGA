@@ -1,11 +1,9 @@
 # Get the Google Analytics API data
 #' @include url.R
 #' @include request.R
-get_data <- function(type = c("ga", "realtime", "mcf", "mgmt"), path = NULL, query = NULL, token) {
-    type <- match.arg(type)
-    path <- c(switch(type, ga = "data/ga", mcf = "data/mcf", realtime = "data/realtime", mgmt = "management"), path)
+get_data <- function(path = NULL, query = NULL, token) {
     # Set limits
-    if (type == "mgmt") {
+    if (grepl("management", paste(path, collapse = "/"))) {
         results_limit <- 1000L
         items_name <- "items"
     } else {
@@ -19,9 +17,6 @@ get_data <- function(type = c("ga", "realtime", "mcf", "mgmt"), path = NULL, que
         pagination <- FALSE
         stopifnot(query$max.results <= results_limit)
     }
-    # Add fields
-    if (!is.null(query$fields) && type == "mgmt")
-        query$fields <- paste("totalResults", "username", query$fields, sep = ",")
     # Make request
     url <- get_url(path, query)
     data_json <- GET_(url, token)
@@ -31,7 +26,7 @@ get_data <- function(type = c("ga", "realtime", "mcf", "mgmt"), path = NULL, que
         warning(sprintf("Only %d observations out of %d were obtained. Set max.results = NULL (default value) to get all results.", query$max.results, data_json$totalResults), call. = FALSE)
     # Pagination
     if (isTRUE(pagination) && query$max.results < data_json$totalResults) {
-        if (type == "realtime")
+        if (grepl("data/realtime", paste(path, collapse = "/")))
             warning(sprintf("Only %d observations out of %d were obtained (the batch processing mode is not implemented for this report type).", query$max.results, data_json$totalResults), call. = FALSE)
         else {
             message(sprintf("Response contain more then %d rows. Batch processing mode enabled.", query$max.results))
@@ -48,6 +43,6 @@ get_data <- function(type = c("ga", "realtime", "mcf", "mgmt"), path = NULL, que
             data_json[[items_name]] <- c(list(data_json[[items_name]]), pages)
         }
     }
-    data_json[[items_name]] <- build_df(type, data_json)
+    data_json[[items_name]] <- build_df(data_json)
     return(data_json)
 }

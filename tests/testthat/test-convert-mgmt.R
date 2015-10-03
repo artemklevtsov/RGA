@@ -1,6 +1,7 @@
 context("Convert Management API response")
 
 mgmt_data <- structure(list(
+    kind = "analytics#profiles",
     totalResults = 8L,
     items = structure(list(
         id = c("83638429", "83639328", "84435797", "90904152", "91911821"),
@@ -23,9 +24,9 @@ mgmt_data <- structure(list(
             .Names = c("id", "accountId", "webPropertyId", "name", "currency", "timezone", "websiteUrl", "type", "created", "updated", "eCommerceTracking", "permissions.effective"),
             class = "data.frame",
             row.names = c(NA, 5L))),
-    .Names = c("totalResults", "items"))
+    .Names = c("kind", "totalResults", "items"))
 
-mgmt_df <- suppressMessages(build_df(type = "mgmt", mgmt_data))
+mgmt_df <- suppressMessages(build_df(mgmt_data))
 
 test_that("Result class", {
     expect_is(mgmt_df, "data.frame")

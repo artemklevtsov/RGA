@@ -75,13 +75,16 @@ df_mgmt <- function(x) {
 
 # Build a data.frame for GA report data
 #' @include utils.R
-build_df <- function(type = c("ga", "mcf", "realtime", "mgmt"), data) {
-    type <- match.arg(type)
-    data_df <- switch(type,
-                      ga = df_ga(data),
-                      realtime = df_realtime(data),
-                      mcf = df_mcf(data),
-                      mgmt = df_mgmt(data))
+build_df <- function(data) {
+    string <- data$kind
+    if (grepl("gaData", string))
+        data_df <- df_ga(data)
+    else if (grepl("mcfData", string))
+        data_df <- df_mcf(data)
+    else if (grepl("realtimeData", string))
+        data_df <- df_realtime(data)
+    else
+        data_df <- df_mgmt(data)
     rownames(data_df) <- NULL
     colnames(data_df) <- to_separated(colnames(data_df), sep = ".")
     data_df <- convert_datatypes(data_df)

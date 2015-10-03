@@ -42,7 +42,7 @@ get_realtime <- function(profile.id, metrics = "rt:activeUsers", dimensions = NU
                    sort = NULL, filters = NULL, max.results = NULL, token) {
     query <- build_query(profile.id = profile.id, metrics = metrics, dimensions = dimensions,
                          sort = sort, filters = filters, max.results = max.results)
-    res <- get_report(type = "realtime", query = query, token = token)
+    res <- get_report("data/realtime", query, token)
     return(res)
 }
 
@@ -53,7 +53,7 @@ get_rt <- function(profile.id, metrics = "rt:activeUsers", dimensions = NULL,
     query <- build_query(profile.id = profile.id, metrics = metrics, dimensions = dimensions,
                          sort = sort, filters = filters, max.results = max.results)
     .Deprecated("get_realtime")
-    res <- get_report(type = "realtime", query = query, token = token)
+    res <- get_report("data/realtime", query, token)
     return(res)
 }
 

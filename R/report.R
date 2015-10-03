@@ -1,34 +1,11 @@
-#' @title Get the Anaytics reporting data
-#'
-#' @param type character. Report type. Allowed values: ga, mcf, rt.
-#' @param query list. List of the data request query parameters.
-#' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
-#'
-#' @return A data frame including the Analytics data for a view (profile).
-#'
-#' @keywords internal
+# Get the Anaytics reporting data
 #'
 #' @include query.R
 #' @include get-data.R
 #' @include profiles.R
 #'
-#' @noRd
-#'
-#' @examples
-#' \dontrun{
-#' # get token data
-#' authorize()
-#' # set query
-#' query <- build_query(profile.id = "XXXXXXXX", start.date = "31daysAgo", end.date = "today",
-#'                      metrics = "ga:users,ga:sessions", dimensions = "ga:userType")
-
-#' # get report data
-#' ga_data <- get_report(type = "ga", query = query)
-#' }
-#'
-get_report <- function(type = c("ga", "mcf", "realtime"), query, token) {
-    type <- match.arg(type)
-    data_json <- get_data(type = type, query = query, token = token)
+get_report <- function(path, query, token) {
+    data_json <- get_data(path, query, token)
     if (is.null(data_json)) {
         message("No results were obtained.")
         return(invisible(NULL))

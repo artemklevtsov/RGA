@@ -1,7 +1,9 @@
 # Get the Management API data
 #' @include get-data.R
 list_mgmt <- function(path, query, token) {
-    data_json <- get_data(type = "mgmt", path = path, query = query, token = token)
+    if (!is.null(query$fields))
+        query$fields <- paste("kind", "totalResults", "username", query$fields, sep = ",")
+    data_json <- get_data(c("management", path), query, token)
     if (is.null(data_json)) {
         message("No results were obtained.")
         return(invisible(NULL))

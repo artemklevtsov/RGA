@@ -47,6 +47,6 @@ get_mcf <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
                          metrics = metrics, dimensions = dimensions, sort = sort, filters = filters,
                          sampling.level = sampling.level,
                          start.index = start.index, max.results = max.results)
-    res <- get_report(type = "mcf", query = query, token = token)
+    res <- get_report("data/mcf", query, token)
     return(res)
 }

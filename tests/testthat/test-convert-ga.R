@@ -1,6 +1,7 @@
 context("Convert Core Reporting API response")
 
 ga_data <- structure(list(
+    kind = "analytics#gaData",
     totalResults = 8L, containsSampledData = FALSE,
     columnHeaders = structure(list(
         name = c("ga:date", "ga:users", "ga:sessions", "ga:pageviews"),
@@ -16,9 +17,9 @@ ga_data <- structure(list(
         "2159", "2038", "2345", "2866", "3066", "462", "4045", "4557",
         "4856", "5024", "5791", "7134", "7381", "1167"),
         .Dim = c(8L, 4L))),
-    .Names = c("totalResults", "containsSampledData", "columnHeaders", "rows"))
+    .Names = c("kind", "totalResults", "containsSampledData", "columnHeaders", "rows"))
 
-ga_df <- suppressMessages(build_df(type = "ga", ga_data))
+ga_df <- suppressMessages(build_df(ga_data))
 
 test_that("Result class", {
     expect_is(ga_df, "data.frame")
