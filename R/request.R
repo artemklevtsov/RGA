@@ -4,9 +4,15 @@ stopreasons <- function(x) {
     code <- x$error$code
     message <- httr::http_status(code)$message
     reasons <- x$error$errors[, -1L]
-    reasons$reason <- to_separated(reasons$reason, sep = " ")
-    reasons <- paste(utils::capture.output(print(reasons, right = FALSE)), collapse = "\n")
-    message <- c(message, "\n", reasons)
+    reasons$reason <- capitalize(to_separated(reasons$reason, sep = " "))
+    if (!is.null(reasons$location)) {
+        reasons$location <- sub("ids", "profile.id", reasons$location, fixed = TRUE)
+        reasons$location <- sub("samplingLevel", "sampling.level", reasons$location, fixed = TRUE)
+        reasons$location <- gsub("-", ".", reasons$location, fixed = TRUE)
+        reasons <- paste(sprintf("%s %s: %s", reasons$reason, reasons$location, reasons$message), collapse = "\n")
+    } else
+        reasons <- paste(sprintf("%s: %s", reasons$reason, reasons$message), collapse = "\n")
+    message <- paste(message, reasons, sep = "\n")
     stop(message, call. = FALSE)
 }
 
@@ -27,7 +33,7 @@ process <- function(x) {
 GET_ <- function(url, token) {
     if (missing(token) && !token_exists("GAToken")) {
         authorize(cache = FALSE)
-        return(eval(match.call()))
+        return(eval(sys.call()))
     }
     if (missing(token) && token_exists("GAToken"))
         token <- get_token("GAToken")

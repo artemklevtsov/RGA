@@ -54,6 +54,13 @@ to_camel <- function(x, delim = "\\W", capitalize = FALSE) {
     return(paste0(first, substring(splitted, 2), sep = "", collapse = ""))
 }
 
+# Capitalize strings
+capitalize <- function(x) {
+    stopifnot(is.character(x))
+    first <- toupper(substring(x, 1, 1))
+    return(paste0(first, substring(x, 2)))
+}
+
 #' @title Convert camelCase character vectove to separated
 #'
 #' @param x a character vector to be converted.
