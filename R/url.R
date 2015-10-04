@@ -1,11 +1,12 @@
-base_api_url <- "https://www.googleapis.com"
-base_api_path <- "analytics"
-base_api_version <- "v3"
+# API constants
+api_base_url <- "https://www.googleapis.com"
+api_base_path <- "analytics"
+api_version <- "v3"
 
 # Build URL for Google Analytics request
 #' @include utils.R
 get_url <- function(path = NULL, query = NULL) {
-    path <- c(base_api_path, base_api_version, path)
+    path <- c(api_base_path, api_version, path)
     path <- paste(path, collapse = "/")
     if (is.list(query)) {
         query <- compact(query)
@@ -15,6 +16,6 @@ get_url <- function(path = NULL, query = NULL) {
         params <- gsub(".", "-", params, fixed = TRUE)
         names(query) <- params
     }
-    url <- httr::modify_url(base_api_url, path = path, query = query)
+    url <- httr::modify_url(api_base_url, path = path, query = query)
     return(url)
 }
