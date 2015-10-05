@@ -1,6 +1,6 @@
 # Error printing function
 #' @include utils.R
-stopreasons <- function(x) {
+stop_reasons <- function(x) {
     code <- x$error$code
     message <- httr::http_status(code)$message
     reasons <- x$error$errors
@@ -24,7 +24,7 @@ process <- function(x) {
     }
     res <- jsonlite::fromJSON(httr::content(x, as = "text"), flatten = TRUE)
     if (!is.null(res$error))
-        stopreasons(res)
+        stop_reasons(res)
     return(res)
 }
 
