@@ -54,6 +54,7 @@ Collate:
     'realtime.R'
     'segments.R'
     'unsampled.R'
+    'uploads.R'
     'webproperties.R'
     'zzz.R'
 Suggests:

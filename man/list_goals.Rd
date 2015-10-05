@@ -47,7 +47,7 @@ Other Management API: \code{\link{get_custom_dimension}};
   \code{\link{get_experiment}}; \code{\link{get_filter}};
   \code{\link{get_goal}}; \code{\link{get_profile}};
   \code{\link{get_unsampled_report}};
-  \code{\link{get_webproperty}};
+  \code{\link{get_upload}}; \code{\link{get_webproperty}};
   \code{\link{list_accounts}};
   \code{\link{list_custom_dimensions}};
   \code{\link{list_custom_metrics}};
@@ -56,6 +56,7 @@ Other Management API: \code{\link{get_custom_dimension}};
   \code{\link{list_filters}}; \code{\link{list_profiles}};
   \code{\link{list_segments}};
   \code{\link{list_unsampled_reports}};
+  \code{\link{list_uploads}};
   \code{\link{list_webproperties}}
 }
 
