@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: RGA 0.2.4.0999\n"
 "Report-Msgid-Bugs-To: https://github.com/artemklevtsov/RGA/issues\n"
-"POT-Creation-Date: 2015-10-04 00:18\n"
+"POT-Creation-Date: 2015-10-05 08:41\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,9 +33,6 @@ msgid "Removed old %s cache file."
 msgstr ""
 
 msgid "Access token will be stored in the %s file."
-msgstr ""
-
-msgid "Obtained data.frame with %d rows and %d columns."
 msgstr ""
 
 msgid "Only %d observations out of %d were obtained. Set max.results = NULL (default value) to get all results."
