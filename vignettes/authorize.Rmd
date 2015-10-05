@@ -26,7 +26,7 @@ authorize()
 
 After calling this function first time, a web browser will be opened. If `username` argument was not specified you need choose an account for the authorization. First entrance with a **Google Account** confirms access to the Google Analytics data. Note that the package requests access for the **read-only** data.
 
-When the `authorize()` function is used, the `GAToken` variable is created in the separate `TokenEnv` environment which not visible for user. So, there is no need to pass every time the `token` argument to any function which requires authorization.
+When the `authorize()` function is used, the `Token` variable is created in the separate `.RGAEnv` environment which not visible for user. So, there is no need to pass every time the `token` argument to any function which requires authorization.
 
 ```r
 list_profiles()

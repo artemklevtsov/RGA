@@ -1,26 +1,32 @@
-# Environment for OAuth token
-TokenEnv <- new.env(parent = emptyenv())
+# The inner package environment
+.RGAEnv <- new.env(parent = emptyenv())
 
 # Check token exists
 token_exists <- function(name) {
-    exists(name, envir = TokenEnv)
+    exists(name, envir = .RGAEnv)
 }
 
 # Set token to environment
 set_token <- function(name, value) {
-    assign(name, value, envir = TokenEnv)
+    assign(name, value, envir = .RGAEnv)
     return(value)
 }
 
 # Get token from environment
 get_token <- function(name) {
-    get(name, envir = TokenEnv)
+    stopifnot(token_exists(names))
+    get(name, envir = .RGAEnv)
 }
 
 # Remove token from environment
 remove_token <- function(name) {
-    if (token_exists(name))
-        remove(list = name, envir = TokenEnv)
+    stopifnot(token_exists(names))
+    cache_path <- get_token(name)$cache_path
+    if (!is.null(cache_path) && file.exists(cache_path)) {
+        message(sprintf("Removed old cache file: %s.", cache_path))
+        file.remove(cache_path)
+    }
+    remove(list = name, envir = .RGAEnv)
 }
 
 # Validate token
@@ -66,7 +72,7 @@ fix_username <- function(x) {
 #'
 #' After calling this function first time, a web browser will be opened. First, log in with a Google Account, confirm the authorization to access the Google Analytics data. Note that the package requests access for read-only data.
 #'
-#' When the \code{authorize()} function is used the \code{GAToken} variable is created in the separate \code{TokenEnv} environment which is not visible for user. So, there is no need to pass the token argument to any function which requires authorization every time. Also there is a possibility to store token in separate variable and to pass it to the functions. It can be useful when you are working with several accounts at the same time.
+#' When the \code{authorize()} function is used the \code{Token} variable is created in the separate \code{.RGAEnv} environment which is not visible for user. So, there is no need to pass the token argument to any function which requires authorization every time. Also there is a possibility to store token in separate variable and to pass it to the functions. It can be useful when you are working with several accounts at the same time.
 #'
 #' \code{username}, \code{client.id}, \code{client.secret} and \code{cache} params can be specified by an appropriate options (with \dQuote{rga} prefix).
 #'
@@ -152,19 +158,13 @@ authorize <- function(username = getOption("rga.username"),
         if (is.character(cache))
             cache <- paste0(".", username, "-token.rds")
     }
-    if (new.auth) {
-        if (token_exists("GAToken"))
-            remove_token("GAToken")
-        if (is.character(cache) && file.exists(cache)) {
-            message(sprintf("Removed old %s cache file.", dQuote(cache)))
-            file.remove(cache)
-        }
-    }
+    if (new.auth)
+        remove_token("Token")
     if (is.character(cache) && nzchar(cache))
         message(sprintf("Access token will be stored in the %s file.", dQuote(cache)))
     token <- httr::oauth2.0_token(endpoint = endpoint, app = app, cache = cache,
                             scope = "https://www.googleapis.com/auth/analytics.readonly")
     if (validate_token(token))
-        set_token("GAToken", token)
+        set_token("Token", token)
     return(invisible(token))
 }
