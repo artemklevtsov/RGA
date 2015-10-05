@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: RGA 0.2.4.0999\n"
 "Report-Msgid-Bugs-To: https://github.com/artemklevtsov/RGA/issues\n"
-"POT-Creation-Date: 2015-10-05 08:41\n"
+"POT-Creation-Date: 2015-10-05 23:02\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -10,6 +10,9 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+
+msgid "Removed old cache file: %s."
+msgstr ""
 
 msgid "Authorization error. Access token not found."
 msgstr ""
@@ -27,9 +30,6 @@ msgid "Client ID and Client secret loaded from environment variables."
 msgstr ""
 
 msgid "Username loaded from environment variable."
-msgstr ""
-
-msgid "Removed old %s cache file."
 msgstr ""
 
 msgid "Access token will be stored in the %s file."
