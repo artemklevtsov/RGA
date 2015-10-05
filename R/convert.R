@@ -77,17 +77,16 @@ df_mgmt <- function(x) {
 #' @include utils.R
 build_df <- function(data) {
     string <- data$kind
-    if (grepl("gaData", string))
+    if (grepl("gaData", string, fixed = TRUE))
         data_df <- df_ga(data)
-    else if (grepl("mcfData", string))
+    else if (grepl("mcfData", string, fixed = TRUE))
         data_df <- df_mcf(data)
-    else if (grepl("realtimeData", string))
+    else if (grepl("realtimeData", string, fixed = TRUE))
         data_df <- df_realtime(data)
     else
         data_df <- df_mgmt(data)
     rownames(data_df) <- NULL
     colnames(data_df) <- to_separated(colnames(data_df), sep = ".")
     data_df <- convert_datatypes(data_df)
-    message(sprintf("Obtained data.frame with %d rows and %d columns.", nrow(data_df), ncol(data_df)))
     return(data_df)
 }

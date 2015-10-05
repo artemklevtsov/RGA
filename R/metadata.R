@@ -60,7 +60,6 @@ list_dimsmets <- function(report.type = "ga") {
     data_df$allowedInSegments <- ifelse(data_df$allowedInSegments == "true", TRUE, FALSE)
     colnames(data_df) <- to_separated(colnames(data_df), sep = ".")
     data_df <- convert_datatypes(data_df)
-    message(sprintf("Obtained data.frame with %d rows and %d columns.",  nrow(data_df), ncol(data_df)))
     return(data_df)
 }
 

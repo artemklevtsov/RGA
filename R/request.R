@@ -3,7 +3,7 @@
 stopreasons <- function(x) {
     code <- x$error$code
     message <- httr::http_status(code)$message
-    reasons <- x$error$errors[, -1L]
+    reasons <- x$error$errors
     reasons$reason <- capitalize(to_separated(reasons$reason, sep = " "))
     if (!is.null(reasons$location)) {
         reasons$location <- sub("ids", "profile.id", reasons$location, fixed = TRUE)
