@@ -6,9 +6,10 @@
   \itemize{
     \item Updated data
     \item Removed \sQuote{Common Queries} vegnette. See references in the \code{get_ga()} help page
-    \item Added \code{shiny_dimsmets()} to explore dimensions and metrics for the Core Reporting API
-    \item Removed unused \code{rga.token} option
-    \item Remove deprecated \code{get_rt()} function. Use \code{get_realtime()} instead
+    \item Added (returned) \code{shiny_dimsmets()} to explore dimensions and metrics for the Core Reporting API
+    \item Removed unused the \code{rga.token} package option
+    \item Removed deprecated \code{get_rt()} function. Use \code{get_realtime()} instead
+    \item The \code{sampling.level} argument value now must be in the upper case
     \item Some inner code improvements
   }
 }
