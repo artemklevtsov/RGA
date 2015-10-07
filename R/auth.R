@@ -14,7 +14,7 @@ set_token <- function(name, value) {
 
 # Get token from environment
 get_token <- function(name) {
-    stopifnot(token_exists(names))
+    stopifnot(token_exists(name))
     get(name, envir = .RGAEnv)
 }
 
