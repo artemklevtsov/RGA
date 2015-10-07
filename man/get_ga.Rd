@@ -26,7 +26,7 @@ get_ga(profile.id, start.date = "7daysAgo", end.date = "yesterday",
 
 \item{segment}{character. An Analytics segment to be applied to data. Can be obtained using the \code{\link{list_segments}} or via the web interface Google Analytics.}
 
-\item{sampling.level}{character. The desired sampling level. Allowed values: "default", "faster", "higher_precision".}
+\item{sampling.level}{character. The desired sampling level. Allowed values: "DEFAULT", "FASTER", "HIGHER_PRECISION".}
 
 \item{start.index}{integer. An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.}
 

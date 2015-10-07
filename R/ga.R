@@ -8,7 +8,7 @@
 #' @param sort character. A comma-separated list of dimensions or metrics that determine the sort order for Analytics data.
 #' @param filters character. A comma-separated list of dimension or metric filters to be applied to Analytics data.
 #' @param segment character. An Analytics segment to be applied to data. Can be obtained using the \code{\link{list_segments}} or via the web interface Google Analytics.
-#' @param sampling.level character. The desired sampling level. Allowed values: "default", "faster", "higher_precision".
+#' @param sampling.level character. The desired sampling level. Allowed values: "DEFAULT", "FASTER", "HIGHER_PRECISION".
 #' @param start.index integer. An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
 #' @param max.results integer. The maximum number of entries to include in this feed.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
@@ -47,7 +47,7 @@ get_ga <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
                    sort = NULL, filters = NULL, segment = NULL, sampling.level = NULL,
                    start.index = NULL, max.results = NULL, token) {
     if (!is.null(sampling.level))
-        sampling.level <- match.arg(sampling.level, c("default", "faster", "higher_precision"))
+        sampling.level <- match.arg(sampling.level, c("DEFAULT", "FASTER", "HIGHER_PRECISION"))
     query <- build_query(profile.id = profile.id, start.date = start.date, end.date = end.date,
                          metrics = metrics, dimensions = dimensions, sort = sort, filters = filters,
                          segment = segment, sampling.level = sampling.level,

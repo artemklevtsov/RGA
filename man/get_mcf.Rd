@@ -24,7 +24,7 @@ get_mcf(profile.id, start.date = "7daysAgo", end.date = "yesterday",
 
 \item{filters}{character. A comma-separated list of dimension or metric filters to be applied to Analytics data.}
 
-\item{sampling.level}{character. The desired sampling level. Allowed values: "default", "faster", "higher_precision".}
+\item{sampling.level}{character. The desired sampling level. Allowed values: "DEFAULT", "FASTER", "HIGHER_PRECISION".}
 
 \item{start.index}{integer. An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.}
 

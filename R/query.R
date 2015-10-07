@@ -1,25 +1,22 @@
-# Set query
-#' @include utils.R
-build_query <- function(...) {
-    query <- list(...)
-    query <- fix_query(query)
-    return(query)
-}
-
 # Fix query fields
 #' @include utils.R
-fix_query <- function(query) {
-    stopifnot(is.list(query))
-    query <- compact(query)
-    if (!grepl("^ga:", query$profile.id))
-        query$profile.id <- paste0("ga:", query$profile.id)
+fix_query <- function(x) {
+    stopifnot(is.list(x))
+    x <- compact(x)
+    if (!grepl("^ga:", x$profile.id))
+        x$profile.id <- paste0("ga:", x$profile.id)
     snames <- c("metrics", "dimensions", "sort")
-    query[names(query) %in% snames] <- lapply(query[names(query) %in% snames], strip_spaces)
+    x[names(x) %in% snames] <- lapply(x[names(x) %in% snames], strip_spaces)
     onames <- c("filters", "segment")
-    query[names(query) %in% onames] <- lapply(query[names(query) %in% onames], strip_ops)
+    x[names(x) %in% onames] <- lapply(x[names(x) %in% onames], strip_ops)
     dnames <- c("start.date", "end.date")
-    query[names(query) %in% dnames] <- lapply(query[names(query) %in% dnames], as.character)
-    if (!is.empty(query$sampling.level))
-        query$sampling.level <- toupper(query$sampling.level)
+    x[names(x) %in% dnames] <- lapply(x[names(x) %in% dnames], as.character)
+    return(x)
+}
+
+# Set query
+build_query <- function(...) {
+    dots <- list(...)
+    query <- fix_query(dots)
     return(query)
 }
