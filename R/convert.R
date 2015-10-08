@@ -49,16 +49,6 @@ df_mcf <- function(x) {
     return(data_df)
 }
 
-# Rename list with sublists for mgmt data
-#' @include utils.R
-ls_mgmt <- function(x) {
-    x <- x[!names(x) %in% c("selfLink", "parentLink", "childLink")]
-    names(x) <-  to_separated(names(x), sep = ".")
-    torename <- vapply(x, is.list, logical(1))
-    x[torename] <- lapply(x[torename], function(x) stats::setNames(x, to_separated(names(x), sep = ".")))
-    return(x)
-}
-
 # Build data.frame for mgmt data
 df_mgmt <- function(x) {
     if (is.data.frame(x$items))
