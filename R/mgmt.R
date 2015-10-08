@@ -9,8 +9,10 @@ list_mgmt <- function(path, query, token) {
         return(invisible(NULL))
     }
     data_df <- data_json$items
-    data_df$created <- as.POSIXct(strptime(data_df$created, format = "%Y-%m-%dT%H:%M:%OS", tz = "GMT"))
-    data_df$updated <- as.POSIXct(strptime(data_df$updated, format = "%Y-%m-%dT%H:%M:%OS", tz = "GMT"))
+    if (!is.null(data_list$created))
+        data_df$created <- as.POSIXct(strptime(data_df$created, format = "%Y-%m-%dT%H:%M:%OS", tz = "GMT"))
+    if (!is.null(data_list$updated))
+        data_df$updated <- as.POSIXct(strptime(data_df$updated, format = "%Y-%m-%dT%H:%M:%OS", tz = "GMT"))
     attr(data_df, "username") <- data_json$username
     return(data_df)
 }
@@ -20,8 +22,7 @@ list_mgmt <- function(path, query, token) {
 #' @include request.R
 #' @include utils.R
 get_mgmt <- function(path, token) {
-    url <- get_url(c("management", path))
-    data_list <- GET_(url, token)
+    data_list <- GET_(get_url(c("management", path)), token)
     data_list <- data_list[!names(data_list) %in% c("selfLink", "parentLink", "childLink")]
     if (!is.null(data_list$permissions))
         data_list$permissions <- unlist(data_list$permissions, use.names = FALSE)
@@ -29,7 +30,9 @@ get_mgmt <- function(path, token) {
     torename <- vapply(data_list, is.list, logical(1))
     data_list[torename] <- lapply(data_list[torename], function(x) stats::setNames(x, to_separated(names(x), sep = ".")))
     data_list <- convert_datatypes(data_list)
-    data_list$created <- as.POSIXct(strptime(data_list$created, format = "%Y-%m-%dT%H:%M:%OS", tz = "GMT"))
-    data_list$updated <- as.POSIXct(strptime(data_list$updated, format = "%Y-%m-%dT%H:%M:%OS", tz = "GMT"))
+    if (!is.null(data_list$created))
+        data_list$created <- as.POSIXct(strptime(data_list$created, format = "%Y-%m-%dT%H:%M:%OS", tz = "GMT"))
+    if (!is.null(data_list$updated))
+        data_list$updated <- as.POSIXct(strptime(data_list$updated, format = "%Y-%m-%dT%H:%M:%OS", tz = "GMT"))
     return(data_list)
 }
