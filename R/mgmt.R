@@ -9,9 +9,9 @@ list_mgmt <- function(path, query, token) {
         return(invisible(NULL))
     }
     data_df <- data_json$items
-    if (!is.null(data_list$created))
+    if (!is.null(data_df$created))
         data_df$created <- as.POSIXct(strptime(data_df$created, format = "%Y-%m-%dT%H:%M:%OS", tz = "GMT"))
-    if (!is.null(data_list$updated))
+    if (!is.null(data_df$updated))
         data_df$updated <- as.POSIXct(strptime(data_df$updated, format = "%Y-%m-%dT%H:%M:%OS", tz = "GMT"))
     attr(data_df, "username") <- data_json$username
     return(data_df)
