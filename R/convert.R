@@ -1,18 +1,14 @@
 # Build data.frame for core report
 df_ga <- function(x) {
-    if (is.list(x$rows))
-        x$rows <- do.call(rbind, x$rows)
-    col_names <- gsub("^ga:", "", x$columnHeaders$name)
     data_df <- as.data.frame(x$rows, stringsAsFactors = FALSE)
-    colnames(data_df) <- col_names
+    colnames(data_df) <- gsub("^ga:", "", x$columnHeaders$name)
     return(data_df)
 }
 
 # Build data.frame for realtime report
 df_realtime <- function(x) {
-    col_names <- gsub("^rt:", "", x$columnHeaders$name)
     data_df <- as.data.frame(x$rows, stringsAsFactors = FALSE)
-    colnames(data_df) <- col_names
+    colnames(data_df) <- gsub("^rt:", "", x$columnHeaders$name)
     return(data_df)
 }
 
@@ -28,8 +24,6 @@ collapse_mcf <- function(x) {
 
 # Build data.frame for mcf report
 df_mcf <- function(x) {
-    if (is.list(x$rows[[1L]]) && !is.data.frame(x$rows[[1L]]))
-        x$rows <- do.call(c, x$rows)
     col_names <- gsub("^mcf:", "", x$columnHeaders$name)
     types <- x$columnHeaders$dataType
     if ("MCF_SEQUENCE" %in% types) {
@@ -51,10 +45,7 @@ df_mcf <- function(x) {
 
 # Build data.frame for mgmt data
 df_mgmt <- function(x) {
-    if (is.data.frame(x$items))
-        data_df <- x$items
-    else if (is.list(x$items) && !is.data.frame(x$items))
-        data_df <- do.call(rbind, x$items)
+    data_df <- x$items
     if (!is.null(data_df$permissions.effective)) {
         names(data_df) <- gsub(".effective", "", names(data_df), fixed = TRUE)
         data_df$permissions <- vapply(data_df$permissions, paste, collapse = ",", FUN.VALUE = character(1))

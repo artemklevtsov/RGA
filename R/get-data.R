@@ -30,15 +30,19 @@ get_data <- function(path = NULL, query = NULL, token) {
         if (grepl("data/realtime", paste(path, collapse = "/")))
             warning(sprintf("Only %d observations out of %d were obtained (the batch processing mode is not implemented for this report type).", query$max.results, data_json$totalResults), call. = FALSE)
         else {
-            message(sprintf("Response contain more then %d rows. Batch processing mode enabled.", query$max.results))
+            message(sprintf("API response contain more then %d items. Batch processing mode enabled.", query$max.results))
             total.pages <- ceiling(data_json$totalResults / query$max.results)
             pages <- vector(mode = "list", length = total.pages)
-            for (page in 2L:total.pages) {
-                message(sprintf("Fetching page %d of %d...", page, total.pages))
-                query$start.index <- query$max.results * (page - 1L) + 1L
-                pages[[page]] <- GET_(get_url(path, query), token)[[items]]
+            for (i in 2L:total.pages) {
+                query$start.index <- query$max.results * (i - 1L) + 1L
+                pages[[i]] <- GET_(get_url(path, query), token)[[items]]
             }
-            data_json[[items]] <- c(list(data_json[[items]]), pages[-1L])
+            pages[[1L]] <- data_json[[items]]
+            if (is.matrix(pages[[1L]]) || is.data.frame(pages[[1L]]))
+                pages <- do.call(rbind, pages)
+            else if (is.list(pages[[1L]]))
+                pages <- do.call(c, pages)
+            data_json[[items]] <- pages
         }
     }
     data_json[[items]] <- build_df(data_json)
