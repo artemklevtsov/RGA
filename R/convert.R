@@ -32,12 +32,12 @@ df_mcf <- function(x) {
         primitive <- do.call(rbind, primitive)
         colnames(primitive) <- col_names[-idx]
         conversion <- lapply(x$rows, function(i) .subset2(i, "conversionPathValue")[idx])
-        conversion <- lapply(conversion, function(i) lapply(i, function(j) collapse_mcf(j)))
-        conversion <- do.call(rbind, lapply(conversion, unlist))
+        conversion <- lapply(conversion, function(i) vapply(i, collapse_mcf, FUN.VALUE = character(1)))
+        conversion <- do.call(rbind, conversion)
         colnames(conversion) <- col_names[idx]
         data_df <- data.frame(primitive, conversion, stringsAsFactors = FALSE)[, col_names]
     } else {
-        data_df <- as.data.frame(do.call(rbind, lapply(x$rows, unlist)), stringsAsFactors = FALSE)
+        data_df <- as.data.frame(do.call(rbind, unlist(x$rows, recursive = FALSE, use.names = FALSE)), stringsAsFactors = FALSE)
         colnames(data_df) <- col_names
     }
     return(data_df)
