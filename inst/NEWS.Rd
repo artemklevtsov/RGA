@@ -10,6 +10,7 @@
     \item Removed unused the \code{rga.token} package option
     \item Removed deprecated \code{get_rt()} function. Use \code{get_realtime()} instead
     \item The \code{sampling.level} argument value now must be in the upper case
+    \item Added text progress bar when batch processing mode enabled
     \item Some inner code improvements
   }
 }

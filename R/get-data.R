@@ -33,10 +33,13 @@ get_data <- function(path = NULL, query = NULL, token) {
             message(sprintf("API response contain more then %d items. Batch processing mode enabled.", query$max.results))
             total.pages <- ceiling(data_json$totalResults / query$max.results)
             pages <- vector(mode = "list", length = total.pages)
+            pb <- txtProgressBar(min = 0, max = total.pages, initial = 1, style = 3)
             for (i in 2L:total.pages) {
                 query$start.index <- query$max.results * (i - 1L) + 1L
                 pages[[i]] <- GET_(get_url(path, query), token)[[items]]
+                setTxtProgressBar(pb, i)
             }
+            close(pb)
             pages[[1L]] <- data_json[[items]]
             if (is.matrix(pages[[1L]]) || is.data.frame(pages[[1L]]))
                 pages <- do.call(rbind, pages)
