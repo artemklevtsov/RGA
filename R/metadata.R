@@ -53,14 +53,14 @@
 #'
 list_dimsmets <- function(report.type = "ga") {
     url <- get_url(c("metadata", report.type, "columns"))
-    data_json <- process(httr::GET(url))
-    data_df <- data_json$items
-    data_df$kind <- NULL
-    colnames(data_df) <- gsub("attributes.", "", colnames(data_df), fixed = TRUE)
-    data_df$allowedInSegments <- ifelse(data_df$allowedInSegments == "true", TRUE, FALSE)
-    colnames(data_df) <- to_separated(colnames(data_df), sep = ".")
-    data_df <- convert_datatypes(data_df)
-    return(data_df)
+    data_ <- process(httr::GET(url))
+    res <- data_$items
+    res$kind <- NULL
+    colnames(res) <- gsub("attributes.", "", colnames(res), fixed = TRUE)
+    res$allowedInSegments <- ifelse(res$allowedInSegments == "true", TRUE, FALSE)
+    colnames(res) <- to_separated(colnames(res), sep = ".")
+    res <- convert_datatypes(res)
+    return(res)
 }
 
 #' @title The Shiny Dimensions & Metrics Explorer
