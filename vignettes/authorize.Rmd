@@ -23,6 +23,7 @@ Before you send any requests to the Google Analytics API, it's necessary to perf
 ```r
 authorize()
 ```
+(Please note that you can immediately revoke the authorization in Google Account Management page [Apps connected to your account](https://security.google.com/settings/security/permissions), so that no need to worry about the security of your Google account. For more details please go to the section below *Revoke access application*)
 
 After calling this function first time, a web browser will be opened. If `username` argument was not specified you need choose an account for the authorization. First entrance with a **Google Account** confirms access to the Google Analytics data. Note that the package requests access for the **read-only** data.
 
