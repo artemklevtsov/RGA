@@ -67,6 +67,8 @@ First check the changes in the latest version of the package. Type type into R:
 news(package = "RGA", Version == packageVersion("RGA"))
 ```
 
+Try reproduce a bug with the latest development version from Git.
+
 Before posting a bug please try execute your code with the `httr::with_verbose()` wrapper. It will be useful if you attach verbose output to the bug report.
 
 ```r

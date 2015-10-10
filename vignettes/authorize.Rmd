@@ -152,7 +152,7 @@ list_profiles(token = home_token)
 
 ## Revoke access application
 
-To revoke access the \pkg{RGA} package do the following:
+To revoke access the `RGA` package do the following:
 
 1. Go to the [Apps connected to your account](https://security.google.com/settings/security/permissions) page;
 1. Find **RGA package** entry. Then click on it;
