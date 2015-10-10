@@ -1,10 +1,10 @@
 #' @title Get the Anaytics data from Multi-Channel Funnels Reporting API for a view (profile)
 #'
 #' @param profile.id integer or character. Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID. Can be obtained using the \code{\link{list_profiles}} or via the web interface Google Analytics.
-#' @param start.date character. Start date for fetching Analytics data. Request can specify a start date formatted as YYYY-MM-DD or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is 7daysAgo.
-#' @param end.date character. End date for fetching Analytics data. Request can specify an end date formatted as YYYY-MM-DD or as a relative date (e.g., today, yester-day, or 7daysAgo). The default value is yesterday.
+#' @param start.date character. Start date for fetching Analytics data. Request can specify a start date formatted as "YYYY-MM-DD" or as a relative date (e.g., "today", "yesterday", or "7daysAgo"). The default value is "7daysAgo".
+#' @param end.date character. End date for fetching Analytics data. Request can specify an end date formatted as "YYYY-MM-DD" or as a relative date (e.g., "today", "yesterday", or "7daysAgo"). The default value is "yesterday".
 #' @param metrics character. A comma-separated list of Multi-Channel Funnels metrics. E.g., \code{"mcf:totalConversions,mcf:totalConversionValue"}. At least one metric must be specified.
-#' @param dimensions character. A comma-separated list of Multi-Channel Funnels dimensions. E.g., code{"mcf:source,mcf:medium"}.
+#' @param dimensions character. A comma-separated list of Multi-Channel Funnels dimensions. E.g., \code{"mcf:source,mcf:medium"}.
 #' @param sort character. character. A comma-separated list of dimensions or metrics that determine the sort order for Analytics data.
 #' @param filters character. A comma-separated list of dimension or metric filters to be applied to Analytics data.
 #' @param sampling.level character. The desired sampling level. Allowed values: "DEFAULT", "FASTER", "HIGHER_PRECISION".
