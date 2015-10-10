@@ -1,5 +1,5 @@
 # Build data.frame for core report
-df_core <- function(x) {
+core_df <- function(x) {
     res <- as.data.frame(x$rows, stringsAsFactors = FALSE)
     colnames(res) <- gsub("^.*:", "", x$columnHeaders$name)
     return(res)
@@ -16,7 +16,7 @@ collapse_mcf <- function(x) {
 }
 
 # Build data.frame for mcf report
-df_mcf <- function(x) {
+mcf_df <- function(x) {
     col_names <- gsub("^mcf:", "", x$columnHeaders$name)
     types <- x$columnHeaders$dataType
     if ("MCF_SEQUENCE" %in% types) {
@@ -38,7 +38,7 @@ df_mcf <- function(x) {
 }
 
 # Build data.frame for mgmt data
-df_mgmt <- function(x) {
+mgmt_df <- function(x) {
     res <- x$items
     if (!is.null(res$permissions.effective)) {
         names(res) <- gsub(".effective", "", names(res), fixed = TRUE)
@@ -53,11 +53,11 @@ df_mgmt <- function(x) {
 build_df <- function(x) {
     if (!is.null(x$columnHeaders)) {
         if (grepl("mcfData", x$kind, fixed = TRUE))
-            res <- df_mcf(x)
+            res <- mcf_df(x)
         else
-            res <- df_core(x)
+            res <- core_df(x)
     } else
-        res <- df_mgmt(x)
+        res <- mgmt_df(x)
     rownames(res) <- NULL
     colnames(res) <- to_separated(colnames(res), sep = ".")
     res <- convert_datatypes(res)
