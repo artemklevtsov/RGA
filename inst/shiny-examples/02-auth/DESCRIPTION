@@ -1,0 +1,7 @@
+Title: Google Analytics API authorisation demo
+Description: Lists all accounts which the user has access to
+Author: Artem Klevtsov
+DisplayMode: Showcase
+License: GPL-2
+Type: Shiny
+Tags: ga

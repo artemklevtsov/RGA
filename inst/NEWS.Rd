@@ -11,6 +11,7 @@
     \item Removed deprecated \code{get_rt()} function. Use \code{get_realtime()} instead
     \item The \code{sampling.level} argument value now must be in the upper case
     \item Added text progress bar when batch processing mode enabled
+    \item Added the \CRANpkg{shiny} example to demonstrate an application authorization
     \item Some inner code improvements
   }
 }
