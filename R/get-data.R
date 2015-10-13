@@ -30,7 +30,7 @@ get_data <- function(path = NULL, query = NULL, token) {
         if (grepl("data/realtime", paste(path, collapse = "/")))
             warning(sprintf("Only %d observations out of %d were obtained (the batch processing mode is not implemented for this report type).", query$max.results, res$totalResults), call. = FALSE)
         else {
-            message(sprintf("API response contain more then %d items. Batch processing mode enabled.", query$max.results))
+            message(sprintf("API response contains more then %d items. Batch processing mode enabled.", query$max.results))
             total.pages <- ceiling(res$totalResults / query$max.results)
             pages <- vector(mode = "list", length = total.pages)
             pb <- txtProgressBar(min = 0, max = total.pages, initial = 1, style = 3)
@@ -39,13 +39,13 @@ get_data <- function(path = NULL, query = NULL, token) {
                 pages[[i]] <- GET_(get_url(path, query), token)[[items]]
                 setTxtProgressBar(pb, i)
             }
-            close(pb)
             pages[[1L]] <- res[[items]]
             if (is.matrix(pages[[1L]]) || is.data.frame(pages[[1L]]))
                 pages <- do.call(rbind, pages)
             else if (is.list(pages[[1L]]))
                 pages <- do.call(c, pages)
             res[[items]] <- pages
+            close(pb)
         }
     }
     res[[items]] <- build_df(res)

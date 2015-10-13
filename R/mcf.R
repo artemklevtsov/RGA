@@ -10,6 +10,7 @@
 #' @param sampling.level character. The desired sampling level. Allowed values: "DEFAULT", "FASTER", "HIGHER_PRECISION".
 #' @param start.index integer. An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
 #' @param max.results integer. The maximum number of entries to include in this feed.
+#' @param daywise logical. Split the query into multiple small queries (day-by-day).
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
 #'
 #' @return A data frame including the Analytics Multi-Channel Funnels data for a view (profile). Addition information about profile and request query stored in the attributes.
@@ -33,6 +34,7 @@
 #'                    dimensions = "mcf:source,mcf:medium")
 #' }
 #'
+#' @include daywise.R
 #' @include report.R
 #'
 #' @export
@@ -40,13 +42,16 @@
 get_mcf <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
                     metrics = "mcf:totalConversions", dimensions = NULL,
                     sort = NULL, filters = NULL, sampling.level = NULL,
-                    start.index = NULL, max.results = NULL, token) {
+                    start.index = NULL, max.results = NULL, daywise = FALSE, token) {
     if (!is.null(sampling.level))
         sampling.level <- match.arg(sampling.level, c("DEFAULT", "FASTER", "HIGHER_PRECISION"))
     query <- build_query(profile.id = profile.id, start.date = start.date, end.date = end.date,
                          metrics = metrics, dimensions = dimensions, sort = sort, filters = filters,
                          sampling.level = sampling.level,
                          start.index = start.index, max.results = max.results)
-    res <- get_report("data/mcf", query, token)
+    if (daywise)
+        res <- daywise("data/mcf", query, token)
+    else
+        res <- get_report("data/mcf", query, token)
     return(res)
 }

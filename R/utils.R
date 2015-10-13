@@ -84,3 +84,7 @@ convert_datatypes <- function(x) {
     x[] <- rapply(x, utils::type.convert, classes = "character", how = "replace", as.is = TRUE)
     return(x)
 }
+
+parse_params <- function(x) {
+    to_separated(gsub("^[a-z]+:", "", unlist(strsplit(x, ",|;"))))
+}
