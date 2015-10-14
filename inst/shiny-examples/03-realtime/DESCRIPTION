@@ -1,0 +1,7 @@
+Title: Google Analytics API realtime demo
+Description: Get active users in realtime
+Author: Artem Klevtsov
+DisplayMode: Showcase
+License: GPL-2
+Type: Shiny
+Tags: ga

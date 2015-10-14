@@ -12,7 +12,8 @@
     \item The \code{sampling.level} argument value now must be in the upper case
     \item Added text progress bar when batch processing mode enabled
     \item Added \code{datewise} option for the \code{get_ga()} and \code{get_mcf()} functions to fetch data with specified interval of dates
-    \item Added the \CRANpkg{shiny} example to demonstrate an application authorization
+    \item Added the \CRANpkg{shiny} an example application authorization
+    \item Added the \CRANpkg{shiny} an example fetching realtime reporting data
     \item Some inner code improvements
   }
 }
