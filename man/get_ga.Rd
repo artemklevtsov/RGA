@@ -7,7 +7,7 @@
 get_ga(profile.id, start.date = "7daysAgo", end.date = "yesterday",
   metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = NULL,
   sort = NULL, filters = NULL, segment = NULL, sampling.level = NULL,
-  start.index = NULL, max.results = NULL, daywise = FALSE, token)
+  start.index = NULL, max.results = NULL, datewise = NULL, token)
 }
 \arguments{
 \item{profile.id}{integer or character. Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID. Can be obtained using the \code{\link{list_profiles}} or via the web interface Google Analytics.}
@@ -32,7 +32,7 @@ get_ga(profile.id, start.date = "7daysAgo", end.date = "yesterday",
 
 \item{max.results}{integer. The maximum number of entries to include in this feed.}
 
-\item{daywise}{logical. Split the query into multiple small queries (day-by-day).}
+\item{datewise}{character. Split the query into multiple small queries. Allowed values: "day", "week", "month", "quarter", "year".}
 
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
 }

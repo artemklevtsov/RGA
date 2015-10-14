@@ -40,7 +40,7 @@ Collate:
     'custom-dims.R'
     'custom-mets.R'
     'custom-sources.R'
-    'daywise.R'
+    'datewise.R'
     'experiments.R'
     'filters.R'
     'query.R'
