@@ -20,7 +20,7 @@ parse_date <- function(x) {
     return(as.character(x))
 }
 
-datewise <- function(path, query, by, token) {
+fetch_by <- function(path, query, by, token) {
     query$start.date <- parse_date(query$start.date)
     query$end.date <- parse_date(query$end.date)
     dates <- date_ranges(query$start.date, query$end.date, by)

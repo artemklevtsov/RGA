@@ -70,24 +70,21 @@ If at least one of the following thresholds is met Analytics samples data accord
 * 1,000,000 maximum unique dimension combinations for any type of query;
 * 500,000 maximum sessions for special queries where the data is not already stored.
 
-In order to avoid this, you can split the query into multiple small queries (day-by-day). You can get this day-by-day data by using the following code:
+In order to avoid this, you can split the query into multiple small queries by month, week or day. You can get this day-by-day data by using the `fetch.by` param:
 
 ```r
-dates <- seq(as.Date("2012-01-01"), as.Date("2012-02-01"), by = "days")
-ga_data <- do.call(rbind, lapply(dates, function(date) {
-    get_ga(profile.id = XXXXXXXX, start.date = date, end.date = date,
+get_ga(profile.id = XXXXXXXX, start.date = date, end.date = date,
     metrics = "ga:sessions", dimensions = "ga:keyword",
-    filter = "ga:medium==organic;ga:keyword!=(not provided);ga:keyword!=(not set)")
-}))
-ga_data <- aggregate(. ~ keyword, FUN = sum, data = ga_data)
+    filter = "ga:medium==organic;ga:keyword!=(not provided);ga:keyword!=(not set)",
+    fetch.by = "day")
 ```
 
-Note: a formula in `aggregate()` function should include all Google Analyitcs dimensions without prefix ("ga:" or "mcf:").
+`fetch.by` allowed in the `get_ga()` and `get_mcf()` functions.
 
 ## References
 
-- [Core Reporting API - Dimensions & Metrics Reference](https://developers.google.com/analytics/devguides/reporting/core/dimsmets);
+- [Core Reporting API - Dimensions & Metrics Reference](https://developers.google.com/analytics/devguides/reporting/core/dimsmets)
 - [Multi-Channel Funnels Reporting API - Dimensions & Metrics Reference](https://developers.google.com/analytics/devguides/reporting/mcf/dimsmets/)
 - [Real Time Reporting API - Dimensions & Metrics Reference](https://developers.google.com/analytics/devguides/reporting/realtime/dimsmets/)
-- [Core Reporting API - Common Queries](https://developers.google.com/analytics/devguides/reporting/core/v3/common-queries);
-- [Google Analytics Demos & Tools - Query Explorer](https://ga-dev-tools.appspot.com/explorer/);
+- [Core Reporting API - Common Queries](https://developers.google.com/analytics/devguides/reporting/core/v3/common-queries)
+- [Google Analytics Demos & Tools - Query Explorer](https://ga-dev-tools.appspot.com/explorer/)

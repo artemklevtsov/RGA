@@ -11,7 +11,7 @@
     \item Removed deprecated \code{get_rt()} function. Use \code{get_realtime()} instead
     \item The \code{sampling.level} argument value now must be in the upper case
     \item Added text progress bar when batch processing mode enabled
-    \item Added \code{datewise} option for the \code{get_ga()} and \code{get_mcf()} functions to fetch data with specified interval of dates
+    \item Added \code{fetch.by} option for the \code{get_ga()} and \code{get_mcf()} functions to split the queries by date ranges (day, week, month, quarter, year)
     \item Added the \CRANpkg{shiny} an example application authorization
     \item Added the \CRANpkg{shiny} an example fetching realtime reporting data
     \item Some inner code improvements

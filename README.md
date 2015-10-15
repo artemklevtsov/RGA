@@ -17,6 +17,7 @@ Key features:
     - [Real Time Reporting API](https://developers.google.com/analytics/devguides/reporting/realtime/v3): report on activity occurring on your property at the moment;
     - [Metadata API](https://developers.google.com/analytics/devguides/reporting/metadata/v3): access the list of API dimensions and metrics and their attributes;
 * Auto-pagination to return more than 10,000 rows of the results by combining multiple data requests;
+* Split the query by date ranges to avoid a sampling data;
 * Shiny app to explore all the dimensions and metrics available through the Core Reporting API.
 
 ## Installation
