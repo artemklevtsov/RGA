@@ -79,7 +79,7 @@ get_ga(profile.id = XXXXXXXX, start.date = date, end.date = date,
     fetch.by = "day")
 ```
 
-`fetch.by` allowed in the `get_ga()` and `get_mcf()` functions.
+`fetch.by` allowed in the `get_ga()` and `get_mcf()` functions. We recomend you move from large to smaller date ranges until a sampling data occurs.
 
 ## References
 
