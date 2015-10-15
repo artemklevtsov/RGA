@@ -3,7 +3,7 @@
 #' @description
 #' This dataset represents all of the dimensions and metrics for the reporting API with their attributes. Attributes returned include UI name, description, segments support, etc.
 #'
-#' @param report.type character. Report type. Allowed Values: \dQuote{ga}. Where \dQuote{ga} corresponds to the Core Reporting API.
+#' @param report.type character. Report type. Allowed Values: "ga". Where "ga" corresponds to the Core Reporting API.
 #'
 #' @return A data.frame contains dimensions and metrics for a particular report type.
 #' \item{id}{Parameter name.}

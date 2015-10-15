@@ -7,7 +7,7 @@
 list_dimsmets(report.type = "ga")
 }
 \arguments{
-\item{report.type}{character. Report type. Allowed Values: \dQuote{ga}. Where \dQuote{ga} corresponds to the Core Reporting API.}
+\item{report.type}{character. Report type. Allowed Values: "ga". Where "ga" corresponds to the Core Reporting API.}
 }
 \value{
 A data.frame contains dimensions and metrics for a particular report type.
