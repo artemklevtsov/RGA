@@ -22,13 +22,16 @@ get_report <- function(path, query, token) {
         if (!is.null(res$conversion.date))
             res$conversion.date <- as.POSIXct(strptime(res$conversion.date, "%Y%m%d", tz = timezone))
     }
-    if (!is.null(data_$containsSampledData) && isTRUE(data_$containsSampledData)) {
-        sample_perc <- as.numeric(data_$sampleSize) / as.numeric(data_$sampleSpace) * 100
-        warning(sprintf("Data contains sampled data. Used %d sessions (%1.0f%% of sessions).", as.numeric(data_$sampleSize), sample_perc), call. = FALSE)
-    }
     names(data_$profileInfo) <-  to_separated(names(data_$profileInfo), sep = ".")
     names(data_$query) <-  to_separated(names(data_$query), sep = ".")
     attr(res, "profile.info") <- data_$profileInfo
     attr(res, "query") <- fix_query(data_$query)
+    attr(res, "sampled") <- data_$containsSampledData
+    if (!is.null(data_$containsSampledData) && isTRUE(data_$containsSampledData)) {
+        attr(res, "sample.size") <- as.numeric(data_$sampleSize)
+        attr(res, "sample.space") <- as.numeric(data_$sampleSpace)
+        sample_perc <- as.numeric(data_$sampleSize) / as.numeric(data_$sampleSpace) * 100
+        warning(sprintf("Data contains sampled data. Used %d sessions (%1.0f%% of sessions). Try to use the %s param to avoid sampling.", as.numeric(data_$sampleSize), sample_perc, dQuote("fetch.by")), call. = FALSE)
+    }
     return(res)
 }
