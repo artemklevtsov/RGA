@@ -34,9 +34,6 @@ build-win:
 vignettes:
 	Rscript -e 'devtools::build_vignettes()'
 
-locales:
-	Rscript -e 'tools::update_pkg_po(".", bugs = "https://github.com/artemklevtsov/RGA/issues")'
-
 submit:
 	Rscript -e 'devtools::submit_cran()'
 
