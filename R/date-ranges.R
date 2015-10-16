@@ -11,8 +11,8 @@ date_ranges <- function(start, end, by) {
 
 parse_date <- function(x) {
     stopifnot(is.character(x))
-    if (grepl("[0-9]+daysAgo", x))
-        x <-  Sys.Date() - as.numeric(sub("([0-9]+).*", "\\1", x))
+    if (grepl("daysAgo", x, fixed = TRUE))
+        x <-  Sys.Date() - as.numeric(sub("^([0-9]+).*", "\\1", x))
     else if (x == "today")
         x <- Sys.Date()
     else if (x == "yesterday")
