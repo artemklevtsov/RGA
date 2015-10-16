@@ -1,9 +1,11 @@
 context("Metadata Reporting API response")
 
-ga_data <- suppressMessages(list_dimsmets(report.type = "ga"))
+ga_data <- list_dimsmets(report.type = "ga")
 
 test_that("Result class", {
     expect_is(ga_data, "data.frame")
+    expect_is(ga_data$allowed.in.segments, "logical")
+    expect_is(ga_data$min.template.index, "integer")
 })
 
 test_that("Data frame dimensions", {
