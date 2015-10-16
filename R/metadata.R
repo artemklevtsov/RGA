@@ -30,7 +30,6 @@
 #'
 #' @include url.R
 #' @include request.R
-#' @include convert.R
 #'
 #' @export
 #'
@@ -57,9 +56,7 @@ list_dimsmets <- function(report.type = "ga") {
     res <- data_$items
     res$kind <- NULL
     colnames(res) <- gsub("attributes.", "", colnames(res), fixed = TRUE)
-    res$allowedInSegments <- ifelse(res$allowedInSegments == "true", TRUE, FALSE)
-    colnames(res) <- to_separated(colnames(res), sep = ".")
-    res <- convert_datatypes(res)
+    res$allowed.in.segments <- ifelse(res$allowed.in.segments == "true", TRUE, FALSE)
     return(res)
 }
 

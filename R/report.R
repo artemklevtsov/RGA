@@ -11,27 +11,22 @@ get_report <- function(path, query, token) {
     res <- data_$rows
     # Convert to POSIXct with timezone defined in the GA profile
     if (any(grepl("date", names(res), fixed = TRUE))) {
-        profile <- get_profile(account.id = data_$profileInfo$accountId,
-                               webproperty.id = data_$profileInfo$webPropertyId,
-                               profile.id = data_$profileInfo$profileId, token = token)
-        timezone <- profile$timezone
+        timezone <- get_profile(data_$profile.info$account.id, data_$profile.info$webproperty.id, data_$profile.info$profile.id, token)$timezone
         if (!is.null(res$date.hour))
-            res$date.hour <- as.POSIXct(strptime(res$date.hour, format = "%Y%m%d%H", tz = timezone))
+            res$date.hour <- as.POSIXct(strptime(res$date.hour, "%Y%m%d%H", tz = timezone))
         if (!is.null(res[["date"]]))
             res[["date"]] <- as.POSIXct(strptime(res[["date"]], "%Y%m%d", tz = timezone))
         if (!is.null(res$conversion.date))
             res$conversion.date <- as.POSIXct(strptime(res$conversion.date, "%Y%m%d", tz = timezone))
     }
-    names(data_$profileInfo) <-  to_separated(names(data_$profileInfo), sep = ".")
-    names(data_$query) <-  to_separated(names(data_$query), sep = ".")
-    attr(res, "profile.info") <- data_$profileInfo
+    attr(res, "profile.info") <- data_$profile.info
     attr(res, "query") <- fix_query(data_$query)
-    attr(res, "sampled") <- data_$containsSampledData
-    if (!is.null(data_$containsSampledData) && isTRUE(data_$containsSampledData)) {
-        attr(res, "sample.size") <- as.numeric(data_$sampleSize)
-        attr(res, "sample.space") <- as.numeric(data_$sampleSpace)
-        sample_perc <- as.numeric(data_$sampleSize) / as.numeric(data_$sampleSpace) * 100
-        warning(sprintf("Data contains sampled data. Used %d sessions (%1.0f%% of sessions). Try to use the %s param to avoid sampling.", as.numeric(data_$sampleSize), sample_perc, dQuote("fetch.by")), call. = FALSE)
+    attr(res, "sampled") <- data_$contains.sampled.data
+    if (!is.null(data_$contains.sampled.data) && isTRUE(data_$contains.sampled.data)) {
+        attr(res, "sample.size") <- data_$sample.size
+        attr(res, "sample.space") <- data_$sample.space
+        sample_perc <- data_$sample.size / data_$sample.space * 100
+        warning(sprintf("Data contains sampled data. Used %d sessions (%1.0f%% of sessions). Try to use the %s param to avoid sampling.", data_$sample.size, sample_perc, dQuote("fetch.by")), call. = FALSE)
     }
     return(res)
 }

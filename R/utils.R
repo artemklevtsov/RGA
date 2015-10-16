@@ -81,10 +81,14 @@ to_separated <- function(x, sep = ".") {
 # Convert data types
 convert_datatypes <- function(x) {
     stopifnot(is.list(x))
-    x[] <- rapply(x, utils::type.convert, classes = "character", how = "replace", as.is = TRUE)
+    chars <- vapply(x, is.character, logical(1))
+    x[chars] <- lapply(x[chars], type.convert, as.is = TRUE)
+    lists <- vapply(x, is.list, logical(1))
+    x[lists] <- lapply(x[lists], convert_datatypes)
+    names(x) <- to_separated(names(x), sep = ".")
     return(x)
 }
 
 parse_params <- function(x) {
-    to_separated(gsub("^[a-z]+:", "", unlist(strsplit(x, ",|;"))))
+    to_separated(gsub("^[a-z]+:", "", unlist(strsplit(x, ",|;"))), sep = ".")
 }

@@ -1,8 +1,7 @@
 # Error printing function
 #' @include utils.R
 stop_reasons <- function(x) {
-    code <- x$error$code
-    message <- httr::http_status(code)$message
+    message <- httr::http_status(x$error$code)$message
     reasons <- x$error$errors
     reasons$reason <- capitalize(to_separated(reasons$reason, sep = " "))
     if (!is.null(reasons$location)) {
@@ -12,11 +11,11 @@ stop_reasons <- function(x) {
         reasons <- paste(sprintf("%s %s: %s", reasons$reason, reasons$location, reasons$message), collapse = "\n")
     } else
         reasons <- paste(sprintf("%s: %s", reasons$reason, reasons$message), collapse = "\n")
-    message <- paste(message, reasons, sep = "\n")
-    stop(message, call. = FALSE)
+    stop(paste(message, reasons, sep = "\n"), call. = FALSE)
 }
 
 # Process response
+#' @include utils.R
 process <- function(x) {
     if (x$status_code == 404L) {
         url <- strsplit(x$url, split = "?", fixed = TRUE)[[1]][1]
@@ -25,6 +24,7 @@ process <- function(x) {
     res <- jsonlite::fromJSON(httr::content(x, as = "text"), flatten = TRUE)
     if (!is.null(res$error))
         stop_reasons(res)
+    res <- convert_datatypes(res)
     return(res)
 }
 

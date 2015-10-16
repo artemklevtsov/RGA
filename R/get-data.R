@@ -21,17 +21,17 @@ get_data <- function(path = NULL, query = NULL, token) {
     }
     # Make request
     res <- GET_(get_url(path, query), token)
-    if (res$totalResults == 0L || is.null(res[[items]]) || length(res[[items]]) == 0L)
+    if (res$total.results == 0L || is.null(res[[items]]) || length(res[[items]]) == 0L)
         return(NULL)
-    if (!isTRUE(pagination) && query$max.results < res$totalResults)
-        warning(sprintf("Only %d observations out of %d were obtained. Set max.results = NULL (default value) to get all results.", query$max.results, res$totalResults), call. = FALSE)
+    if (!isTRUE(pagination) && query$max.results < res$total.results)
+        warning(sprintf("Only %d observations out of %d were obtained. Set max.results = NULL (default value) to get all results.", query$max.results, res$total.results), call. = FALSE)
     # Pagination
-    if (isTRUE(pagination) && query$max.results < res$totalResults) {
+    if (isTRUE(pagination) && query$max.results < res$total.results) {
         if (grepl("data/realtime", paste(path, collapse = "/")))
-            warning(sprintf("Only %d observations out of %d were obtained (the batch processing mode is not implemented for this report type).", query$max.results, res$totalResults), call. = FALSE)
+            warning(sprintf("Only %d observations out of %d were obtained (the batch processing mode is not implemented for this report type).", query$max.results, res$total.results), call. = FALSE)
         else {
             message(sprintf("API response contains more then %d items. Batch processing mode enabled.", query$max.results))
-            total.pages <- ceiling(res$totalResults / query$max.results)
+            total.pages <- ceiling(res$total.results / query$max.results)
             pages <- vector(mode = "list", length = total.pages)
             pb <- txtProgressBar(min = 0, max = total.pages, initial = 1, style = 3)
             for (i in 2L:total.pages) {

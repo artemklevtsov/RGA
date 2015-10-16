@@ -20,16 +20,11 @@ list_mgmt <- function(path, query, token) {
 # Get the Management API data
 #' @include url.R
 #' @include request.R
-#' @include utils.R
 get_mgmt <- function(path, token) {
     res <- GET_(get_url(c("management", path)), token)
     res <- res[!names(res) %in% c("selfLink", "parentLink", "childLink")]
     if (!is.null(res$permissions))
         res$permissions <- unlist(res$permissions, use.names = FALSE)
-    names(res) <-  to_separated(names(res), sep = ".")
-    torename <- vapply(res, is.list, logical(1))
-    res[torename] <- lapply(res[torename], function(x) stats::setNames(x, to_separated(names(x), sep = ".")))
-    res <- convert_datatypes(res)
     if (!is.null(res$created))
         res$created <- as.POSIXct(strptime(res$created, format = "%Y-%m-%dT%H:%M:%OS", tz = "GMT"))
     if (!is.null(res$updated))
