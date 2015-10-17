@@ -7,7 +7,7 @@ is.empty <- function(x) {
 # Reduce empty elements
 compact <- function(x) {
     empty <- vapply(x, is.empty, logical(1))
-    return(x[!empty])
+    x[!empty]
 }
 
 # Remove whitespaces
@@ -20,11 +20,11 @@ strip_spaces <- function(x) {
 # Remove whitespace around operators
 strip_ops <- function(x) {
     # available operators
-    ga_ops <- c("==", "!=", ">", "<", ">=", "<=", "<>", "\\[\\]", "=@", "!@", "=-", "!-", "\\|\\|", "&&", "OR", "AND")
+    ops <- c("==", "!=", ">", "<", ">=", "<=", "<>", "\\[\\]", "=@", "!@", "=-", "!-", "\\|\\|", "&&", "OR", "AND")
     # build pattern for replace
-    ops_pattern <- paste("(\\s)+(", paste(ga_ops, collapse = "|"), ")(\\s)+", sep = "")
+    pattern <- sprintf("(\\s)+(%s)(\\s)+", paste(ops, collapse = "|"))
     # remove whitespaces around operators
-    x <- gsub(ops_pattern, "\\2", x)
+    x <- gsub(pattern, "\\2", x)
     # replace logical operators
     x <- gsub("OR|\\|\\|", ",", x)
     x <- gsub("AND|&&", ";", x)
@@ -51,14 +51,13 @@ to_camel <- function(x, delim = "\\W", capitalize = FALSE) {
         first <- toupper(first)
     else
         first[-1] <- toupper(first[-1])
-    return(paste0(first, substring(splitted, 2), sep = "", collapse = ""))
+    paste0(first, substring(splitted, 2), sep = "", collapse = "")
 }
 
 # Capitalize strings
 capitalize <- function(x) {
     stopifnot(is.character(x))
-    first <- toupper(substring(x, 1, 1))
-    return(paste0(first, substring(x, 2)))
+    paste0(toupper(substring(x, 1, 1)), substring(x, 2))
 }
 
 #' @title Convert camelCase character vectove to separated
@@ -74,8 +73,7 @@ to_separated <- function(x, sep = ".") {
     x <- gsub("PropertyId", "propertyId", x, fixed = TRUE)
     x <- gsub("-", ".", x, fixed = TRUE)
     x <- gsub("ids", "profile.id", x, fixed = TRUE)
-    x <- gsub("([a-z])([A-Z])", paste0("\\1", sep, "\\L\\2"), x, perl = TRUE)
-    return(x)
+    gsub("([[:lower:]])([[:upper:]])", paste0("\\1", sep, "\\L\\2"), x, perl = TRUE)
 }
 
 # Convert data types
