@@ -74,7 +74,7 @@ fix_username <- function(x) {
 #'
 #' When the \code{authorize()} function is used the \code{Token} variable is created in the separate \code{.RGAEnv} environment which is not visible for user. So, there is no need to pass the token argument to any function which requires authorization every time. Also there is a possibility to store token in separate variable and to pass it to the functions. It can be useful when you are working with several accounts at the same time.
 #'
-#' \code{username}, \code{client.id}, \code{client.secret} and \code{cache} params can be specified by an appropriate options (with \dQuote{rga} prefix).
+#' \code{username}, \code{client.id} and \code{client.secret} params can be specified by an appropriate options (with \dQuote{RGA} prefix): \env{RGA_USERNAME}, \env{RGA_CLIENT_ID}, \env{RGA_CLIENT_SECRET}.
 #'
 #' @section Use custom Client ID and Client secret:
 #'
@@ -161,7 +161,7 @@ authorize <- function(username = getOption("rga.username"),
     if (new.auth)
         remove_token("Token")
     if (is.character(cache) && nzchar(cache))
-        message(sprintf("Access token will be stored in the %s file.", dQuote(cache)))
+        message(sprintf("Access token will be stored in the '%s' file.", cache))
     token <- httr::oauth2.0_token(endpoint = endpoint, app = app, cache = cache,
                             scope = "https://www.googleapis.com/auth/analytics.readonly")
     if (validate_token(token))

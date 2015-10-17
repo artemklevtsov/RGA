@@ -72,7 +72,7 @@ list_dimsmets <- function(report.type = "ga") {
 shiny_dimsmets <- function() {
     appDir <- system.file("shiny-examples", "01-dimsmets", package = "RGA")
     if (appDir == "")
-        stop(sprintf("Could not find example directory. Try re-installing %s package.", dQuote("RGA")), call. = FALSE)
+        stop("Could not find example directory. Try re-installing 'RGA' package.", call. = FALSE)
     shiny::runApp(appDir, display.mode = "normal")
 }
 

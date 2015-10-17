@@ -48,6 +48,6 @@ fetch_by <- function(path, query, by, token) {
     attributes(res) <- attrs
     close(pb)
     if (grepl("ga:users|ga:[0-9]+dayUsers", query$metrics))
-        warning(sprintf("The %s or %s total value for several days is not the sum of values for each single day.", dQuote("ga:users"), dQuote("ga:NdayUsers")), call. = FALSE)
+        warning("The 'ga:users' or 'ga:NdayUsers' total value for several days is not the sum of values for each single day.", call. = FALSE)
     return(res)
 }

@@ -26,7 +26,7 @@ get_report <- function(path, query, token) {
         attr(res, "sample.size") <- data_$sample.size
         attr(res, "sample.space") <- data_$sample.space
         sample_perc <- data_$sample.size / data_$sample.space * 100
-        warning(sprintf("Data contains sampled data. Used %d sessions (%1.0f%% of sessions). Try to use the %s param to avoid sampling.", data_$sample.size, sample_perc, dQuote("fetch.by")), call. = FALSE)
+        warning(sprintf("Data contains sampled data. Used %d sessions (%1.0f%% of sessions). Try to use the 'fetch.by' param to avoid sampling.", data_$sample.size, sample_perc), call. = FALSE)
     }
     return(res)
 }
