@@ -1,32 +1,25 @@
 # The inner package environment
 .RGAEnv <- new.env(parent = emptyenv())
 
-# Check token exists
-token_exists <- function(name) {
-    exists(name, envir = .RGAEnv)
-}
-
 # Set token to environment
-set_token <- function(name, value) {
-    assign(name, value, envir = .RGAEnv)
+set_token <- function(value) {
+    .RGAEnv$Token <- value
     return(value)
 }
 
 # Get token from environment
-get_token <- function(name) {
-    stopifnot(token_exists(name))
-    get(name, envir = .RGAEnv)
+get_token <- function() {
+    .RGAEnv$Token
 }
 
 # Remove token from environment
-remove_token <- function(name) {
-    stopifnot(token_exists(names))
-    cache_path <- get_token(name)$cache_path
+remove_token <- function() {
+    cache_path <- get_token()$cache_path
     if (!is.null(cache_path) && file.exists(cache_path)) {
         message(sprintf("Removed old cache file: %s.", cache_path))
         file.remove(cache_path)
     }
-    remove(list = name, envir = .RGAEnv)
+    set_token(NULL)
 }
 
 # Validate token
@@ -159,12 +152,12 @@ authorize <- function(username = getOption("rga.username"),
             cache <- paste0(".", username, "-token.rds")
     }
     if (new.auth)
-        remove_token("Token")
+        remove_token()
     if (is.character(cache) && nzchar(cache))
         message(sprintf("Access token will be stored in the '%s' file.", cache))
     token <- httr::oauth2.0_token(endpoint = endpoint, app = app, cache = cache,
                             scope = "https://www.googleapis.com/auth/analytics.readonly")
     if (validate_token(token))
-        set_token("Token", token)
+        set_token(token)
     return(invisible(token))
 }

@@ -32,12 +32,10 @@ process <- function(x) {
 # Get a Google Analytics API response
 #' @include auth.R
 GET_ <- function(url, token) {
-    if (missing(token) && !token_exists("Token")) {
-        authorize(cache = FALSE)
-        return(eval(sys.call()))
-    }
-    if (missing(token) && token_exists("Token"))
-        token <- get_token("Token")
+    if (missing(token) && is.null(get_token()))
+        GET_(url, token = authorize(cache = FALSE))
+    if (missing(token) && !is.null(get_token()))
+        token <- get_token()
     if (validate_token(token))
         config <- httr::config(token = token)
     res <- httr::GET(url, config = config, httr::accept_json())

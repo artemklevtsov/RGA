@@ -34,7 +34,7 @@ capitalize <- function(x) {
     paste0(toupper(substring(x, 1, 1)), substring(x, 2))
 }
 
-#' @title Convert camelCase character vectove to separated
+#' @title Convert camelCase character vector to separated
 #'
 #' @param x a character vector to be converted.
 #' @param sep a character string to separate the terms.
