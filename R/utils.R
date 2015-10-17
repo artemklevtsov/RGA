@@ -6,15 +6,12 @@ is.empty <- function(x) {
 
 # Reduce empty elements
 compact <- function(x) {
-    empty <- vapply(x, is.empty, logical(1))
-    x[!empty]
+    x[!vapply(x, is.empty, logical(1L))]
 }
 
 # Remove whitespaces
 strip_spaces <- function(x) {
-    if (length(x) > 1L)
-        x <- paste(x, collapse = ",")
-    gsub("\\s", "", x)
+    gsub("\\s", "", paste(x, collapse = ","))
 }
 
 # Remove whitespace around operators
@@ -29,29 +26,6 @@ strip_ops <- function(x) {
     x <- gsub("OR|\\|\\|", ",", x)
     x <- gsub("AND|&&", ";", x)
     return(x)
-}
-
-#' @title Convert character vector to camelCase
-#'
-#' @param a character vector to be converted.
-#' @param delim a string containing regular expression word delimiter (defaults to non-words - "\W").
-#' @param capitalize a logical value indicating if the first letter of the first word should be capitalised (defaults to FALSE).
-#'
-#' @keywords internal
-#'
-#' @noRd
-#'
-to_camel <- function(x, delim = "\\W", capitalize = FALSE) {
-    stopifnot(is.character(x))
-    if (length(x) > 1)
-        return(vapply(x, to_camel, character(1)))
-    splitted <- strsplit(x, delim)[[1]]
-    first <- substring(splitted, 1, 1)
-    if (isTRUE(capitalize))
-        first <- toupper(first)
-    else
-        first[-1] <- toupper(first[-1])
-    paste0(first, substring(splitted, 2), sep = "", collapse = "")
 }
 
 # Capitalize strings
@@ -79,9 +53,9 @@ to_separated <- function(x, sep = ".") {
 # Convert data types
 convert_datatypes <- function(x) {
     stopifnot(is.list(x))
-    chars <- vapply(x, is.character, logical(1))
+    chars <- vapply(x, is.character, logical(1L))
     x[chars] <- lapply(x[chars], type.convert, as.is = TRUE)
-    lists <- vapply(x, is.list, logical(1))
+    lists <- vapply(x, is.list, logical(1L))
     x[lists] <- lapply(x[lists], convert_datatypes)
     names(x) <- to_separated(names(x), sep = ".")
     return(x)
