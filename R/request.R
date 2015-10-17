@@ -4,11 +4,12 @@ stop_reasons <- function(x) {
     message <- httr::http_status(x$error$code)$message
     reasons <- x$error$errors
     reasons$reason <- capitalize(to_separated(reasons$reason, sep = " "))
+    reasons$message <- gsub("\n", ". ", reasons$message, fixed = TRUE)
     if (!is.null(reasons$location)) {
         reasons$location <- sub("ids", "profile.id", reasons$location, fixed = TRUE)
         reasons$location <- sub("samplingLevel", "sampling.level", reasons$location, fixed = TRUE)
         reasons$location <- gsub("-", ".", reasons$location, fixed = TRUE)
-        reasons <- paste(sprintf("%s %s: %s", reasons$reason, reasons$location, reasons$message), collapse = "\n")
+        reasons <- paste(sprintf("%s '%s': %s", reasons$reason, reasons$location, reasons$message), collapse = "\n")
     } else
         reasons <- paste(sprintf("%s: %s", reasons$reason, reasons$message), collapse = "\n")
     stop(paste(message, reasons, sep = "\n"), call. = FALSE)
