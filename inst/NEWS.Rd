@@ -14,6 +14,7 @@
     \item Added \code{fetch.by} option for the \code{get_ga()} and \code{get_mcf()} functions to split the queries by date ranges (day, week, month, quarter, year)
     \item Added the \CRANpkg{shiny} an example application authorization
     \item Added the \CRANpkg{shiny} an example fetching realtime reporting data
+    \item If User Rate Limit Exceeded or Quota Exceeded error occurs, the request is retried using exponential backoff
     \item Some inner code improvements
   }
 }
