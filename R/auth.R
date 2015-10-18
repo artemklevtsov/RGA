@@ -1,13 +1,12 @@
-# The inner package environment
-.RGAEnv <- new.env(parent = emptyenv())
-
 # Set token to environment
+#' @include env.R
 set_token <- function(value) {
     .RGAEnv$Token <- value
     return(value)
 }
 
 # Get token from environment
+#' @include env.R
 get_token <- function() {
     .RGAEnv$Token
 }
@@ -40,8 +39,7 @@ validate_token <- function(x) {
 # Check environment variables exists
 env_exists <- function(...) {
     dots <- list(...)
-    res <- lapply(dots, Sys.getenv)
-    vapply(res, nzchar, logical(1))
+    nzchar(Sys.getenv(dots))
 }
 
 # Fix username without domain

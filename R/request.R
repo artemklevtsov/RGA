@@ -16,15 +16,28 @@ stop_reasons <- function(x) {
 }
 
 # Process response
+#' @include env.R
 #' @include utils.R
 process <- function(x) {
     if (x$status_code == 404L) {
-        url <- strsplit(x$url, split = "?", fixed = TRUE)[[1]][1]
+        url <- strsplit(x$url, split = "?", fixed = TRUE)[[1L]][1L]
         stop(sprintf("The requested URL not found. URL: %s.", url), call. = FALSE)
     }
     res <- jsonlite::fromJSON(httr::content(x, as = "text"), flatten = TRUE)
-    if (!is.null(res$error))
-        stop_reasons(res)
+    if (!is.null(res$error)) {
+        if (res$error$errors$reason == "userRateLimitExceeded" || res$error$errors$reason == "quotaExceeded") {
+            if (.RGAEnv$Attempt <= 5L) {
+                message(.RGAEnv$Attempt)
+                Sys.sleep(.RGAEnv$Attempt * 2L + runif(1L))
+                .RGAEnv$Attempt <- .RGAEnv$Attempt + 1L
+                GET_(x$url, x$request$auth_token)
+            } else {
+                .RGAEnv$Attempt <- 0L # reset attempts
+                stop("There has been an error, the request never succeeded.", call. = FALSE)
+            }
+        } else
+            stop_reasons(res)
+    }
     res <- convert_datatypes(res)
     return(res)
 }

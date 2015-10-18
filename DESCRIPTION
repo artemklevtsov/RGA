@@ -29,6 +29,7 @@ Imports:
 Collate:
     'utils.R'
     'url.R'
+    'env.R'
     'auth.R'
     'request.R'
     'convert.R'
