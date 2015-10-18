@@ -1,6 +1,6 @@
 # Error printing function
 #' @include utils.R
-stop_reasons <- function(x) {
+format_reasons <- function(x) {
     message <- httr::http_status(x$error$code)$message
     reasons <- x$error$errors
     reasons$reason <- capitalize(to_separated(reasons$reason, sep = " "))
@@ -9,34 +9,43 @@ stop_reasons <- function(x) {
         reasons$location <- sub("ids", "profile.id", reasons$location, fixed = TRUE)
         reasons$location <- sub("samplingLevel", "sampling.level", reasons$location, fixed = TRUE)
         reasons$location <- gsub("-", ".", reasons$location, fixed = TRUE)
-        reasons <- paste(sprintf("%s '%s': %s", reasons$reason, reasons$location, reasons$message), collapse = "\n")
+        reasons <- sprintf("%s '%s': %s", reasons$reason, reasons$location, reasons$message)
     } else
-        reasons <- paste(sprintf("%s: %s", reasons$reason, reasons$message), collapse = "\n")
-    stop(paste(message, reasons, sep = "\n"), call. = FALSE)
+        reasons <- sprintf("%s: %s", reasons$reason, reasons$message)
+    reasons <- paste(reasons, collapse = "\n")
+    paste(message, reasons, sep = "\n")
+}
+
+# Wrapper to request data with exponential backoff
+#' @include env.R
+exp_backoff <- function(x) {
+    stopifnot(inherits(x, "response"))
+    if (.RGAEnv$Attempt <= 5L) {
+        if (.RGAEnv$Attempt == 1L)
+            message("There has been an error. Trying to request data with exponential backoff.")
+        Sys.sleep(.RGAEnv$Attempt * 2L + runif(1L))
+        .RGAEnv$Attempt <- .RGAEnv$Attempt + 1L
+        GET_(x$url, x$request$auth_token)
+    } else {
+        .RGAEnv$Attempt <- 0L # reset attempts
+        stop("There has been an error, the request never succeeded.", call. = FALSE)
+    }
 }
 
 # Process response
-#' @include env.R
 #' @include utils.R
 process <- function(x) {
+    stopifnot(inherits(x, "response"))
     if (x$status_code == 404L) {
         url <- strsplit(x$url, split = "?", fixed = TRUE)[[1L]][1L]
         stop(sprintf("The requested URL not found. URL: %s.", url), call. = FALSE)
     }
     res <- jsonlite::fromJSON(httr::content(x, as = "text"), flatten = TRUE)
     if (!is.null(res$error)) {
-        if (res$error$errors$reason == "userRateLimitExceeded" || res$error$errors$reason == "quotaExceeded") {
-            if (.RGAEnv$Attempt <= 5L) {
-                message(.RGAEnv$Attempt)
-                Sys.sleep(.RGAEnv$Attempt * 2L + runif(1L))
-                .RGAEnv$Attempt <- .RGAEnv$Attempt + 1L
-                GET_(x$url, x$request$auth_token)
-            } else {
-                .RGAEnv$Attempt <- 0L # reset attempts
-                stop("There has been an error, the request never succeeded.", call. = FALSE)
-            }
-        } else
-            stop_reasons(res)
+        if (res$error$errors$reason == "userRateLimitExceeded" || res$error$errors$reason == "quotaExceeded")
+            exp_backoff(x)
+        else
+            stop(format_reasons(res), call. = FALSE)
     }
     res <- convert_datatypes(res)
     return(res)
