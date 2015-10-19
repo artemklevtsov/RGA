@@ -56,7 +56,7 @@ list_dimsmets <- function(report.type = "ga") {
     res <- data_$items
     res$kind <- NULL
     colnames(res) <- gsub("attributes.", "", colnames(res), fixed = TRUE)
-    res$allowed.in.segments <- ifelse(res$allowed.in.segments == "true", TRUE, FALSE)
+    res$allowed.in.segments <- type.convert(toupper(res$allowed.in.segments))
     return(res)
 }
 
