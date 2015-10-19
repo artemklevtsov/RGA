@@ -4,7 +4,7 @@
 #' @include profiles.R
 get_report <- function(path, query, token) {
     data_ <- get_data(path, query, token)
-    if (is.null(data_)) {
+    if (is.null(data_$rows) || length(data_$rows) == 0) {
         message("No results were obtained.")
         return(invisible(NULL))
     }

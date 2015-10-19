@@ -4,7 +4,7 @@ list_mgmt <- function(path, query, token) {
     if (!is.null(query$fields))
         query$fields <- paste("kind", "totalResults", "username", query$fields, sep = ",")
     data_ <- get_data(c("management", path), query, token)
-    if (is.null(data_)) {
+    if (is.null(data_$items) || length(data_$items) == 0) {
         message("No results were obtained.")
         return(invisible(NULL))
     }
