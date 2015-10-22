@@ -29,7 +29,7 @@
 #' # get token data
 #' authorize()
 #' # get report data
-#' ga_data <- get_mcf("profile_id", start.date = "30daysAgo", end.date = "today",
+#' ga_data <- get_mcf(XXXXXXX, start.date = "30daysAgo", end.date = "today",
 #'                    metrics = "mcf:totalConversions",
 #'                    dimensions = "mcf:source,mcf:medium")
 #' }

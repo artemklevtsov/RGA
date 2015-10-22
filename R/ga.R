@@ -34,7 +34,7 @@
 #' # get token data
 #' authorize()
 #' # get report data
-#' ga_data <- get_ga("profile_id", start.date = "30daysAgo", end.date = "today",
+#' ga_data <- get_ga(XXXXXXX, start.date = "30daysAgo", end.date = "today",
 #'                   metrics = "ga:sessions", dimensions = "ga:source,ga:medium",
 #'                   sort = "-ga:sessions")
 #' }

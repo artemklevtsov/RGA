@@ -22,12 +22,12 @@
 #' # get token data
 #' authorize()
 #' # get report data
-#' ga_data <- get_realtime("profile_id", metrics = "rt:activeUsers",
+#' ga_data <- get_realtime(XXXXXXX, metrics = "rt:activeUsers",
 #'                         dimensions = "rt:source,rt:medium")
 #' # get active users in realtime (press Esc to abort)
 #' while (TRUE) {
 #'     cat("\014")
-#'     print(get_realtime("profile_id", metrics = "rt:activeUsers"))
+#'     print(get_realtime(XXXXXXX, metrics = "rt:activeUsers"))
 #'     Sys.sleep(2)
 #' }
 #' }
