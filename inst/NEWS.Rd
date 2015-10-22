@@ -2,7 +2,7 @@
 \title{News for Package \pkg{RGA}}
 \encoding{UTF-8}
 
-\section{Changes in RGA version 0.2.9999 (2015-xx-xx)}{
+\section{Changes in RGA version 0.3 (2015-10-23)}{
   \itemize{
     \item Updated data
     \item Removed \sQuote{Common Queries} vegnette. See references in the \code{get_ga()} help page
