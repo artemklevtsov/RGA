@@ -23,7 +23,7 @@ exp_backoff <- function(x) {
     if (.RGAEnv$Attempt <= 5L) {
         if (.RGAEnv$Attempt == 1L)
             message("There has been an error. Trying to request data with exponential backoff.")
-        Sys.sleep(.RGAEnv$Attempt * 2L + runif(1L))
+        Sys.sleep(.RGAEnv$Attempt * 2L + stats::runif(1L))
         .RGAEnv$Attempt <- .RGAEnv$Attempt + 1L
         GET_(x$url, x$request$auth_token)
     } else {

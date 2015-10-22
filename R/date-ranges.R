@@ -27,12 +27,12 @@ fetch_by <- function(path, query, by, token) {
     n <- nrow(dates)
     message(sprintf("Fetch data day-by-day: from %s to %s. Batch processing mode enabled.", query$start.date, query$end.date))
     res <- vector(mode = "list", length = n)
-    pb <- txtProgressBar(min = 0, max = n, initial = 1, style = 3)
+    pb <- utils::txtProgressBar(min = 0, max = n, initial = 1, style = 3)
     for (i in 1:n) {
         query$start.date <- dates$start[i]
         query$end.date <- dates$end[i]
         res[[i]] <- get_report(path, query, token)
-        setTxtProgressBar(pb, i)
+        utils::setTxtProgressBar(pb, i)
     }
     attrs <- attributes(res[[1]])
     attrs$query$start.date <-  attr(res[[1]], "query")$start.date
@@ -43,7 +43,7 @@ fetch_by <- function(path, query, by, token) {
     else if (!is.null(query$dimensions) && !any(grepl("date", query$dimensions))) {
         mets <- parse_params(query$metrics)
         dims <- parse_params(query$dimensions)
-        res <- aggregate.data.frame(res[mets], res[dims], sum)
+        res <- stats::aggregate.data.frame(res[mets], res[dims], sum)
     }
     attributes(res) <- attrs
     close(pb)

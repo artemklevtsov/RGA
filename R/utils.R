@@ -54,7 +54,7 @@ to_separated <- function(x, sep = ".") {
 convert_datatypes <- function(x) {
     stopifnot(is.list(x))
     chars <- vapply(x, is.character, logical(1L))
-    x[chars] <- lapply(x[chars], type.convert, as.is = TRUE)
+    x[chars] <- lapply(x[chars], utils::type.convert, as.is = TRUE)
     lists <- vapply(x, is.list, logical(1L))
     x[lists] <- lapply(x[lists], convert_datatypes)
     names(x) <- to_separated(names(x), sep = ".")
