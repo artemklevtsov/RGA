@@ -12,25 +12,31 @@ get_token <- function() {
 }
 
 # Remove token from environment
-remove_token <- function() {
-    cache_path <- get_token()$cache_path
-    if (!is.null(cache_path) && file.exists(cache_path)) {
-        message(sprintf("Removed old cache file: %s.", cache_path))
-        file.remove(cache_path)
+remove_token <- function(token) {
+    cache_path <- token$cache_path
+    default_path <- getOption("rga.cache")
+    if (is.null(cache_path))
+        cache_path <- default_path
+    if (!is.null(cache_path) && cache_path != default_path)
+        cache_path <- c(cache_path, default_path)
+    e <- file.exists(cache_path)
+    if (any(e)) {
+        message(sprintf("Removed old cache files: %s.", paste(cache_path[e], collapse = ", ")))
+        file.remove(cache_path[e])
     }
     set_token(NULL)
 }
 
 # Validate token
-validate_token <- function(x) {
-    if (missing(x))
+validate_token <- function(token) {
+    if (missing(token))
          stop("Authorization error. Access token not found.")
-    if (!inherits(x, "Token2.0"))
-        stop(sprintf("Token is not a Token2.0 object. Found: %s.", class(x)))
-    if (!is.null(x$credentials$error)) {
-        if (x$credentials$error == "invalid_request")
+    if (!inherits(token, "Token2.0"))
+        stop(sprintf("Token is not a Token2.0 object. Found: %s.", class(token)))
+    if (!is.null(token$credentials$error)) {
+        if (token$credentials$error == "invalid_request")
             stop("Authorization error. No access token obtained.")
-        if (x$credentials$error == "invalid_client")
+        if (token$credentials$error == "invalid_client")
             stop("Authorization error. Please check client.id and client.secret.")
     }
     return(TRUE)
@@ -150,7 +156,7 @@ authorize <- function(username = getOption("rga.username"),
             cache <- paste0(".", username, "-token.rds")
     }
     if (new.auth)
-        remove_token()
+        remove_token(get_token())
     if (is.character(cache) && nzchar(cache))
         message(sprintf("Access token will be stored in the '%s' file.", cache))
     token <- httr::oauth2.0_token(endpoint = endpoint, app = app, cache = cache,

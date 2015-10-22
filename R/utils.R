@@ -62,5 +62,5 @@ convert_datatypes <- function(x) {
 }
 
 parse_params <- function(x) {
-    to_separated(gsub("^[a-z]+:", "", unlist(strsplit(x, ",|;"))), sep = ".")
+    to_separated(gsub("^[a-z]+:", "", unlist(strsplit(x, ",", fixed = TRUE))), sep = ".")
 }
