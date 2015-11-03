@@ -2,7 +2,7 @@
 % Please edit documentation in R/filters.R
 \name{get_filter}
 \alias{get_filter}
-\title{Gets a filter to which the user has access to}
+\title{Filters}
 \usage{
 get_filter(account.id, filter.id, token)
 }
@@ -51,6 +51,9 @@ An Analytics account filter.
 \item{advanced.details.field.bRequired}{Indicates if field B is required to match.}
 \item{advanced.details.override.output.field}{Indicates if the existing value of the output field, if any, should be overridden by the output expression.}
 \item{advanced.details.case.sensitive}{Indicates if the filter expressions are case sensitive.}
+}
+\description{
+Gets a filter to which the user has access to.
 }
 \references{
 \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/filters}{Management API - Filters}

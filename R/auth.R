@@ -30,7 +30,7 @@ remove_token <- function(token) {
 # Validate token
 validate_token <- function(token) {
     if (missing(token))
-         stop("Authorization error. Access token not found.")
+        stop("Authorization error. Access token not found.")
     if (!inherits(token, "Token2.0"))
         stop(sprintf("Token is not a Token2.0 object. Found: %s.", class(token)))
     if (!is.null(token$credentials$error)) {
@@ -93,7 +93,7 @@ fix_username <- function(x) {
 #' \enumerate{
 #'   \item Pass the \code{client.id} and \code{client.secret} arguments directly in the \code{authorize()} function call
 #'   \item Set the \env{RGA_CLIENT_ID} and \env{RGA_CLIENT_SECRET} environment variables
-#'   \item Set the \code{rga.client.id} and \code{rga.client.secret} options
+#'   \item Set the \code{rga.client.id} and \code{rga.client.secret} options into the R session
 #' }
 #'
 #' @section Revoke access application:
@@ -160,7 +160,7 @@ authorize <- function(username = getOption("rga.username"),
     if (is.character(cache) && nzchar(cache))
         message(sprintf("Access token will be stored in the '%s' file.", cache))
     token <- httr::oauth2.0_token(endpoint = endpoint, app = app, cache = cache,
-                            scope = "https://www.googleapis.com/auth/analytics.readonly")
+                                  scope = "https://www.googleapis.com/auth/analytics.readonly")
     if (validate_token(token))
         set_token(token)
     return(invisible(token))

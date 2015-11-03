@@ -2,7 +2,7 @@
 % Please edit documentation in R/mcf.R
 \name{get_mcf}
 \alias{get_mcf}
-\title{Get the Anaytics data from Multi-Channel Funnels Reporting API for a view (profile)}
+\title{Multi-Channel Funnels Reporting API}
 \usage{
 get_mcf(profile.id, start.date = "7daysAgo", end.date = "yesterday",
   metrics = "mcf:totalConversions", dimensions = NULL, sort = NULL,
@@ -36,6 +36,9 @@ get_mcf(profile.id, start.date = "7daysAgo", end.date = "yesterday",
 }
 \value{
 A data frame including the Analytics Multi-Channel Funnels data for a view (profile). Addition information about profile and request query stored in the attributes.
+}
+\description{
+Get the Anaytics data from Multi-Channel Funnels Reporting API for a view (profile).
 }
 \examples{
 \dontrun{

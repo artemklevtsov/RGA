@@ -1,4 +1,6 @@
-#' @title Gets a view (profile) to which the user has access to
+#' @title Views (Profiles)
+#'
+#' @description Gets a view (profile) to which the user has access to.
 #'
 #' @param account.id integer or character. Account ID to retrieve the goal for.
 #' @param webproperty.id character. Web property ID to retrieve the goal for.
@@ -47,7 +49,9 @@ get_profile <- function(account.id, webproperty.id, profile.id, token) {
     return(res)
 }
 
-#' @title Lists views (profiles) which the user has access to
+#' @title Views (Profiles)
+#'
+#' @description ists views (profiles) which the user has access to.
 #'
 #' @param account.id integer or character. Account ID for the view (profiles) to retrieve. Can either be a specific account ID or '~all', which refers to all the accounts which the user has access to.
 #' @param webproperty.id character. Web property ID for the views (profiles) to retrieve. Can either be a specific web property ID or '~all', which refers to all the web properties which the user has access to. Requires specified \code{account.id}.

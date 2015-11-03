@@ -1,4 +1,6 @@
-#' @title Gets a upload to which the user has access to
+#' @title Uploads
+#'
+#' @description Gets a upload to which the user has access to.
 #'
 #' @param account.id Account Id for the upload to retrieve.
 #' @param webproperty.id Web property Id for the upload to retrieve.
@@ -30,7 +32,9 @@ get_upload <- function(account.id, webproperty.id, custom.data.source.id, upload
     return(res)
 }
 
-#' @title Lists uploads to which the user has access to
+#' @title Uploads
+#'
+#' @description Lists uploads to which the user has access to.
 #'
 #' @param account.id Account Id for the uploads to retrieve.
 #' @param webproperty.id Web property Id for the uploads to retrieve.

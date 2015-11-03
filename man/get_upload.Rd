@@ -2,7 +2,7 @@
 % Please edit documentation in R/uploads.R
 \name{get_upload}
 \alias{get_upload}
-\title{Gets a upload to which the user has access to}
+\title{Uploads}
 \usage{
 get_upload(account.id, webproperty.id, custom.data.source.id, upload.id, token)
 }
@@ -24,6 +24,9 @@ Metadata returned for an upload operation.
 \item{custom.data.source.id}{Custom data source Id to which this data import belongs.}
 \item{status}{Upload status. Possible values: PENDING, COMPLETED, FAILED, DELETING, DELETED.}
 \item{errors}{Data import errors collection.}
+}
+\description{
+Gets a upload to which the user has access to.
 }
 \references{
 \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/uploads}{Management API - Uploads}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/webproperties.R
 \name{get_webproperty}
 \alias{get_webproperty}
-\title{Gets a web property to which the user has access to}
+\title{Web Properties}
 \usage{
 get_webproperty(account.id, webproperty.id, token)
 }
@@ -31,6 +31,9 @@ An Analytics web property.
 \item{updated}{Time this web property was last modified.}
 \item{parent.link}{Parent link for this web property. Points to the account to which this web property belongs.}
 \item{child.link}{Child link for this web property. Points to the list of views (profiles) for this web property.}
+}
+\description{
+Gets a web property to which the user has access to.
 }
 \references{
 \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/webproperties}{Management API - Web Properties}

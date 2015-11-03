@@ -2,7 +2,7 @@
 % Please edit documentation in R/accounts.R
 \name{list_accounts}
 \alias{list_accounts}
-\title{Lists all accounts which the user has access to}
+\title{Accounts}
 \usage{
 list_accounts(start.index = NULL, max.results = NULL, token)
 }
@@ -20,6 +20,9 @@ An account collection provides a list of Analytics accounts to which a user has 
 \item{permissions}{Permissions the user has for this account.}
 \item{created}{Time the account was created.}
 \item{updated}{Time the account was last modified.}
+}
+\description{
+Lists all accounts which the user has access to.
 }
 \references{
 \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/accounts}{Management API - Accounts}

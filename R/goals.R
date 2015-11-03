@@ -1,4 +1,6 @@
-#' @title Gets a goal to which the user has access to
+#' @title Goals
+#'
+#' @description Gets a goal to which the user has access to.
 #'
 #' @param account.id integer or character. Account ID to retrieve the goal for.
 #' @param webproperty.id character. Web property ID to retrieve the goal for.
@@ -40,7 +42,9 @@ get_goal <- function(account.id, webproperty.id, profile.id, goal.id, token) {
     return(res)
 }
 
-#' @title Lists goals which the user has access to
+#' @title Goals
+#'
+#' @description Lists goals which the user has access to.
 #'
 #' @param account.id integer or character. The account ID to retrieve goals for. Can either be a specific account ID or '~all', which refers to all the accounts that user has access to.
 #' @param webproperty.id character. Web property ID to retrieve goals for. Can either be a specific web property ID or '~all', which refers to all the web properties that user has access to. Requires specified \code{account.id}.

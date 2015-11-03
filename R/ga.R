@@ -1,4 +1,6 @@
-#' @title Get the Anaytics data from Core Reporting API for a view (profile)
+#' @title Core Reporting API
+#'
+#' @description Get the Anaytics data from Core Reporting API for a view (profile).
 #'
 #' @param profile.id integer or character. Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID. Can be obtained using the \code{\link{list_profiles}} or via the web interface Google Analytics.
 #' @param start.date character. Start date for fetching Analytics data. Request can specify the start date formatted as "YYYY-MM-DD" or as a relative date (e.g., "today", "yesterday", or "7daysAgo"). The default value is "7daysAgo".

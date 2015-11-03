@@ -2,7 +2,7 @@
 % Please edit documentation in R/filters.R
 \name{list_filters}
 \alias{list_filters}
-\title{Lists all filters for an account which the user has access to}
+\title{Filters}
 \usage{
 list_filters(account.id, start.index = NULL, max.results = NULL, token)
 }
@@ -23,6 +23,9 @@ A filter collection lists filters created by users in an Analytics account. Each
 \item{type}{Type of this filter.}
 \item{created}{Time this filter was created.}
 \item{updated}{Time this filter was last modified.}
+}
+\description{
+Lists all filters for an account which the user has access to.
 }
 \references{
 \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/filters}{Management API - Filters}

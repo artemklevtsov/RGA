@@ -2,7 +2,7 @@
 % Please edit documentation in R/custom-mets.R
 \name{get_custom_metric}
 \alias{get_custom_metric}
-\title{Gets a custom metric to which the user has access to}
+\title{Custom Metrics}
 \usage{
 get_custom_metric(account.id, webproperty.id, metric.id, token)
 }
@@ -34,6 +34,9 @@ An Analytics custom metric.
 \item{parent.link}{Parent link for the custom metric. Points to the property to which the custom metric belongs.}
 \item{parent.link.type}{Type of the parent link. Set to "analytics#webproperty".}
 \item{parent.link.href}{Link to the property to which the custom metric belongs.}
+}
+\description{
+Gets a custom metric to which the user has access to.
 }
 \references{
 \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/customMetrics}{Management API - Custom metrics}

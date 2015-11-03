@@ -1,4 +1,6 @@
-#' @title Lists all accounts which the user has access to
+#' @title Accounts
+#'
+#' @description Lists all accounts which the user has access to.
 #'
 #' @param start.index integer. An index of the first account to retrieve. Use this parameter as a pagi- nation mechanism along with the max-results parameter.
 #' @param max.results integer. The maximum number of accounts to include in this response.
@@ -29,7 +31,7 @@
 #'
 list_accounts = function(start.index = NULL, max.results = NULL, token) {
     path <- "accounts"
-    query <- list(start.index = start.index, max.results = max.results, 
+    query <- list(start.index = start.index, max.results = max.results,
                   fields = "items(id,name,permissions/effective,created,updated)")
     res <- list_mgmt(path = path, query = query, token = token)
     return(res)

@@ -2,7 +2,7 @@
 % Please edit documentation in R/custom-dims.R
 \name{list_custom_dimensions}
 \alias{list_custom_dimensions}
-\title{Lists custom dimensions to which the user has access to}
+\title{Custom Dimensions}
 \usage{
 list_custom_dimensions(account.id, webproperty.id, start.index = NULL,
   max.results = NULL, token)
@@ -29,6 +29,9 @@ An Analytics custom dimension.
 \item{active}{Boolean indicating whether the custom dimension is active.}
 \item{created}{Time the custom dimension was created.}
 \item{updated}{Time the custom dimension was last modified.}
+}
+\description{
+Lists custom dimensions to which the user has access to.
 }
 \references{
 \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/customDimensions}{Management API - Custom Dimensions}

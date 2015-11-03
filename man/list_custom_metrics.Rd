@@ -2,7 +2,7 @@
 % Please edit documentation in R/custom-mets.R
 \name{list_custom_metrics}
 \alias{list_custom_metrics}
-\title{Lists custom metrics to which the user has access to}
+\title{Custom Metrics}
 \usage{
 list_custom_metrics(account.id, webproperty.id, start.index = NULL,
   max.results = NULL, token)
@@ -32,6 +32,9 @@ An Analytics custom metric.
 \item{max_value}{Max value of custom metric.}
 \item{created}{Time the custom metric was created.}
 \item{updated}{Time the custom metric was last modified.}
+}
+\description{
+Lists custom metrics to which the user has access to.
 }
 \references{
 \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/customMetrics}{Management API - Custom metrics}

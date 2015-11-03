@@ -2,7 +2,7 @@
 % Please edit documentation in R/custom-sources.R
 \name{list_custom_sources}
 \alias{list_custom_sources}
-\title{List custom data sources which the user has access to}
+\title{Custom Data Sources}
 \usage{
 list_custom_sources(account.id, webproperty.id, start.index = NULL,
   max.results = NULL, token)
@@ -10,7 +10,7 @@ list_custom_sources(account.id, webproperty.id, start.index = NULL,
 \arguments{
 \item{account.id}{integer or character. Account Id for the custom data sources to retrieve. Must be a specific account ID, ~all is not supported.}
 
-\item{webproperty.id}{character. Web property Id for the custom data sources to retrieve.  Must be a specific web property ID, ~all is not supported. Requires specified \code{account.id}.}
+\item{webproperty.id}{character. Web property Id for the custom data sources to retrieve. Must be a specific web property ID, ~all is not supported. Requires specified \code{account.id}.}
 
 \item{start.index}{integer. A 1-based index of the first custom data source to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.}
 
@@ -30,6 +30,9 @@ Lists Analytics custom data sources to which the user has access. Each resource 
 \item{import.behavior}{How cost data metrics are treated when there are duplicate keys. If this property is set to "SUMMATION" the values are added; if this property is set to "OVERWRITE" the most recent value overwrites the existing value.}
 \item{created}{Time this custom data source was created.}
 \item{updated}{Time this custom data source was last modified.}
+}
+\description{
+List custom data sources which the user has access to.
 }
 \references{
 \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/customDataSources}{Management API - Custom Data Sources}

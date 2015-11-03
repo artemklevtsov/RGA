@@ -12,7 +12,7 @@ date_ranges <- function(start, end, by) {
 parse_date <- function(x) {
     stopifnot(is.character(x))
     if (grepl("daysAgo", x, fixed = TRUE))
-        x <-  Sys.Date() - as.numeric(sub("^([0-9]+).*", "\\1", x))
+        x <- Sys.Date() - as.numeric(sub("^([0-9]+).*", "\\1", x))
     else if (x == "today")
         x <- Sys.Date()
     else if (x == "yesterday")
@@ -35,7 +35,7 @@ fetch_by <- function(path, query, by, token) {
         utils::setTxtProgressBar(pb, i)
     }
     attrs <- attributes(res[[1]])
-    attrs$query$start.date <-  attr(res[[1]], "query")$start.date
+    attrs$query$start.date <- attr(res[[1]], "query")$start.date
     attrs$query$end.date <- attr(res[[n]], "query")$end.date
     res <- do.call(rbind, res)
     if (is.null(query$dimensions))

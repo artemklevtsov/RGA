@@ -1,4 +1,6 @@
-#' @title Gets a experiment to which the user has access to
+#' @title Experiments
+#'
+#' @description Gets a experiment to which the user has access to.
 #'
 #' @param account.id integer or character. Account ID to retrieve the experiment for.
 #' @param webproperty.id integer or character. Web property ID to retrieve the experiment for.
@@ -23,7 +25,7 @@
 #' \item{winner.found}{Boolean specifying whether a winner has been found for this experiment.}
 #' \item{start.time}{The starting time of the experiment (the time the status changed from READY_TO_RUN to RUNNING). This field is present only if the experiment has started.}
 #' \item{end.time}{The ending time of the experiment (the time the status changed from RUNNING to ENDED). This field is present only if the experiment has ended.}
-#' \item{reason.experiment.ended}{Why the experiment ended. Possible values: "STOPPED_BY_USER", "WINNER_FOUND", "EXPERIMENT_EXPIRED", "ENDED_WITH_NO_WINNER", "GOAL_OBJECTIVE_CHANGED".  "ENDED_WITH_NO_WINNER" means that the experiment didn't expire but no winner was projected to be found. If the experiment status is changed via the API to ENDED this field is set to STOPPED_BY_USER.}
+#' \item{reason.experiment.ended}{Why the experiment ended. Possible values: "STOPPED_BY_USER", "WINNER_FOUND", "EXPERIMENT_EXPIRED", "ENDED_WITH_NO_WINNER", "GOAL_OBJECTIVE_CHANGED". "ENDED_WITH_NO_WINNER" means that the experiment didn't expire but no winner was projected to be found. If the experiment status is changed via the API to ENDED this field is set to STOPPED_BY_USER.}
 #' \item{rewrite.variation.urls.as.original}{Boolean specifying whether variations URLS are rewritten to match those of the original.}
 #' \item{winner.confidence.level}{A floating-point number between 0 and 1. Specifies the necessary confidence level to choose a winner.}
 #' \item{minimum.experiment.length.in.days}{An integer number in [3, 90]. Specifies the minimum length of the experiment. Can be changed for a running experiment.}
@@ -59,7 +61,9 @@ get_experiment <- function(account.id, webproperty.id, profile.id, experiment.id
     return(res)
 }
 
-#' @title Lists experiments to which the user has access to
+#' @title Experiments
+#'
+#' @description Lists experiments to which the user has access to.
 #'
 #' @param account.id Account ID to retrieve experiments for.
 #' @param webproperty.id Web property ID to retrieve experiments for.

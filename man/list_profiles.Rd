@@ -2,7 +2,7 @@
 % Please edit documentation in R/profiles.R
 \name{list_profiles}
 \alias{list_profiles}
-\title{Lists views (profiles) which the user has access to}
+\title{Views (Profiles)}
 \usage{
 list_profiles(account.id = "~all", webproperty.id = "~all",
   start.index = NULL, max.results = NULL, token)
@@ -32,6 +32,9 @@ A view (profile) collection lists Analytics views (profiles) to which the user h
 \item{permissions}{Permissions the user has for this view (profile).}
 \item{created}{Time this view (profile) was created.}
 \item{updated}{Time this view (profile) was last modified.}
+}
+\description{
+ists views (profiles) which the user has access to.
 }
 \references{
 \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/profiles}{Management API - Views (Profiles)}

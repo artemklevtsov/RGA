@@ -1,4 +1,6 @@
-#' @title Gets a single unsampled report
+#' @title Unsampled Reports
+#'
+#' @description Gets a single unsampled report.
 #'
 #' @param account.id integer or character. Account ID to retrieve unsampled report for.
 #' @param webproperty.id integer or character. Web property ID to retrieve unsampled reports for.
@@ -20,7 +22,7 @@
 #' \item{dimensions}{The dimensions for the unsampled report.}
 #' \item{filters}{The filters for the unsampled report.}
 #' \item{segment}{The segment for the unsampled report.}
-#' \item{status}{Status of this unsampled report.  Possible values are PENDING, COMPLETED, or FAILED.}
+#' \item{status}{Status of this unsampled report. Possible values are PENDING, COMPLETED, or FAILED.}
 #' \item{download.type}{The type of download you need to use for the report data file.}
 #' \item{drive.download.details}{Download details for a file stored in Google Drive.}
 #' \item{cloud.storage.download.details}{Download details for a file stored in Google Cloud Storage.}
@@ -44,7 +46,9 @@ get_unsampled_report <- function(account.id, webproperty.id, profile.id, unsampl
     return(res)
 }
 
-#' @title Lists unsampled reports which the user has access to
+#' @title Unsampled Reports
+#'
+#' @description Lists unsampled reports which the user has access to.
 #'
 #' @param account.id integer or character. The account ID to retrieve unsampled reports for. Must be a specific account ID, ~all is not supported.
 #' @param webproperty.id character. Web property ID to retrieve unsampled reports for. Must be a specific web property ID, ~all is not supported. Requires specified \code{account.id}.

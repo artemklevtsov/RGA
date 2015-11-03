@@ -1,4 +1,6 @@
-#' @title Lists segments which the user has access to
+#' @title Segments
+#'
+#' @description Lists segments which the user has access to.
 #'
 #' @param start.index integer. An index of the first segment to retrieve. Use this parameter as a pagi- nation mechanism along with the max-results parameter.
 #' @param max.results integer. The maximum number of segments to include in this response.

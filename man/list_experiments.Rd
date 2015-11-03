@@ -2,7 +2,7 @@
 % Please edit documentation in R/experiments.R
 \name{list_experiments}
 \alias{list_experiments}
-\title{Lists experiments to which the user has access to}
+\title{Experiments}
 \usage{
 list_experiments(account.id, webproperty.id, profile.id, start.index = NULL,
   max.results = NULL, token)
@@ -39,6 +39,9 @@ An experiment collection lists Analytics experiments to which the user has acces
 \item{minimum.experiment.length.in.days}{An integer number in [3, 90]. Specifies the minimum length of the experiment.}
 \item{reason.experiment.ended}{Why the experiment ended.}
 \item{editable.in.ga.ui}{If true, the end user will be able to edit the experiment via the Google Analytics user interface.}
+}
+\description{
+Lists experiments to which the user has access to.
 }
 \references{
 \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/experiments}{Management API - Experiments}

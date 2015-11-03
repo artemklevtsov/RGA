@@ -2,7 +2,7 @@
 % Please edit documentation in R/firstdate.R
 \name{firstdate}
 \alias{firstdate}
-\title{Get the first date with available data}
+\title{First Date}
 \usage{
 firstdate(profile.id, token)
 }
@@ -13,6 +13,9 @@ firstdate(profile.id, token)
 }
 \value{
 Start date of collecting the Google Analytics statistics.
+}
+\description{
+Get the first date with available data.
 }
 \examples{
 \dontrun{

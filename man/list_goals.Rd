@@ -2,7 +2,7 @@
 % Please edit documentation in R/goals.R
 \name{list_goals}
 \alias{list_goals}
-\title{Lists goals which the user has access to}
+\title{Goals}
 \usage{
 list_goals(account.id = "~all", webproperty.id = "~all",
   profile.id = "~all", start.index = NULL, max.results = NULL, token)
@@ -32,6 +32,9 @@ A goal collection lists Analytics goals to which the user has access. Each view 
 \item{type}{Goal type. Acceptable values are: "EVENT", "URL_DESTINATION", "VISIT_NUM_PAGES", "VISIT_TIME_ON_SITE"}
 \item{created}{Time this goal was created.}
 \item{updated}{Time this goal was last modified.}
+}
+\description{
+Lists goals which the user has access to.
 }
 \references{
 \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/goals}{Management API - Goals}

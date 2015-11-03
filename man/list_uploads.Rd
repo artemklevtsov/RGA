@@ -2,7 +2,7 @@
 % Please edit documentation in R/uploads.R
 \name{list_uploads}
 \alias{list_uploads}
-\title{Lists uploads to which the user has access to}
+\title{Uploads}
 \usage{
 list_uploads(account.id, webproperty.id, custom.data.source.id,
   start.index = NULL, max.results = NULL, token)
@@ -27,6 +27,9 @@ Upload collection lists Analytics uploads to which the user has access. Each cus
 \item{custom.data.source.id}{Custom data source Id to which this data import belongs.}
 \item{status}{Upload status. Possible values: PENDING, COMPLETED, FAILED, DELETING, DELETED.}
 \item{errors}{Data import errors collection.}
+}
+\description{
+Lists uploads to which the user has access to.
 }
 \references{
 \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/uploads}{Management API - Uploads}

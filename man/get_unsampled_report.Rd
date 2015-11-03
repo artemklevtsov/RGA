@@ -2,7 +2,7 @@
 % Please edit documentation in R/unsampled.R
 \name{get_unsampled_report}
 \alias{get_unsampled_report}
-\title{Gets a single unsampled report}
+\title{Unsampled Reports}
 \usage{
 get_unsampled_report(account.id, webproperty.id, profile.id,
   unsampled.report.id, token)
@@ -33,12 +33,15 @@ An Analytics unsampled report.
 \item{dimensions}{The dimensions for the unsampled report.}
 \item{filters}{The filters for the unsampled report.}
 \item{segment}{The segment for the unsampled report.}
-\item{status}{Status of this unsampled report.  Possible values are PENDING, COMPLETED, or FAILED.}
+\item{status}{Status of this unsampled report. Possible values are PENDING, COMPLETED, or FAILED.}
 \item{download.type}{The type of download you need to use for the report data file.}
 \item{drive.download.details}{Download details for a file stored in Google Drive.}
 \item{cloud.storage.download.details}{Download details for a file stored in Google Cloud Storage.}
 \item{created}{Time this unsampled report was created.}
 \item{updated}{Time this unsampled report was last modified.}
+}
+\description{
+Gets a single unsampled report.
 }
 \references{
 \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/unsampledReports}{Management API - Unsampled Reports}

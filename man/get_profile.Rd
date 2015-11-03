@@ -2,7 +2,7 @@
 % Please edit documentation in R/profiles.R
 \name{get_profile}
 \alias{get_profile}
-\title{Gets a view (profile) to which the user has access to}
+\title{Views (Profiles)}
 \usage{
 get_profile(account.id, webproperty.id, profile.id, token)
 }
@@ -36,6 +36,9 @@ An Analytics view (profile).
 \item{e.commerce.tracking}{Indicates whether ecommerce tracking is enabled for this view (profile).}
 \item{parent.link}{Parent link for this view (profile). Points to the web property to which this view (profile) belongs.}
 \item{child.link}{Child link for this view (profile). Points to the list of goals for this view (profile).}#'
+}
+\description{
+Gets a view (profile) to which the user has access to.
 }
 \references{
 \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/profiles}{Management API - Views (Profiles)}

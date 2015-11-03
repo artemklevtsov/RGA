@@ -2,7 +2,7 @@
 % Please edit documentation in R/segments.R
 \name{list_segments}
 \alias{list_segments}
-\title{Lists segments which the user has access to}
+\title{Segments}
 \usage{
 list_segments(start.index = NULL, max.results = NULL, token)
 }
@@ -22,6 +22,9 @@ An segment collection lists Analytics segments that the user has access to. Each
 \item{type}{Type for a segment. Possible values are "BUILT_IN" or "CUSTOM".}
 \item{created}{time the segment was created.}
 \item{updated}{time the segment was last modified.}
+}
+\description{
+Lists segments which the user has access to.
 }
 \references{
 \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/segments}{Management API - Segments}

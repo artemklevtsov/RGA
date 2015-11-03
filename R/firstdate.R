@@ -1,4 +1,6 @@
-#' @title Get the first date with available data
+#' @title First Date
+#'
+#' @description Get the first date with available data.
 #'
 #' @param profile.id Google Analytics profile ID. Can be obtained using the \code{\link{list_profiles}} or via the web interface Google Analytics.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.

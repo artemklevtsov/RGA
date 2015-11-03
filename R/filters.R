@@ -1,4 +1,6 @@
-#' @title Gets a filter to which the user has access to
+#' @title Filters
+#'
+#' @description Gets a filter to which the user has access to.
 #'
 #' @param account.id integer or character. Account ID to retrieve filters for.
 #' @param filter.id integer or character. Filter ID to retrieve filters for.
@@ -59,7 +61,9 @@ get_filter <- function(account.id, filter.id, token) {
     return(res)
 }
 
-#' @title Lists all filters for an account which the user has access to
+#' @title Filters
+#'
+#' @description Lists all filters for an account which the user has access to.
 #'
 #' @param account.id Account ID to retrieve filters for.
 #' @param max.results integer. The maximum number of filters to include in this response.

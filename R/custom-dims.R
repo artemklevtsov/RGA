@@ -1,4 +1,6 @@
-#' @title Gets a custom dimension to which the user has access to
+#' @title Custom Dimensions
+#'
+#' @description Gets a custom dimension to which the user has access to.
 #'
 #' @param account.id Account ID for the custom dimension to retrieve.
 #' @param webproperty.id Web property ID for the custom dimension to retrieve.
@@ -38,7 +40,9 @@ get_custom_dimension <- function(account.id, webproperty.id, dimension.id, token
     return(res)
 }
 
-#' @title Lists custom dimensions to which the user has access to
+#' @title Custom Dimensions
+#'
+#' @description Lists custom dimensions to which the user has access to.
 #'
 #' @param account.id Account ID for the custom dimensions to retrieve.
 #' @param webproperty.id Web property ID for the custom dimensions to retrieve.

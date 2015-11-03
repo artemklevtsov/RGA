@@ -2,7 +2,7 @@
 % Please edit documentation in R/ga.R
 \name{get_ga}
 \alias{get_ga}
-\title{Get the Anaytics data from Core Reporting API for a view (profile)}
+\title{Core Reporting API}
 \usage{
 get_ga(profile.id, start.date = "7daysAgo", end.date = "yesterday",
   metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = NULL,
@@ -38,6 +38,9 @@ get_ga(profile.id, start.date = "7daysAgo", end.date = "yesterday",
 }
 \value{
 A data frame including the Analytics data for a view (profile). Addition information about profile and request query stored in the attributes.
+}
+\description{
+Get the Anaytics data from Core Reporting API for a view (profile).
 }
 \examples{
 \dontrun{

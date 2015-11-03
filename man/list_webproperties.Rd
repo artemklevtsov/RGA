@@ -2,7 +2,7 @@
 % Please edit documentation in R/webproperties.R
 \name{list_webproperties}
 \alias{list_webproperties}
-\title{Lists web properties which the user has access to}
+\title{Web Properties}
 \usage{
 list_webproperties(account.id = "~all", start.index = NULL,
   max.results = NULL, token)
@@ -29,6 +29,9 @@ A web property collection lists Analytics web properties to which the user has a
 \item{permissions}{Permissions the user has for this web property.}
 \item{created}{Time this web property was created.}
 \item{updated}{Time this web property was last modified.}
+}
+\description{
+Lists web properties which the user has access to.
 }
 \references{
 \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/webproperties}{Management API - Web Properties}

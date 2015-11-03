@@ -2,7 +2,7 @@
 % Please edit documentation in R/custom-dims.R
 \name{get_custom_dimension}
 \alias{get_custom_dimension}
-\title{Gets a custom dimension to which the user has access to}
+\title{Custom Dimensions}
 \usage{
 get_custom_dimension(account.id, webproperty.id, dimension.id, token)
 }
@@ -31,6 +31,9 @@ An Analytics custom dimension.
 \item{parent.link}{Parent link for the custom dimension. Points to the property to which the custom dimension belongs.}
 \item{parent.link.type}{Type of the parent link. Set to "analytics#webproperty".}
 \item{parent.link.href}{Link to the property to which the custom dimension belongs.}
+}
+\description{
+Gets a custom dimension to which the user has access to.
 }
 \references{
 \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/customDimensions}{Management API - Custom Dimensions}

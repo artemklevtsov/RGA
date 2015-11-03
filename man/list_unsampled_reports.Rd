@@ -2,7 +2,7 @@
 % Please edit documentation in R/unsampled.R
 \name{list_unsampled_reports}
 \alias{list_unsampled_reports}
-\title{Lists unsampled reports which the user has access to}
+\title{Unsampled Reports}
 \usage{
 list_unsampled_reports(account.id, webproperty.id, profile.id,
   start.index = NULL, max.results = NULL, token)
@@ -37,6 +37,9 @@ An unsampled report collection lists Analytics unsampled reports to which the us
 \item{download.type}{The type of download you need to use for the report data file.}
 \item{created}{Time this unsampled report was created.}
 \item{updated}{Time this unsampled report was last modified.}
+}
+\description{
+Lists unsampled reports which the user has access to.
 }
 \references{
 \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/unsampledReports}{Management API - Unsampled Reports}

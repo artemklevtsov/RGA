@@ -3,7 +3,7 @@
 \name{get_realtime}
 \alias{get_realtime}
 \alias{get_rt}
-\title{Get the Anaytics data from Real Time Reporting API for a view (profile)}
+\title{Real Time Reporting API}
 \usage{
 get_realtime(profile.id, metrics = "rt:activeUsers", dimensions = NULL,
   sort = NULL, filters = NULL, max.results = NULL, token)
@@ -25,6 +25,9 @@ get_realtime(profile.id, metrics = "rt:activeUsers", dimensions = NULL,
 }
 \value{
 A data frame including the real time data for a view (profile). Addition information about profile and request query stored in the attributes.
+}
+\description{
+Get the Anaytics data from Real Time Reporting API for a view (profile).
 }
 \examples{
 \dontrun{

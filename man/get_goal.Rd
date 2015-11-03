@@ -2,7 +2,7 @@
 % Please edit documentation in R/goals.R
 \name{get_goal}
 \alias{get_goal}
-\title{Gets a goal to which the user has access to}
+\title{Goals}
 \usage{
 get_goal(account.id, webproperty.id, profile.id, goal.id, token)
 }
@@ -34,6 +34,9 @@ An Analytics goal resource
 \item{updated}{Time this goal was last modified.}
 \item{parent.link}{Parent link for a goal. Points to the view (profile) to which this goal belongs.}
 \item{visit.time.on.site.details}{Details for the goal of the type VISIT_TIME_ON_SITE.}
+}
+\description{
+Gets a goal to which the user has access to.
 }
 \references{
 \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/goals}{Management API - Goals}

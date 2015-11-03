@@ -1,4 +1,6 @@
-#' @title Gets a custom metric to which the user has access to
+#' @title Custom Metrics
+#'
+#' @description Gets a custom metric to which the user has access to.
 #'
 #' @param account.id Account ID for the custom metric to retrieve.
 #' @param webproperty.id Web property ID for the custom metric to retrieve.
@@ -41,7 +43,9 @@ get_custom_metric <- function(account.id, webproperty.id, metric.id, token) {
     return(res)
 }
 
-#' @title Lists custom metrics to which the user has access to
+#' @title Custom Metrics
+#'
+#' @description Lists custom metrics to which the user has access to.
 #'
 #' @param account.id Account ID for the custom metrics to retrieve.
 #' @param webproperty.id Web property ID for the custom metrics to retrieve.

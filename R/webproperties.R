@@ -1,4 +1,6 @@
-#' @title Gets a web property to which the user has access to
+#' @title Web Properties
+#'
+#' @description Gets a web property to which the user has access to.
 #'
 #' @param account.id integer or character. Account ID to retrieve the web property for.
 #' @param webproperty.id character. ID to retrieve the web property for.
@@ -43,7 +45,9 @@ get_webproperty <- function(account.id, webproperty.id, token) {
     return(res)
 }
 
-#' @title Lists web properties which the user has access to
+#' @title Web Properties
+#'
+#' @description Lists web properties which the user has access to.
 #'
 #' @param account.id integer or character. Account ID to retrieve web properties for. Can either be a specific account ID or "~all", which refers to all the accounts that user has access to.
 #' @param start.index integer. An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.

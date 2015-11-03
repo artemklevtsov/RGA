@@ -1,7 +1,9 @@
-#' @title List custom data sources which the user has access to
+#' @title Custom Data Sources
+#'
+#' @description List custom data sources which the user has access to.
 #'
 #' @param account.id integer or character. Account Id for the custom data sources to retrieve. Must be a specific account ID, ~all is not supported.
-#' @param webproperty.id character. Web property Id for the custom data sources to retrieve.  Must be a specific web property ID, ~all is not supported. Requires specified \code{account.id}.
+#' @param webproperty.id character. Web property Id for the custom data sources to retrieve. Must be a specific web property ID, ~all is not supported. Requires specified \code{account.id}.
 #' @param start.index integer. A 1-based index of the first custom data source to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
 #' @param max.results integer. The maximum number of custom data sources to include in this response.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
