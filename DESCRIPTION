@@ -27,11 +27,11 @@ Imports:
     jsonlite,
     httr (>= 1.0.0)
 Collate:
-    'utils.R'
-    'url.R'
     'env.R'
     'auth.R'
+    'utils.R'
     'request.R'
+    'url.R'
     'convert.R'
     'get-data.R'
     'mgmt.R'
@@ -42,8 +42,8 @@ Collate:
     'date-ranges.R'
     'experiments.R'
     'filters.R'
-    'query.R'
     'profiles.R'
+    'query.R'
     'report.R'
     'ga.R'
     'firstdate.R'
@@ -63,3 +63,4 @@ Suggests:
     shiny
 VignetteBuilder: knitr
 LazyData: true
+RoxygenNote: 5.0.0
