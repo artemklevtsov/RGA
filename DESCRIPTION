@@ -25,7 +25,8 @@ Depends:
     R (>= 3.0.0)
 Imports:
     jsonlite,
-    httr (>= 1.0.0)
+    httr (>= 1.0.0),
+    lubridate
 Collate:
     'env.R'
     'auth.R'

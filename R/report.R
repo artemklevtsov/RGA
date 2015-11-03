@@ -9,15 +9,17 @@ get_report <- function(path, query, token) {
         return(invisible(NULL))
     }
     res <- data_$rows
-    # Convert to POSIXct with timezone defined in the GA profile
+    # Convert dates to POSIXct with timezone defined in the GA profile
     if (any(grepl("date", names(res), fixed = TRUE))) {
-        timezone <- get_profile(data_$profile.info$account.id, data_$profile.info$webproperty.id, data_$profile.info$profile.id, token)$timezone
+        timezone <- get_profile(data_$profile.info$account.id,
+                                data_$profile.info$webproperty.id,
+                                data_$profile.info$profile.id, token)$timezone
         if (!is.null(res$date.hour))
-            res$date.hour <- as.POSIXct(strptime(res$date.hour, "%Y%m%d%H", tz = timezone))
+            res$date.hour <- lubridate::ymd_h(res$date.hour, tz = timezone)
         if (!is.null(res[["date"]]))
-            res[["date"]] <- as.POSIXct(strptime(res[["date"]], "%Y%m%d", tz = timezone))
+            res[["date"]] <- lubridate::ymd(res[["date"]], tz = timezone)
         if (!is.null(res$conversion.date))
-            res$conversion.date <- as.POSIXct(strptime(res$conversion.date, "%Y%m%d", tz = timezone))
+            res$conversion.date <- lubridate::ymd(res$conversion.date, tz = timezone)
     }
     attr(res, "profile.info") <- data_$profile.info
     attr(res, "query") <- fix_query(data_$query)

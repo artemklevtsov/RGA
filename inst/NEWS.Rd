@@ -2,6 +2,13 @@
 \title{News for Package \pkg{RGA}}
 \encoding{UTF-8}
 
+\section{Changes in RGA version 0.3.1 (2015-11-30)}{
+  \itemize{
+    \item Updated data
+    \item To handle dates used package \CRANpkg{libridate}
+  }
+}
+
 \section{Changes in RGA version 0.3 (2015-10-23)}{
   \itemize{
     \item Updated data

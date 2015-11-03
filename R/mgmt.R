@@ -10,9 +10,9 @@ list_mgmt <- function(path, query, token) {
     }
     res <- data_$items
     if (!is.null(res$created))
-        res$created <- as.POSIXct(strptime(res$created, format = "%Y-%m-%dT%H:%M:%OS", tz = "GMT"))
+        res$created <- lubridate::ymd_hms(res$created)
     if (!is.null(res$updated))
-        res$updated <- as.POSIXct(strptime(res$updated, format = "%Y-%m-%dT%H:%M:%OS", tz = "GMT"))
+        res$updated <- lubridate::ymd_hms(res$updated)
     attr(res, "username") <- data_$username
     return(res)
 }
@@ -26,8 +26,8 @@ get_mgmt <- function(path, token) {
     if (!is.null(res$permissions))
         res$permissions <- unlist(res$permissions, use.names = FALSE)
     if (!is.null(res$created))
-        res$created <- as.POSIXct(strptime(res$created, format = "%Y-%m-%dT%H:%M:%OS", tz = "GMT"))
+        res$created <- lubridate::ymd_hms(res$created)
     if (!is.null(res$updated))
-        res$updated <- as.POSIXct(strptime(res$updated, format = "%Y-%m-%dT%H:%M:%OS", tz = "GMT"))
+        res$updated <- lubridate::ymd_hms(res$updated)
     return(res)
 }
