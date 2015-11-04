@@ -1,42 +1,63 @@
 library(rvest)
 library(jsonlite)
-library(stringi)
+library(stringr)
 library(magrittr)
 
-main_url <- "https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/"
-urls <- html(main_url) %>% html_nodes("a") %>% html_attr("href") %>%
-    stri_subset_regex("mgmt") %>% stri_subset_regex("list|get|resource") %>% na.omit %>%
-    paste0("https://developers.google.com", .)
+urls <- read_html("https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/") %>%
+    html_nodes("a") %>% html_attr("href") %>%
+    str_subset("https://.*/mgmtReference/management")
 
-get_returns <- function(url) {
-    res <- html(url)
-    pre <- res %>% html_nodes("#alt-json") %>% html_text(trim = TRUE) %>%
-        stri_replace_all_regex(" (\\w+)", " \"\\1\" ") %>% fromJSON
-    names <- unique(c(names(pre), names(unlist(pre))))
-    tbl <- res %>% html_nodes("#properties") %>% html_table(fill = TRUE)
-    tbl <- tbl[[1]]
-    tbl$`Property name` %<>% stri_replace_all_fixed("[]", "")
-    tbl <- tbl[match(names, tbl$`Property name`), ]
-    sprintf("#' \\item{%s}{%s}\n", tbl$`Property name`, tbl$Description)
+to_separated <- function(x, sep = ".") {
+    x <- gsub("PropertyId", "propertyId", x, fixed = TRUE)
+    x <- gsub("-", ".", x, fixed = TRUE)
+    x <- gsub("ids", "profile.id", x, fixed = TRUE)
+    gsub("([[:lower:]])([[:upper:]])", paste0("\\1", sep, "\\L\\2"), x, perl = TRUE)
 }
 
-get_params <- function(url) {
-    res <- html(url)
-    tbl <- res %>% html_nodes("#request_parameters") %>% html_table(fill = TRUE)
-    tbl <- na.omit(tbl[[1]])
-    tbl$`Parameter name` %<>% stri_replace_all_fixed("-", ".")
-    sprintf("#' @param %s %s\n", tbl$`Parameter name`, tbl$Description)
+get_returns <- function(url, output.dir = ".") {
+    res <- read_html(url)
+    pre <- res %>% html_nodes("#alt-json") %>%
+        html_text(trim = TRUE) %>%
+        str_replace_all(" (\\w+)", " \"\\1\" ") %>%
+        fromJSON()
+    prop_names <- unique(c(names(pre), names(unlist(pre)))) %>%
+        to_separated()
+    tbl <- res %>% html_nodes("#properties") %>%
+        html_table(fill = TRUE) %>%
+        extract2(1)
+    tbl$`Property name` %<>% str_replace_all("\\[\\]", "") %>% to_separated()
+    tbl <- tbl[match(prop_names, tbl$`Property name`), ]
+    txt <- sprintf("#' \\item{%s}{%s}", tbl$`Property name`, tbl$Description)
+    file_name <- url %>% str_split("/|#") %>%
+        unlist %>% extract(11) %>%
+        str_c("-resource.txt")
+    message("Writing ", file_name, "...")
+    writeLines(txt, file.path(output.dir, file_name))
+}
+
+get_params <- function(url, output.dir = ".") {
+    tbl <- read_html(url) %>%
+        html_nodes("#request_parameters") %>%
+        html_table(fill = TRUE) %>%
+        extract2(1) %>%
+        na.omit()
+    tbl$`Parameter name` %<>% to_separated()
+    txt <- sprintf("#' @param %s %s", tbl$`Parameter name`, tbl$Description)
+    file_name <- url %>% str_split("/|#") %>%
+        unlist %>%  extract(c(11, 12)) %>%
+        str_c(collapse = "-") %>% str_c(".txt")
+    message("Writing ", file_name, "...")
+    writeLines(txt, file.path(output.dir, file_name))
 }
 
 if (!file.exists("tmp/"))
     dir.create("tmp/")
 
-for (i in urls) {
-    file_name <- i  %>% stri_split_regex("/|#", simplify = TRUE) %>% extract(11)
-    suffix <- i  %>% stri_split_regex("/|#", simplify = TRUE) %>% extract(12)
-    message("Getting ", file_name, " entries...")
-    if (suffix == "resource")
-        try(cat(get_returns(i), sep = "", file = paste0("tmp/", file_name, "-", suffix, ".txt")))
-    else
-        try(cat(get_params(i), sep = "", file = paste0("tmp/", file_name, "-", suffix, ".txt")))
-}
+idx <- grep("get|list|insert|delete|patch|update|uploadData|deleteUploadData", urls)
+
+urls[-idx] %>%
+    lapply(get_returns, output.dir = "tmp/") %>%
+    invisible()
+urls[idx] %>%
+    lapply(get_params, output.dir = "tmp/") %>%
+    invisible()
