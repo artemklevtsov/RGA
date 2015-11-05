@@ -43,7 +43,7 @@ get_data <- function(path = NULL, query = NULL, token) {
             if (is.matrix(pages[[1L]]) || is.data.frame(pages[[1L]]))
                 pages <- do.call(rbind, pages)
             else if (is.list(pages[[1L]]))
-                pages <- do.call(c, pages)
+                pages <- unlist(pages, recursive = FALSE, use.names = FALSE)
             res[[items]] <- pages
             close(pb)
         }
