@@ -47,7 +47,11 @@ process <- function(x) {
         else
             stop(format_reasons(res), call. = FALSE)
     }
-    res <- convert_datatypes(res)
+    res <- convert_types.list(res)
+    res <- convert_names(res)
+    idx <- sapply(res, is.list)[!grepl("^(rows|items)$", names(res))]
+    res[idx] <- lapply(res[idx], convert_types.list)
+    res[idx] <- lapply(res[idx], convert_names)
     return(res)
 }
 

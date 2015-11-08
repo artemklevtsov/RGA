@@ -9,7 +9,7 @@ collapse_mcf <- function(x) {
     if (ncol(x) == 1)
         res <- paste(x$node.value, collapse = " > ")
     else {
-        res <- paste(x$interaction.type, x$node.value, collapse = " > ", sep = ":")
+        res <- paste(x$interactionType, x$nodeValue, collapse = " > ", sep = ":")
         res <- gsub("NA:", "", res, fixed = TRUE)
     }
     return(res)
@@ -18,13 +18,12 @@ collapse_mcf <- function(x) {
 # Build data.frame for mcf report
 mcf_df <- function(x) {
     col_names <- x$column.headers$name
-    types <- x$column.headers$data.type
-    if ("MCF_SEQUENCE" %in% types) {
-        idx <- grep("MCF_SEQUENCE", types, fixed = TRUE)
-        primitive <- lapply(x$rows, function(i) .subset2(i, "primitive.value")[-idx])
+    idx <- grep("MCF_SEQUENCE", x$column.headers$data.type, fixed = TRUE)
+    if (length(idx)) {
+        primitive <- lapply(x$rows, function(i) .subset2(i, "primitiveValue")[-idx])
         primitive <- do.call(rbind, primitive)
         colnames(primitive) <- col_names[-idx]
-        conversion <- lapply(x$rows, function(i) .subset2(i, "conversion.path.value")[idx])
+        conversion <- lapply(x$rows, function(i) .subset2(i, "conversionPathValue")[idx])
         conversion <- lapply(conversion, function(i) vapply(i, collapse_mcf, FUN.VALUE = character(1)))
         conversion <- do.call(rbind, conversion)
         colnames(conversion) <- col_names[idx]
@@ -40,6 +39,9 @@ mcf_df <- function(x) {
 # Build data.frame for mgmt data
 mgmt_df <- function(x) {
     res <- x$items
+    idx <- grep("\\.link$|\\.link\\.|kind", colnames(res))
+    if (length(idx))
+        res <- res[-idx]
     if (!is.null(res$permissions.effective)) {
         names(res) <- gsub(".effective", "", names(res), fixed = TRUE)
         res$permissions <- vapply(res$permissions, paste, collapse = ",", FUN.VALUE = character(1))
@@ -51,14 +53,15 @@ mgmt_df <- function(x) {
 #' @include utils.R
 build_df <- function(x) {
     if (!is.null(x$column.headers)) {
-        x$column.headers$name <- to_separated(gsub("^.*:", "", x$column.headers$name), sep = ".")
+        x$column.headers$name <- gsub("^.*:", "", x$column.headers$name)
         if (grepl("mcfData", x$kind, fixed = TRUE))
             res <- mcf_df(x)
         else
             res <- core_df(x)
-        res <- convert_datatypes(res)
     } else
         res <- mgmt_df(x)
+    res <- convert_types.data.frame(res)
+    colnames(res) <- to_separated(colnames(res))
     rownames(res) <- NULL
     return(res)
 }

@@ -50,15 +50,35 @@ to_separated <- function(x, sep = ".") {
     gsub("([[:lower:]])([[:upper:]])", paste0("\\1", sep, "\\L\\2"), x, perl = TRUE)
 }
 
-# Convert data types
-convert_datatypes <- function(x) {
-    stopifnot(is.list(x))
-    chars <- vapply(x, is.character, logical(1L))
-    x[chars] <- lapply(x[chars], utils::type.convert, as.is = TRUE)
-    lists <- vapply(x, is.list, logical(1L))
-    x[lists] <- lapply(x[lists], convert_datatypes)
-    names(x) <- to_separated(names(x), sep = ".")
+convert_names <- function(x) {
+    nm <- names(x)
+    if(!is.null(nm)) {
+        nm <- to_separated(nm, ".")
+        names(x) <- nm
+    }
     return(x)
+}
+
+# Convert data types
+convert_types <- function(x, ...) {
+    UseMethod("convert_type")
+}
+
+convert_types.character <- function(x) {
+    idx <- grep("^(true|false)$", x)
+    if (length(idx))
+        x[idx] <- toupper(x[idx])
+    utils::type.convert(x, as.is = TRUE)
+}
+
+convert_types.list <- function(x) {
+    chars <- vapply(x, is.character, logical(1L))
+    x[chars] <- lapply(x[chars], convert_types.character)
+    return(x)
+}
+
+convert_types.data.frame <- function(x) {
+    convert_types.list(x)
 }
 
 parse_params <- function(x) {

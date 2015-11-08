@@ -13,18 +13,18 @@ mcf_data <- structure(list(
         row.names = c(NA, 3L)),
     rows = list(
         structure(list(
-            primitive.value = c("(none)", "2759", "0.0")),
-            .Names = "primitive.value",
+            primitiveValue = c("(none)", "2759", "0.0")),
+            .Names = "primitiveValue",
             class = "data.frame",
             row.names = c(NA, 3L)),
         structure(list(
-            primitive.value = c("organic", "4873", "0.0")),
-            .Names = "primitive.value",
+            primitiveValue = c("organic", "4873", "0.0")),
+            .Names = "primitiveValue",
             class = "data.frame",
             row.names = c(NA, 3L)),
         structure(list(
-            primitive.value = c("referral", "296", "0.0")),
-            .Names = "primitive.value",
+            primitiveValue = c("referral", "296", "0.0")),
+            .Names = "primitiveValue",
             class = "data.frame",
             row.names = c(NA, 3L)))),
     .Names = c("kind", "total.results", "contains.sampled.data", "column.headers", "rows"))
@@ -58,62 +58,62 @@ mcf_data <- structure(list(
         row.names = c(NA, 3L)),
     rows = list(
         structure(list(
-            conversion.path.value = list(
+            conversionPathValue = list(
                 structure(list(
                     node.value = "(none)"),
                     .Names = "node.value",
                     class = "data.frame",
                     row.names = 1L),
                 NULL, NULL),
-            primitive.value = c(NA, "375", "0.0")),
-            .Names = c("conversion.path.value", "primitive.value"),
+            primitiveValue = c(NA, "375", "0.0")),
+            .Names = c("conversionPathValue", "primitiveValue"),
             class = "data.frame",
             row.names = c(NA, 3L)),
         structure(list(
-            conversion.path.value = list(
+            conversionPathValue = list(
                 structure(list(
                     node.value = c("(none)", "(none)")),
                     .Names = "node.value",
                     class = "data.frame",
                     row.names = 1:2),
                 NULL, NULL),
-            primitive.value = c(NA, "93", "0.0")),
-            .Names = c("conversion.path.value", "primitive.value"),
+            primitiveValue = c(NA, "93", "0.0")),
+            .Names = c("conversionPathValue", "primitiveValue"),
             class = "data.frame",
             row.names = c(NA, 3L)),
         structure(list(
-            conversion.path.value = list(
+            conversionPathValue = list(
                 structure(list(
                     node.value = c("(none)", "(none)", "(none)")),
                     .Names = "node.value",
                     class = "data.frame",
                     row.names = c(NA, 3L)), NULL, NULL),
-            primitive.value = c(NA, "45", "0.0")),
-            .Names = c("conversion.path.value", "primitive.value"),
+            primitiveValue = c(NA, "45", "0.0")),
+            .Names = c("conversionPathValue", "primitiveValue"),
             class = "data.frame",
             row.names = c(NA, 3L)),
         structure(list(
-            conversion.path.value = list(
+            conversionPathValue = list(
                 structure(list(
                     node.value = c("(none)", "(none)", "(none)", "(none)")),
                     .Names = "node.value",
                     class = "data.frame",
                     row.names = c(NA, 4L)),
                 NULL, NULL),
-            primitive.value = c(NA, "36", "0.0")),
-            .Names = c("conversion.path.value", "primitive.value"),
+            primitiveValue = c(NA, "36", "0.0")),
+            .Names = c("conversionPathValue", "primitiveValue"),
             class = "data.frame",
             row.names = c(NA, 3L)),
         structure(list(
-            conversion.path.value = list(
+            conversionPathValue = list(
                 structure(list(
                     node.value = c("(none)", "(none)", "(none)", "(none)", "(none)")),
                     .Names = "node.value",
                     class = "data.frame",
                     row.names = c(NA, 5L)),
                 NULL, NULL),
-            primitive.value = c(NA, "25", "0.0")),
-            .Names = c("conversion.path.value", "primitive.value"),
+            primitiveValue = c(NA, "25", "0.0")),
+            .Names = c("conversionPathValue", "primitiveValue"),
             class = "data.frame",
             row.names = c(NA, 3L)))),
     .Names = c("kind", "total.results", "contains.sampled.data", "column.headers", "rows"))
