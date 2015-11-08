@@ -45,34 +45,18 @@ To authorize of the new Google Analytics account use `new.auth` argument when `a
 
 ## Obtain OAuth 2.0 credentials
 
-`RGA` package provides predefined **Client ID** and **Client secret**, but you may need to create a new application in [Google Developers Console](https://console.developers.google.com/) and obtain a **Client ID** and **Client secret** to access to the Google Analytics API.
+`RGA` package provides predefined **Client ID** and **Client secret**, but we recomend to obtain your own a **Client ID** and **Client secret** to access to the Google Analytics API.
 
-Step by step instructions are as follows:
+To find your project's client ID and client secret, do the following:
 
-1. Creation of a new project (can be skipped if the project is already created):
-    - Open the page <https://console.developers.google.com/project> in your favorite browser;
-    - Click on **Create Project** blue button at the top left of the page;
-    - Enter the name of the project into the **PROJECT NAME** field in the pop-up window;
-    - Click **Create** to confirm the creation of the project.
-2. Enabling access to the Google Analytics API:
-    - Select your project from the project list on <https://console.developers.google.com/project page>;
-    - Select **APIs & auth** and then **APIs** sub-menu in the left sidebar;
-    - Click on the **Analytics API** link in the **Advertising APIs** section;
-    - Click **Enable API** for activation **Analytics API**.
-3. Creating a new application:
-    - Select **APIs & auth** and then **Credentials** sub-menu in the left sidebar;
-    - Click on **Add credentials** blue button at the top left of the page;
-    - Select **OAuth 2.0 client ID** in the pop-up window;
-    - Select **Other** from Application type list;
-    - Change name of the client if you need;
-    - Click on the **Create** blue button to confirm the creation of the client ID.
-4. Obtaining Client ID and Client secret:
-    - Select the project from the project list on the <https://console.developers.google.com/project> page;
-    - Select **APIs & auth** and then **Credentials** sub-menu in the left sidebar;
-    - Click on name of the client from the **Name column** in the **OAuth 2.0 client IDs** table;
-    - Copy the values of the following fields: **Client ID** and **Client secret**.
+1. Open the [Credentials page](https://console.developers.google.com/project/_/apiui/credential).
+2. If you haven't done so already, create your project's OAuth 2.0 credentials by clicking **Add credentials** > **OAuth 2.0 client ID** and select **Other** application type.
+3. Look for the Client ID in the OAuth 2.0 client IDs section. You can click the application name for details.
 
-You can return to the [Google Developers Console](https://console.developers.google.com/project) at any time to view the **Client ID** and **Client secret** on the Client ID for native application section on Credentials page.
+To enable **Analytics API** for your project, do the following:
+
+1. Open the [Analytics API Overview page](https://console.developers.google.com/project/_/apiui/api/analytics/overview).
+2. CLick on the **Enable API** button to activate **Analytics API**.
 
 ## Use environment variables
 
