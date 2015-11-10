@@ -7,33 +7,30 @@
 list_segments(start.index = NULL, max.results = NULL, token)
 }
 \arguments{
-\item{start.index}{integer. An index of the first segment to retrieve. Use this parameter as a pagi- nation mechanism along with the max-results parameter.}
+\item{start.index}{integer. An index of the first segment to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.}
 
 \item{max.results}{integer. The maximum number of segments to include in this response.}
 
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
 }
 \value{
-An segment collection lists Analytics segments that the user has access to. Each resource in the collection corresponds to a single Analytics segment.
+The Segments collection is a set of Segment resources, each of which describes one of the user's default advanced segments or custom segments.
 \item{id}{Segment ID.}
-\item{segment.id}{Segment ID. Can be used with the segment parameter in Data Feed.}
+\item{kind}{Resource type for Analytics segment.}
+\item{segment.id}{Segment ID. Can be used with the 'segment' parameter in Core Reporting API.}
 \item{name}{Segment name.}
 \item{definition}{Segment definition.}
 \item{type}{Type for a segment. Possible values are "BUILT_IN" or "CUSTOM".}
-\item{created}{time the segment was created.}
-\item{updated}{time the segment was last modified.}
+\item{created}{Time the segment was created.}
+\item{updated}{Time the segment was last modified.}
 }
 \description{
-Lists segments which the user has access to.
+Lists segments to which the user has access.
 }
 \references{
-\href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/segments}{Management API - Segments}
-
-\href{https://developers.google.com/analytics/devguides/reporting/core/v3/segments}{Core Reporting API - Segments}
+\href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/segments}{Management API - Segments Overview}
 }
 \seealso{
-\code{\link{authorize}}
-
 Other Management API: \code{\link{get_custom_dimension}},
   \code{\link{get_custom_metric}},
   \code{\link{get_experiment}}, \code{\link{get_filter}},
@@ -41,9 +38,9 @@ Other Management API: \code{\link{get_custom_dimension}},
   \code{\link{get_unsampled_report}},
   \code{\link{get_upload}}, \code{\link{get_webproperty}},
   \code{\link{list_accounts}},
+  \code{\link{list_custom_data_sources}},
   \code{\link{list_custom_dimensions}},
   \code{\link{list_custom_metrics}},
-  \code{\link{list_custom_sources}},
   \code{\link{list_experiments}},
   \code{\link{list_filters}}, \code{\link{list_goals}},
   \code{\link{list_profiles}},

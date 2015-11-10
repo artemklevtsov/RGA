@@ -40,8 +40,10 @@ get_data <- function(path = NULL, query = NULL, token) {
                 utils::setTxtProgressBar(pb, i)
             }
             pages[[1L]] <- res[[items]]
-            if (is.matrix(pages[[1L]]) || is.data.frame(pages[[1L]]))
-                pages <- do.call(rbind, pages)
+            if (is.matrix(pages[[1L]]))
+                pages <- plyr::rbind.fill.matrix(pages)
+            if (is.data.frame(pages[[1L]]))
+                pages <- plyr::rbind.fill(pages)
             else if (is.list(pages[[1L]]))
                 pages <- unlist(pages, recursive = FALSE, use.names = FALSE)
             res[[items]] <- pages

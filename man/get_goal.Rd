@@ -7,18 +7,18 @@
 get_goal(account.id, webproperty.id, profile.id, goal.id, token)
 }
 \arguments{
-\item{account.id}{integer or character. Account ID to retrieve the goal for.}
+\item{account.id}{character. Account ID to retrieve the goal for.}
 
 \item{webproperty.id}{character. Web property ID to retrieve the goal for.}
 
-\item{profile.id}{ineger or character. View (Profile) ID to retrieve the goal for.}
+\item{profile.id}{character. View (Profile) ID to retrieve the goal for.}
 
-\item{goal.id}{ineger or character. Goal ID to retrieve the goal for.}
+\item{goal.id}{character. Goal ID to retrieve the goal for.}
 
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
 }
 \value{
-An Analytics goal resource
+A Goals resource describes a goal for one of a user's profiles.
 \item{id}{Goal ID.}
 \item{kind}{Resource type for an Analytics goal.}
 \item{self.link}{Link for this goal.}
@@ -33,17 +33,37 @@ An Analytics goal resource
 \item{created}{Time this goal was created.}
 \item{updated}{Time this goal was last modified.}
 \item{parent.link}{Parent link for a goal. Points to the view (profile) to which this goal belongs.}
+\item{url.destination.details}{Details for the goal of the type URL_DESTINATION.}
 \item{visit.time.on.site.details}{Details for the goal of the type VISIT_TIME_ON_SITE.}
+\item{visit.num.pages.details}{Details for the goal of the type VISIT_NUM_PAGES.}
+\item{event.details}{Details for the goal of the type EVENT.}
+\item{parent.link.type}{Value is "analytics#profile".}
+\item{parent.link.href}{Link to the view (profile) to which this goal belongs.}
+\item{url.destination.details.url}{URL for this goal.}
+\item{url.destination.details.case.sensitive}{Determines if the goal URL must exactly match the capitalization of visited URLs.}
+\item{url.destination.details.match.type}{Match type for the goal URL. Possible values are HEAD, EXACT, or REGEX.}
+\item{url.destination.details.first.step.required}{Determines if the first step in this goal is required.}
+\item{url.destination.details.steps.number}{Step number.}
+\item{url.destination.details.steps.name}{Step name.}
+\item{url.destination.details.steps.url}{URL for this step.}
+\item{visit.time.on.site.details.comparison.type}{Type of comparison. Possible values are LESS_THAN or GREATER_THAN.}
+\item{visit.time.on.site.details.comparison.value}{Value used for this comparison.}
+\item{visit.num.pages.details.comparison.type}{Type of comparison. Possible values are LESS_THAN, GREATER_THAN, or EQUAL.}
+\item{visit.num.pages.details.comparison.value}{Value used for this comparison.}
+\item{event.details.use.event.value}{Determines if the event value should be used as the value for this goal.}
+\item{event.details.event.conditions.type}{Type of this event condition. Possible values are CATEGORY, ACTION, LABEL, or VALUE.}
+\item{event.details.event.conditions.match.type}{Type of the match to be performed. Possible values are REGEXP, BEGINS_WITH, or EXACT.}
+\item{event.details.event.conditions.expression}{Expression used for this match.}
+\item{event.details.event.conditions.comparison.type}{Type of comparison. Possible values are LESS_THAN, GREATER_THAN or EQUAL.}
+\item{event.details.event.conditions.comparison.value}{Value used for this comparison.}
 }
 \description{
-Gets a goal to which the user has access to.
+Gets a goal to which the user has access.
 }
 \references{
-\href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/goals}{Management API - Goals}
+\href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/goals}{Management API - Goals Overview}
 }
 \seealso{
-\code{\link{authorize}}
-
 Other Management API: \code{\link{get_custom_dimension}},
   \code{\link{get_custom_metric}},
   \code{\link{get_experiment}}, \code{\link{get_filter}},
@@ -51,9 +71,9 @@ Other Management API: \code{\link{get_custom_dimension}},
   \code{\link{get_unsampled_report}},
   \code{\link{get_upload}}, \code{\link{get_webproperty}},
   \code{\link{list_accounts}},
+  \code{\link{list_custom_data_sources}},
   \code{\link{list_custom_dimensions}},
   \code{\link{list_custom_metrics}},
-  \code{\link{list_custom_sources}},
   \code{\link{list_experiments}},
   \code{\link{list_filters}}, \code{\link{list_goals}},
   \code{\link{list_profiles}}, \code{\link{list_segments}},

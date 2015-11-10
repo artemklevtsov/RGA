@@ -8,9 +8,9 @@ list_profiles(account.id = "~all", webproperty.id = "~all",
   start.index = NULL, max.results = NULL, token)
 }
 \arguments{
-\item{account.id}{integer or character. Account ID for the view (profiles) to retrieve. Can either be a specific account ID or '~all', which refers to all the accounts which the user has access to.}
+\item{account.id}{character. Account ID for the view (profiles) to retrieve. Can either be a specific account ID or '~all', which refers to all the accounts to which the user has access.}
 
-\item{webproperty.id}{character. Web property ID for the views (profiles) to retrieve. Can either be a specific web property ID or '~all', which refers to all the web properties which the user has access to. Requires specified \code{account.id}.}
+\item{webproperty.id}{character. Web property ID for the views (profiles) to retrieve. Can either be a specific web property ID or '~all', which refers to all the web properties to which the user has access.}
 
 \item{start.index}{integer. An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.}
 
@@ -19,33 +19,37 @@ list_profiles(account.id = "~all", webproperty.id = "~all",
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
 }
 \value{
-A view (profile) collection lists Analytics views (profiles) to which the user has access. Each resource in the collection corresponds to a single Analytics view (profile).
+The Profiles collection is a set of Profile resources, each of which describes the profile of an authenticated user. 
 \item{id}{View (Profile) ID.}
+\item{kind}{Resource type for Analytics view (profile).}
 \item{account.id}{Account ID to which this view (profile) belongs.}
 \item{webproperty.id}{Web property ID of the form UA-XXXXX-YY to which this view (profile) belongs.}
+\item{internal.webproperty.id}{Internal ID for the web property to which this view (profile) belongs.}
 \item{name}{Name of this view (profile).}
-\item{currency}{The currency type associated with this view (profile).}
+\item{currency}{The currency type associated with this view (profile), defaults to USD. The supported values are:  ARS,  AUD,  BGN,  BRL,  CAD,  CHF,  CNY,  CZK,  DKK,  EUR, GBP,  HKD,  HUF,  IDR,  INR,  JPY,  KRW,  LTL,  MXN,  NOK, NZD,  PHP,  PLN,  RUB,  SEK,  THB,  TRY,  TWD,  USD,  VND, ZAR}
 \item{timezone}{Time zone for which this view (profile) has been configured. Time zones are identified by strings from the TZ database.}
 \item{website.url}{Website URL for this view (profile).}
+\item{default.page}{Default page for this view (profile).}
+\item{exclude.query.parameters}{The query parameters that are excluded from this view (profile).}
+\item{site.search.query.parameters}{The site search query parameters for this view (profile).}
+\item{strip.site.search.query.parameters}{Whether or not Analytics will strip search query parameters from the URLs in your reports.}
+\item{site.search.category.parameters}{Site search category parameters for this view (profile).}
+\item{strip.site.search.category.parameters}{Whether or not Analytics will strip search category parameters from the URLs in your reports.}
 \item{type}{View (Profile) type. Supported types: WEB or APP.}
-\item{e.commerce.tracking}{Indicates whether ecommerce tracking is enabled for this view (profile).}
 \item{permissions}{Permissions the user has for this view (profile).}
 \item{created}{Time this view (profile) was created.}
 \item{updated}{Time this view (profile) was last modified.}
+\item{e.commerce.tracking}{Indicates whether ecommerce tracking is enabled for this view (profile).}
+\item{enhanced.eCommerce.tracking}{Indicates whether enhanced ecommerce tracking is enabled for this view (profile). This property can only be enabled if ecommerce tracking is enabled.}
+\item{permissions.effective}{All the permissions that the user has for this view (profile). These include any implied permissions (e.g., EDIT implies VIEW) or inherited permissions from the parent web property.}
 }
 \description{
-ists views (profiles) which the user has access to.
+Lists views (profiles) to which the user has access.
 }
 \references{
-\href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/profiles}{Management API - Views (Profiles)}
-
-\href{https://ga-dev-tools.appspot.com/account-explorer/}{Google Analytics Demos & Tools - Account Explorer}
-
-\href{https://support.google.com/analytics/answer/1009618?vid=1-635777221050507375-76049587}{Analytics Help - Hierarchy of accounts, users, properties, and views}
+\href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/profiles}{Management API - Views (Profiles) Overview}
 }
 \seealso{
-\code{\link{authorize}}
-
 Other Management API: \code{\link{get_custom_dimension}},
   \code{\link{get_custom_metric}},
   \code{\link{get_experiment}}, \code{\link{get_filter}},
@@ -53,9 +57,9 @@ Other Management API: \code{\link{get_custom_dimension}},
   \code{\link{get_unsampled_report}},
   \code{\link{get_upload}}, \code{\link{get_webproperty}},
   \code{\link{list_accounts}},
+  \code{\link{list_custom_data_sources}},
   \code{\link{list_custom_dimensions}},
   \code{\link{list_custom_metrics}},
-  \code{\link{list_custom_sources}},
   \code{\link{list_experiments}},
   \code{\link{list_filters}}, \code{\link{list_goals}},
   \code{\link{list_segments}},

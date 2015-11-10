@@ -7,42 +7,38 @@
 list_accounts(start.index = NULL, max.results = NULL, token)
 }
 \arguments{
-\item{start.index}{integer. An index of the first account to retrieve. Use this parameter as a pagi- nation mechanism along with the max-results parameter.}
+\item{start.index}{integer. An index of the first account to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.}
 
 \item{max.results}{integer. The maximum number of accounts to include in this response.}
 
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
 }
 \value{
-An account collection provides a list of Analytics accounts to which a user has access. The account collection is the entry point to all management information. Each resource in the collection corresponds to a single Analytics account.
+The Accounts collection is a set of Account resources, each of which describes the account of an authenticated user. 
 \item{id}{Account ID.}
+\item{kind}{Resource type for Analytics account.}
 \item{name}{Account name.}
 \item{permissions}{Permissions the user has for this account.}
 \item{created}{Time the account was created.}
 \item{updated}{Time the account was last modified.}
+\item{permissions.effective}{All the permissions that the user has for this account. These include any implied permissions (e.g., EDIT implies VIEW).}
 }
 \description{
-Lists all accounts which the user has access to.
+Lists all accounts to which the user has access.
 }
 \references{
-\href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/accounts}{Management API - Accounts}
-
-\href{https://ga-dev-tools.appspot.com/account-explorer/}{Google Analytics Demos & Tools - Account Explorer}
-
-\href{https://support.google.com/analytics/answer/1009618?vid=1-635777221050507375-76049587}{Analytics Help - Hierarchy of accounts, users, properties, and views}
+\href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/accounts}{Management API - Accounts Overview}
 }
 \seealso{
-\code{\link{authorize}}
-
 Other Management API: \code{\link{get_custom_dimension}},
   \code{\link{get_custom_metric}},
   \code{\link{get_experiment}}, \code{\link{get_filter}},
   \code{\link{get_goal}}, \code{\link{get_profile}},
   \code{\link{get_unsampled_report}},
   \code{\link{get_upload}}, \code{\link{get_webproperty}},
+  \code{\link{list_custom_data_sources}},
   \code{\link{list_custom_dimensions}},
   \code{\link{list_custom_metrics}},
-  \code{\link{list_custom_sources}},
   \code{\link{list_experiments}},
   \code{\link{list_filters}}, \code{\link{list_goals}},
   \code{\link{list_profiles}}, \code{\link{list_segments}},

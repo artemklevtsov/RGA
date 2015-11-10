@@ -7,33 +7,32 @@
 get_upload(account.id, webproperty.id, custom.data.source.id, upload.id, token)
 }
 \arguments{
-\item{account.id}{Account Id for the upload to retrieve.}
+\item{account.id}{character. Account Id for the upload to retrieve.}
 
-\item{webproperty.id}{Web property Id for the upload to retrieve.}
+\item{webproperty.id}{character. Web property Id for the upload to retrieve.}
 
-\item{custom.data.source.id}{Custom data source Id for upload to retrieve.}
+\item{custom.data.source.id}{character. Custom data source Id for upload to retrieve.}
 
-\item{upload.id}{Upload Id to retrieve.}
+\item{upload.id}{character. Upload Id to retrieve.}
 
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
 }
 \value{
-Metadata returned for an upload operation.
+The Uploads collection is a set of Upload resources, each of which describes an upload for one of the user's custom data sources.
 \item{id}{A unique ID for this upload.}
+\item{kind}{Resource type for Analytics upload.}
 \item{account.id}{Account Id to which this upload belongs.}
 \item{custom.data.source.id}{Custom data source Id to which this data import belongs.}
 \item{status}{Upload status. Possible values: PENDING, COMPLETED, FAILED, DELETING, DELETED.}
 \item{errors}{Data import errors collection.}
 }
 \description{
-Gets a upload to which the user has access to.
+List uploads to which the user has access.
 }
 \references{
-\href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/uploads}{Management API - Uploads}
+\href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/uploads}{Management API - Uploads Overview}
 }
 \seealso{
-\code{\link{authorize}}
-
 Other Management API: \code{\link{get_custom_dimension}},
   \code{\link{get_custom_metric}},
   \code{\link{get_experiment}}, \code{\link{get_filter}},
@@ -41,9 +40,9 @@ Other Management API: \code{\link{get_custom_dimension}},
   \code{\link{get_unsampled_report}},
   \code{\link{get_webproperty}},
   \code{\link{list_accounts}},
+  \code{\link{list_custom_data_sources}},
   \code{\link{list_custom_dimensions}},
   \code{\link{list_custom_metrics}},
-  \code{\link{list_custom_sources}},
   \code{\link{list_experiments}},
   \code{\link{list_filters}}, \code{\link{list_goals}},
   \code{\link{list_profiles}}, \code{\link{list_segments}},

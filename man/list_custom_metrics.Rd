@@ -8,18 +8,18 @@ list_custom_metrics(account.id, webproperty.id, start.index = NULL,
   max.results = NULL, token)
 }
 \arguments{
-\item{account.id}{Account ID for the custom metrics to retrieve.}
+\item{account.id}{character. Account ID for the custom metrics to retrieve.}
 
-\item{webproperty.id}{Web property ID for the custom metrics to retrieve.}
+\item{webproperty.id}{character. Web property ID for the custom metrics to retrieve.}
 
-\item{start.index}{An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.}
+\item{start.index}{integer. An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.}
 
-\item{max.results}{The maximum number of custom metrics to include in this response.}
+\item{max.results}{integer. The maximum number of custom metrics to include in this response.}
 
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
 }
 \value{
-An Analytics custom metric.
+\item{kind}{Kind value for a custom metric. Set to "analytics#customMetric". It is a read-only field.}
 \item{id}{Custom metric ID.}
 \item{account.id}{Account ID.}
 \item{webproperty.id}{Property ID.}
@@ -34,14 +34,12 @@ An Analytics custom metric.
 \item{updated}{Time the custom metric was last modified.}
 }
 \description{
-Lists custom metrics to which the user has access to.
+Lists custom metrics to which the user has access.
 }
 \references{
-\href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/customMetrics}{Management API - Custom metrics}
+\href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/customMetrics}{Management API - Custom Metrics Overview}
 }
 \seealso{
-\code{\link{authorize}}
-
 Other Management API: \code{\link{get_custom_dimension}},
   \code{\link{get_custom_metric}},
   \code{\link{get_experiment}}, \code{\link{get_filter}},
@@ -49,8 +47,8 @@ Other Management API: \code{\link{get_custom_dimension}},
   \code{\link{get_unsampled_report}},
   \code{\link{get_upload}}, \code{\link{get_webproperty}},
   \code{\link{list_accounts}},
+  \code{\link{list_custom_data_sources}},
   \code{\link{list_custom_dimensions}},
-  \code{\link{list_custom_sources}},
   \code{\link{list_experiments}},
   \code{\link{list_filters}}, \code{\link{list_goals}},
   \code{\link{list_profiles}}, \code{\link{list_segments}},

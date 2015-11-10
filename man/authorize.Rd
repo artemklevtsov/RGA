@@ -39,12 +39,18 @@ When the \code{authorize()} function is used the \code{Token} variable is create
 For some reasons you may need to use a custom client ID and client secret. In order to obtain these, you will have to register an application with the Google Analytics API. To find your project's client ID and client secret, do the following:
 
 \enumerate{
-  \item Go to the \href{https://console.developers.google.com/}{Google Developers Console}.
+  \item Open the \href{https://console.developers.google.com/project/_/apiui/credential}{Credentials page}.
   \item Select a project (create if needed).
-  \item Select \emph{APIs & auth} in the sidebar on the left.
+  \item create your project's OAuth 2.0 credentials by clicking \emph{Add credentials} > \emph{OAuth 2.0 client ID} and select \emph{Other} application type.
   \item In the list of APIs select \emph{Analytics API}. Then click \emph{Enable API}.
-  \item Select \emph{Credentials} in the sidebar on the left.
-  \item To set up a service account select \emph{Add credentials}. Select \emph{OAuth 2.0 client ID} and \emph{Other} options and then select \emph{Create}.
+  \item Look for the Client ID in the OAuth 2.0 client IDs section. You can click the application name for details.
+}
+
+To enable Analytics API for your project, do the following:
+
+\enumerate{
+  \item Open the \href{https://console.developers.google.com/project/_/apiui/api/analytics/overview}{Analytics API Overview page}.
+   \item CLick on the \emph{Enable API} button to activate Analytics API.
 }
 
 You can return to the \href{https://console.developers.google.com/}{Google Developers Console} at any time to view the client ID and client secret on the \emph{Client ID for native application} section on \emph{Credentials} page.

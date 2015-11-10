@@ -4,19 +4,18 @@
 \alias{get_custom_dimension}
 \title{Custom Dimensions}
 \usage{
-get_custom_dimension(account.id, webproperty.id, dimension.id, token)
+get_custom_dimension(account.id, webproperty.id, custom.dimension.id, token)
 }
 \arguments{
-\item{account.id}{Account ID for the custom dimension to retrieve.}
+\item{account.id}{character. Account ID for the custom dimension to retrieve.}
 
-\item{webproperty.id}{Web property ID for the custom dimension to retrieve.}
+\item{webproperty.id}{character. Web property ID for the custom dimension to retrieve.}
 
-\item{dimension.id}{The ID of the custom dimension to retrieve.}
+\item{custom.dimension.id}{character. The ID of the custom dimension to retrieve.}
 
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
 }
 \value{
-An Analytics custom dimension.
 \item{kind}{Kind value for a custom dimension. Set to "analytics#customDimension". It is a read-only field.}
 \item{id}{Custom dimension ID.}
 \item{account.id}{Account ID.}
@@ -33,23 +32,21 @@ An Analytics custom dimension.
 \item{parent.link.href}{Link to the property to which the custom dimension belongs.}
 }
 \description{
-Gets a custom dimension to which the user has access to.
+Get a custom dimension to which the user has access.
 }
 \references{
-\href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/customDimensions}{Management API - Custom Dimensions}
+\href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/customDimensions}{Management API - Custom Dimensions Overview}
 }
 \seealso{
-\code{\link{authorize}}
-
 Other Management API: \code{\link{get_custom_metric}},
   \code{\link{get_experiment}}, \code{\link{get_filter}},
   \code{\link{get_goal}}, \code{\link{get_profile}},
   \code{\link{get_unsampled_report}},
   \code{\link{get_upload}}, \code{\link{get_webproperty}},
   \code{\link{list_accounts}},
+  \code{\link{list_custom_data_sources}},
   \code{\link{list_custom_dimensions}},
   \code{\link{list_custom_metrics}},
-  \code{\link{list_custom_sources}},
   \code{\link{list_experiments}},
   \code{\link{list_filters}}, \code{\link{list_goals}},
   \code{\link{list_profiles}}, \code{\link{list_segments}},

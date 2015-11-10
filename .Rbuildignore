@@ -6,6 +6,7 @@
 ^\.magnum\.yml$
 ^\.travis\.yml$
 ^data-raw$
+^man-roxygen$
 ^tools$
 ^tmp$
 rsconnect$
