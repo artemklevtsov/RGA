@@ -17,7 +17,7 @@ list_webproperties(account.id = "~all", start.index = NULL,
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
 }
 \value{
-The Webproperties collection is a set of Webproperty resources, each of which describes a web property available to an authenticated user. 
+The Webproperties collection is a set of Webproperty resources, each of which describes a web property available to an authenticated user.
 \item{id}{Web property ID of the form UA-XXXXX-YY.}
 \item{kind}{Resource type for Analytics WebProperty.}
 \item{account.id}{Account ID to which this web property belongs.}

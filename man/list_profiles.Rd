@@ -19,7 +19,7 @@ list_profiles(account.id = "~all", webproperty.id = "~all",
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
 }
 \value{
-The Profiles collection is a set of Profile resources, each of which describes the profile of an authenticated user. 
+The Profiles collection is a set of Profile resources, each of which describes the profile of an authenticated user.
 \item{id}{View (Profile) ID.}
 \item{kind}{Resource type for Analytics view (profile).}
 \item{account.id}{Account ID to which this view (profile) belongs.}

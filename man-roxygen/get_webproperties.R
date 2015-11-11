@@ -6,7 +6,7 @@
 #' @param webproperty.id character. ID to retrieve the web property for.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
 #' 
-#' @return The Webproperties collection is a set of Webproperty resources, each of which describes a web property available to an authenticated user. 
+#' @return The Webproperties collection is a set of Webproperty resources, each of which describes a web property available to an authenticated user.
 #' \item{id}{Web property ID of the form UA-XXXXX-YY.}
 #' \item{kind}{Resource type for Analytics WebProperty.}
 #' \item{self.link}{Link for this web property.}

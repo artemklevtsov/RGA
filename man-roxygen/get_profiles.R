@@ -7,7 +7,7 @@
 #' @param webproperty.id character. Web property ID to retrieve the goal for.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
 #' 
-#' @return The Profiles collection is a set of Profile resources, each of which describes the profile of an authenticated user. 
+#' @return The Profiles collection is a set of Profile resources, each of which describes the profile of an authenticated user.
 #' \item{id}{View (Profile) ID.}
 #' \item{kind}{Resource type for Analytics view (profile).}
 #' \item{self.link}{Link for this view (profile).}

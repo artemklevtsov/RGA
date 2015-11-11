@@ -18,7 +18,7 @@ get_upload(account.id, webproperty.id, custom.data.source.id, upload.id, token)
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
 }
 \value{
-The Uploads collection is a set of Upload resources, each of which describes an upload for one of the user's custom data sources.
+The Uploads collection is a set of Upload resources, each of which describes an upload for one of the user's custom data sources. This resource should be used when uploading Dimension Widening data.
 \item{id}{A unique ID for this upload.}
 \item{kind}{Resource type for Analytics upload.}
 \item{account.id}{Account Id to which this upload belongs.}

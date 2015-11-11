@@ -6,7 +6,7 @@
 #' @param start.index integer. An index of the first account to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
 #' 
-#' @return The Accounts collection is a set of Account resources, each of which describes the account of an authenticated user. 
+#' @return The Accounts collection is a set of Account resources, each of which describes the account of an authenticated user.
 #' \item{id}{Account ID.}
 #' \item{kind}{Resource type for Analytics account.}
 #' \item{name}{Account name.}
