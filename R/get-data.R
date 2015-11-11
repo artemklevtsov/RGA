@@ -20,7 +20,7 @@ get_data <- function(path = NULL, query = NULL, token) {
             stop(sprintf("Can't retry more than %d results for this API. Set max.results = NULL (default value) to get all results.", limit), call. = FALSE)
     }
     # Make request
-    res <- GET_(get_url(path, query), token)
+    res <- api_request(get_url(path, query), token)
     if (res$total.results == 0L || is.null(res[[items]]) || length(res[[items]]) == 0L)
         return(NULL)
     if (!isTRUE(pagination) && query$max.results < res$total.results)
@@ -36,7 +36,7 @@ get_data <- function(path = NULL, query = NULL, token) {
             pb <- utils::txtProgressBar(min = 0, max = total.pages, initial = 1, style = 3)
             for (i in 2L:total.pages) {
                 query$start.index <- query$max.results * (i - 1L) + 1L
-                pages[[i]] <- GET_(get_url(path, query), token)[[items]]
+                pages[[i]] <- api_request(get_url(path, query), token)[[items]]
                 utils::setTxtProgressBar(pb, i)
             }
             pages[[1L]] <- res[[items]]

@@ -54,7 +54,7 @@
 list_dimsmets <- function(report.type = "ga") {
     url <- get_url(c("metadata", report.type, "columns"))
     response <- httr::GET(url)
-    json_content <- process(response)
+    json_content <- process_response(response)
     res <- json_content$items
     res$kind <- NULL
     res <- convert_types.data.frame(res)

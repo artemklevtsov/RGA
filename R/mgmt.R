@@ -25,7 +25,7 @@ list_mgmt <- function(path, query, token) {
 #' @include url.R
 #' @include request.R
 get_mgmt <- function(path, token) {
-    res <- GET_(get_url(c("management", path)), token)
+    res <- api_request(get_url(c("management", path)), token)
     res <- fix_mgmt(res)
     return(res)
 }
