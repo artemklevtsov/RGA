@@ -12,8 +12,7 @@ get_profile <- function(account.id, webproperty.id, profile.id, token) {
 #' @export
 list_profiles = function(account.id = "~all", webproperty.id = "~all", start.index = NULL, max.results = NULL, token) {
     path <- c("accounts", account.id, "webproperties", webproperty.id, "profiles")
-    query <- list(start.index = start.index, max.results = max.results,
-                  fields = "items(id,accountId,webPropertyId,name,currency,timezone,websiteUrl,type,eCommerceTracking,permissions/effective,created,updated)")
+    query <- list(start.index = start.index, max.results = max.results)
     res <- list_mgmt(path = path, query = query, token = token)
     return(res)
 }

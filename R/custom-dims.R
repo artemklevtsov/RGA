@@ -2,7 +2,7 @@
 #' @include mgmt.R
 #' @export
 get_custom_dimension <- function(account.id, webproperty.id, custom.dimension.id, token) {
-    path <- c("accounts", account.id, "webproperties", webproperty.id, "customDimensions", dimension.id)
+    path <- c("accounts", account.id, "webproperties", webproperty.id, "customDimensions", custom.dimension.id)
     res <- get_mgmt(path = path, token = token)
     return(res)
 }
@@ -12,7 +12,7 @@ get_custom_dimension <- function(account.id, webproperty.id, custom.dimension.id
 #' @export
 list_custom_dimensions <- function(account.id, webproperty.id, start.index = NULL, max.results = NULL, token) {
     path <- c("accounts", account.id, "webproperties", webproperty.id, "customDimensions")
-    query <- list(start.index = start.index, max.results = max.results, fields = "items(id,accountId,webPropertyId,name,index,scope,active,created,updated)")
+    query <- list(start.index = start.index, max.results = max.results)
     res <- list_mgmt(path = path, query = query, token = token)
     return(res)
 }
