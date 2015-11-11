@@ -1,12 +1,9 @@
 #' @title Web Properties
-#' 
 #' @description Lists properties to which the user has access.
-#' 
 #' @param account.id character. Account ID to retrieve web properties for. Can either be a specific account ID or '~all', which refers to all the accounts that user has access to.
 #' @param max.results integer. The maximum number of web properties to include in this response.
 #' @param start.index integer. An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
-#' 
 #' @return The Webproperties collection is a set of Webproperty resources, each of which describes a web property available to an authenticated user.
 #' \item{id}{Web property ID of the form UA-XXXXX-YY.}
 #' \item{kind}{Resource type for Analytics WebProperty.}
@@ -22,7 +19,5 @@
 #' \item{created}{Time this web property was created.}
 #' \item{updated}{Time this web property was last modified.}
 #' \item{permissions.effective}{All the permissions that the user has for this web property. These include any implied permissions (e.g., EDIT implies VIEW) or inherited permissions from the parent account.}
-#' 
 #' @references \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/webproperties}{Management API - Web Properties Overview}
-#' 
 #' @family Management API

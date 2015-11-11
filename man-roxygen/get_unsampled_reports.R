@@ -1,14 +1,11 @@
 #' @title Unsampled Reports
-#' 
 #' @description Returns a single unsampled report.
-#' 
 #' @param account.id character. Account ID to retrieve unsampled report for.
 #' @param profile.id character. View (Profile) ID to retrieve unsampled report for.
 #' @param unsampled.report.id character. ID of the unsampled report to retrieve.
 #' @param webproperty.id character. Web property ID to retrieve unsampled reports for.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
-#' 
-#' @return 
+#' @return
 #' \item{id}{Unsampled report ID.}
 #' \item{kind}{Resource type for an Analytics unsampled report.}
 #' \item{self.link}{Link for this unsampled report.}
@@ -31,7 +28,5 @@
 #' \item{drive.download.details.document.id}{Id of the document/file containing the report data.}
 #' \item{cloud.storage.download.details.bucket.id}{Id of the bucket the file object is stored in.}
 #' \item{cloud.storage.download.details.object.id}{Id of the file object containing the report data.}
-#' 
 #' @references \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/unsampledReports}{Management API - Unsampled Reports Overview}
-#' 
 #' @family Management API

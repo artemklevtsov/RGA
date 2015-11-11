@@ -1,12 +1,9 @@
 #' @title Account Summaries
-#' 
 #' @description Lists account summaries (lightweight tree comprised of accounts/properties/profiles) to which the user has access.
-#' 
 #' @param max.results integer. The maximum number of account summaries to include in this response, where the largest acceptable value is 1000.
 #' @param start.index integer. An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
-#' 
-#' @return 
+#' @return
 #' \item{id}{Account ID.}
 #' \item{kind}{Resource type for Analytics AccountSummary.}
 #' \item{name}{Account name.}
@@ -21,7 +18,5 @@
 #' \item{web.properties.profiles.id}{View (profile) ID.}
 #' \item{web.properties.profiles.name}{View (profile) name.}
 #' \item{web.properties.profiles.type}{View (Profile) type. Supported types: WEB or APP.}
-#' 
 #' @references \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/accountSummaries}{Management API - Account Summaries Overview}
-#' 
 #' @family Management API

@@ -1,14 +1,11 @@
 #' @title Experiments
-#' 
 #' @description Lists experiments to which the user has access.
-#' 
 #' @param account.id character. Account ID to retrieve experiments for.
 #' @param profile.id character. View (Profile) ID to retrieve experiments for.
 #' @param webproperty.id character. Web property ID to retrieve experiments for.
 #' @param max.results integer. The maximum number of experiments to include in this response.
 #' @param start.index integer. An index of the first experiment to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
-#' 
 #' @return The experiments collection is a set of experiment resources, each of which describes a content experiment available to an authenticated user.
 #' \item{id}{Experiment ID. Required for patch and update. Disallowed for create.}
 #' \item{kind}{Resource type for an Analytics experiment. This field is read-only.}
@@ -41,7 +38,5 @@
 #' \item{variations.status}{Status of the variation. Possible values: "ACTIVE", "INACTIVE". INACTIVE variations are not served. This field may not be changed for an experiment whose status is ENDED.}
 #' \item{variations.weight}{Weight that this variation should receive.  Only present if the experiment is running. This field is read-only.}
 #' \item{variations.won}{True if the experiment has ended and this variation performed (statistically) significantly better than the original. This field is read-only.}
-#' 
 #' @references \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/experiments}{Management API - Experiments Overview}
-#' 
 #' @family Management API

@@ -1,12 +1,9 @@
 #' @title Filters
-#' 
 #' @description Lists all filters for an account
-#' 
 #' @param account.id character. Account ID to retrieve filters for.
 #' @param max.results integer. The maximum number of filters to include in this response.
 #' @param start.index integer. An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
-#' 
 #' @return The Filters collection is a set of Filter resources, each of which describes a filter which can be applied to a View (profile).
 #' \item{id}{Filter ID.}
 #' \item{kind}{Resource type for Analytics filter.}
@@ -55,7 +52,5 @@
 #' \item{advanced.details.field.bRequired}{Indicates if field B is required to match.}
 #' \item{advanced.details.override.output.field}{Indicates if the existing value of the output field, if any, should be overridden by the output expression.}
 #' \item{advanced.details.case.sensitive}{Indicates if the filter expressions are case sensitive.}
-#' 
 #' @references \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/filters}{Management API - Filters Overview}
-#' 
 #' @family Management API

@@ -1,14 +1,11 @@
 #' @title Goals
-#' 
 #' @description Lists goals to which the user has access.
-#' 
 #' @param account.id character. Account ID to retrieve goals for. Can either be a specific account ID or '~all', which refers to all the accounts that user has access to.
 #' @param profile.id character. View (Profile) ID to retrieve goals for. Can either be a specific view (profile) ID or '~all', which refers to all the views (profiles) that user has access to.
 #' @param webproperty.id character. Web property ID to retrieve goals for. Can either be a specific web property ID or '~all', which refers to all the web properties that user has access to.
 #' @param max.results integer. The maximum number of goals to include in this response.
 #' @param start.index integer. An index of the first goal to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
-#' 
 #' @return A Goals resource describes a goal for one of a user's profiles.
 #' \item{id}{Goal ID.}
 #' \item{kind}{Resource type for an Analytics goal.}
@@ -43,7 +40,5 @@
 #' \item{event.details.event.conditions.expression}{Expression used for this match.}
 #' \item{event.details.event.conditions.comparison.type}{Type of comparison. Possible values are LESS_THAN, GREATER_THAN or EQUAL.}
 #' \item{event.details.event.conditions.comparison.value}{Value used for this comparison.}
-#' 
 #' @references \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/goals}{Management API - Goals Overview}
-#' 
 #' @family Management API

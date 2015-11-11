@@ -1,12 +1,9 @@
 #' @title Views (Profiles)
-#' 
 #' @description Gets a view (profile) to which the user has access.
-#' 
 #' @param account.id character. Account ID to retrieve the goal for.
 #' @param profile.id character. View (Profile) ID to retrieve the goal for.
 #' @param webproperty.id character. Web property ID to retrieve the goal for.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
-#' 
 #' @return The Profiles collection is a set of Profile resources, each of which describes the profile of an authenticated user.
 #' \item{id}{View (Profile) ID.}
 #' \item{kind}{Resource type for Analytics view (profile).}
@@ -37,7 +34,5 @@
 #' \item{parent.link.href}{Link to the web property to which this view (profile) belongs.}
 #' \item{child.link.type}{Value is "analytics#goals".}
 #' \item{child.link.href}{Link to the list of goals for this view (profile).}
-#' 
 #' @references \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/profiles}{Management API - Views (Profiles) Overview}
-#' 
 #' @family Management API

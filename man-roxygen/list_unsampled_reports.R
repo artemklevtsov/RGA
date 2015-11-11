@@ -1,15 +1,12 @@
 #' @title Unsampled Reports
-#' 
 #' @description Lists unsampled reports to which the user has access.
-#' 
 #' @param account.id character. Account ID to retrieve unsampled reports for. Must be a specific account ID, ~all is not supported.
 #' @param profile.id character. View (Profile) ID to retrieve unsampled reports for. Must be a specific view (profile) ID, ~all is not supported.
 #' @param webproperty.id character. Web property ID to retrieve unsampled reports for. Must be a specific web property ID, ~all is not supported.
 #' @param max.results integer. The maximum number of unsampled reports to include in this response.
 #' @param start.index integer. An index of the first unsampled report to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
-#' 
-#' @return 
+#' @return
 #' \item{id}{Unsampled report ID.}
 #' \item{kind}{Resource type for an Analytics unsampled report.}
 #' \item{title}{Title of the unsampled report.}
@@ -31,7 +28,5 @@
 #' \item{drive.download.details.document.id}{Id of the document/file containing the report data.}
 #' \item{cloud.storage.download.details.bucket.id}{Id of the bucket the file object is stored in.}
 #' \item{cloud.storage.download.details.object.id}{Id of the file object containing the report data.}
-#' 
 #' @references \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/unsampledReports}{Management API - Unsampled Reports Overview}
-#' 
 #' @family Management API

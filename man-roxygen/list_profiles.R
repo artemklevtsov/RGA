@@ -1,13 +1,10 @@
 #' @title Views (Profiles)
-#' 
 #' @description Lists views (profiles) to which the user has access.
-#' 
 #' @param account.id character. Account ID for the view (profiles) to retrieve. Can either be a specific account ID or '~all', which refers to all the accounts to which the user has access.
 #' @param webproperty.id character. Web property ID for the views (profiles) to retrieve. Can either be a specific web property ID or '~all', which refers to all the web properties to which the user has access.
 #' @param max.results integer. The maximum number of views (profiles) to include in this response.
 #' @param start.index integer. An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
-#' 
 #' @return The Profiles collection is a set of Profile resources, each of which describes the profile of an authenticated user.
 #' \item{id}{View (Profile) ID.}
 #' \item{kind}{Resource type for Analytics view (profile).}
@@ -31,7 +28,5 @@
 #' \item{e.commerce.tracking}{Indicates whether ecommerce tracking is enabled for this view (profile).}
 #' \item{enhanced.eCommerce.tracking}{Indicates whether enhanced ecommerce tracking is enabled for this view (profile). This property can only be enabled if ecommerce tracking is enabled.}
 #' \item{permissions.effective}{All the permissions that the user has for this view (profile). These include any implied permissions (e.g., EDIT implies VIEW) or inherited permissions from the parent web property.}
-#' 
 #' @references \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/profiles}{Management API - Views (Profiles) Overview}
-#' 
 #' @family Management API

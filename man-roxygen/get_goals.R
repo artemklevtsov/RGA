@@ -1,13 +1,10 @@
 #' @title Goals
-#' 
 #' @description Gets a goal to which the user has access.
-#' 
 #' @param account.id character. Account ID to retrieve the goal for.
 #' @param goal.id character. Goal ID to retrieve the goal for.
 #' @param profile.id character. View (Profile) ID to retrieve the goal for.
 #' @param webproperty.id character. Web property ID to retrieve the goal for.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
-#' 
 #' @return A Goals resource describes a goal for one of a user's profiles.
 #' \item{id}{Goal ID.}
 #' \item{kind}{Resource type for an Analytics goal.}
@@ -46,7 +43,5 @@
 #' \item{event.details.event.conditions.expression}{Expression used for this match.}
 #' \item{event.details.event.conditions.comparison.type}{Type of comparison. Possible values are LESS_THAN, GREATER_THAN or EQUAL.}
 #' \item{event.details.event.conditions.comparison.value}{Value used for this comparison.}
-#' 
 #' @references \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/goals}{Management API - Goals Overview}
-#' 
 #' @family Management API

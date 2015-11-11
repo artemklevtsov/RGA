@@ -1,13 +1,10 @@
 #' @title Experiments
-#' 
 #' @description Returns an experiment to which the user has access.
-#' 
 #' @param account.id character. Account ID to retrieve the experiment for.
 #' @param experiment.id character. Experiment ID to retrieve the experiment for.
 #' @param profile.id character. View (Profile) ID to retrieve the experiment for.
 #' @param webproperty.id character. Web property ID to retrieve the experiment for.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
-#' 
 #' @return The experiments collection is a set of experiment resources, each of which describes a content experiment available to an authenticated user.
 #' \item{id}{Experiment ID. Required for patch and update. Disallowed for create.}
 #' \item{kind}{Resource type for an Analytics experiment. This field is read-only.}
@@ -44,7 +41,5 @@
 #' \item{variations.won}{True if the experiment has ended and this variation performed (statistically) significantly better than the original. This field is read-only.}
 #' \item{parent.link.type}{Value is "analytics#profile". This field is read-only.}
 #' \item{parent.link.href}{Link to the view (profile) to which this experiment belongs. This field is read-only.}
-#' 
 #' @references \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/experiments}{Management API - Experiments Overview}
-#' 
 #' @family Management API

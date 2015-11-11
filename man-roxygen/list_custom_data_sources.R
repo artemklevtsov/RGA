@@ -1,13 +1,10 @@
 #' @title Custom Data Sources
-#' 
 #' @description List custom data sources to which the user has access.
-#' 
 #' @param account.id character. Account Id for the custom data sources to retrieve.
 #' @param webproperty.id character. Web property Id for the custom data sources to retrieve.
 #' @param max.results integer. The maximum number of custom data sources to include in this response.
 #' @param start.index integer. A 1-based index of the first custom data source to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
-#' 
 #' @return The customDataSources collection is a set of customDataSource resources, each of which describes a custom data source available to an authenticated user.
 #' \item{id}{Custom data source ID.}
 #' \item{kind}{Resource type for Analytics custom data source.}
@@ -21,7 +18,5 @@
 #' \item{profiles.linked}{IDs of views (profiles) linked to the custom data source.}
 #' \item{created}{Time this custom data source was created.}
 #' \item{updated}{Time this custom data source was last modified.}
-#' 
 #' @references \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/customDataSources}{Management API - Custom Data Sources Overview}
-#' 
 #' @family Management API

@@ -1,11 +1,8 @@
 #' @title Web Properties
-#' 
 #' @description Gets a property to which the user has access.
-#' 
 #' @param account.id character. Account ID to retrieve the web property for.
 #' @param webproperty.id character. ID to retrieve the web property for.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
-#' 
 #' @return The Webproperties collection is a set of Webproperty resources, each of which describes a web property available to an authenticated user.
 #' \item{id}{Web property ID of the form UA-XXXXX-YY.}
 #' \item{kind}{Resource type for Analytics WebProperty.}
@@ -28,7 +25,5 @@
 #' \item{parent.link.href}{Link to the account for this web property.}
 #' \item{child.link.type}{Type of the parent link. Its value is "analytics#profiles".}
 #' \item{child.link.href}{Link to the list of views (profiles) for this web property.}
-#' 
 #' @references \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/webproperties}{Management API - Web Properties Overview}
-#' 
 #' @family Management API
