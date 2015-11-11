@@ -1,5 +1,5 @@
 .onAttach <- function(libname, pkgname) {
-    packageStartupMessage("Please use predefined Credentials only for the testing requests. To get your own Credentials see help(authorize).")
+    packageStartupMessage("Please use predefined Credentials only for the testing requests. To obtain your own Credentials see help(authorize).")
 }
 
 .onLoad <- function(libname, pkgname) {
