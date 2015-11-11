@@ -16,7 +16,10 @@ to_separated <- function(x, sep = ".") {
     x <- gsub("PropertyId", "propertyId", x, fixed = TRUE)
     x <- gsub("-", ".", x, fixed = TRUE)
     x <- gsub("ids", "profile.id", x, fixed = TRUE)
-    gsub("([[:lower:]])([[:upper:]])", paste0("\\1", sep, "\\L\\2"), x, perl = TRUE)
+    x <- gsub("(.)([[:upper:]][[:lower:]]+)", paste0("\\1", sep, "\\2"), x)
+    x <- gsub("([[:lower:][:digit:]])([[:upper:]])", paste0("\\1", sep, "\\2"), x)
+    x <- gsub(paste0("\\", sep, "+"), sep, x)
+    return(tolower(x))
 }
 
 get_return <- function(x) {
