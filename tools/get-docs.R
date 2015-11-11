@@ -27,24 +27,22 @@ get_return <- function(x) {
         html_table(fill = TRUE) %>% extract2(1)
     tbl$`Property name` %<>% str_replace_all("\\[\\]", "")
     tbl <- tbl[match(prop_names, tbl$`Property name`), ]
-    tbl$Description %<>% str_replace_all("[^\x20-\x7E]", " ") %>% str_trim()
-    title <- x %>% html_nodes("section#overview p") %>% html_text(trim = TRUE) %>%
-        extract(1) %>% str_replace_all("[^\x20-\x7E]", " ") %>% str_trim()
-    title <- sprintf("#' @return %s\n", title)
-    items <- sprintf("#' \\item{%s}{%s}\n", tbl$`Property name` %>% to_separated(), tbl$Description)
+    title <- x %>% html_nodes("section#overview p") %>% html_text(trim = TRUE) %>% extract(1)
+    title <- sprintf("#' @return %s", title)
+    items <- sprintf("#' \\item{%s}{%s}", tbl$`Property name` %>% to_separated(), tbl$Description)
     c(title, items)
 }
 
 get_title <- function(x) {
     title <- x %>% html_nodes("h1.devsite-page-title") %>% html_text(trim = TRUE) %>%
         str_split(":") %>% unlist %>% extract(1)
-    sprintf("#' @title %s\n", title)
+    sprintf("#' @title %s", title)
 }
 
 get_methods <- function(x) {
     methods <- x %>% html_nodes("section#methods dt") %>% html_text()
     desc <- x %>% html_nodes("section#methods dd") %>% html_text()
-    txt <- sprintf("#' @description %s\n", desc)
+    txt <- sprintf("#' @description %s", desc)
     names(txt) <- methods
     return(txt)
 }
@@ -54,8 +52,9 @@ get_params <- function(x) {
         html_table(fill = TRUE) %>% extract2(1) %>% na.omit()
     tbl$Value %<>% str_replace_all("string", "character")
     tbl$`Parameter name` %<>% to_separated() %>% tolower()
-    params <- sprintf("#' @param %s %s. %s\n", tbl$`Parameter name`, tbl$Value, tbl$Description)
-    c(params, "#\' @param token \\code{\\link[httr]{Token2.0}} class object with a valid authorization data.\n")
+    params <- sprintf("#' @param %s %s. %s", tbl$`Parameter name`, tbl$Value, tbl$Description)
+    token <- "#' @param token \\code{\\link[httr]{Token2.0}} class object with a valid authorization data."
+    c(params, token)
 }
 
 get_man <- function(url) {
@@ -65,7 +64,7 @@ get_man <- function(url) {
     values <- get_return(html)
     descs <- get_methods(html)
     family <- "#' @family Management API"
-    ref <- sprintf("#' @references \\href{%s}{Management API - %s Overview}\n", url, title %>% str_replace_all("#' @title |\n", ""))
+    ref <- sprintf("#' @references \\href{%s}{Management API - %s Overview}\n", url, title %>% str_replace_all("#' @title ", ""))
     methods <- descs %>% names() %>% str_subset(api_methods %>% str_c(collapse = "|"))
     for (m in methods) {
         if (m == "list")
@@ -74,10 +73,11 @@ get_man <- function(url) {
         html2 <- read_html(url2)
         desc <- descs[m]
         params <- get_params(html2)
+        txt <- c(title, desc, params, values, ref, family)
+        txt %<>% str_replace_all("[^\x20-\x7E]", " ") %>% str_trim()
         fn <- str_c(m, nm, sep = "_") %>% str_c(".R")
         message("Writing ", fn, "...")
-        cat(title, desc, str_c(params, collapse = ""), str_c(values, collapse = ""), ref, family,
-            sep = "#' \n", file = file.path("man-roxygen", fn))
+        writeLines(txt, file.path("man-roxygen", fn))
     }
 }
 
