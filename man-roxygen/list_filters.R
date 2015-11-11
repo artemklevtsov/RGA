@@ -40,16 +40,16 @@
 #' \item{search.and.replace.details.replace.string}{Term to replace the search term with.}
 #' \item{search.and.replace.details.case.sensitive}{Determines if the filter is case sensitive.}
 #' \item{advanced.details.field.a}{Field A.}
-#' \item{advanced.details.field.aIndex}{The Index of the custom dimension. Required if field is a CUSTOM_DIMENSION.}
+#' \item{advanced.details.field.a.index}{The Index of the custom dimension. Required if field is a CUSTOM_DIMENSION.}
 #' \item{advanced.details.extract.a}{Expression to extract from field A.}
 #' \item{advanced.details.field.b}{Field B.}
-#' \item{advanced.details.field.bIndex}{The Index of the custom dimension. Required if field is a CUSTOM_DIMENSION.}
+#' \item{advanced.details.field.b.index}{The Index of the custom dimension. Required if field is a CUSTOM_DIMENSION.}
 #' \item{advanced.details.extract.b}{Expression to extract from field B.}
 #' \item{advanced.details.output.to.field}{Output field.}
 #' \item{advanced.details.output.to.field.index}{The Index of the custom dimension. Required if field is a CUSTOM_DIMENSION.}
 #' \item{advanced.details.output.constructor}{Expression used to construct the output value.}
-#' \item{advanced.details.field.aRequired}{Indicates if field A is required to match.}
-#' \item{advanced.details.field.bRequired}{Indicates if field B is required to match.}
+#' \item{advanced.details.field.a.required}{Indicates if field A is required to match.}
+#' \item{advanced.details.field.b.required}{Indicates if field B is required to match.}
 #' \item{advanced.details.override.output.field}{Indicates if the existing value of the output field, if any, should be overridden by the output expression.}
 #' \item{advanced.details.case.sensitive}{Indicates if the filter expressions are case sensitive.}
 #' @references \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/filters}{Management API - Filters Overview}
