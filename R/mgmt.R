@@ -11,13 +11,13 @@ fix_mgmt <- function(x) {
 # Get the Management API data
 #' @include get-data.R
 list_mgmt <- function(path, query, token) {
-    data_ <- get_data(c("management", path), query, token)
-    if (is.null(data_$items) || length(data_$items) == 0) {
+    json_content <- get_data(c("management", path), query, token)
+    if (is.null(json_content$items) || length(json_content$items) == 0) {
         message("No results were obtained.")
         return(invisible(NULL))
     }
-    res <- fix_mgmt(data_$items)
-    attr(res, "username") <- data_$username
+    res <- fix_mgmt(json_content$items)
+    attr(res, "username") <- json_content$username
     return(res)
 }
 

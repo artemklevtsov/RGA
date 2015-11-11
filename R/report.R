@@ -3,17 +3,17 @@
 #' @include get-data.R
 #' @include profiles.R
 get_report <- function(path, query, token) {
-    data_ <- get_data(path, query, token)
-    if (is.null(data_$rows) || length(data_$rows) == 0) {
+    json_content <- get_data(path, query, token)
+    if (is.null(json_content$rows) || length(json_content$rows) == 0) {
         message("No results were obtained.")
         return(invisible(NULL))
     }
-    res <- data_$rows
+    res <- json_content$rows
     # Convert dates to POSIXct with timezone defined in the GA profile
     if (any(grepl("date", names(res), fixed = TRUE))) {
-        timezone <- get_profile(data_$profile.info$account.id,
-                                data_$profile.info$webproperty.id,
-                                data_$profile.info$profile.id, token)$timezone
+        timezone <- get_profile(json_content$profile.info$account.id,
+                                json_content$profile.info$webproperty.id,
+                                json_content$profile.info$profile.id, token)$timezone
         if (!is.null(res$date.hour))
             res$date.hour <- lubridate::ymd_h(res$date.hour, tz = timezone)
         if (!is.null(res[["date"]]))
@@ -21,14 +21,14 @@ get_report <- function(path, query, token) {
         if (!is.null(res$conversion.date))
             res$conversion.date <- lubridate::ymd(res$conversion.date, tz = timezone)
     }
-    attr(res, "profile.info") <- data_$profile.info
-    attr(res, "query") <- fix_query(data_$query)
-    attr(res, "sampled") <- data_$contains.sampled.data
-    if (!is.null(data_$contains.sampled.data) && isTRUE(data_$contains.sampled.data)) {
-        attr(res, "sample.size") <- data_$sample.size
-        attr(res, "sample.space") <- data_$sample.space
-        sample_perc <- data_$sample.size / data_$sample.space * 100
-        warning(sprintf("Data contains sampled data. Used %d sessions (%1.0f%% of sessions). Try to use the 'fetch.by' param to avoid sampling.", data_$sample.size, sample_perc), call. = FALSE)
+    attr(res, "profile.info") <- json_content$profile.info
+    attr(res, "query") <- fix_query(json_content$query)
+    attr(res, "sampled") <- json_content$contains.sampled.data
+    if (!is.null(json_content$contains.sampled.data) && isTRUE(json_content$contains.sampled.data)) {
+        attr(res, "sample.size") <- json_content$sample.size
+        attr(res, "sample.space") <- json_content$sample.space
+        sample_perc <- json_content$sample.size / json_content$sample.space * 100
+        warning(sprintf("Data contains sampled data. Used %d sessions (%1.0f%% of sessions). Try to use the 'fetch.by' param to avoid sampling.", json_content$sample.size, sample_perc), call. = FALSE)
     }
     return(res)
 }
