@@ -29,7 +29,6 @@ Imports:
     plyr,
     lubridate
 Collate:
-    'env.R'
     'auth.R'
     'utils.R'
     'request.R'

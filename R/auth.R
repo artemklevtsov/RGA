@@ -1,12 +1,14 @@
+# The inner package environment
+.RGAEnv <- new.env(parent = emptyenv())
+.RGAEnv$Token <- NULL
+
 # Set token to environment
-#' @include env.R
 set_token <- function(value) {
     .RGAEnv$Token <- value
     return(value)
 }
 
 # Get token from environment
-#' @include env.R
 get_token <- function() {
     .RGAEnv$Token
 }
