@@ -30,6 +30,7 @@ get_return <- function(x) {
     title <- x %>% html_nodes("section#overview p") %>% html_text(trim = TRUE) %>% extract(1)
     title <- sprintf("#' @return %s", title)
     items <- sprintf("#' \\item{%s}{%s}", tbl$`Property name` %>% to_separated(), tbl$Description)
+    items %<>% extract(items %>% str_detect("self.link|parent.link|child.link") %>% not())
     c(title, items)
 }
 
@@ -67,8 +68,6 @@ get_man <- function(url) {
     ref <- sprintf("#' @references \\href{%s}{Management API - %s Overview}\n", url, title %>% str_replace_all("#' @title ", ""))
     methods <- descs %>% names() %>% str_subset(api_methods %>% str_c(collapse = "|"))
     for (m in methods) {
-        if (m == "list")
-            values %<>% extract(values %>% str_detect("self.link|parent.link|child.link") %>% not())
         url2 <- str_c(url, m, sep = "/")
         html2 <- read_html(url2)
         desc <- descs[m]

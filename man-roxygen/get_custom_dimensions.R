@@ -15,9 +15,5 @@
 #' \item{active}{Boolean indicating whether the custom dimension is active.}
 #' \item{created}{Time the custom dimension was created.}
 #' \item{updated}{Time the custom dimension was last modified.}
-#' \item{self.link}{Link for the custom dimension}
-#' \item{parent.link}{Parent link for the custom dimension. Points to the property to which the custom dimension belongs.}
-#' \item{parent.link.type}{Type of the parent link. Set to "analytics#webproperty".}
-#' \item{parent.link.href}{Link to the property to which the custom dimension belongs.}
 #' @references \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/customDimensions}{Management API - Custom Dimensions Overview}
 #' @family Management API

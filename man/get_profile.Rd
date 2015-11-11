@@ -19,7 +19,6 @@ get_profile(account.id, webproperty.id, profile.id, token)
 The Profiles collection is a set of Profile resources, each of which describes the profile of an authenticated user.
 \item{id}{View (Profile) ID.}
 \item{kind}{Resource type for Analytics view (profile).}
-\item{self.link}{Link for this view (profile).}
 \item{account.id}{Account ID to which this view (profile) belongs.}
 \item{webproperty.id}{Web property ID of the form UA-XXXXX-YY to which this view (profile) belongs.}
 \item{internal.webproperty.id}{Internal ID for the web property to which this view (profile) belongs.}
@@ -39,13 +38,7 @@ The Profiles collection is a set of Profile resources, each of which describes t
 \item{updated}{Time this view (profile) was last modified.}
 \item{e.commerce.tracking}{Indicates whether ecommerce tracking is enabled for this view (profile).}
 \item{enhanced.eCommerce.tracking}{Indicates whether enhanced ecommerce tracking is enabled for this view (profile). This property can only be enabled if ecommerce tracking is enabled.}
-\item{parent.link}{Parent link for this view (profile). Points to the web property to which this view (profile) belongs.}
-\item{child.link}{Child link for this view (profile). Points to the list of goals for this view (profile).}
 \item{permissions.effective}{All the permissions that the user has for this view (profile). These include any implied permissions (e.g., EDIT implies VIEW) or inherited permissions from the parent web property.}
-\item{parent.link.type}{Value is "analytics#webproperty".}
-\item{parent.link.href}{Link to the web property to which this view (profile) belongs.}
-\item{child.link.type}{Value is "analytics#goals".}
-\item{child.link.href}{Link to the list of goals for this view (profile).}
 }
 \description{
 Gets a view (profile) to which the user has access.

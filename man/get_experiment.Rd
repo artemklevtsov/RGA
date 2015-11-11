@@ -21,7 +21,6 @@ get_experiment(account.id, webproperty.id, profile.id, experiment.id, token)
 The experiments collection is a set of experiment resources, each of which describes a content experiment available to an authenticated user.
 \item{id}{Experiment ID. Required for patch and update. Disallowed for create.}
 \item{kind}{Resource type for an Analytics experiment. This field is read-only.}
-\item{self.link}{Link for this experiment. This field is read-only.}
 \item{account.id}{Account ID to which this experiment belongs. This field is read-only.}
 \item{webproperty.id}{Web property ID to which this experiment belongs. The web property ID is of the form UA-XXXXX-YY. This field is read-only.}
 \item{internal.webproperty.id}{Internal ID for the web property to which this experiment belongs. This field is read-only.}
@@ -46,14 +45,11 @@ The experiments collection is a set of experiment resources, each of which descr
 \item{variations}{Array of variations. The first variation in the array is the original. The number of variations may not change once an experiment is in the RUNNING state. At least two variations are required before status can be set to RUNNING.}
 \item{serving.framework}{The framework used to serve the experiment variations and evaluate the results.  One of:  REDIRECT: Google Analytics redirects traffic to different variation pages, reports the chosen variation and evaluates the results. API: Google Analytics chooses and reports the variation to serve and evaluates the results; the caller is responsible for serving the selected variation. EXTERNAL: The variations will be served externally and the chosen variation reported to Google Analytics.  The caller is responsible for serving the selected variation and evaluating the results.}
 \item{editable.in.ga.ui}{If true, the end user will be able to edit the experiment via the Google Analytics user interface.}
-\item{parent.link}{Parent link for an experiment. Points to the view (profile) to which this experiment belongs.}
 \item{variations.name}{The name of the variation. This field is required when creating an experiment. This field may not be changed for an experiment whose status is ENDED.}
 \item{variations.url}{The URL of the variation. This field may not be changed for an experiment whose status is RUNNING or ENDED.}
 \item{variations.status}{Status of the variation. Possible values: "ACTIVE", "INACTIVE". INACTIVE variations are not served. This field may not be changed for an experiment whose status is ENDED.}
 \item{variations.weight}{Weight that this variation should receive.  Only present if the experiment is running. This field is read-only.}
 \item{variations.won}{True if the experiment has ended and this variation performed (statistically) significantly better than the original. This field is read-only.}
-\item{parent.link.type}{Value is "analytics#profile". This field is read-only.}
-\item{parent.link.href}{Link to the view (profile) to which this experiment belongs. This field is read-only.}
 }
 \description{
 Returns an experiment to which the user has access.

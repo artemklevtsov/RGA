@@ -21,7 +21,6 @@ get_goal(account.id, webproperty.id, profile.id, goal.id, token)
 A Goals resource describes a goal for one of a user's profiles.
 \item{id}{Goal ID.}
 \item{kind}{Resource type for an Analytics goal.}
-\item{self.link}{Link for this goal.}
 \item{account.id}{Account ID to which this goal belongs.}
 \item{webproperty.id}{Web property ID to which this goal belongs. The web property ID is of the form UA-XXXXX-YY.}
 \item{internal.webproperty.id}{Internal ID for the web property to which this goal belongs.}
@@ -32,13 +31,10 @@ A Goals resource describes a goal for one of a user's profiles.
 \item{type}{Goal type. Possible values are URL_DESTINATION, VISIT_TIME_ON_SITE, VISIT_NUM_PAGES, and EVENT.}
 \item{created}{Time this goal was created.}
 \item{updated}{Time this goal was last modified.}
-\item{parent.link}{Parent link for a goal. Points to the view (profile) to which this goal belongs.}
 \item{url.destination.details}{Details for the goal of the type URL_DESTINATION.}
 \item{visit.time.on.site.details}{Details for the goal of the type VISIT_TIME_ON_SITE.}
 \item{visit.num.pages.details}{Details for the goal of the type VISIT_NUM_PAGES.}
 \item{event.details}{Details for the goal of the type EVENT.}
-\item{parent.link.type}{Value is "analytics#profile".}
-\item{parent.link.href}{Link to the view (profile) to which this goal belongs.}
 \item{url.destination.details.url}{URL for this goal.}
 \item{url.destination.details.case.sensitive}{Determines if the goal URL must exactly match the capitalization of visited URLs.}
 \item{url.destination.details.match.type}{Match type for the goal URL. Possible values are HEAD, EXACT, or REGEX.}

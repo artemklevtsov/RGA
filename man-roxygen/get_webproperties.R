@@ -6,7 +6,6 @@
 #' @return The Webproperties collection is a set of Webproperty resources, each of which describes a web property available to an authenticated user.
 #' \item{id}{Web property ID of the form UA-XXXXX-YY.}
 #' \item{kind}{Resource type for Analytics WebProperty.}
-#' \item{self.link}{Link for this web property.}
 #' \item{account.id}{Account ID to which this web property belongs.}
 #' \item{internal.webproperty.id}{Internal ID for this web property.}
 #' \item{name}{Name of this web property.}
@@ -18,12 +17,6 @@
 #' \item{permissions}{Permissions the user has for this web property.}
 #' \item{created}{Time this web property was created.}
 #' \item{updated}{Time this web property was last modified.}
-#' \item{parent.link}{Parent link for this web property. Points to the account to which this web property belongs.}
-#' \item{child.link}{Child link for this web property. Points to the list of views (profiles) for this web property.}
 #' \item{permissions.effective}{All the permissions that the user has for this web property. These include any implied permissions (e.g., EDIT implies VIEW) or inherited permissions from the parent account.}
-#' \item{parent.link.type}{Type of the parent link. Its value is "analytics#account".}
-#' \item{parent.link.href}{Link to the account for this web property.}
-#' \item{child.link.type}{Type of the parent link. Its value is "analytics#profiles".}
-#' \item{child.link.href}{Link to the list of views (profiles) for this web property.}
 #' @references \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/webproperties}{Management API - Web Properties Overview}
 #' @family Management API

@@ -26,10 +26,6 @@ get_custom_dimension(account.id, webproperty.id, custom.dimension.id, token)
 \item{active}{Boolean indicating whether the custom dimension is active.}
 \item{created}{Time the custom dimension was created.}
 \item{updated}{Time the custom dimension was last modified.}
-\item{self.link}{Link for the custom dimension}
-\item{parent.link}{Parent link for the custom dimension. Points to the property to which the custom dimension belongs.}
-\item{parent.link.type}{Type of the parent link. Set to "analytics#webproperty".}
-\item{parent.link.href}{Link to the property to which the custom dimension belongs.}
 }
 \description{
 Get a custom dimension to which the user has access.

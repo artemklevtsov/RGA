@@ -8,7 +8,6 @@
 #' @return
 #' \item{id}{Unsampled report ID.}
 #' \item{kind}{Resource type for an Analytics unsampled report.}
-#' \item{self.link}{Link for this unsampled report.}
 #' \item{title}{Title of the unsampled report.}
 #' \item{account.id}{Account ID to which this unsampled report belongs.}
 #' \item{webproperty.id}{Web property ID to which this unsampled report belongs. The web property ID is of the form UA-XXXXX-YY.}

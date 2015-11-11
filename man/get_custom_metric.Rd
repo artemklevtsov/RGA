@@ -29,10 +29,6 @@ get_custom_metric(account.id, webproperty.id, custom.metric.id, token)
 \item{max_value}{Max value of custom metric.}
 \item{created}{Time the custom metric was created.}
 \item{updated}{Time the custom metric was last modified.}
-\item{self.link}{Link for the custom metric}
-\item{parent.link}{Parent link for the custom metric. Points to the property to which the custom metric belongs.}
-\item{parent.link.type}{Type of the parent link. Set to "analytics#webproperty".}
-\item{parent.link.href}{Link to the property to which the custom metric belongs.}
 }
 \description{
 Get a custom metric to which the user has access.
