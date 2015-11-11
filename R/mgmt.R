@@ -1,3 +1,13 @@
+# Remove some field and convert dates
+fix_mgmt <- function(x) {
+    x <- x[!grepl("(self|parent|child)\\.link", names(x))]
+    if (!is.null(x$created))
+        x$created <- lubridate::ymd_hms(x$created)
+    if (!is.null(x$updated))
+        x$updated <- lubridate::ymd_hms(x$updated)
+    return(x)
+}
+
 # Get the Management API data
 #' @include get-data.R
 list_mgmt <- function(path, query, token) {
@@ -6,11 +16,7 @@ list_mgmt <- function(path, query, token) {
         message("No results were obtained.")
         return(invisible(NULL))
     }
-    res <- data_$items
-    if (!is.null(res$created))
-        res$created <- lubridate::ymd_hms(res$created)
-    if (!is.null(res$updated))
-        res$updated <- lubridate::ymd_hms(res$updated)
+    res <- fix_mgmt(data_$items)
     attr(res, "username") <- data_$username
     return(res)
 }
@@ -20,12 +26,6 @@ list_mgmt <- function(path, query, token) {
 #' @include request.R
 get_mgmt <- function(path, token) {
     res <- GET_(get_url(c("management", path)), token)
-    res <- res[!names(res) %in% c("selfLink", "parentLink", "childLink")]
-    if (!is.null(res$permissions))
-        res$permissions <- unlist(res$permissions, use.names = FALSE)
-    if (!is.null(res$created))
-        res$created <- lubridate::ymd_hms(res$created)
-    if (!is.null(res$updated))
-        res$updated <- lubridate::ymd_hms(res$updated)
+    res <- fix_mgmt(res)
     return(res)
 }
