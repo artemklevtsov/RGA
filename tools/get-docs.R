@@ -27,7 +27,9 @@ get_return <- function(x) {
         html_table(fill = TRUE) %>% extract2(1)
     tbl$`Property name` %<>% str_replace_all("\\[\\]", "")
     tbl <- tbl[match(prop_names, tbl$`Property name`), ]
-    title <- x %>% html_nodes("section#overview p") %>% html_text(trim = TRUE) %>% extract(1)
+    tbl$Description %<>% str_replace_all("[^\x20-\x7E]", " ") %>% str_trim()
+    title <- x %>% html_nodes("section#overview p") %>% html_text(trim = TRUE) %>%
+        extract(1) %>% str_replace_all("[^\x20-\x7E]", " ") %>% str_trim()
     title <- sprintf("#' @return %s\n", title)
     items <- sprintf("#' \\item{%s}{%s}\n", tbl$`Property name` %>% to_separated(), tbl$Description)
     c(title, items)
