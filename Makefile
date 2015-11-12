@@ -11,9 +11,10 @@ deps:
 	Rscript -e 'devtools::install_deps()'
 
 data:
-	Rscript tools/get-data.R
+	Rscript tools/get-data.R 2>&1 >/dev/null
 
 doc:
+	Rscript tools/get-docs.R 2>&1 >/dev/null
 	Rscript -e 'devtools::document(roclets=c("rd", "collate", "namespace", "vignette"))'
 
 check:
@@ -41,4 +42,4 @@ clean:
 	rm -f $(TARBALL_LOC)
 	rm -rf $(CHECKDIR)
 
-.PHONY: build data vignettes
+.PHONY: build doc data vignettes
