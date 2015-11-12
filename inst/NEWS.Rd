@@ -4,8 +4,13 @@
 
 \section{Changes in RGA version 0.3.1 (2015-11-30)}{
   \itemize{
-    \item Updated data
-    \item To handle dates used package \CRANpkg{libridate}
+    \item Added startup message
+    \item To handle dates used \CRANpkg{libridate} package
+    \item To merge paginated data used \CRANpkg{plyr} package
+    \item \code{list_custom_sources()} renamed to \code{list_custom_data_sources()}
+    \item \code{dimension.id} param renamed to \code{custom.dimension.id} in the \code{get_custom_dimension()}
+    \item \code{metric.id} param renamed to \code{custom.metric.id} in the \code{get_custom_metric()}
+    \item Some inner code improvements
   }
 }
 
