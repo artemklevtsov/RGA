@@ -30,8 +30,7 @@ strip_ops <- function(x) {
 
 # Capitalize strings
 capitalize <- function(x) {
-    stopifnot(is.character(x))
-    paste0(toupper(substring(x, 1, 1)), substring(x, 2))
+    gsub("(^|[[:space:]])([[:alpha:]])", "\\1\\U\\2", x, perl = TRUE)
 }
 
 #' @title Convert camelCase character vector to separated
@@ -40,9 +39,7 @@ capitalize <- function(x) {
 #' @param sep a character string to separate the terms.
 #'
 #' @keywords internal
-#'
 #' @noRd
-#'
 to_separated <- function(x, sep = ".") {
     x <- gsub("PropertyId", "propertyId", x, fixed = TRUE)
     x <- gsub("-", ".", x, fixed = TRUE)
