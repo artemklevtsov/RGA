@@ -20,9 +20,7 @@
 #'
 #' \href{https://ga-dev-tools.appspot.com/explorer/}{Google Analytics Demos & Tools - Query Explorer}
 #'
-#' @seealso \code{\link{authorize}} \code{\link{list_dimsmets}} \code{\link{shiny_dimsmets}}
-#'
-#' @family Reporting API
+#' @seealso \code{\link{list_dimsmets}} \code{\link{shiny_dimsmets}}
 #'
 #' @examples
 #' \dontrun{
@@ -36,9 +34,7 @@
 #'
 #' @include date-ranges.R
 #' @include report.R
-#'
 #' @export
-#'
 get_ga <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
                    metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = NULL,
                    sort = NULL, filters = NULL, segment = NULL, sampling.level = NULL,

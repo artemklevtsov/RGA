@@ -28,12 +28,6 @@
 #'
 #' \href{https://developers.google.com/analytics/devguides/reporting/core/dimsmets}{Core Reporting API - Dimensions & Metrics Reference}
 #'
-#' @include url.R
-#' @include request.R
-#' @include utils.R
-#'
-#' @export
-#'
 #' @examples
 #' \dontrun{
 #' ga_meta <- list_dimsmets("ga")
@@ -51,6 +45,10 @@
 #' subset(ga_meta, allowed.in.segments, id)
 #' }
 #'
+#' @include url.R
+#' @include request.R
+#' @include utils.R
+#' @export
 list_dimsmets <- function(report.type = "ga") {
     url <- get_url(c("metadata", report.type, "columns"))
     response <- httr::GET(url)
@@ -70,7 +68,6 @@ list_dimsmets <- function(report.type = "ga") {
 #' @seealso \code{\link{list_dimsmets}} \code{\link{get_ga}}
 #'
 #' @export
-#'
 shiny_dimsmets <- function() {
     appDir <- system.file("shiny-examples", "01-dimsmets", package = "RGA")
     if (appDir == "")

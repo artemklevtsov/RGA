@@ -138,7 +138,6 @@ fix_username <- function(x) {
 #' }
 #'
 #' @export
-#'
 authorize <- function(username = getOption("rga.username"),
                       client.id = getOption("rga.client.id"),
                       client.secret = getOption("rga.client.secret"),

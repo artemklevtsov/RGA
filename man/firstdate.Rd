@@ -7,7 +7,7 @@
 firstdate(profile.id, token)
 }
 \arguments{
-\item{profile.id}{Google Analytics profile ID. Can be obtained using the \code{\link{list_profiles}} or via the web interface Google Analytics.}
+\item{profile.id}{character. Google Analytics profile ID. Can be obtained using the \code{\link{list_profiles}} or via the web interface Google Analytics.}
 
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
 }
@@ -28,8 +28,6 @@ ga_data <- get_ga("profile_id", start.date = first_date, end.date = "today",
 
 }
 \seealso{
-\code{\link{authorize}}
-
 Other Reporting API: \code{\link{get_ga}},
   \code{\link{get_mcf}}, \code{\link{get_realtime}}
 }

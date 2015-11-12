@@ -2,7 +2,6 @@
 % Please edit documentation in R/realtime.R
 \name{get_realtime}
 \alias{get_realtime}
-\alias{get_rt}
 \title{Real Time Reporting API}
 \usage{
 get_realtime(profile.id, metrics = "rt:activeUsers", dimensions = NULL,

@@ -15,10 +15,6 @@
 #'
 #' \href{https://developers.google.com/analytics/devguides/reporting/mcf/v3/reference#q_details}{MCF Reporting API - Query Parameter Details}
 #'
-#' @seealso \code{\link{authorize}}
-#'
-#' @family Reporting API
-#'
 #' @examples
 #' \dontrun{
 #' # get token data
@@ -31,9 +27,7 @@
 #'
 #' @include date-ranges.R
 #' @include report.R
-#'
 #' @export
-#'
 get_mcf <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
                     metrics = "mcf:totalConversions", dimensions = NULL,
                     sort = NULL, filters = NULL, sampling.level = NULL,
