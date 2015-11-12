@@ -41,13 +41,13 @@ api_request <- function(url, token) {
         token <- get_token()
     if (validate_token(token))
         config <- httr::config(token = token)
-    for (i in 0:5) {
+    for (i in 0L:6L) {
         response <- httr::GET(url, config = config, httr::accept_json())
         res <- try(process_response(response), silent = TRUE)
         if (!inherits(res, "try-error"))
             break
-        else if (grepl("User rate limit exceeded|Quota exceeded", res))
-            Sys.sleep(2L * i + stats::runif(1L))
+        else if (grepl("User rate limit exceeded|Quota exceeded", res) & i < 6L)
+            Sys.sleep(2L^i + stats::runif(1L))
         else
             stop(res, call. = FALSE)
     }
