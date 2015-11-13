@@ -77,13 +77,21 @@ fix_username <- function(x) {
 #'
 #' @section Use custom Client ID and Client secret:
 #'
-#' For some reasons you may need to use a custom client ID and client secret. In order to obtain these, you will have to register an application with the Google Analytics API. To find your project's client ID and client secret, do the following:
+#' Google Analytics is used by millions of sites. To protect the system from receiving more data than it can handle, and to ensure an equitable distribution of system resources, certain limits have been put in place.
+#'
+#' The following quota limits are shared between all \pkg{RGA} users which use the predefined credentials (daily quotas refresh at midnight PST):
+#'
+#' \itemize{
+#'   \item 50,000 requests per day
+#'   \item 10 queries per second per IP
+#' }
+#'
+#' To get full quota, you must register your application in the Google Developers Console. When you register a new application, you are given a unique client ID to identify each application under that project. To find your project's client ID and client secret, do the following:
 #'
 #' \enumerate{
 #'   \item Open the \href{https://console.developers.google.com/project/_/apiui/credential}{Credentials page}.
 #'   \item Select a project (create if needed).
 #'   \item create your project's OAuth 2.0 credentials by clicking \emph{Add credentials} > \emph{OAuth 2.0 client ID} and select \emph{Other} application type.
-#'   \item In the list of APIs select \emph{Analytics API}. Then click \emph{Enable API}.
 #'   \item Look for the Client ID in the OAuth 2.0 client IDs section. You can click the application name for details.
 #' }
 #'
@@ -91,10 +99,8 @@ fix_username <- function(x) {
 #'
 #' \enumerate{
 #'   \item Open the \href{https://console.developers.google.com/project/_/apiui/api/analytics/overview}{Analytics API Overview page}.
-#'    \item CLick on the \emph{Enable API} button to activate Analytics API.
+#'   \item CLick on the \emph{Enable API} button to activate Analytics API.
 #' }
-#'
-#' You can return to the \href{https://console.developers.google.com/}{Google Developers Console} at any time to view the client ID and client secret on the \emph{Client ID for native application} section on \emph{Credentials} page.
 #'
 #' There 3 ways to use custom Client ID and Client secret:
 #'
