@@ -11,7 +11,7 @@ fix_mgmt <- function(x) {
 # Get the Management API data
 #' @include get-data.R
 list_mgmt <- function(path, query, token) {
-    json_content <- get_data(c("management", path), query, token)
+    json_content <- get_data(path, query, token)
     if (is.null(json_content$items) || length(json_content$items) == 0) {
         message("No results were obtained.")
         return(invisible(NULL))
@@ -25,7 +25,7 @@ list_mgmt <- function(path, query, token) {
 #' @include url.R
 #' @include request.R
 get_mgmt <- function(path, token) {
-    res <- api_request(get_url(c("management", path)), token)
+    res <- api_request(get_url(path), token)
     res <- fix_mgmt(res)
     return(res)
 }

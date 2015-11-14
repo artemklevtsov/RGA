@@ -2,7 +2,8 @@
 #' @include mgmt.R
 #' @export
 get_experiment <- function(account.id, webproperty.id, profile.id, experiment.id, token) {
-    path <- c("accounts", account.id, "webproperties", webproperty.id, "profiles", profile.id, "experiments", experiment.id)
+    path <- sprintf("management/accounts/%s/webproperties/%s/profiles/%s/experiments/%s",
+                    account.id, webproperty.id, profile.id, experiment.id)
     res <- get_mgmt(path = path, token = token)
     return(res)
 }
@@ -11,7 +12,8 @@ get_experiment <- function(account.id, webproperty.id, profile.id, experiment.id
 #' @include mgmt.R
 #' @export
 list_experiments <- function(account.id, webproperty.id, profile.id, start.index = NULL, max.results = NULL, token) {
-    path <- c("accounts", account.id, "webproperties", webproperty.id, "profiles", profile.id, "experiments")
+    path <- sprintf("management/accounts/%s/webproperties/%s/profiles/%s/experiments",
+                    account.id, webproperty.id, profile.id)
     query <- list(start.index = start.index, max.results = max.results)
     res <- list_mgmt(path = path, query = query, token = token)
     return(res)

@@ -2,7 +2,8 @@
 #' @include mgmt.R
 #' @export
 get_custom_metric <- function(account.id, webproperty.id, custom.metric.id, token) {
-    path <- c("accounts", account.id, "webproperties", webproperty.id, "customMetrics", custom.metric.id)
+    path <- sprintf("management/accounts/%s/webproperties/%s/customMetrics/%s",
+                    account.id, webproperty.id, custom.metric.id)
     res <- get_mgmt(path = path, token = token)
     return(res)
 }
@@ -11,7 +12,8 @@ get_custom_metric <- function(account.id, webproperty.id, custom.metric.id, toke
 #' @include mgmt.R
 #' @export
 list_custom_metrics <- function(account.id, webproperty.id, start.index = NULL, max.results = NULL, token) {
-    path <- c("accounts", account.id, "webproperties", webproperty.id, "customMetrics")
+    path <- sprintf("management/accounts/%s/webproperties/%s/customMetrics",
+                    account.id, webproperty.id)
     query <- list(start.index = start.index, max.results = max.results)
     res <- list_mgmt(path = path, query = query, token = token)
     return(res)

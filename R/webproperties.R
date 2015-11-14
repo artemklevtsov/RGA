@@ -2,7 +2,8 @@
 #' @include mgmt.R
 #' @export
 get_webproperty <- function(account.id, webproperty.id, token) {
-    path <- c("accounts", account.id, "webproperties", webproperty.id)
+    path <- sprintf("management/accounts/%s/webproperties/%s",
+                    account.id, webproperty.id)
     res <- get_mgmt(path = path, token = token)
     return(res)
 }
@@ -11,7 +12,7 @@ get_webproperty <- function(account.id, webproperty.id, token) {
 #' @include mgmt.R
 #' @export
 list_webproperties = function(account.id = "~all", start.index = NULL, max.results = NULL, token) {
-    path <- c("accounts", account.id, "webproperties")
+    path <- sprintf("management/accounts/%s/webproperties", account.id)
     query <- list(start.index = start.index, max.results = max.results)
     res <- list_mgmt(path = path, query = query, token = token)
     return(res)
