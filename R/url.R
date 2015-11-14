@@ -7,7 +7,7 @@ api_version <- "v3"
 #' @include utils.R
 get_url <- function(path = NULL, query = NULL) {
     path <- c(api_base_path, api_version, path)
-    path <- paste(path, collapse = "/")
+    path <- gsub("//", "/", paste(path, collapse = "/"), fixed = TRUE)
     if (is.list(query)) {
         query <- compact(query)
         params <- names(query)
