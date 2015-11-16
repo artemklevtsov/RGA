@@ -3,6 +3,8 @@
 #' @include get-data.R
 #' @include profiles.R
 get_report <- function(path, query, token) {
+    if (is.null(query$profile.id))
+        stop("'profile.id' must be specified.", call. = FALSE)
     json_content <- get_data(path, query, token)
     if (is.null(json_content$rows) || length(json_content$rows) == 0) {
         message("No results were obtained.")
