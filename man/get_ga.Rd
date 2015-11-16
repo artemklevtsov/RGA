@@ -5,9 +5,10 @@
 \title{Core Reporting API}
 \usage{
 get_ga(profile.id, start.date = "7daysAgo", end.date = "yesterday",
-  metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = NULL,
-  sort = NULL, filters = NULL, segment = NULL, sampling.level = NULL,
-  start.index = NULL, max.results = NULL, fetch.by = NULL, token)
+  metrics = c("ga:users", "ga:sessions", " ga:pageviews"),
+  dimensions = NULL, sort = NULL, filters = NULL, segment = NULL,
+  sampling.level = NULL, start.index = NULL, max.results = NULL,
+  fetch.by = NULL, token)
 }
 \arguments{
 \item{profile.id}{character. Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID. Can be obtained using the \code{\link{list_profiles}} or via the web interface Google Analytics.}

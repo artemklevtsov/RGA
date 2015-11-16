@@ -36,7 +36,7 @@
 #' @include report.R
 #' @export
 get_ga <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
-                   metrics = "ga:users,ga:sessions,ga:pageviews", dimensions = NULL,
+                   metrics = c("ga:users", "ga:sessions"," ga:pageviews"), dimensions = NULL,
                    sort = NULL, filters = NULL, segment = NULL, sampling.level = NULL,
                    start.index = NULL, max.results = NULL, fetch.by = NULL, token) {
     if (!is.null(sampling.level))
