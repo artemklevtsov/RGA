@@ -4,8 +4,7 @@
 get_webproperty <- function(account.id, webproperty.id, token) {
     path <- sprintf("management/accounts/%s/webproperties/%s",
                     account.id, webproperty.id)
-    res <- get_mgmt(path = path, token = token)
-    return(res)
+    get_mgmt(path, token)
 }
 
 #' @template list_webproperties
@@ -13,7 +12,5 @@ get_webproperty <- function(account.id, webproperty.id, token) {
 #' @export
 list_webproperties = function(account.id = "~all", start.index = NULL, max.results = NULL, token) {
     path <- sprintf("management/accounts/%s/webproperties", account.id)
-    query <- list(start.index = start.index, max.results = max.results)
-    res <- list_mgmt(path = path, query = query, token = token)
-    return(res)
+    list_mgmt(path, list(start.index = start.index, max.results = max.results), token)
 }

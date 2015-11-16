@@ -47,7 +47,7 @@ to_separated <- function(x, sep = ".") {
     x <- gsub("(.)([[:upper:]][[:lower:]]+)", paste0("\\1", sep, "\\2"), x)
     x <- gsub("([[:lower:][:digit:]])([[:upper:]])", paste0("\\1", sep, "\\2"), x)
     x <- gsub(paste0("\\", sep, "+"), sep, x)
-    return(tolower(x))
+    tolower(x)
 }
 
 convert_names <- function(x) {

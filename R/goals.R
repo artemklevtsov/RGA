@@ -4,8 +4,7 @@
 get_goal <- function(account.id, webproperty.id, profile.id, goal.id, token) {
     path <- sprintf("management/accounts/%s/webproperties/%s/profiles/%s/goals/%s",
                     account.id, webproperty.id, profile.id, goal.id)
-    res <- get_mgmt(path = path, token = token)
-    return(res)
+    get_mgmt(path, token)
 }
 
 #' @template list_goals
@@ -14,7 +13,5 @@ get_goal <- function(account.id, webproperty.id, profile.id, goal.id, token) {
 list_goals = function(account.id = "~all", webproperty.id = "~all", profile.id = "~all", start.index = NULL, max.results = NULL, token) {
     path <- sprintf("management/accounts/%s/webproperties/%s/profiles/%s/goals",
                     account.id, webproperty.id, profile.id)
-    query <- list(start.index = start.index, max.results = max.results)
-    res <- list_mgmt(path = path, query = query, token = token)
-    return(res)
+    list_mgmt(path, list(start.index = start.index, max.results = max.results), token)
 }
