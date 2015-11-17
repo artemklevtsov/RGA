@@ -8,7 +8,7 @@ get_ga(profile.id, start.date = "7daysAgo", end.date = "yesterday",
   metrics = c("ga:users", "ga:sessions", " ga:pageviews"),
   dimensions = NULL, sort = NULL, filters = NULL, segment = NULL,
   sampling.level = NULL, start.index = NULL, max.results = NULL,
-  fetch.by = NULL, token)
+  include.empty.rows = NULL, fetch.by = NULL, token)
 }
 \arguments{
 \item{profile.id}{character. Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID. Can be obtained using the \code{\link{list_profiles}} or via the web interface Google Analytics.}
@@ -32,6 +32,8 @@ get_ga(profile.id, start.date = "7daysAgo", end.date = "yesterday",
 \item{start.index}{integer. An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.}
 
 \item{max.results}{integer. The maximum number of entries to include in this feed.}
+
+\item{include.empty.rows}{logical. The response will include empty rows if this parameter is set to \code{TRUE} (default),}
 
 \item{fetch.by}{character. Split the query by date range. Allowed values: "day", "week", "month", "quarter", "year".}
 

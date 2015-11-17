@@ -8,6 +8,7 @@
 #' @param sort character. A comma-separated list of dimensions or metrics that determine the sort order for Analytics data.
 #' @param filters character. A comma-separated list of dimension or metric filters to be applied to Analytics data.
 #' @param segment character. An Analytics segment to be applied to data. Can be obtained using the \code{\link{list_segments}} or via the web interface Google Analytics.
+#' @param include.empty.rows logical. The response will include empty rows if this parameter is set to \code{TRUE} (default),
 #'
 #' @return A data frame including the Analytics data for a view (profile). Addition information about profile and request query stored in the attributes.
 #'
@@ -38,12 +39,17 @@
 get_ga <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
                    metrics = c("ga:users", "ga:sessions"," ga:pageviews"), dimensions = NULL,
                    sort = NULL, filters = NULL, segment = NULL, sampling.level = NULL,
-                   start.index = NULL, max.results = NULL, fetch.by = NULL, token) {
+                   start.index = NULL, max.results = NULL, include.empty.rows = NULL,
+                   fetch.by = NULL, token) {
     if (!is.null(sampling.level))
         sampling.level <- match.arg(sampling.level, c("DEFAULT", "FASTER", "HIGHER_PRECISION"))
+    if (!is.null(include.empty.rows))
+        include.empty.rows <- match.arg(include.empty.rows, c(TRUE, FALSE))
     query <- build_query(profile.id = profile.id, start.date = start.date, end.date = end.date,
-                         metrics = metrics, dimensions = dimensions, sort = sort, filters = filters,
-                         segment = segment, sampling.level = sampling.level,
+                         metrics = metrics, dimensions = dimensions,
+                         sort = sort, filters = filters, segment = segment,
+                         sampling.level = sampling.level,
+                         include.empty.rows = tolower(include.empty.rows),
                          start.index = start.index, max.results = max.results)
     if (is.null(fetch.by))
         res <- get_report("data/ga", query, token)
