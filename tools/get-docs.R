@@ -54,7 +54,7 @@ get_methods <- function(x) {
 get_params <- function(x) {
     tbl <- x %>% html_nodes("table#request_parameters") %>%
         html_table(fill = TRUE) %>% extract2(1) %>% na.omit()
-    tbl$Value %<>% str_replace_all("string", "character")
+    tbl$Value %<>% str_replace_all("string", "character") %>% str_replace_all("boolean", "logical")
     tbl$`Parameter name` %<>% to_separated() %>% tolower()
     params <- sprintf("#' @param %s %s. %s", tbl$`Parameter name`, tbl$Value, tbl$Description)
     token <- "#' @param token \\code{\\link[httr]{Token2.0}} class object with a valid authorization data."
