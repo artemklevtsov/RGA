@@ -41,19 +41,27 @@ capitalize <- function(x) {
 #' @keywords internal
 #' @noRd
 to_separated <- function(x, sep = ".") {
-    x <- gsub("PropertyId", "propertyId", x, fixed = TRUE)
-    x <- gsub("-", ".", x, fixed = TRUE)
-    x <- gsub("ids", "profile.id", x, fixed = TRUE)
     x <- gsub("(.)([[:upper:]][[:lower:]]+)", paste0("\\1", sep, "\\2"), x)
     x <- gsub("([[:lower:][:digit:]])([[:upper:]])", paste0("\\1", sep, "\\2"), x)
     x <- gsub(paste0("\\", sep, "+"), sep, x)
     tolower(x)
 }
 
+rename_params <- function(x) {
+    x <- gsub("PropertyId", "propertyId", x, fixed = TRUE)
+    x <- gsub("ids", "profile.id", x, fixed = TRUE)
+    x <- gsub("start-date", "start.date", x, fixed = TRUE)
+    x <- gsub("end-date", "end.date", x, fixed = TRUE)
+    x <- gsub("max-results", "max.results", x, fixed = TRUE)
+    x <- gsub("start-index", "start.index", x, fixed = TRUE)
+    x <- gsub("include-empty-rows", "include.empty.rows", x, fixed = TRUE)
+    to_separated(x)
+}
+
 convert_names <- function(x) {
     nm <- names(x)
     if(!is.null(nm)) {
-        nm <- to_separated(nm, ".")
+        nm <- rename_params(nm)
         names(x) <- nm
     }
     return(x)
@@ -82,5 +90,5 @@ convert_types.data.frame <- function(x) {
 }
 
 parse_params <- function(x) {
-    to_separated(gsub("^[a-z]+:", "", unlist(strsplit(x, ",", fixed = TRUE))), sep = ".")
+    rename_params(gsub("^[a-z]+:", "", unlist(strsplit(x, ",", fixed = TRUE))))
 }

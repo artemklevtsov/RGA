@@ -61,7 +61,7 @@ build_df <- function(x) {
     } else
         res <- mgmt_df(x)
     res <- convert_types.data.frame(res)
-    colnames(res) <- to_separated(colnames(res))
+    colnames(res) <- rename_params(colnames(res))
     rownames(res) <- NULL
     return(res)
 }
