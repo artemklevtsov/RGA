@@ -1,18 +1,21 @@
 # Error printing function
 #' @include utils.R
 error_reasons <- function(x) {
-    message <- httr::http_status(x$error$code)$message
-    reasons <- x$error$errors
-    reasons$reason <- capitalize(to_separated(reasons$reason, sep = " "))
-    reasons$message <- gsub("\n", ". ", reasons$message, fixed = TRUE)
-    if (!is.null(reasons$location)) {
-        reasons$location <- gsub("ids", "profile.id", reasons$location, fixed = TRUE)
-        reasons$location <- gsub("-", ".", reasons$location, fixed = TRUE)
-        reasons <- sprintf("%s '%s': %s", reasons$reason, to_separated(reasons$location), reasons$message)
-    } else
-        reasons <- sprintf("%s: %s", reasons$reason, reasons$message)
-    reasons <- paste(reasons, collapse = "\n")
-    paste(message, reasons, sep = "\n")
+    code_message <- httr::http_status(x$error$code)$message
+    errors <- x$error$errors
+    errors$reason <- gsub("^([[:alpha:]])", "\\U\\1", to_separated(errors$reason, sep = " "), perl = TRUE)
+    errors$message <- gsub("\n", ". ", errors$message, fixed = TRUE)
+    res <- sprintf("%s: %s", errors$reason, errors$message)
+    if (!is.null(errors$location)) {
+        errors$location <- rename_params(errors$location)
+        idx_inv <- grep("Invalid parameter", errors$reason)
+        idx_req <- unique(grep("Required", errors$reason), grep("parameter", errors$locationType))
+        if (length(idx_inv))
+            res[idx_inv] <- sprintf("%s '%s': %s", errors$reason[idx_inv], errors$location[idx_inv], errors$message[idx_inv])
+        if (length(idx_req))
+            res[idx_req] <- sprintf("%s %s: '%s'", errors$reason[idx_req], errors$locationType[idx_req], errors$location[idx_req])
+    }
+    paste(c(code_message, res), collapse = "\n")
 }
 
 # Process response
@@ -37,7 +40,7 @@ process_response <- function(response) {
             stop(error_reasons(res), call. = FALSE)
         } else {
             res <- httr::content(response, as = "text")
-            stop(sprintf("There has been an error, the request no succeeded. HTTP error: %s.", res), call. = FALSE)
+            stop(sprintf("httr::HTTP error %s:\n%s.", response$status_code, res), call. = FALSE)
         }
     }
     return(res)
