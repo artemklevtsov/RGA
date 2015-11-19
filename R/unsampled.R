@@ -10,7 +10,7 @@ get_unsampled_report <- function(account.id, webproperty.id, profile.id, unsampl
 #' @template list_unsampled_reports
 #' @include mgmt.R
 #' @export
-list_unsampled_reports <- function(account.id = "~all", webproperty.id = "~all", profile.id = "~all", start.index = NULL, max.results = NULL, token) {
+list_unsampled_reports <- function(account.id, webproperty.id, profile.id, start.index = NULL, max.results = NULL, token) {
     path <- sprintf("management/accounts/%s/webproperties/%s/profiles/%s/unsampledReports",
                     account.id, webproperty.id, profile.id)
     list_mgmt(path, list(start.index = start.index, max.results = max.results), token)

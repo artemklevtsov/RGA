@@ -4,8 +4,8 @@
 \alias{list_unsampled_reports}
 \title{Unsampled Reports}
 \usage{
-list_unsampled_reports(account.id = "~all", webproperty.id = "~all",
-  profile.id = "~all", start.index = NULL, max.results = NULL, token)
+list_unsampled_reports(account.id, webproperty.id, profile.id,
+  start.index = NULL, max.results = NULL, token)
 }
 \arguments{
 \item{account.id}{character. Account ID to retrieve unsampled reports for. Must be a specific account ID, ~all is not supported.}
