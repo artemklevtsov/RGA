@@ -55,12 +55,13 @@ api_request <- function(url, token) {
         token <- get_token()
     if (validate_token(token))
         config <- httr::config(token = token)
-    for (i in 0L:6L) {
+    attempts <- getOption("rga.retry.attempts", 5L) + 1L
+    for (i in 0L:attempts) {
         response <- httr::GET(url, config = config, httr::accept_json())
         res <- tryCatch(process_response(response), error = function(e) e)
         if (!inherits(res, "simpleError"))
             break
-        else if (grepl("User rate limit exceeded|Quota exceeded", res$message) & i < 6L)
+        else if (grepl("User rate limit exceeded|Quota exceeded", res$message) & i < attempts)
             Sys.sleep(2L^i + stats::runif(1L))
         else
             stop(res)
