@@ -1,11 +1,5 @@
 context("Reporting API request query")
 
-test_that("Empty fields produce an errors", {
-    expect_error(build_query(NULL))
-    expect_error(build_query(profile.id = ""))
-    expect_error(build_query(profile.id = NA))
-})
-
 test_that("Ommit empty fields", {
     query <- build_query(profile.id = 0, sort = "", filters = NA)
     expect_null(query$sort)
