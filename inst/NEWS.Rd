@@ -10,6 +10,8 @@
     \item \code{list_custom_sources()} renamed to \code{list_custom_data_sources()}
     \item \code{dimension.id} param renamed to \code{custom.dimension.id} in the \code{get_custom_dimension()}
     \item \code{metric.id} param renamed to \code{custom.metric.id} in the \code{get_custom_metric()}
+    \item Imprvoed handling a error messages
+    \item If \code{profile.id} not defined, first profile used on this account
     \item Some inner code improvements
   }
 }

@@ -3,8 +3,6 @@
 fix_query <- function(x) {
     stopifnot(is.list(x))
     x <- compact(x)
-    if (!grepl("^ga:", x$profile.id))
-        x$profile.id <- paste0("ga:", x$profile.id)
     snames <- c("metrics", "dimensions", "sort")
     x[names(x) %in% snames] <- lapply(x[names(x) %in% snames], strip_spaces)
     onames <- c("filters", "segment")

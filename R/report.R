@@ -3,8 +3,14 @@
 #' @include get-data.R
 #' @include profiles.R
 get_report <- function(path, query, token) {
-    if (is.null(query$profile.id))
-        stop("'profile.id' must be specified.", call. = FALSE)
+    if (is.null(query$profile.id)) {
+        query$profile.id <- suppressWarnings(list_profiles(start.index = 1L, max.results = 1L, token = token)$id)
+        warning(sprintf("'profile.id' was missing. Used first found 'profile.id': %s", paste0("ga:", query$profile.id)), call. = FALSE)
+        if (is.null(query$profile.id))
+            stop("No views (profiles) found on this account.", call. = FALSE)
+    }
+    if (!grepl("^ga:", query$profile.id))
+        query$profile.id <- paste0("ga:", query$profile.id)
     json_content <- get_data(path, query, token)
     if (is.null(json_content$rows) || length(json_content$rows) == 0) {
         message("No results were obtained.")

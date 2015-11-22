@@ -28,7 +28,7 @@
 #' @include date-ranges.R
 #' @include report.R
 #' @export
-get_mcf <- function(profile.id, start.date = "7daysAgo", end.date = "yesterday",
+get_mcf <- function(profile.id = NULL, start.date = "7daysAgo", end.date = "yesterday",
                     metrics = "mcf:totalConversions", dimensions = NULL,
                     sort = NULL, filters = NULL, sampling.level = NULL,
                     start.index = NULL, max.results = NULL, fetch.by = NULL, token) {

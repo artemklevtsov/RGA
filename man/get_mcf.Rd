@@ -4,10 +4,10 @@
 \alias{get_mcf}
 \title{Multi-Channel Funnels Reporting API}
 \usage{
-get_mcf(profile.id, start.date = "7daysAgo", end.date = "yesterday",
-  metrics = "mcf:totalConversions", dimensions = NULL, sort = NULL,
-  filters = NULL, sampling.level = NULL, start.index = NULL,
-  max.results = NULL, fetch.by = NULL, token)
+get_mcf(profile.id = NULL, start.date = "7daysAgo",
+  end.date = "yesterday", metrics = "mcf:totalConversions",
+  dimensions = NULL, sort = NULL, filters = NULL, sampling.level = NULL,
+  start.index = NULL, max.results = NULL, fetch.by = NULL, token)
 }
 \arguments{
 \item{profile.id}{character. Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID. Can be obtained using the \code{\link{list_profiles}} or via the web interface Google Analytics.}
