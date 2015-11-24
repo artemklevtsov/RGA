@@ -11,14 +11,13 @@ get_data <- function(path = NULL, query = NULL, token) {
         limit <- 10000L
         items <- "rows"
     }
-    if (is.null(query$max.results)) {
-        pagination <- TRUE
+    pagination <- getOption("rga.pagination", TRUE)
+    if (is.null(query$max.results))
         query$max.results <- limit
-    } else {
+    else
         pagination <- FALSE
-        if (query$max.results > limit)
-            stop(sprintf("Can't retry more than %d results for this API. Set max.results = NULL (default value) to get all results.", limit), call. = FALSE)
-    }
+    if (query$max.results > limit)
+        stop(sprintf("Can't retry more than %d results for this API. Set max.results = NULL (default value) to get all results.", limit), call. = FALSE)
     # Make request
     res <- api_request(get_url(path, query), token)
     if (res$total.results == 0L || is.null(res[[items]]) || length(res[[items]]) == 0L)

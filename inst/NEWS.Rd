@@ -12,6 +12,8 @@
     \item \code{metric.id} param renamed to \code{custom.metric.id} in the \code{get_custom_metric()}
     \item Imprvoed handling a error messages
     \item If \code{profile.id} not defined, first profile used on this account
+    \item Added \code{rga.retry.attempts} (default value is \code{5L}) option to control number of the request retry attempts
+    \item Added \code{rga.pagination} (default values is \code{TRUE}) option to switch the batch processing mode
     \item Some inner code improvements
   }
 }
