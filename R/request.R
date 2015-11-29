@@ -23,11 +23,14 @@ error_reasons <- function(x) {
 process_response <- function(response) {
     stopifnot(inherits(response, "response"))
     if (response$status_code == 404L)
-        stop(sprintf("The requested URL not found. URL: %s.", strsplit(url, "?", fixed = TRUE)[[1L]][1L]), call. = FALSE)
+        stop(sprintf("The requested URL not found. URL: %s.", strsplit(response$url, "?", fixed = TRUE)[[1L]][1L]), call. = FALSE)
     if (response$status_code == 204L)
         return(NULL)
     if (httr::http_status(response)$category == "success") {
-        res <- jsonlite::fromJSON(httr::content(response, as = "text"), flatten = TRUE)
+        text <- httr::content(response, as = "text")
+        if (text == "")
+            stop("No output to parse.", call. = FALSE)
+        res <- jsonlite::fromJSON(text, flatten = TRUE)
         res <- convert_types.list(res)
         res <- convert_names(res)
         idx <- sapply(res, is.list)[!grepl("^(rows|items)$", names(res))]
@@ -40,7 +43,7 @@ process_response <- function(response) {
             stop(error_reasons(res), call. = FALSE)
         } else {
             res <- httr::content(response, as = "text")
-            stop(sprintf("httr::HTTP error %s:\n%s.", response$status_code, res), call. = FALSE)
+            stop(sprintf("HTTP error %s:\n%s.", response$status_code, res), call. = FALSE)
         }
     }
     return(res)
@@ -58,8 +61,8 @@ api_request <- function(url, token) {
     attempts <- getOption("rga.retry.attempts", 5L) + 1L
     for (i in 0L:attempts) {
         response <- httr::GET(url, config = config, httr::accept_json())
-        res <- tryCatch(process_response(response), error = function(e) e)
-        if (!inherits(res, "simpleError"))
+        res <- tryCatch(process_response(response), error = identity)
+        if (!inherits(res, "error"))
             break
         else if (grepl("User rate limit exceeded|Quota exceeded", res$message) & i < attempts)
             Sys.sleep(2L^i + stats::runif(1L))
