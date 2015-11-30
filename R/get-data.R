@@ -11,44 +11,47 @@ get_data <- function(path = NULL, query = NULL, token) {
         limit <- 10000L
         items <- "rows"
     }
-    pagination <- getOption("rga.pagination", TRUE)
-    if (is.null(query$max.results))
+    if (is.null(query$start.index))
+        query$start.index <- 1L
+    total <- ifelse(!is.null(query$max.results) && query$max.results > limit, query$max.results, NA)
+    if (is.null(query$max.results) || query$max.results > limit) {
         query$max.results <- limit
-    else
+        pagination <- getOption("rga.pagination", TRUE)
+    } else
         pagination <- FALSE
-    if (query$max.results > limit)
-        stop(sprintf("Can't retry more than %d results for this API. Set max.results = NULL (default value) to get all results.", limit), call. = FALSE)
+    if (grepl("data/realtime", paste(path, collapse = "/")))
+        pagination <- FALSE
     # Make request
     res <- api_request(get_url(path, query), token)
     if (res$total.results == 0L || is.null(res[[items]]) || length(res[[items]]) == 0L)
         return(NULL)
-    if (!isTRUE(pagination) && query$max.results < res$total.results)
-        warning(sprintf("Only %d observations out of %d were obtained. Set max.results = NULL (default value) to get all results.", query$max.results, res$total.results), call. = FALSE)
     # Pagination
     if (isTRUE(pagination) && query$max.results < res$total.results) {
-        if (grepl("data/realtime", paste(path, collapse = "/")))
-            warning(sprintf("Only %d observations out of %d were obtained (the batch processing mode is not implemented for this report type).", query$max.results, res$total.results), call. = FALSE)
-        else {
-            message(sprintf("API response contains more then %d items. Batch processing mode enabled.", query$max.results))
-            total.pages <- ceiling(res$total.results / query$max.results)
-            pages <- vector(mode = "list", length = total.pages)
-            pb <- utils::txtProgressBar(min = 0, max = total.pages, initial = 1, style = 3)
-            for (i in 2L:total.pages) {
-                query$start.index <- query$max.results * (i - 1L) + 1L
-                pages[[i]] <- api_request(get_url(path, query), token)[[items]]
-                utils::setTxtProgressBar(pb, i)
-            }
-            pages[[1L]] <- res[[items]]
-            if (is.matrix(pages[[1L]]))
-                pages <- plyr::rbind.fill.matrix(pages)
-            if (is.data.frame(pages[[1L]]))
-                pages <- plyr::rbind.fill(pages)
-            else if (is.list(pages[[1L]]))
-                pages <- unlist(pages, recursive = FALSE, use.names = FALSE)
-            res[[items]] <- pages
-            close(pb)
+        message(sprintf("API response contains more then %d items. Batch processing mode enabled.", query$max.results))
+        if (is.na(total) || total >= res$total.results)
+            total <- res$total.results
+        sidx <- seq.int(query$start.index, total, query$max.results)
+        midx <- diff(c(sidx, total + 1L))
+        pages <- vector(mode = "list", length = length(sidx))
+        pb <- utils::txtProgressBar(min = 0, max = length(sidx), initial = 1, style = 3)
+        for (i in 2L:length(sidx)) {
+            query$start.index <- sidx[i]
+            query$max.results <- midx[i]
+            pages[[i]] <- api_request(get_url(path, query), token)[[items]]
+            utils::setTxtProgressBar(pb, i)
         }
+        pages[[1L]] <- res[[items]]
+        if (is.matrix(pages[[1L]]))
+            pages <- plyr::rbind.fill.matrix(pages)
+        if (is.data.frame(pages[[1L]]))
+            pages <- plyr::rbind.fill(pages)
+        else if (is.list(pages[[1L]]))
+            pages <- unlist(pages, recursive = FALSE, use.names = FALSE)
+        res[[items]] <- pages
+        close(pb)
     }
     res[[items]] <- build_df(res)
+    if (nrow(res[[items]]) < res$total.results)
+        warning(sprintf("Only %d observations out of %d were obtained. Set max.results = NULL (default value) to get all results.", nrow(res[[items]]), res$total.results), call. = FALSE)
     return(res)
 }
