@@ -2,6 +2,12 @@
 \title{News for Package \pkg{RGA}}
 \encoding{UTF-8}
 
+\section{Changes in RGA version 0.3.2 (2015-XX-XX)}{
+  \itemize{
+    \item Updated data
+  }
+}
+
 \section{Changes in RGA version 0.3.1 (2015-11-30)}{
   \itemize{
     \item Added startup message with a warning about using predefined credentials
