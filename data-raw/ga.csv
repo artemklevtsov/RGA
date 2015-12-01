@@ -57,7 +57,7 @@
 "ga:adwordsCampaignID","DIMENSION","STRING","Adwords","PUBLIC","AdWords Campaign ID","A string. Corresponds to AdWords API Campaign.id.",NA,NA,NA,NA,NA,NA,NA
 "ga:adwordsAdGroupID","DIMENSION","STRING","Adwords","PUBLIC","AdWords Ad Group ID","A string. Corresponds to AdWords API AdGroup.id.",NA,NA,NA,NA,NA,NA,NA
 "ga:adwordsCreativeID","DIMENSION","STRING","Adwords","PUBLIC","AdWords Creative ID","A string. Corresponds to AdWords API Ad.id.",NA,NA,NA,NA,NA,NA,NA
-"ga:adwordsCriteriaID","DIMENSION","STRING","Adwords","PUBLIC","AdWords Criteria ID","A string. Corresponds to AdWords API Criterion.id.",NA,NA,NA,NA,NA,NA,NA
+"ga:adwordsCriteriaID","DIMENSION","STRING","Adwords","PUBLIC","AdWords Criteria ID","A string corresponding to the AdWords API Criterion.id. The geographical targeting Criteria IDs can be found at: https://developers.google.com/analytics/devguides/collection/protocol/v1/geoid",NA,NA,NA,NA,NA,NA,NA
 "ga:impressions","METRIC","INTEGER","Adwords","PUBLIC","Impressions","Total number of campaign impressions.",NA,NA,NA,NA,NA,NA,NA
 "ga:adClicks","METRIC","INTEGER","Adwords","PUBLIC","Clicks","The total number of times users have clicked on an ad to reach your property.",NA,NA,NA,NA,NA,NA,NA
 "ga:adCost","METRIC","CURRENCY","Adwords","PUBLIC","Cost","Derived cost for the advertising campaign. The currency for this value is based on the currency that you set in your AdWords account.",NA,NA,NA,NA,NA,NA,NA
@@ -150,8 +150,8 @@
 "ga:pageviews","METRIC","INTEGER","Page Tracking","PUBLIC","Pageviews","The total number of pageviews for your property.",TRUE,NA,NA,NA,NA,NA,NA
 "ga:pageviewsPerSession","METRIC","FLOAT","Page Tracking","PUBLIC","Pages / Session","The average number of pages viewed during a session, including repeated views of a single page.",NA,NA,"ga:pageviews / ga:sessions",NA,NA,NA,NA
 "ga:pageviewsPerVisit","METRIC","FLOAT","Page Tracking","DEPRECATED","Pages / Session","The average number of pages viewed during a session, including repeated views of a single page.",NA,"ga:pageviewsPerSession","ga:pageviews / ga:sessions",NA,NA,NA,NA
-"ga:contentGroupUniqueViewsXX","METRIC","INTEGER","Content Grouping","PUBLIC","Unique Views XX","The number of different (unique) pages within a session for the specified content group. This takes into account both the pagePath and pageTitle to determine uniqueness.",NA,NA,NA,1,5,NA,NA
-"ga:uniquePageviews","METRIC","INTEGER","Page Tracking","PUBLIC","Unique Pageviews","The number of different (unique) pages within a session. This takes into account both the pagePath and pageTitle to determine uniqueness.",TRUE,NA,NA,NA,NA,NA,NA
+"ga:contentGroupUniqueViewsXX","METRIC","INTEGER","Content Grouping","PUBLIC","Unique Views XX","The number of unique content group views. Content group views within different sessions count as separate unique content view. This takes into account both the pagePath and pageTitle to determine uniqueness.",NA,NA,NA,1,5,NA,NA
+"ga:uniquePageviews","METRIC","INTEGER","Page Tracking","PUBLIC","Unique Pageviews","The number of unique page views. Page views within different sessions count as separate unique page views. This takes into account both the pagePath and pageTitle to determine uniqueness.",TRUE,NA,NA,NA,NA,NA,NA
 "ga:timeOnPage","METRIC","TIME","Page Tracking","PUBLIC","Time on Page","How long a user spent on a particular page in seconds. Calculated by subtracting the initial view time for a particular page from the initial view time for a subsequent page. Thus, this metric does not apply to exit pages for your property.",TRUE,NA,NA,NA,NA,NA,NA
 "ga:avgTimeOnPage","METRIC","TIME","Page Tracking","PUBLIC","Avg. Time on Page","The average amount of time users spent viewing this page or a set of pages.",NA,NA,"ga:timeOnPage / (ga:pageviews - ga:exits)",NA,NA,NA,NA
 "ga:exits","METRIC","INTEGER","Page Tracking","PUBLIC","Exits","The number of exits from your property.",TRUE,NA,NA,NA,NA,NA,NA
@@ -210,8 +210,8 @@
 "ga:exitScreenName","DIMENSION","STRING","App Tracking","PUBLIC","Exit Screen","The name of the screen when the user exited the application.",TRUE,NA,NA,NA,NA,NA,NA
 "ga:screenviews","METRIC","INTEGER","App Tracking","PUBLIC","Screen Views","The total number of screenviews.",TRUE,NA,NA,NA,NA,NA,NA
 "ga:appviews","METRIC","INTEGER","App Tracking","DEPRECATED","Screen Views","The total number of screenviews.",TRUE,"ga:screenviews",NA,NA,NA,NA,NA
-"ga:uniqueScreenviews","METRIC","INTEGER","App Tracking","PUBLIC","Unique Screen Views","The number of different (unique) screenviews within a session.",TRUE,NA,NA,NA,NA,NA,NA
-"ga:uniqueAppviews","METRIC","INTEGER","App Tracking","DEPRECATED","Unique Screen Views","The number of different (unique) screenviews within a session.",TRUE,"ga:uniqueScreenviews",NA,NA,NA,NA,NA
+"ga:uniqueScreenviews","METRIC","INTEGER","App Tracking","PUBLIC","Unique Screen Views","The number of unique screen views. Screen views in different sessions count a separate screen views.",TRUE,NA,NA,NA,NA,NA,NA
+"ga:uniqueAppviews","METRIC","INTEGER","App Tracking","DEPRECATED","Unique Screen Views","The number of unique screen views. Screen views in different sessions count a separate screen views.",TRUE,"ga:uniqueScreenviews",NA,NA,NA,NA,NA
 "ga:screenviewsPerSession","METRIC","FLOAT","App Tracking","PUBLIC","Screens / Session","The average number of screenviews per session.",NA,NA,"ga:screenviews / ga:sessions",NA,NA,NA,NA
 "ga:appviewsPerVisit","METRIC","FLOAT","App Tracking","DEPRECATED","Screens / Session","The average number of screenviews per session.",NA,"ga:screenviewsPerSession","ga:screenviews / ga:sessions",NA,NA,NA,NA
 "ga:timeOnScreen","METRIC","TIME","App Tracking","PUBLIC","Time on Screen","The time spent viewing the current screen.",TRUE,NA,NA,NA,NA,NA,NA
@@ -220,7 +220,7 @@
 "ga:eventAction","DIMENSION","STRING","Event Tracking","PUBLIC","Event Action","The action of the event.",TRUE,NA,NA,NA,NA,NA,NA
 "ga:eventLabel","DIMENSION","STRING","Event Tracking","PUBLIC","Event Label","The label of the event.",TRUE,NA,NA,NA,NA,NA,NA
 "ga:totalEvents","METRIC","INTEGER","Event Tracking","PUBLIC","Total Events","The total number of events for the profile, across all categories.",TRUE,NA,NA,NA,NA,NA,NA
-"ga:uniqueEvents","METRIC","INTEGER","Event Tracking","PUBLIC","Unique Events","The total number of unique events for the profile, across all categories.",NA,NA,NA,NA,NA,NA,NA
+"ga:uniqueEvents","METRIC","INTEGER","Event Tracking","PUBLIC","Unique Events","The number of unique events. Events in different sessions count as separate events.",NA,NA,NA,NA,NA,NA,NA
 "ga:eventValue","METRIC","INTEGER","Event Tracking","PUBLIC","Event Value","The total value of events for the profile.",TRUE,NA,NA,NA,NA,NA,NA
 "ga:avgEventValue","METRIC","FLOAT","Event Tracking","PUBLIC","Avg. Value","The average value of an event.",NA,NA,"ga:eventValue / ga:totalEvents",NA,NA,NA,NA
 "ga:sessionsWithEvent","METRIC","INTEGER","Event Tracking","PUBLIC","Sessions with Event","The total number of sessions with events.",TRUE,NA,NA,NA,NA,NA,NA
@@ -348,7 +348,7 @@
 "ga:dcmLastEventSpotId","DIMENSION","STRING","DoubleClick Campaign Manager","PUBLIC","DFA Floodlight Configuration ID (DFA Model)","DCM Floodlight configuration ID of the last DCM event (impression or click within the DCM lookback window) associated with the Google Analytics session (premium only).",NA,NA,NA,NA,NA,NA,NA
 "ga:dcmFloodlightQuantity","METRIC","INTEGER","DoubleClick Campaign Manager","PUBLIC","DFA Conversions","The number of DCM Floodlight conversions (premium only).",NA,NA,NA,NA,NA,NA,NA
 "ga:dcmFloodlightRevenue","METRIC","CURRENCY","DoubleClick Campaign Manager","PUBLIC","DFA Revenue","DCM Floodlight revenue (premium only).",NA,NA,NA,NA,NA,NA,NA
-"ga:landingContentGroupXX","DIMENSION","STRING","Content Grouping","PUBLIC","Landing Page Group XX","The first matching content group in a user's session.",TRUE,NA,NA,1,5,NA,NA
+"ga:landingContentGroupXX","DIMENSION","STRING","Content Grouping","PUBLIC","Landing Page Group XX","Content group of a user's landing page.",TRUE,NA,NA,1,5,NA,NA
 "ga:previousContentGroupXX","DIMENSION","STRING","Content Grouping","PUBLIC","Previous Page Group XX","Refers to content group that was visited before another content group.",TRUE,NA,NA,1,5,NA,NA
 "ga:contentGroupXX","DIMENSION","STRING","Content Grouping","PUBLIC","Page Group XX","Content group on a property. A content group is a collection of content providing a logical structure that can be determined by tracking code or page title/url regex match, or predefined rules.",TRUE,NA,NA,1,5,NA,NA
 "ga:nextContentGroupXX","DIMENSION","STRING","Content Grouping","DEPRECATED","Next Page Group XX","This dimension is deprecated and will be removed soon. Please use ga:contentGroupXX instead.",TRUE,NA,NA,1,5,NA,NA
@@ -382,7 +382,7 @@
 "ga:campaignCode","DIMENSION","STRING","Traffic Sources","PUBLIC","Campaign Code","When using manual campaign tracking, the value of the utm_id campaign tracking parameter.",NA,NA,NA,NA,NA,NA,NA
 "ga:channelGrouping","DIMENSION","STRING","Channel Grouping","PUBLIC","Default Channel Grouping","The default channel grouping that is shared within the View (Profile).",TRUE,NA,NA,NA,NA,NA,NA
 "ga:checkoutOptions","DIMENSION","STRING","Ecommerce","PUBLIC","Checkout Options","User options specified during the checkout process, e.g., FedEx, DHL, UPS for delivery options or Visa, MasterCard, AmEx for payment options. This dimension should be used along with ga:shoppingStage (Enhanced Ecommerce).",TRUE,NA,NA,NA,NA,NA,NA
-"ga:cityId","DIMENSION","STRING","Geo Network","PUBLIC","City ID","The city IDs of users, derived from IP addresses or Geographical IDs.",FALSE,NA,NA,NA,NA,NA,NA
+"ga:cityId","DIMENSION","STRING","Geo Network","PUBLIC","City ID","The city IDs of users, derived from IP addresses or Geographical IDs. The city IDs are the same as the Criteria IDs found at: https://developers.google.com/analytics/devguides/collection/protocol/v1/geoid",FALSE,NA,NA,NA,NA,NA,NA
 "ga:correlationModelId","DIMENSION","STRING","Related Products","PUBLIC","Correlation Model ID","Correlation Model ID for related products.",NA,NA,NA,NA,NA,NA,NA
 "ga:countryIsoCode","DIMENSION","STRING","Geo Network","PUBLIC","Country ISO Code","The country ISO code of users, derived from IP addresses or Geographical IDs. Values are given as an ISO-3166-1 alpha-2 code.",FALSE,NA,NA,NA,NA,NA,NA
 "ga:dataSource","DIMENSION","STRING","Platform or Device","PUBLIC","Data Source","The data source of a hit. By default, hits sent from ga.js and analytics.js are reported as ""web"". Hits sent from the mobile SDKs are reported as ""app"". These values can be overridden in the Measurement Protocol.",TRUE,NA,NA,NA,NA,NA,NA
@@ -403,7 +403,7 @@
 "ga:queryProductId","DIMENSION","STRING","Related Products","PUBLIC","Queried Product ID","ID of the product being queried.",NA,NA,NA,NA,NA,NA,NA
 "ga:queryProductName","DIMENSION","STRING","Related Products","PUBLIC","Queried Product Name","Name of the product being queried.",NA,NA,NA,NA,NA,NA,NA
 "ga:queryProductVariation","DIMENSION","STRING","Related Products","PUBLIC","Queried Product Variation","Variation of the product being queried.",NA,NA,NA,NA,NA,NA,NA
-"ga:regionId","DIMENSION","STRING","Geo Network","PUBLIC","Region ID","The region ID of users, derived from IP addresses or Geographical IDs. In the U.S., a region is a state, such as New York.",FALSE,NA,NA,NA,NA,NA,NA
+"ga:regionId","DIMENSION","STRING","Geo Network","PUBLIC","Region ID","The region ID of users, derived from IP addresses or Geographical IDs. In the U.S., a region is a state, such as New York. The region IDs are the same as the Criteria IDs found at: https://developers.google.com/analytics/devguides/collection/protocol/v1/geoid",FALSE,NA,NA,NA,NA,NA,NA
 "ga:regionIsoCode","DIMENSION","STRING","Geo Network","PUBLIC","Region ISO Code","The region ISO code of users, derived from IP addresses or Geographical IDs. Values are given as an ISO-3166-2 code.",FALSE,NA,NA,NA,NA,NA,NA
 "ga:relatedProductId","DIMENSION","STRING","Related Products","PUBLIC","Related Product ID","ID of the related product.",NA,NA,NA,NA,NA,NA,NA
 "ga:relatedProductName","DIMENSION","STRING","Related Products","PUBLIC","Related Product Name","Name of the related product.",NA,NA,NA,NA,NA,NA,NA
@@ -422,7 +422,7 @@
 "ga:dcmROAS","METRIC","PERCENT","DoubleClick Campaign Manager","PUBLIC","DFA ROAS","DCM Return On Ad Spend (ROAS) (premium only).",NA,NA,NA,NA,NA,NA,NA
 "ga:dcmROI","METRIC","PERCENT","DoubleClick Campaign Manager","DEPRECATED","DFA ROI","This metric is deprecated and will be removed soon. Please use ga:dcmROAS instead.",NA,NA,NA,NA,NA,NA,NA
 "ga:dcmRPC","METRIC","CURRENCY","DoubleClick Campaign Manager","PUBLIC","DFA RPC","DCM Revenue Per Click (premium only).",NA,NA,NA,NA,NA,NA,NA
-"ga:hits","METRIC","INTEGER","Session","PUBLIC","Hits","Total number of hits sent to Google Analytics. This metric sums all hit types (e.g. pageview, event, timing, etc.).",TRUE,NA,NA,NA,NA,NA,NA
+"ga:hits","METRIC","INTEGER","Session","PUBLIC","Hits","Total number of hits sent to Google Analytics, for the view (profile). This metric sums all hit types, including pageview, custom event, ecommerce, and other types. Note that this number is based on the view (profile), not the property, and therefore is not the same as the property's hit volume.",TRUE,NA,NA,NA,NA,NA,NA
 "ga:internalPromotionCTR","METRIC","PERCENT","Ecommerce","PUBLIC","Internal Promotion CTR","The rate at which users clicked through to view the internal promotion (ga:internalPromotionClicks / ga:internalPromotionViews) - (Enhanced Ecommerce).",NA,NA,"ga:internalPromotionClicks / ga:internalPromotionViews",NA,NA,NA,NA
 "ga:internalPromotionClicks","METRIC","INTEGER","Ecommerce","PUBLIC","Internal Promotion Clicks","The number of clicks on an internal promotion (Enhanced Ecommerce).",TRUE,NA,NA,NA,NA,NA,NA
 "ga:internalPromotionViews","METRIC","INTEGER","Ecommerce","PUBLIC","Internal Promotion Views","The number of views of an internal promotion (Enhanced Ecommerce).",TRUE,NA,NA,NA,NA,NA,NA
