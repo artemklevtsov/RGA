@@ -4,18 +4,18 @@
 
 \section{Changes in RGA version 0.3.1 (2015-11-30)}{
   \itemize{
-    \item Added startup message
-    \item To handle dates used \CRANpkg{libridate} package
+    \item Added startup message with a warning about using predefined credentials
+    \item Updated instructions for obtaining an OAuth credentials
+    \item To handle dates used \CRANpkg{lubridate} package
     \item To merge paginated data used \CRANpkg{plyr} package
+    \item Improved pagination requests. Now allowed any positive integer in the \code{max.results}
     \item \code{list_custom_sources()} renamed to \code{list_custom_data_sources()}
     \item \code{dimension.id} param renamed to \code{custom.dimension.id} in the \code{get_custom_dimension()}
     \item \code{metric.id} param renamed to \code{custom.metric.id} in the \code{get_custom_metric()}
-    \item Imprvoed handling a error messages
-    \item If \code{profile.id} not defined, first profile used on this account
+    \item Imprvoed handling an error messages
+    \item If \code{profile.id} not defined, First found profile used on this account
     \item Added \code{rga.retry.attempts} (default value is \code{5L}) option to control number of the request retry attempts
     \item Added \code{rga.pagination} (default values is \code{TRUE}) option to switch the batch processing mode
-    \item Improved pagination requests. Now allowed any positive integer in the \code{max.results}
-    \item Updated instructions for obtaining OAuth credentials
     \item Some inner code improvements
   }
 }
