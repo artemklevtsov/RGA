@@ -25,7 +25,8 @@ fetch_by <- function(path, query, by, token) {
     query$end.date <- parse_date(query$end.date)
     dates <- date_ranges(query$start.date, query$end.date, by)
     n <- nrow(dates)
-    message(sprintf("Fetch data day-by-day: from %s to %s. Batch processing mode enabled.", query$start.date, query$end.date))
+    message("Batch processing mode enabled.\n",
+            sprintf("Fetch data by %s: from %s to %s.", by, query$start.date, query$end.date))
     res <- vector(mode = "list", length = n)
     pb <- utils::txtProgressBar(min = 0, max = n, initial = 1, style = 3)
     for (i in 1:n) {
@@ -37,7 +38,7 @@ fetch_by <- function(path, query, by, token) {
     attrs <- attributes(res[[1]])
     attrs$query$start.date <- attr(res[[1]], "query")$start.date
     attrs$query$end.date <- attr(res[[n]], "query")$end.date
-    res <- do.call(rbind, res)
+    res <- plyr::rbind.fill(res)
     if (is.null(query$dimensions))
         res <- as.data.frame(as.list(colSums(res)))
     else if (!is.null(query$dimensions) && !any(grepl("date", query$dimensions))) {
@@ -45,6 +46,7 @@ fetch_by <- function(path, query, by, token) {
         dims <- parse_params(query$dimensions)
         res <- stats::aggregate.data.frame(res[mets], res[dims], sum)
     }
+    attrs$row.names <- row.names(res)
     attributes(res) <- attrs
     close(pb)
     if (grepl("ga:users|ga:[0-9]+dayUsers", query$metrics))
