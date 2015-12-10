@@ -36,7 +36,8 @@
 #' @include date-ranges.R
 #' @include report.R
 #' @export
-get_ga <- function(profile.id = NULL, start.date = "7daysAgo", end.date = "yesterday",
+get_ga <- function(profile.id = getOption("rga.profile.id"),
+                   start.date = "7daysAgo", end.date = "yesterday",
                    metrics = c("ga:users", "ga:sessions"," ga:pageviews"), dimensions = NULL,
                    sort = NULL, filters = NULL, segment = NULL, sampling.level = NULL,
                    start.index = NULL, max.results = NULL, include.empty.rows = NULL,

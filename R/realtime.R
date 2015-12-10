@@ -36,7 +36,8 @@
 #'
 #' @include report.R
 #' @export
-get_realtime <- function(profile.id = NULL, metrics = "rt:activeUsers", dimensions = NULL,
+get_realtime <- function(profile.id = getOption("rga.profile.id"),
+                         metrics = "rt:activeUsers", dimensions = NULL,
                          sort = NULL, filters = NULL, max.results = NULL, token) {
     query <- build_query(profile.id = profile.id, metrics = metrics, dimensions = dimensions,
                          sort = sort, filters = filters, max.results = max.results)

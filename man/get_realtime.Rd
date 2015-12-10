@@ -4,9 +4,9 @@
 \alias{get_realtime}
 \title{Real Time Reporting API}
 \usage{
-get_realtime(profile.id = NULL, metrics = "rt:activeUsers",
-  dimensions = NULL, sort = NULL, filters = NULL, max.results = NULL,
-  token)
+get_realtime(profile.id = getOption("rga.profile.id"),
+  metrics = "rt:activeUsers", dimensions = NULL, sort = NULL,
+  filters = NULL, max.results = NULL, token)
 }
 \arguments{
 \item{profile.id}{character. Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID. Can be obtained using the \code{\link{list_profiles}} or via the web interface Google Analytics.}

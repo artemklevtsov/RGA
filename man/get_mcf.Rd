@@ -4,7 +4,7 @@
 \alias{get_mcf}
 \title{Multi-Channel Funnels Reporting API}
 \usage{
-get_mcf(profile.id = NULL, start.date = "7daysAgo",
+get_mcf(profile.id = getOption("rga.profile.id"), start.date = "7daysAgo",
   end.date = "yesterday", metrics = "mcf:totalConversions",
   dimensions = NULL, sort = NULL, filters = NULL, sampling.level = NULL,
   start.index = NULL, max.results = NULL, fetch.by = NULL, token)
