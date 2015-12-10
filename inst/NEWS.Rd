@@ -5,6 +5,9 @@
 \section{Changes in RGA version 0.3.2 (2015-XX-XX)}{
   \itemize{
     \item Updated data
+    \item Fixed \code{row.names} attribute when used \code{fetch.by}
+    \item \code{new.auth} param renamed to \code{reauth} in the \code{authorize()} function
+    \item Added \code{rga.profile.id} option to set \code{profile.id} param in the Reporting API functions
   }
 }
 
