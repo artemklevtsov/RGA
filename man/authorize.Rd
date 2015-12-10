@@ -7,7 +7,7 @@
 authorize(username = getOption("rga.username"),
   client.id = getOption("rga.client.id"),
   client.secret = getOption("rga.client.secret"),
-  cache = getOption("rga.cache"), new.auth = FALSE)
+  cache = getOption("rga.cache"), reauth = FALSE)
 }
 \arguments{
 \item{username}{character. Google username email address hint. If not set you will need choose an account for the authorization.}
@@ -18,7 +18,7 @@ authorize(username = getOption("rga.username"),
 
 \item{cache}{logical or character. \code{TRUE} means to cache using the default cache file \code{.oauth-httr}, \code{FALSE} means not to cache. A string means to use the specified path as the cache file. Otherwise will be used the \code{rga.cache} option value (\code{.ga-token.rds} by default). If \code{username} argument specified token will be cached in the \code{.username-token.rds} file.}
 
-\item{new.auth}{logical. Set \code{TRUE} to reauthorization with the same or different Google Analytics account.}
+\item{reauth}{logical. Set \code{TRUE} to reauthorization with the same or different Google Analytics account.}
 }
 \value{
 A \code{\link[httr]{Token2.0}} object containing all the data required for OAuth access.
