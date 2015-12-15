@@ -20,6 +20,7 @@ parse_date <- function(x) {
     return(as.character(x))
 }
 
+#' @include get-data.R
 fetch_by <- function(path, query, by, token) {
     query$start.date <- parse_date(query$start.date)
     query$end.date <- parse_date(query$end.date)
@@ -27,27 +28,31 @@ fetch_by <- function(path, query, by, token) {
     n <- nrow(dates)
     message("Batch processing mode enabled.\n",
             sprintf("Fetch data by %s: from %s to %s.", by, query$start.date, query$end.date))
-    res <- vector(mode = "list", length = n)
-    pb <- utils::txtProgressBar(min = 0, max = n, initial = 1, style = 3)
+    pages <- vector(mode = "list", length = n)
+    pb <- utils::txtProgressBar(min = 0, max = n, initial = 0, style = 3)
     for (i in 1:n) {
         query$start.date <- dates$start[i]
         query$end.date <- dates$end[i]
-        res[[i]] <- get_report(path, query, token)
+        pages[[i]] <- get_data(path, query, token)
         utils::setTxtProgressBar(pb, i)
     }
-    attrs <- attributes(res[[1]])
-    attrs$query$start.date <- attr(res[[1]], "query")$start.date
-    attrs$query$end.date <- attr(res[[n]], "query")$end.date
-    res <- plyr::rbind.fill(res)
+    res <- pages[[1]]
+    res$rows <- plyr::rbind.fill(lapply(pages, .subset2, "rows"))
+    res$query$start.date <- pages[[1]]$query$start.date
+    res$query$end.date <- pages[[n]]$query$end.date
+    res$total.results <- sum(unlist(lapply(pages, .subset2, "total.results")))
+    res$contains.sampled.data <- any(unlist(lapply(pages, .subset2, "contains.sampled.data")))
+    if (isTRUE(res$contains.sampled.data)) {
+        res$sample.size <- sum(unlist(lapply(pages, .subset2, "sample.size")))
+        res$sample.space <- sum(unlist(lapply(pages, .subset2, "sample.space")))
+    }
     if (is.null(query$dimensions))
-        res <- as.data.frame(as.list(colSums(res)))
+        res$rows <- as.data.frame(as.list(colSums(res$rows)))
     else if (!is.null(query$dimensions) && !any(grepl("date", query$dimensions))) {
         mets <- parse_params(query$metrics)
         dims <- parse_params(query$dimensions)
-        res <- stats::aggregate.data.frame(res[mets], res[dims], sum)
+        res$rows <- stats::aggregate.data.frame(res$rows[mets], res$rows[dims], sum)
     }
-    attrs$row.names <- row.names(res)
-    attributes(res) <- attrs
     close(pb)
     if (grepl("ga:users|ga:[0-9]+dayUsers", query$metrics))
         warning("The 'ga:users' or 'ga:NdayUsers' total value for several days is not the sum of values for each single day.", call. = FALSE)

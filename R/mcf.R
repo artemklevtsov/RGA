@@ -39,9 +39,6 @@ get_mcf <- function(profile.id = getOption("rga.profile.id"),
                          metrics = metrics, dimensions = dimensions, sort = sort, filters = filters,
                          sampling.level = sampling.level,
                          start.index = start.index, max.results = max.results)
-    if (is.null(fetch.by))
-        res <- get_report("data/mcf", query, token)
-    else
-        res <- fetch_by("data/mcf", query, fetch.by, token)
+    res <- get_report("data/mcf", query, token, fetch.by)
     return(res)
 }

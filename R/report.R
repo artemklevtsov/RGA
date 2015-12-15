@@ -9,14 +9,17 @@ get_first_profile <- function(token) {
 #' @include query.R
 #' @include get-data.R
 #' @include profiles.R
-get_report <- function(path, query, token) {
+get_report <- function(path, query, token, by = NULL) {
     if (is.null(query$profile.id)) {
         query$profile.id <- get_first_profile(token)
         warning(sprintf("'profile.id' was missing. Used first found 'profile.id': %s", paste0("ga:", query$profile.id)), call. = FALSE)
     }
     if (!grepl("^ga:", query$profile.id))
         query$profile.id <- paste0("ga:", query$profile.id)
-    json_content <- get_data(path, query, token)
+    if (!is.null(by))
+        json_content <- fetch_by(path, query, by, token)
+    else
+        json_content <- get_data(path, query, token)
     if (is.null(json_content$rows) || length(json_content$rows) == 0) {
         message("No results were obtained.")
         return(invisible(NULL))
@@ -41,7 +44,10 @@ get_report <- function(path, query, token) {
         attr(res, "sample.size") <- json_content$sample.size
         attr(res, "sample.space") <- json_content$sample.space
         sample_perc <- json_content$sample.size / json_content$sample.space * 100
-        warning(sprintf("Data contains sampled data. Used %d sessions (%1.0f%% of sessions). Try to use the 'fetch.by' param to avoid sampling.", json_content$sample.size, sample_perc), call. = FALSE)
+        if (is.null(by))
+            warning(sprintf("Data contains sampled data. Used %d sessions (%1.0f%% of sessions). Try to use the 'fetch.by' param to avoid sampling.", json_content$sample.size, sample_perc), call. = FALSE)
+        else
+            warning(sprintf("Data contains sampled data. Used %d sessions (%1.0f%% of sessions).", json_content$sample.size, sample_perc), call. = FALSE)
     }
     return(res)
 }

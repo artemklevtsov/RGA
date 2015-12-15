@@ -52,9 +52,6 @@ get_ga <- function(profile.id = getOption("rga.profile.id"),
                          sampling.level = sampling.level,
                          include.empty.rows = tolower(include.empty.rows),
                          start.index = start.index, max.results = max.results)
-    if (is.null(fetch.by))
-        res <- get_report("data/ga", query, token)
-    else
-        res <- fetch_by("data/ga", query, fetch.by, token)
+    res <- get_report("data/ga", query, token, fetch.by)
     return(res)
 }
