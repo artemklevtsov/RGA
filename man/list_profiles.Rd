@@ -40,7 +40,8 @@ The Profiles collection is a set of Profile resources, each of which describes t
 \item{created}{Time this view (profile) was created.}
 \item{updated}{Time this view (profile) was last modified.}
 \item{e.commerce.tracking}{Indicates whether ecommerce tracking is enabled for this view (profile).}
-\item{enhanced.e.commerce.tracking}{Indicates whether enhanced ecommerce tracking is enabled for this view (profile). This property can only be enabled if ecommerce tracking is enabled.}
+\item{enhanced.e.commerce.tracking}{Indicates whether enhanced ecommerce tracking is enabled for this view (profile). This property can only be enabled if ecommerce tracking is enabled. This property cannot be set on insert.}
+\item{bot.filtering.enabled}{Indicates whether bot filtering is enabled for this view (profile).}
 \item{permissions.effective}{All the permissions that the user has for this view (profile). These include any implied permissions (e.g., EDIT implies VIEW) or inherited permissions from the parent web property.}
 }
 \description{
