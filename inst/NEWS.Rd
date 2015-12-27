@@ -2,7 +2,7 @@
 \title{News for Package \pkg{RGA}}
 \encoding{UTF-8}
 
-\section{Changes in RGA version 0.3.2 (2015-XX-XX)}{
+\section{Changes in RGA version 0.3.2 (2015-12-27)}{
   \itemize{
     \item Updated data
     \item Fixed \code{row.names} attribute when used \code{fetch.by}
