@@ -89,7 +89,7 @@ fix_username <- function(x) {
 #' To get full quota, you must register your application in the Google Developers Console. When you register a new application, you are given a unique client ID to identify each application under that project. To find your project's client ID and client secret, do the following:
 #'
 #' \enumerate{
-#'   \item Open the \href{https://console.developers.google.com/project/_/apiui/credential}{Credentials page}.
+#'   \item Open the \href{https://console.developers.google.com/projectselector/apis/credentials}{Credentials page}.
 #'   \item Select a project (create if needed).
 #'   \item create your project's OAuth 2.0 credentials by clicking \emph{Add credentials} > \emph{OAuth 2.0 client ID} and select \emph{Other} application type.
 #'   \item Look for the Client ID in the OAuth 2.0 client IDs section. You can click the application name for details.
@@ -98,7 +98,7 @@ fix_username <- function(x) {
 #' To enable Analytics API for your project, do the following:
 #'
 #' \enumerate{
-#'   \item Open the \href{https://console.developers.google.com/project/_/apiui/api/analytics/overview}{Analytics API Overview page}.
+#'   \item Open the \href{https://console.developers.google.com/projectselector/apis/api/analytics/overview}{Analytics API Overview page}.
 #'   \item CLick on the \emph{Enable API} button to activate Analytics API.
 #' }
 #'
