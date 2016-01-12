@@ -7,7 +7,7 @@ before_install:
   - sudo add-apt-repository -y "ppa:texlive-backports/ppa" > /dev/null 2>&1
   - sudo apt-get -qq update
 install:
-  - sudo apt-get --no-install-recommends -qq install r-base-dev r-recommended qpdf pandoc
+  - sudo apt-get --no-install-recommends -qq install r-base-dev r-recommended qpdf pandoc pandoc-citeproc
   - sudo apt-get --no-install-recommends -qq install lmodern texinfo texlive-base texlive-extra-utils texlive-fonts-extra texlive-fonts-recommended texlive-generic-recommended texlive-latex-base texlive-latex-extra texlive-latex-recommended
   - sudo apt-get -qq install r-cran-{jsonlite,httr,lubridate,plyr,shiny,knitr,rmarkdown,testthat}
 before_script:
