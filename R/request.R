@@ -1,7 +1,7 @@
 # Error printing function
 #' @include utils.R
 error_reasons <- function(x) {
-    code_message <- httr::http_status(x$error$code)$message
+    code_message <- httr::http_status(as.numeric(x$error$code))$message
     errors <- x$error$errors
     errors$reason <- gsub("^([[:alpha:]])", "\\U\\1", to_separated(errors$reason, sep = " "), perl = TRUE)
     errors$message <- gsub("\n", ". ", errors$message, fixed = TRUE)
@@ -22,11 +22,10 @@ error_reasons <- function(x) {
 #' @include utils.R
 process_response <- function(response) {
     stopifnot(inherits(response, "response"))
-    if (response$status_code == 404L)
-        stop(sprintf("The requested URL not found. URL: %s.", strsplit(response$url, "?", fixed = TRUE)[[1L]][1L]), call. = FALSE)
-    if (response$status_code == 204L)
+    status_code <- httr::status_code(response)
+    if (status_code == 204L)
         return(NULL)
-    if (httr::http_status(response)$category == "success") {
+    if (!httr::http_error(response)) {
         text <- httr::content(response, as = "text")
         if (text == "")
             stop("No output to parse.", call. = FALSE)
@@ -37,13 +36,15 @@ process_response <- function(response) {
         res[idx] <- lapply(res[idx], convert_types.list)
         res[idx] <- lapply(res[idx], convert_names)
     } else {
+        if (status_code == 404L)
+            stop(sprintf("The requested URL not found. URL: %s.", strsplit(response$url, "?", fixed = TRUE)[[1L]][1L]), call. = FALSE)
         type <- httr::parse_media(response$headers$`Content-type`)
         if (type$complete == "application/json") {
             res <- jsonlite::fromJSON(httr::content(response, as = "text"))
             stop(error_reasons(res), call. = FALSE)
         } else {
             res <- httr::content(response, as = "text")
-            stop(sprintf("HTTP error %s:\n%s.", response$status_code, res), call. = FALSE)
+            stop(sprintf("HTTP error %s:\n%s.", status_code, res), call. = FALSE)
         }
     }
     return(res)
