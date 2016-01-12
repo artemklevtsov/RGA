@@ -35,13 +35,7 @@ validate_token <- function(token) {
         stop("Authorization error. Access token not found.")
     if (!inherits(token, "Token2.0"))
         stop(sprintf("Token is not a Token2.0 object. Found: %s.", class(token)))
-    if (!is.null(token$credentials$error)) {
-        if (token$credentials$error == "invalid_request")
-            stop("Authorization error. No access token obtained.")
-        if (token$credentials$error == "invalid_client")
-            stop("Authorization error. Please check client.id and client.secret.")
-    }
-    return(TRUE)
+    token$validate()
 }
 
 # Check environment variables exists
