@@ -2,6 +2,13 @@
 \title{News for Package \pkg{RGA}}
 \encoding{UTF-8}
 
+\section{Changes in RGA version 0.3.3 (2016-01-15)}{
+  \itemize{
+    \item Fixed links in the \code{authorize()} related docs
+    \item Fixed issues related with the \CRANpkg{httr} update
+  }
+}
+
 \section{Changes in RGA version 0.3.2 (2015-12-27)}{
   \itemize{
     \item Updated data
