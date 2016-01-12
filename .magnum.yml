@@ -9,7 +9,7 @@ before_install:
 install:
   - sudo apt-get --no-install-recommends -qq install r-base-dev r-recommended qpdf pandoc
   - sudo apt-get --no-install-recommends -qq install lmodern texinfo texlive-base texlive-extra-utils texlive-fonts-extra texlive-fonts-recommended texlive-generic-recommended texlive-latex-base texlive-latex-extra texlive-latex-recommended
-  - sudo apt-get -qq install r-cran-{jsonlite,httr,lubridate,plyr,shiny,knitr,testthat}
+  - sudo apt-get -qq install r-cran-{jsonlite,httr,lubridate,plyr,shiny,knitr,rmarkdown,testthat}
 before_script:
   - echo 'options(repos = c(CRAN = "http://cran.r-project.org"))' | sudo tee -a /etc/R/Rprofile.site > /dev/null
   - Rscript -e 'sessionInfo()'

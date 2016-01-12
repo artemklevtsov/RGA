@@ -60,6 +60,7 @@ Collate:
     'zzz.R'
 Suggests:
     knitr,
+    rmarkdown,
     testthat,
     shiny
 VignetteBuilder: knitr
