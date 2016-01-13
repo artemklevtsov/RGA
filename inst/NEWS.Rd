@@ -7,6 +7,7 @@
     \item Fixed links in the \code{authorize()} related docs
     \item Fixed issues related with the \CRANpkg{httr} update
     \item Updated required minimal \CRANpkg{httr} version to 1.1.0
+    \item \CRANpkg{rmarkdown} package added as suggested dependencies
   }
 }
 
