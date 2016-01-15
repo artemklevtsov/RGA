@@ -35,6 +35,8 @@ validate_token <- function(token) {
         stop("Authorization error. Access token not found.")
     if (!inherits(token, "Token2.0"))
         stop(sprintf("Token is not a Token2.0 object. Found: %s.", class(token)))
+    if(!token$validate())
+        token$refresh()
     token$validate()
 }
 
