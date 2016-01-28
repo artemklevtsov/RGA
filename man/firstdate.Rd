@@ -4,10 +4,10 @@
 \alias{firstdate}
 \title{First Date}
 \usage{
-firstdate(profile.id, token)
+firstdate(profileId, token)
 }
 \arguments{
-\item{profile.id}{character. Google Analytics profile ID. Can be obtained using the \code{\link{list_profiles}} or via the web interface Google Analytics.}
+\item{profileId}{character. Google Analytics profile ID. Can be obtained using the \code{\link{list_profiles}} or via the web interface Google Analytics.}
 
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
 }
@@ -20,7 +20,7 @@ Get the first date with available data.
 \examples{
 \dontrun{
 authorize()
-first_date <- firstdate(profile.id = "profile_id")
+first_date <- firstdate(profileId = "profile_id")
 ga_data <- get_ga("profile_id", start.date = first_date, end.date = "today",
                   metrics = "ga:sessions", dimensions = "ga:source,ga:medium",
                   sort = "-ga:sessions")

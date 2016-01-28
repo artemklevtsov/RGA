@@ -7,16 +7,16 @@
 #' \item{id}{Account ID.}
 #' \item{kind}{Resource type for Analytics AccountSummary.}
 #' \item{name}{Account name.}
-#' \item{web.properties}{List of web properties under this account.}
-#' \item{web.properties.kind}{Resource type for Analytics WebPropertySummary.}
-#' \item{web.properties.id}{Web property ID of the form UA-XXXXX-YY.}
-#' \item{web.properties.name}{Web property name.}
-#' \item{web.properties.internal.webproperty.id}{Internal ID for this web property.}
-#' \item{web.properties.level}{Level for this web property. Possible values are STANDARD or PREMIUM.}
-#' \item{web.properties.website.url}{Website url for this web property.}
-#' \item{web.properties.profiles.kind}{Resource type for Analytics ProfileSummary.}
-#' \item{web.properties.profiles.id}{View (profile) ID.}
-#' \item{web.properties.profiles.name}{View (profile) name.}
-#' \item{web.properties.profiles.type}{View (Profile) type. Supported types: WEB or APP.}
+#' \item{webProperties}{List of web properties under this account.}
+#' \item{webProperties.kind}{Resource type for Analytics WebPropertySummary.}
+#' \item{webProperties.id}{Web property ID of the form UA-XXXXX-YY.}
+#' \item{webProperties.name}{Web property name.}
+#' \item{webProperties.internalWebPropertyId}{Internal ID for this web property.}
+#' \item{webProperties.level}{Level for this web property. Possible values are STANDARD or PREMIUM.}
+#' \item{webProperties.websiteUrl}{Website url for this web property.}
+#' \item{webProperties.profiles.kind}{Resource type for Analytics ProfileSummary.}
+#' \item{webProperties.profiles.id}{View (profile) ID.}
+#' \item{webProperties.profiles.name}{View (profile) name.}
+#' \item{webProperties.profiles.type}{View (Profile) type. Supported types: WEB or APP.}
 #' @references \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/accountSummaries}{Management API - Account Summaries Overview}
 #' @family Management API

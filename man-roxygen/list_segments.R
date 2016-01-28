@@ -6,7 +6,7 @@
 #' @return The Segments collection is a set of Segment resources, each of which describes one of the user's default advanced segments or custom segments.
 #' \item{id}{Segment ID.}
 #' \item{kind}{Resource type for Analytics segment.}
-#' \item{segment.id}{Segment ID. Can be used with the 'segment' parameter in Core Reporting API.}
+#' \item{segmentId}{Segment ID. Can be used with the 'segment' parameter in Core Reporting API.}
 #' \item{name}{Segment name.}
 #' \item{definition}{Segment definition.}
 #' \item{type}{Type for a segment. Possible values are "BUILT_IN" or "CUSTOM".}

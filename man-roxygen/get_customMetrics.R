@@ -1,15 +1,14 @@
 #' @title Custom Metrics
-#' @description Lists custom metrics to which the user has access.
-#' @param account.id character. Account ID for the custom metrics to retrieve.
-#' @param webproperty.id character. Web property ID for the custom metrics to retrieve.
-#' @param max.results integer. The maximum number of custom metrics to include in this response.
-#' @param start.index integer. An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+#' @description Get a custom metric to which the user has access.
+#' @param accountId character. Account ID for the custom metric to retrieve.
+#' @param customMetricId character. The ID of the custom metric to retrieve.
+#' @param webPropertyId character. Web property ID for the custom metric to retrieve.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
 #' @return
 #' \item{kind}{Kind value for a custom metric. Set to "analytics#customMetric". It is a read-only field.}
 #' \item{id}{Custom metric ID.}
-#' \item{account.id}{Account ID.}
-#' \item{webproperty.id}{Property ID.}
+#' \item{accountId}{Account ID.}
+#' \item{webPropertyId}{Property ID.}
 #' \item{name}{Name of the custom metric.}
 #' \item{index}{Index of the custom metric.}
 #' \item{scope}{Scope of the custom metric: HIT or PRODUCT.}

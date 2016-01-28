@@ -30,11 +30,6 @@ process_response <- function(response) {
         if (text == "")
             stop("No output to parse.", call. = FALSE)
         res <- jsonlite::fromJSON(text, flatten = TRUE)
-        res <- convert_types.list(res)
-        res <- convert_names(res)
-        idx <- sapply(res, is.list)[!grepl("^(rows|items)$", names(res))]
-        res[idx] <- lapply(res[idx], convert_types.list)
-        res[idx] <- lapply(res[idx], convert_names)
     } else {
         if (status_code == 404L)
             stop(sprintf("The requested URL not found. URL: %s.", strsplit(response$url, "?", fixed = TRUE)[[1L]][1L]), call. = FALSE)

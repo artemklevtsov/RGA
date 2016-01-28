@@ -23,13 +23,13 @@ get_data <- function(path = NULL, query = NULL, token) {
         pagination <- FALSE
     # Make request
     res <- api_request(get_url(path, query), token)
-    if (res$total.results == 0L || is.null(res[[items]]) || length(res[[items]]) == 0L)
+    if (res$totalResults == 0L || is.null(res[[items]]) || length(res[[items]]) == 0L)
         return(NULL)
     # Pagination
-    if (isTRUE(pagination) && query$max.results < res$total.results) {
+    if (isTRUE(pagination) && query$max.results < res$totalResults) {
         message(sprintf("API response contains more then %d items. Batch processing mode enabled.", query$max.results))
-        if (is.na(total) || total >= res$total.results)
-            total <- res$total.results
+        if (is.na(total) || total >= res$totalResults)
+            total <- res$totalResults
         sidx <- seq.int(query$start.index, total, query$max.results)
         midx <- diff(c(sidx, total + 1L))
         pages <- vector(mode = "list", length = length(sidx))
@@ -51,7 +51,7 @@ get_data <- function(path = NULL, query = NULL, token) {
         close(pb)
     }
     res[[items]] <- build_df(res)
-    if (nrow(res[[items]]) < res$total.results)
-        warning(sprintf("Only %d observations out of %d were obtained. Set max.results = NULL (default value) to get all results.", nrow(res[[items]]), res$total.results), call. = FALSE)
+    if (nrow(res[[items]]) < res$totalResults)
+        warning(sprintf("Only %d observations out of %d were obtained. Set max.results = NULL (default value) to get all results.", nrow(res[[items]]), res$totalResults), call. = FALSE)
     return(res)
 }

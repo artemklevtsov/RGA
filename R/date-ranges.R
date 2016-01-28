@@ -21,6 +21,7 @@ parse_date <- function(x) {
 }
 
 #' @include get-data.R
+#' @include utils.R
 fetch_by <- function(path, query, by, token) {
     query$start.date <- parse_date(query$start.date)
     query$end.date <- parse_date(query$end.date)
@@ -40,13 +41,14 @@ fetch_by <- function(path, query, by, token) {
     }
     res <- pages[[1]]
     res$rows <- plyr::rbind.fill(lapply(pages, .subset2, "rows"))
-    res$query$start.date <- pages[[1]]$query$start.date
-    res$query$end.date <- pages[[n]]$query$end.date
-    res$total.results <- sum(unlist(lapply(pages, .subset2, "total.results")))
-    res$contains.sampled.data <- any(unlist(lapply(pages, .subset2, "contains.sampled.data")))
-    if (isTRUE(res$contains.sampled.data)) {
-        res$sample.size <- sum(unlist(lapply(pages, .subset2, "sample.size")))
-        res$sample.space <- sum(unlist(lapply(pages, .subset2, "sample.space")))
+    names(res$query) <- rename_params(names(res$query))
+    res$query$start.date <- pages[[1]]$query$`start-date`
+    res$query$end.date <- pages[[n]]$query$`end-date`
+    res$totalResults <- sum_by(pages, "totalResults")
+    res$containsSampledData <- any(unlist(lapply(pages, .subset2, "containsSampledData")))
+    if (isTRUE(res$containsSampledData)) {
+        res$sampleSize <- sum_by(pages, "sampleSize")
+        res$sampleSpace <- sum_by(pages, "sampleSpace")
     }
     if (is.null(query$dimensions))
         res$rows <- as.data.frame(as.list(colSums(res$rows)))

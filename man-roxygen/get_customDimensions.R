@@ -1,14 +1,14 @@
 #' @title Custom Dimensions
 #' @description Get a custom dimension to which the user has access.
-#' @param account.id character. Account ID for the custom dimension to retrieve.
-#' @param custom.dimension.id character. The ID of the custom dimension to retrieve.
-#' @param webproperty.id character. Web property ID for the custom dimension to retrieve.
+#' @param accountId character. Account ID for the custom dimension to retrieve.
+#' @param customDimensionId character. The ID of the custom dimension to retrieve.
+#' @param webPropertyId character. Web property ID for the custom dimension to retrieve.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
 #' @return
 #' \item{kind}{Kind value for a custom dimension. Set to "analytics#customDimension". It is a read-only field.}
 #' \item{id}{Custom dimension ID.}
-#' \item{account.id}{Account ID.}
-#' \item{webproperty.id}{Property ID.}
+#' \item{accountId}{Account ID.}
+#' \item{webPropertyId}{Property ID.}
 #' \item{name}{Name of the custom dimension.}
 #' \item{index}{Index of the custom dimension.}
 #' \item{scope}{Scope of the custom dimension: HIT, SESSION, USER or PRODUCT.}

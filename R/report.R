@@ -10,12 +10,12 @@ get_first_profile <- function(token) {
 #' @include get-data.R
 #' @include profiles.R
 get_report <- function(path, query, token, by = NULL) {
-    if (is.null(query$profile.id)) {
-        query$profile.id <- get_first_profile(token)
-        warning(sprintf("'profile.id' was missing. Used first found 'profile.id': %s", paste0("ga:", query$profile.id)), call. = FALSE)
+    if (is.null(query$profileId)) {
+        query$profileId <- get_first_profile(token)
+        warning(sprintf("'profileId' was missing. Used first found 'profileId': %s", paste0("ga:", query$profileId)), call. = FALSE)
     }
-    if (!grepl("^ga:", query$profile.id))
-        query$profile.id <- paste0("ga:", query$profile.id)
+    if (!grepl("^ga:", query$profileId))
+        query$profileId <- paste0("ga:", query$profileId)
     if (!is.null(by))
         json_content <- fetch_by(path, query, by, token)
     else
@@ -27,27 +27,27 @@ get_report <- function(path, query, token, by = NULL) {
     res <- json_content$rows
     # Convert dates to POSIXct with timezone defined in the GA profile
     if (any(grepl("date", names(res), fixed = TRUE))) {
-        timezone <- get_profile(json_content$profile.info$account.id,
-                                json_content$profile.info$webproperty.id,
-                                json_content$profile.info$profile.id, token)$timezone
-        if (!is.null(res$date.hour))
-            res$date.hour <- lubridate::ymd_h(res$date.hour, tz = timezone)
+        profile <- json_content$profileInfo
+        timezone <- get_profile(profile$accountId, profile$webPropertyId, profile$profileId, token)$timezone
+        if (!is.null(res$dateHour))
+            res$dateHour <- lubridate::ymd_h(res$dateHour, tz = timezone)
         if (!is.null(res[["date"]]))
             res[["date"]] <- lubridate::ymd(res[["date"]], tz = timezone)
-        if (!is.null(res$conversion.date))
-            res$conversion.date <- lubridate::ymd(res$conversion.date, tz = timezone)
+        if (!is.null(res$conversionDate))
+            res$conversionDate <- lubridate::ymd(res$conversionDate, tz = timezone)
     }
-    attr(res, "profile.info") <- json_content$profile.info
-    attr(res, "query") <- fix_query(json_content$query)
-    attr(res, "sampled") <- json_content$contains.sampled.data
+    attr(res, "profileInfo") <- json_content$profileInfo
+    names(json_content$query) <- rename_params(names(json_content$query))
+    attr(res, "query") <- json_content$query
+    attr(res, "sampled") <- json_content$containsSampledData
     if (!is.null(json_content$contains.sampled.data) && isTRUE(json_content$contains.sampled.data)) {
-        attr(res, "sample.size") <- json_content$sample.size
-        attr(res, "sample.space") <- json_content$sample.space
-        sample_perc <- json_content$sample.size / json_content$sample.space * 100
+        attr(res, "sample.size") <- json_content$sampleSize
+        attr(res, "sample.space") <- json_content$sampleSpace
+        samplePerc <- json_content$sampleSize / json_content$sampleSpace * 100
         if (is.null(by))
-            warning(sprintf("Data contains sampled data. Used %d sessions (%1.0f%% of sessions). Try to use the 'fetch.by' param to avoid sampling.", json_content$sample.size, sample_perc), call. = FALSE)
+            warning(sprintf("Data contains sampled data. Used %d sessions (%1.0f%% of sessions). Try to use the 'fetch.by' param to avoid sampling.", json_content$sampleSize, samplePerc), call. = FALSE)
         else
-            warning(sprintf("Data contains sampled data. Used %d sessions (%1.0f%% of sessions).", json_content$sample.size, sample_perc), call. = FALSE)
+            warning(sprintf("Data contains sampled data. Used %d sessions (%1.0f%% of sessions).", json_content$sampleSize, samplePerc), call. = FALSE)
     }
     return(res)
 }

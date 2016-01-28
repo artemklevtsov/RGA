@@ -3,23 +3,23 @@
 #' @description
 #' This dataset represents all of the dimensions and metrics for the reporting API with their attributes. Attributes returned include UI name, description, segments support, etc.
 #'
-#' @param report.type character. Report type. Allowed Values: "ga". Where "ga" corresponds to the Core Reporting API.
+#' @param reportType character. Report type. Allowed Values: "ga". Where "ga" corresponds to the Core Reporting API.
 #'
 #' @return A data.frame contains dimensions and metrics for a particular report type.
 #' \item{id}{Parameter name.}
 #' \item{type}{The type of column: \code{DIMENSION}, \code{METRIC}.}
-#' \item{data.type}{The type of data this column represents: \code{STRING}, \code{INTEGER}, \code{PERCENT}, \code{TIME}, \code{CURRENCY}, \code{FLOAT}.}
+#' \item{dataType}{The type of data this column represents: \code{STRING}, \code{INTEGER}, \code{PERCENT}, \code{TIME}, \code{CURRENCY}, \code{FLOAT}.}
 #' \item{group}{The dimensions/metrics group the column belongs to.}
 #' \item{status}{The status of the column: \code{PUBLIC}, \code{DEPRECATED}.}
-#' \item{ui.name}{The name/label of the column used in user interfaces (UI).}
+#' \item{uiName}{The name/label of the column used in user interfaces (UI).}
 #' \item{description}{The full description of the column.}
-#' \item{allowed.in.segments }{Indicates whether the column can be used in the segment query parameter.}
-#' \item{replaced.by}{The replacement column to use for a column with a \code{DEPRECATED} status.}
+#' \item{allowedInSegments}{Indicates whether the column can be used in the segment query parameter.}
+#' \item{replacedBy}{The replacement column to use for a column with a \code{DEPRECATED} status.}
 #' \item{calculation}{Only available for calculated metrics. This shows how the metric is calculated.}
-#' \item{min.template.index}{Only available for templatized columns. This is the minimum index for the column.}
-#' \item{max.template.index}{Only available for templatized columns. This is the maximum index for the column.}
-#' \item{premium.min.template.index}{Only available for templatized columns. This is the minimum index for the column for premium properties.}
-#' \item{premium.max.template.index}{Only available for templatized columns. This is the maximum index for the column for premium properties.}
+#' \item{minTemplateIndex}{Only available for templatized columns. This is the minimum index for the column.}
+#' \item{maxTemplateIndex}{Only available for templatized columns. This is the maximum index for the column.}
+#' \item{premiumMinTemplateIndex}{Only available for templatized columns. This is the minimum index for the column for premium properties.}
+#' \item{premiumMaxTemplateIndex}{Only available for templatized columns. This is the maximum index for the column for premium properties.}
 #'
 #' @seealso \code{\link{shiny_dimsmets}} \code{\link{get_ga}}
 #'
@@ -36,27 +36,28 @@
 #' # parameters groups
 #' table(ga_meta$group)
 #' # get a deprecated parameters was replaced by
-#' subset(ga_meta, status == "DEPRECATED", c(id, replaced.by))
+#' subset(ga_meta, status == "DEPRECATED", c(id, replacedBy))
 #' # get a calculation metrics
 #' subset(ga_meta, !is.na(calculation), c(id, calculation))
 #' # get a not deprecated metrics from user group
 #' subset(ga_meta, group == "User" & type == "METRIC" & status != "DEPRECATED", id)
 #' # get parameters allowed in segments
-#' subset(ga_meta, allowed.in.segments, id)
+#' subset(ga_meta, allowedInSegments, id)
 #' }
 #'
 #' @include url.R
 #' @include request.R
-#' @include utils.R
 #' @export
-list_dimsmets <- function(report.type = "ga") {
-    url <- get_url(c("metadata", report.type, "columns"))
+list_dimsmets <- function(reportType = "ga") {
+    url <- get_url(c("metadata", reportType, "columns"))
     response <- httr::GET(url)
     json_content <- process_response(response)
     res <- json_content$items
     res$kind <- NULL
-    res <- convert_types.data.frame(res)
-    names(res) <- to_separated(gsub("attributes.", "", names(res), fixed = TRUE), ".")
+    names(res) <- gsub("attributes.", "", names(res), fixed = TRUE)
+    res$allowedInSegments <- as.logical(res$allowedInSegments)
+    tocenvert <- grep("TemplateIndex", names(res), fixed = TRUE)
+    res[tocenvert] <- lapply(res[tocenvert], as.integer)
     return(res)
 }
 
@@ -88,18 +89,18 @@ shiny_dimsmets <- function() {
 #' \describe{
 #' \item{id}{Parameter name.}
 #' \item{type}{The type of column: \code{DIMENSION}, \code{METRIC}.}
-#' \item{data.type}{The type of data this column represents: \code{STRING}, \code{INTEGER}, \code{PERCENT}, \code{TIME}, \code{CURRENCY}, \code{FLOAT}.}
+#' \item{dataType}{The type of data this column represents: \code{STRING}, \code{INTEGER}, \code{PERCENT}, \code{TIME}, \code{CURRENCY}, \code{FLOAT}.}
 #' \item{group}{The dimensions/metrics group the column belongs to.}
 #' \item{status}{The status of the column: \code{PUBLIC}, \code{DEPRECATED}.}
-#' \item{ui.name}{The name/label of the column used in user interfaces (UI).}
+#' \item{uiName}{The name/label of the column used in user interfaces (UI).}
 #' \item{description}{The full description of the column.}
-#' \item{allowed.in.segments}{Indicates whether the column can be used in the segment query parameter.}
-#' \item{replaced.by}{The replacement column to use for a column with a \code{DEPRECATED} status.}
+#' \item{allowedInSegments}{Indicates whether the column can be used in the segment query parameter.}
+#' \item{replacedBy}{The replacement column to use for a column with a \code{DEPRECATED} status.}
 #' \item{calculation}{Only available for calculated metrics. This shows how the metric is calculated.}
-#' \item{min.template.index}{Only available for templatized columns. This is the minimum index for the column.}
-#' \item{max.template.index}{Only available for templatized columns. This is the maximum index for the column.}
-#' \item{premium.min.template.index}{Only available for templatized columns. This is the minimum index for the column for premium properties.}
-#' \item{premium.max.template.index}{Only available for templatized columns. This is the maximum index for the column for premium properties.}
+#' \item{minTemplateIndex}{Only available for templatized columns. This is the minimum index for the column.}
+#' \item{maxTemplateIndex}{Only available for templatized columns. This is the maximum index for the column.}
+#' \item{premiumMinTemplateIndex}{Only available for templatized columns. This is the minimum index for the column for premium properties.}
+#' \item{premiumMaxTemplateIndex}{Only available for templatized columns. This is the maximum index for the column for premium properties.}
 #' }
 #'
 #' @source \url{https://www.googleapis.com/analytics/v3/metadata/ga/columns?pp=1}
@@ -121,11 +122,11 @@ shiny_dimsmets <- function() {
 #' # parameters groups
 #' table(ga$group)
 #' # get a deprecated parameters was replaced by
-#' subset(ga, status == "DEPRECATED", c(id, replaced.by))
+#' subset(ga, status == "DEPRECATED", c(id, replacedBy))
 #' # get a calculation metrics
 #' subset(ga, !is.na(calculation), c(id, calculation))
 #' # get a not deprecated metrics from user group
 #' subset(ga, group == "User" & type == "METRIC" & status != "DEPRECATED", id)
 #' # get parameters allowed in segments
-#' subset(ga, allowed.in.segments, id)
+#' subset(ga, allowedInSegments, id)
 NULL

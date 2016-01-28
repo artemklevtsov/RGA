@@ -48,14 +48,9 @@ to_separated <- function(x, sep = ".") {
 }
 
 rename_params <- function(x) {
-    x <- gsub("PropertyId", "propertyId", x, fixed = TRUE)
-    x <- gsub("ids", "profile.id", x, fixed = TRUE)
-    x <- gsub("start-date", "start.date", x, fixed = TRUE)
-    x <- gsub("end-date", "end.date", x, fixed = TRUE)
-    x <- gsub("max-results", "max.results", x, fixed = TRUE)
-    x <- gsub("start-index", "start.index", x, fixed = TRUE)
-    x <- gsub("include-empty-rows", "include.empty.rows", x, fixed = TRUE)
-    to_separated(x)
+    x <- gsub("ids", "profileId", x, fixed = TRUE)
+    x <- gsub("-", ".", x, fixed = TRUE)
+    return(x)
 }
 
 convert_names <- function(x) {
@@ -91,4 +86,8 @@ convert_types.data.frame <- function(x) {
 
 parse_params <- function(x) {
     rename_params(gsub("^[a-z]+:", "", unlist(strsplit(x, ",", fixed = TRUE))))
+}
+
+sum_by <- function(x, name) {
+    sum(vapply(x, function(x) x[[name]], numeric(1)))
 }

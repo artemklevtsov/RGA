@@ -28,16 +28,16 @@
 #' @include date-ranges.R
 #' @include report.R
 #' @export
-get_mcf <- function(profile.id = getOption("rga.profile.id"),
+get_mcf <- function(profileId = getOption("rga.profileId"),
                     start.date = "7daysAgo", end.date = "yesterday",
                     metrics = "mcf:totalConversions", dimensions = NULL,
-                    sort = NULL, filters = NULL, sampling.level = NULL,
+                    sort = NULL, filters = NULL, samplingLevel = NULL,
                     start.index = NULL, max.results = NULL, fetch.by = NULL, token) {
-    if (!is.null(sampling.level))
+    if (!is.null(samplingLevel))
         sampling.level <- match.arg(sampling.level, c("DEFAULT", "FASTER", "HIGHER_PRECISION"))
-    query <- build_query(profile.id = profile.id, start.date = start.date, end.date = end.date,
+    query <- build_query(profileId = profileId, start.date = start.date, end.date = end.date,
                          metrics = metrics, dimensions = dimensions, sort = sort, filters = filters,
-                         sampling.level = sampling.level,
+                         samplingLevel = samplingLevel,
                          start.index = start.index, max.results = max.results)
     res <- get_report("data/mcf", query, token, fetch.by)
     return(res)

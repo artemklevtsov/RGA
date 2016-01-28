@@ -1,17 +1,17 @@
 #' @template get_experiments
 #' @include mgmt.R
 #' @export
-get_experiment <- function(account.id, webproperty.id, profile.id, experiment.id, token) {
+get_experiment <- function(accountId, webPropertyId, profileId, experimentId, token) {
     path <- sprintf("management/accounts/%s/webproperties/%s/profiles/%s/experiments/%s",
-                    account.id, webproperty.id, profile.id, experiment.id)
+                    accountId, webPropertyId, profileId, experimentId)
     get_mgmt(path, token)
 }
 
 #' @template list_experiments
 #' @include mgmt.R
 #' @export
-list_experiments <- function(account.id, webproperty.id, profile.id, start.index = NULL, max.results = NULL, token) {
+list_experiments <- function(accountId, webPropertyId, profileId, start.index = NULL, max.results = NULL, token) {
     path <- sprintf("management/accounts/%s/webproperties/%s/profiles/%s/experiments",
-                    account.id, webproperty.id, profile.id)
+                    accountId, webPropertyId, profileId)
     list_mgmt(path, list(start.index = start.index, max.results = max.results), token)
 }

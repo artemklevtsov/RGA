@@ -4,15 +4,15 @@
 \alias{list_uploads}
 \title{Uploads}
 \usage{
-list_uploads(account.id, webproperty.id, custom.data.source.id,
-  start.index = NULL, max.results = NULL, token)
+list_uploads(accountId, webPropertyId, customDataSourceId, start.index = NULL,
+  max.results = NULL, token)
 }
 \arguments{
-\item{account.id}{character. Account Id for the uploads to retrieve.}
+\item{accountId}{character. Account Id for the uploads to retrieve.}
 
-\item{webproperty.id}{character. Web property Id for the uploads to retrieve.}
+\item{webPropertyId}{character. Web property Id for the uploads to retrieve.}
 
-\item{custom.data.source.id}{character. Custom data source Id for uploads to retrieve.}
+\item{customDataSourceId}{character. Custom data source Id for uploads to retrieve.}
 
 \item{start.index}{integer. A 1-based index of the first upload to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.}
 
@@ -24,8 +24,8 @@ list_uploads(account.id, webproperty.id, custom.data.source.id,
 The Uploads collection is a set of Upload resources, each of which describes an upload for one of the user's custom data sources. This resource should be used when uploading Dimension Widening data.
 \item{id}{A unique ID for this upload.}
 \item{kind}{Resource type for Analytics upload.}
-\item{account.id}{Account Id to which this upload belongs.}
-\item{custom.data.source.id}{Custom data source Id to which this data import belongs.}
+\item{accountId}{Account Id to which this upload belongs.}
+\item{customDataSourceId}{Custom data source Id to which this data import belongs.}
 \item{status}{Upload status. Possible values: PENDING, COMPLETED, FAILED, DELETING, DELETED.}
 \item{errors}{Data import errors collection.}
 }

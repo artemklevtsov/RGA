@@ -11,8 +11,7 @@ get_url <- function(path = NULL, query = NULL) {
     if (is.list(query)) {
         query <- compact(query)
         params <- names(query)
-        params <- sub("profile.id", "ids", params, fixed = TRUE)
-        params <- sub("sampling.level", "samplingLevel", params, fixed = TRUE)
+        params <- sub("profileId", "ids", params, fixed = TRUE)
         params <- gsub(".", "-", params, fixed = TRUE)
         names(query) <- params
     }

@@ -1,6 +1,6 @@
 # Remove some field and convert dates
 fix_mgmt <- function(x) {
-    x <- x[!grepl("(self|parent|child)\\.link", names(x))]
+    x <- x[!grepl("(self|parent|child)Link", names(x))]
     if (!is.null(x$created))
         x$created <- lubridate::ymd_hms(x$created)
     if (!is.null(x$updated))

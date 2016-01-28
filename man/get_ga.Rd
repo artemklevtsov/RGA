@@ -4,14 +4,14 @@
 \alias{get_ga}
 \title{Core Reporting API}
 \usage{
-get_ga(profile.id = getOption("rga.profile.id"), start.date = "7daysAgo",
+get_ga(profileId = getOption("rga.profileId"), start.date = "7daysAgo",
   end.date = "yesterday", metrics = c("ga:users", "ga:sessions",
   " ga:pageviews"), dimensions = NULL, sort = NULL, filters = NULL,
-  segment = NULL, sampling.level = NULL, start.index = NULL,
+  segment = NULL, samplingLevel = NULL, start.index = NULL,
   max.results = NULL, include.empty.rows = NULL, fetch.by = NULL, token)
 }
 \arguments{
-\item{profile.id}{character. Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID. Can be obtained using the \code{\link{list_profiles}} or via the web interface Google Analytics.}
+\item{profileId}{character. Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID. Can be obtained using the \code{\link{list_profiles}} or via the web interface Google Analytics.}
 
 \item{start.date}{character. Start date for fetching Analytics data. Request can specify a start date formatted as "YYYY-MM-DD" or as a relative date (e.g., "today", "yesterday", or "7daysAgo"). The default value is "7daysAgo".}
 
@@ -27,7 +27,7 @@ get_ga(profile.id = getOption("rga.profile.id"), start.date = "7daysAgo",
 
 \item{segment}{character. An Analytics segment to be applied to data. Can be obtained using the \code{\link{list_segments}} or via the web interface Google Analytics.}
 
-\item{sampling.level}{character. The desired sampling level. Allowed values: "DEFAULT", "FASTER", "HIGHER_PRECISION".}
+\item{samplingLevel}{character. The desired sampling level. Allowed values: "DEFAULT", "FASTER", "HIGHER_PRECISION".}
 
 \item{start.index}{integer. An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.}
 

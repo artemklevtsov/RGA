@@ -36,20 +36,20 @@
 #' @include date-ranges.R
 #' @include report.R
 #' @export
-get_ga <- function(profile.id = getOption("rga.profile.id"),
+get_ga <- function(profileId = getOption("rga.profileId"),
                    start.date = "7daysAgo", end.date = "yesterday",
                    metrics = c("ga:users", "ga:sessions"," ga:pageviews"), dimensions = NULL,
-                   sort = NULL, filters = NULL, segment = NULL, sampling.level = NULL,
+                   sort = NULL, filters = NULL, segment = NULL, samplingLevel = NULL,
                    start.index = NULL, max.results = NULL, include.empty.rows = NULL,
                    fetch.by = NULL, token) {
-    if (!is.null(sampling.level))
+    if (!is.null(samplingLevel))
         sampling.level <- match.arg(sampling.level, c("DEFAULT", "FASTER", "HIGHER_PRECISION"))
     if (!is.null(include.empty.rows))
         include.empty.rows <- match.arg(include.empty.rows, c(TRUE, FALSE))
-    query <- build_query(profile.id = profile.id, start.date = start.date, end.date = end.date,
+    query <- build_query(profileId = profileId, start.date = start.date, end.date = end.date,
                          metrics = metrics, dimensions = dimensions,
                          sort = sort, filters = filters, segment = segment,
-                         sampling.level = sampling.level,
+                         samplingLevel = samplingLevel,
                          include.empty.rows = tolower(include.empty.rows),
                          start.index = start.index, max.results = max.results)
     res <- get_report("data/ga", query, token, fetch.by)
