@@ -2,12 +2,12 @@ context("Convert Core Reporting API response")
 
 ga_data <- structure(list(
     kind = "analytics#gaData",
-    total.results = 8L, contains.sampled.data = FALSE,
-    column.headers = structure(list(
+    totalResults = 8L, contains.sampled.data = FALSE,
+    columnHeaders = structure(list(
         name = c("ga:date", "ga:users", "ga:sessions", "ga:pageviews"),
-        column.type = c("DIMENSION", "METRIC", "METRIC", "METRIC"),
-        data.type = c("STRING", "INTEGER", "INTEGER", "INTEGER")),
-        .Names = c("name", "column.type", "data.type"),
+        columnType = c("DIMENSION", "METRIC", "METRIC", "METRIC"),
+        dataType = c("STRING", "INTEGER", "INTEGER", "INTEGER")),
+        .Names = c("name", "columnType", "dataType"),
         class = "data.frame",
         row.names = c(NA, 4L)),
     rows = structure(c(
@@ -17,7 +17,7 @@ ga_data <- structure(list(
         "2159", "2038", "2345", "2866", "3066", "462", "4045", "4557",
         "4856", "5024", "5791", "7134", "7381", "1167"),
         .Dim = c(8L, 4L))),
-    .Names = c("kind", "total.results", "contains.sampled.data", "column.headers", "rows"))
+    .Names = c("kind", "totalResults", "containsSampledData", "columnHeaders", "rows"))
 
 ga_df <- build_df(ga_data)
 
@@ -31,5 +31,5 @@ test_that("Data frame dimensions", {
 })
 
 test_that("Columns types", {
-    expect_true(all(sapply(ga_df, is.integer)))
+    expect_equivalent(sapply(ga_df, class), c("character", "integer", "integer", "integer"))
 })

@@ -2,13 +2,13 @@ context("Convert MCF Reporting API response")
 
 mcf_data <- structure(list(
     kind = "analytics#mcfData",
-    total.results = 3L,
-    contains.sampled.data = FALSE,
-    column.headers = structure(list(
+    totalResults = 3L,
+    containsSampledData = FALSE,
+    columnHeaders = structure(list(
         name = c("mcf:medium", "mcf:totalConversions", "mcf:totalConversionValue"),
         column.type = c("DIMENSION", "METRIC", "METRIC"),
         data.type = c("STRING", "INTEGER", "CURRENCY")),
-        .Names = c("name", "column.type", "data.type"),
+        .Names = c("name", "columnType", "dataType"),
         class = "data.frame",
         row.names = c(NA, 3L)),
     rows = list(
@@ -27,7 +27,7 @@ mcf_data <- structure(list(
             .Names = "primitiveValue",
             class = "data.frame",
             row.names = c(NA, 3L)))),
-    .Names = c("kind", "total.results", "contains.sampled.data", "column.headers", "rows"))
+    .Names = c("kind", "totalResults", "containsSampledData", "columnHeaders", "rows"))
 
 
 mcf_df <- build_df(mcf_data)
@@ -49,19 +49,19 @@ test_that("Columns types", {
 
 mcf_data <- structure(list(
     kind = "analytics#mcfData",
-    total.results = 542L, contains.sampled.data = FALSE,
-    column.headers = structure(list(
+    totalResults = 542L, containsSampledData = FALSE,
+    columnHeaders = structure(list(
         name = c("mcf:mediumPath", "mcf:totalConversions", "mcf:totalConversionValue"),
         column.type = c("DIMENSION", "METRIC", "METRIC"), data.type = c("MCF_SEQUENCE", "INTEGER", "CURRENCY")),
-        .Names = c("name", "column.type", "data.type"),
+        .Names = c("name", "columnType", "dataType"),
         class = "data.frame",
         row.names = c(NA, 3L)),
     rows = list(
         structure(list(
             conversionPathValue = list(
                 structure(list(
-                    node.value = "(none)"),
-                    .Names = "node.value",
+                    nodeValue = "(none)"),
+                    .Names = "nodeValue",
                     class = "data.frame",
                     row.names = 1L),
                 NULL, NULL),
@@ -72,8 +72,8 @@ mcf_data <- structure(list(
         structure(list(
             conversionPathValue = list(
                 structure(list(
-                    node.value = c("(none)", "(none)")),
-                    .Names = "node.value",
+                    nodeValue = c("(none)", "(none)")),
+                    .Names = "nodeValue",
                     class = "data.frame",
                     row.names = 1:2),
                 NULL, NULL),
@@ -84,8 +84,8 @@ mcf_data <- structure(list(
         structure(list(
             conversionPathValue = list(
                 structure(list(
-                    node.value = c("(none)", "(none)", "(none)")),
-                    .Names = "node.value",
+                    nodeValue = c("(none)", "(none)", "(none)")),
+                    .Names = "nodeValue",
                     class = "data.frame",
                     row.names = c(NA, 3L)), NULL, NULL),
             primitiveValue = c(NA, "45", "0.0")),
@@ -95,8 +95,8 @@ mcf_data <- structure(list(
         structure(list(
             conversionPathValue = list(
                 structure(list(
-                    node.value = c("(none)", "(none)", "(none)", "(none)")),
-                    .Names = "node.value",
+                    nodeValue = c("(none)", "(none)", "(none)", "(none)")),
+                    .Names = "nodeValue",
                     class = "data.frame",
                     row.names = c(NA, 4L)),
                 NULL, NULL),
@@ -107,8 +107,8 @@ mcf_data <- structure(list(
         structure(list(
             conversionPathValue = list(
                 structure(list(
-                    node.value = c("(none)", "(none)", "(none)", "(none)", "(none)")),
-                    .Names = "node.value",
+                    nodeValue = c("(none)", "(none)", "(none)", "(none)", "(none)")),
+                    .Names = "nodeValue",
                     class = "data.frame",
                     row.names = c(NA, 5L)),
                 NULL, NULL),
@@ -116,7 +116,7 @@ mcf_data <- structure(list(
             .Names = c("conversionPathValue", "primitiveValue"),
             class = "data.frame",
             row.names = c(NA, 3L)))),
-    .Names = c("kind", "total.results", "contains.sampled.data", "column.headers", "rows"))
+    .Names = c("kind", "totalResults", "containsSampledData", "columnHeaders", "rows"))
 
 
 mcf_df <- build_df(mcf_data)

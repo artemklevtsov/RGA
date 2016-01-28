@@ -1,11 +1,11 @@
 context("Metadata Reporting API response")
 
-ga_data <- list_dimsmets(report.type = "ga")
+ga_data <- list_dimsmets(reportType = "ga")
 
 test_that("Result class", {
     expect_is(ga_data, "data.frame")
-    expect_is(ga_data$allowed.in.segments, "logical")
-    expect_is(ga_data$min.template.index, "integer")
+    expect_is(ga_data$allowedInSegments, "logical")
+    expect_is(ga_data$minTemplateIndex, "integer")
 })
 
 test_that("Data frame dimensions", {
@@ -13,5 +13,5 @@ test_that("Data frame dimensions", {
 })
 
 test_that("Columns names", {
-    expect_equal(names(ga_data), c("id", "type", "data.type", "group", "status", "ui.name", "description", "allowed.in.segments", "replaced.by", "calculation", "min.template.index", "max.template.index", "premium.min.template.index", "premium.max.template.index"))
+    expect_equal(names(ga_data), c("id", "type", "dataType", "group", "status", "uiName", "description", "allowedInSegments", "replacedBy", "calculation", "minTemplateIndex", "maxTemplateIndex", "premiumMinTemplateIndex", "premiumMaxTemplateIndex"))
 })
