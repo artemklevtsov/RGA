@@ -12,14 +12,10 @@ urls <- read_html(base_url) %>%
     str_subset("#resource") %>% str_replace_all("#resource", "") %>%
     str_c("https://developers.google.com", .)
 
-to_separated <- function(x, sep = ".") {
-    x <- gsub("PropertyId", "propertyId", x, fixed = TRUE)
+rename_params <- function(x) {
+    x <- gsub("ids", "profileId", x, fixed = TRUE)
     x <- gsub("-", ".", x, fixed = TRUE)
-    x <- gsub("ids", "profile.id", x, fixed = TRUE)
-    x <- gsub("(.)([[:upper:]][[:lower:]]+)", paste0("\\1", sep, "\\2"), x)
-    x <- gsub("([[:lower:][:digit:]])([[:upper:]])", paste0("\\1", sep, "\\2"), x)
-    x <- gsub(paste0("\\", sep, "+"), sep, x)
-    return(tolower(x))
+    return(x)
 }
 
 get_return <- function(x) {
@@ -32,8 +28,8 @@ get_return <- function(x) {
     tbl <- tbl[match(prop_names, tbl$`Property name`), ]
     title <- x %>% html_nodes("section#overview p") %>% html_text(trim = TRUE) %>% extract(1)
     title <- sprintf("#' @return %s", title)
-    items <- sprintf("#' \\item{%s}{%s}", tbl$`Property name` %>% to_separated(), tbl$Description)
-    items %<>% extract(items %>% str_detect("self.link|parent.link|child.link") %>% not())
+    items <- sprintf("#' \\item{%s}{%s}", tbl$`Property name` %>% rename_params(), tbl$Description)
+    items %<>% extract(items %>% str_detect("selfLink|parentLink|childLink") %>% not())
     c(title, items)
 }
 
@@ -55,7 +51,7 @@ get_params <- function(x) {
     tbl <- x %>% html_nodes("table#request_parameters") %>%
         html_table(fill = TRUE) %>% extract2(1) %>% na.omit()
     tbl$Value %<>% str_replace_all("string", "character") %>% str_replace_all("boolean", "logical")
-    tbl$`Parameter name` %<>% to_separated() %>% tolower()
+    tbl$`Parameter name` %<>% rename_params()
     params <- sprintf("#' @param %s %s. %s", tbl$`Parameter name`, tbl$Value, tbl$Description)
     token <- "#' @param token \\code{\\link[httr]{Token2.0}} class object with a valid authorization data."
     c(params, token)
@@ -63,7 +59,7 @@ get_params <- function(x) {
 
 get_man <- function(url) {
     html <- read_html(url)
-    nm <- url %>% str_split("/management/") %>% unlist() %>% extract(2) %>% to_separated(sep = "_")
+    nm <- url %>% str_split("/management/") %>% unlist() %>% extract(2)
     title <- get_title(html)
     values <- get_return(html)
     descs <- get_methods(html)
