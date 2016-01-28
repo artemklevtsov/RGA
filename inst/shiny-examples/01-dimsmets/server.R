@@ -11,7 +11,7 @@ shinyServer(function(input, output) {
         if (input$calc)
             ga <- ga[!is.na(ga$calculation),]
         if (input$segments)
-            ga <- ga[ga$allowed.in.segments,]
+            ga <- ga[ga$allowedInSegments,]
         if (!is.null(input$columns))
             selected <- c(selected, input$columns)
         ga[, selected, drop = FALSE]
