@@ -25,18 +25,18 @@ When working with the API reports it is sometimes necessary to obtain background
 
 * `id` - the parameter code name (metric or dimension) (used for queries);
 * `type` - parameter type: metric (METRIC) or dimension (DIMENSION);
-* `data.type` - data type: STRING, INTEGER, PERCENT, TIME, CURRENCY, FLOAT;
+* `dataType` - data type: STRING, INTEGER, PERCENT, TIME, CURRENCY, FLOAT;
 * `group` - group of parameters (ex. User, Session, Traffic Sources);
 * `status` - status: actual (PUBLIC) or outdated (DEPRECATED);
-* `ui.name` - parameter name (not used for queries);
+* `uiName` - parameter name (not used for queries);
 * `description` - parameter description;
-* `allowed.in.segments` - whether the parameter can be used in the segments;
-* `replaced.by` - name of the replacement parameter, if the parameter is deprecated;
+* `allowedInSegments` - whether the parameter can be used in the segments;
+* `replacedBy` - name of the replacement parameter, if the parameter is deprecated;
 * `calculation` - formula of calculating the parameter value, if the parameter is calculated based on other parameters;
-* `min.template.index` - if the parameter contains a numeric index, the minimum parameter index;
-* `max.template.index` - if the parameter contains a numeric index, the maximum parameter index;
-* `premium.min.template.index` - if the parameter contains a numeric index, a minimum index for the parameter;
-* `premium.max.template.index` - if the parameter contains a numeric index, a maximum index for the parameter.
+* `minTemplateIndex` - if the parameter contains a numeric index, the minimum parameter index;
+* `maxTemplateIndex` - if the parameter contains a numeric index, the maximum parameter index;
+* `premiumMinTemplateIndex` - if the parameter contains a numeric index, a minimum index for the parameter;
+* `premiumMaxTemplateIndex` - if the parameter contains a numeric index, a maximum index for the parameter.
 
 There are several examples of usage the metadata Google Analytics API.
 
@@ -51,7 +51,7 @@ ga_meta <- list_dimsmets()
 List of all outdated parameters and those ones which were replaced:
 
 ```r
-subset(ga_meta, status == "DEPRECATED", c(id, replaced.by))
+subset(ga_meta, status == "DEPRECATED", c(id, replacedBy.by))
 ```
 
 List of all parameters from certain group:
@@ -69,13 +69,13 @@ subset(ga_meta, !is.na(calculation), c(id, calculation))
 List of all parameters allowed in segments:
 
 ```r
-subset(ga_meta, allowed.in.segments, id)
+subset(ga_meta, allowedInSegments, id)
 ```
 
 List of all templatized parameters:
 
 ```r
-subset(ga_meta, !is.na(min.template.index) & !is.na(max.template.index), id)
+subset(ga_meta, !is.na(minTemplateIndex) & !is.na(maxTemplateIndex), id)
 ```
 
 ## References

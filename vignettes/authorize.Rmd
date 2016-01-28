@@ -31,14 +31,14 @@ When the `authorize()` function is used, the `Token` variable is created in the 
 
 ```r
 list_profiles()
-ga_data <- get_ga(profile.id = "ga:XXXXXXXX")
+ga_data <- get_ga(profileId = "ga:XXXXXXXX")
 ```
 
 Access token can also be stored in a variable and passed as the argument to the functions which request the API Google Analytics. It can be useful when you are working with several accounts at the same time (for details see below).
 
 ```r
 ga_token <- authorize(client.id = "client_id", client.secret = "client_secret")
-ga_data <- get_ga(profile.id = "ga:XXXXXXXX", token = ga_token)
+ga_data <- get_ga(profileId = "ga:XXXXXXXX", token = ga_token)
 ```
 
 To authorize of the new Google Analytics account use `new.auth` argument when `authorize()` function call.
