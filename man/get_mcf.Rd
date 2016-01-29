@@ -30,7 +30,7 @@ get_mcf(profileId = getOption("rga.profileId"), start.date = "7daysAgo",
 
 \item{max.results}{integer. The maximum number of entries to include in this feed.}
 
-\item{fetch.by}{character. Split the query by date range. Allowed values: "day", "week", "month", "quarter", "year".}
+\item{fetch.by}{character. Split the query by date range. Allowed values: "day", "week", "month", "quarter", "year". It does not work correctly with the \code{ga:users} and \code{ga:NdayUsers} metrics.}
 
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
 }

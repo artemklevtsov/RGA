@@ -35,7 +35,7 @@ get_ga(profileId = getOption("rga.profileId"), start.date = "7daysAgo",
 
 \item{include.empty.rows}{logical. The response will include empty rows if this parameter is set to \code{TRUE} (default),}
 
-\item{fetch.by}{character. Split the query by date range. Allowed values: "day", "week", "month", "quarter", "year".}
+\item{fetch.by}{character. Split the query by date range. Allowed values: "day", "week", "month", "quarter", "year". It does not work correctly with the \code{ga:users} and \code{ga:NdayUsers} metrics.}
 
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
 }

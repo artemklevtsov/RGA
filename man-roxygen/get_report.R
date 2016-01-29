@@ -4,6 +4,6 @@
 #' @param samplingLevel character. The desired sampling level. Allowed values: "DEFAULT", "FASTER", "HIGHER_PRECISION".
 #' @param start.index integer. An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
 #' @param max.results integer. The maximum number of entries to include in this feed.
-#' @param fetch.by character. Split the query by date range. Allowed values: "day", "week", "month", "quarter", "year".
-#' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data. 
+#' @param fetch.by character. Split the query by date range. Allowed values: "day", "week", "month", "quarter", "year". It does not work correctly with the \code{ga:users} and \code{ga:NdayUsers} metrics.
+#' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
 #' @family Reporting API

@@ -81,6 +81,8 @@ get_ga(profileId = XXXXXXXX, start.date = date, end.date = date,
 
 `fetch.by` allowed in the `get_ga()` and `get_mcf()` functions. We recomend you move from large to smaller date ranges until a sampling data occurs.
 
+Note: `fetch.by` with the `ga:users` and `ga:NdayUsers` metrics is not correct because total users value for several days is not the sum of values for each single day. For details see the [documentation](https://support.google.com/analytics/answer/2992042).
+
 ## References
 
 - [Core Reporting API - Dimensions & Metrics Reference](https://developers.google.com/analytics/devguides/reporting/core/dimsmets)
