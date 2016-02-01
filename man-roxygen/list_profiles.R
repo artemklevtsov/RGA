@@ -26,7 +26,7 @@
 #' \item{created}{Time this view (profile) was created.}
 #' \item{updated}{Time this view (profile) was last modified.}
 #' \item{eCommerceTracking}{Indicates whether ecommerce tracking is enabled for this view (profile).}
-#' \item{enhancedECommerceTracking}{Indicates whether enhanced ecommerce tracking is enabled for this view (profile). This property can only be enabled if ecommerce tracking is enabled. This property cannot be set on insert.}
+#' \item{enhancedECommerceTracking}{Indicates whether enhanced ecommerce tracking is enabled for this view (profile). This property can only be enabled if ecommerce tracking is enabled. This property cannot be set with the insert method.}
 #' \item{botFilteringEnabled}{Indicates whether bot filtering is enabled for this view (profile).}
 #' \item{permissions.effective}{All the permissions that the user has for this view (profile). These include any implied permissions (e.g., EDIT implies VIEW) or inherited permissions from the parent web property.}
 #' @references \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/profiles}{Management API - Views (Profiles) Overview}
