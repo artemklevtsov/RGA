@@ -62,6 +62,7 @@ fix_username <- function(x) {
 #' @param client.secret character. OAuth client secret. If you set the environment variable \env{RGA_CLIENT_SECRET} it is used.
 #' @param cache logical or character. \code{TRUE} means to cache using the default cache file \code{.oauth-httr}, \code{FALSE} means not to cache. A string means to use the specified path as the cache file. Otherwise will be used the \code{rga.cache} option value (\code{.ga-token.rds} by default). If \code{username} argument specified token will be cached in the \code{.username-token.rds} file.
 #' @param reauth logical. Set \code{TRUE} to reauthorization with the same or different Google Analytics account.
+#' @param token A valid \code{Token2.0} object (icluding \code{TokenServiceAccount}) to setup directly.
 #'
 #' @details
 #'
@@ -144,7 +145,11 @@ authorize <- function(username = getOption("rga.username"),
                       client.id = getOption("rga.client.id"),
                       client.secret = getOption("rga.client.secret"),
                       cache = getOption("rga.cache"),
-                      reauth = FALSE) {
+                      reauth = FALSE, token = NULL) {
+    if (!is.null(token) && validate_token(token)) {
+        set_token(token)
+        return(invisible(token))
+    }
     if (all(env_exists("RGA_CLIENT_ID", "RGA_CLIENT_SECRET"))) {
         message("Client ID and Client secret loaded from environment variables.")
         client.id <- Sys.getenv("RGA_CLIENT_ID")
