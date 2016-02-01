@@ -2,12 +2,16 @@
 \title{News for Package \pkg{RGA}}
 \encoding{UTF-8}
 
-\section{Changes in RGA version 0.3.3 (2016-01-15)}{
+\section{Changes in RGA version 0.4.0 (2016-02-2)}{
   \itemize{
     \item Fixed links in the \code{authorize()} related docs
-    \item Fixed issues related with the \CRANpkg{httr} update
+    \item Fixed issues related with the \CRANpkg{httr} 1.1.0 update
     \item Updated required minimal \CRANpkg{httr} version to 1.1.0
     \item \CRANpkg{rmarkdown} package added as suggested dependencies
+    \item All the names of the parameters are converted to camelCase to match the documentation
+    \item Added new \code{token} param to the \code{authorize} function to set an existing valid access token
+    \item Updated documentation
+    \item Some inner code improvements
   }
 }
 
