@@ -34,9 +34,7 @@ fetch_by <- function(path, query, by, token) {
     for (i in 1:n) {
         query$start.date <- dates$start[i]
         query$end.date <- dates$end[i]
-        capture.output(
-            pages[[i]] <- get_data(path, query, token)
-        )
+        utils::capture.output(pages[[i]] <- get_data(path, query, token))
         utils::setTxtProgressBar(pb, i)
     }
     res <- pages[[1]]
