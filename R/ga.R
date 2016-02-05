@@ -43,7 +43,7 @@ get_ga <- function(profileId = getOption("rga.profileId"),
                    start.index = NULL, max.results = NULL, include.empty.rows = NULL,
                    fetch.by = NULL, token) {
     if (!is.null(samplingLevel))
-        samplingLevel <- match.arg(samplingLevel, c("DEFAULT", "FASTER", "HIGHER_PRECISION"))
+        samplingLevel <- match.arg(toupper(samplingLevel), c("DEFAULT", "FASTER", "HIGHER_PRECISION"))
     if (!is.null(include.empty.rows))
         include.empty.rows <- match.arg(include.empty.rows, c(TRUE, FALSE))
     query <- build_query(profileId = profileId, start.date = start.date, end.date = end.date,

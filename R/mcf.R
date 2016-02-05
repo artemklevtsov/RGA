@@ -34,7 +34,7 @@ get_mcf <- function(profileId = getOption("rga.profileId"),
                     sort = NULL, filters = NULL, samplingLevel = NULL,
                     start.index = NULL, max.results = NULL, fetch.by = NULL, token) {
     if (!is.null(samplingLevel))
-        samplingLevel <- match.arg(samplingLevel, c("DEFAULT", "FASTER", "HIGHER_PRECISION"))
+        samplingLevel <- match.arg(toupper(samplingLevel), c("DEFAULT", "FASTER", "HIGHER_PRECISION"))
     query <- build_query(profileId = profileId, start.date = start.date, end.date = end.date,
                          metrics = metrics, dimensions = dimensions, sort = sort, filters = filters,
                          samplingLevel = samplingLevel,

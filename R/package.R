@@ -42,13 +42,12 @@
 #'
 #' To report a bug please type into R: \code{utils::bug.report(package = "RGA")}
 #'
-#' @author
-#' Artem Klevtsov \email{a.a.klevtsov@@gmail.com}
-#'
 #' @name RGA-package
 #' @docType package
 #' @keywords package
 #' @aliases rga RGA
+#'
+#' @author Artem Klevtsov \email{a.a.klevtsov@@gmail.com}
 #'
 #' @examples
 #' \dontrun{
