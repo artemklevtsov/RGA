@@ -29,7 +29,7 @@ get_return <- function(x) {
     title <- x %>% html_nodes("section#overview p") %>% html_text(trim = TRUE) %>% extract(1)
     title <- sprintf("#' @return %s", title)
     items <- sprintf("#' \\item{%s}{%s}", tbl$`Property name` %>% rename_params(), tbl$Description)
-    items %<>% extract(items %>% str_detect("selfLink|parentLink|childLink") %>% not())
+    items <- items[!str_detect(items, "selfLink|parentLink|childLink")]
     items %<>% str_replace_all("permissions.effective", "permissions")
     c(title, items)
 }
