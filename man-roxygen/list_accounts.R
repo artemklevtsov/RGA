@@ -10,6 +10,6 @@
 #' \item{permissions}{Permissions the user has for this account.}
 #' \item{created}{Time the account was created.}
 #' \item{updated}{Time the account was last modified.}
-#' \item{permissions.effective}{All the permissions that the user has for this account. These include any implied permissions (e.g., EDIT implies VIEW).}
+#' \item{permissions}{All the permissions that the user has for this account. These include any implied permissions (e.g., EDIT implies VIEW).}
 #' @references \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/accounts}{Management API - Accounts Overview}
 #' @family Management API

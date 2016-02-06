@@ -42,7 +42,7 @@ The Profiles collection is a set of Profile resources, each of which describes t
 \item{eCommerceTracking}{Indicates whether ecommerce tracking is enabled for this view (profile).}
 \item{enhancedECommerceTracking}{Indicates whether enhanced ecommerce tracking is enabled for this view (profile). This property can only be enabled if ecommerce tracking is enabled. This property cannot be set with the insert method.}
 \item{botFilteringEnabled}{Indicates whether bot filtering is enabled for this view (profile).}
-\item{permissions.effective}{All the permissions that the user has for this view (profile). These include any implied permissions (e.g., EDIT implies VIEW) or inherited permissions from the parent web property.}
+\item{permissions}{All the permissions that the user has for this view (profile). These include any implied permissions (e.g., EDIT implies VIEW) or inherited permissions from the parent web property.}
 }
 \description{
 Lists views (profiles) to which the user has access.

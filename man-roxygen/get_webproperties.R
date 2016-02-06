@@ -17,6 +17,6 @@
 #' \item{permissions}{Permissions the user has for this web property.}
 #' \item{created}{Time this web property was created.}
 #' \item{updated}{Time this web property was last modified.}
-#' \item{permissions.effective}{All the permissions that the user has for this web property. These include any implied permissions (e.g., EDIT implies VIEW) or inherited permissions from the parent account.}
+#' \item{permissions}{All the permissions that the user has for this web property. These include any implied permissions (e.g., EDIT implies VIEW) or inherited permissions from the parent account.}
 #' @references \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/webproperties}{Management API - Web Properties Overview}
 #' @family Management API
