@@ -3,10 +3,9 @@ date_ranges <- function(start, end, by) {
     end <- as.Date(end)
     by <- match.arg(by, c("day", "week", "month", "quarter", "year"))
     dates <- seq.Date(start, end, by = by)
-    res <- data.frame(start = as.character(dates),
-                      end = as.character(c(dates[-1] - 1, end)),
-                      stringsAsFactors = FALSE)
-    return(res)
+    res <- cbind(start = as.character(dates),
+                 end = as.character(c(dates[-1] - 1, end)))
+    as.data.frame(res, stringsAsFactors = FALSE)
 }
 
 parse_date <- function(x) {

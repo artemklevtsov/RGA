@@ -25,7 +25,7 @@ mcf_df <- function(x) {
         conversion <- lapply(conversion, collapse_mcf)
         conversion <- do.call(rbind, conversion)
         colnames(conversion) <- col_names[ind]
-        res <- data.frame(primitive, conversion, row.names = NULL, stringsAsFactors = FALSE)[, col_names]
+        res <- as.data.frame(cbind(primitive, conversion), stringsAsFactors = FALSE)[, col_names]
     } else {
         res <- as.data.frame(do.call(rbind, unlist(x$rows, recursive = FALSE, use.names = FALSE)), stringsAsFactors = FALSE)
         colnames(res) <- col_names
