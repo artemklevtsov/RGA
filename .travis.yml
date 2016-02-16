@@ -1,12 +1,2 @@
 language: R
-cache: packages
-r_binary_packages:
-  - jsonlite
-  - httr
-  - plyr
-  - lubridate
-  - testthat
-  - knitr
-  - rmarkdown
-  - shiny
 warnings_are_errors: true
