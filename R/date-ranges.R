@@ -45,7 +45,7 @@ fetch_by <- function(path, query, by, token) {
     res$rows <- plyr::rbind.fill(lapply(pages, .subset2, "rows"))
     names(res$query) <- rename_params(names(res$query))
     res$query$start.date <- pages[[1]]$query$`start-date`
-    res$query$end.date <- pages[[n]]$query$`end-date`
+    res$query$end.date <- pages[[length(pages)]]$query$`end-date`
     res$totalResults <- sum_by(pages, "totalResults")
     res$containsSampledData <- any(unlist(lapply(pages, .subset2, "containsSampledData")))
     if (isTRUE(res$containsSampledData)) {
