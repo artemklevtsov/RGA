@@ -40,7 +40,7 @@ get_report <- function(path, query, token, by = NULL) {
     names(json_content$query) <- rename_params(names(json_content$query))
     attr(res, "query") <- json_content$query
     attr(res, "sampled") <- json_content$containsSampledData
-    if (!is.null(json_content$contains.sampled.data) && isTRUE(json_content$contains.sampled.data)) {
+    if (!is.null(json_content$containsSampledData) && isTRUE(json_content$containsSampledData)) {
         attr(res, "sampleSize") <- json_content$sampleSize
         attr(res, "sampleSpace") <- json_content$sampleSpace
         samplePerc <- json_content$sampleSize / json_content$sampleSpace * 100
