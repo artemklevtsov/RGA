@@ -7,6 +7,7 @@
 #' \item{id}{Account ID.}
 #' \item{kind}{Resource type for Analytics AccountSummary.}
 #' \item{name}{Account name.}
+#' \item{starred}{Indicates whether this account is starred or not.}
 #' \item{webProperties}{List of web properties under this account.}
 #' \item{webProperties.kind}{Resource type for Analytics WebPropertySummary.}
 #' \item{webProperties.id}{Web property ID of the form UA-XXXXX-YY.}
@@ -14,9 +15,11 @@
 #' \item{webProperties.internalWebPropertyId}{Internal ID for this web property.}
 #' \item{webProperties.level}{Level for this web property. Possible values are STANDARD or PREMIUM.}
 #' \item{webProperties.websiteUrl}{Website url for this web property.}
+#' \item{webProperties.starred}{Indicates whether this web property is starred or not.}
 #' \item{webProperties.profiles.kind}{Resource type for Analytics ProfileSummary.}
 #' \item{webProperties.profiles.id}{View (profile) ID.}
 #' \item{webProperties.profiles.name}{View (profile) name.}
 #' \item{webProperties.profiles.type}{View (Profile) type. Supported types: WEB or APP.}
+#' \item{webProperties.profiles.starred}{Indicates whether this view (profile) is starred or not.}
 #' @references \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/accountSummaries}{Management API - Account Summaries Overview}
 #' @family Management API

@@ -1,8 +1,8 @@
 #' @title Views (Profiles)
 #' @description Gets a view (profile) to which the user has access.
-#' @param accountId character. Account ID to retrieve the goal for.
-#' @param profileId character. View (Profile) ID to retrieve the goal for.
-#' @param webPropertyId character. Web property ID to retrieve the goal for.
+#' @param accountId character. Account ID to retrieve the view (profile) for.
+#' @param profileId character. View (Profile) ID to retrieve the view (profile) for.
+#' @param webPropertyId character. Web property ID to retrieve the view (profile) for.
 #' @param token \code{\link[httr]{Token2.0}} class object with a valid authorization data.
 #' @return The Profiles collection is a set of Profile resources, each of which describes the profile of an authenticated user.
 #' \item{id}{View (Profile) ID.}
@@ -25,8 +25,9 @@
 #' \item{created}{Time this view (profile) was created.}
 #' \item{updated}{Time this view (profile) was last modified.}
 #' \item{eCommerceTracking}{Indicates whether ecommerce tracking is enabled for this view (profile).}
-#' \item{enhancedECommerceTracking}{Indicates whether enhanced ecommerce tracking is enabled for this view (profile). This property can only be enabled if ecommerce tracking is enabled. This property cannot be set with the insert method.}
+#' \item{enhancedECommerceTracking}{Indicates whether enhanced ecommerce tracking is enabled for this view (profile). This property can only be enabled if ecommerce tracking is enabled. This property cannot be set on insert.}
 #' \item{botFilteringEnabled}{Indicates whether bot filtering is enabled for this view (profile).}
+#' \item{starred}{Indicates whether this view (profile) is starred or not.}
 #' \item{permissions}{All the permissions that the user has for this view (profile). These include any implied permissions (e.g., EDIT implies VIEW) or inherited permissions from the parent web property.}
 #' @references \href{https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/profiles}{Management API - Views (Profiles) Overview}
 #' @family Management API

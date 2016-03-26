@@ -28,6 +28,7 @@ The Webproperties collection is a set of Webproperty resources, each of which de
 \item{permissions}{Permissions the user has for this web property.}
 \item{created}{Time this web property was created.}
 \item{updated}{Time this web property was last modified.}
+\item{starred}{Indicates whether this web property is starred or not.}
 \item{permissions}{All the permissions that the user has for this web property. These include any implied permissions (e.g., EDIT implies VIEW) or inherited permissions from the parent account.}
 }
 \description{
