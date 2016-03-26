@@ -1,10 +1,11 @@
 # Remove some field and convert dates
+#' @importFrom lubridate ymd_hms
 fix_mgmt <- function(x) {
     x <- x[!grepl("(self|parent|child)Link", names(x))]
     if (!is.null(x$created))
-        x$created <- lubridate::ymd_hms(x$created)
+        x$created <- ymd_hms(x$created)
     if (!is.null(x$updated))
-        x$updated <- lubridate::ymd_hms(x$updated)
+        x$updated <- ymd_hms(x$updated)
     return(x)
 }
 

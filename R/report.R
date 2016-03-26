@@ -6,6 +6,7 @@ get_first_profile <- function(token) {
 }
 
 # Get the Anaytics reporting data
+#' @importFrom lubridate ymd_h ymd
 #' @include query.R
 #' @include get-data.R
 #' @include profiles.R
@@ -30,11 +31,11 @@ get_report <- function(path, query, token, by = NULL) {
         profile <- json_content$profileInfo
         timezone <- get_profile(profile$accountId, profile$webPropertyId, profile$profileId, token)$timezone
         if (!is.null(res$dateHour))
-            res$dateHour <- lubridate::ymd_h(res$dateHour, tz = timezone)
+            res$dateHour <- ymd_h(res$dateHour, tz = timezone)
         if (!is.null(res[["date"]]))
-            res[["date"]] <- lubridate::ymd(res[["date"]], tz = timezone)
+            res[["date"]] <- ymd(res[["date"]], tz = timezone)
         if (!is.null(res$conversionDate))
-            res$conversionDate <- lubridate::ymd(res$conversionDate, tz = timezone)
+            res$conversionDate <- ymd(res$conversionDate, tz = timezone)
     }
     attr(res, "profileInfo") <- json_content$profileInfo
     names(json_content$query) <- rename_params(names(json_content$query))

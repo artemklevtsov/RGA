@@ -56,6 +56,7 @@ mgmt_df <- function(x) {
 }
 
 # Build a data.frame for GA report data
+#' @importFrom utils type.convert
 #' @include utils.R
 build_df <- function(x) {
     if (!is.null(x$columnHeaders)) {
@@ -65,7 +66,7 @@ build_df <- function(x) {
         else
             res <- core_df(x)
         toconvert <- x$columnHeaders$columnType == "METRIC" & x$columnHeaders$dataType != "STRING"
-        res[toconvert] <- lapply(res[toconvert], utils::type.convert, as.is = TRUE)
+        res[toconvert] <- lapply(res[toconvert], type.convert, as.is = TRUE)
     } else
         res <- mgmt_df(x)
     colnames(res) <- rename_params(colnames(res))

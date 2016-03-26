@@ -45,12 +45,13 @@
 #' subset(ga_meta, allowedInSegments, id)
 #' }
 #'
+#' @importFrom httr GET
 #' @include url.R
 #' @include request.R
 #' @export
 list_dimsmets <- function(reportType = "ga") {
     url <- get_url(c("metadata", reportType, "columns"))
-    response <- httr::GET(url)
+    response <- GET(url)
     json_content <- process_response(response)
     res <- json_content$items
     res$kind <- NULL
