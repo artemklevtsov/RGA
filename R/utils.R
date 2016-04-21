@@ -90,5 +90,6 @@ parse_params <- function(x) {
 }
 
 sum_by <- function(x, name) {
-    sum(vapply(x, function(x) as.numeric(x[[name]]), numeric(1)))
+    x <- as.numeric(unlist(lapply(x, .subset2, name)))
+    sum(x)
 }
