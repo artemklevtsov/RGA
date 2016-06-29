@@ -71,6 +71,5 @@ build_df <- function(x) {
         res <- mgmt_df(x)
     colnames(res) <- rename_params(colnames(res))
     rownames(res) <- NULL
-    class(res) <- c("tbl_df", "tbl", "data.frame")
     return(res)
 }

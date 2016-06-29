@@ -60,7 +60,6 @@ list_dimsmets <- function(reportType = "ga") {
     res$allowedInSegments <- as.logical(res$allowedInSegments)
     tocenvert <- grep("TemplateIndex", names(res), fixed = TRUE)
     res[tocenvert] <- lapply(res[tocenvert], as.integer)
-    class(res) <- c("tbl_df", "tbl", "data.frame")
     return(res)
 }
 
