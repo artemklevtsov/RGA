@@ -30,7 +30,7 @@ A package for extracting data from Google Analytics API into R.
 To report a bug please type: \code{utils::bug.report(package = "RGA")}.
 }
 
-\section{Useage}{
+\section{Usage}{
 
 
 Once you have the package loaded, there are 3 steps you need to use to get data from Google Analytics:
