@@ -9,9 +9,9 @@ test_that("Result class", {
 })
 
 test_that("Data frame dimensions", {
-    expect_equal(ncol(ga_data), 14L)
+    expect_equal(ncol(ga_data), 15L)
 })
 
 test_that("Columns names", {
-    expect_equal(names(ga_data), c("id", "type", "dataType", "group", "status", "uiName", "description", "allowedInSegments", "replacedBy", "calculation", "minTemplateIndex", "maxTemplateIndex", "premiumMinTemplateIndex", "premiumMaxTemplateIndex"))
+    expect_equal(names(ga_data), c("id", "type", "dataType", "group", "status", "uiName", "description", "allowedInSegments", "addedInApiVersion", "replacedBy", "calculation", "minTemplateIndex", "maxTemplateIndex", "premiumMinTemplateIndex", "premiumMaxTemplateIndex"))
 })

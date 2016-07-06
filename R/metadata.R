@@ -14,6 +14,7 @@
 #' \item{uiName}{The name/label of the column used in user interfaces (UI).}
 #' \item{description}{The full description of the column.}
 #' \item{allowedInSegments}{Indicates whether the column can be used in the segment query parameter.}
+#' \item{addedInApiVersion}{API version with this param was added.}
 #' \item{replacedBy}{The replacement column to use for a column with a \code{DEPRECATED} status.}
 #' \item{calculation}{Only available for calculated metrics. This shows how the metric is calculated.}
 #' \item{minTemplateIndex}{Only available for templatized columns. This is the minimum index for the column.}
@@ -45,12 +46,13 @@
 #' subset(ga_meta, allowedInSegments, id)
 #' }
 #'
+#' @importFrom httr GET
 #' @include url.R
 #' @include request.R
 #' @export
 list_dimsmets <- function(reportType = "ga") {
     url <- get_url(c("metadata", reportType, "columns"))
-    response <- httr::GET(url)
+    response <- GET(url)
     json_content <- process_response(response)
     res <- json_content$items
     res$kind <- NULL
@@ -95,6 +97,7 @@ shiny_dimsmets <- function() {
 #' \item{uiName}{The name/label of the column used in user interfaces (UI).}
 #' \item{description}{The full description of the column.}
 #' \item{allowedInSegments}{Indicates whether the column can be used in the segment query parameter.}
+#' \item{addedInApiVersion}{API version with this param was added.}
 #' \item{replacedBy}{The replacement column to use for a column with a \code{DEPRECATED} status.}
 #' \item{calculation}{Only available for calculated metrics. This shows how the metric is calculated.}
 #' \item{minTemplateIndex}{Only available for templatized columns. This is the minimum index for the column.}

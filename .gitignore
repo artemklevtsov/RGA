@@ -8,3 +8,4 @@ tmp
 inst/doc
 rsconnect
 *~$
+.*.Rnb.cached

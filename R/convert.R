@@ -25,7 +25,7 @@ mcf_df <- function(x) {
         conversion <- lapply(conversion, collapse_mcf)
         conversion <- do.call(rbind, conversion)
         colnames(conversion) <- col_names[ind]
-        res <- data.frame(primitive, conversion, row.names = NULL, stringsAsFactors = FALSE)[, col_names]
+        res <- as.data.frame(cbind(primitive, conversion), stringsAsFactors = FALSE)[, col_names]
     } else {
         res <- as.data.frame(do.call(rbind, unlist(x$rows, recursive = FALSE, use.names = FALSE)), stringsAsFactors = FALSE)
         colnames(res) <- col_names
@@ -56,6 +56,7 @@ mgmt_df <- function(x) {
 }
 
 # Build a data.frame for GA report data
+#' @importFrom utils type.convert
 #' @include utils.R
 build_df <- function(x) {
     if (!is.null(x$columnHeaders)) {
@@ -65,7 +66,7 @@ build_df <- function(x) {
         else
             res <- core_df(x)
         toconvert <- x$columnHeaders$columnType == "METRIC" & x$columnHeaders$dataType != "STRING"
-        res[toconvert] <- lapply(res[toconvert], utils::type.convert, as.is = TRUE)
+        res[toconvert] <- lapply(res[toconvert], type.convert, as.is = TRUE)
     } else
         res <- mgmt_df(x)
     colnames(res) <- rename_params(colnames(res))

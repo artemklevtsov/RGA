@@ -3,10 +3,9 @@ date_ranges <- function(start, end, by) {
     end <- as.Date(end)
     by <- match.arg(by, c("day", "week", "month", "quarter", "year"))
     dates <- seq.Date(start, end, by = by)
-    res <- data.frame(start = as.character(dates),
-                      end = as.character(c(dates[-1] - 1, end)),
-                      stringsAsFactors = FALSE)
-    return(res)
+    res <- cbind(start = as.character(dates),
+                 end = as.character(c(dates[-1] - 1, end)))
+    as.data.frame(res, stringsAsFactors = FALSE)
 }
 
 parse_date <- function(x) {
@@ -20,6 +19,9 @@ parse_date <- function(x) {
     return(as.character(x))
 }
 
+#' @importFrom utils txtProgressBar setTxtProgressBar capture.output
+#' @importFrom plyr rbind.fill
+#' @importFrom stats aggregate.data.frame
 #' @include get-data.R
 #' @include utils.R
 fetch_by <- function(path, query, by, token) {
@@ -30,18 +32,23 @@ fetch_by <- function(path, query, by, token) {
     message("Batch processing mode enabled.\n",
             sprintf("Fetch data by %s: from %s to %s.", by, query$start.date, query$end.date))
     pages <- vector(mode = "list", length = n)
-    pb <- utils::txtProgressBar(min = 0, max = n, initial = 0, style = 3)
+    pb <- txtProgressBar(min = 0, max = n, initial = 0, style = 3)
     for (i in 1:n) {
         query$start.date <- dates$start[i]
         query$end.date <- dates$end[i]
-        utils::capture.output(pages[[i]] <- get_data(path, query, token))
-        utils::setTxtProgressBar(pb, i)
+        suppressMessages(capture.output(pages[[i]] <- get_data(path, query, token)))
+        setTxtProgressBar(pb, i)
     }
+    cl <- vapply(pages, is.null, logical(1))
+    if (all(cl))
+        return(NULL)
+    else if (any(cl))
+        pages <- pages[!cl]
     res <- pages[[1]]
-    res$rows <- plyr::rbind.fill(lapply(pages, .subset2, "rows"))
+    res$rows <- rbind.fill(lapply(pages, .subset2, "rows"))
     names(res$query) <- rename_params(names(res$query))
     res$query$start.date <- pages[[1]]$query$`start-date`
-    res$query$end.date <- pages[[n]]$query$`end-date`
+    res$query$end.date <- pages[[length(pages)]]$query$`end-date`
     res$totalResults <- sum_by(pages, "totalResults")
     res$containsSampledData <- any(unlist(lapply(pages, .subset2, "containsSampledData")))
     if (isTRUE(res$containsSampledData)) {
@@ -53,7 +60,7 @@ fetch_by <- function(path, query, by, token) {
     else if (!is.null(query$dimensions) && !any(grepl("date", query$dimensions))) {
         mets <- parse_params(query$metrics)
         dims <- parse_params(query$dimensions)
-        res$rows <- stats::aggregate.data.frame(res$rows[mets], res$rows[dims], sum)
+        res$rows <- aggregate.data.frame(res$rows[mets], res$rows[dims], sum)
     }
     close(pb)
     if (grepl("ga:users|ga:[0-9]+dayUsers", query$metrics))

@@ -1,7 +1,8 @@
 # Error printing function
+#' @importFrom httr http_status
 #' @include utils.R
 error_reasons <- function(x) {
-    code_message <- httr::http_status(as.numeric(x$error$code))$message
+    code_message <- http_status(as.numeric(x$error$code))$message
     errors <- x$error$errors
     errors$reason <- gsub("^([[:alpha:]])", "\\U\\1", to_separated(errors$reason, sep = " "), perl = TRUE)
     errors$message <- gsub("\n", ". ", errors$message, fixed = TRUE)
@@ -19,26 +20,28 @@ error_reasons <- function(x) {
 }
 
 # Process response
+#' @importFrom httr status_code http_error content parse_media
+#' @importFrom jsonlite fromJSON
 #' @include utils.R
 process_response <- function(response) {
     stopifnot(inherits(response, "response"))
-    status_code <- httr::status_code(response)
+    status_code <- status_code(response)
     if (status_code == 204L)
         return(NULL)
-    if (!httr::http_error(response)) {
-        text <- httr::content(response, as = "text")
+    if (!http_error(response)) {
+        text <- content(response, as = "text")
         if (text == "")
             stop("No output to parse.", call. = FALSE)
-        res <- jsonlite::fromJSON(text, flatten = TRUE)
+        res <- fromJSON(text, flatten = TRUE)
     } else {
         if (status_code == 404L)
             stop(sprintf("The requested URL not found. URL: %s.", strsplit(response$url, "?", fixed = TRUE)[[1L]][1L]), call. = FALSE)
-        type <- httr::parse_media(response$headers$`Content-type`)
+        type <- parse_media(response$headers$`Content-type`)
         if (type$complete == "application/json") {
-            res <- jsonlite::fromJSON(httr::content(response, as = "text"))
+            res <- fromJSON(content(response, as = "text"))
             stop(error_reasons(res), call. = FALSE)
         } else {
-            res <- httr::content(response, as = "text")
+            res <- content(response, as = "text")
             stop(sprintf("HTTP error %s:\n%s.", status_code, res), call. = FALSE)
         }
     }
@@ -46,6 +49,8 @@ process_response <- function(response) {
 }
 
 # Get a Google Analytics API response
+#' @importFrom httr config GET accept_json
+#' @importFrom stats runif
 #' @include auth.R
 api_request <- function(url, token) {
     if (missing(token) && is.null(get_token()))
@@ -53,15 +58,15 @@ api_request <- function(url, token) {
     if (missing(token) && !is.null(get_token()))
         token <- get_token()
     if (validate_token(token))
-        config <- httr::config(token = token)
+        config <- config(token = token)
     attempts <- getOption("rga.retry.attempts", 5L) + 1L
     for (i in 0L:attempts) {
-        response <- httr::GET(url, config = config, httr::accept_json())
+        response <- GET(url, config = config, accept_json())
         res <- tryCatch(process_response(response), error = identity)
         if (!inherits(res, "error"))
             break
         else if (grepl("User rate limit exceeded|Quota exceeded", res$message) & i < attempts)
-            Sys.sleep(2L^i + stats::runif(1L))
+            Sys.sleep(2L^i + runif(1L))
         else
             stop(res)
     }

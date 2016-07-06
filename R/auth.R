@@ -140,6 +140,7 @@ fix_username <- function(x) {
 #' ga_token <- authorize(client.id = "my_id", client.secret = "my_secret")
 #' }
 #'
+#' @importFrom httr oauth_app oauth_endpoints oauth2.0_token
 #' @export
 authorize <- function(username = getOption("rga.username"),
                       client.id = getOption("rga.client.id"),
@@ -159,8 +160,8 @@ authorize <- function(username = getOption("rga.username"),
         message("Username loaded from environment variable.")
         username <- Sys.getenv("RGA_USERNAME")
     }
-    app <- httr::oauth_app(appname = "rga", key = client.id, secret = client.secret)
-    endpoint <- httr::oauth_endpoints("google")
+    app <- oauth_app(appname = "rga", key = client.id, secret = client.secret)
+    endpoint <- oauth_endpoints("google")
     if (!is.null(username)) {
         stopifnot(is.character(username))
         stopifnot(length(username) == 1)
@@ -173,7 +174,7 @@ authorize <- function(username = getOption("rga.username"),
         remove_token(get_token())
     if (is.character(cache) && nzchar(cache))
         message(sprintf("Access token will be stored in the '%s' file.", cache))
-    token <- httr::oauth2.0_token(endpoint = endpoint, app = app, cache = cache,
+    token <- oauth2.0_token(endpoint = endpoint, app = app, cache = cache,
                                   scope = "https://www.googleapis.com/auth/analytics.readonly")
     if (validate_token(token))
         set_token(token)

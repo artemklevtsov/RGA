@@ -1,4 +1,6 @@
 # Get the Google Analytics API data
+#' @importFrom utils txtProgressBar setTxtProgressBar
+#' @importFrom plyr rbind.fill.matrix rbind.fill
 #' @include url.R
 #' @include request.R
 #' @include convert.R
@@ -33,18 +35,18 @@ get_data <- function(path = NULL, query = NULL, token) {
         sidx <- seq.int(query$start.index, total, query$max.results)
         midx <- diff(c(sidx, total + 1L))
         pages <- vector(mode = "list", length = length(sidx))
-        pb <- utils::txtProgressBar(min = 0, max = length(sidx), initial = 1, style = 3)
+        pb <- txtProgressBar(min = 0, max = length(sidx), initial = 1, style = 3)
         for (i in 2L:length(sidx)) {
             query$start.index <- sidx[i]
             query$max.results <- midx[i]
             pages[[i]] <- api_request(get_url(path, query), token)[[items]]
-            utils::setTxtProgressBar(pb, i)
+            setTxtProgressBar(pb, i)
         }
         pages[[1L]] <- res[[items]]
         if (is.matrix(pages[[1L]]))
-            pages <- plyr::rbind.fill.matrix(pages)
+            pages <- rbind.fill.matrix(pages)
         if (is.data.frame(pages[[1L]]))
-            pages <- plyr::rbind.fill(pages)
+            pages <- rbind.fill(pages)
         else if (is.list(pages[[1L]]))
             pages <- unlist(pages, recursive = FALSE, use.names = FALSE)
         res[[items]] <- pages

@@ -21,7 +21,8 @@ The Accounts collection is a set of Account resources, each of which describes t
 \item{permissions}{Permissions the user has for this account.}
 \item{created}{Time the account was created.}
 \item{updated}{Time the account was last modified.}
-\item{permissions.effective}{All the permissions that the user has for this account. These include any implied permissions (e.g., EDIT implies VIEW).}
+\item{starred}{Indicates whether this account is starred or not.}
+\item{permissions}{All the permissions that the user has for this account. These include any implied permissions (e.g., EDIT implies VIEW).}
 }
 \description{
 Lists all accounts to which the user has access.

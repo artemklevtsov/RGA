@@ -19,6 +19,7 @@ A data.frame contains dimensions and metrics for a particular report type.
 \item{uiName}{The name/label of the column used in user interfaces (UI).}
 \item{description}{The full description of the column.}
 \item{allowedInSegments}{Indicates whether the column can be used in the segment query parameter.}
+\item{addedInApiVersion}{API version with this param was added.}
 \item{replacedBy}{The replacement column to use for a column with a \code{DEPRECATED} status.}
 \item{calculation}{Only available for calculated metrics. This shows how the metric is calculated.}
 \item{minTemplateIndex}{Only available for templatized columns. This is the minimum index for the column.}

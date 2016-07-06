@@ -9,8 +9,7 @@ base_url <- "https://developers.google.com/analytics/devguides/config/mgmt/v3/mg
 
 urls <- read_html(base_url) %>%
     html_nodes("a") %>% html_attr("href") %>%
-    str_subset("#resource") %>% str_replace_all("#resource", "") %>%
-    str_c("https://developers.google.com", .)
+    str_subset("#resource") %>% str_replace_all("#resource", "")
 
 rename_params <- function(x) {
     x <- gsub("ids", "profileId", x, fixed = TRUE)
@@ -29,7 +28,8 @@ get_return <- function(x) {
     title <- x %>% html_nodes("section#overview p") %>% html_text(trim = TRUE) %>% extract(1)
     title <- sprintf("#' @return %s", title)
     items <- sprintf("#' \\item{%s}{%s}", tbl$`Property name` %>% rename_params(), tbl$Description)
-    items %<>% extract(items %>% str_detect("selfLink|parentLink|childLink") %>% not())
+    items <- items[!str_detect(items, "selfLink|parentLink|childLink")]
+    items %<>% str_replace_all("permissions.effective", "permissions")
     c(title, items)
 }
 
