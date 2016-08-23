@@ -1,6 +1,6 @@
 Package: RGA
 Type: Package
-Title: A Google Analytics API Client
+Title: A Google Analytics API V3 Client
 Description: Provides functions for accessing and retrieving data from the
     Google Analytics APIs (https://developers.google.com/analytics/). Supports
     OAuth 2.0 authorization. Package provides access to the Management, Core
@@ -53,6 +53,7 @@ Collate:
     'metadata.R'
     'package.R'
     'realtime.R'
+    'remarketingAudience.R'
     'segments.R'
     'unsampledReports.R'
     'uploads.R'
