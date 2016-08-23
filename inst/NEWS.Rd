@@ -2,6 +2,15 @@
 \title{News for Package \pkg{RGA}}
 \encoding{UTF-8}
 
+\section{Changes in RGA version 0.4.3 (2016-08-23)}{
+  \itemize{
+    \item Updated data
+    \item Updated the API documentation
+    \item Fixed the package description
+    \item Added \code{get_remarketing_audiences} and \code {list_custom_dimensions} functions
+  }
+}
+
 \section{Changes in RGA version 0.4.2 (2016-04-08)}{
   \itemize{
     \item Updated data
