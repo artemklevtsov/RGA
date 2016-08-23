@@ -14,10 +14,6 @@ list_filters(accountId, start.index = NULL, max.results = NULL, token)
 \item{max.results}{integer. The maximum number of filters to include in this response.}
 
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
-
-\item{Path}{parameters Path parameters. Path parameters}
-
-\item{Optional}{query parameters Optional query parameters. Optional query parameters}
 }
 \value{
 The Filters collection is a set of Filter resources, each of which describes a filter which can be applied to a View (profile).

@@ -12,8 +12,6 @@ list_accounts(start.index = NULL, max.results = NULL, token)
 \item{max.results}{integer. The maximum number of accounts to include in this response.}
 
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
-
-\item{Optional}{query parameters Optional query parameters. Optional query parameters}
 }
 \value{
 The Accounts collection is a set of Account resources, each of which describes the account of an authenticated user.

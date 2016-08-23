@@ -4,25 +4,21 @@
 \alias{list_remarketing_audiences}
 \title{Remarketing Audiences}
 \usage{
-list_remarketing_audiences(accountId, webPropertyId, start.index = NULL,
-  max.results = NULL, token)
+list_remarketing_audiences(accountId, webPropertyId, type = "",
+  start.index = NULL, max.results = NULL, token)
 }
 \arguments{
 \item{accountId}{character. The account ID of the remarketing audiences to retrieve.}
 
 \item{webPropertyId}{character. The web property ID of the remarketing audiences to retrieve.}
 
+\item{type}{character.}
+
 \item{start.index}{integer. An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.}
 
 \item{max.results}{integer. The maximum number of remarketing audiences to include in this response.}
 
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
-
-\item{Path}{parameters Path parameters. Path parameters}
-
-\item{Optional}{query parameters Optional query parameters. Optional query parameters}
-
-\item{type}{character.}
 }
 \value{
 \item{kind}{Collection type.}

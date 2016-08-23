@@ -16,8 +16,6 @@ get_experiment(accountId, webPropertyId, profileId, experimentId, token)
 \item{experimentId}{character. Experiment ID to retrieve the experiment for.}
 
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
-
-\item{Path}{parameters Path parameters. Path parameters}
 }
 \value{
 The experiments collection is a set of experiment resources, each of which describes a content experiment available to an authenticated user.

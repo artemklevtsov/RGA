@@ -16,8 +16,6 @@ get_upload(accountId, webPropertyId, customDataSourceId, uploadId, token)
 \item{uploadId}{character. Upload Id to retrieve.}
 
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
-
-\item{Path}{parameters Path parameters. Path parameters}
 }
 \value{
 The Uploads collection is a set of Upload resources, each of which describes an upload for one of the user's custom data sources. This resource should be used when uploading Dimension Widening data.

@@ -12,8 +12,6 @@ list_segments(start.index = NULL, max.results = NULL, token)
 \item{max.results}{integer. The maximum number of segments to include in this response.}
 
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
-
-\item{Optional}{query parameters Optional query parameters. Optional query parameters}
 }
 \value{
 The Segments collection is a set of Segment resources, each of which describes one of the user's default advanced segments or custom segments.

@@ -14,8 +14,6 @@ get_remarketing_audience(accountId, webPropertyId, remarketingAudienceId, token)
 \item{remarketingAudienceId}{character. The ID of the remarketing audience to retrieve.}
 
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
-
-\item{Path}{parameters Path parameters. Path parameters}
 }
 \value{
 \item{kind}{Collection type.}

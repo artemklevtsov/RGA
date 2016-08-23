@@ -14,8 +14,6 @@ get_custom_metric(accountId, webPropertyId, customMetricId, token)
 \item{customMetricId}{character. The ID of the custom metric to retrieve.}
 
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
-
-\item{Path}{parameters Path parameters. Path parameters}
 }
 \value{
 \item{kind}{Kind value for a custom metric. Set to "analytics#customMetric". It is a read-only field.}

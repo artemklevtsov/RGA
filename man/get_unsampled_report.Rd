@@ -17,8 +17,6 @@ get_unsampled_report(accountId, webPropertyId, profileId, unsampledReportId,
 \item{unsampledReportId}{character. ID of the unsampled report to retrieve.}
 
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
-
-\item{Path}{parameters Path parameters. Path parameters}
 }
 \value{
 \item{id}{Unsampled report ID.}

@@ -19,10 +19,6 @@ list_uploads(accountId, webPropertyId, customDataSourceId, start.index = NULL,
 \item{max.results}{integer. The maximum number of uploads to include in this response.}
 
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
-
-\item{Path}{parameters Path parameters. Path parameters}
-
-\item{Optional}{query parameters Optional query parameters. Optional query parameters}
 }
 \value{
 The Uploads collection is a set of Upload resources, each of which describes an upload for one of the user's custom data sources. This resource should be used when uploading Dimension Widening data.

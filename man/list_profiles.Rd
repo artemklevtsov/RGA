@@ -17,10 +17,6 @@ list_profiles(accountId = "~all", webPropertyId = "~all",
 \item{max.results}{integer. The maximum number of views (profiles) to include in this response.}
 
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
-
-\item{Path}{parameters Path parameters. Path parameters}
-
-\item{Optional}{query parameters Optional query parameters. Optional query parameters}
 }
 \value{
 The Profiles collection is a set of Profile resources, each of which describes the profile of an authenticated user.

@@ -16,8 +16,6 @@ get_goal(accountId, webPropertyId, profileId, goalId, token)
 \item{goalId}{character. Goal ID to retrieve the goal for.}
 
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
-
-\item{Path}{parameters Path parameters. Path parameters}
 }
 \value{
 A Goals resource describes a goal for one of a user's profiles.

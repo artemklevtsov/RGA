@@ -14,8 +14,6 @@ get_custom_dimension(accountId, webPropertyId, customDimensionId, token)
 \item{customDimensionId}{character. The ID of the custom dimension to retrieve.}
 
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
-
-\item{Path}{parameters Path parameters. Path parameters}
 }
 \value{
 \item{kind}{Kind value for a custom dimension. Set to "analytics#customDimension". It is a read-only field.}

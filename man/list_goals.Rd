@@ -19,10 +19,6 @@ list_goals(accountId = "~all", webPropertyId = "~all", profileId = "~all",
 \item{max.results}{integer. The maximum number of goals to include in this response.}
 
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
-
-\item{Path}{parameters Path parameters. Path parameters}
-
-\item{Optional}{query parameters Optional query parameters. Optional query parameters}
 }
 \value{
 A Goals resource describes a goal for one of a user's profiles.

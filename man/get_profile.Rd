@@ -14,8 +14,6 @@ get_profile(accountId, webPropertyId, profileId, token)
 \item{profileId}{character. View (Profile) ID to retrieve the view (profile) for.}
 
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
-
-\item{Path}{parameters Path parameters. Path parameters}
 }
 \value{
 The Profiles collection is a set of Profile resources, each of which describes the profile of an authenticated user.

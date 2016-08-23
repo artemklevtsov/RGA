@@ -7,7 +7,7 @@
     \item Updated data
     \item Updated the API documentation
     \item Fixed the package description
-    \item Added \code{get_remarketing_audiences} and \code {list_custom_dimensions} functions
+    \item Added \code{get_remarketing_audiences} and \code{list_custom_dimensions} functions
   }
 }
 

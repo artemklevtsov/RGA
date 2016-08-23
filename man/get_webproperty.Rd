@@ -12,8 +12,6 @@ get_webproperty(accountId, webPropertyId, token)
 \item{webPropertyId}{character. ID to retrieve the web property for.}
 
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
-
-\item{Path}{parameters Path parameters. Path parameters}
 }
 \value{
 The Webproperties collection is a set of Webproperty resources, each of which describes a web property available to an authenticated user.

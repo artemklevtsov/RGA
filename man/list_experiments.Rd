@@ -19,10 +19,6 @@ list_experiments(accountId, webPropertyId, profileId, start.index = NULL,
 \item{max.results}{integer. The maximum number of experiments to include in this response.}
 
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
-
-\item{Path}{parameters Path parameters. Path parameters}
-
-\item{Optional}{query parameters Optional query parameters. Optional query parameters}
 }
 \value{
 The experiments collection is a set of experiment resources, each of which describes a content experiment available to an authenticated user.

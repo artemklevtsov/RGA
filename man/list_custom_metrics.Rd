@@ -17,10 +17,6 @@ list_custom_metrics(accountId, webPropertyId, start.index = NULL,
 \item{max.results}{integer. The maximum number of custom metrics to include in this response.}
 
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
-
-\item{Path}{parameters Path parameters. Path parameters}
-
-\item{Optional}{query parameters Optional query parameters. Optional query parameters}
 }
 \value{
 \item{kind}{Kind value for a custom metric. Set to "analytics#customMetric". It is a read-only field.}

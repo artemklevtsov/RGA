@@ -12,8 +12,6 @@ get_filter(accountId, filterId, token)
 \item{filterId}{character. Filter ID to retrieve filters for.}
 
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
-
-\item{Path}{parameters Path parameters. Path parameters}
 }
 \value{
 The Filters collection is a set of Filter resources, each of which describes a filter which can be applied to a View (profile).
