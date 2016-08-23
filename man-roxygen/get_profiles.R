@@ -11,7 +11,7 @@
 #' \item{webPropertyId}{Web property ID of the form UA-XXXXX-YY to which this view (profile) belongs.}
 #' \item{internalWebPropertyId}{Internal ID for the web property to which this view (profile) belongs.}
 #' \item{name}{Name of this view (profile).}
-#' \item{currency}{The currency type associated with this view (profile), defaults to USD. The supported values are:  ARS,  AUD,  BGN,  BRL,  CAD,  CHF,  CNY,  CZK,  DKK,  EUR, GBP,  HKD,  HUF,  IDR,  INR,  JPY,  KRW,  LTL,  MXN,  NOK, NZD,  PHP,  PLN,  RUB,  SEK,  THB,  TRY,  TWD,  USD,  VND, ZAR}
+#' \item{currency}{The currency type associated with this view (profile), defaults to USD. The supported values are:  USD, JPY, EUR, GBP, AUD, KRW, BRL, CNY, DKK, RUB, SEK, NOK, PLN, TRY, TWD, HKD, THB, IDR, ARS, MXN, VND, PHP, INR, CHF, CAD, CZK, NZD, HUF, BGN, LTL, ZAR, UAH, AED, BOB, CLP, COP, EGP, HRK, ILS, MAD, MYR, PEN, PKR, RON, RSD, SAR, SGD, VEF, LVL}
 #' \item{timezone}{Time zone for which this view (profile) has been configured. Time zones are identified by strings from the TZ database.}
 #' \item{websiteUrl}{Website URL for this view (profile).}
 #' \item{defaultPage}{Default page for this view (profile).}

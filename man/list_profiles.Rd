@@ -17,6 +17,10 @@ list_profiles(accountId = "~all", webPropertyId = "~all",
 \item{max.results}{integer. The maximum number of views (profiles) to include in this response.}
 
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
+
+\item{Path}{parameters Path parameters. Path parameters}
+
+\item{Optional}{query parameters Optional query parameters. Optional query parameters}
 }
 \value{
 The Profiles collection is a set of Profile resources, each of which describes the profile of an authenticated user.
@@ -26,7 +30,7 @@ The Profiles collection is a set of Profile resources, each of which describes t
 \item{webPropertyId}{Web property ID of the form UA-XXXXX-YY to which this view (profile) belongs.}
 \item{internalWebPropertyId}{Internal ID for the web property to which this view (profile) belongs.}
 \item{name}{Name of this view (profile).}
-\item{currency}{The currency type associated with this view (profile), defaults to USD. The supported values are:  ARS,  AUD,  BGN,  BRL,  CAD,  CHF,  CNY,  CZK,  DKK,  EUR, GBP,  HKD,  HUF,  IDR,  INR,  JPY,  KRW,  LTL,  MXN,  NOK, NZD,  PHP,  PLN,  RUB,  SEK,  THB,  TRY,  TWD,  USD,  VND, ZAR}
+\item{currency}{The currency type associated with this view (profile), defaults to USD. The supported values are:  USD, JPY, EUR, GBP, AUD, KRW, BRL, CNY, DKK, RUB, SEK, NOK, PLN, TRY, TWD, HKD, THB, IDR, ARS, MXN, VND, PHP, INR, CHF, CAD, CZK, NZD, HUF, BGN, LTL, ZAR, UAH, AED, BOB, CLP, COP, EGP, HRK, ILS, MAD, MYR, PEN, PKR, RON, RSD, SAR, SGD, VEF, LVL}
 \item{timezone}{Time zone for which this view (profile) has been configured. Time zones are identified by strings from the TZ database.}
 \item{websiteUrl}{Website URL for this view (profile).}
 \item{defaultPage}{Default page for this view (profile).}
@@ -56,6 +60,7 @@ Other Management API: \code{\link{get_custom_dimension}},
   \code{\link{get_custom_metric}},
   \code{\link{get_experiment}}, \code{\link{get_filter}},
   \code{\link{get_goal}}, \code{\link{get_profile}},
+  \code{\link{get_remarketing_audience}},
   \code{\link{get_unsampled_report}},
   \code{\link{get_upload}}, \code{\link{get_webproperty}},
   \code{\link{list_accounts}},
@@ -64,6 +69,7 @@ Other Management API: \code{\link{get_custom_dimension}},
   \code{\link{list_custom_metrics}},
   \code{\link{list_experiments}},
   \code{\link{list_filters}}, \code{\link{list_goals}},
+  \code{\link{list_remarketing_audiences}},
   \code{\link{list_segments}},
   \code{\link{list_unsampled_reports}},
   \code{\link{list_uploads}},

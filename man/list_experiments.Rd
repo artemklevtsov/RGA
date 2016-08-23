@@ -19,6 +19,10 @@ list_experiments(accountId, webPropertyId, profileId, start.index = NULL,
 \item{max.results}{integer. The maximum number of experiments to include in this response.}
 
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
+
+\item{Path}{parameters Path parameters. Path parameters}
+
+\item{Optional}{query parameters Optional query parameters. Optional query parameters}
 }
 \value{
 The experiments collection is a set of experiment resources, each of which describes a content experiment available to an authenticated user.
@@ -46,7 +50,7 @@ The experiments collection is a set of experiment resources, each of which descr
 \item{equalWeighting}{Boolean specifying whether to distribute traffic evenly across all variations. If the value is False, content experiments follows the default behavior of adjusting traffic dynamically based on variation performance. Optional -- defaults to False. This field may not be changed for an experiment whose status is ENDED.}
 \item{snippet}{The snippet of code to include on the control page(s). This field is read-only.}
 \item{variations}{Array of variations. The first variation in the array is the original. The number of variations may not change once an experiment is in the RUNNING state. At least two variations are required before status can be set to RUNNING.}
-\item{servingFramework}{The framework used to serve the experiment variations and evaluate the results.  One of:  REDIRECT: Google Analytics redirects traffic to different variation pages, reports the chosen variation and evaluates the results. API: Google Analytics chooses and reports the variation to serve and evaluates the results; the caller is responsible for serving the selected variation. EXTERNAL: The variations will be served externally and the chosen variation reported to Google Analytics.  The caller is responsible for serving the selected variation and evaluating the results.}
+\item{servingFramework}{The framework used to serve the experiment variations and evaluate the results.  One of: REDIRECT: Google Analytics redirects traffic to different variation pages, reports the chosen variation and evaluates the results. API: Google Analytics chooses and reports the variation to serve and evaluates the results; the caller is responsible for serving the selected variation. EXTERNAL: The variations will be served externally and the chosen variation reported to Google Analytics.  The caller is responsible for serving the selected variation and evaluating the results.}
 \item{editableInGaUi}{If true, the end user will be able to edit the experiment via the Google Analytics user interface.}
 \item{variations.name}{The name of the variation. This field is required when creating an experiment. This field may not be changed for an experiment whose status is ENDED.}
 \item{variations.url}{The URL of the variation. This field may not be changed for an experiment whose status is RUNNING or ENDED.}
@@ -65,6 +69,7 @@ Other Management API: \code{\link{get_custom_dimension}},
   \code{\link{get_custom_metric}},
   \code{\link{get_experiment}}, \code{\link{get_filter}},
   \code{\link{get_goal}}, \code{\link{get_profile}},
+  \code{\link{get_remarketing_audience}},
   \code{\link{get_unsampled_report}},
   \code{\link{get_upload}}, \code{\link{get_webproperty}},
   \code{\link{list_accounts}},
@@ -72,7 +77,9 @@ Other Management API: \code{\link{get_custom_dimension}},
   \code{\link{list_custom_dimensions}},
   \code{\link{list_custom_metrics}},
   \code{\link{list_filters}}, \code{\link{list_goals}},
-  \code{\link{list_profiles}}, \code{\link{list_segments}},
+  \code{\link{list_profiles}},
+  \code{\link{list_remarketing_audiences}},
+  \code{\link{list_segments}},
   \code{\link{list_unsampled_reports}},
   \code{\link{list_uploads}},
   \code{\link{list_webproperties}}

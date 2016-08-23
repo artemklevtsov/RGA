@@ -1,9 +1,7 @@
 #' @title Remarketing Audiences
 #' @description Lists remarketing audiences to which the user has access.
-#' @param Path parameters Path parameters. Path parameters
 #' @param accountId character. The account ID of the remarketing audiences to retrieve.
 #' @param webPropertyId character. The web property ID of the remarketing audiences to retrieve.
-#' @param Optional query parameters Optional query parameters. Optional query parameters
 #' @param max.results integer. The maximum number of remarketing audiences to include in this response.
 #' @param start.index integer. An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
 #' @param type character.

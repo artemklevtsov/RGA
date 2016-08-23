@@ -19,7 +19,7 @@
 #' \item{filters}{The filters for the unsampled report.}
 #' \item{segment}{The segment for the unsampled report.}
 #' \item{status}{Status of this unsampled report.  Possible values are PENDING, COMPLETED, or FAILED.}
-#' \item{downloadType}{The type of download you need to use for the report data file.}
+#' \item{downloadType}{The type of download you need to use for the report data file. Possible values include `GOOGLE_DRIVE` and `GOOGLE_CLOUD_STORAGE`. If the value is `GOOGLE_DRIVE`, see the `driveDownloadDetails` field. If the value is `GOOGLE_CLOUD_STORAGE`, see the `cloudStorageDownloadDetails` field.}
 #' \item{driveDownloadDetails}{Download details for a file stored in Google Drive.}
 #' \item{cloudStorageDownloadDetails}{Download details for a file stored in Google Cloud Storage.}
 #' \item{created}{Time this unsampled report was created.}

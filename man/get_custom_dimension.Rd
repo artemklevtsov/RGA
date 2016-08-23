@@ -14,6 +14,8 @@ get_custom_dimension(accountId, webPropertyId, customDimensionId, token)
 \item{customDimensionId}{character. The ID of the custom dimension to retrieve.}
 
 \item{token}{\code{\link[httr]{Token2.0}} class object with a valid authorization data.}
+
+\item{Path}{parameters Path parameters. Path parameters}
 }
 \value{
 \item{kind}{Kind value for a custom dimension. Set to "analytics#customDimension". It is a read-only field.}
@@ -37,6 +39,7 @@ Get a custom dimension to which the user has access.
 Other Management API: \code{\link{get_custom_metric}},
   \code{\link{get_experiment}}, \code{\link{get_filter}},
   \code{\link{get_goal}}, \code{\link{get_profile}},
+  \code{\link{get_remarketing_audience}},
   \code{\link{get_unsampled_report}},
   \code{\link{get_upload}}, \code{\link{get_webproperty}},
   \code{\link{list_accounts}},
@@ -45,7 +48,9 @@ Other Management API: \code{\link{get_custom_metric}},
   \code{\link{list_custom_metrics}},
   \code{\link{list_experiments}},
   \code{\link{list_filters}}, \code{\link{list_goals}},
-  \code{\link{list_profiles}}, \code{\link{list_segments}},
+  \code{\link{list_profiles}},
+  \code{\link{list_remarketing_audiences}},
+  \code{\link{list_segments}},
   \code{\link{list_unsampled_reports}},
   \code{\link{list_uploads}},
   \code{\link{list_webproperties}}

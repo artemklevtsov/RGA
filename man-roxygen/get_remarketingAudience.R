@@ -1,6 +1,5 @@
 #' @title Remarketing Audiences
 #' @description Gets a remarketing audience to which the user has access.
-#' @param Path parameters Path parameters. Path parameters
 #' @param accountId character. The account ID of the remarketing audience to retrieve.
 #' @param remarketingAudienceId character. The ID of the remarketing audience to retrieve.
 #' @param webPropertyId character. The web property ID of the remarketing audience to retrieve.

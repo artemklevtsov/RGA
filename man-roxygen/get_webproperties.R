@@ -12,7 +12,7 @@
 #' \item{websiteUrl}{Website url for this web property.}
 #' \item{level}{Level for this web property.}
 #' \item{profileCount}{View (Profile) count for this web property.}
-#' \item{industryVertical}{The industry vertical/category selected for this web property.  If this field is set, the correct values are:   UNSPECIFIED   ARTS_AND_ENTERTAINMENT   AUTOMOTIVE   BEAUTY_AND_FITNESS   BOOKS_AND_LITERATURE   BUSINESS_AND_INDUSTRIAL_MARKETS   COMPUTERS_AND_ELECTRONICS   FINANCE   FOOD_AND_DRINK   GAMES   HEALTHCARE   HOBBIES_AND_LEISURE   HOME_AND_GARDEN   INTERNET_AND_TELECOM   JOBS_AND_EDUCATION   LAW_AND_GOVERNMENT   NEWS   ONLINE_COMMUNITIES   OTHER   PEOPLE_AND_SOCIETY   PETS_AND_ANIMALS   REAL_ESTATE   REFERENCE   SCIENCE   SHOPPING   SPORTS   TRAVEL}
+#' \item{industryVertical}{The industry vertical/category selected for this web property.  If this field is set, the correct values are:  UNSPECIFIED   ARTS_AND_ENTERTAINMENT   AUTOMOTIVE   BEAUTY_AND_FITNESS   BOOKS_AND_LITERATURE   BUSINESS_AND_INDUSTRIAL_MARKETS   COMPUTERS_AND_ELECTRONICS   FINANCE   FOOD_AND_DRINK   GAMES   HEALTHCARE   HOBBIES_AND_LEISURE   HOME_AND_GARDEN   INTERNET_AND_TELECOM   JOBS_AND_EDUCATION   LAW_AND_GOVERNMENT   NEWS   ONLINE_COMMUNITIES   OTHER   PEOPLE_AND_SOCIETY   PETS_AND_ANIMALS   REAL_ESTATE   REFERENCE   SCIENCE   SHOPPING   SPORTS   TRAVEL}
 #' \item{defaultProfileId}{Default view (profile) ID.}
 #' \item{permissions}{Permissions the user has for this web property.}
 #' \item{created}{Time this web property was created.}
