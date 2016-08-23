@@ -2,7 +2,7 @@
 
 [![Travis-CI Build Status](https://travis-ci.org/artemklevtsov/RGA.svg?branch=master)](https://travis-ci.org/artemklevtsov/RGA) [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/RGA)](http://cran.r-project.org/package=RGA)
 
-This package is designed to work with the [API Google Analytics](https://developers.google.com/analytics) in [R](http://www.r-project.org/).
+This package is designed to work with the [Google Analytics API V3](https://developers.google.com/analytics) in [R](http://www.r-project.org/).
 
 Key features:
 
